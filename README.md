@@ -153,7 +153,7 @@ Entries follow the EAC-CPF schema (`urn:isbn:1-931666-33-4`). For a full example
 - `<entityType>`: every entry so far uses `concept`, including people and hotels. *TBD: decide whether to use EAC-CPF's `person` / `corporateBody` / `family`.*
 - To add an entry to the A–Z, add a link in `aToZ.md` by hand.
 
-Open questions to settle: controlled vocabulary for `entityType` and `localType`, how to cite sources inside entries, how to handle images, how to link entries to directory records, and what to do with entries that have two names (e.g. *Carlton Inn* / *Corkman Hotel*).
+Open questions to settle: controlled vocabulary for `entityType` and `localType`, how to cite sources inside entries, how to link entries to directory records, and what to do with entries that have two names (e.g. *Carlton Inn* / *Corkman Hotel*).
 
 ## Data: directories and electoral rolls
 
@@ -364,10 +364,10 @@ Placing records on the map is **ongoing community work**: about 16% of records h
 
 ### 8. Site and content
 
+Not on this roadmap: the About page's content (the project team writes it outside GitHub; the page currently holds a "coming soon" note and the banner image credit), a "how to cite this page" box (the site's address may change), and hosting images ourselves (entries will embed images from State Library Victoria and other institutions through IIIF viewers).
+
 - [x] Replace the "under construction" notice with a permanent, welcoming "this is a work in progress, and you can help" message that links to ways to contribute. A "Work in progress" strip now sits under the nav on every page.
-- [ ] Add an About page, Acknowledgement of Country, credits and licence to the site.
-- [ ] Cite sources consistently on entry pages, with a "how to cite this page" box.
-- [ ] Support images in entries.
+- [ ] Settle the licences and credits below, then show them on the site.
 - [x] Use one name, "Featured pages", for the A–Z page everywhere, including the footer.
 - [x] Footer links to People, Places and the Admin page (which replaces the direct data-editor link) (#49).
 
