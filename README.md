@@ -153,7 +153,7 @@ Entries follow the EAC-CPF schema (`urn:isbn:1-931666-33-4`). For a full example
 - `<entityType>`: every entry so far uses `concept`, including people and hotels. *TBD: decide whether to use EAC-CPF's `person` / `corporateBody` / `family`.*
 - To add an entry to the A–Z, add a link in `aToZ.md` by hand.
 
-Open questions to settle: controlled vocabulary for `entityType` and `localType`, how to cite sources inside entries, how to handle images, how to link entries to directory records, and what to do with entries that have two names (e.g. *Carlton Inn* / *Corkman Hotel*).
+Open questions to settle: controlled vocabulary for `entityType` and `localType`, how to cite sources inside entries, how to link entries to directory records, and what to do with entries that have two names (e.g. *Carlton Inn* / *Corkman Hotel*).
 
 ## Data: directories and electoral rolls
 
@@ -364,10 +364,12 @@ Placing records on the map is **ongoing community work**: about 16% of records h
 
 ### 8. Site and content
 
+Not on this roadmap: the About page's content (the project team writes it outside GitHub; the page currently holds a "coming soon" note and the banner image credit), a "how to cite this page" box (the site's address may change), and hosting images ourselves (entries will embed images from State Library Victoria and other institutions through IIIF viewers).
+
 - [x] Replace the "under construction" notice with a permanent, welcoming "this is a work in progress, and you can help" message that links to ways to contribute. A "Work in progress" strip now sits under the nav on every page.
-- [ ] Add an About page, Acknowledgement of Country, credits and licence to the site.
-- [ ] Cite sources consistently on entry pages, with a "how to cite this page" box.
-- [ ] Support images in entries.
+- [x] Settle the licences and credits below, and show the licences on the About page.
+- [ ] Add an Acknowledgement of Country to the site footer, in wording the project team provides.
+- [ ] Add a contact address to the README and site.
 - [x] Use one name, "Featured pages", for the A–Z page everywhere, including the footer.
 - [x] Footer links to People, Places and the Admin page (which replaces the direct data-editor link) (#49).
 
@@ -375,19 +377,20 @@ Placing records on the map is **ongoing community work**: about 16% of records h
 
 ## Licence
 
-*Proposed. Confirm before publishing.*
-
-- **Written content** (`civic/` entries and site text) is licensed under [Creative Commons Attribution-NonCommercial 4.0 International (CC BY-NC 4.0)](https://creativecommons.org/licenses/by-nc/4.0/), unless a page says otherwise.
-- **Historical source data** (Sands & McDougall directories, electoral rolls) is in the public domain. The transcription and geocoding in `_data/` are *TBD: same CC BY-NC 4.0, or CC0?*
+- **Source code** (layouts, scripts, styles): [MIT Licence](LICENSE).
+- **Written content** (`civic/` entries and site text): [Creative Commons Attribution-NonCommercial 4.0 International (CC BY-NC 4.0)](https://creativecommons.org/licenses/by-nc/4.0/), unless a page says otherwise.
+- **Transcribed and geocoded data** (`_data/` and `data/`): also CC BY-NC 4.0. The historical sources themselves (Sands & McDougall directories, electoral rolls) are in the public domain.
 - **University of Melbourne land parcel data** is used under the terms of the [UoM open data portal](https://spatialdata-uom.opendata.arcgis.com/datasets/UOM::uom-land-parcels-parkville/about).
-- **Source code** (layouts, scripts, styles): *TBD.* Creative Commons does not recommend its licences for software, so consider MIT or similar for the code.
+
+The About page on the site gives the same summary.
 
 ## Credits and acknowledgements
 
-*To be completed.*
-
-- **Acknowledgement of Country:** *TBD*
-- **Project partners:** Melbourne History Workshop, Carlton Community History Group
-- **Funding:** *TBD*
-- **Project team and contributors:** *TBD*
+- **Acknowledgement of Country:** *TBD: the project team will write it, and it will go in the site footer.*
+- **Produced and published by:** [Melbourne History Workshop](https://melbournehistoryworkshop.com/), [School of Historical & Philosophical Studies](https://arts.unimelb.edu.au/school-of-historical-and-philosophical-studies), The University of Melbourne
+- **In collaboration with:** [Carlton Community History Group](https://cchg.asn.au)
+- **Funding:** University of Melbourne Civic and Community Impact Fund
+- **Banner image:** [State Library Victoria](https://handle.slv.vic.gov.au/10381/92019)
 - **Contact:** *TBD*
+
+Credits name organisations only, not individuals.
