@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?oxygen RNGSchema="shared/cpf.rng" type="xml"?>
+<eac-cpf xmlns="urn:isbn:1-931666-33-4" 
+         xmlns:xlink="http://www.w3.org/1999/xlink" 
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+         xsi:schemaLocation="urn:isbn:1-931666-33-4 http://eac.staatsbibliothek-berlin.de/schema/cpf.xsd">
+  <control>
+    <recordId>41-Perseverance-hotel-Strain-Mrs-Cath-Barry-Street</recordId>
+    <maintenanceStatus>new</maintenanceStatus>
+    <maintenanceAgency>
+      <agencyCode>AU-EMEL</agencyCode>
+      <agencyName>eMelbourne - The Encyclopedia of Melbourne Online</agencyName>
+      <descriptiveNote><p></p></descriptiveNote>
+    </maintenanceAgency>
+    <languageDeclaration>
+      <language languageCode="eng">English</language>
+      <script scriptCode="Latn">Latin</script>
+    </languageDeclaration>
+    <conventionDeclaration>
+      <abbreviation>AACR2</abbreviation>
+      <citation>Anglo-American Cataloguing Rules</citation>
+    </conventionDeclaration>
+    <localControl localType="typeOfEntity">
+      <term>Entry</term>
+    </localControl>
+    <maintenanceHistory>
+      <maintenanceEvent>
+        <eventType>created</eventType>
+        <eventDateTime standardDateTime="2026-07-13">2026-07-13</eventDateTime>
+        <agentType>human</agentType>
+        <agent>Mitchell Harrop</agent>
+        <eventDescription>Public contribution via website submission</eventDescription>
+      </maintenanceEvent>
+    </maintenanceHistory>
+  </control>
+  <cpfDescription>
+    <identity>
+      <entityId>41-Perseverance-hotel-Strain-Mrs-Cath-Barry-Street</entityId>
+      <entityType>concept</entityType>
+      <nameEntry>
+        <part>Perseverance Hotel, Barry Street, Carlton</part>
+        <authorizedForm>AACR2</authorizedForm>
+      </nameEntry>
+    </identity>
+    <description>
+      <places></places>
+      <biogHist>
+        <abstract>The Perseverance Hotel was located on Barry Street, Carlton.</abstract>
+      </biogHist>
+    </description>
+    <relations>
+      <resourceRelation resourceRelationType="subjectOf">
+        <relationEntry localType="published">'Perseverance Hotel, Barry Street, Carlton', in &lt;span style="font-style:italic"&gt;eMelbourne - The Encyclopedia of Melbourne Online&lt;/span&gt;, School of Historical Studies, Department of History, The University of Melbourne</relationEntry>
+        <objectXMLWrap>
+          <bibref xmlns="urn:isbn:1-931666-22-9">
+            <title render="italic">Perseverance Hotel, Barry Street, Carlton</title>
+            <imprint>
+              <publisher>School of Historical Studies&lt;br /&gt; Department of History, The University of Melbourne</publisher>
+            </imprint>
+            <bibseries>
+              <title render="italic">eMelbourne - The Encyclopedia of Melbourne Online</title>
+            </bibseries>
+            <extptr linktype="simple" href="41-Perseverance-hotel-Strain-Mrs-Cath-Barry-Street.xml"></extptr>
+          </bibref>
+        </objectXMLWrap>
+      </resourceRelation>
+    </relations>
+  </cpfDescription>
+</eac-cpf>

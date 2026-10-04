@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% if page.url == "/" %}Common Ground{% else %}Common Ground - {{ page.title }}{% endif %}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Libre+Caslon+Text:ital,wght@0,400;0,700;1,400&family=Courier+Prime:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="styles/site.css?v={{ site.time | date: '%s' }}">
+</head>
+    <body>
+
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <div class="wrapper">
+        
+        <!-- Banner Image Component: starts on the bottom third of the
+             source image, then drifts upward as the page scrolls
+             (see scripts/banner-parallax.js) -->
+        <header class="banner-container">
+            <!-- Source: State Library Victoria, https://handle.slv.vic.gov.au/10381/92019 -->
+            <div class="banner-image" role="img" aria-label="Historic survey plan of Carlton, showing the street grid, allotments and owners' names, the University Reserve and the Carlton Gardens"></div>
+        </header>
+
+        <!-- Top Navigation Bar -->
+        <nav class="main-nav" aria-label="Main">
+            <ul class="nav-links">
+                <li><a href="index">Home</a></li>
+                <li><a href="aToZ">Featured pages</a></li>
+                <li><a href="map">Map</a></li>
+                <li><a href="map3d">3D Map</a></li>
+                <li><a href="search">Search</a></li>
+            </ul>
+        </nav>
+
+        <!-- Work-in-progress notice, shown on every page -->
+        <aside class="wip-notice" aria-label="Work in progress">
+            <p>
+                <span class="wip-badge">Work in progress</span>
+                <span class="wip-text">We're still building Common Ground, and you can help. Know something about a person or place here? Add it using the form at the bottom of any entry, or <a href="new">suggest a new article</a>.</span>
+            </p>
+        </aside>
+
+        <!-- Main Layout Split -->
+        <div class="layout-container">
+            
+            <!-- Main Copy Placeholder -->
+            <main class="main-content" id="main" tabindex="-1">
+               {{ content }}
+            </main>
+
+            <!-- Themes Sidebar -->
+            <aside class="sidebar-menu" aria-label="Resources">
+                <h2>Resources</h2>
+                <ul class="theme-list">
+
+                    <li><a href="civic?id=Prest Social Survey">Prest Social Survey</a></li>
+                    <li><a href="civic?id=MMBW">Melbourne and Metropolitan Board of Works maps</a></li>
+
+                    <li><a href="civic?id=Charity Organisation Society">Charity Organisation Society</a></li>
+                    <li><a href="civic?id=Rate Books">Rate Books</a></li>
+                    <li><a href="civic?id=Town Clerk%27s Files">Town Clerk's Files</a></li>
+                    <li><a href="civic?id=Electoral Rolls">Electoral Rolls</a></li>
+                    <li><a href="civic?id=Fair Rents Board">Fair Rents Board</a></li>
+                    <li><a href="civic?id=Sands %26 McDougall Directories">Sands & McDougall Directories</a></li>
+                    <li><a href="civic?id=Victorian Police Gazette">Victorian Police Gazette</a></li>
+                    <li><a href="civic?id=Heritage Surveys">Heritage Surveys</a></li>
+                    <li><a href="civic?id=Street Numbering">Street Numbering</a></li>
+                    
+
+    
+                    
+                </ul>
+            </aside>
+
+        </div>
+
+        <!-- Footer Module -->
+        <footer class="main-footer">
+            <div class="footer-content">
+                <ul class="footer-links">
+                    <li><a href="index">Home</a></li>
+                    <li><a href="aToZ">Featured pages</a></li>
+                    <li><a href="people">People</a></li>
+                    <li><a href="places">Places</a></li>
+                    <li><a href="new">Suggest new article</a></li>
+                    <li><a href="admin/">Admin</a></li>
+                </ul>
+                <div class="footer-attribution">
+                    Produced and published by the <a href="https://melbournehistoryworkshop.com/">Melbourne History Workshop</a>, 
+                    <a href="https://arts.unimelb.edu.au/school-of-historical-and-philosophical-studies">School of Historical & Philosophical Studies</a>, The University of Melbourne, 
+                    in collaboration with the 
+                    <a href="http://www.cchg.asn.au/">Carlton Community History Group</a>. This project was funded through the University of Melbourne Civic and Community Impact Fund.
+                    
+                    
+                </div>
+            </div>
+        </footer>
+
+    </div>
+    
+
+<script src="scripts/banner-parallax.js?v={{ site.time | date: '%s' }}"></script>
+
+
+  </body>
+</html>

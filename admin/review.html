@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Common Ground - Submission review</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #FAFAF8;
+    --paper-raised: #F1F0EB;
+    --ink: #1B1E23;
+    --ink-soft: #565C66;
+    --line: #DAD8D0;
+    --slate: #3E4C59;
+    --add-bg: #E4EFE7;
+    --add-text: #1F5138;
+    --del-bg: #F5E6E3;
+    --del-text: #7A2E20;
+    --serif: 'Lora', Georgia, serif;
+    --sans: 'IBM Plex Sans', -apple-system, sans-serif;
+    --mono: 'IBM Plex Mono', ui-monospace, monospace;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--paper); color: var(--ink);
+    font-family: var(--sans); line-height: 1.5; -webkit-font-smoothing: antialiased;
+  }
+  a { color: var(--slate); }
+  a:focus-visible, button:focus-visible, .btn:focus-visible { outline: 2px solid var(--slate); outline-offset: 3px; border-radius: 2px; }
+  header {
+    padding: 28px 40px 20px; border-bottom: 1px solid var(--line);
+    max-width: 900px; margin: 0 auto;
+  }
+  header h1 { font-family: var(--serif); font-weight: 500; font-size: 1.5rem; margin: 0 0 4px; letter-spacing: -0.01em; }
+  header p { margin: 0; color: var(--ink-soft); font-size: 0.9rem; }
+  main { max-width: 900px; margin: 0 auto; padding: 32px 40px 80px; }
+
+  button, .btn {
+    font-family: var(--sans); font-size: 0.9rem; font-weight: 500;
+    border-radius: 4px; border: 1px solid var(--line); background: var(--paper);
+    color: var(--ink); padding: 9px 16px; cursor: pointer; text-decoration: none;
+    display: inline-block;
+  }
+  button:hover, .btn:hover { border-color: var(--slate); }
+  .btn.primary { background: var(--slate); border-color: var(--slate); color: var(--paper); }
+  .btn.primary:hover { background: var(--ink); border-color: var(--ink); }
+  .btn.ghost { border: none; background: none; padding: 0; text-decoration: underline; text-underline-offset: 3px; }
+
+  .empty, .error {
+    color: var(--ink-soft); border: 1px dashed var(--line); border-radius: 6px;
+    padding: 28px; font-size: 0.95rem;
+  }
+  .error { border-color: var(--del-text); color: var(--del-text); border-style: solid; background: var(--del-bg); }
+
+  .pr-row {
+    display: flex; justify-content: space-between; align-items: center; gap: 20px;
+    padding: 18px 0; border-bottom: 1px solid var(--line);
+  }
+  .pr-row:first-child { padding-top: 0; }
+  .pr-row .title { font-family: var(--serif); font-size: 1.1rem; margin: 0 0 4px; }
+  .pr-row .meta { font-size: 0.85rem; color: var(--ink-soft); }
+
+  .back-link { display: inline-block; margin-bottom: 20px; font-size: 0.9rem; }
+
+  .file-block { border: 1px solid var(--line); border-radius: 6px; margin-bottom: 20px; overflow: hidden; }
+  .file-block .file-header {
+    background: var(--paper-raised); padding: 12px 16px; font-family: var(--mono);
+    font-size: 0.85rem; border-bottom: 1px solid var(--line);
+    display: flex; justify-content: space-between; align-items: center; gap: 12px;
+  }
+  .file-header .tag {
+    font-family: var(--sans); font-size: 0.75rem; color: var(--ink-soft);
+    text-transform: uppercase; letter-spacing: 0.08em;
+  }
+  .preview-frame { width: 100%; height: 600px; border: none; background: #fff; display: block; }
+
+  .steps { margin-top: 32px; }
+  .steps > h3 {
+    font-family: var(--sans); font-size: 0.75rem; font-weight: 600; letter-spacing: 0.08em;
+    text-transform: uppercase; color: var(--ink-soft); margin: 0 0 8px;
+  }
+  .step-list { list-style: none; counter-reset: step; margin: 0; padding: 0; }
+  .step-list > li {
+    counter-increment: step; position: relative; padding: 18px 0 18px 44px;
+    border-bottom: 1px solid var(--line);
+  }
+  .step-list > li::before {
+    content: counter(step); position: absolute; left: 0; top: 18px;
+    width: 28px; height: 28px; border-radius: 50%; border: 1px solid var(--line);
+    background: var(--paper-raised); text-align: center; line-height: 26px;
+    font-size: 0.85rem; font-weight: 600; color: var(--ink-soft);
+  }
+  .step-list h4 { font-family: var(--serif); font-weight: 500; font-size: 1.1rem; margin: 2px 0 6px; }
+  .step-list p { margin: 0 0 8px; font-size: 0.95rem; max-width: 65ch; }
+  .step-list .optional { font-family: var(--sans); font-size: 0.8rem; color: var(--ink-soft); font-weight: 400; margin-left: 6px; }
+  .choices { margin: 12px 0 0; }
+  .choices dt { font-weight: 600; font-size: 0.95rem; margin-top: 14px; }
+  .choices dt:first-child { margin-top: 0; }
+  .choices dd { margin: 4px 0 0; font-size: 0.95rem; max-width: 65ch; }
+  .choices ol { margin: 6px 0 0; padding-left: 20px; }
+  .choices li { margin-bottom: 4px; }
+
+  .action-bar {
+    display: flex; flex-wrap: wrap; gap: 10px; padding: 14px 16px;
+    border-top: 1px solid var(--line); background: var(--paper-raised);
+  }
+  .decision-bar {
+    display: flex; flex-wrap: wrap; gap: 10px; align-items: center; margin-top: 12px;
+  }
+  .decision-bar .note { font-size: 0.85rem; color: var(--ink-soft); }
+  .spinner-text { color: var(--ink-soft); font-size: 0.9rem; padding: 20px 0; }
+
+  @media (max-width: 640px) {
+    header { padding: 24px 16px 16px; }
+    main { padding: 24px 16px 60px; }
+    .preview-frame { height: 70vh; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Submission review</h1>
+  <p>New entries from the contribution form, waiting to be accepted or rejected. <a href="./">Admin</a> &middot; <a href="../">Back to the site</a></p>
+</header>
+
+<main id="app"></main>
+
+<script>
+/* ============================== CONFIG ============================== */
+const CONFIG = {
+  REPO_OWNER: "historicalesque",
+  REPO_NAME: "carlton",
+  XML_PATH_PREFIX: "civic/",   // only PRs touching files under this path are shown
+};
+/* ===================================================================== */
+
+const API = "https://api.github.com";
+const RAW = "https://raw.githubusercontent.com";
+const $app = document.getElementById("app");
+
+async function ghApi(path) {
+  const res = await fetch(API + path);
+  if (res.status === 403) {
+    const remaining = res.headers.get("x-ratelimit-remaining");
+    if (remaining === "0") {
+      const reset = new Date(Number(res.headers.get("x-ratelimit-reset")) * 1000);
+      throw new Error(`GitHub is temporarily limiting requests from this network. Try again after ${reset.toLocaleTimeString()}.`);
+    }
+  }
+  if (!res.ok) throw new Error(`GitHub API error (${res.status})`);
+  return res.json();
+}
+
+function escapeHtml(s) {
+  return s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+}
+
+/* ------------------------------ Views ------------------------------ */
+
+function repoUrl(path = "") {
+  return `https://github.com/${CONFIG.REPO_OWNER}/${CONFIG.REPO_NAME}${path}`;
+}
+
+async function render() {
+  const params = new URLSearchParams(window.location.search);
+  const prNumber = params.get("pr");
+  try {
+    if (prNumber) await renderPrDetail(Number(prNumber));
+    else await renderPrList();
+  } catch (e) {
+    $app.innerHTML = `<div class="error">${escapeHtml(e.message)}</div>`;
+  }
+}
+
+async function renderPrList() {
+  $app.innerHTML = `<p class="spinner-text">Loading documents awaiting review&hellip;</p>`;
+  const prs = await ghApi(`/repos/${CONFIG.REPO_OWNER}/${CONFIG.REPO_NAME}/pulls?state=open&per_page=50`);
+
+  const withXmlFiles = [];
+  for (const pr of prs) {
+    const files = await ghApi(`/repos/${CONFIG.REPO_OWNER}/${CONFIG.REPO_NAME}/pulls/${pr.number}/files?per_page=100`);
+    const xmlFiles = files.filter((f) => f.filename.startsWith(CONFIG.XML_PATH_PREFIX) && f.filename.endsWith(".xml"));
+    if (xmlFiles.length) withXmlFiles.push({ pr, xmlFiles });
+  }
+
+  if (!withXmlFiles.length) {
+    $app.innerHTML = `<div class="empty">Nothing waiting on you right now. New submissions will show up here — refresh to check again.</div>
+      <button style="margin-top:16px;" onclick="render()">Refresh</button>`;
+    return;
+  }
+
+  $app.innerHTML = `
+    <div style="margin-bottom:16px;"><button onclick="render()">Refresh</button></div>
+    ${withXmlFiles.map(({ pr, xmlFiles }) => `
+      <div class="pr-row">
+        <div>
+          <p class="title">${escapeHtml(pr.title)}</p>
+          <p class="meta">Submitted ${timeAgo(pr.created_at)} &middot; ${xmlFiles.length} document${xmlFiles.length > 1 ? "s" : ""}</p>
+        </div>
+        <button data-pr="${pr.number}">Review</button>
+      </div>
+    `).join("")}
+  `;
+
+  $app.querySelectorAll("button[data-pr]").forEach((btn) => {
+    btn.onclick = () => {
+      const u = new URL(window.location.href);
+      u.searchParams.set("pr", btn.dataset.pr);
+      history.pushState({}, "", u);
+      render();
+    };
+  });
+}
+
+async function renderPrDetail(prNumber) {
+  $app.innerHTML = `<p class="spinner-text">Loading&hellip;</p>`;
+  const repoPath = `/repos/${CONFIG.REPO_OWNER}/${CONFIG.REPO_NAME}`;
+  const pr = await ghApi(`${repoPath}/pulls/${prNumber}`);
+  const files = await ghApi(`${repoPath}/pulls/${prNumber}/files?per_page=100`);
+  const xmlFiles = files.filter((f) => f.filename.startsWith(CONFIG.XML_PATH_PREFIX) && f.filename.endsWith(".xml"));
+
+  $app.innerHTML = `
+    <a class="back-link ghost btn" href="javascript:void(0)" id="back">&larr; All submissions</a>
+    <h2 style="font-family: var(--serif); font-weight: 500; margin-bottom: 4px;">${escapeHtml(pr.title)}</h2>
+    <p class="meta" style="color: var(--ink-soft); margin-top: 0;">Submitted ${timeAgo(pr.created_at)}</p>
+    <div id="files"></div>
+    <div class="decision-bar">
+    </div>
+  `;
+  document.getElementById("back").onclick = () => {
+    const u = new URL(window.location.href);
+    u.searchParams.delete("pr");
+    history.pushState({}, "", u);
+    render();
+  };
+
+  const $files = document.getElementById("files");
+  for (const f of xmlFiles) {
+    const block = document.createElement("div");
+    block.className = "file-block";
+    block.innerHTML = `<div class="file-header">${escapeHtml(f.filename)}</div><div class="spinner-text" style="padding:16px;">Loading preview&hellip;</div>`;
+    $files.appendChild(block);
+    loadFilePreview(block, pr, f);
+  }
+}
+
+async function loadFilePreview(block, pr, file) {
+  const rawFileUrl = `${RAW}/${CONFIG.REPO_OWNER}/${CONFIG.REPO_NAME}/${pr.head.sha}/${file.filename}`;
+  const previewUrl = `https://${CONFIG.REPO_OWNER}.github.io/${CONFIG.REPO_NAME}/civic?id=${encodeURIComponent(rawFileUrl)}&preview=true`;
+  const editUrl = repoUrl(`/edit/${encodeURIComponent(pr.head.ref)}/${file.filename}`);
+
+  const prUrl = repoUrl(`/pull/${pr.number}`);
+
+  block.innerHTML = `
+    <div class="file-header">
+      <span>${escapeHtml(file.filename)}</span>
+      <span class="tag">Preview</span>
+    </div>
+    <iframe src="${previewUrl}" class="preview-frame" title="${escapeHtml(file.filename)} preview"></iframe>
+    <div class="action-bar">
+      <a class="btn primary" href="${prUrl}" target="_blank" rel="noopener">Open on GitHub</a>
+      <a class="btn" href="${editUrl}" target="_blank" rel="noopener">Edit the XML</a>
+    </div>
+  `;
+
+  // The steps are the same for every file in the pull request, so show them once.
+  if (document.getElementById("steps")) return;
+  const steps = document.createElement("section");
+  steps.className = "steps";
+  steps.id = "steps";
+  steps.innerHTML = `
+    <h3>How to review</h3>
+    <ol class="step-list">
+      <li>
+        <h4>Sign in to GitHub</h4>
+        <p>Accepting or rejecting happens on github.com, so sign in there first.</p>
+      </li>
+      <li>
+        <h4>Fix small mistakes <span class="optional">Optional, if you know XML</span></h4>
+        <p>Click <strong>Edit the XML</strong>, make your change and commit it. Then carry on to step 3.</p>
+      </li>
+      <li>
+        <h4>Decide</h4>
+        <p>Read the preview above, then click <strong>Open on GitHub</strong> and do one of these:</p>
+        <dl class="choices">
+          <dt>Looks good</dt>
+          <dd>Click <strong>Merge pull request</strong>, then <strong>Confirm merge</strong>. The entry appears on the site a minute or two later.</dd>
+          <dt>Needs changes</dt>
+          <dd>Revising a submission takes a few steps for now:
+            <ol>
+              <li>Copy the title, author and text to your computer.</li>
+              <li>Click <strong>Close pull request</strong>.</li>
+              <li>Submit the entry again through the <a href="../new" target="_blank" rel="noopener">new entry form</a> with your changes, then refresh this page and accept the new one.</li>
+            </ol>
+          </dd>
+          <dt>Not suitable</dt>
+          <dd>Leave a comment saying why, then click <strong>Close pull request</strong>.</dd>
+        </dl>
+      </li>
+    </ol>
+  `;
+  document.getElementById("files").after(steps);
+}
+
+function timeAgo(iso) {
+  const diff = Date.now() - new Date(iso).getTime();
+  const days = Math.floor(diff / 86400000);
+  if (days === 0) return "today";
+  if (days === 1) return "yesterday";
+  if (days < 30) return `${days} days ago`;
+  const months = Math.floor(days / 30);
+  return `${months} month${months > 1 ? "s" : ""} ago`;
+}
+
+window.addEventListener("popstate", render);
+render();
+</script>
+</body>
+</html>

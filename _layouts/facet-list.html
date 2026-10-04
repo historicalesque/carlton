@@ -1,0 +1,134 @@
+---
+layout: default
+---
+{{ content }}
+<div id="facet-list-container" class="facet-list">
+  <p class="loading">Loading list…</p>
+</div>
+<script src="scripts/data.js?v={{ site.time | date: '%s' }}"></script>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const container = document.getElementById('facet-list-container');
+  const targetElement = container.querySelector('p.loading');
+  // Inject the Liquid Front Matter variable into JavaScript
+  const pageFacet = "{{ page.facet }}".toLowerCase().trim();
+  const source = { places: 'Directory', people: 'Electoral roll' }[pageFacet]; // anything else: show all
+
+  const createSlug = (str) => String(str).toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+
+  // Each data file is one source and year, so each becomes one top-level (h1)
+  // group, drawn as soon as it arrives (in year order).
+  function renderFile(records) {
+    // The data lists side streets where they branch off the main street, so one
+    // street can be split into several runs within a year. Sort by street so
+    // every street appears once per year. Cardinalities keep the order they
+    // first appear in; listings within a street/cardinality keep their
+    // original order.
+    const firstSeen = new Map();
+    const seen = (key) => { if (!firstSeen.has(key)) firstSeen.set(key, firstSeen.size); return firstSeen.get(key); };
+    const sortedData = records.map((item, index) => ({
+      item,
+      index,
+      card: seen(`${item.street}|${item.cardinality}`)
+    })).sort((a, b) =>
+      String(a.item.street || '').localeCompare(String(b.item.street || '')) ||
+      a.card - b.card ||
+      a.index - b.index
+    ).map(entry => entry.item);
+
+    let tocHtml = '';
+    let contentHtml = '';
+    let h2Open = false; // whether a <details class="toc-h2"> is currently open in tocHtml
+
+    let currentSource = null;
+    let currentYear = null;
+    let currentStreet = null;
+    let currentCardinality = null;
+    sortedData.forEach((item, index) => {
+
+      const sourceChanged = item.source !== currentSource || item.year !== currentYear;
+      const streetChanged = item.street !== currentStreet;
+      const cardinalityChanged = item.cardinality !== currentCardinality;
+      // Add 'Back to top' before starting a new group (except before the file's first header)
+      if ((sourceChanged || streetChanged || cardinalityChanged) && index > 0) {
+        contentHtml += `<p class="back-to-top-container"><a href="#toc" class="back-to-top">↑ Back to top</a></p>`;
+      }
+      // Handle <h1> (Source + Year) - ToC: expandable section, open by default
+      if (sourceChanged) {
+        currentSource = item.source;
+        currentYear = item.year;
+        currentStreet = null;
+        currentCardinality = null;
+
+        const sourceId = `source-${createSlug(currentSource)}-${createSlug(currentYear)}`;
+        const sourceLabel = `${currentSource} (${currentYear})`;
+        // The summary only opens and closes the group; links stay out of it
+        // so keyboard and screen-reader users get one control per line
+        tocHtml += `<details class="toc-h1" open><summary class="toc-h1-summary">${sourceLabel}</summary><div class="toc-h1-body">`
+          + `<p class="toc-h3-item toc-go"><a href="#${sourceId}">Go to ${sourceLabel}</a></p>`;
+        contentHtml += `<h1 id="${sourceId}">${sourceLabel}</h1>`;
+      }
+      // Handle <h2> (Street) - ToC: expandable subsection, collapsed by default
+      if (streetChanged) {
+        currentStreet = item.street;
+        currentCardinality = null;
+
+        // Close the previous street's group before starting a new one
+        if (h2Open) { tocHtml += `</div></details>`; h2Open = false; }
+
+        const streetId = `street-${createSlug(currentSource)}-${createSlug(currentYear)}-${createSlug(currentStreet)}`;
+        tocHtml += `<details class="toc-h2"><summary class="toc-h2-summary">${currentStreet} (${currentYear}) listings</summary><div class="toc-h2-body">`
+          + `<p class="toc-h3-item"><a href="#${streetId}">All ${currentStreet} listings</a></p>`;
+        h2Open = true;
+        contentHtml += `<h2 id="${streetId}">${currentStreet}</h2>`;
+      }
+      // Handle <h3> (Cardinality) - ToC: plain link nested inside the h2 group
+      if (cardinalityChanged) {
+        currentCardinality = item.cardinality;
+
+        const cardId = `card-${createSlug(currentSource)}-${createSlug(currentYear)}-${createSlug(currentStreet)}-${createSlug(currentCardinality)}`;
+        const cardLabel = currentCardinality || 'Side not recorded';
+        tocHtml += `<p class="toc-h3-item"><a href="#${cardId}">${cardLabel}</a></p>`;
+        contentHtml += `<h3 id="${cardId}">${cardLabel}</h3>`;
+      }
+      // Render listing entry as a paragraph
+      if (item.listing) {
+        const rawId = item.entityID || item.entity_id || item.id || '';
+        const encodedId = encodeURIComponent(rawId);
+
+        contentHtml += `<p class="listing-item"><a href="civic?id=${encodedId}">${item.listing}</a></p>`;
+      }
+    });
+    // Close the groups still open after the last item
+    if (h2Open) { tocHtml += `</div></details>`; }
+    if (sortedData.length > 0) {
+      tocHtml += `</div></details>`;
+      contentHtml += `<p class="back-to-top-container"><a href="#toc" class="back-to-top">↑ Back to top</a></p>`;
+    }
+    return { tocHtml, contentHtml };
+  }
+
+  if (!targetElement) return;
+
+  // The table of contents and the listings fill in one year at a time.
+  // The container ID is the target for "Back to top" links.
+  targetElement.outerHTML = `<p class="data-status" aria-live="polite"></p>
+    <div id="toc">
+      <h2 class="toc-heading">Table of Contents</h2>
+      <nav class="table-of-contents"></nav>
+      <hr />
+      <div class="facet-listings"></div>
+    </div>`;
+  const toc = container.querySelector('.table-of-contents');
+  const listings = container.querySelector('.facet-listings');
+
+  CGData.loadWithStatus(container.querySelector('.data-status'), source ? { source } : {}, {
+    ordered: true,
+    onFile: (records) => {
+      const { tocHtml, contentHtml } = renderFile(records);
+      toc.insertAdjacentHTML('beforeend', tocHtml);
+      listings.insertAdjacentHTML('beforeend', contentHtml);
+    }
+  });
+});
+</script>

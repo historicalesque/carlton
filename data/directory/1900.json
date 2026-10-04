@@ -1,0 +1,4 @@
+---
+layout: null
+---
+{{ site.data["directory"]["1900"] | jsonify }}

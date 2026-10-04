@@ -1,0 +1,294 @@
+---
+layout: default
+---
+{{ content }}
+
+<div id="encyclopedia-entry" class="entry-card">
+<p class="loading">Loading record...</p>
+</div>
+
+<script src="scripts/data.js?v={{ site.time | date: '%s' }}"></script>
+<script type="module">
+// Helper: Cleans up the incoming prefilled ID parameter to ensure a valid, safe filename
+function slugifyId(text) {
+  return text
+    .toString()
+    .replace(/\s+/g, '-')             // Replace spaces with -
+    .replace(/[^a-zA-Z0-9_\-]/g, '')  // Strip anything that isn't alphanumeric, underscore, or dash
+    .replace(/\-\-+/g, '-');          // Collapse multiple consecutive dashes
+}
+
+  
+  const CONFIG = {
+    path: '{{ page.EACCPFpath }}',
+    overrideForm: '{{ page.overrideCommunityContributionForm }}' === 'true'
+  };
+
+  // 1. Get the ID from the URL parameters (e.g., ?id=EM02472)
+  const urlParams = new URLSearchParams(window.location.search);
+  const fileId = urlParams.get('id');
+  const isPreview = urlParams.get("preview") === "true";
+
+  // In preview mode (the submission review page's preview frame), hide the
+  // site chrome so the frame shows the article itself.
+  if (isPreview) {
+    const previewStyle = document.createElement('style');
+    previewStyle.textContent = '.banner-container, .main-nav, #directoryPanelWrapper, .main-footer { display: none !important; }';
+    document.head.appendChild(previewStyle);
+  }
+  
+  const entryContainer = document.getElementById('encyclopedia-entry');
+
+  // Helper function to inject the Google Form
+  function showContributionForm(recordId, isExisting = false) {
+    // If the override config is active, exit early without displaying the form
+    if (CONFIG.overrideForm || isPreview) {
+      return; 
+    }
+    
+    const articleId = recordId || 'Unknown ID';
+    const encodedId = encodeURIComponent(articleId);
+    const googleFormUrl = `form.html?id=${encodedId}`;
+
+    // Adjust text based on whether the article was loaded or missing
+    const heading = isExisting ? "Contribute to this Entry" : "Contribute Information";
+    const bodyText = isExisting 
+      ? `Have additional information for record <strong class="record-name">${articleId}</strong>? Fill out the form below to help improve this article!`
+      : `No published entry was found for record <strong class="record-name">${articleId}</strong> yet. You can submit new details using the form below to help create it!`;
+
+    const formHtml = `
+      <div class="contribution-container">
+        <h2>${heading}</h2>
+        <p>${bodyText}</p>
+        <iframe src="${googleFormUrl}" title="Contribution form" class="contribution-frame">
+          Loading…
+        </iframe>
+      </div>
+    `;
+
+    // Append to existing entry content or replace empty content
+    if (isExisting) {
+      entryContainer.insertAdjacentHTML('beforeend', formHtml);
+    } else {
+      entryContainer.innerHTML = formHtml;
+    }
+
+    if (recordId) nameRecord(recordId);
+  }
+
+  // A numeric ID is a directory or electoral-roll record, which means nothing
+  // to a reader on its own. Name it by its listing instead, taken from the
+  // earliest year that has the record, e.g. "216 Young, Jno, Leicester Street
+  // (1930 directory)". Text IDs are already names, so they stay as they are.
+  async function nameRecord(recordId) {
+    if (!/^\d+$/.test(String(recordId).trim()) || !window.CGData) return;
+    let records;
+    try {
+      records = await CGData.forEntity(recordId);
+    } catch (err) {
+      return; // keep showing the number
+    }
+    const earliest = records
+      .filter((r) => r.listing)
+      .sort((a, b) => (a.year || 0) - (b.year || 0))[0];
+    if (!earliest) return;
+    const isRoll = earliest.source === 'Electoral roll';
+    // Electoral-roll listings start with the registration number, so use the
+    // voter's name and address instead when the record has them.
+    let name = isRoll && earliest.Surname && earliest.Address
+      ? `${[earliest['Given Names'], earliest.Surname].filter(Boolean).join(' ')}, ${earliest.Address}`
+      : earliest.listing;
+    if (earliest.street && !name.includes(earliest.street)) name += `, ${earliest.street}`;
+    const when = earliest.year ? ` (${earliest.year} ${isRoll ? 'electoral roll' : 'directory'})` : '';
+    document.querySelectorAll('.contribution-container .record-name').forEach((el) => {
+      el.textContent = name;
+      if (when) el.insertAdjacentText('afterend', when);
+    });
+  }
+
+  // The form (form.html) posts its height whenever it changes, so the iframe
+  // fits the form exactly instead of a fixed height.
+  window.addEventListener('message', (event) => {
+    if (event.origin !== window.location.origin) return;
+    if (!event.data || event.data.type !== 'contribution-form-height') return;
+    const frame = document.querySelector('.contribution-frame');
+    if (!frame || event.source !== frame.contentWindow) return;
+    frame.style.height = `${event.data.height}px`;
+  });
+
+  if (fileId) {
+    //const fileUrl = `./${CONFIG.path}/${slugifyId(fileId)}.xml`;
+    const fileUrl = isPreview ? fileId : `./${CONFIG.path}/${slugifyId(fileId)}.xml`;
+
+    try {
+      const response = await fetch(fileUrl);
+      if (!response.ok) throw new Error(`File not found (Status: ${response.status})`);
+      
+      const text = await response.text();
+      const xml = new DOMParser().parseFromString(text, "text/xml");
+      
+      // The EAC-CPF namespace used in your document
+      const ns = "urn:isbn:1-931666-33-4";
+
+      // 2. Extract Fields safely using namespaced queries
+      const familyName = xml.getElementsByTagNameNS(ns, "part").item(0)?.textContent || "";
+      const givenName = xml.getElementsByTagNameNS(ns, "part").item(1)?.textContent || "";
+      const fullName = givenName ? `${givenName} ${familyName}` : familyName;
+
+      if (fullName) {
+        document.title = `Common Ground - ${fullName}`;
+      }  
+
+      const fromDate = xml.getElementsByTagNameNS(ns, "fromDate")[0]?.textContent || "";
+      const toDate = xml.getElementsByTagNameNS(ns, "toDate")[0]?.textContent || "";
+      const lifeSpan = fromDate ? `(${fromDate} – ${toDate || 'Present'})` : "";
+
+      const placeElements = xml.getElementsByTagNameNS(ns, "place");
+      let placesHtml = "";
+      for (let place of placeElements) {
+        const role = place.getElementsByTagNameNS(ns, "placeRole")[0]?.textContent || "Location";
+        const entry = place.getElementsByTagNameNS(ns, "placeEntry")[0]?.textContent || "";
+        if (entry) {
+          placesHtml += `<li><strong>${role}:</strong> ${entry}</li>`;
+        }
+      }
+
+      const occupationElements = xml.getElementsByTagNameNS(ns, "occupation");
+      let occupations = [];
+      for (let occ of occupationElements) {
+        const term = occ.getElementsByTagNameNS(ns, "term")[0]?.textContent;
+        if (term) occupations.push(term);
+      }
+      const occupationText = occupations.join(", ");
+
+      const abstractNode = xml.getElementsByTagNameNS(ns, "abstract")[0];
+      const abstractHtml = abstractNode ? abstractNode.textContent : "No description available.";
+
+      let authorName = "";
+      const events = xml.getElementsByTagNameNS(ns, "maintenanceEvent");
+      for (let event of events) {
+        const type = event.getElementsByTagNameNS(ns, "eventType")[0]?.textContent;
+        if (type === "created") {
+          authorName = event.getElementsByTagNameNS(ns, "agent")[0]?.textContent || "";
+          break;
+        }
+      }
+
+      let digitalObjectsHtml = "";
+      let referencesHtml = "";
+      const resourceRelations = xml.getElementsByTagNameNS(ns, "resourceRelation");
+      
+      for (let rel of resourceRelations) {
+        if (rel.getAttribute("resourceRelationType") === "subjectOf") continue;
+
+        const note = rel.getElementsByTagNameNS(ns, "p")[0]?.textContent || "";
+        const bibref = rel.getElementsByTagNameNS(ns, "bibref")[0];
+        
+        if (bibref || note.toLowerCase().includes("source used")) {
+          if (bibref) {
+            const author = bibref.getElementsByTagName("name")[0]?.textContent || "";
+            const title = bibref.getElementsByTagName("title")[0]?.textContent || "";
+            const series = bibref.getElementsByTagName("bibseries")[0]?.getElementsByTagName("title")[0]?.textContent || "";
+            const publisher = bibref.getElementsByTagName("publisher")[0]?.textContent?.replace(/<br\s*\/?>/gi, ', ') || "";
+            const place = bibref.getElementsByTagName("place")[0]?.textContent || "";
+            const date = bibref.getElementsByTagName("date")[0]?.textContent || "";
+            const href = bibref.getElementsByTagName("extptr")[0]?.getAttribute("href") || "";
+
+            let citationParts = [];
+            if (author) citationParts.push(author);
+            if (title) citationParts.push(title);
+            if (series) citationParts.push(`in <em>${series}</em>`);
+            if (publisher) citationParts.push(publisher);
+            if (place) citationParts.push(place);
+            if (date) citationParts.push(date);
+            
+            let citationText = citationParts.join(", ");
+            if (href) {
+              citationText += `, <a href="${href}" target="_blank" rel="noopener">${href}</a>`;
+            }
+            if (citationText) {
+              referencesHtml += `<li>${citationText}.</li>`;
+            }
+          }
+        } 
+        else if (rel.getAttribute("resourceRelationType") === "other") {
+          const title = rel.getElementsByTagNameNS(ns, "relationEntry")[0]?.textContent || "";
+          const descNode = rel.getElementsByTagNameNS(ns, "abstract")[0] || rel.getElementsByTagNameNS(ns, "p")[0];
+          const desc = descNode ? descNode.textContent : "";
+          
+          if (title) {
+            digitalObjectsHtml += `
+              <div class="digital-object-item" style="margin-bottom: 15px; padding-left: 10px; border-left: 3px solid #ccc;">
+                <strong>${title}</strong>
+                ${desc ? `<p style="margin: 5px 0 0 0; font-size: 0.95em; color: #555;">${desc}</p>` : ''}
+              </div>`;
+          }
+        }
+      }
+
+      let seeAlsoHtml = "";
+      const cpfRelations = xml.getElementsByTagNameNS(ns, "cpfRelation");
+      if (cpfRelations.length > 0) {
+        let linksList = "";
+        for (let rel of cpfRelations) {
+          const entryName = rel.getElementsByTagNameNS(ns, "relationEntry")[0]?.textContent?.trim() || "";
+          const originalHref = rel.getAttribute("xlink:href") || "";
+          
+          const idMatch = originalHref.match(/(EM\d+)/);
+          const targetId = idMatch ? idMatch[0] : null;
+
+          if (entryName && targetId) {
+            linksList += `<li><a href="?id=${targetId}">${entryName}</a></li>`;
+          }
+        }
+        if (linksList) {
+          seeAlsoHtml = `
+            <section class="see-also" style="margin-top: 30px;">
+              <h3>See Also</h3>
+              <ul style="line-height: 1.6;">${linksList}</ul>
+            </section>`;
+        }
+      }
+
+      // 3. Construct and Inject the HTML Layout for the XML record
+      entryContainer.innerHTML = `
+        <article class="biography">
+          <header class="entry-header">
+            <h1 class="entry-title">${fullName}</h1>
+            <p class="life-span">${lifeSpan}</p>
+          </header>
+
+          ${(occupationText || placesHtml) ? `
+          <section class="quick-facts">
+            <ul>
+              ${occupationText ? `<li><strong>Occupation:</strong> ${occupationText}</li>` : ''}
+              ${placesHtml}
+            </ul>
+          </section>
+          ` : ''}
+
+          <section class="biography-text">
+            <div>${abstractHtml}</div>
+            ${authorName ? `<p class="author-credit" style="display:none; margin-top: 20px; font-style: italic; text-align: right; color: #666;">By ${authorName}</p>` : ''}
+          </section>
+
+          ${digitalObjectsHtml ? `<hr /><section class="digital-resources" style="margin-top: 20px;"><h3>Images & Artifacts</h3>${digitalObjectsHtml}</section>` : ''}
+          ${referencesHtml ? `<hr /><section class="references" style="margin-top: 20px;"><h3>References</h3><ul style="line-height: 1.6; padding-left: 20px;">${referencesHtml}</ul></section>` : ''}
+          ${seeAlsoHtml}
+        </article>
+      `;
+
+      // Render the form below the successfully loaded article
+      showContributionForm(fileId, true);
+
+    } catch (error) {
+      console.warn("XML file not found, showing submission form:", error);
+      // Render the form alone as a new article request
+      showContributionForm(fileId, false);
+    }
+  } else {
+    // If there is no ?id= parameter in the URL, show a clean form
+    showContributionForm(null, false);
+  }
+
+</script>

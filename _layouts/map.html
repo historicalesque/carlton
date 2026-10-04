@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="en" class="map-page">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Common Ground - Map</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.css" />
+    <link rel="stylesheet" type="text/css" href="styles/site.css?v={{ site.time | date: '%s' }}">
+</head>
+<body class="map-page">
+<h1 class="visually-hidden">Map of the directory listings</h1>
+<div id="map"></div>
+{% include map-details-modal.html %}
+
+<svg width="0" height="0" style="position: absolute; width: 0; height: 0; overflow: hidden;">
+  <defs>
+    <filter id="leaflet-3d-shadow" x="-100%" y="-100%" width="300%" height="300%">
+      
+      <feGaussianBlur in="SourceAlpha" stdDeviation="1.8" result="blurOut" />
+      
+      <feOffset in="blurOut" dx="2.5" dy="3.5" result="offsetBlur" />
+      
+      <feComponentTransfer in="offsetBlur" result="shadowAlpha">
+        <feFuncA type="linear" slope="0.40"/>
+      </feComponentTransfer>
+      
+      <feMerge>
+        <feMergeNode in="shadowAlpha" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+  </defs>
+</svg>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.js"></script>
+<script src="scripts/data.js?v={{ site.time | date: '%s' }}"></script>
+<script src="scripts/map-common.js?v={{ site.time | date: '%s' }}"></script>
+<p class="data-status data-status-map" id="mapData" aria-live="polite" hidden></p>
+<script>
+// The map is set up as soon as the list of data files arrives, and each year
+// is drawn as soon as its file does. Cross-year links join records from
+// different years, so they are added once every year has arrived.
+let mapApi = null;
+MapCommon.loadByYear(document.getElementById('mapData'), {
+    onStart: files => { mapApi = startMap(files); },
+    onYear:  (year, records) => mapApi.addYear(year, records),
+    onAll:   () => mapApi.addCrossYearLinks(),
+});
+
+// Not indented, to keep the history of the code below readable.
+function startMap(files) {
+// ═══════════════════════════════════════════════════════════
+//  HISTORIC MAP TILE LAYERS
+// ═══════════════════════════════════════════════════════════
+const mapConfig = [
+    
+    { id:111455, source:'net', label:'Melbourne and Metropolitan Board of Works, City of Melbourne, Detail Plan No. 1172 (<a href="https://handle.slv.vic.gov.au/10381/120530">1897</a>)', visibleByDefault:false  },
+    { id:111456, source:'net', label:'Melbourne and Metropolitan Board of Works, City of Melbourne, Detail Plan No. 1173 (<a href="https://handle.slv.vic.gov.au/10381/120591">1897</a>)', visibleByDefault:false  },
+    { id:111458, source:'net', label:'Melbourne and Metropolitan Board of Works, City of Melbourne, Detail Plan No. 1174 (<a href="https://handle.slv.vic.gov.au/10381/120573"> 1896</a>)', visibleByDefault:false  },
+    { id:111459, source:'net', label:'Melbourne and Metropolitan Board of Works, City of Melbourne, Detail Plans No. 1175 & 1176 (<a href="https://handle.slv.vic.gov.au/10381/120585">1896</a>)', visibleByDefault:false  },
+    { id:111460, source:'net', label:'Melbourne and Metropolitan Board of Works, City of Melbourne, Detail Plan No. 1177 (<a href="https://handle.slv.vic.gov.au/10381/120582">1896</a>)', visibleByDefault:false  },
+    { id:111526, source:'net', label:'Melbourne and Metropolitan Board of Works, City of Melbourne, Detail Plan No. 1178 (<a href="https://handle.slv.vic.gov.au/10381/120516">1896</a>)', visibleByDefault:false  },
+    { id:111529, source:'net', label:'Melbourne and Metropolitan Board of Works, City of Melbourne, Detail Plans No. 1179 & 1180 (<a href="https://handle.slv.vic.gov.au/10381/120584">1896</a>)', visibleByDefault:false  }, 
+
+    //{ id:7316,  source:'vic', label:'Plan of Melbourne, Hotham, Carlton, Fitzroy and East Melbourne (1866)',             visibleByDefault:false },
+    //{ id:82967, source:'net', label:'Melbourne and its suburbs (1855)', visibleByDefault:false  },
+    //{ id:80116, source:'net', label:'Bibbs Map PROV (c1857-67)',       visibleByDefault:false },
+    //{ id:83032, source:'net', label:'Morgan\'s Official street directory. Melbourne & Suburbs (1951).',       visibleByDefault:false },
+    //{ id:7342,  source:'vic', label:'City of Melbourne Block Plan compiled for use in City Surveyor\'s office (1910)',             visibleByDefault:false },
+    //{ id:7265,  source:'vic', label:'https://mapwarper.prov.vic.gov.au/maps/7265',             visibleByDefault:false },
+    //{ id:82968, source:'net', label:'Mapwarper Net 82968',       visibleByDefault:false },
+    //{ id:82969, source:'net', label:'Mapwarper Net 82969',       visibleByDefault:false },
+    //{ id:82971, source:'net', label:'Mapwarper Net 82971',       visibleByDefault:false },
+    //{ id:82973, source:'net', label:'Mapwarper Net 82973',       visibleByDefault:false },
+    //{ id:82976, source:'net', label:'Mapwarper Net 82976',       visibleByDefault:false },
+    //{ id:82978, source:'net', label:'Mapwarper Net 82978',       visibleByDefault:false },
+    //{ id:82979, source:'net', label:'Mapwarper Net 82979',       visibleByDefault:false },
+    //{ id:82904, source:'net', label:'Mapwarper Net 82904',       visibleByDefault:false },
+    //{ id:7242,  source:'vic', label:'https://mapwarper.prov.vic.gov.au/maps/7242',             visibleByDefault:false },
+    //{ id:4331,  source:'vic', label:'https://mapwarper.prov.vic.gov.au/maps/4331',             visibleByDefault:false },
+    //{ id:11775, source:'vic', label:'https://mapwarper.prov.vic.gov.au/maps/11775',            visibleByDefault:false },
+    //{ id:7231,  source:'vic', label:'https://mapwarper.prov.vic.gov.au/maps/7231',             visibleByDefault:false },
+    //{ id:7981,  source:'vic', label:'https://mapwarper.prov.vic.gov.au/maps/7981',             visibleByDefault:false },
+    //{ id:7452,  source:'vic', label:'https://mapwarper.prov.vic.gov.au/maps/7452',             visibleByDefault:false },
+];
+
+
+// ═══════════════════════════════════════════════════════════
+//  CONSTANTS — derived from the list of data files
+// ═══════════════════════════════════════════════════════════
+const YEARS        = MapCommon.getYears(files);
+const YEAR_COLORS  = MapCommon.getYearColors(YEARS);
+const YEAR_SOURCES = MapCommon.getYearSources(files, YEARS);
+const MAX_ARC_OFFSET  = 0.00072; // constant outer bound (degrees lat)
+
+// ═══════════════════════════════════════════════════════════
+//  MAP INIT
+// ═══════════════════════════════════════════════════════════
+const map = L.map('map', { center:[-37.8009,144.9622], zoom:18, minZoom:2, maxZoom:20 });
+
+
+
+// ═══════════════════════════════════════════════════════════
+//  CHAINS  (arc geometry lives in scripts/map-common.js)
+// ═══════════════════════════════════════════════════════════
+// All unique {year, street, side} combinations, and the raw template
+// entries for each (immutable originals). Filled in by addYear as each
+// year arrives.
+const CHAINS    = [];
+const rawChains = {};
+
+
+const activeYears = new Set([YEARS[YEARS.length - 1]]); // Latest year on by default
+
+// Compute arc offset for a year given the current active set.
+// For North/East: positive offset (bows north / east away from street centreline).
+// For South/West: negative offset (bows south / west away from street centreline).
+// The sign is applied to lat (North/South) or lng (East/West) by applyOffset().
+//
+// Ranking is done ONLY among active years that share the same street+side group.
+// Years on different streets are independent and must not shift each other's offsets.
+function arcOffsetForYear(year, street, side) {
+    const sideSign = MapCommon.sideSign(side);
+
+    // Active peers: years that have a chain for this exact street+side
+    const peers = [...activeYears].filter(y =>
+        (rawChains[`${y}-${street}-${side}`] || []).length > 0
+    ).sort((a, b) => b - a); // newest first
+
+    const N    = peers.length;
+    const rank = peers.indexOf(year);
+    if (rank < 0) return 0;
+
+    // rank 0 → smallest offset, rank N-1 → MAX_ARC_OFFSET
+    const magnitude = N === 1 ? MAX_ARC_OFFSET * 0.15 : MAX_ARC_OFFSET * (rank + 1) / N;
+    return magnitude * sideSign;
+}
+
+// ── Leaflet layer objects ──
+const markerLayers = {}; // `${year}-${street}-${side}-${idx}` → L.Marker
+const polyLayers   = {}; // `${year}-${street}-${side}` → L.Polyline
+const yearGroups   = {}; // year → L.LayerGroup (holds markers + polylines for that year)
+
+YEARS.forEach(year => { yearGroups[year] = L.layerGroup(); });
+
+// Creates the polylines and markers for some chains (positions set later)
+function createChainLayers(chains) {
+chains.forEach(({ year, street, side }) => {
+    const key = `${year}-${street}-${side}`;
+    // Placeholder polyline (empty)
+    const poly = L.polyline([], { color:YEAR_COLORS[year], weight:1.5, opacity:0.85 })
+        .bindTooltip(`${year} · ${street}`, { sticky:true, direction:'top' });
+    polyLayers[key] = poly;
+    poly.addTo(yearGroups[year]);
+
+    // Markers — created once for every entry; positions set by initPositions
+    rawChains[key].forEach((entry, idx) => {
+        const mk = L.marker([0,0], { icon: makeIcon(entry, YEAR_COLORS[year]) });
+        mk.bindTooltip(entry.listing, { direction:'top', offset:[0,-4] });
+        const openDetails = () => MapCommon.openDetailsModal(entry, currentPos[`${key}-${idx}`]);
+        mk.on('click', openDetails);
+        // Enter or Space on a focused marker opens the details too
+        mk.on('keypress', (e) => {
+            if (e.originalEvent.key === 'Enter' || e.originalEvent.key === ' ') { e.originalEvent.preventDefault(); openDetails(); }
+        });
+        markerLayers[`${key}-${idx}`] = mk;
+        mk.addTo(yearGroups[year]);
+    });
+});
+}
+
+// Cross-year layer (rebuilt on toggle)
+let crossYearLayer = L.layerGroup().addTo(map);
+
+// ═══════════════════════════════════════════════════════════
+//  ICON FACTORY
+// ═══════════════════════════════════════════════════════════
+function makeIcon(entry, color) {
+    const shape     = MapCommon.markerShape(entry);
+    const uncertain = !!entry._computed;
+    let html, size;
+
+    // Helper to convert hex colors to an RGBA value for semi-transparent fills if needed
+    const getAlphaColor = (hex, alpha) => {
+        if(hex.startsWith('#') && hex.length === 7) {
+            const r = parseInt(hex.slice(1, 3), 16);
+            const g = parseInt(hex.slice(3, 5), 16);
+            const b = parseInt(hex.slice(5, 7), 16);
+            return `rgba(${r}, ${g}, ${b}, ${alpha})`;
+        }
+        return hex;
+    };
+
+    if (shape === 'intersection') {
+        const cls = uncertain ? 'marker-uncertain-cross' : '';
+        // Changed background from a flat color modifier to use semi-transparent RGBA color instead of master opacity
+        const fillColor = uncertain ? getAlphaColor(color, 0.6) : color;
+        html = `<div class="${cls}" style="position:relative;width:22px;height:22px;">
+            <div style="position:absolute;top:8px;left:0;width:22px;height:6px;background:${fillColor};border-radius:1px;"></div>
+            <div style="position:absolute;left:8px;top:0;width:6px;height:22px;background:${fillColor};border-radius:1px;"></div>
+        </div>`;
+        size = [22,22];
+    } else if (shape === 'right-of-way') {
+        const cls = uncertain ? 'marker-uncertain-cross' : '';
+        const borderColor = uncertain ? getAlphaColor(color, 0.6) : color;
+        html = `<div class="${cls}" style="position:relative;width:11px;height:11px;">
+            <div style="position:absolute;top:4px;left:0;width:11px;height:3px;border:1.5px solid ${borderColor};border-radius:1px;box-sizing:border-box;"></div>
+            <div style="position:absolute;left:4px;top:0;width:3px;height:11px;border:1.5px solid ${borderColor};border-radius:1px;box-sizing:border-box;"></div>
+        </div>`;
+        size = [11,11];
+    } else {
+        const cls = uncertain ? 'marker-uncertain' : '';
+        // The shadow effect handles its own alpha values independently, keeping the main circle 100% solid
+        const shadow = uncertain
+            ? `box-shadow:0 0 5px 2px ${color}55, 0 0 2px rgba(0,0,0,0.3);`
+            : `box-shadow:0 0 2px rgba(0,0,0,0.4);`;
+        html = `<div class="${cls}" style="width:6px;height:6px;border-radius:50%;background:${color};border:1px solid rgba(255,255,255,0.65);${shadow}"></div>`;
+        size = [6,6];
+    }
+    // Hidden text names the marker for keyboard and screen-reader users
+    // (Leaflet makes each marker a focusable button that opens the details)
+    const name = [entry.listing, entry.street, entry.year].filter(Boolean).join(', ')
+        .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+    html += `<span class="visually-hidden">${name}</span>`;
+    return L.divIcon({ html, className:'', iconSize:size, iconAnchor:[size[0]/2,size[1]/2] });
+}
+
+// ═══════════════════════════════════════════════════════════
+//  POSITIONED CHAIN CACHE
+//  We store the current "from" positions and animate to "to".
+// ═══════════════════════════════════════════════════════════
+const currentPos = {}; // `${year}-${street}-${side}-${idx}` → { lat, lng }
+
+function getTargetPositions(year, street, side) {
+    const offset = arcOffsetForYear(year, street, side);
+    return MapCommon.computeChain(rawChains[`${year}-${street}-${side}`], offset, side);
+}
+
+// Initialise positions for some chains
+function initPositions(chains) {
+    chains.forEach(({ year, street, side }) => {
+        const key     = `${year}-${street}-${side}`;
+        const targets = getTargetPositions(year, street, side);
+        targets.forEach((e, idx) => {
+            if (e.lat == null) return;
+            currentPos[`${key}-${idx}`] = { lat: e.lat, lng: e.lng };
+            // Propagate _computed flag so makeIcon can style uncertain markers
+            rawChains[key][idx]._computed = !!e._computed;
+        });
+    });
+    applyPositionsToMap(chains);
+}
+
+function applyPositionsToMap(chains = CHAINS) {
+    chains.forEach(({ year, street, side }) => {
+        const key   = `${year}-${street}-${side}`;
+        const pts   = [];
+        rawChains[key].forEach((entry, idx) => {
+            const pos = currentPos[`${key}-${idx}`];
+            if (!pos) return;
+            const mk = markerLayers[`${key}-${idx}`];
+            if (mk) {
+                mk.setLatLng([pos.lat, pos.lng]);
+                // Refresh icon so uncertainty class reflects current _computed state
+                mk.setIcon(makeIcon(entry, YEAR_COLORS[year]));
+            }
+            pts.push([pos.lat, pos.lng]);
+        });
+        polyLayers[key].setLatLngs(pts);
+    });
+}
+
+// ═══════════════════════════════════════════════════════════
+//  POSITION UPDATE  (instant — no movement animation)
+// ═══════════════════════════════════════════════════════════
+function recomputePositions() {
+    CHAINS.filter(c => activeYears.has(c.year)).forEach(({ year, street, side }) => {
+        const key     = `${year}-${street}-${side}`;
+        const targets = getTargetPositions(year, street, side);
+        targets.forEach((e, idx) => {
+            if (e.lat == null) return;
+            currentPos[`${key}-${idx}`] = { lat: e.lat, lng: e.lng };
+            rawChains[key][idx]._computed = e._computed;
+        });
+    });
+    applyPositionsToMap();
+    rebuildCrossYearLines();
+}
+
+// ═══════════════════════════════════════════════════════════
+//  CROSS-YEAR LINES
+// ═══════════════════════════════════════════════════════════
+// Cross-year links: records that share a string entityID. Built once every
+// year has arrived (addCrossYearLinks), so a link never skips a year that
+// is still loading.
+let crossYearById = {};
+
+function rebuildCrossYearLines() {
+    crossYearLayer.clearLayers();
+    Object.values(crossYearById).forEach(group => {
+        for (let i = 0; i < group.length - 1; i++) {
+            const a = group[i], b = group[i+1];
+            if (!activeYears.has(a.year) || !activeYears.has(b.year)) continue;
+            const posA = currentPos[`${a.year}-${a.street}-${a.side}-${a.idx}`];
+            const posB = currentPos[`${b.year}-${b.street}-${b.side}-${b.idx}`];
+            if (!posA || !posB) continue;
+            L.polyline([[posA.lat,posA.lng],[posB.lat,posB.lng]],
+                { color:'#222', weight:3.5, opacity:0.55, dashArray:'6,5' }).addTo(crossYearLayer);
+            L.polyline([[posA.lat,posA.lng],[posB.lat,posB.lng]],
+                { color:'#fff', weight:1.5, opacity:0.9,  dashArray:'6,5' }).addTo(crossYearLayer);
+        }
+    });
+}
+
+// ═══════════════════════════════════════════════════════════
+//  GEOJSON LAYER — UoM Land Use
+// ═══════════════════════════════════════════════════════════
+
+// Style function for GeoJSON features
+function getUoMStyle(feature) {
+    return {
+        fillColor: '#3388ff',
+        weight: 2,
+        opacity: 0.8,
+        color: '#0066cc',
+        fillOpacity: 0.3
+    };
+}
+
+// Some buildings are recorded once per unit or floor, with the same outline
+// each time (223 Berkeley Street has 71). Drawn separately, their fills stack
+// up into a much darker blue, so features with identical outlines are merged
+// into one, keeping each unit's address for the popup.
+function mergeStackedParcels(data) {
+    const byShape = new Map();
+    for (const feature of data.features) {
+        const key = JSON.stringify(feature.geometry);
+        const address = feature.properties.street_address;
+        const merged = byShape.get(key);
+        if (!merged) {
+            byShape.set(key, { ...feature, properties: { ...feature.properties, addresses: [address] } });
+            continue;
+        }
+        const props = merged.properties;
+        if (address && !props.addresses.includes(address)) props.addresses.push(address);
+        if (props.building_name === 'Various' && feature.properties.building_name) {
+            props.building_name = feature.properties.building_name;
+        }
+    }
+    return { ...data, features: [...byShape.values()] };
+}
+
+// Popup content for each feature
+function onEachFeature(feature, layer) {
+    const props = feature.properties;
+    const addresses = (props.addresses || []).filter(Boolean);
+    let popupContent = `<strong>${props.building_name || 'Property'}</strong><br>`;
+    if (addresses.length > 1) {
+        popupContent += `<details><summary>${addresses.length} units or floors</summary><div style="max-height:9em; overflow-y:auto">${addresses.join('<br>')}</div></details>`;
+    } else {
+        popupContent += `Address: ${props.street_address || 'N/A'}<br>`;
+    }
+    popupContent += `Suburb: ${props.SUBURB || 'N/A'}<br>`;
+    popupContent += `Status: ${props.UOM_STATUS || 'N/A'}<br>`;
+    popupContent += `Area: ${props.PROPERTY_TITLE_LAND_AREA || 'N/A'} m²`;
+    
+    layer.bindPopup(popupContent);
+    layer.bindTooltip(props.building_name || props.street_address || 'Property', { sticky: true });
+}
+
+// Create GeoJSON layer. The parcels are added when they arrive; the overlay
+// is optional, so if they fail to load the map goes on without it.
+const uomLanduseLayer = L.geoJSON(null, {
+    attribution: 'Property boundaries: <a href="https://spatialdata-uom.opendata.arcgis.com/datasets/UOM::uom-land-parcels-parkville/about">University of Melbourne Spatial Data</a>',
+    style: getUoMStyle,
+    onEachFeature: onEachFeature
+});
+
+// Add hover effects
+uomLanduseLayer.on('mouseover', function(e) {
+    e.layer.setStyle({
+        fillOpacity: 0.7,
+        weight: 3
+    });
+});
+
+uomLanduseLayer.on('mouseout', function(e) {
+    uomLanduseLayer.resetStyle(e.layer);
+});
+
+// Add to a layer group for control panel visibility
+const uomLayerGroup = L.layerGroup([uomLanduseLayer]);
+CGData.parcels().then(data => uomLanduseLayer.addData(mergeStackedParcels(data))).catch(() => {});
+
+// ═══════════════════════════════════════════════════════════
+//  MODAL  (shared with the 3D map, see scripts/map-common.js)
+// ═══════════════════════════════════════════════════════════
+MapCommon.initDetailsModal();
+
+// ═══════════════════════════════════════════════════════════
+//  CONTROL PANEL
+// ═══════════════════════════════════════════════════════════
+function getTileUrl(source, id) {
+    return source === 'vic'
+        ? `https://mapwarper.prov.vic.gov.au/maps/tile/${id}/{z}/{x}/{y}.png`
+        : `https://mapwarper.net/maps/tile/${id}/{z}/{x}/{y}.png`;
+}
+
+// Shown in Leaflet's attribution control while the layer is on the map.
+const MMBW_SLV_ATTRIBUTION = 'MMBW detail plans: <a href="https://www.slv.vic.gov.au/">State Library Victoria</a>';
+function getTileAttribution(source, id) {
+    return source === 'vic'
+        ? `Georeferenced via <a href="https://mapwarper.prov.vic.gov.au/maps/${id}">PROV Map Warper</a> · <a href="https://prov.vic.gov.au/">Public Record Office Victoria</a>`
+        : `Georeferenced via <a href="https://mapwarper.net/maps/${id}">Map Warper</a> · ${MMBW_SLV_ATTRIBUTION}`;
+}
+
+const CustomControl = L.Control.extend({
+    options: { position:'topright' },
+    onAdd() {
+        const container = L.DomUtil.create('div', 'leaflet-control-layers');
+        L.DomEvent.disableClickPropagation(container);
+        L.DomEvent.disableScrollPropagation(container);
+
+        const homeLink = L.DomUtil.create('a', 'control-home-link', container);
+        homeLink.href = '{{ "/" | relative_url }}'; homeLink.innerText = '← Home';
+
+        // On phones the panel would cover the whole map, so it starts folded
+        // away behind this button (hidden on wider screens by the CSS).
+        const toggle = L.DomUtil.create('button', 'panel-toggle', container);
+        toggle.type = 'button';
+        const setOpen = open => {
+            container.classList.toggle('panel-collapsed', !open);
+            toggle.setAttribute('aria-expanded', open);
+            toggle.innerText = open ? 'Hide layers' : 'Layers';
+        };
+        setOpen(!window.matchMedia('(max-width: 600px)').matches);
+        L.DomEvent.on(toggle, 'click', () => setOpen(container.classList.contains('panel-collapsed')));
+
+        const yearTitle = L.DomUtil.create('div', 'panel-section-title', container);
+        yearTitle.innerText = 'Years';
+
+        YEARS.slice().reverse().forEach(year => {
+            const row = L.DomUtil.create('label', 'year-row', container);
+            const cb  = L.DomUtil.create('input', '', row);
+            cb.type = 'checkbox'; cb.checked = (year === YEARS[YEARS.length - 1]);
+            const swatch = L.DomUtil.create('span', 'year-swatch', row);
+            swatch.style.background = YEAR_COLORS[year];
+            const sourceInfo = YEAR_SOURCES[year] ? ` (${YEAR_SOURCES[year]})` : '';
+            row.appendChild(document.createTextNode(`${year}${sourceInfo}`));
+
+            L.DomEvent.on(cb, 'change', () => {
+                if (cb.checked) {
+                    activeYears.add(year);
+                    yearGroups[year].addTo(map);
+                } else {
+                    activeYears.delete(year);
+                    map.removeLayer(yearGroups[year]);
+                }
+                recomputePositions();
+            });
+        });
+
+        const mapTitle = L.DomUtil.create('div', 'panel-section-title', container);
+        mapTitle.innerText = 'Historic Map Layers';
+
+        mapConfig.forEach(config => {
+            const row  = L.DomUtil.create('div', 'layer-control-row', container);
+            const lbl  = L.DomUtil.create('label', 'layer-label-container', row);
+            const cb   = L.DomUtil.create('input', '', lbl); cb.type = 'checkbox'; cb.checked = config.visibleByDefault;
+            const span = L.DomUtil.create('span', '', lbl); span.innerHTML = config.label;
+            const sc   = L.DomUtil.create('div', 'slider-container', row);
+            sc.innerHTML = '<span>0%</span>';
+            const sl   = L.DomUtil.create('input', 'opacity-slider', sc);
+            sl.type = 'range'; sl.min = 0; sl.max = 100; sl.value = 100;
+            sl.setAttribute('aria-label', 'Opacity of ' + span.textContent.replace(/\s+/g, ' ').trim());
+            sc.insertAdjacentHTML('beforeend', '<span>100%</span>');
+            const layer = L.tileLayer(getTileUrl(config.source, config.id), { maxZoom:20, maxNativeZoom:19, opacity:1, attribution:getTileAttribution(config.source, config.id) });
+            if (config.visibleByDefault) layer.addTo(map);
+            L.DomEvent.on(cb, 'change', () => cb.checked ? layer.addTo(map) : map.removeLayer(layer));
+            L.DomEvent.on(sl, 'input',  () => layer.setOpacity(sl.value/100));
+        });
+
+        const geoJsonTitle = L.DomUtil.create('div', 'panel-section-title', container);
+        geoJsonTitle.innerText = 'University of Melbourne';
+
+        const geoJsonRow = L.DomUtil.create('label', 'layer-control-row', container);
+        const geoJsonCb = L.DomUtil.create('input', '', geoJsonRow);
+        geoJsonCb.type = 'checkbox';
+        geoJsonCb.checked = true;
+
+        const geoJsonSpan = L.DomUtil.create('span', '', geoJsonRow);
+        geoJsonSpan.innerHTML = 'University of Melbourne properties (<a href="https://spatialdata-uom.opendata.arcgis.com/datasets/UOM::uom-land-parcels-parkville/about">2026</a>)';
+
+        L.DomEvent.on(geoJsonCb, 'change', () => {
+            if (geoJsonCb.checked) {
+                uomLayerGroup.addTo(map);
+            } else {
+                map.removeLayer(uomLayerGroup);
+            }
+        });
+
+        return container;
+    }
+});
+map.addControl(new CustomControl());
+// Put the controls before the markers in the Tab order, so keyboard users
+// reach the year and layer checkboxes without tabbing through every marker.
+// (Leaflet positions the controls absolutely, so nothing moves on screen.)
+map.getContainer().prepend(map.getContainer().querySelector('.leaflet-control-container'));
+
+// ═══════════════════════════════════════════════════════════
+//  BOOT
+// ═══════════════════════════════════════════════════════════
+yearGroups[YEARS[YEARS.length - 1]].addTo(map); // Latest year visible by default
+uomLayerGroup.addTo(map); // Add UoM GeoJSON layer to map by default
+
+return {
+    // Draw one year's records. Unmapped records are placed between mapped
+    // ones from the same year, so they can be drawn straight away. If the
+    // year is shown, the other shown years on the same streets bow out to
+    // make room, as when a year is ticked.
+    addYear(year, records) {
+        const { chains, rawChains: raw } = MapCommon.buildChains(records);
+        Object.assign(rawChains, raw);
+        CHAINS.push(...chains);
+        createChainLayers(chains);
+        if (activeYears.has(year)) recomputePositions();
+        else initPositions(chains);
+    },
+    addCrossYearLinks() {
+        crossYearById = MapCommon.buildCrossYearIndex(CHAINS, rawChains);
+        rebuildCrossYearLines();
+    },
+};
+}
+</script>
+</body>
+</html>

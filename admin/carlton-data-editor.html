@@ -1,0 +1,1349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Common Ground - Data editor</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<!-- Same look as the other admin pages (review.html). -->
+<style>
+  :root{
+    --paper:#FAFAF8;
+    --paper-alt:#F6F5F1;
+    --header-bg:#F1F0EB;
+    --ink:#1B1E23;
+    --ink-soft:#565C66;
+    --rule:#DAD8D0;
+    --rule-strong:#C9C6BC;
+    /* Buttons and accents use the review page's slate; hover goes to ink */
+    --brass:#3E4C59;
+    --brass-dark:#1B1E23;
+    --green:#3E4C59;
+    --green-dark:#1B1E23;
+    --red:#7A2E20;
+    --red-bg:#F5E6E3;
+    --amber:#8A5A00;
+    --amber-bg:#FDF1D6;
+    --focus:#3E4C59;
+    --serif: 'Lora', Georgia, serif;
+    --sans: 'IBM Plex Sans', -apple-system, sans-serif;
+    --mono: 'IBM Plex Mono', ui-monospace, monospace;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:var(--sans);
+    font-size:14px;
+    line-height:1.4;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:var(--brass-dark);}
+
+  /* ---- Masthead ---- */
+  .masthead{
+    border-bottom:1px solid var(--rule);
+    padding:28px 28px 20px;
+    background:var(--paper);
+  }
+  .masthead .eyebrow{
+    font-family:var(--sans);
+    font-size:12px;
+    font-weight:600;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--ink-soft);
+    margin:0 0 4px;
+  }
+  .masthead h1{
+    font-family:var(--serif);
+    font-weight:500;
+    font-size:24px;
+    margin:0 0 4px;
+    letter-spacing:-.01em;
+  }
+  .masthead .sub{
+    font-size:14px;
+    color:var(--ink-soft);
+    max-width:760px;
+    margin:0;
+  }
+  .masthead .stats{
+    margin-top:10px;
+    font-family:var(--mono);
+    font-size:12px;
+    color:var(--ink-soft);
+    display:flex;
+    gap:18px;
+    flex-wrap:wrap;
+  }
+  .masthead .stats b{color:var(--ink);}
+  .dirty-flag{
+    display:none;
+    color:var(--red);
+    font-weight:700;
+  }
+  .dirty-flag.show{display:inline;}
+
+  /* ---- Toolbar ---- */
+  .toolbar{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+    align-items:center;
+    padding:14px 28px;
+    background:var(--paper-alt);
+    border-bottom:1px solid var(--rule);
+    position:sticky;
+    top:0;
+    z-index:20;
+  }
+  .toolbar .search-wrap{
+    position:relative;
+    flex:1 1 260px;
+    min-width:200px;
+  }
+  .toolbar input[type=text],
+  .toolbar select{
+    font-family:var(--sans);
+    font-size:13.5px;
+    padding:8px 10px;
+    border:1px solid var(--rule-strong);
+    border-radius:3px;
+    background:#fff;
+    color:var(--ink);
+  }
+  .toolbar input[type=text]:focus,
+  .toolbar select:focus,
+  input:focus, textarea:focus, select:focus{
+    outline:2px solid var(--focus);
+    outline-offset:1px;
+  }
+  .toolbar .search-wrap input{width:100%;}
+  .btn{
+    font-family:var(--sans);
+    font-size:13px;
+    font-weight:600;
+    padding:8px 14px;
+    border-radius:4px;
+    border:1px solid var(--brass);
+    background:var(--brass);
+    color:#fff;
+    cursor:pointer;
+    white-space:nowrap;
+  }
+  .btn:hover{background:var(--brass-dark);}
+  .btn.secondary{
+    background:#fff;
+    color:var(--ink);
+    border:1px solid var(--rule-strong);
+  }
+  .btn.secondary:hover{background:#fff;border-color:var(--brass);}
+  .btn:focus-visible, .modal-close:focus-visible, .suggest-chip:focus-visible{outline:2px solid var(--focus);outline-offset:2px;}
+  .toolbar .push-right{margin-left:auto;}
+  .btn.green{background:var(--green);border-color:var(--green-dark);}
+  .btn.green:hover{background:var(--green-dark);}
+  .btn:disabled{opacity:.5;cursor:not-allowed;}
+  .btn.small{padding:4px 9px;font-size:12px;}
+
+  /* ---- Table ---- */
+  .table-wrap{
+    padding:0 28px;
+    overflow-x:auto;
+  }
+  table{
+    border-collapse:collapse;
+    width:100%;
+    min-width:980px;
+    background:#fff;
+    margin-top:16px;
+  }
+  thead th{
+    background:var(--header-bg);
+    border-bottom:2px solid var(--rule-strong);
+    text-align:left;
+    padding:9px 10px;
+    font-family:var(--sans);
+    font-size:11.5px;
+    letter-spacing:.04em;
+    text-transform:uppercase;
+    color:var(--ink-soft);
+    cursor:pointer;
+    user-select:none;
+    white-space:nowrap;
+  }
+  thead th:hover{color:var(--ink);}
+  thead th .arrow{font-size:10px;margin-left:3px;color:var(--brass-dark);}
+  tbody td{
+    padding:8px 10px;
+    border-bottom:1px solid var(--rule);
+    vertical-align:top;
+    font-size:13px;
+  }
+  tbody tr:nth-child(even){background:var(--paper-alt);}
+  tbody tr:hover{background:var(--header-bg);}
+  td.id-cell, td.num-cell{font-family:var(--mono);font-size:12.5px;}
+  td.listing-cell{max-width:340px;}
+  .street-cell{position:relative;}
+  .street-bad{background:var(--red-bg) !important;color:var(--red);border-radius:2px;padding:2px 5px;display:inline-block;}
+  .info-icon{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    width:14px;height:14px;
+    border-radius:50%;
+    background:var(--red);
+    color:#fff;
+    font-size:10px;
+    font-weight:700;
+    font-style:normal;
+    margin-left:5px;
+    cursor:help;
+    vertical-align:middle;
+  }
+  .coord-warn{color:var(--amber);font-weight:600;}
+  .badge{
+    display:inline-block;
+    font-size:10.5px;
+    font-weight:700;
+    padding:2px 7px;
+    border-radius:10px;
+    letter-spacing:.02em;
+  }
+  .badge.dir{background:#E6E8EB;color:#3E4C59;}
+  .badge.elec{background:#E4EFE7;color:#1F5138;}
+
+  /* ---- Pagination ---- */
+  .pagination{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    padding:16px 28px 40px;
+    font-size:13px;
+    color:var(--ink-soft);
+    flex-wrap:wrap;
+  }
+  .pagination select{
+    padding:5px 7px;
+    border:1px solid var(--rule-strong);
+    border-radius:3px;
+  }
+  .pagination .pages{display:flex;gap:6px;align-items:center;}
+
+  /* ---- Modal ---- */
+  .modal-overlay{
+    position:fixed;inset:0;
+    background:rgba(38,36,30,.55);
+    display:none;
+    align-items:flex-start;
+    justify-content:center;
+    padding:32px 16px;
+    overflow-y:auto;
+    z-index:100;
+  }
+  .modal-overlay.show{display:flex;}
+  .modal{
+    background:var(--paper);
+    border:1px solid var(--rule-strong);
+    border-radius:5px;
+    max-width:640px;
+    width:100%;
+    box-shadow:0 12px 40px rgba(0,0,0,.35);
+  }
+  .modal-header{
+    padding:16px 22px;
+    border-bottom:2px solid var(--rule-strong);
+    background:var(--header-bg);
+    border-radius:5px 5px 0 0;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+  }
+  .modal-header h2{
+    font-family:var(--serif);
+    font-size:19px;
+    margin:0;
+  }
+  .modal-close{
+    background:none;border:none;font-size:20px;cursor:pointer;color:var(--ink-soft);line-height:1;
+  }
+  .modal-body{padding:18px 22px;max-height:70vh;overflow-y:auto;}
+  .modal-footer{
+    padding:14px 22px;
+    border-top:1px solid var(--rule);
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:10px;
+  }
+  .field-row{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:12px;
+    margin-bottom:12px;
+  }
+  .field{margin-bottom:12px;}
+  .field.full{grid-column:1 / -1;}
+  .field label{
+    display:block;
+    font-size:11.5px;
+    font-weight:700;
+    text-transform:uppercase;
+    letter-spacing:.03em;
+    color:var(--ink-soft);
+    margin-bottom:4px;
+  }
+  .field label .req{color:var(--red);}
+  .field input[type=text],
+  .field input[type=number],
+  .field select,
+  .field textarea{
+    width:100%;
+    padding:8px 9px;
+    border:1px solid var(--rule-strong);
+    border-radius:3px;
+    font-family:var(--sans);
+    font-size:13.5px;
+    background:#fff;
+    color:var(--ink);
+  }
+  .field textarea{resize:vertical;min-height:44px;font-family:var(--sans);}
+  .field .hint{font-size:11px;color:var(--ink-soft);margin-top:3px;}
+  .field .warn-text{font-size:11.5px;color:var(--amber);margin-top:3px;font-weight:600;}
+  .field .err-text{font-size:11.5px;color:var(--red);margin-top:3px;font-weight:600;}
+  .field.invalid input, .field.invalid select{border-color:var(--red);background:var(--red-bg);}
+  .section-label{
+    font-family:var(--serif);
+    font-size:13.5px;
+    font-weight:700;
+    color:var(--brass-dark);
+    margin:18px 0 8px;
+    padding-top:12px;
+    border-top:1px solid var(--rule);
+  }
+  .section-label:first-child{margin-top:0;padding-top:0;border-top:none;}
+  .suggest-chip{
+    display:inline-block;
+    margin-top:5px;
+    font-size:11.5px;
+    background:var(--header-bg);
+    border:1px solid var(--rule-strong);
+    padding:3px 9px;
+    border-radius:12px;
+    cursor:pointer;
+    color:var(--brass-dark);
+    font-weight:600;
+  }
+  .suggest-chip:hover{background:var(--brass);color:#fff;border-color:var(--brass-dark);}
+
+  /* ---- Instructions modal ---- */
+  .instructions ol{padding-left:20px;}
+  .instructions li{margin-bottom:12px;}
+  .instructions .callout{
+    background:var(--amber-bg);
+    border:1px solid #E3C776;
+    padding:10px 12px;
+    border-radius:4px;
+    font-size:12.5px;
+    margin:14px 0;
+  }
+  .instructions code{
+    background:var(--header-bg);
+    padding:1px 5px;
+    border-radius:3px;
+    font-family:var(--mono);
+    font-size:12px;
+  }
+
+  .file-list{list-style:none;padding:0;margin:12px 0;}
+  .file-list li{display:flex;align-items:center;gap:10px;flex-wrap:wrap;padding:8px 0;border-bottom:1px solid var(--border, #E5E2D8);}
+  .file-list li:last-child{border-bottom:0;}
+  .file-list .file-name{font-family:var(--mono);font-size:13px;}
+  .file-list .file-note{font-size:12px;color:var(--ink-soft);flex-basis:100%;}
+
+  .upload-screen{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:60px 20px;
+    min-height:60vh;
+  }
+  .upload-card{
+    max-width:480px;
+    width:100%;
+    background:#fff;
+    border:1px solid var(--rule-strong);
+    border-radius:6px;
+    padding:32px;
+    text-align:center;
+    box-shadow:0 8px 28px rgba(38,36,30,.08);
+  }
+  .upload-card h2{
+    font-family:var(--serif);
+    font-size:21px;
+    margin:0 0 10px;
+  }
+  .upload-card p{
+    font-size:13px;
+    color:var(--ink-soft);
+    line-height:1.55;
+  }
+  .upload-btn{
+    display:inline-block;
+    margin:14px 0 10px;
+  }
+  .upload-card .hint{
+    font-size:12px;
+    margin-top:16px;
+    padding-top:14px;
+    border-top:1px solid var(--rule);
+  }
+  .upload-error{
+    color:var(--red);
+    font-size:12.5px;
+    font-weight:600;
+    margin-top:12px;
+  }
+
+  .empty-state{
+    padding:40px;
+    text-align:center;
+    color:var(--ink-soft);
+    font-style:italic;
+  }
+  .sr-only{
+    position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;
+    clip:rect(0,0,0,0);white-space:nowrap;border:0;
+  }
+  .loading-spinner{
+    display:inline-block;
+    width:16px;
+    height:16px;
+    border:2px solid var(--rule-strong);
+    border-top-color:var(--brass);
+    border-radius:50%;
+    animation:spin 0.6s linear infinite;
+  }
+  @keyframes spin{to{transform:rotate(360deg);}}
+  @media (max-width:640px){
+    .field-row{grid-template-columns:1fr;}
+    .toolbar, .masthead, .table-wrap, .pagination{padding-left:16px;padding-right:16px;}
+    .masthead{padding-top:20px;padding-bottom:14px;}
+    .masthead h1{font-size:20px;}
+    .masthead .sub .intro{display:none;}
+    .masthead .stats{margin-top:6px;}
+    .toolbar{position:static;}
+    .toolbar .push-right{margin-left:0;}
+  }
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <p class="eyebrow">Carlton &amp; District</p>
+  <h1>Street directory &amp; electoral roll data editor</h1>
+  <p class="sub"><span class="intro">Browse, correct and add records from the Sands &amp; McDougall directories and electoral rolls. When you're done, download the changed files and follow the publishing steps to update the live site. </span><a href="./">Admin</a> &middot; <a href="../">Back to the site</a></p>
+  <div class="stats">
+    <span><b id="statTotal">0</b> records</span>
+    <span><b id="statFiltered">0</b> shown</span>
+    <span class="dirty-flag" id="dirtyFlag">● Unsaved changes — remember to download the changed files</span>
+  </div>
+</header>
+
+<div class="upload-screen" id="uploadScreen">
+  <div class="upload-card">
+    <h2>Loading data…</h2>
+    <p><span class="loading-spinner"></span></p>
+    <p id="loadingMessage" style="font-size:13px;color:var(--ink-soft);margin-top:12px;">Fetching the latest data from the site…</p>
+    <div id="uploadError" class="upload-error"></div>
+  </div>
+</div>
+
+<div id="appMain" style="display:none;">
+
+<div class="toolbar">
+  <div class="search-wrap">
+    <input type="text" id="searchBox" placeholder="Search names, streets, listings, occupations…" autocomplete="off">
+  </div>
+  <select id="sourceFilter">
+    <option value="">All sources</option>
+    <option value="Directory">Directory</option>
+    <option value="Electoral roll">Electoral roll</option>
+  </select>
+  <button class="btn secondary" id="newRecordBtn">+ New record</button>
+  <button class="btn secondary" id="loadFileBtn">Load files from your computer…</button>
+  <input type="file" id="fileInput" accept=".json" multiple style="display:none">
+  <button class="btn secondary push-right" id="howToBtn">How to publish</button>
+  <button class="btn" id="downloadBtn">Download changed files</button>
+</div>
+
+<div class="table-wrap">
+  <table id="dataTable">
+    <thead>
+      <tr>
+        <th><span class="sr-only">Edit</span></th>
+        <th data-key="entityID">ID<span class="arrow" id="arrow-entityID"></span></th>
+        <th data-key="source">Source<span class="arrow" id="arrow-source"></span></th>
+        <th data-key="year">Year<span class="arrow" id="arrow-year"></span></th>
+        <th data-key="street">Street<span class="arrow" id="arrow-street"></span></th>
+        <th data-key="type">Type<span class="arrow" id="arrow-type"></span></th>
+        <th data-key="cardinality">Card.<span class="arrow" id="arrow-cardinality"></span></th>
+        <th data-key="_person">Listing / Name</th>
+        <th data-key="_occupation">Occupation</th>
+        <th data-key="_coords">Coords</th>
+      </tr>
+    </thead>
+    <tbody id="tableBody"></tbody>
+  </table>
+  <div class="empty-state" id="emptyState" style="display:none;">No records match your search.</div>
+</div>
+
+<div class="pagination">
+  <div class="pages">
+    <button class="btn secondary small" id="prevPage">← Prev</button>
+    <span id="pageIndicator">Page 1 of 1</span>
+    <button class="btn secondary small" id="nextPage">Next →</button>
+  </div>
+  <label>Rows per page:
+    <select id="pageSizeSelect">
+      <option value="25">25</option>
+      <option value="50" selected>50</option>
+      <option value="100">100</option>
+      <option value="250">250</option>
+    </select>
+  </label>
+</div>
+
+</div><!-- /appMain -->
+
+<!-- Edit / New record modal -->
+<div class="modal-overlay" id="editOverlay">
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="editTitle">
+    <div class="modal-header">
+      <h2 id="editTitle">New record</h2>
+      <button class="modal-close" id="editClose" aria-label="Close">✕</button>
+    </div>
+    <div class="modal-body" id="editBody"></div>
+    <div class="modal-footer">
+      <button class="btn secondary" id="cancelEdit">Cancel</button>
+      <button class="btn green" id="saveEdit">Save record</button>
+    </div>
+  </div>
+</div>
+
+<!-- Instructions modal -->
+<div class="modal-overlay" id="howToOverlay">
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="howToTitle">
+    <div class="modal-header">
+      <h2 id="howToTitle">Publishing your changes to GitHub</h2>
+      <button class="modal-close" id="howToClose" aria-label="Close">✕</button>
+    </div>
+    <div class="modal-body instructions">
+      <p>The data is kept as one file per source and year, e.g. <code>_data/directory/1905.json</code> or <code>_data/electoral-roll/1919.json</code>. You only need to upload the files you changed. You don't need any special software — this is all done in your browser.</p>
+      <ol>
+        <li><b>Make sure you started from the current data.</b> This tool loads the live data from the site when it opens. If someone else published changes since you opened it, reload the page before editing so you don't overwrite their work.</li>
+        <li><b>Download the changed files.</b> Click <b>"Download changed files"</b>. It lists each file you changed, with a <b>Download</b> button for each, e.g. <code>1905.json</code>.</li>
+        <li><b>Check the filenames.</b> Look in your Downloads folder. If your browser saved a file as <code>1905 (1).json</code> or similar, rename it back to exactly <code>1905.json</code> — it must match the existing file's name.</li>
+        <li><b>Open the upload page</b> for that file's folder: the list gives a link for each one (it opens GitHub's <b>Upload files</b> page for <code>_data/directory</code> or <code>_data/electoral-roll</code>). Sign in if needed.</li>
+        <li><b>Drag your downloaded file into the box.</b> GitHub will recognise it has the same name and replace the old one. Files for the same folder can go up together.</li>
+        <li><b>Scroll to the bottom</b> of the page. Under "Commit changes", type a short note describing what you changed, e.g. <i>"Add electoral roll entries for Barry Street, 1928"</i>.</li>
+        <li>Make sure <b>"Commit directly to the main branch"</b> is selected, then click <b>Commit changes</b>.</li>
+      </ol>
+      <div class="callout">That's it — your changes are now in the repository. The live site takes a minute or two to update after you commit.</div>
+      <p>If you add a record for a year that has no file yet, the list will say so: a new year also needs a small page file before the site will show it, so ask a developer to add it (the README explains how).</p>
+      <p>If you're ever unsure whether your edits "took", reload this page once the site has updated and check the records look as you expect.</p>
+    </div>
+  </div>
+</div>
+
+<!-- Download modal: one button per changed file -->
+<div class="modal-overlay" id="downloadOverlay">
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="downloadTitle">
+    <div class="modal-header">
+      <h2 id="downloadTitle">Download changed files</h2>
+      <button class="modal-close" id="downloadClose" aria-label="Close">✕</button>
+    </div>
+    <div class="modal-body instructions" id="downloadBody"></div>
+  </div>
+</div>
+
+<script src="../scripts/data.js"></script>
+<script>
+'use strict';
+
+/* ============ REFERENCE LISTS (generated) ============
+   No record data lives in this file — only small helper word-lists
+   used for autocomplete suggestions once you've loaded a file. */
+const OCCUPATION_WHITELIST = ["agent","artist","assistant c.p.s.","attendant","baker","barman","billiard-marker","biscuit maker","blacksmith","bodymaker","bookbinder","bookmaker","boot machinist","boot repairer","bootmaker","bottler","boxmaker","brassworker","bricklayer","broom maker","brush maker","builder","butcher","cafe proprietor","cafe worker","canister maker","canvasser","caretaker","carpenter","carrier","cartage contractor","carter","ceiling fixer","chemical worker","cigar maker","cigarmaker","civil servant","cleaner","clerk","clicker","coachpainter","commission agent","confectioner","contractor","cook","council employee","cycle mechanic","dairyman","dealer","domestic","doorkeeper","drainer","draper","dressmaker","driver","electrician","engine driver","engine-driver","engineer","factory employee","factory hand","farmer","finisher","fire brigade officer","fireman","fitter","florist","french polisher","fruiterer","gardener","gripman","grocer","groom","hairdresser","home duties","horse collar maker","hotelkeeper","iron worker","ironmoulder","ironworker","labourer","laundress","leadworker","leather dresser","leather worker","letter carrier","letter-carrier","licensed victualler","lin'g cutter","lithographer","M.C.C. employee","machinist","manager","mantlemaker","manufacturer","mason","mattress maker","mechanic","metal worker","mill hand","milliner","miner","minister","modeller","motor mechanic","musician","night watchman","no occupation","none given","nurse","overseer","packer","painter","pantrymaid","paper ruler","paperhanger","pastrycook","photographer","platelayer","plumber","polisher","porter","postal emp.","postal employee","printer","printer's assistant","prospector","public servant","railway employ","railway employee","railway servant","retired public servant","rigger","rubber worker","saddler","sailor","sales","salesman","school teacher","seaman","seamstress","sheet metal worker","ship's fireman","shirt cutter","shoemaker","shopkeeper","showman","shunter","stableman","stationer","stevedore","stoker","stonemason","storekeeper","storeman","street cleaner","striker","student","tailor","tailoress","teacher","telephonist","textile worker","tiler and slater","timekeeper","tinsmith","tobacco worker","tobacco-worker","tram employee","traveller","turner","typiste","upholsterer","useful","usher","vaudeville artist","ventriloquist","waitress","watchmaker","watchman","waterside worker","wheelwright","wicker worker","wire weaver","wood merchant","wood worker"];
+const KNOWN_STREETS_SEED = ["Ballarat Road","Banbridge Place","Barkly Place","Barkly Street","Barry Street","Berkeley Street","Berkley Place","Berkley Street","Bouverie Place","Bouverie Street","Church Street","Cumberland Place","Grattan Street","Grove Place","Lansdowne Place","Leicester Place","Leicester Street","Lincoln Cottages","Lincoln Place","Lincoln Place North","Lincoln Place South","Lincoln Square","Lincoln Square North","Lincoln Square South","Lincoln Street","Little Barkly Street","Little Berkeley Street","Little Cardigan Street","Little Grattan Street","Little Pelham Street","Little Queensberry Place","Little Queensberry Street","Madeline Street","Malvina Place","Pelham Place","Pelham Street","Prince of Wales Place","Queensberry Place","Queensberry Street","Scott's Place","Swanston Street"];
+
+/* A tiny, intentionally short starter list of occupation abbreviations.
+   Extend this yourself as you come across more in the listings —
+   just add "abbrev": "full occupation" pairs. */
+const OCCUPATION_ABBREVIATIONS = {
+  "lab": "labourer",
+  "labr": "labourer",
+  "carp": "carpenter",
+  "elec": "electrician",
+  "mech": "mechanic",
+  "clk": "clerk",
+  "eng": "engineer",
+  "mgr": "manager",
+  "asst": "assistant",
+  "gro": "grocer",
+  "grcr": "grocer",
+  "drsmkr": "dressmaker",
+  "cstmr": "costermonger"
+};
+
+/* Roughly Carlton + immediate surrounding suburbs, with generous padding.
+   Used only as a soft warning, never a hard block. */
+const SOFT_BOUNDS = { latMin:-37.815, latMax:-37.788, lngMin:144.951, lngMax:144.974 };
+
+const TYPE_OPTIONS = ["Intersection","Voter","Right-of-way","Place"];
+const CARDINALITY_OPTIONS = ["","North","South","East","West"];
+
+/* ============ STATE ============ */
+let records = [];       // working copy, each with an internal _uid
+let nextUid = 1;
+let filtered = [];
+let sortKey = "entityID";
+let sortDir = 1;
+let page = 1;
+let pageSize = 50;
+let dirty = false;
+let editingUid = null;  // null = creating new
+let baselines = {};     // file key (e.g. "directory/1905") → its text as last loaded or downloaded
+
+const FOLDERS = { 'Directory': 'directory', 'Electoral roll': 'electoral-roll' };
+const REPO_UPLOAD = 'https://github.com/historicalesque/carlton/upload/main/_data/';
+
+const collator = new Intl.Collator(undefined, {numeric:true, sensitivity:'base'});
+
+/* ============ FILES ============
+   One file per source and year. Records keep the order they were loaded in,
+   so an unchanged file downloads exactly as it was. */
+function fileKey(r){ return `${FOLDERS[r.source] || 'directory'}/${r.year}`; }
+
+// Same format as tools/convert-map-data.js: a JSON list, one record per line.
+function serialize(list){
+  return '[\n' + list.map(r => {
+    const clean = Object.assign({}, r);
+    delete clean._uid;
+    return JSON.stringify(clean);
+  }).join(',\n') + '\n]\n';
+}
+
+function fileTexts(){
+  const groups = {};
+  records.forEach(r => { (groups[fileKey(r)] = groups[fileKey(r)] || []).push(r); });
+  const out = {};
+  Object.keys(groups).forEach(k => { out[k] = serialize(groups[k]); });
+  return out;
+}
+
+function changedFiles(){
+  const now = fileTexts();
+  const keys = new Set([...Object.keys(now), ...Object.keys(baselines)]);
+  return [...keys].sort().filter(k => now[k] !== baselines[k])
+    .map(k => ({ key: k, text: now[k], isNew: !(k in baselines), isEmpty: !(k in now) }));
+}
+
+function loadFromArray(arr){
+  records = arr.map(r => Object.assign({_uid: nextUid++}, r));
+  baselines = fileTexts();
+  applyFilterSort();
+  page = 1;
+  setDirty(false);
+  document.getElementById('uploadScreen').style.display = 'none';
+  document.getElementById('appMain').style.display = 'block';
+  render();
+}
+
+function parseDataFile(text){
+  const arr = JSON.parse(text);
+  if(!Array.isArray(arr)) throw new Error('File does not contain a list of records.');
+  return arr;
+}
+
+// Reads JSON files chosen from the computer. Their records replace the
+// records of the same source and year; other years are kept.
+async function readChosenFiles(fileList){
+  const loaded = [];
+  for(const file of fileList){
+    try {
+      loaded.push(parseDataFile(await file.text()));
+    } catch(err){
+      throw new Error(`${file.name}: ${err.message}`);
+    }
+  }
+  const incoming = loaded.flat();
+  const replaced = new Set(incoming.map(fileKey));
+  return records.filter(r => !replaced.has(fileKey(r))).map(r => { const c = Object.assign({}, r); delete c._uid; return c; }).concat(incoming);
+}
+
+/* ============ AUTO-LOAD FROM THE SITE ============ */
+async function autoLoadFromURL(){
+  const errBox = document.getElementById('uploadError');
+  const loadingMsg = document.getElementById('loadingMessage');
+
+  try {
+    const arr = await CGData.load({}, {
+      onFile: (recs, file, { loaded, total }) => {
+        loadingMsg.textContent = `Loaded ${CGData.label(file)} (${loaded} of ${total})…`;
+      }
+    });
+    loadFromArray(arr);
+  } catch(err){
+    errBox.textContent = `Could not load the data from the site: ${err.message} You can still load the files from your computer below.`;
+    loadingMsg.innerHTML = `<label for="fileInputInitial" class="btn green upload-btn" style="margin-top:12px;">Choose data files…</label>
+      <input type="file" id="fileInputInitial" accept=".json" multiple style="display:none">
+      <p class="hint" style="margin-top:16px;">Tip: the files are in the <code>_data/directory</code> and <code>_data/electoral-roll</code> folders on GitHub. Open a file, click the "Download raw file" button, and choose all the files you downloaded here.</p>`;
+    document.getElementById('fileInputInitial').addEventListener('change', handleFileInputInitial);
+  }
+}
+
+async function handleFileInputInitial(e){
+  const errBox = document.getElementById('uploadError');
+  errBox.textContent = '';
+  if(!e.target.files.length) return;
+  try {
+    loadFromArray(await readChosenFiles([...e.target.files]));
+  } catch(err){
+    errBox.textContent = 'Could not read that file: ' + err.message;
+  }
+  e.target.value = '';
+}
+
+// Start auto-load on page load
+window.addEventListener('load', autoLoadFromURL);
+
+/* ============ HELPERS ============ */
+function setDirty(v){
+  dirty = v;
+  document.getElementById('dirtyFlag').classList.toggle('show', v);
+}
+
+function distinctStreets(){
+  const s = new Set(KNOWN_STREETS_SEED);
+  records.forEach(r => { if(r.street) s.add(r.street); });
+  return [...s].sort(collator.compare);
+}
+
+function distinctStringEntityIDs(){
+  const s = new Set();
+  records.forEach(r => { if(typeof r.entityID === 'string' && r.entityID.trim()) s.add(r.entityID); });
+  return [...s].sort(collator.compare);
+}
+
+/* Numeric IDs: the directories count up from 1 and the electoral rolls from
+   999999, so the two never clash (decided 2026-10-04). */
+const ELECTORAL_ID_START = 999999;
+function nextNumericEntityID(source){
+  const electoral = source === 'Electoral roll';
+  let max = electoral ? ELECTORAL_ID_START - 1 : 0;
+  records.forEach(r => {
+    if(typeof r.entityID !== 'number' || (r.entityID >= ELECTORAL_ID_START) !== electoral) return;
+    if(r.entityID > max) max = r.entityID;
+  });
+  return max + 1;
+}
+
+function coerceEntityID(val){
+  const trimmed = String(val).trim();
+  if(/^-?\d+$/.test(trimmed)) return parseInt(trimmed, 10);
+  return trimmed;
+}
+
+/* Title-case-ish street suffix check: soft rule only. */
+function streetLooksValid(street){
+  if(!street) return true;
+  const words = street.trim().split(/\s+/);
+  return words.every(w => {
+    // allow things like "O'Neill" / "St" / hyphenated - just check first letter is uppercase
+    const firstLetter = w.match(/[A-Za-z]/);
+    if(!firstLetter) return true;
+    return firstLetter[0] === firstLetter[0].toUpperCase();
+  });
+}
+
+function coordsHardValid(lat, lng){
+  if(lat === undefined || lat === null || lat === '' || lng === undefined || lng === null || lng === '') return true; // optional
+  const la = Number(lat), ln = Number(lng);
+  if(Number.isNaN(la) || Number.isNaN(ln)) return false;
+  return la >= -90 && la <= 90 && ln >= -180 && ln <= 180;
+}
+function coordsInSoftBounds(lat, lng){
+  if(lat === undefined || lat === null || lat === '' || lng === undefined || lng === null || lng === '') return true;
+  const la = Number(lat), ln = Number(lng);
+  return la >= SOFT_BOUNDS.latMin && la <= SOFT_BOUNDS.latMax && ln >= SOFT_BOUNDS.lngMin && ln <= SOFT_BOUNDS.lngMax;
+}
+
+function personLabel(r){
+  if(r.source === 'Electoral roll'){
+    const gn = r['Given Names'] || '';
+    const sn = r.Surname || '';
+    return (sn || gn) ? (sn + (gn ? ', ' + gn : '')) : (r.listing || '');
+  }
+  return r.listing || '';
+}
+
+function occupationOf(r){
+  return r.Occupation || '';
+}
+
+/* Suggest an occupation from a Directory listing's trailing fragment. */
+function suggestOccupationFor(listing){
+  if(!listing) return null;
+  const parts = listing.split(',');
+  if(parts.length < 2) return null;
+  let frag = parts[parts.length - 1].trim().toLowerCase().replace(/[.]+$/,'');
+  if(!frag || frag.length < 2) return null;
+  // direct abbreviation hit
+  if(OCCUPATION_ABBREVIATIONS[frag]) return OCCUPATION_ABBREVIATIONS[frag];
+  // exact whitelist hit
+  const exact = OCCUPATION_WHITELIST.find(o => o.toLowerCase() === frag);
+  if(exact) return exact;
+  // loose containment match either direction
+  const contains = OCCUPATION_WHITELIST.find(o => {
+    const ol = o.toLowerCase();
+    return ol.includes(frag) || frag.includes(ol);
+  });
+  if(contains) return contains;
+  return null;
+}
+
+/* ============ FILTER / SORT / PAGINATE ============ */
+function recordMatchesSearch(r, term){
+  if(!term) return true;
+  const hay = [
+    r.entityID, r.source, r.year, r.street, r.type, r.cardinality, r.listing,
+    r.Surname, r['Given Names'], r.Address, r.Occupation, r.pages, r['Registration Number']
+  ].filter(v => v !== undefined && v !== null).join(' ').toLowerCase();
+  return hay.includes(term);
+}
+
+function applyFilterSort(){
+  const term = document.getElementById('searchBox') ? document.getElementById('searchBox').value.trim().toLowerCase() : '';
+  const srcFilter = document.getElementById('sourceFilter') ? document.getElementById('sourceFilter').value : '';
+  filtered = records.filter(r => {
+    if(srcFilter && r.source !== srcFilter) return false;
+    return recordMatchesSearch(r, term);
+  });
+  filtered.sort((a,b) => {
+    let av, bv;
+    if(sortKey === '_person'){ av = personLabel(a); bv = personLabel(b); }
+    else if(sortKey === '_occupation'){ av = occupationOf(a); bv = occupationOf(b); }
+    else { av = a[sortKey]; bv = b[sortKey]; }
+    if(av === undefined || av === null) av = '';
+    if(bv === undefined || bv === null) bv = '';
+    const cmp = collator.compare(String(av), String(bv));
+    return cmp * sortDir;
+  });
+}
+
+/* ============ RENDER ============ */
+function render(){
+  applyFilterSort();
+  document.getElementById('statTotal').textContent = records.length;
+  document.getElementById('statFiltered').textContent = filtered.length;
+
+  const totalPages = Math.max(1, Math.ceil(filtered.length / pageSize));
+  if(page > totalPages) page = totalPages;
+  document.getElementById('pageIndicator').textContent = `Page ${page} of ${totalPages}`;
+  document.getElementById('prevPage').disabled = page <= 1;
+  document.getElementById('nextPage').disabled = page >= totalPages;
+
+  const start = (page-1) * pageSize;
+  const pageRows = filtered.slice(start, start + pageSize);
+
+  const tbody = document.getElementById('tableBody');
+  tbody.innerHTML = '';
+  document.getElementById('emptyState').style.display = filtered.length === 0 ? 'block' : 'none';
+
+  pageRows.forEach(r => {
+    const tr = document.createElement('tr');
+
+    const tdId = document.createElement('td');
+    tdId.className = 'id-cell';
+    tdId.textContent = r.entityID;
+    tr.appendChild(tdId);
+
+    const tdSrc = document.createElement('td');
+    const badge = document.createElement('span');
+    badge.className = 'badge ' + (r.source === 'Directory' ? 'dir' : 'elec');
+
+
+
+
+
+        badge.textContent = r.source === 'Directory' ? 'Directory' : 'Electoral';
+    tdSrc.appendChild(badge);
+    tr.appendChild(tdSrc);
+
+    const tdYear = document.createElement('td');
+    tdYear.className = 'num-cell';
+    tdYear.textContent = r.year || '';
+    tr.appendChild(tdYear);
+
+    const tdStreet = document.createElement('td');
+    tdStreet.className = 'street-cell';
+    const validStreet = streetLooksValid(r.street);
+    if(validStreet){
+      tdStreet.textContent = r.street || '';
+    } else {
+      const span = document.createElement('span');
+      span.className = 'street-bad';
+      span.textContent = r.street || '';
+      tdStreet.appendChild(span);
+      const icon = document.createElement('span');
+      icon.className = 'info-icon';
+      icon.textContent = 'i';
+      icon.title = "Street names are conventionally Title Case with a capitalised suffix, e.g. \"Barry Street\" rather than \"barry street\". This is a style suggestion, not enforced.";
+      tdStreet.appendChild(icon);
+    }
+    tr.appendChild(tdStreet);
+
+    const tdType = document.createElement('td');
+    tdType.textContent = r.type || '';
+    tr.appendChild(tdType);
+
+    const tdCard = document.createElement('td');
+    tdCard.textContent = r.cardinality || '';
+    tr.appendChild(tdCard);
+
+    const tdPerson = document.createElement('td');
+    tdPerson.className = 'listing-cell';
+    tdPerson.textContent = personLabel(r);
+    tr.appendChild(tdPerson);
+
+    const tdOcc = document.createElement('td');
+    tdOcc.textContent = occupationOf(r);
+    tr.appendChild(tdOcc);
+
+    const tdCoords = document.createElement('td');
+    if(r.lat !== undefined && r.lat !== null && r.lat !== '' && r.lng !== undefined && r.lng !== null && r.lng !== ''){
+      if(!coordsHardValid(r.lat, r.lng)){
+        tdCoords.innerHTML = '<span style="color:var(--red);font-weight:700;">invalid</span>';
+      } else if(!coordsInSoftBounds(r.lat, r.lng)){
+        tdCoords.innerHTML = '<span class="coord-warn">⚠ outside area</span>';
+      } else {
+        tdCoords.textContent = '✓';
+      }
+    } else {
+      tdCoords.textContent = '—';
+    }
+    tr.appendChild(tdCoords);
+
+    const tdActions = document.createElement('td');
+    const editBtn = document.createElement('button');
+    editBtn.className = 'btn secondary small';
+    editBtn.textContent = 'Edit';
+    editBtn.addEventListener('click', () => openEditModal(r._uid));
+    tdActions.appendChild(editBtn);
+    tr.prepend(tdActions);
+
+    tbody.appendChild(tr);
+  });
+
+  Object.keys({entityID:1,source:1,year:1,street:1,type:1,cardinality:1}).forEach(k=>{
+    const el = document.getElementById('arrow-' + k);
+    if(!el) return;
+    el.textContent = (k === sortKey) ? (sortDir === 1 ? '▲' : '▼') : '';
+  });
+}
+
+/* ============ SORT / SEARCH / PAGINATION WIRING ============ */
+document.querySelectorAll('thead th[data-key]').forEach(th => {
+  th.addEventListener('click', () => {
+    const key = th.getAttribute('data-key');
+    if(sortKey === key){ sortDir *= -1; } else { sortKey = key; sortDir = 1; }
+    page = 1;
+    render();
+  });
+});
+document.getElementById('searchBox').addEventListener('input', () => { page = 1; render(); });
+document.getElementById('sourceFilter').addEventListener('change', () => { page = 1; render(); });
+document.getElementById('pageSizeSelect').addEventListener('change', (e) => {
+  pageSize = parseInt(e.target.value, 10); page = 1; render();
+});
+document.getElementById('prevPage').addEventListener('click', () => { if(page>1){page--; render();} });
+document.getElementById('nextPage').addEventListener('click', () => {
+  const totalPages = Math.max(1, Math.ceil(filtered.length / pageSize));
+  if(page < totalPages){page++; render();}
+});
+
+/* ============ EDIT MODAL ============ */
+const editOverlay = document.getElementById('editOverlay');
+const editBody = document.getElementById('editBody');
+const editTitle = document.getElementById('editTitle');
+
+function openEditModal(uid){
+  editingUid = uid;
+  const rec = uid === null ? null : records.find(r => r._uid === uid);
+  editTitle.textContent = rec ? `Edit record ${rec.entityID}` : 'New record';
+  buildForm(rec);
+  editOverlay.classList.add('show');
+}
+function closeEditModal(){
+  editOverlay.classList.remove('show');
+  editingUid = null;
+}
+document.getElementById('newRecordBtn').addEventListener('click', () => openEditModal(null));
+document.getElementById('editClose').addEventListener('click', closeEditModal);
+document.getElementById('cancelEdit').addEventListener('click', closeEditModal);
+editOverlay.addEventListener('click', (e) => { if(e.target === editOverlay) closeEditModal(); });
+
+function field(id, labelText, required, inputHtml, hintHtml){
+  return `<div class="field" id="fieldwrap-${id}">
+    <label for="${id}">${labelText}${required ? ' <span class="req">*</span>' : ''}</label>
+    ${inputHtml}
+    ${hintHtml || ''}
+  </div>`;
+}
+
+function buildForm(rec){
+  const isNew = !rec;
+  const source = rec ? rec.source : 'Directory';
+  const entityID = rec ? rec.entityID : nextNumericEntityID(source);
+  const streets = distinctStreets();
+  const streetsDatalist = streets.map(s => `<option value="${escapeHtml(s)}">`).join('');
+  const idsDatalist = distinctStringEntityIDs().map(s => `<option value="${escapeHtml(s)}">`).join('');
+  const occDatalist = OCCUPATION_WHITELIST.map(o => `<option value="${escapeHtml(o)}">`).join('');
+
+  let html = '';
+
+  html += `<div class="field-row">
+    ${field('f_entityID', 'Entity ID', true,
+      `<input type="text" id="f_entityID" list="entityIdList" value="${escapeHtml(entityID)}" autocomplete="off">
+       <datalist id="entityIdList">${idsDatalist}</datalist>`,
+      `<div class="hint">Numbers auto-increment for new records. Use a matching text ID (e.g. a person's name) to link this record to another entry for the same entity — start typing to see existing text IDs.</div>`)}
+    ${field('f_source', 'Source', true,
+      `<select id="f_source">
+        <option value="Directory" ${source==='Directory'?'selected':''}>Directory</option>
+        <option value="Electoral roll" ${source==='Electoral roll'?'selected':''}>Electoral roll</option>
+      </select>`)}
+  </div>`;
+
+  html += `<div class="field-row">
+    ${field('f_year', 'Year', true, `<input type="number" id="f_year" value="${rec && rec.year !== undefined ? rec.year : ''}">`)}
+    ${field('f_type', 'Type', true,
+      `<select id="f_type">${TYPE_OPTIONS.map(t => `<option value="${t}" ${rec && sameType(rec.type,t) ? 'selected' : ''}>${t}</option>`).join('')}</select>`)}
+  </div>`;
+
+  html += `<div class="field-row">
+    ${field('f_street', 'Street', true,
+      `<input type="text" id="f_street" list="streetList" value="${escapeHtml(rec ? rec.street : '')}" autocomplete="off">
+       <datalist id="streetList">${streetsDatalist}</datalist>`,
+      `<div id="streetHint"></div>`)}
+    ${field('f_cardinality', 'Cardinality', false,
+      `<select id="f_cardinality">${CARDINALITY_OPTIONS.map(c => `<option value="${c}" ${rec && (rec.cardinality||'')===c ? 'selected':''}>${c || '(none)'}</option>`).join('')}</select>`)}
+  </div>`;
+
+  html += field('f_listing', 'Listing (as transcribed)', true,
+    `<textarea id="f_listing">${escapeHtml(rec ? rec.listing : '')}</textarea>`);
+
+  html += `<div class="field-row">
+    ${field('f_lat', 'Latitude', false, `<input type="text" id="f_lat" value="${rec && rec.lat !== undefined ? rec.lat : ''}">`, `<div id="latHint"></div>`)}
+    ${field('f_lng', 'Longitude', false, `<input type="text" id="f_lng" value="${rec && rec.lng !== undefined ? rec.lng : ''}">`)}
+  </div>`;
+
+  // Directory-only
+  html += `<div id="directoryFields">`;
+  html += field('f_pages', 'Page(s)', false, `<input type="text" id="f_pages" value="${escapeHtml(rec && rec.pages !== undefined ? rec.pages : '')}">`);
+  html += `<div class="section-label">Occupation (optional — being added gradually to Directory records)</div>`;
+  html += field('f_occDir', 'Occupation', false,
+    `<input type="text" id="f_occDir" list="occList" value="${escapeHtml(rec && rec.source==='Directory' ? (rec.Occupation||'') : '')}" autocomplete="off">`,
+    `<div id="occSuggestWrap"></div>`);
+  html += `</div>`;
+
+  // Electoral-only
+  html += `<div id="electoralFields"><div class="section-label">Electoral roll details</div>`;
+  html += `<div class="field-row">
+    ${field('f_regNum', 'Registration Number', false, `<input type="text" id="f_regNum" value="${rec && rec['Registration Number'] !== undefined ? rec['Registration Number'] : ''}">`)}
+    ${field('f_gender', 'Gender', false, `<select id="f_gender">
+        <option value="" ${!(rec && rec.Gender) ? 'selected':''}>(none)</option>
+        <option value="M" ${rec && rec.Gender==='M' ? 'selected':''}>M</option>
+        <option value="F" ${rec && rec.Gender==='F' ? 'selected':''}>F</option>
+      </select>`)}
+  </div>`;
+  html += `<div class="field-row">
+    ${field('f_surname', 'Surname', false, `<input type="text" id="f_surname" value="${escapeHtml(rec && rec.Surname !== undefined ? rec.Surname : '')}">`)}
+    ${field('f_given', 'Given Names', false, `<input type="text" id="f_given" value="${escapeHtml(rec && rec['Given Names'] !== undefined ? rec['Given Names'] : '')}">`)}
+  </div>`;
+  html += `<div class="field-row">
+    ${field('f_address', 'Address', false, `<input type="text" id="f_address" value="${escapeHtml(rec && rec.Address !== undefined ? rec.Address : '')}">`)}
+    ${field('f_streetNum', 'Street Number', false, `<input type="text" id="f_streetNum" value="${rec && rec['Street Number'] !== undefined ? rec['Street Number'] : ''}">`)}
+  </div>`;
+  html += field('f_occElec', 'Occupation', false,
+    `<input type="text" id="f_occElec" list="occList" value="${escapeHtml(rec && rec.source==='Electoral roll' ? (rec.Occupation||'') : '')}" autocomplete="off">`);
+  html += `</div>`;
+  html += `<datalist id="occList">${occDatalist}</datalist>`;
+
+  editBody.innerHTML = html;
+
+  toggleSourceFields();
+  document.getElementById('f_source').addEventListener('change', toggleSourceFields);
+  if(isNew){
+    // A new record's suggested ID follows the source, unless it was changed by hand.
+    let suggested = String(entityID);
+    document.getElementById('f_source').addEventListener('change', (e) => {
+      const idField = document.getElementById('f_entityID');
+      if(idField.value.trim() !== suggested) return;
+      suggested = idField.value = String(nextNumericEntityID(e.target.value));
+    });
+  }
+  document.getElementById('f_street').addEventListener('input', updateStreetHint);
+  document.getElementById('f_lat').addEventListener('input', updateCoordHint);
+  document.getElementById('f_lng').addEventListener('input', updateCoordHint);
+  document.getElementById('f_listing').addEventListener('input', updateOccupationSuggestion);
+  updateStreetHint();
+  updateCoordHint();
+  updateOccupationSuggestion();
+}
+
+function sameType(a, b){
+  if(!a) return false;
+  return a.toLowerCase() === b.toLowerCase();
+}
+
+function escapeHtml(v){
+  if(v === undefined || v === null) return '';
+  return String(v).replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+}
+
+function toggleSourceFields(){
+  const src = document.getElementById('f_source').value;
+  document.getElementById('directoryFields').style.display = src === 'Directory' ? 'block' : 'none';
+  document.getElementById('electoralFields').style.display = src === 'Electoral roll' ? 'block' : 'none';
+  const typeSel = document.getElementById('f_type');
+  if(src === 'Electoral roll' && !typeSel.value){ typeSel.value = 'Voter'; }
+}
+
+function updateStreetHint(){
+  const val = document.getElementById('f_street').value;
+  const wrap = document.getElementById('streetHint');
+  if(val && !streetLooksValid(val)){
+    wrap.innerHTML = `<div class="warn-text">⚠ Street names are conventionally Title Case with a capitalised suffix (e.g. "Barry Street"). This won't block saving.</div>`;
+  } else {
+    wrap.innerHTML = '';
+  }
+}
+
+function updateCoordHint(){
+  const lat = document.getElementById('f_lat').value.trim();
+  const lng = document.getElementById('f_lng').value.trim();
+  const latHint = document.getElementById('latHint');
+  if(!lat && !lng){ latHint.innerHTML=''; return; }
+  if(!coordsHardValid(lat, lng)){
+    latHint.innerHTML = `<div class="err-text">Latitude must be between -90 and 90, longitude between -180 and 180.</div>`;
+  } else if(!coordsInSoftBounds(lat, lng)){
+    latHint.innerHTML = `<div class="warn-text">⚠ Outside the expected Carlton-area range — double check this is correct.</div>`;
+  } else {
+    latHint.innerHTML = '';
+  }
+}
+
+function updateOccupationSuggestion(){
+  const listing = document.getElementById('f_listing').value;
+  const wrap = document.getElementById('occSuggestWrap');
+  const suggestion = suggestOccupationFor(listing);
+  if(suggestion){
+    wrap.innerHTML = `<span class="suggest-chip" id="occSuggestChip">Use suggested: ${escapeHtml(suggestion)}</span>`;
+    document.getElementById('occSuggestChip').addEventListener('click', () => {
+      document.getElementById('f_occDir').value = suggestion;
+    });
+  } else {
+    wrap.innerHTML = '';
+  }
+}
+
+/* ============ SAVE ============ */
+document.getElementById('saveEdit').addEventListener('click', () => {
+  const errors = [];
+
+  const entityIDraw = document.getElementById('f_entityID').value.trim();
+  if(!entityIDraw) errors.push('Entity ID is required.');
+  const source = document.getElementById('f_source').value;
+  const year = document.getElementById('f_year').value;
+  if(!year) errors.push('Year is required.');
+  const type = document.getElementById('f_type').value;
+  const street = document.getElementById('f_street').value.trim();
+  if(!street) errors.push('Street is required.');
+  const cardinality = document.getElementById('f_cardinality').value;
+  const listing = document.getElementById('f_listing').value.trim();
+  if(!listing) errors.push('Listing is required.');
+  const lat = document.getElementById('f_lat').value.trim();
+  const lng = document.getElementById('f_lng').value.trim();
+  if((lat && !lng) || (!lat && lng)) errors.push('Provide both latitude and longitude, or leave both blank.');
+  if(lat && lng && !coordsHardValid(lat,lng)) errors.push('Latitude/longitude values are out of valid range.');
+
+  if(errors.length){
+    alert('Please fix the following before saving:\n\n- ' + errors.join('\n- '));
+    return;
+  }
+
+  const base = {
+    entityID: coerceEntityID(entityIDraw),
+    source, year: Number(year), type, street, cardinality, listing
+  };
+  if(lat && lng){ base.lat = Number(lat); base.lng = Number(lng); }
+
+  let rec;
+  if(source === 'Directory'){
+    rec = Object.assign({}, base);
+    const pages = document.getElementById('f_pages').value.trim();
+    if(pages) rec.pages = pages;
+    // reorder: entityID, source, year, pages, listing, street, type, cardinality, lat, lng, Occupation
+    rec = reorderDirectory(rec);
+    const occ = document.getElementById('f_occDir').value.trim();
+    if(occ) rec.Occupation = occ;
+  } else {
+    rec = Object.assign({}, base);
+    const regNum = document.getElementById('f_regNum').value.trim();
+    const surname = document.getElementById('f_surname').value.trim();
+    const given = document.getElementById('f_given').value.trim();
+    const address = document.getElementById('f_address').value.trim();
+    const streetNum = document.getElementById('f_streetNum').value.trim();
+    const occ = document.getElementById('f_occElec').value.trim();
+    const gender = document.getElementById('f_gender').value;
+    rec = reorderElectoral({
+      entityID: rec.entityID, source, type, year: rec.year,
+      listing,
+      'Registration Number': regNum ? (/^\d+$/.test(regNum) ? Number(regNum) : regNum) : undefined,
+      Surname: surname || undefined,
+      'Given Names': given || undefined,
+      Address: address || undefined,
+      'Street Number': streetNum ? (/^\d+$/.test(streetNum) ? Number(streetNum) : streetNum) : undefined,
+      street, cardinality,
+      Occupation: occ || undefined,
+      Gender: gender || undefined,
+      lat: rec.lat, lng: rec.lng
+    });
+  }
+
+  // Keep any fields the form doesn't show (e.g. Notes) when editing a record.
+  if(editingUid !== null){
+    const old = records.find(r => r._uid === editingUid);
+    const formFields = new Set(['entityID','source','year','pages','listing','street','type','cardinality','lat','lng','Occupation',
+      'Registration Number','Surname','Given Names','Address','Street Number','Gender','_uid']);
+    Object.keys(old).forEach(k => { if(!formFields.has(k) && rec[k] === undefined) rec[k] = old[k]; });
+  }
+
+  if(editingUid === null){
+    rec._uid = nextUid++;
+    records.push(rec);
+  } else {
+    const idx = records.findIndex(r => r._uid === editingUid);
+    rec._uid = editingUid;
+    records[idx] = rec;
+  }
+  setDirty(true);
+  closeEditModal();
+  render();
+});
+
+// Fields in the usual order; any others (e.g. Notes) follow at the end.
+function reorderDirectory(rec){
+  const order = ['entityID','source','year','pages','listing','street','type','cardinality','lat','lng','Occupation'];
+  const out = {};
+  order.forEach(k => { if(rec[k] !== undefined) out[k] = rec[k]; });
+  Object.keys(rec).forEach(k => { if(!(k in out) && rec[k] !== undefined) out[k] = rec[k]; });
+  return out;
+}
+function reorderElectoral(rec){
+  const order = ['entityID','source','type','year','listing','Registration Number','Surname','Given Names','Address','Street Number','street','cardinality','Occupation','Gender','lat','lng'];
+  const out = {};
+  order.forEach(k => { if(rec[k] !== undefined && rec[k] !== '') out[k] = rec[k]; });
+  Object.keys(rec).forEach(k => { if(!(k in out) && rec[k] !== undefined && rec[k] !== '') out[k] = rec[k]; });
+  return out;
+}
+
+/* ============ EXPORT / DOWNLOAD ============ */
+const downloadOverlay = document.getElementById('downloadOverlay');
+
+function downloadFile(change){
+  const year = change.key.split('/')[1];
+  const blob = new Blob([change.text], {type:'application/json'});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = `${year}.json`;
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+  baselines[change.key] = change.text;
+  setDirty(changedFiles().length > 0);
+}
+
+function showDownloads(){
+  const body = document.getElementById('downloadBody');
+  const changes = changedFiles();
+  if(!changes.length){
+    body.innerHTML = '<p>Nothing has changed since the data was loaded (or since your last download).</p>';
+    downloadOverlay.classList.add('show');
+    return;
+  }
+  body.innerHTML = `<p>Download each file, then upload it to its folder on GitHub (see <b>How to publish</b>).</p><ul class="file-list"></ul>`;
+  const list = body.querySelector('.file-list');
+  changes.forEach(change => {
+    const [folder, year] = change.key.split('/');
+    const li = document.createElement('li');
+    if(change.isEmpty){
+      li.innerHTML = `<span class="file-name">_data/${folder}/${year}.json</span>
+        <span class="file-note">Every record in this file has moved to another year. Ask a developer to remove the file.</span>`;
+    } else {
+      li.innerHTML = `<button class="btn small">Download ${year}.json</button>
+        <span>then <a href="${REPO_UPLOAD}${folder}" target="_blank" rel="noopener">upload it to <span class="file-name">_data/${folder}/</span></a></span>
+        ${change.isNew ? '<span class="file-note">This is a new year: it also needs a page file before the site shows it. Ask a developer (see the README).</span>' : ''}`;
+      li.querySelector('button').addEventListener('click', (e) => {
+        downloadFile(change);
+        e.target.textContent = `Downloaded ${year}.json`;
+        e.target.disabled = true;
+      });
+    }
+    list.appendChild(li);
+  });
+  downloadOverlay.classList.add('show');
+}
+
+document.getElementById('downloadBtn').addEventListener('click', showDownloads);
+document.getElementById('downloadClose').addEventListener('click', () => downloadOverlay.classList.remove('show'));
+downloadOverlay.addEventListener('click', (e) => { if(e.target === downloadOverlay) downloadOverlay.classList.remove('show'); });
+
+/* ============ LOAD DIFFERENT FILE ============ */
+document.getElementById('loadFileBtn').addEventListener('click', () => {
+  if(dirty && !confirm('You have unsaved changes that will be lost if you load a new file. Continue?')) return;
+  document.getElementById('fileInput').click();
+});
+document.getElementById('fileInput').addEventListener('change', async (e) => {
+  const files = [...e.target.files];
+  e.target.value = '';
+  if(!files.length) return;
+  try {
+    const arr = await readChosenFiles(files);
+    loadFromArray(arr);
+    alert(`Loaded ${files.map(f => f.name).join(', ')}. Records for those years were replaced; other years are unchanged.`);
+  } catch(err){
+    alert('Could not read that file as a data file:\n' + err.message);
+  }
+});
+
+/* ============ HOW-TO MODAL ============ */
+const howToOverlay = document.getElementById('howToOverlay');
+document.getElementById('howToBtn').addEventListener('click', () => howToOverlay.classList.add('show'));
+document.getElementById('howToClose').addEventListener('click', () => howToOverlay.classList.remove('show'));
+howToOverlay.addEventListener('click', (e) => { if(e.target === howToOverlay) howToOverlay.classList.remove('show'); });
+
+/* ============ UNSAVED CHANGES WARNING ============ */
+window.addEventListener('beforeunload', (e) => {
+  if(dirty){ e.preventDefault(); e.returnValue = ''; }
+});
+
+render();
+</script>
+</body>
+</html>

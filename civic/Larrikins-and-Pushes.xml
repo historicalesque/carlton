@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<?oxygen RNGSchema="shared/cpf.rng" type="xml"?>
+<eac-cpf xmlns="urn:isbn:1-931666-33-4" 
+         xmlns:xlink="http://www.w3.org/1999/xlink" 
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+         xsi:schemaLocation="urn:isbn:1-931666-33-4 http://eac.staatsbibliothek-berlin.de/schema/cpf.xsd">
+  <control>
+    <recordId>Larrikins-and-Pushes</recordId>
+    <maintenanceStatus>new</maintenanceStatus>
+    <maintenanceAgency>
+      <agencyCode>AU-EMEL</agencyCode>
+      <agencyName>eMelbourne - The Encyclopedia of Melbourne Online</agencyName>
+      <descriptiveNote><p></p></descriptiveNote>
+    </maintenanceAgency>
+    <languageDeclaration>
+      <language languageCode="eng">English</language>
+      <script scriptCode="Latn">Latin</script>
+    </languageDeclaration>
+    <conventionDeclaration>
+      <abbreviation>AACR2</abbreviation>
+      <citation>Anglo-American Cataloguing Rules</citation>
+    </conventionDeclaration>
+    <localControl localType="typeOfEntity">
+      <term>Entry</term>
+    </localControl>
+    <maintenanceHistory>
+      <maintenanceEvent>
+        <eventType>created</eventType>
+        <eventDateTime standardDateTime="2026-09-12">2026-09-12</eventDateTime>
+        <agentType>human</agentType>
+        <agent>Dr Jeff Atkinson</agent>
+        <eventDescription>Public contribution via custom rich-text submission form</eventDescription>
+      </maintenanceEvent>
+    </maintenanceHistory>
+  </control>
+  <cpfDescription>
+    <identity>
+      <entityId>Larrikins-and-Pushes</entityId>
+      <entityType>concept</entityType>
+      <nameEntry>
+        <part>Larrikin gangs in south-west Carlton</part>
+        <authorizedForm>AACR2</authorizedForm>
+      </nameEntry>
+    </identity>
+    <description>
+      <places></places>
+      <biogHist>
+        <abstract><![CDATA[<p>From the 1860s through to the early decades of the 20th century, the streets of Melbourne and its nearby suburbs were plagued by gangs of young men known as ‘larrikins’. Their behaviour ranged from irreverent pranks to obscene language, larceny, hurling stones, brawling, drunkenness and assault. ‘Pushes’, the larrikin word for gangs, were endemic in town and in the nearby suburbs including Carlton. To the citizens of Carlton, larrikins were an endless annoyance. Their frustration and anger over the apparent inability of the authorities to rid them of this perpetual nuisance can be heard in the Letters to the Editor and other pieces that appeared in the press at the time. One of these is an article that appeared in <em>The Herald</em> of 4 January 1877: </p><p>&nbsp;</p><p><em>It seems to us that of late the magistrates have been rather too lenient with the larrikins. To fine them leads only to one of two results, either the fine is paid by the ‘company [the ‘push’]’, or the offender ‘takes it out’ defiantly, and is hailed with enthusiasm when he emerges from Mr Castieau's establishment [gaol] as a hero, and one who ‘sees life’. Neither of those results work permanent good. On the contrary, a few good floggings would frighten the larrikins, and do away with the hero business. </em></p><p>&nbsp;</p><p>One of the more notorious youth gangs in Carlton was the ‘Bouverie Street Push’. A former policeman living in that street expressed his concerned that the bad reputation his street had acquired because of their presence was having an effect of property prices. In a Letter to the Editor of <em>The Herald</em> of 25 February 1879, he suggested that action by local residents might be the answer:</p><p>&nbsp;</p><p><em>I have expressed my willingness to assist the police at any time when necessary in maintaining peace and order. In this I am promised support by my neighbours, who are determined if possible to live peaceably and earn a respectable livelihood rather than succumb to and become the victims of larrikins, thieves, and vagabonds. Nor does the mischief created by such a state of things cease here. It perpetuates the unenviable notoriety the street has acquired, interfering with places of business, depreciating the value of dwelling houses in every way suitable for the purpose rented and occupied.</em></p><p><em>&nbsp;</em></p><p>A few decades later, there was another push operating in the same area. This one was known as the ‘Emu Push’ taking its name from a hotel on the corner of Bouverie and Pelham Streets. On the night of 11 March 1910, the members of the Emu Push and the North Melbourne Push had a pitched battle in Victoria Street near the market, fighting with pickets, bicycle chains and other weapons. After the fight, a group from the Emu Push marched through Carlton, knocking down those in their way - until they saw the police, whereupon they scattered in all directions, leaving behind about 50 pickets that had been torn off fences. Later they went into the city and assaulted a constable.</p><p>&nbsp;</p><p>Street fights between individual push members were common. In April 1910 a police constable saw a young man named John Kirby and another man fighting in Lincoln Square. According to a newspaper account: ‘<em>When he ordered them away, Kirbv made use of dreadful language’</em>. There were about 40 members of the Emu Push gathered around so the constable went for assistance. When he returned with another constable and they were about to seize Kirby, he called out for the push members to help him, but to no avail. He was arrested and later fined. </p><p>&nbsp;</p><p>By the 1920s, public attitudes towards larrikins changed and softened. Some commentators have suggested that this may be because the pushes had become more interested in fighting each other than in assaulting or harassing members of the general public. Others believe that the growth of more serious crime and criminal gangs in Melbourne in the 1920s made larrikin street fights appear small beer.</p>]]></abstract>
+      </biogHist>
+    </description>
+    <relations>
+      <resourceRelation resourceRelationType="subjectOf">
+        <relationEntry localType="published">'Larrikin gangs in south-west Carlton', in &lt;span style="font-style:italic"&gt;eMelbourne - The Encyclopedia of Melbourne Online&lt;/span&gt;, School of Historical Studies, Department of History, The University of Melbourne</relationEntry>
+        <objectXMLWrap>
+          <bibref xmlns="urn:isbn:1-931666-22-9">
+            <title render="italic">Larrikin gangs in south-west Carlton</title>
+            <imprint>
+              <publisher>School of Historical Studies&lt;br /&gt; Department of History, The University of Melbourne</publisher>
+            </imprint>
+            <bibseries>
+              <title render="italic">eMelbourne - The Encyclopedia of Melbourne Online</title>
+            </bibseries>
+            <extptr linktype="simple" href="Larrikins-and-Pushes.xml"></extptr>
+          </bibref>
+        </objectXMLWrap>
+      </resourceRelation>
+    </relations>
+  </cpfDescription>
+</eac-cpf>

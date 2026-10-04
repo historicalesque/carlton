@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?oxygen RNGSchema="shared/cpf.rng" type="xml"?>
+<eac-cpf xmlns="urn:isbn:1-931666-33-4" 
+         xmlns:xlink="http://www.w3.org/1999/xlink" 
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+         xsi:schemaLocation="urn:isbn:1-931666-33-4 http://eac.staatsbibliothek-berlin.de/schema/cpf.xsd">
+  <control>
+    <recordId>Inspector-of-Nuisances</recordId>
+    <maintenanceStatus>new</maintenanceStatus>
+    <maintenanceAgency>
+      <agencyCode>AU-EMEL</agencyCode>
+      <agencyName>eMelbourne - The Encyclopedia of Melbourne Online</agencyName>
+      <descriptiveNote><p></p></descriptiveNote>
+    </maintenanceAgency>
+    <languageDeclaration>
+      <language languageCode="eng">English</language>
+      <script scriptCode="Latn">Latin</script>
+    </languageDeclaration>
+    <conventionDeclaration>
+      <abbreviation>AACR2</abbreviation>
+      <citation>Anglo-American Cataloguing Rules</citation>
+    </conventionDeclaration>
+    <localControl localType="typeOfEntity">
+      <term>Entry</term>
+    </localControl>
+    <maintenanceHistory>
+      <maintenanceEvent>
+        <eventType>created</eventType>
+        <eventDateTime standardDateTime="2026-09-09">2026-09-09</eventDateTime>
+        <agentType>human</agentType>
+        <agent>Barbara Minchinton</agent>
+        <eventDescription>Public contribution via custom rich-text submission form</eventDescription>
+      </maintenanceEvent>
+    </maintenanceHistory>
+  </control>
+  <cpfDescription>
+    <identity>
+      <entityId>Inspector-of-Nuisances</entityId>
+      <entityType>concept</entityType>
+      <nameEntry>
+        <part>Inspector of Nuisances</part>
+        <authorizedForm>AACR2</authorizedForm>
+      </nameEntry>
+    </identity>
+    <description>
+      <places></places>
+      <biogHist>
+        <abstract><![CDATA[<p>In 1867 the Melbourne City Council employed a police sergeant as its Inspector of Nuisances. John Fullerton was an Irishman from County Down who arrived in Melbourne in the mid-1850s. He married soon after, and spent a few years around Ararat before joining the police force and settling in Carlton. As a steady, reliable and competent policeman, he was quickly promoted to sergeant, and as Melbourne’s Inspector of Nuisances he was thorough and conscientious. Between 1867 and October 1878 Fullerton walked all the streets of Melbourne, including Carlton, detecting offending cesspits, issuing closure notices, reporting to the Council through the Local Board of Health, and, once effective by-laws were in place, ensuring that the closure notices were obeyed. He frequently had to issue notices several times before recalcitrant owners complied. After cleaning up the leaky cesspools he moved on to ensuring that each house had its own privy, rather than numerous neighbours sharing one. In the 1880s, with all the cesspits closed, he worked, for example, to prosecute milkmen who watered down their milk and grocers who adulterated their coffee with chicory. When he died in 1893 he was living at 558 Lygon Street, Carlton, and all of the Melbourne City Councillors as well as the chairman of the Metropolitan Board of Works attended his funeral. </p>]]></abstract>
+      </biogHist>
+    </description>
+    <relations>
+      <resourceRelation resourceRelationType="subjectOf">
+        <relationEntry localType="published">'Inspector of Nuisances', in &lt;span style="font-style:italic"&gt;eMelbourne - The Encyclopedia of Melbourne Online&lt;/span&gt;, School of Historical Studies, Department of History, The University of Melbourne</relationEntry>
+        <objectXMLWrap>
+          <bibref xmlns="urn:isbn:1-931666-22-9">
+            <title render="italic">Inspector of Nuisances</title>
+            <imprint>
+              <publisher>School of Historical Studies&lt;br /&gt; Department of History, The University of Melbourne</publisher>
+            </imprint>
+            <bibseries>
+              <title render="italic">eMelbourne - The Encyclopedia of Melbourne Online</title>
+            </bibseries>
+            <extptr linktype="simple" href="Inspector-of-Nuisances.xml"></extptr>
+          </bibref>
+        </objectXMLWrap>
+      </resourceRelation>
+    </relations>
+  </cpfDescription>
+</eac-cpf>

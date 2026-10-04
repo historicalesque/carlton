@@ -1,0 +1,54 @@
+---
+layout: null
+---
+{%- comment -%}
+  The list of data files, generated from _data/ every time the site is built.
+  scripts/data.js reads it to find out which files exist and which file holds
+  a given record. For each file: its source, year and record count, the range
+  of its numeric entityIDs, every text entityID it uses (text IDs are
+  links the team made between records; see README, Data), and the
+  [south, north, west, east] edges of its mapped records (the 3D map sizes
+  its planes from these before the files arrive). The edges leave out any
+  record more than 0.02° (about 2 km) from the file's middle, so one
+  mistyped coordinate can't stretch the map; the 3D map leaves those
+  records off.
+  "v" changes on every build, so browsers fetch fresh copies after a change.
+{%- endcomment -%}
+{%- assign folders = "directory,electoral-roll" | split: "," -%}
+{"v":"{{ site.time | date: '%s' }}","files":[
+{%- assign firstFile = true -%}
+{%- for folder in folders -%}
+{%- for file in site.data[folder] -%}
+{%- assign recs = file[1] -%}
+{%- assign min = nil -%}{%- assign max = nil -%}{%- assign text = "" -%}
+{%- for r in recs -%}
+{%- assign n = r.entityID | plus: 0 -%}
+{%- assign ns = n | append: "" -%}{%- assign is = r.entityID | append: "" -%}
+{%- if ns == is -%}
+{%- if min == nil or n < min -%}{%- assign min = n -%}{%- endif -%}
+{%- if max == nil or n > max -%}{%- assign max = n -%}{%- endif -%}
+{%- else -%}
+{%- assign text = text | append: is | append: "|" -%}
+{%- endif -%}
+{%- endfor -%}
+{%- assign linked = text | split: "|" | uniq -%}
+{%- assign lats = recs | map: "lat" | compact | sort -%}{%- assign lngs = recs | map: "lng" | compact | sort -%}
+{%- if lats.size > 0 -%}
+{%- assign mid = lats.size | divided_by: 2 -%}
+{%- assign latLo = lats[mid] | minus: 0.02 -%}{%- assign latHi = lats[mid] | plus: 0.02 -%}
+{%- assign lngLo = lngs[mid] | minus: 0.02 -%}{%- assign lngHi = lngs[mid] | plus: 0.02 -%}
+{%- assign s = nil -%}{%- assign n = nil -%}{%- assign w = nil -%}{%- assign e = nil -%}
+{%- for r in recs -%}
+{%- if r.lat == nil or r.lng == nil -%}{%- continue -%}{%- endif -%}
+{%- if r.lat < latLo or r.lat > latHi or r.lng < lngLo or r.lng > lngHi -%}{%- continue -%}{%- endif -%}
+{%- if s == nil or r.lat < s -%}{%- assign s = r.lat -%}{%- endif -%}
+{%- if n == nil or r.lat > n -%}{%- assign n = r.lat -%}{%- endif -%}
+{%- if w == nil or r.lng < w -%}{%- assign w = r.lng -%}{%- endif -%}
+{%- if e == nil or r.lng > e -%}{%- assign e = r.lng -%}{%- endif -%}
+{%- endfor -%}
+{%- endif -%}
+{%- unless firstFile -%},{%- endunless -%}{%- assign firstFile = false %}
+{"path":"data/{{ folder }}/{{ file[0] }}.json","source":{{ recs[0].source | jsonify }},"year":{{ recs[0].year | jsonify }},"count":{{ recs.size }},"ids":[{{ min | default: "null" }},{{ max | default: "null" }}],"linked":{{ linked | jsonify }},"bounds":{% if lats.size > 0 %}[{{ s }},{{ n }},{{ w }},{{ e }}]{% else %}null{% endif %}}
+{%- endfor -%}
+{%- endfor %}
+]}

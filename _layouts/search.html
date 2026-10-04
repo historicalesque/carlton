@@ -1,0 +1,44 @@
+---
+layout: default
+---
+<section class="search-page" id="searchPage">
+  <h1 class="search-title">Search Common Ground</h1>
+  <p class="search-lede">Entries, the Sands &amp; McDougall directories and the electoral rolls, 1900–1930.</p>
+
+  <form class="search-box" id="searchForm" role="search">
+    <label for="searchInput" class="visually-hidden">Search</label>
+    <input type="search" id="searchInput" name="q" autocomplete="off"
+           placeholder="A name, business, trade or street" aria-describedby="searchStatus">
+    <button type="submit">Search</button>
+  </form>
+
+  <div class="search-filters" id="searchFilters">
+    <div class="search-tabs" role="group" aria-label="Show">
+      <button type="button" data-src="all" aria-pressed="true">All</button>
+      <button type="button" data-src="entries">Entries <span data-count="entries"></span></button>
+      <button type="button" data-src="places">Places <span data-count="places"></span></button>
+      <button type="button" data-src="people">People <span data-count="people"></span></button>
+    </div>
+    <details class="search-more" id="searchMore">
+      <summary>Year and street <span id="filterBadge"></span></summary>
+      <div class="search-more-body">
+        <fieldset class="search-years" id="yearChips"><legend>Year</legend></fieldset>
+        <label class="search-street">Street
+          <select id="streetSelect"><option value="">All streets</option></select>
+        </label>
+      </div>
+    </details>
+  </div>
+
+  <p class="search-status" id="searchStatus" aria-live="polite">Loading…</p>
+  <p class="data-status" id="searchData" hidden></p>
+  <div id="searchResults"></div>
+</section>
+
+<script>
+  // Every published entry, listed by Jekyll at build time.
+  window.ENTRY_FILES = [{% for f in site.static_files %}{% if f.path contains '/civic/' and f.extname == '.xml' %}"{{ f.basename }}",{% endif %}{% endfor %}];
+</script>
+<script src="scripts/data.js?v={{ site.time | date: '%s' }}"></script>
+<script src="scripts/vendor/minisearch.min.js"></script>
+<script src="scripts/search.js?v={{ site.time | date: '%s' }}"></script>

@@ -1,0 +1,851 @@
+<!DOCTYPE html>
+<html lang="en" class="map3d-page">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Common Ground - 3D map</title>
+    <link rel="stylesheet" type="text/css" href="styles/site.css?v={{ site.time | date: '%s' }}">
+</head>
+<body class="map3d-page">
+
+    <div id="canvas-container"></div>
+    
+    <div id="ui-layer">
+        <a class="map3d-home-link" href="index">&larr; Home</a>
+        <h1>Directory Chronosphere</h1>
+        <p id="hint-text">Drag to rotate · Scroll to zoom · Tap a node for details</p>
+        <!-- The nodes can't be reached with the keyboard, so point to pages that can -->
+        <p class="map3d-alt">Using a keyboard? The <a href="map">2D map</a> and <a href="search">search</a> have the same records.</p>
+        
+        <div class="controls-panel">
+            <label class="toggle-container">
+                <input type="checkbox" id="toggle-links">
+                <span>Show Cross-Year Links</span>
+            </label>
+
+            <div class="year-filters">
+                <div class="filter-title">Visible Years</div>
+                <div id="year-checkbox-group" class="checkbox-group">
+                    </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="nav-controls" role="group" aria-label="Map controls">
+        <div class="nav-group">
+            <div class="nav-label">Pan Map</div>
+            <div class="nav-grid">
+                <div></div>
+                <button class="nav-btn" id="nav-pan-up" title="Pan Up" aria-label="Pan Up">▲</button>
+                <div></div>
+                <button class="nav-btn" id="nav-pan-left" title="Pan Left" aria-label="Pan Left">◀</button>
+                <div></div>
+                <button class="nav-btn" id="nav-pan-right" title="Pan Right" aria-label="Pan Right">▶</button>
+                <div></div>
+                <button class="nav-btn" id="nav-pan-down" title="Pan Down" aria-label="Pan Down">▼</button>
+                <div></div>
+            </div>
+        </div>
+
+        <div class="nav-group" style="border-top: 1px solid var(--ink-soft); padding-top: 8px;">
+            <div class="nav-label">Zoom / Orbit</div>
+            <div style="display: flex; gap: 6px;">
+                <button class="nav-btn" id="nav-zoom-in" title="Zoom In" aria-label="Zoom In">+</button>
+                <button class="nav-btn" id="nav-zoom-out" title="Zoom Out" aria-label="Zoom Out">−</button>
+                <button class="nav-btn" id="nav-rot-left" title="Rotate Left" aria-label="Rotate Left">⟲</button>
+                <button class="nav-btn" id="nav-rot-right" title="Rotate Right" aria-label="Rotate Right">⟳</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="info-panel">
+        <div class="panel-header">Selected Entry</div>
+        <div class="node-title" id="node-name">Tap a node or link</div>
+        <div class="meta-grid">
+            <div class="meta-item"><span class="label">YEAR</span><div id="node-year">-</div></div>
+            <div class="meta-item"><span class="label">STREET</span><div id="node-street">-</div></div>
+            <div class="meta-item"><span class="label">SIDE</span><div id="node-side">-</div></div>
+            <div class="meta-item"><span class="label">TYPE</span><div id="node-type">-</div></div>
+        </div>
+        <div id="cross-year-note"></div>
+    </div>
+
+    <div id="tooltip"></div>
+
+    {% include map-details-modal.html %}
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+    <script src="scripts/data.js?v={{ site.time | date: '%s' }}"></script>
+    <script src="scripts/map-common.js?v={{ site.time | date: '%s' }}"></script>
+    <p class="data-status data-status-map" id="mapData" aria-live="polite" hidden></p>
+
+    <script>
+        // The map is set up as soon as the list of data files arrives, and
+        // each year is drawn as soon as its file does. Cross-year links join
+        // records from different years, so they are added once every year
+        // has arrived.
+        let mapApi = null;
+        MapCommon.loadByYear(document.getElementById('mapData'), {
+            onStart: files => { mapApi = startMap(files); },
+            onYear:  (year, records) => mapApi.addYear(year, records),
+            onAll:   () => mapApi.addCrossYearLinks(),
+        });
+
+        // Not indented further, to keep the history of the code below readable.
+        function startMap(files) {
+        // Global visibility state trackers
+        let showCrossYearLinks = false;
+        let layersAreMoving = false;
+        const visibleYears = new Set(); 
+
+        // 1. DATA (shared with the 2D map, see scripts/map-common.js)
+        // Years, colours and bounds come from the list of data files, so the
+        // planes can be laid out before any records arrive. The chains are
+        // filled in by addYear as each year arrives.
+        const sortedYears  = MapCommon.getYears(files);
+        const YEAR_COLORS  = MapCommon.getYearColors(sortedYears);
+        const YEAR_SOURCES = MapCommon.getYearSources(files, sortedYears);
+        const CHAINS    = [];
+        const rawChains = {};
+
+        // Bounds of the anchored records (from the index)
+        const ALL_BOUNDS = MapCommon.getBoundsFromFiles(files)
+            || { minLat: 0, maxLat: 0, minLng: 0, maxLng: 0 };
+
+        // The planes are fitted to the years being shown, so a year whose
+        // records cover less ground than the early directories (which reach
+        // north to Lytton Street and east to Rathdown Street) still fills
+        // its plane. Every shown plane shares one fit, so cross-year links
+        // stay upright.
+        let minLat, maxLat, minLng, maxLng, latRange, lngRange;
+        function fitToYears(years) {
+            const b = MapCommon.getBoundsFromFiles(files.filter(f => years.has(f.year))) || ALL_BOUNDS;
+            ({ minLat, maxLat, minLng, maxLng } = b);
+            latRange = maxLat - minLat || 1;
+            lngRange = maxLng - minLng || 1;
+        }
+
+        // DEFAULT STATE: latest year on, as on the 2D map
+        if (sortedYears.length > 0) {
+            visibleYears.add(sortedYears[sortedYears.length - 1]);
+        }
+        fitToYears(visibleYears);
+
+        const isMobile = window.innerWidth <= 600 || ('ontouchstart' in window);
+
+        const PLANE_SIZE = isMobile ? 160 : 130;
+        const PLANE_SPACING = 30;    
+        // The index's bounds leave out coordinates far from everything else
+        // (most likely mistyped). On the 3D map such records are treated as
+        // unmapped: placed between mapped records on their street like any
+        // other, or left off if their street has no other mapped records.
+        function onPlane(e) {
+            const b = ALL_BOUNDS;
+            return e.lat >= b.minLat && e.lat <= b.maxLat && e.lng >= b.minLng && e.lng <= b.maxLng;
+        }
+
+        function mapCoordsToXY(lat, lng) {
+            const pctX = (lng - minLng) / lngRange;
+            const pctY = (lat - minLat) / latRange;
+            const x = (pctX - 0.5) * PLANE_SIZE;
+            const z = (pctY - 0.5) * PLANE_SIZE * -1; 
+            return { x, z };
+        }
+
+        // Each year has its own plane, so chains never need to be spread
+        // apart like overlapping years on the 2D map: use one fixed bow,
+        // and lift estimated entries off the plane along the same arc.
+        const ARC_OFFSET = 0.0001;
+        const ARC_HEIGHT = 3.5;
+
+        function getYearColor(year) {
+            return YEAR_COLORS[year];
+        }
+
+        // 2. THREE.JS INITIALIZATION
+        const container = document.getElementById('canvas-container');
+        const scene = new THREE.Scene();
+        scene.background = new THREE.Color(0x0b0c10);
+        scene.fog = new THREE.FogExp2(0x0b0c10, 0.005);
+
+        const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 1000);
+        const renderer = new THREE.WebGLRenderer({ antialias: true });
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        renderer.setPixelRatio(window.devicePixelRatio);
+        container.appendChild(renderer.domElement);
+
+        const controls = new THREE.OrbitControls(camera, renderer.domElement);
+        controls.enableDamping = true;
+        controls.dampingFactor = 0.05;
+
+        camera.position.set(PLANE_SIZE * 1.1, sortedYears.length * PLANE_SPACING * 0.8, PLANE_SIZE * 1.3);
+        controls.target.set(0, (sortedYears.length * PLANE_SPACING) / 2, 0);
+
+        scene.add(new THREE.AmbientLight(0xffffff, 0.65));
+        const dirLight = new THREE.DirectionalLight(0xffffff, 0.45);
+        dirLight.position.set(30, 50, 10);
+        scene.add(dirLight);
+
+        // 3. GENERATION ENGINE FOR LAYERS & CROSS-YEAR CONNECTORS
+        const interactiveNodes = [];
+        const nodePositionCache = {}; 
+        const crossYearTubesList = []; 
+        const yearGroupsMap = {};
+
+        // Loop 1: Map layout floors and process nodes
+        sortedYears.forEach((year, layerIdx) => {
+            const layerY = layerIdx * PLANE_SPACING;
+            const themeColor = getYearColor(year);
+
+            // Group container for layer visibility control
+            const yearGroup = new THREE.Group();
+            yearGroup.visible = visibleYears.has(year);
+            scene.add(yearGroup);
+            yearGroupsMap[year] = yearGroup;
+
+            // Set dynamic interpolation initial properties
+            yearGroup.userData.targetY = layerY;
+            if(!visibleYears.has(year)) {
+                yearGroup.position.y = 0; // Collapsed initially if hidden
+            } else {
+                yearGroup.position.y = layerY;
+            }
+
+            const planeGeo = new THREE.PlaneGeometry(PLANE_SIZE, PLANE_SIZE);
+            const planeMat = new THREE.MeshBasicMaterial({
+                color: new THREE.Color(themeColor),
+                side: THREE.DoubleSide,
+                transparent: true,
+                opacity: 0.5
+            });
+            const planeMesh = new THREE.Mesh(planeGeo, planeMat);
+            planeMesh.rotation.x = Math.PI / 2;
+            yearGroup.add(planeMesh);
+
+            const wireGeo = new THREE.EdgesGeometry(planeGeo);
+            const wireMat = new THREE.LineBasicMaterial({ color: themeColor, transparent: true, opacity: 0.2 });
+            const wireframe = new THREE.LineSegments(wireGeo, wireMat);
+            wireframe.rotation.x = Math.PI / 2;
+            yearGroup.add(wireframe);
+
+            (function addYearLabel(year, themeColor) {
+                const canvas = document.createElement('canvas');
+                canvas.width = 512;
+                canvas.height = 160;
+                const ctx = canvas.getContext('2d');
+
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                ctx.fillStyle = 'rgba(11, 12, 16, 0.55)';
+                const rx = 24;
+                ctx.beginPath();
+                ctx.moveTo(rx, 10);
+                ctx.lineTo(canvas.width - rx, 10);
+                ctx.quadraticCurveTo(canvas.width - 4, 10, canvas.width - 4, 10 + rx);
+                ctx.lineTo(canvas.width - 4, canvas.height - 10 - rx);
+                ctx.quadraticCurveTo(canvas.width - 4, canvas.height - 10, canvas.width - rx, canvas.height - 10);
+                ctx.lineTo(rx, canvas.height - 10);
+                ctx.quadraticCurveTo(4, canvas.height - 10, 4, canvas.height - 10 - rx);
+                ctx.lineTo(4, 10 + rx);
+                ctx.quadraticCurveTo(4, 10, rx, 10);
+                ctx.closePath();
+                ctx.fill();
+
+                ctx.strokeStyle = themeColor;
+                ctx.lineWidth = 4;
+                ctx.stroke();
+
+                ctx.font = 'bold 108px "Segoe UI", Arial, sans-serif';
+                ctx.fillStyle = themeColor;
+                ctx.textAlign = 'center';
+                ctx.textBaseline = 'middle';
+                ctx.shadowColor = themeColor;
+                ctx.shadowBlur = 18;
+                ctx.fillText(String(year), canvas.width / 2, canvas.height / 2 + 4);
+
+                const texture = new THREE.CanvasTexture(canvas);
+                const spriteMat = new THREE.SpriteMaterial({ map: texture, transparent: true, depthWrite: false });
+                const sprite = new THREE.Sprite(spriteMat);
+
+                sprite.position.set(-PLANE_SIZE / 2 - 20, 0, 0);
+                sprite.scale.set(26, 8, 1);
+                yearGroup.add(sprite);
+            })(year, themeColor);
+        });
+
+        // Moves every node and street line to the current fit (fitToYears)
+        const placedNodes = [];
+        const streetLines = [];
+        function relayout() {
+            placedNodes.forEach(mesh => {
+                const p = mapCoordsToXY(mesh.userData.lat, mesh.userData.lng);
+                mesh.position.x = p.x;
+                mesh.position.z = p.z;
+            });
+            streetLines.forEach(line => {
+                line.geometry.dispose();
+                line.geometry = new THREE.BufferGeometry().setFromPoints(line.userData.meshes.map(m => m.position));
+            });
+        }
+
+        // Draws one year's records on its plane
+        function addYearNodes(year, chains) {
+            const themeColor = getYearColor(year);
+            const yearGroup = yearGroupsMap[year];
+            chains.forEach(({ street, side }) => {
+                const key = MapCommon.chainKey(year, street, side);
+                const entries = rawChains[key].map(e => e.lat == null || onPlane(e) ? e : { ...e, lat: null, lng: null });
+                const processedNodes = MapCommon.computeChain(entries, MapCommon.sideSign(side) * ARC_OFFSET, side);
+
+                const chainMeshes = [];
+                processedNodes.forEach((node, idx) => {
+                    if(node.lat == null || node.lng == null) return;
+                    const localPos = mapCoordsToXY(node.lat, node.lng);
+                    const yOffset = node._computed ? ARC_HEIGHT * Math.sin(Math.PI * node._arcT) : 0;
+                    // Vector sits at 0 locally; the parent group moves it to its layer height
+                    const nodePosVector = new THREE.Vector3(localPos.x, yOffset, localPos.z);
+
+                    const nodeSz = isMobile ? 1.1 : 0.7;
+                    const sphereSz = isMobile ? 0.7 : 0.35;
+                    let geom;
+                    const shape = MapCommon.markerShape(node);
+                    if (shape === 'intersection') {
+                        geom = new THREE.BoxGeometry(nodeSz, nodeSz, nodeSz);
+                    } else if (shape === 'right-of-way') {
+                        geom = new THREE.ConeGeometry(nodeSz * 0.55, nodeSz * 1.1, 4);
+                    } else {
+                        geom = new THREE.SphereGeometry(sphereSz, 8, 8);
+                    }
+
+                    let mat;
+                    if (node._computed) {
+                        mat = new THREE.MeshPhongMaterial({
+                            color: new THREE.Color(themeColor),
+                            transparent: true,
+                            opacity: 0.5,
+                            emissive: new THREE.Color(themeColor).multiplyScalar(1.5), 
+                            specular: 0xffffff,
+                            wireframe: true
+                        });
+                    } else {
+                        mat = new THREE.MeshPhongMaterial({
+                            color: new THREE.Color(themeColor),
+                            emissive: new THREE.Color(themeColor).multiplyScalar(1.5), 
+                            specular: 0xffffff,
+                            shininess: 100 
+                        });
+                    }
+
+                    const mesh = new THREE.Mesh(geom, mat);
+                    mesh.position.copy(nodePosVector);
+                    mesh.userData = { ...node, crossYearId: typeof node.entityID === 'string' ? node.entityID : null };
+
+                    // Saved against the parent group so links can query their live absolute
+                    // positions (the mesh's own position, so a refit moves the links too)
+                    nodePositionCache[`${key}-${idx}`] = { year, localPosition: mesh.position, listing: node.listing, parentGroup: yearGroup };
+
+                    yearGroup.add(mesh);
+                    interactiveNodes.push(mesh);
+                    placedNodes.push(mesh);
+                    chainMeshes.push(mesh);
+                });
+
+                if (chainMeshes.length > 1) {
+                    const lineGeo = new THREE.BufferGeometry().setFromPoints(chainMeshes.map(m => m.position));
+                    const lineMat = new THREE.LineBasicMaterial({ color: new THREE.Color(themeColor), transparent: true, opacity: 0.4 });
+                    const streetLine = new THREE.Line(lineGeo, lineMat);
+                    streetLine.userData.meshes = chainMeshes;
+                    yearGroup.add(streetLine);
+                    streetLines.push(streetLine);
+                }
+            });
+        }
+
+        // Loop 2: Process Cross-Year threads, once every year has arrived
+        const crossYearMeshMap = {}; 
+
+        function addCrossYearTubes() {
+        const crossYearById = MapCommon.buildCrossYearIndex(CHAINS, rawChains);
+        Object.keys(crossYearById).forEach(crossId => {
+            const sorted = crossYearById[crossId]
+                .map(({ year, street, side, idx }) => nodePositionCache[`${MapCommon.chainKey(year, street, side)}-${idx}`])
+                .filter(Boolean);
+            const yearSpan = sorted.length; 
+
+            if (sorted.length > 1) {
+                const tubeRadius = 0.12 + Math.max(0, yearSpan - 2) * 0.07;
+                
+                // Build a structural template system path using dummy world anchors to form basic geometric setups
+                const samplePoints = sorted.map(() => new THREE.Vector3());
+                const curve = new THREE.CatmullRomCurve3(samplePoints);
+                const tubeGeo = new THREE.TubeGeometry(curve, sorted.length * 4, tubeRadius, 6, false);
+                
+                const tubeMat = new THREE.MeshPhongMaterial({
+                    color: 0x45f3ff,
+                    transparent: true,
+                    opacity: 0.18,
+                    emissive: 0x112233,
+                });
+                const tubeMesh = new THREE.Mesh(tubeGeo, tubeMat);
+                tubeMesh.userData = { 
+                    isCrossYearLine: true, 
+                    crossId, 
+                    yearSpan, 
+                    years: sorted.map(p => p.year), 
+                    listings: sorted.map(p => p.listing),
+                    rawAnchors: sorted // Retain active memory linkage mapping to local coordinate references
+                };
+                
+                tubeMesh.visible = false; 
+                
+                scene.add(tubeMesh);
+                crossYearMeshMap[crossId] = tubeMesh;
+                crossYearTubesList.push(tubeMesh);
+                interactiveNodes.push(tubeMesh); 
+            }
+        });
+        updateCrossYearTubesVisibility();
+        rebuildActiveTubeGeometries();
+        }
+
+        // 4. UI INTERACTION HANDLERS & TOGGLE IMPLEMENTATION
+        
+        // Dynamic Checkbox Injection
+        const checkGroupContainer = document.getElementById('year-checkbox-group');
+        sortedYears.slice().reverse().forEach(year => {
+            const label = document.createElement('label');
+            label.className = 'toggle-container';
+            
+            const checkbox = document.createElement('input');
+            checkbox.type = 'checkbox';
+            checkbox.value = year;
+            checkbox.checked = visibleYears.has(year);
+            
+            checkbox.addEventListener('change', (e) => {
+                const targetYear = parseInt(e.target.value);
+                if (e.target.checked) {
+                    visibleYears.add(targetYear);
+                } else {
+                    visibleYears.delete(targetYear);
+                }
+                
+                // Trigger dynamic restructuring updates
+                fitToYears(visibleYears);
+                relayout();
+                recalculateLayerTargets();
+                
+                if (currentSelected && !currentSelected.userData.isCrossYearLine && currentSelected.userData.year === targetYear) {
+                    clearActiveSelection();
+                }
+            });
+            
+            const swatch = document.createElement('span');
+            swatch.className = 'year-swatch';
+            swatch.style.background = YEAR_COLORS[year];
+
+            const span = document.createElement('span');
+            span.innerText = year;
+            // Source names don't fit the phone layout, so they go in a hover title
+            if (YEAR_SOURCES[year]) label.title = YEAR_SOURCES[year];
+            
+            label.appendChild(checkbox);
+            label.appendChild(swatch);
+            label.appendChild(span);
+            checkGroupContainer.appendChild(label);
+        });
+
+        const toggleCheckbox = document.getElementById('toggle-links');
+        toggleCheckbox.addEventListener('change', (e) => {
+            showCrossYearLinks = e.target.checked;
+            updateCrossYearTubesVisibility();
+            
+            if (!showCrossYearLinks && currentSelected && currentSelected.userData.isCrossYearLine) {
+                clearActiveSelection();
+            }
+        });
+
+        // Calculate layout targets based exclusively on active selections
+        function recalculateLayerTargets() {
+            let visibleIndex = 0;
+            sortedYears.forEach(year => {
+                const group = yearGroupsMap[year];
+                if (visibleYears.has(year)) {
+                    group.userData.targetY = visibleIndex * PLANE_SPACING;
+                    visibleIndex++;
+                } else {
+                    // Pull unselected layers down safely to a flat plane layout matrix base coordinate space
+                    group.userData.targetY = 0; 
+                }
+            });
+            
+            // Flag layout transitions to cleanly fade threads out during transition
+            layersAreMoving = true;
+            updateCrossYearTubesVisibility();
+        }
+
+        // Evaluate live alignment conditions
+        function updateCrossYearTubesVisibility() {
+            crossYearTubesList.forEach(tube => {
+                // If switch is off OR layers are mid-slide, keep links fully hidden (Fast & Clean approach)
+                if (!showCrossYearLinks || layersAreMoving) {
+                    tube.visible = false;
+                    return;
+                }
+                const visibleSpanCount = tube.userData.years.filter(y => visibleYears.has(y)).length;
+                tube.visible = visibleSpanCount >= 2;
+            });
+        }
+
+        // Live structural updates tracking world coordinate maps
+        function rebuildActiveTubeGeometries() {
+            crossYearTubesList.forEach(tube => {
+                if (!tube.visible) return;
+                
+                // Collect live world vector placements mapping current parent group transitions
+                const currentWorldPoints = tube.userData.rawAnchors.map(anchor => {
+                    const pt = anchor.localPosition.clone();
+                    pt.y += anchor.parentGroup.position.y; // Append running runtime height transformations
+                    return pt;
+                });
+                
+                const curve = new THREE.CatmullRomCurve3(currentWorldPoints);
+                const tubeRadius = 0.12 + Math.max(0, tube.userData.yearSpan - 2) * 0.07;
+                
+                // Hot swap active operational geometry paths safely
+                tube.geometry.dispose();
+                tube.geometry = new THREE.TubeGeometry(curve, tube.userData.yearSpan * 4, tubeRadius, 6, false);
+            });
+        }
+
+        function clearActiveSelection() {
+            resetHighlight();
+            infoPanel.classList.remove('has-selection');
+            lockedSelection = null;
+        }
+
+        // CAMERA NAVIGATION ENGINE (Google Earth Pro Inspired)
+        const PAN_SPEED = 8;
+        const ZOOM_SPEED = 0.15;
+        const ROTATE_SPEED = 0.25;
+
+        function panCamera(deltaX, deltaY) {
+            const right = new THREE.Vector3();
+            camera.matrix.extractBasis(right, new THREE.Vector3(), new THREE.Vector3());
+            right.y = 0;
+            right.normalize();
+            
+            const forward = new THREE.Vector3(right.z, 0, -right.x);
+
+            const translation = new THREE.Vector3()
+                .addScaledVector(right, deltaX * PAN_SPEED)
+                .addScaledVector(forward, deltaY * PAN_SPEED);
+
+            camera.position.add(translation);
+            controls.target.add(translation);
+            controls.update();
+        }
+
+        function zoomCamera(direction) {
+            const offset = new THREE.Vector3().subVectors(camera.position, controls.target);
+            if (direction === 'in') {
+                offset.multiplyScalar(1 - ZOOM_SPEED);
+            } else {
+                offset.multiplyScalar(1 + ZOOM_SPEED);
+            }
+            camera.position.copy(controls.target).add(offset);
+            controls.update();
+        }
+
+        function rotateCamera(direction) {
+            const offset = new THREE.Vector3().subVectors(camera.position, controls.target);
+            const spherical = new THREE.Spherical().setFromVector3(offset);
+            
+            if (direction === 'left') {
+                spherical.theta -= ROTATE_SPEED;
+            } else {
+                spherical.theta += ROTATE_SPEED;
+            }
+            
+            spherical.makeSafe();
+            offset.setFromSpherical(spherical);
+            camera.position.copy(controls.target).add(offset);
+            controls.update();
+        }
+
+        // Navigation UI Listeners
+        document.getElementById('nav-pan-up').addEventListener('click', () => panCamera(0, 1));
+        document.getElementById('nav-pan-down').addEventListener('click', () => panCamera(0, -1));
+        document.getElementById('nav-pan-left').addEventListener('click', () => panCamera(-1, 0));
+        document.getElementById('nav-pan-right').addEventListener('click', () => panCamera(1, 0));
+        document.getElementById('nav-zoom-in').addEventListener('click', () => zoomCamera('in'));
+        document.getElementById('nav-zoom-out').addEventListener('click', () => zoomCamera('out'));
+        document.getElementById('nav-rot-left').addEventListener('click', () => rotateCamera('left'));
+        document.getElementById('nav-rot-right').addEventListener('click', () => rotateCamera('right'));
+
+
+        // RAYCASTING AND INTERACTION SELECTION
+        const raycaster = new THREE.Raycaster();
+        raycaster.params.Mesh.threshold = isMobile ? 1.5 : 0.5;
+        const pointer = new THREE.Vector2();
+        const tooltip = document.getElementById('tooltip');
+        const infoPanel = document.getElementById('info-panel');
+        let currentSelected = null;
+        let activeHighlightedLine = null;
+
+        const elName = document.getElementById('node-name');
+        const elYear = document.getElementById('node-year');
+        const elStreet = document.getElementById('node-street');
+        const elSide = document.getElementById('node-side');
+        const elType = document.getElementById('node-type');
+        const elCrossNote = document.getElementById('cross-year-note');
+
+        function resetHighlight() {
+            if (currentSelected) {
+                if (currentSelected.userData.isCrossYearLine) {
+                    currentSelected.material.opacity = 0.18;
+                    currentSelected.material.color.setHex(0x45f3ff);
+                    currentSelected.material.emissive.setHex(0x112233);
+                } else {
+                    if (currentSelected.material.emissive) currentSelected.material.emissive.setHex(0x000000);
+                    currentSelected.scale.set(1, 1, 1);
+                    const cid = currentSelected.userData.crossYearId;
+                    if (cid && crossYearMeshMap[cid]) {
+                        crossYearMeshMap[cid].material.opacity = 0.18;
+                        crossYearMeshMap[cid].material.color.setHex(0x45f3ff);
+                        crossYearMeshMap[cid].material.emissive.setHex(0x112233);
+                    }
+                }
+                currentSelected = null;
+            }
+            tooltip.style.display = 'none';
+            elCrossNote.classList.remove('visible');
+        }
+
+        function getValidHits(hits) {
+            return hits.filter(hit => {
+                const data = hit.object.userData;
+                if (data.isCrossYearLine) {
+                    return hit.object.visible;
+                }
+                return visibleYears.has(data.year);
+            });
+        }
+
+        function selectObject(obj, screenX, screenY) {
+            resetHighlight();
+            currentSelected = obj;
+
+            if (obj.userData.isCrossYearLine) {
+                obj.material.opacity = 0.95;
+                obj.material.color.setHex(0x66fcf1);
+                obj.material.emissive.setHex(0x003333);
+
+                const d = obj.userData;
+                elName.innerText = `Cross-time link`;
+                elYear.innerText = d.years.join(' → ');
+                elStreet.innerText = '-';
+                elSide.innerText = '-';
+                elType.innerText = `${d.yearSpan} year appearances`;
+                const lineItems = d.years.map((y, i) => `${y}: ${d.listings[i] || '—'}`).join('\n');
+                elCrossNote.innerText = lineItems;
+                elCrossNote.classList.add('visible');
+            } else {
+                if (obj.material.emissive) obj.material.emissive.setHex(0x444444);
+                obj.scale.set(1.6, 1.6, 1.6);
+
+                const data = obj.userData;
+                tooltip.innerText = data.listing + (data._computed ? ' (Estimated)' : '');
+                if (screenX !== undefined) {
+                    tooltip.style.left = (screenX + 15) + 'px';
+                    tooltip.style.top  = (screenY + 15) + 'px';
+                    tooltip.style.display = isMobile ? 'none' : 'block';
+                }
+
+                elName.innerText = data.listing;
+                elYear.innerText = data.year;
+                elStreet.innerText = data.street;
+                elSide.innerText = data.cardinality;
+                elType.innerText = (data.type || 'Standard Listing') + (data._computed ? ' [Interpolated]' : ' [Anchored]');
+
+                if (showCrossYearLinks && data.crossYearId && crossYearMeshMap[data.crossYearId] && crossYearMeshMap[data.crossYearId].visible) {
+                    const tube = crossYearMeshMap[data.crossYearId];
+                    tube.material.opacity = 0.9;
+                    tube.material.color.setHex(0x66fcf1);
+                    tube.material.emissive.setHex(0x003333);
+                    const d = tube.userData;
+                    const lineItems = d.years.map((y, i) => `${y}: ${d.listings[i] || '—'}`).join('\n');
+                    elCrossNote.innerText = lineItems;
+                    elCrossNote.classList.add('visible');
+                }
+            }
+
+            infoPanel.classList.add('has-selection');
+        }
+
+        let lockedSelection = null;
+
+        // Nodes open the same details modal as the 2D map; links only use the info panel
+        function openDetailsFor(obj) {
+            const d = obj.userData;
+            if (d.isCrossYearLine) return;
+            MapCommon.openDetailsModal(d, { lat: d.lat, lng: d.lng });
+        }
+
+        window.addEventListener('mousemove', (event) => {
+            pointer.x = (event.clientX / window.innerWidth) * 2 - 1;
+            pointer.y = -(event.clientY / window.innerHeight) * 2 + 1;
+            tooltip.style.left = (event.clientX + 15) + 'px';
+            tooltip.style.top  = (event.clientY + 15) + 'px';
+        });
+
+        window.addEventListener('click', (event) => {
+            if(event.target.closest('#ui-layer') || event.target.closest('#info-panel') || event.target.closest('#nav-controls') || event.target.closest('#details-modal')) return;
+
+            pointer.x = (event.clientX / window.innerWidth) * 2 - 1;
+            pointer.y = -(event.clientY / window.innerHeight) * 2 + 1;
+            raycaster.setFromCamera(pointer, camera);
+            const hits = getValidHits(raycaster.intersectObjects(interactiveNodes));
+            if (hits.length > 0) {
+                lockedSelection = hits[0].object;
+                selectObject(lockedSelection, event.clientX, event.clientY);
+                openDetailsFor(lockedSelection);
+            } else {
+                lockedSelection = null;
+                resetHighlight();
+                infoPanel.classList.remove('has-selection');
+            }
+        });
+
+        let touchStartX = 0, touchStartY = 0;
+        window.addEventListener('touchstart', (e) => {
+            touchStartX = e.touches[0].clientX;
+            touchStartY = e.touches[0].clientY;
+        }, { passive: true });
+
+        window.addEventListener('touchend', (e) => {
+            if(e.target.closest('#ui-layer') || e.target.closest('#info-panel') || e.target.closest('#nav-controls') || e.target.closest('#details-modal')) return;
+
+            const dx = e.changedTouches[0].clientX - touchStartX;
+            const dy = e.changedTouches[0].clientY - touchStartY;
+            if (Math.sqrt(dx*dx + dy*dy) > 10) return; 
+            const touch = e.changedTouches[0];
+            pointer.x = (touch.clientX / window.innerWidth) * 2 - 1;
+            pointer.y = -(touch.clientY / window.innerHeight) * 2 + 1;
+            raycaster.setFromCamera(pointer, camera);
+            const hits = getValidHits(raycaster.intersectObjects(interactiveNodes));
+            if (hits.length > 0) {
+                selectObject(hits[0].object);
+                openDetailsFor(hits[0].object);
+            } else {
+                resetHighlight();
+                infoPanel.classList.remove('has-selection');
+            }
+        }, { passive: true });
+
+        // Initial setup execution mapping configuration values
+        recalculateLayerTargets();
+        // Start visible layers at their place instead of sliding in on load
+        sortedYears.forEach(year => { yearGroupsMap[year].position.y = yearGroupsMap[year].userData.targetY; });
+
+        // 5. ANIMATION RENDERING LOOP
+        let hoveredObj = null;
+
+        function animate() {
+            requestAnimationFrame(animate);
+            controls.update();
+
+            // Run interpolation movements across floor layers
+            let displacementOccurred = false;
+            
+            sortedYears.forEach(year => {
+                const group = yearGroupsMap[year];
+                if (group) {
+                    const target = group.userData.targetY;
+                    
+                    if (visibleYears.has(year)) {
+                        group.visible = true;
+                    }
+
+                    // Calculate remaining delta path
+                    const delta = target - group.position.y;
+                    if (Math.abs(delta) > 0.005) {
+                        // Linear interpolation sliding step (12% closer per frame loop)
+                        group.position.y += delta * 0.12;
+                        displacementOccurred = true;
+                    } else {
+                        group.position.y = target; // Lock axis placement directly
+                    }
+
+                    // Turn off rendering for hidden groups once collapsed back to baseline zero position
+                    if (!visibleYears.has(year) && group.position.y === 0) {
+                        group.visible = false;
+                    }
+                }
+            });
+
+            // Handle cross-year connector updates
+            if (displacementOccurred) {
+                // If layers are sliding, ensure tube linkages are turned off
+                if (showCrossYearLinks) {
+                    crossYearTubesList.forEach(t => t.visible = false);
+                }
+            } else if (layersAreMoving) {
+                // Triggered precisely on the single frame completion point when movement terminates
+                layersAreMoving = false;
+                updateCrossYearTubesVisibility();
+                rebuildActiveTubeGeometries();
+            }
+
+            if (!isMobile && !lockedSelection) {
+                raycaster.setFromCamera(pointer, camera);
+                const hits = getValidHits(raycaster.intersectObjects(interactiveNodes));
+                const hit = hits.length > 0 ? hits[0].object : null;
+
+                if (hit !== hoveredObj) {
+                    if (hoveredObj && hoveredObj !== lockedSelection) {
+                        if (hoveredObj.userData.isCrossYearLine) {
+                            hoveredObj.material.opacity = 0.18;
+                            hoveredObj.material.color.setHex(0x45f3ff);
+                            hoveredObj.material.emissive.setHex(0x112233);
+                        } else {
+                            if (hoveredObj.material.emissive) hoveredObj.material.emissive.setHex(0x000000);
+                            hoveredObj.scale.set(1, 1, 1);
+                            const cid = hoveredObj.userData.crossYearId;
+                            if (cid && crossYearMeshMap[cid]) {
+                                crossYearMeshMap[cid].material.opacity = 0.18;
+                                crossYearMeshMap[cid].material.color.setHex(0x45f3ff);
+                            }
+                        }
+                        tooltip.style.display = 'none';
+                        elCrossNote.classList.remove('visible');
+                        infoPanel.classList.remove('has-selection');
+                    }
+                    hoveredObj = hit;
+                    if (hit) selectObject(hit, undefined, undefined);
+                }
+            }
+
+            renderer.render(scene, camera);
+        }
+
+        window.addEventListener('resize', () => {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        });
+
+        animate();
+
+        return {
+            addYear(year, records) {
+                const { chains, rawChains: raw } = MapCommon.buildChains(records);
+                Object.assign(rawChains, raw);
+                CHAINS.push(...chains);
+                addYearNodes(year, chains);
+            },
+            addCrossYearLinks: addCrossYearTubes,
+        };
+        }
+    </script>
+</body>
+</html>

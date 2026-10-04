@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Common Ground - Admin</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<!--
+  Admin landing page: one link per editorial tool. It needs no sign-in itself,
+  because each tool checks access when it saves.
+  Same look as review.html.
+-->
+<style>
+  :root {
+    --paper: #FAFAF8;
+    --paper-raised: #F1F0EB;
+    --ink: #1B1E23;
+    --ink-soft: #565C66;
+    --line: #DAD8D0;
+    --slate: #3E4C59;
+    --serif: 'Lora', Georgia, serif;
+    --sans: 'IBM Plex Sans', -apple-system, sans-serif;
+    --mono: 'IBM Plex Mono', ui-monospace, monospace;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--paper); color: var(--ink);
+    font-family: var(--sans); line-height: 1.5; -webkit-font-smoothing: antialiased;
+  }
+  a { color: var(--slate); }
+  a:focus-visible { outline: 2px solid var(--slate); outline-offset: 3px; border-radius: 2px; }
+  header {
+    padding: 28px 40px 20px; border-bottom: 1px solid var(--line);
+    max-width: 900px; margin: 0 auto;
+  }
+  header h1 { font-family: var(--serif); font-weight: 500; font-size: 1.5rem; margin: 0 0 4px; letter-spacing: -0.01em; }
+  header p { margin: 0; color: var(--ink-soft); font-size: 0.9rem; }
+  main { max-width: 900px; margin: 0 auto; padding: 32px 40px 80px; }
+
+  h2 {
+    font-family: var(--sans); font-size: 0.75rem; font-weight: 600; letter-spacing: 0.08em;
+    text-transform: uppercase; color: var(--ink-soft); margin: 0 0 8px;
+  }
+  section + section { margin-top: 40px; }
+
+  .tool {
+    display: flex; justify-content: space-between; align-items: baseline; gap: 20px;
+    padding: 18px 0; border-bottom: 1px solid var(--line);
+  }
+  .tool .title { font-family: var(--serif); font-size: 1.1rem; margin: 0 0 4px; }
+  .tool .title a { text-decoration: none; }
+  .tool .title a:hover { text-decoration: underline; text-underline-offset: 3px; }
+  .tool .desc { margin: 0; font-size: 0.9rem; color: var(--ink-soft); max-width: 60ch; }
+  .tool .path { font-family: var(--mono); font-size: 0.8rem; color: var(--ink-soft); white-space: nowrap; }
+  .tool.soon .title { color: var(--ink-soft); }
+
+  .tag {
+    display: inline-block; margin-left: 8px; padding: 1px 8px; border-radius: 999px;
+    background: var(--paper-raised); border: 1px solid var(--line);
+    font-family: var(--sans); font-size: 0.75rem; color: var(--ink-soft); vertical-align: 2px;
+  }
+
+  @media (max-width: 640px) {
+    header { padding: 24px 16px 16px; }
+    main { padding: 24px 16px 60px; }
+    .tool { flex-direction: column; gap: 6px; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Admin</h1>
+  <p>Tools for the editorial team. <a href="../">Back to the site</a></p>
+</header>
+
+<main>
+  <section aria-labelledby="h-tools">
+    <h2 id="h-tools">Tools</h2>
+
+    <div class="tool">
+      <div>
+        <p class="title"><a href="review.html">Review submissions</a></p>
+        <p class="desc">Preview entries sent in through the contribution form, then accept or reject them. Page edits will appear here too once the page editor is ready.</p>
+      </div>
+      <span class="path">review.html</span>
+    </div>
+
+    <!-- Page editor: not built yet. When admin/pages.html exists, turn the
+         title into a link and remove the "Coming soon" tag and the "soon" class. -->
+    <div class="tool soon">
+      <div>
+        <p class="title">Edit site pages <span class="tag">Coming soon</span></p>
+        <p class="desc">Change plain pages such as the home page and Featured pages A&ndash;Z without editing Markdown. Changes go to review before they appear on the site.</p>
+      </div>
+      <span class="path">pages.html</span>
+    </div>
+
+    <div class="tool">
+      <div>
+        <p class="title"><a href="carlton-data-editor.html">Edit directory and map data</a></p>
+        <p class="desc">Street directory and electoral roll records behind search, the maps and the People and Places pages. Take care: a mistake here affects every page of the site.</p>
+      </div>
+      <span class="path">carlton-data-editor.html</span>
+    </div>
+  </section>
+
+  <section aria-labelledby="h-links">
+    <h2 id="h-links">Links</h2>
+
+    <!-- The team's Google Sheet is deliberately not linked here: this page is
+         public and the team already has the link. -->
+    <div class="tool">
+      <div>
+        <p class="title"><a href="https://github.com/historicalesque/carlton#editorial-workflows">Help for editors</a></p>
+        <p class="desc">Step-by-step instructions for reviewing submissions and updating data, in the project README.</p>
+      </div>
+      <span class="path">README</span>
+    </div>
+  </section>
+</main>
+
+</body>
+</html>

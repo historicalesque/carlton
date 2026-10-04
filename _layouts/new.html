@@ -1,0 +1,21 @@
+---
+layout: default
+---
+{{ content }}
+
+<form id="civicForm" class="new-article-form">
+  <div class="new-article-field">
+    <label for="idInput">Article title</label>
+    <input type="text" id="idInput" placeholder="e.g. Lygon Street, Carlton Brewery…" required />
+  </div>
+  <button type="submit">Create</button>
+</form>
+
+<script>
+  document.getElementById('civicForm').addEventListener('submit', function(event) {
+    event.preventDefault();
+    const value = document.getElementById('idInput').value;
+    const encodedValue = encodeURIComponent(value);
+    window.location.href = `civic?id=${encodedValue}`;
+  });
+</script>

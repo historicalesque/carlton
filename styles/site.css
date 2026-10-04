@@ -1,0 +1,1398 @@
+/* ============================================================
+   Sections:
+     1. Palette & tokens
+     2. Reset
+     3. Banner (with scroll parallax)
+     4. Top navigation
+     5. Search page          (search.html + scripts/search.js)
+     6. Page layout & typography (Home, A-Z, People, Places, etc.)
+     7. Footer
+     8. Map page             (used by map.html only)
+     9. 3D Map page         (used by map3d.html only)
+    10. Generated facet list (Table of Contents + listings)
+   ============================================================ */
+
+/* 1. PALETTE & TOKENS ------------------------------------------------- */
+:root {
+    /* Paper / surfaces, lightest to deepest */
+    --paper:        #f7f5ea;   /* page background: warm cream */
+    --paper-deep:   #efead2;   /* panels, cards: deeper parchment */
+    --paper-line:   #e2dcc0;   /* hairline rules on paper */
+
+    /* Sage, sampled straight from the map's ground tone */
+    --sage-light:   #dee4c3;
+    --sage:         #c3c9a6;
+    --sage-dark:    #9aa084;
+
+    /* Ink, sampled from the survey lines & lettering */
+    --ink:          #32351f;   /* headings, nav, primary text */
+    --ink-soft:     #565a3c;   /* body copy */
+    --ink-faint:    #63674a;   /* labels, meta, placeholders (4.5:1+ on paper and panels) */
+    --ink-deepest:  #1c1e12;   /* full-bleed dark surfaces (3D map) */
+
+    /* Moss accent — a saturated step off the map's own ink, used
+       in place of the old unrelated teal/gold for links & hover states */
+    --moss:         #5c6b34;
+    --moss-deep:    #454f26;
+    --moss-bright:  #b9c98a;   /* light accent for dark surfaces */
+
+    --font-serif: 'Libre Caslon Text', Georgia, 'Times New Roman', serif;
+    --font-mono:  'Courier Prime', 'Courier New', monospace;
+    --font-ui:    -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+/* 2. RESET ------------------------------------------------------------ */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* Visible keyboard focus everywhere (mouse clicks don't trigger it) */
+a:focus-visible,
+button:focus-visible,
+summary:focus-visible,
+[tabindex]:focus-visible {
+    outline: 2px solid var(--moss);
+    outline-offset: 2px;
+}
+
+/* On dark surfaces (nav, footer, 3D map) the moss outline needs the light accent */
+.main-nav a:focus-visible,
+.main-footer a:focus-visible,
+.map3d-page a:focus-visible,
+.map3d-page button:focus-visible {
+    outline-color: var(--moss-bright);
+}
+
+.main-nav a:focus-visible { outline-offset: -4px; }
+
+/* Places focus is moved to by script or the skip link (tabindex="-1")
+   don't need a ring: they aren't controls */
+[tabindex="-1"]:focus { outline: none; }
+
+/* Form fields: the same ring as links and buttons */
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+    outline: 2px solid var(--moss);
+    outline-offset: 2px;
+}
+
+/* "Skip to content": hidden until a keyboard user tabs to it */
+.skip-link {
+    position: absolute; left: 8px; top: -100px; z-index: 3000;
+    padding: 8px 14px; background: var(--ink); color: var(--paper);
+    font-weight: 600; text-decoration: none;
+}
+.skip-link:focus { top: 8px; }
+.skip-link:focus-visible { outline-color: var(--moss-bright); }
+
+body {
+    font-family: var(--font-ui);
+    color: var(--ink-soft);
+    background-color: var(--sage-dark);
+    line-height: 1.6;
+}
+
+.wrapper {
+    max-width: 1200px;
+    margin: 0 auto;
+    background-color: var(--paper);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* 3. BANNER (with scroll parallax) ------------------------------------
+   The banner starts on the bottom third of the source image, then
+   drifts upward — more slowly than the page scrolls — as the user
+   scrolls down, revealing more of the map above it. Driven by the
+   .banner-image background-position, set from scripts/banner-parallax.js
+   via the --banner-shift custom property. Degrades gracefully to a
+   static bottom-third crop with JS disabled. */
+.banner-container {
+    position: relative;
+    width: 100%;
+    height: clamp(160px, 30vw, 360px);
+    overflow: hidden;
+    display: block;
+    background-color: var(--ink);
+}
+
+.banner-image {
+    position: absolute;
+    inset: 0;
+    background-image: url("../images/dq000147.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    /* Rest state: bottom third of the image visible */
+    background-position: center calc(100% - var(--banner-shift, 0%));
+}
+
+/* 4. TOP NAVIGATION ----------------------------------------------------- */
+.main-nav {
+    background-color: var(--ink);
+    border-bottom: 4px solid var(--moss);
+    padding: 0 20px;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.nav-links li a {
+    display: block;
+    color: var(--paper);
+    text-decoration: none;
+    padding: 14px 20px;
+    font-weight: 500;
+    font-size: 0.95rem;
+    letter-spacing: 0.5px;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.nav-links li a:hover {
+    background-color: var(--moss-deep);
+    color: var(--moss-bright);
+}
+
+/* Phones: tighter links so all five items fit on one row */
+@media (max-width: 600px) {
+    .main-nav { padding: 0 4px; }
+    .nav-links { flex-wrap: nowrap; justify-content: space-between; }
+    .nav-links li a {
+        padding: 14px 7px;
+        font-size: 0.85rem;
+        letter-spacing: 0;
+        white-space: nowrap;
+    }
+}
+
+/* Work-in-progress notice under the nav (_layouts/default.html) */
+.wip-notice {
+    background-color: var(--sage-light);
+    border-bottom: 1px solid var(--sage);
+    padding: 14px 40px;
+}
+
+.wip-notice p {
+    max-width: 70rem;
+    font-family: var(--font-ui);
+    font-size: 0.95rem;
+    line-height: 1.5;
+    color: var(--ink);
+}
+
+.wip-badge {
+    display: inline-block;
+    margin-right: 10px;
+    padding: 2px 10px;
+    border-radius: 999px;
+    background-color: var(--moss);
+    color: var(--paper);
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.6px;
+    text-transform: uppercase;
+    vertical-align: 1px;
+}
+
+.wip-notice a {
+    color: var(--moss-deep);
+    font-weight: 600;
+}
+
+@media (max-width: 768px) {
+    .wip-notice { padding: 12px 20px; }
+    .wip-notice p { font-size: 0.9rem; }
+    .wip-badge { display: table; margin: 0 0 6px; }
+}
+
+/* 5. SEARCH PAGE (search.html + scripts/search.js) -------------------- */
+.visually-hidden {
+    position: absolute; width: 1px; height: 1px; overflow: hidden;
+    clip: rect(0 0 0 0); white-space: nowrap;
+}
+.search-page .search-title { margin-bottom: 4px; }
+.search-lede { color: var(--ink-faint); margin: 0 0 18px; }
+
+.search-box { display: flex; gap: 0; margin-bottom: 14px; }
+.search-box input {
+    flex: 1; min-width: 0;
+    font: 1.15rem var(--font-serif); color: var(--ink);
+    padding: 12px 14px; background: #fff;
+    border: 2px solid var(--ink); border-right: 0; border-radius: 0;
+}
+.search-box button {
+    font: 700 0.85rem var(--font-mono); letter-spacing: 0.08em; text-transform: uppercase;
+    padding: 0 20px; color: var(--paper); background: var(--ink);
+    border: 2px solid var(--ink); cursor: pointer;
+}
+.search-box button:hover { background: var(--moss); border-color: var(--moss); }
+
+.search-filters { display: flex; flex-wrap: wrap; align-items: flex-start; gap: 10px 18px; margin-bottom: 8px; }
+.search-tabs { display: flex; flex-wrap: wrap; gap: 6px; }
+.search-tabs button {
+    font: 0.85rem var(--font-mono); color: var(--ink-soft);
+    background: transparent; border: 1px solid var(--paper-line);
+    padding: 6px 12px; border-radius: 999px; cursor: pointer;
+}
+.search-tabs button span { color: var(--ink-faint); }
+.search-tabs button[aria-pressed="true"] { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+.search-tabs button[aria-pressed="true"] span { color: var(--moss-bright); }
+
+.search-more summary {
+    font: 0.85rem var(--font-mono); color: var(--moss); cursor: pointer; padding: 7px 0;
+}
+.search-more[open] { flex-basis: 100%; }
+.search-more-body {
+    display: flex; flex-wrap: wrap; gap: 12px 24px; align-items: flex-end;
+    background: var(--paper-deep); border: 1px solid var(--paper-line); padding: 12px 14px;
+}
+.search-years { border: 0; padding: 0; margin: 0; display: flex; flex-wrap: wrap; gap: 6px; }
+.search-years legend, .search-street {
+    font: 0.72rem var(--font-mono); letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-faint);
+    margin-bottom: 6px;
+}
+.search-years .chip input { position: absolute; opacity: 0; }
+.search-years .chip span {
+    display: inline-block; font: 0.85rem var(--font-mono); padding: 4px 9px;
+    border: 1px solid var(--sage-dark); color: var(--ink-soft); cursor: pointer; background: var(--paper);
+}
+.search-years .chip input:checked + span { background: var(--moss); border-color: var(--moss); color: var(--paper); }
+.search-years .chip input:focus-visible + span { outline: 2px solid var(--moss); outline-offset: 2px; }
+.search-street select {
+    display: block; margin-top: 6px; font: 0.9rem var(--font-mono); padding: 5px 8px;
+    border: 1px solid var(--ink-faint); background: var(--paper); color: var(--ink);
+}
+
+.search-status { font: 0.85rem var(--font-mono); color: var(--ink-faint); margin: 10px 0 0; }
+
+.search-section { margin-top: 26px; }
+.search-section h2 {
+    font: 700 0.78rem var(--font-mono); letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--ink); border-bottom: 2px solid var(--ink); padding-bottom: 6px; margin: 0 0 4px;
+}
+.search-section h2 span { color: var(--ink-faint); font-weight: 400; }
+.main-content ol.results { list-style: none; margin: 0; padding: 0; }
+.main-content ol.results > li.result { margin: 0; padding: 14px 0; border-bottom: 1px solid var(--paper-line); }
+.result-title { font: 700 1.08rem/1.35 var(--font-serif); color: var(--ink); }
+a.result-title { text-decoration: underline; text-decoration-color: var(--sage-dark); text-underline-offset: 3px; }
+.results .result-snippet { margin: 6px 0 0; color: var(--ink-soft); font-size: 0.95rem; line-height: 1.55; }
+.results .result-meta { margin: 6px 0 0; font: 0.8rem var(--font-mono); color: var(--moss); }
+.result-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 2px 12px; }
+.result-where { font: italic 0.92rem var(--font-serif); color: var(--ink-faint); }
+.results .result-years { display: flex; flex-wrap: wrap; gap: 4px; margin: 8px 0 0; }
+.result-years span {
+    font: 0.75rem var(--font-mono); padding: 1px 6px; border: 1px solid var(--paper-line); color: var(--ink-faint);
+}
+.result-years span.on { background: var(--sage-light); border-color: var(--sage-dark); color: var(--ink); font-weight: 700; }
+.result-trace { margin-top: 6px; }
+.result-trace summary { font: 0.82rem var(--font-mono); color: var(--moss); cursor: pointer; }
+.main-content .result-trace ol { list-style: none; margin: 6px 0 0; padding: 0 0 0 12px; border-left: 2px solid var(--sage); }
+.main-content .result-trace li { font: 0.88rem/1.5 var(--font-mono); color: var(--ink-soft); margin: 3px 0; }
+.result-trace li.hit { color: var(--ink); }
+.result-trace .yr { font-weight: 700; color: var(--moss); margin-right: 6px; }
+.result-trace .pg { color: var(--ink-faint); font-size: 0.8rem; }
+.result-action {
+    display: inline-block; margin-top: 8px; font: 700 0.8rem var(--font-mono); color: var(--moss);
+}
+.result-action.quiet { font-weight: 400; color: var(--ink-faint); }
+.results mark { background: #f1e3a0; color: inherit; padding: 0 1px; }
+.search-more-btn {
+    margin-top: 12px; font: 0.85rem var(--font-mono); color: var(--ink); background: var(--paper-deep);
+    border: 1px solid var(--sage-dark); padding: 8px 14px; cursor: pointer;
+}
+.search-more-btn:hover { background: var(--sage-light); }
+.search-empty { margin-top: 24px; padding: 18px; background: var(--paper-deep); border-left: 3px solid var(--moss); }
+.search-empty p { margin: 0 0 6px; }
+
+@media (max-width: 600px) {
+    .search-box input { font-size: 1rem; padding: 10px 12px; }
+    .search-box button { padding: 0 14px; }
+    .search-tabs { flex-wrap: nowrap; overflow-x: auto; max-width: 100%; }
+    .search-tabs button { white-space: nowrap; }
+    .search-more-body { padding: 10px; }
+}
+
+/* 6. PAGE LAYOUT & TYPOGRAPHY -------------------------------------------- */
+.layout-container {
+    display: grid;
+    grid-template-columns: 1fr 320px;
+    gap: 40px;
+    padding: 40px;
+}
+
+@media (max-width: 768px) {
+    .layout-container {
+        grid-template-columns: 1fr;
+        padding: 20px;
+        gap: 30px;
+    }
+}
+
+.main-content h1 {
+    font-family: var(--font-serif);
+    color: var(--ink);
+    font-size: 2.2rem;
+    margin-bottom: 20px;
+    font-weight: normal;
+    border-bottom: 1px solid var(--paper-line);
+    padding-bottom: 10px;
+}
+
+.main-content p {
+    margin-bottom: 20px;
+    color: var(--ink-soft);
+    font-size: 1.05rem;
+}
+
+.main-content a { color: var(--moss); }
+.main-content a:hover { color: var(--moss-deep); }
+
+/* Restore list indentation and bullets that the global reset removes.
+   Only class-less lists (i.e. Markdown/prose), so styled component lists are untouched. */
+.main-content ul:not([class]),
+.main-content ol:not([class]) {
+    margin: 0 0 20px;
+    padding-left: 1.6em;
+    color: var(--ink-soft);
+    font-size: 1.05rem;
+}
+
+.main-content ul:not([class]) { list-style: disc; }
+.main-content ol:not([class]) { list-style: decimal; }
+
+.main-content ul:not([class]) > li,
+.main-content ol:not([class]) > li {
+    margin-bottom: 6px;
+    line-height: 1.6;
+}
+
+.main-content ul:not([class]) > li::marker,
+.main-content ol:not([class]) > li::marker { color: var(--moss); }
+
+/* Nested lists: tighter spacing, inherit size */
+.main-content li > ul:not([class]),
+.main-content li > ol:not([class]) {
+    margin: 6px 0 0;
+    font-size: inherit;
+}
+
+.main-content li > ul:not([class]) { list-style: circle; }
+
+/* Markdown headings, rules, tables, quotes and code. Direct children only,
+   so generated layouts (entries, facet lists) keep their own styles. */
+.main-content > h2,
+.main-content > h3,
+.main-content > h4 {
+    font-family: var(--font-serif);
+    color: var(--ink);
+    font-weight: normal;
+    line-height: 1.3;
+}
+
+.main-content > h2 { font-size: 1.6rem; margin: 32px 0 14px; }
+.main-content > h3 { font-size: 1.3rem; margin: 26px 0 10px; }
+.main-content > h4 { font-size: 1.1rem; margin: 22px 0 8px; font-style: italic; }
+.main-content > h2:first-child,
+.main-content > h3:first-child { margin-top: 0; }
+
+.main-content > hr {
+    border: 0;
+    border-top: 1px solid var(--paper-line);
+    margin: 28px 0;
+}
+
+.main-content > table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 0 0 20px;
+    font-size: 0.95rem;
+    color: var(--ink-soft);
+}
+
+.main-content > table th,
+.main-content > table td {
+    text-align: left;
+    padding: 8px 10px;
+    border-bottom: 1px solid var(--paper-line);
+    vertical-align: top;
+}
+
+.main-content > table th {
+    font-family: var(--font-serif);
+    font-weight: normal;
+    color: var(--ink);
+    border-bottom: 2px solid var(--moss);
+}
+
+.main-content > blockquote {
+    margin: 0 0 20px;
+    padding: 4px 0 4px 18px;
+    border-left: 3px solid var(--moss);
+    font-family: var(--font-serif);
+    font-style: italic;
+}
+
+.main-content > blockquote p:last-child { margin-bottom: 0; }
+
+.main-content code {
+    font-family: var(--font-mono);
+    font-size: 0.92em;
+    background-color: var(--paper-deep);
+    padding: 1px 4px;
+    border-radius: 2px;
+}
+
+/* A–Z letter index (aToZ.md): an evenly spaced row of letter buttons */
+.main-content ul.az-index {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin: 0 0 24px;
+}
+
+.az-index a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.2em;
+    height: 2.2em;
+    font-family: var(--font-serif);
+    font-size: 1.05rem;
+    color: var(--ink);
+    text-decoration: none;
+    background-color: var(--paper-deep);
+    border: 1px solid var(--sage);
+    border-radius: 3px;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.main-content .az-index a:hover,
+.main-content .az-index a:focus-visible {
+    background-color: var(--moss);
+    border-color: var(--moss);
+    color: var(--paper);
+}
+
+/* A–Z entry status badges (scripts/az-status.js) */
+.az-badge {
+    display: inline-block;
+    margin-left: 8px;
+    padding: 1px 7px;
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.03em;
+    line-height: 1.5;
+    vertical-align: 0.1em;
+    white-space: nowrap;
+    border-radius: 3px;
+}
+
+.az-badge-new {
+    color: var(--paper);
+    background-color: var(--moss);
+    border: 1px solid var(--moss);
+}
+
+.az-badge-missing {
+    padding: 2px 4px;
+    line-height: 0;
+    vertical-align: -0.2em;
+    color: var(--ink-faint);
+    background-color: transparent;
+    border: 1px dashed var(--sage-dark);
+}
+
+.az-pencil {
+    width: 1.15rem;
+    height: 1.15rem;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.main-content a.az-link-missing { color: var(--ink-faint); }
+.main-content a.az-link-missing:hover { color: var(--moss-deep); }
+
+.main-content p.az-legend {
+    font-size: 0.9rem;
+    color: var(--ink-faint);
+}
+
+.az-legend .az-badge { margin-left: 0; }
+
+.az-badge .visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+}
+
+/* "Suggest new article" form (new.html) */
+.new-article-form {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: end;
+    gap: 12px;
+    max-width: 560px;
+    margin-bottom: 20px;
+}
+
+.new-article-form .new-article-field { flex: 1 1 260px; }
+
+.new-article-form label {
+    display: block;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--moss);
+    margin-bottom: 5px;
+}
+
+.new-article-form input[type="text"] {
+    width: 100%;
+    font-family: var(--font-mono);
+    font-size: 15px;
+    padding: 10px 12px;
+    background: var(--paper);
+    border: 1px solid var(--ink);
+    color: var(--ink);
+}
+
+.new-article-form input[type="text"]:focus {
+    outline: 2px solid var(--moss);
+    outline-offset: 1px;
+}
+
+.new-article-form button {
+    font-family: var(--font-mono);
+    font-size: 14px;
+    padding: 11px 20px;
+    background: var(--moss);
+    border: 1px solid var(--moss);
+    color: var(--paper);
+    cursor: pointer;
+}
+
+.new-article-form button:hover { background: var(--moss-deep); }
+
+/* "Contribute to this entry" box on entry pages (entry.html). The form
+   itself is form.html, shown in the iframe, which sizes itself to fit. */
+.contribution-container {
+    margin-top: 40px;
+    padding: 24px;
+    background-color: var(--paper-deep);
+    border: 1px solid var(--sage);
+    border-radius: 6px;
+}
+
+.contribution-container h2 {
+    font-family: var(--font-serif);
+    font-weight: normal;
+    color: var(--ink);
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid var(--moss);
+}
+
+.contribution-container .contribution-frame {
+    display: block;
+    width: 100%;
+    height: 600px;          /* until the form reports its real height */
+    border: 0;
+    background: transparent;
+}
+
+@media (max-width: 480px) {
+    .contribution-container { padding: 16px; }
+}
+
+.sidebar-menu {
+    background-color: var(--paper-deep);
+    border: 1px solid var(--sage);
+    border-radius: 6px;
+    padding: 24px;
+    align-self: start;
+}
+
+.sidebar-menu h2 {
+    font-family: var(--font-serif);
+    color: var(--ink);
+    font-size: 1.3rem;
+    margin-bottom: 15px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid var(--moss);
+    font-weight: normal;
+}
+
+.theme-list {
+    list-style: none;
+}
+
+.theme-list li {
+    border-bottom: 1px solid var(--paper-line);
+}
+
+.theme-list li:last-child {
+    border-bottom: none;
+}
+
+.theme-list a {
+    display: block;
+    color: var(--ink-soft);
+    text-decoration: none;
+    padding: 8px 4px;
+    font-size: 0.95rem;
+    transition: all 0.2s ease;
+}
+
+.theme-list a:hover {
+    color: var(--moss-deep);
+    padding-left: 8px;
+    background-color: var(--sage-light);
+}
+
+/* 7. FOOTER ---------------------------------------------------------- */
+.main-footer {
+    background-color: var(--ink);
+    color: var(--sage);
+    padding: 40px 20px;
+    font-size: 0.9rem;
+}
+
+.footer-content {
+    max-width: 1120px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    text-align: center;
+}
+
+.footer-links {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+
+.footer-links a {
+    color: var(--sage-light);
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+.footer-links a:hover {
+    color: var(--moss-bright);
+}
+
+.footer-attribution {
+    border-top: 1px solid var(--ink-soft);
+    width: 100%;
+    padding-top: 20px;
+    color: var(--sage-dark);
+    font-size: 0.85rem;
+}
+
+.footer-attribution a { color: var(--paper); }
+.footer-attribution a:hover { color: var(--moss-bright); }
+
+/* 8. MAP PAGE CHROME (map.html) --------------------------------------
+   The Leaflet canvas stays full-bleed and dark; only the control
+   panel, tooltips, and modal are retinted to the shared palette. */
+html.map-page, body.map-page, body.map-page #map {
+    margin: 0; padding: 0;
+    width: 100%; height: 100%;
+    background-color: var(--ink-deepest);
+}
+
+#map {
+    font-family: var(--font-serif);
+}
+
+.leaflet-control-layers {
+    max-height: 85vh; width: 320px; overflow-y: auto;
+    background: rgba(239, 234, 210, 0.97) !important; /* --paper-deep, translucent */
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.4);
+    border-radius: 4px; padding: 10px !important;
+    border: 1px solid var(--sage-dark);
+}
+
+.panel-section-title {
+    font-size: 10px; font-weight: bold; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--ink-faint);
+    margin: 12px 0 6px 0; padding-bottom: 3px;
+    border-bottom: 1px solid var(--paper-line);
+}
+
+.layer-control-row {
+    display: flex; flex-direction: column;
+    margin-bottom: 8px; padding-bottom: 8px;
+    border-bottom: 1px solid var(--paper-line);
+}
+.layer-control-row:last-child { border-bottom: none; }
+
+.layer-label-container {
+    display: flex; align-items: center; font-size: 12px;
+    color: var(--ink); cursor: pointer; font-family: var(--font-serif);
+}
+.layer-label-container input { margin-right: 8px; }
+
+.slider-container {
+    display: flex; align-items: center; margin-top: 4px;
+    margin-left: 22px; font-size: 10px; color: var(--ink-faint);
+    font-family: var(--font-ui);
+}
+.opacity-slider { flex-grow: 1; margin: 0 6px; cursor: pointer; }
+
+.year-row {
+    display: flex; align-items: center; margin-bottom: 6px;
+    font-size: 12px; color: var(--ink); cursor: pointer;
+    font-family: var(--font-serif);
+}
+.year-row input { margin-right: 8px; }
+
+.year-swatch {
+    width: 12px; height: 12px; border-radius: 50%;
+    margin-right: 6px; flex-shrink: 0;
+    border: 1.5px solid rgba(0, 0, 0, 0.2);
+}
+
+.control-home-link {
+    display: block; text-align: center;
+    background-color: var(--ink); color: var(--paper) !important;
+    text-decoration: none; font-weight: bold; font-size: 12px;
+    font-family: var(--font-serif); padding: 7px 12px;
+    border-radius: 3px; margin-bottom: 12px;
+    transition: background-color 0.2s; letter-spacing: 0.05em;
+}
+.control-home-link:hover { background-color: var(--moss-deep); }
+
+.leaflet-control-layers input { accent-color: var(--moss); }
+.leaflet-control-layers a:not(.control-home-link) { color: var(--moss); }
+
+/* "Layers" button: only on phones, where the panel starts folded away */
+.panel-toggle { display: none; }
+
+@media (max-width: 600px) {
+    .leaflet-control-layers {
+        max-width: calc(100vw - 20px); max-height: 70vh;
+    }
+    .panel-toggle {
+        display: block; width: 100%; margin: 0 0 4px;
+        padding: 7px 12px; border: 0; border-radius: 3px;
+        background: var(--moss); color: var(--paper);
+        font: bold 12px var(--font-serif); letter-spacing: 0.05em;
+        cursor: pointer;
+    }
+    .panel-toggle:hover { background: var(--moss-deep); }
+    .panel-collapsed { width: auto; padding: 6px !important; }
+    .panel-collapsed > :not(.control-home-link):not(.panel-toggle) { display: none; }
+    .panel-collapsed .control-home-link { margin-bottom: 6px; }
+    .panel-collapsed .panel-toggle { margin: 0; }
+}
+
+/* Leaflet's own controls and links: the site's ink and moss, not its blue */
+.leaflet-container a { color: var(--moss); }
+.leaflet-bar a { color: var(--ink); background-color: var(--paper); }
+.leaflet-bar a:hover { background-color: var(--paper-deep); }
+.leaflet-bar a.leaflet-disabled { color: var(--sage-dark); background-color: var(--paper); }
+.leaflet-container .leaflet-control-attribution { background: rgba(247, 245, 234, 0.85); color: var(--ink-soft); }
+
+.custom-modal {
+    display: none; position: fixed; z-index: 2000;
+    left: 0; top: 0; width: 100%; height: 100%;
+    background-color: rgba(28, 30, 18, 0.55); backdrop-filter: blur(2px);
+    align-items: center; justify-content: center;
+}
+
+.modal-content {
+    background-color: var(--paper); padding: 24px; border-radius: 4px;
+    width: 90%; max-width: 480px;
+    box-shadow: 0 5px 30px rgba(0, 0, 0, 0.35); position: relative;
+    border: 1px solid var(--sage-dark); animation: fadeIn 0.2s ease-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-12px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+.modal-close {
+    position: absolute; top: 10px; right: 12px;
+    font: bold 22px/1 var(--font-ui); padding: 4px 8px;
+    background: none; border: 0;
+    color: var(--ink-faint); cursor: pointer; transition: color 0.2s;
+}
+.modal-close:hover { color: var(--ink); }
+
+#modal-heading {
+    margin-top: 0; color: var(--ink);
+    border-bottom: 2px solid var(--paper-line);
+    padding-bottom: 8px; font-size: 18px; font-family: var(--font-serif);
+}
+
+#modal-meta {
+    font-size: 11px; color: var(--ink-faint); margin-bottom: 10px;
+    font-family: var(--font-ui); letter-spacing: 0.04em;
+    text-transform: uppercase;
+}
+
+#modal-body {
+    font-size: 13px; line-height: 1.6;
+    color: var(--ink-soft); margin-bottom: 14px; font-family: var(--font-serif);
+}
+
+.coords-box {
+    background-color: var(--paper-deep); border: 1px solid var(--sage);
+    border-radius: 3px; padding: 8px; font-family: var(--font-mono);
+    font-size: 11px; color: var(--ink-faint); word-break: break-all;
+    max-height: 80px; overflow-y: auto;
+}
+
+/* Markers and the map itself take keyboard focus. The ring is white with a
+   dark edge so it shows on both the dark canvas and the light map tiles. */
+.leaflet-marker-icon:focus-visible,
+.leaflet-container:focus-visible {
+    outline: 2px solid #fff;
+    box-shadow: 0 0 0 4px var(--ink-deepest);
+}
+.leaflet-marker-icon:focus-visible { outline-offset: 2px; }
+.leaflet-container:focus-visible { outline-offset: -6px; }
+
+.leaflet-tooltip {
+    font-family: var(--font-serif); font-size: 12px;
+    background: rgba(28, 30, 18, 0.9); color: var(--paper);
+    border: 1px solid var(--ink-faint); border-radius: 3px;
+    padding: 3px 7px; box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+    white-space: nowrap;
+}
+.leaflet-tooltip-top:before { border-top-color: rgba(28, 30, 18, 0.9); }
+
+/* Leaflet internally masks vector shapes using overflow:hidden.
+   This container directive forces the map canvas to render vectors outer bounds */
+.leaflet-zoom-animated svg {
+    overflow: visible !important;
+}
+
+/* 9. 3D MAP PAGE CHROME (map3d.html) ----------------------------------
+   The WebGL scene stays dark and full-bleed; the cyan sci-fi accent
+   is replaced with --moss-bright so it reads as the same family as
+   the rest of the site instead of an unrelated neon. */
+html.map3d-page, body.map3d-page {
+    margin: 0; padding: 0;
+    width: 100%; height: 100%;
+    height: 100dvh; /* fit phone screens without the browser bars causing a scroll */
+    overflow: hidden;
+    background-color: var(--ink-deepest);
+    font-family: var(--font-ui);
+    color: var(--sage-light);
+}
+
+#canvas-container {
+    width: 100%; height: 100%;
+    position: absolute; top: 0; left: 0; z-index: 1;
+}
+
+#ui-layer {
+    position: absolute; top: 20px; left: 20px;
+    z-index: 10; pointer-events: auto;
+}
+
+.map3d-home-link {
+    display: inline-block;
+    margin-bottom: 10px;
+    padding: 6px 12px;
+    background-color: var(--ink);
+    color: var(--paper);
+    border: 1px solid var(--ink-soft);
+    border-radius: 3px;
+    font-family: var(--font-serif);
+    font-size: 12px;
+    font-weight: bold;
+    letter-spacing: 0.05em;
+    text-decoration: none;
+    transition: background-color 0.2s;
+}
+.map3d-home-link:hover { background-color: var(--moss-deep); color: var(--moss-bright); }
+
+#ui-layer h1 {
+    margin: 0 0 5px 0; font-size: 24px; color: var(--moss-bright);
+    font-family: var(--font-serif); font-weight: normal;
+    text-transform: uppercase; letter-spacing: 2px;
+}
+#ui-layer p { margin: 0; font-size: 13px; color: var(--sage); opacity: 0.9; }
+#ui-layer p.map3d-alt { margin-top: 4px; }
+.map3d-alt a { color: var(--moss-bright); }
+
+.controls-panel {
+    margin-top: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    background: rgba(28, 30, 18, 0.75);
+    backdrop-filter: blur(4px);
+    padding: 10px 14px;
+    border-radius: 4px;
+    border: 1px solid var(--ink-soft);
+    width: max-content;
+}
+
+.toggle-container {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    color: var(--moss-bright);
+}
+.toggle-container input {
+    cursor: pointer;
+    accent-color: var(--moss-bright);
+}
+
+.year-filters {
+    border-top: 1px solid var(--ink-soft);
+    padding-top: 8px;
+    margin-top: 4px;
+}
+.filter-title {
+    font-size: 11px;
+    text-transform: uppercase;
+    color: var(--sage-dark);
+    margin-bottom: 6px;
+    letter-spacing: 0.5px;
+}
+.checkbox-group {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 6px 12px;
+}
+
+#nav-controls {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    background: rgba(28, 30, 18, 0.75);
+    backdrop-filter: blur(4px);
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid var(--ink-soft);
+    user-select: none;
+    pointer-events: auto;
+}
+.nav-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+}
+.nav-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 32px);
+    grid-template-rows: repeat(3, 32px);
+    gap: 4px;
+    justify-content: center;
+}
+.nav-btn {
+    width: 32px;
+    height: 32px;
+    background: var(--ink);
+    border: 1px solid var(--moss-bright);
+    color: var(--moss-bright);
+    border-radius: 4px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 14px;
+    transition: all 0.2s ease;
+}
+.nav-btn:hover {
+    background: var(--moss-bright);
+    color: var(--ink-deepest);
+    box-shadow: 0 0 8px rgba(185, 201, 138, 0.4);
+}
+.nav-btn:active {
+    transform: scale(0.92);
+}
+.nav-label {
+    font-size: 10px;
+    text-transform: uppercase;
+    color: var(--sage-dark);
+    margin-bottom: 2px;
+    letter-spacing: 0.5px;
+    text-align: center;
+}
+
+#info-panel {
+    position: absolute; top: 20px; right: 20px;
+    width: 300px; background: rgba(28, 30, 18, 0.85);
+    backdrop-filter: blur(8px); border: 1px solid var(--ink-soft);
+    border-top: 3px solid var(--moss-bright); border-radius: 4px;
+    padding: 15px; z-index: 10; box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+    transition: transform 0.3s ease;
+}
+.panel-header { font-size: 11px; text-transform: uppercase; color: var(--sage-dark); letter-spacing: 1px; }
+.node-title { font-size: 16px; font-weight: bold; color: var(--paper); margin: 5px 0 10px 0; font-family: var(--font-serif); }
+.meta-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; font-size: 12px; }
+.meta-item span { display: block; color: var(--sage-dark); font-size: 10px; }
+#cross-year-note {
+    display: none; margin-top: 10px; font-size: 11px; color: var(--sage);
+    border-top: 1px solid var(--ink-soft); padding-top: 8px; white-space: pre-line; line-height: 1.6;
+}
+#cross-year-note.visible { display: block; }
+
+#tooltip {
+    position: absolute; background: rgba(28, 30, 18, 0.95);
+    color: var(--moss-bright); padding: 5px 10px; border: 1px solid var(--moss-bright);
+    border-radius: 3px; font-size: 12px; pointer-events: none;
+    display: none; z-index: 20; font-family: var(--font-mono);
+}
+
+@media (max-width: 600px) {
+    #ui-layer { top: 12px; left: 12px; right: 80px; }
+    #ui-layer h1 { font-size: 15px; letter-spacing: 1px; }
+    #ui-layer p { font-size: 11px; }
+    .checkbox-group { grid-template-columns: repeat(3, 1fr); }
+    #nav-controls { display: none; }
+
+    #info-panel {
+        top: auto; right: 0; left: 0; bottom: 0;
+        width: 100%; border-radius: 12px 12px 0 0;
+        border-top: 3px solid var(--moss-bright);
+        transform: translateY(calc(100% - 48px));
+        padding: 12px 16px 24px;
+        box-sizing: border-box;
+    }
+    #info-panel.has-selection { transform: translateY(0); }
+    .panel-header { font-size: 12px; }
+    .node-title { font-size: 15px; }
+    #tooltip { display: none !important; }
+}
+
+/* 10. GENERATED FACET LIST (Table of Contents + listings) -------------
+   The #facet-list-container is populated at runtime by facet-page.html's
+   inline script with a collapsible <details> Table of Contents followed
+   by the full h1/h2/h3 listing hierarchy and "Back to top" links. */
+.facet-list {
+    max-width: 900px;
+    margin: 0;
+    padding: 0 0 60px;
+}
+
+.facet-list .loading {
+    padding: 40px 0;
+    font-family: var(--font-serif);
+    font-style: italic;
+    color: var(--ink-faint);
+}
+
+/* ToC — plain heading (not collapsible) --------------------------------- */
+.toc-heading {
+    font-family: var(--font-serif);
+    font-weight: normal;
+    color: var(--ink);
+    font-size: 1.3rem;
+    margin: 24px 0 14px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid var(--moss);
+}
+
+.table-of-contents {
+    font-family: var(--font-ui);
+    margin-bottom: 4px;
+}
+
+/* h1 (source) groups — expandable, open by default */
+.toc-h1 {
+    background-color: var(--paper-deep);
+    border: 1px solid var(--sage);
+    border-radius: 6px;
+    margin-bottom: 10px;
+    overflow: hidden;
+}
+
+.toc-h1-summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    list-style: none;
+    cursor: pointer;
+    padding: 12px 18px;
+    font-family: var(--font-serif);
+    font-size: 1.05rem;
+    color: var(--ink);
+    user-select: none;
+    transition: background-color 0.2s ease;
+}
+
+.toc-h1-summary:hover {
+    background-color: var(--sage-light);
+}
+
+.toc-h1-summary::-webkit-details-marker,
+.toc-h1-summary::marker {
+    display: none;
+    content: '';
+}
+
+
+.toc-h1-summary::after {
+    content: '▾';
+    font-size: 0.8em;
+    color: var(--moss);
+    transition: transform 0.25s ease;
+    flex-shrink: 0;
+}
+
+.toc-h1[open] > .toc-h1-summary::after {
+    transform: rotate(-180deg);
+}
+
+.toc-h1[open] > .toc-h1-summary {
+    border-bottom: 1px solid var(--sage);
+}
+
+.toc-h1-body {
+    padding: 8px 18px 12px;
+}
+
+.toc-h1-body > .toc-go { margin: 2px 0 6px; }
+
+/* h2 (street) groups — expandable, collapsed by default */
+.toc-h2 {
+    border-bottom: 1px solid var(--paper-line);
+}
+
+.toc-h2:last-child {
+    border-bottom: none;
+}
+
+.toc-h2-summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    list-style: none;
+    cursor: pointer;
+    padding: 8px 4px;
+    font-size: 0.92rem;
+    color: var(--ink-soft);
+    user-select: none;
+    transition: color 0.15s ease;
+}
+
+.toc-h2-summary:hover {
+    color: var(--moss-deep);
+}
+
+.toc-h2-summary::-webkit-details-marker,
+.toc-h2-summary::marker {
+    display: none;
+    content: '';
+}
+
+
+.toc-h2-summary::after {
+    content: '▸';
+    font-size: 0.7em;
+    color: var(--moss);
+    transition: transform 0.2s ease;
+    flex-shrink: 0;
+}
+
+.toc-h2[open] > .toc-h2-summary::after {
+    transform: rotate(90deg);
+}
+
+.toc-h2-body {
+    padding: 0 0 8px 16px;
+}
+
+/* h3 (cardinality) items — plain links nested inside an h2 group */
+.toc-h3-item {
+    margin-bottom: 4px;
+    font-size: 0.85rem;
+    line-height: 1.5;
+}
+
+.toc-h3-item a {
+    color: var(--ink-faint);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: color 0.15s ease, border-color 0.15s ease;
+}
+
+.toc-h3-item a:hover {
+    color: var(--moss-deep);
+    border-bottom-color: var(--moss-deep);
+}
+
+/* "Jump to listings" — visible whether the ToC is open or collapsed,
+   so people can skip straight to the content without expanding it. */
+.toc-jump {
+    margin: 10px 2px 28px;
+}
+
+.toc-jump-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    text-decoration: none;
+    padding: 6px 0;
+    border-bottom: 1px dashed var(--sage-dark);
+    transition: color 0.15s ease, border-color 0.15s ease;
+}
+
+.toc-jump-link:hover {
+    color: var(--moss-deep);
+    border-bottom-color: var(--moss-deep);
+}
+
+/* Listing content headings ---------------------------------------------- */
+.facet-list h1 {
+    font-family: var(--font-serif);
+    font-weight: normal;
+    color: var(--ink);
+    font-size: 1.9rem;
+    margin: 44px 0 12px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid var(--moss);
+}
+
+.facet-list h1:first-of-type {
+    margin-top: 28px;
+}
+
+.facet-list h2 {
+    font-family: var(--font-serif);
+    font-weight: normal;
+    font-style: italic;
+    color: var(--ink);
+    font-size: 1.35rem;
+    margin: 30px 0 10px;
+    padding-bottom: 6px;
+    border-bottom: 1px solid var(--paper-line);
+}
+
+.facet-list h3 {
+    font-family: var(--font-ui);
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--moss);
+    margin: 18px 0 8px 15px;
+}
+
+.listing-item {
+    margin: 0 0 4px 30px;
+    font-size: 0.98rem;
+}
+
+.listing-item a {
+    color: var(--ink-soft);
+    text-decoration: none;
+    padding: 3px 6px;
+    margin-left: -6px;
+    border-radius: 3px;
+    display: inline-block;
+    transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+.listing-item a:hover {
+    background-color: var(--sage-light);
+    color: var(--moss-deep);
+}
+
+.back-to-top-container {
+    margin: 18px 0 10px 30px;
+}
+
+.back-to-top {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.04em;
+    color: var(--ink-faint);
+    text-decoration: none;
+    transition: color 0.15s ease;
+}
+
+.back-to-top:hover {
+    color: var(--moss);
+}
+
+@media (max-width: 600px) {
+    .facet-list { padding: 0 0 40px; }
+    .toc-summary { padding: 14px 16px; font-size: 1.05rem; }
+    .table-of-contents { padding: 10px 16px 16px; }
+    .facet-list h1 { font-size: 1.55rem; }
+    .facet-list h2 { font-size: 1.15rem; }
+}
+
+/* ── Data loading messages (scripts/data.js) ──────────────────────────────
+   "Loading the 1905 directory… (4 of 9)", and the error with Try again. */
+.data-status {
+    margin: 16px 0;
+    font-family: var(--font-serif);
+    font-style: italic;
+    color: var(--ink-faint);
+}
+.data-status[hidden] { display: none; }
+.data-status-error {
+    font-style: normal;
+    color: var(--ink);
+}
+.data-status-retry {
+    margin-left: 4px;
+    padding: 4px 12px;
+    font: inherit;
+    font-family: var(--font-ui);
+    font-size: 0.9rem;
+    color: var(--paper);
+    background: var(--moss);
+    border: 0;
+    border-radius: 4px;
+    cursor: pointer;
+}
+.data-status-retry:hover { background: var(--moss-deep); }
+
+/* On the maps the message floats near the foot of the map until the data is
+   in, out of the way of the years already drawn. */
+.data-status.data-status-map {
+    position: fixed;
+    bottom: 72px; /* clear of the 3D map's info panel on phones */
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2000;
+    max-width: calc(100% - 32px);
+    margin: 0;
+    padding: 14px 20px;
+    background: var(--paper);
+    border: 1px solid var(--paper-line);
+    border-radius: 6px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+    text-align: center;
+}

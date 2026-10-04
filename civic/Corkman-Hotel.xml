@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?oxygen RNGSchema="shared/cpf.rng" type="xml"?>
+<eac-cpf xmlns="urn:isbn:1-931666-33-4" 
+         xmlns:xlink="http://www.w3.org/1999/xlink" 
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+         xsi:schemaLocation="urn:isbn:1-931666-33-4 http://eac.staatsbibliothek-berlin.de/schema/cpf.xsd">
+  <control>
+    <recordId>Corkman-Hotel5</recordId>
+    <maintenanceStatus>new</maintenanceStatus>
+    <maintenanceAgency>
+      <agencyCode>AU-EMEL</agencyCode>
+      <agencyName>eMelbourne - The Encyclopedia of Melbourne Online</agencyName>
+      <descriptiveNote><p></p></descriptiveNote>
+    </maintenanceAgency>
+    <languageDeclaration>
+      <language languageCode="eng">English</language>
+      <script scriptCode="Latn">Latin</script>
+    </languageDeclaration>
+    <conventionDeclaration>
+      <abbreviation>AACR2</abbreviation>
+      <citation>Anglo-American Cataloguing Rules</citation>
+    </conventionDeclaration>
+    <localControl localType="typeOfEntity">
+      <term>Entry</term>
+    </localControl>
+    <maintenanceHistory>
+      <maintenanceEvent>
+        <eventType>created</eventType>
+        <eventDateTime standardDateTime="2026-09-09">2026-09-09</eventDateTime>
+        <agentType>human</agentType>
+        <agent>Susan Crowe, Andy May, Felice Rocca</agent>
+        <eventDescription>Public contribution via custom rich-text submission form</eventDescription>
+      </maintenanceEvent>
+    </maintenanceHistory>
+  </control>
+  <cpfDescription>
+    <identity>
+      <entityId>Corkman-Hotel5</entityId>
+      <entityType>concept</entityType>
+      <nameEntry>
+        <part>Corkman Hotel</part>
+        <authorizedForm>AACR2</authorizedForm>
+      </nameEntry>
+    </identity>
+    <description>
+      <places></places>
+      <biogHist>
+        <abstract><![CDATA[<p>One of Carlton’s earliest hotel buildings, on the corner of Leicester and Pelham Streets, the Carlton Inn and first licensed to George Edmonds (Edmunds) in 1856. At the time the Carlton Inn was built, the area north of Victoria Street, including Carlton and parts of North Melbourne, was not subject to the provisions of the <em>Melbourne Building Act</em> (1849). Buildings could be constructed and demolished without permits and this contributed to the somewhat haphazard development of Carlton in its early days. Later known as the Corkman Irish Pub, the building was demolished illegally over the weekend of 16 and 17 October 2016, though subject to a heritage overlay and despite a stop-work order being issued by the Melbourne City Council.</p><h1>Entries in Sands &amp; McDougall’s Melbourne and suburban directory&nbsp;</h1><p>Leicester and Pelham Streets appear under ‘North Melbourne’ in 1860 and 1865. Street numbers begin to appear on Leicester St in 1870, but Carlton Inn does not have number(s) until 1890 (digital access). It is 160-62 in 1890 and 1900, but only 160 in 1895. The stables are mentioned before the Inn and the street number(s). In December 1859, a publican’s licence was granted to John Cozens for the Carlton Inn, present occupant George Edmonds (<a href="http://nla.gov.au/nla.news-article5693144"><em>Argus</em>, 7 December 1859, 3</a>).</p><div class="ql-table-embed"><table><colgroup><col width="47"><col width="66"><col width="198"><col width="132"><col width="186"></colgroup><tbody><tr><td><p dir="ltr"><span>1860&nbsp;</span></p></td><td><p dir="ltr"><span>p.89</span></p></td><td><p dir="ltr"><span>Carlton Inn&nbsp;</span></p></td><td><p dir="ltr"><span>Edmonds, George</span></p></td><td><p dir="ltr"><span>no street number on Pelham St, under North Melbourne</span></p></td></tr><tr><td><p dir="ltr"><span>1860</span></p></td><td><p dir="ltr"><span>p.189</span></p></td><td><p dir="ltr"><span>Carlton Inn</span></p></td><td><p dir="ltr"><span>John Cozens</span></p></td><td><p dir="ltr"><span>51 Leicester Street, N.M.</span></p></td></tr><tr><td><p dir="ltr"><span>1865&nbsp;</span></p></td><td><p dir="ltr"><span>p.72</span></p></td><td><p dir="ltr"><span>Carlton Inn&nbsp;</span></p></td><td><p dir="ltr"><span>Cozens, J</span></p></td><td><p dir="ltr"><span>no street number on Leicester St, under North Melbourne</span></p></td></tr><tr><td><p dir="ltr"><span>1870&nbsp;</span></p></td><td><p dir="ltr"><span>p.88</span></p></td><td><p dir="ltr"><span>Carlton Inn&nbsp;</span></p></td><td><p dir="ltr"><span>Cozens, John&nbsp;</span></p></td><td><p dir="ltr"><span>no street number on Leicester St, under Carlton</span></p></td></tr><tr><td><p dir="ltr"><span>1875&nbsp;</span></p></td><td><p dir="ltr"><span>p.101</span></p></td><td><p dir="ltr"><span>Carlton Inn&nbsp;</span></p></td><td><p dir="ltr"><span>Cozens, John</span></p></td><td><p dir="ltr"><span>no street number on Leicester St, under Carlton</span></p></td></tr><tr><td><p dir="ltr"><span>1880&nbsp;</span></p></td><td><p dir="ltr"><span>p.78</span></p></td><td><p dir="ltr"><span>Carlton Inn&nbsp;</span></p></td><td><p dir="ltr"><span>Cozens, J</span></p></td><td><p dir="ltr"><span>no street number on Pelham St, under Carlton</span></p></td></tr><tr><td><p dir="ltr"><span>1885&nbsp;</span></p></td><td><p dir="ltr"><span>p.97</span></p></td><td><p dir="ltr"><span>Carlton Inn&nbsp;</span></p></td><td><p dir="ltr"><span>Holmes, Robert F</span></p></td><td><p dir="ltr"><span>no street number on Leicester St, under Carlton</span></p></td></tr><tr><td><p dir="ltr"><span>1890&nbsp;</span></p></td><td><p dir="ltr"><span>p.131</span></p></td><td><p dir="ltr"><span>Carlton Inn stables; Carlton Inn&nbsp;</span></p></td><td><p dir="ltr"><span>Strickland, William&nbsp;</span></p></td><td><p dir="ltr"><span>160-162 Leicester St, under Carlton</span></p></td></tr><tr><td><p dir="ltr"><span>1895&nbsp;</span></p></td><td><p dir="ltr"><span>p.150</span></p></td><td><p dir="ltr"><span>Carlton Inn stables; Carlton Inn&nbsp;</span></p></td><td><p dir="ltr"><span>(Man, Wm)&nbsp;</span></p></td><td><p dir="ltr"><span>160 Leicester St, under Carlton</span></p></td></tr><tr><td><p dir="ltr"><span>1900&nbsp;</span></p></td><td><p dir="ltr"><span>p.184</span></p></td><td><p dir="ltr"><span>Carlton Inn stables; Carlton Inn&nbsp;</span></p></td><td><p dir="ltr"><span>(Volkel, Charles A)&nbsp;</span></p></td><td><p dir="ltr"><span>160-162 Leicester St, under Carlton</span></p></td></tr></tbody></table></div><p>PROV holds several records from the Carlton Inn. VPRS 7882 and&nbsp;VPRS 7712 would be most useful, while VPRS 8350 gives a snapshot of what the hotel was like at the particular time.</p><h1>JOHN COZENS</h1><p>The second licensee was John Cozens, from 1859 until his death in 1881. Cozens was born in Dorchester in England about 1820, the son of carpenter Thomas Cozens and his wife Mary. He was living with his parents at the time of the 1841 census, and his occupation then was listed as tailor. After his first wife died in 1846, John married Sarah Stark in Dorchester in November 1849. Sarah was born in South Leigh, Devon. At the 1851 census he is living with Sarah in Dorchester as a master tailor employing three apprentices. The Victorian gold discoveries likely brought the couple to Melbourne soon after, and they arrive on the ship <em>Persia</em> in September 1852, his occupation recorded as tailor. It’s unclear whether the couple have any children before they emigrate. When they have son Thomas in Melbourne in 1855, they have already lost two sons, including Thomas William (born and died 1854 in Melbourne), and perhaps a child before they migrated. Two more of their children do not live beyond infancy —William Stark (died 1859), John Stark (died 1861 aged 4 months).</p><p>In 1878 in the “Missing Persons” column of <em>The Leader</em>, John Cozens (Carlton Inn) sought information: “DORCHESTER — Wanted the address of SIDNEY HERBERT LOVELACE, son of Mr John Lovelace (<em>The Leader</em>, 12 October 1878, 1)”, suggesting ongoing links to his English roots.</p><p>When John died aged 61 on 8 July 1881, his address was listed as Southleigh Cottage, Dryburgh Street, Hotham Hill, the house named after Sarah’s birthplace (<em>Argus</em>, 9 Jul 1881, 1). Probate was granted to his wife Sarah Cozens and his only son Thomas Cozens of the same address (<em>Argus</em>, 14 July 1881, 8). His will is digitised at PROV, and he was buried in the Melbourne General Cemetery. Thomas married Ella Austin in Brighton in October that year (<em>Argus</em>, 7 October 1881, 1). Sarah died in 1890 aged 74 at Southleigh, Hampton Street, Brighton, her son Thomas listed as an ironmonger of Elizabeth Street (<em>Age</em>, 10 March 1890, 8). Her mother’s maiden name was Choron.&nbsp;</p><p>At monthly land sales in November 1857, town lots were offered for sale in North Melbourne: “North of Grattan-street and the Carlton gardens, between Nicholson-street and the University Reserve, on the continuation westward of Johnston-street. Upset [reserve] price, £300 per acre”. John Cozens purchased Lot 20. One rood, £370 the lot” (<em>Argus</em>, 26 November 1857, 5). It’s likely that John and his family did not live at the hotel but in Dryburgh Street. In 1867, John Cozens was a judge of ales &amp; wines at the National Show on the day of the Royal Visit of Albert, the Prince of Wales (<em>Argus</em>, 29 November 1867, 6). He was a member of the Ancient Order of Foresters Court Friendship (<em>Age</em>, 11 July 1881 4).</p>]]></abstract>
+      </biogHist>
+    </description>
+    <relations>
+      <resourceRelation resourceRelationType="subjectOf">
+        <relationEntry localType="published">'Corkman Hotel', in &lt;span style="font-style:italic"&gt;eMelbourne - The Encyclopedia of Melbourne Online&lt;/span&gt;, School of Historical Studies, Department of History, The University of Melbourne</relationEntry>
+        <objectXMLWrap>
+          <bibref xmlns="urn:isbn:1-931666-22-9">
+            <title render="italic">Corkman Hotel</title>
+            <imprint>
+              <publisher>School of Historical Studies&lt;br /&gt; Department of History, The University of Melbourne</publisher>
+            </imprint>
+            <bibseries>
+              <title render="italic">eMelbourne - The Encyclopedia of Melbourne Online</title>
+            </bibseries>
+            <extptr linktype="simple" href="Corkman-Hotel5.xml"></extptr>
+          </bibref>
+        </objectXMLWrap>
+      </resourceRelation>
+    </relations>
+  </cpfDescription>
+</eac-cpf>

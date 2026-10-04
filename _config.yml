@@ -1,0 +1,33 @@
+theme: jekyll-theme-cayman
+
+defaults:
+  # Applies to every page unless a more specific rule below overrides it.
+  - scope:
+      path: ""
+      type: "pages"
+    values:
+      layout: default
+      overrideCommunityContributionForm: true
+
+  # The civic encyclopedia-entry page: needs the entry layout, XML lookup path,
+  # and the contribution form turned on.
+  - scope:
+      path: "civic.md"
+    values:
+      layout: entry
+      EACCPFpath: "civic"
+      overrideCommunityContributionForm: false
+
+  # Facet-list pages: same layout, each just names which slice of
+  # the directory data it shows. Add a new scope block here for each new facet.
+  - scope:
+      path: "people.md"
+    values:
+      layout: facet-list
+      facet: "people"
+
+  - scope:
+      path: "places.md"
+    values:
+      layout: facet-list
+      facet: "places"
