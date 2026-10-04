@@ -387,7 +387,10 @@ Not on this roadmap: the About page's content (the project team writes it outsid
 *To be completed.*
 
 - **Acknowledgement of Country:** *TBD*
-- **Project partners:** Melbourne History Workshop, Carlton Community History Group
-- **Funding:** *TBD*
-- **Project team and contributors:** *TBD*
+- **Produced and published by:** [Melbourne History Workshop](https://melbournehistoryworkshop.com/), [School of Historical & Philosophical Studies](https://arts.unimelb.edu.au/school-of-historical-and-philosophical-studies), The University of Melbourne
+- **In collaboration with:** [Carlton Community History Group](https://cchg.asn.au)
+- **Funding:** University of Melbourne Civic and Community Impact Fund
+- **Banner image:** [State Library Victoria](https://handle.slv.vic.gov.au/10381/92019)
 - **Contact:** *TBD*
+
+Credits name organisations only, not individuals.
