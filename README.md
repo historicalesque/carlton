@@ -39,7 +39,7 @@ Common Ground is a static website hosted on **GitHub Pages** and built with **Je
 
 - **Encyclopedia entries** are XML files in `civic/`. The browser fetches them and renders them on the fly. Existing entries are [EAC-CPF](https://eac.staatsbibliothek-berlin.de/); entries are moving to [TEI](https://tei-c.org/guidelines/p5/) (roadmap §4), and entry pages show both.
 - **Historical directory data** (Sands & McDougall directories and electoral rolls) is one JSON file per source and year in `_data/`. Jekyll publishes compact copies in `data/` plus an index, and each page loads only the files it needs through `scripts/data.js`.
-- **Public contributions** go through a Google Apps Script web app. (The contribution form has been replaced by a TEI version that isn't connected yet; a new Apps Script will be written for it. See roadmap §4.) It saves a copy of each submission to a Google Sheet in the team's shared Google Drive folder, then opens a pull request on this repository. The sheet is a user-friendly backup while the submission process is being settled. The editorial team then merges the pull request (accept) or closes it (reject).
+- **Public contributions** go through a Google Apps Script web app. The form builds each entry as TEI and sends it to the script in `apps-script/Code.gs`, which saves a copy to a Google Sheet in the team's shared Google Drive folder, then opens a pull request on this repository. The form only sends once `contribution_endpoint` is set in `_config.yml` (setup: `apps-script/README.md`). The sheet is a user-friendly backup while the submission process is being settled. The editorial team then merges the pull request (accept) or closes it (reject).
 
 The project is deliberately a **perpetual work in progress**. Gaps in the data and entries that don't exist yet are invitations for the community to contribute, not defects.
 
@@ -57,9 +57,9 @@ Nothing is published until a pull request is merged into `main`. GitHub Pages re
                  └──────────────────────────────────────────────────────────────────────────────┘
 
  Contributor ──▶ form (_layouts/form.html, Quill editor; builds the entry as TEI)
-                   │  not connected yet (was: POST JSON to the old Apps Script)
+                   │  POST { xml } once contribution_endpoint is set in _config.yml
                    ▼
-                 Google Apps Script web app ──▶ 1. copy to Google Sheet (team shared Drive, backup)
+                 apps-script/Code.gs web app ─▶ 1. copy to Google Sheet (team shared Drive, backup)
                                             ──▶ 2. new branch + civic/<slug>.xml + pull request
                                                          │
  Editor ────▶ admin/ ▶ review.html ── lists open PRs touching civic/, previews them ──┐
@@ -109,6 +109,7 @@ With `preview=true`, `id` can be a full URL, such as a raw file on a pull-reques
 | `scripts/tei.js` | Builds an entry as TEI from the contribution form, checks it, and renders TEI entries (entry pages and the form's preview). |
 | `schema/carlton.odd`, `schema/carlton.rng` | The TEI entry format: the customisation (with its documentation) and the schema generated from it. |
 | `tools/convert-map-data.js` | One-off script that split the old `map-data.js` into the files in `_data/`. |
+| `apps-script/Code.gs`, `apps-script/README.md` | The Google Apps Script that receives contribution form entries, saves a row to the Sheet and opens a pull request, and how to set it up. The repo copy is the master; it's pasted into the Sheet's script editor. |
 | `tools/convert-eac-to-tei.html` | One-off page that converted the EAC-CPF entries in `civic/` to TEI with `scripts/tei.js`. Not linked from the site. |
 | `admin/index.html` | Admin landing page for the editorial team, linking to each tool (served at `admin/`). The site footer links here. |
 | `admin/review.html` | Plain-language review page for the editorial team. |
@@ -137,7 +138,7 @@ Notes:
 
 - Internal links leave out `.html` (e.g. `civic?id=…`). GitHub Pages handles this, and `jekyll serve` normally does too. If a link 404s locally, try adding `.html`.
 - `admin/review.html` reads from the live GitHub repo. `admin/carlton-data-editor.html` loads the data from the site it's served from, so locally it shows your local files.
-- Submitting the contribution form locally **creates a real pull request** through the live Apps Script. Close any test pull requests afterwards.
+- Once `contribution_endpoint` is set, sending the contribution form locally **creates a real pull request** through the live Apps Script. Close any test pull requests afterwards.
 
 ## Content: encyclopedia entries (TEI XML)
 
@@ -244,7 +245,7 @@ See [Editing the data](#editing-the-data) above. This is separate from entry sub
 | Service / library | Used by | Notes |
 |---|---|---|
 | GitHub Pages | Hosting | Builds from `main`. |
-| Google Apps Script web app | Not used at the moment | The old script saved a copy of each submission to a Google Sheet in the team's shared Drive folder (backup), then turned it into a branch and pull request. Its source is kept outside this repo. A new script will be written for the TEI form (roadmap §4). |
+| Google Apps Script web app | Receives contribution form entries | `apps-script/Code.gs`: checks the TEI, sets the file name, id and date, adds a row to the Sheet's *TEI submissions* tab and opens a pull request. The GitHub token is a Script property, never in the repo. Setup: `apps-script/README.md`. |
 | GitHub REST API (no sign-in) | `admin/review.html` | Limited to 60 requests/hour per visitor IP address. See [Known issues](#known-issues-and-gotchas). |
 | Quill 1.3.6 | Contribution form | cdn.quilljs.com |
 | Leaflet 1.9.4 | 2D map | cdnjs |
@@ -330,7 +331,8 @@ Decided on 2026-10-04: entries move from EAC-CPF to [TEI P5](https://tei-c.org/g
 - [ ] **Map the collaborators' types**: list the types used in the partners' existing EAC-CPF records (places, concepts and others) and map each to a TEI entry type, then agree the mapping with them.
 - [x] **Convert the existing entries**: all 22 `civic/*.xml` converted by `tools/convert-eac-to-tei.html` (title, authors, submission date and note, article; type set per entry in the page's `KINDS` list). All validate against `schema/carlton.rng`, and every article's text matches the original. Still to do: check the types by hand, and test by resubmitting entries through the form once it's connected.
 - [x] **Pre-fill new entries from the records**: when a record has no entry yet, the form fills in its addresses (merged across years, with coordinates) and one source per record, linked to that year's directory page (`civic/Sands-McDougall-Directory-<year>.xml`) or to Electoral Rolls. Electoral roll records also set the type, name and occupation. Directory listings aren't parsed for names or types.
-- [ ] **New Apps Script**, written from scratch: check the XML is well-formed, set the entry id, filename and date itself, save a copy to the Sheet and open the pull request.
+- [x] **New Apps Script**, written from scratch (`apps-script/Code.gs`): checks the XML is well-formed, sets the entry id, filename and date itself, saves a row to the Sheet and opens the pull request. A new version of an existing entry replaces its file in the pull request.
+- [ ] **Connect the form**: deploy the script (`apps-script/README.md`) and set `contribution_endpoint` in `_config.yml`.
 - [ ] **Search, People/Places and the maps read the TEI subject records** (names, addresses, coordinates), so entries appear on the map and alongside their directory listings. Search already finds TEI entries by title and article text.
 - [ ] Later: generate EAC-CPF 2.0 (people, businesses, families) or RiC data from the TEI files for archives and partners who want it.
 - [ ] Validate entries against `schema/carlton.rng` before merging (in an XML editor such as Oxygen, or with `jing`).

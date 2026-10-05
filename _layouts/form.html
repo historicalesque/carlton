@@ -282,6 +282,10 @@
     button.small { font-size: 13px; padding: 6px 12px; }
     .actions { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
     .actions .note { font-size: 13px; color: var(--ink-faint); }
+    .hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+    .send-status { margin-top: 14px; padding: 8px 12px; font-size: 14px; border-left: 3px solid var(--sage-dark); background: var(--paper-deep); }
+    .send-status.ok { border-left-color: var(--moss); background: var(--sage-light); color: var(--moss-deep); }
+    .send-status.error { border-left-color: #8a2c1d; background: #f6e4dc; color: #8a2c1d; }
     @media (max-width: 480px) {
       .actions button { width: 100%; }
     }
@@ -314,7 +318,11 @@
 <body>
 
 <div class="form-card">
+{%- comment %} An empty string is truthy in Liquid; default turns it into false {% endcomment %}
+{%- assign connected = site.contribution_endpoint | default: false %}
+{%- unless connected %}
   <p class="test-note"><strong>Not connected yet.</strong> This new form doesn't send anything: use <em>Preview</em> to see how the entry would look, or download the XML.</p>
+{%- endunless %}
 
   <div id="details-container"></div>
 
@@ -437,11 +445,22 @@
       </details>
     </section>
 
+    <!-- Honeypot: hidden from people, often filled in by bots -->
+    <div class="hp" aria-hidden="true"><label for="website">Website</label><input type="text" id="website" name="website" tabindex="-1" autocomplete="off"></div>
+
     <div class="actions">
+{%- if connected %}
+      <button type="button" class="primary" id="sendBtn">Send to the editors</button>
+      <button type="button" class="secondary" id="previewBtn">Preview</button>
+{%- else %}
       <button type="button" class="primary" id="previewBtn">Preview</button>
+{%- endif %}
       <button type="button" class="secondary" id="downloadBtn">Download XML</button>
+{%- unless connected %}
       <span class="note">Nothing is sent until the form is connected.</span>
+{%- endunless %}
     </div>
+    <p id="sendStatus" class="send-status" role="status" hidden></p>
   </form>
 
   <section id="preview" hidden aria-live="polite">
@@ -893,6 +912,41 @@
     a.download = `${collect().recordId || 'entry'}.xml`;
     a.click();
     setTimeout(() => URL.revokeObjectURL(a.href), 1000);
+  });
+
+  /* ---------- Send (when _config.yml has contribution_endpoint) ---------- */
+  // The Apps Script in apps-script/Code.gs receives this, sets the file
+  // name, id and date itself, and opens a pull request for the editors.
+  const ENDPOINT = {{ site.contribution_endpoint | default: '' | jsonify }};
+  function sendStatus(text, level) {
+    $('sendStatus').textContent = text;
+    $('sendStatus').className = `send-status ${level || ''}`;
+    $('sendStatus').hidden = false;
+  }
+  if (ENDPOINT) $('sendBtn').addEventListener('click', async () => {
+    const xml = showPreview();
+    if (TEIEntry.check(collect()).some((c) => c.level === 'error')) {
+      sendStatus('Please fix the problems listed in the preview below, then send again.', 'error');
+      return;
+    }
+    // Entries are found by their record's text id (see the map), so a new
+    // entry for a record keeps that id; numeric ids fall back to the title.
+    const sendId = targetId && !/^\d+$/.test(targetId) ? targetId : '';
+    $('sendBtn').disabled = true;
+    sendStatus('Sending…');
+    try {
+      const res = await fetch(ENDPOINT, {
+        method: 'POST',
+        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+        body: JSON.stringify({ formVersion: 3, xml, targetId: sendId, website: $('website').value })
+      });
+      const result = await res.json();
+      if (result.status !== 'success') throw new Error(result.message || 'The submission was not accepted.');
+      sendStatus('Thank you! Your entry has been sent to the editorial team, who will review it before it appears on the site.', 'ok');
+    } catch (err) {
+      $('sendBtn').disabled = false;
+      sendStatus(`Sorry, it didn't send: ${err.message} You can use Download XML to keep a copy.`, 'error');
+    }
   });
 
   applyKindLabels();
