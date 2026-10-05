@@ -4,7 +4,7 @@
   <teiHeader>
     <fileDesc>
       <titleStmt>
-        <title>Pelham Hotel</title>
+        <title>Pelham Street</title>
         <author>Barbara Minchinton</author>
       </titleStmt>
       <publicationStmt>
@@ -23,13 +23,13 @@
   <standOff>
     <listPlace>
       <place xml:id="subject">
-        <placeName type="main">Pelham Hotel</placeName>
+        <placeName type="main">Pelham Street</placeName>
       </place>
     </listPlace>
   </standOff>
   <text>
     <body>
-      <p>See also Mary Mather</p>
+      <p>A street in Carlton.</p>
     </body>
   </text>
 </TEI>

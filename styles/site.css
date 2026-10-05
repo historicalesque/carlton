@@ -1467,4 +1467,3 @@ html.map3d-page, body.map3d-page {
 .pv-chron { border-collapse: collapse; width: 100%; margin-bottom: 12px; font-size: 14px; }
 .pv-chron th, .pv-chron td { border-bottom: 1px solid var(--paper-line); padding: 5px 8px 5px 0; text-align: left; vertical-align: top; }
 .pv-chron th { white-space: nowrap; color: var(--ink); font-weight: normal; font-family: var(--font-mono); }
-.pv-by { font-style: italic; color: var(--ink-faint); text-align: right; margin-top: 16px; }
