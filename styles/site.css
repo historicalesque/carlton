@@ -1396,3 +1396,43 @@ html.map3d-page, body.map3d-page {
     box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
     text-align: center;
 }
+
+/* Map ↔ entry links. The details popup links a record to its entry, and an
+   entry's "See on the map" opens map?entity=<entityID>, which rings the
+   entity's markers and says what is shown. */
+.modal-entry-link { font: 700 0.85rem var(--font-mono); color: var(--moss); }
+.modal-entry-link.quiet { font-weight: 400; color: var(--ink-faint); }
+#modal-link p { margin: 0 0 14px; }
+
+.map-focus-ring { animation: map-focus-pulse 1.6s ease-in-out infinite; filter: drop-shadow(0 0 2px rgba(0, 0, 0, 0.8)); }
+@keyframes map-focus-pulse {
+    0%, 100% { stroke-opacity: 1; }
+    50%      { stroke-opacity: 0.6; }
+}
+@media (prefers-reduced-motion: reduce) {
+    .map-focus-ring { animation: none; }
+}
+
+.map-focus-notice {
+    max-width: min(420px, calc(100vw - 32px));
+    padding: 10px 36px 10px 14px; position: relative;
+    background: var(--paper); color: var(--ink-soft);
+    border: 1px solid var(--sage-dark); border-radius: 4px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.35);
+    font: 0.85rem/1.5 var(--font-serif);
+}
+.map-focus-notice strong { color: var(--ink); }
+.map-focus-notice a { white-space: nowrap; font-family: var(--font-mono); font-size: 0.8rem; }
+.map-focus-close {
+    position: absolute; top: 4px; right: 6px;
+    font: bold 18px/1 var(--font-ui); padding: 4px 6px;
+    background: none; border: 0; color: var(--ink-faint); cursor: pointer;
+}
+.map-focus-close:hover { color: var(--ink); }
+
+.entry-map-link { margin: 0 0 16px; font: 0.9rem var(--font-mono); }
+.entry-map-link a { font-weight: 700; color: var(--moss); }
+.entry-map-link .entry-map-years { color: var(--ink-faint); }
+@media (max-width: 600px) {
+    .leaflet-bottom.leaflet-left .map-focus-notice { margin-bottom: 26px; } /* clear of the attribution line */
+}

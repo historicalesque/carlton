@@ -44,7 +44,12 @@ let mapApi = null;
 MapCommon.loadByYear(document.getElementById('mapData'), {
     onStart: files => { mapApi = startMap(files); },
     onYear:  (year, records) => mapApi.addYear(year, records),
-    onAll:   () => mapApi.addCrossYearLinks(),
+    onAll:   () => {
+        mapApi.addCrossYearLinks();
+        // map?entity=<entityID>, from an entry's "See on the map" link
+        const entity = new URLSearchParams(location.search).get('entity');
+        if (entity) mapApi.focusEntity(entity);
+    },
 });
 
 // Not indented, to keep the history of the code below readable.
@@ -138,6 +143,7 @@ function arcOffsetForYear(year, street, side) {
 
 // ── Leaflet layer objects ──
 const markerLayers = {}; // `${year}-${street}-${side}-${idx}` → L.Marker
+const focusRings   = {}; // same keys → L.CircleMarker round a record from map?entity=
 const polyLayers   = {}; // `${year}-${street}-${side}` → L.Polyline
 const yearGroups   = {}; // year → L.LayerGroup (holds markers + polylines for that year)
 
@@ -264,6 +270,8 @@ function applyPositionsToMap(chains = CHAINS) {
                 // Refresh icon so uncertainty class reflects current _computed state
                 mk.setIcon(makeIcon(entry, YEAR_COLORS[year]));
             }
+            const ring = focusRings[`${key}-${idx}`];
+            if (ring) ring.setLatLng([pos.lat, pos.lng]);
             pts.push([pos.lat, pos.lng]);
         });
         polyLayers[key].setLatLngs(pts);
@@ -414,6 +422,7 @@ function getTileAttribution(source, id) {
         : `Georeferenced via <a href="https://mapwarper.net/maps/${id}">Map Warper</a> · ${MMBW_SLV_ATTRIBUTION}`;
 }
 
+const yearCheckboxes = {}; // year → its checkbox in the panel
 const CustomControl = L.Control.extend({
     options: { position:'topright' },
     onAdd() {
@@ -442,6 +451,7 @@ const CustomControl = L.Control.extend({
         YEARS.slice().reverse().forEach(year => {
             const row = L.DomUtil.create('label', 'year-row', container);
             const cb  = L.DomUtil.create('input', '', row);
+            yearCheckboxes[year] = cb;
             cb.type = 'checkbox'; cb.checked = (year === YEARS[YEARS.length - 1]);
             const swatch = L.DomUtil.create('span', 'year-swatch', row);
             swatch.style.background = YEAR_COLORS[year];
@@ -530,6 +540,64 @@ return {
     addCrossYearLinks() {
         crossYearById = MapCommon.buildCrossYearIndex(CHAINS, rawChains);
         rebuildCrossYearLines();
+    },
+    // Show every drawn record with this entityID: tick their years, ring
+    // them, zoom to them and say what is shown, with a link back to the
+    // entry. Records are drawn where they have coordinates, or estimated
+    // between mapped neighbours on the same street; a record with neither
+    // isn't on the map, and the notice says so.
+    focusEntity(id) {
+        const hits = [];
+        CHAINS.forEach(({ year, street, side }) => {
+            const key = `${year}-${street}-${side}`;
+            rawChains[key].forEach((entry, idx) => {
+                // == on purpose: "123" in the address matches the number 123
+                if (entry.entityID == id) hits.push({ year, entry, posKey: `${key}-${idx}` });
+            });
+        });
+        hits.sort((a, b) => a.year - b.year);
+        const drawn = hits.filter(h => currentPos[h.posKey]);
+        drawn.forEach(({ year }) => {
+            const cb = yearCheckboxes[year];
+            if (cb && !cb.checked) { cb.checked = true; cb.dispatchEvent(new Event('change')); }
+        });
+        drawn.forEach(({ year, posKey }) => {
+            const pos = currentPos[posKey];
+            focusRings[posKey] = L.circleMarker([pos.lat, pos.lng], {
+                radius: 15, color: '#fff', weight: 3, fillColor: '#fff', fillOpacity: 0.2, interactive: false, className: 'map-focus-ring',
+            }).addTo(yearGroups[year]);
+        });
+        if (drawn.length) {
+            // Keep clear of the layers panel, which is open on wider screens
+            const panelOpen = !window.matchMedia('(max-width: 600px)').matches;
+            map.fitBounds(L.latLngBounds(drawn.map(h => currentPos[h.posKey])), {
+                paddingTopLeft: [60, 60], paddingBottomRight: [panelOpen ? 360 : 60, 120], maxZoom: 19,
+            });
+        }
+
+        // Name it by its entry, or for a numeric ID by its latest listing
+        const hasEntry = !!MapCommon.entryFor({ entityID: id });
+        const named = hasEntry ? id : (/^\d+$/.test(id) && hits.length ? hits[hits.length - 1].entry.listing : id);
+        const years = [...new Set(drawn.map(h => h.year))];
+        const estimated = drawn.some(h => h.entry._computed);
+        const notice = L.control({ position: 'bottomleft' });
+        notice.onAdd = () => {
+            const el = L.DomUtil.create('div', 'map-focus-notice');
+            el.setAttribute('role', 'status');
+            L.DomEvent.disableClickPropagation(el);
+            const what = `<strong>${MapCommon.escapeHtml(named)}</strong>`;
+            el.innerHTML = (drawn.length
+                ? `${what}: ${drawn.length === 1 ? 'one listing' : `${drawn.length} listings`} (${years.join(', ')}), ringed in white.${estimated ? ' Some positions are estimated.' : ''}`
+                : `${what} isn't on the map yet.`)
+                + ` <a href="civic?id=${encodeURIComponent(id)}">← Back to the ${hasEntry ? 'entry' : 'record'}</a>`
+                + ' <button type="button" class="map-focus-close" aria-label="Close">&times;</button>';
+            el.querySelector('.map-focus-close').onclick = () => {
+                notice.remove();
+                Object.keys(focusRings).forEach(k => { focusRings[k].remove(); delete focusRings[k]; });
+            };
+            return el;
+        };
+        notice.addTo(map);
     },
 };
 }

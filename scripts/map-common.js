@@ -267,6 +267,27 @@ window.MapCommon = (function () {
         return 'place';
     }
 
+    // ── Entries ──
+    // Same rule entry.html uses to turn ?id= into a file name
+    function slugifyId(text) {
+        return String(text)
+            .replace(/\s+/g, '-')
+            .replace(/[^a-zA-Z0-9_\-]/g, '')
+            .replace(/\-\-+/g, '-');
+    }
+
+    // The entityID of the published entry (civic/<slug>.xml) for a record,
+    // or null. Only text entityIDs can name an entry. The list of entries is
+    // window.ENTRY_FILES, written by Jekyll in _includes/map-details-modal.html.
+    function entryFor(entry) {
+        if (typeof entry.entityID !== 'string') return null;
+        return (window.ENTRY_FILES || []).includes(slugifyId(entry.entityID)) ? entry.entityID : null;
+    }
+
+    function escapeHtml(text) {
+        return String(text).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+    }
+
     // ── Details modal (markup in _includes/map-details-modal.html) ──
     let modalEls = null;
     let modalOpenedAt = 0;
@@ -344,8 +365,12 @@ window.MapCommon = (function () {
         }
         m.body.innerHTML = bodyHtml;
 
-        // 3. Link to the entry page
-        m.link.innerHTML = `<p><a href="civic?id=${encodeURIComponent(entry.entityID)}">More Information ...</a></p>`;
+        // 3. Link to the entry page: "Read the entry" when one is published
+        // for this record's entityID, otherwise "Start an entry" (the same
+        // page shows the contribution form), as on the search page.
+        const name = entryFor(entry);
+        const linkText = name ? `Read the entry: ${escapeHtml(name)} →` : 'Start an entry';
+        m.link.innerHTML = `<p><a class="modal-entry-link${name ? '' : ' quiet'}" href="civic?id=${encodeURIComponent(name || entry.entityID)}">${linkText}</a></p>`;
 
         // 4. Coordinates
         const lat = pos ? pos.lat : entry.lat;
@@ -368,6 +393,7 @@ window.MapCommon = (function () {
         chainKey, buildChains, buildCrossYearIndex,
         bezier, sideSign, applyOffset, computeChain,
         markerShape,
+        entryFor, escapeHtml,
         initDetailsModal, openDetailsModal,
     };
 })();

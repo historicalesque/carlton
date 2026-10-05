@@ -106,6 +106,32 @@ function slugifyId(text) {
     });
   }
 
+  // "See on the map": links to map?entity=<id> when the map draws at least
+  // one record with this entityID. The map draws a record where it has
+  // coordinates, or estimates its place between mapped records on the same
+  // year, street and side; a record with neither isn't drawn, so no link.
+  async function addMapLink(recordId) {
+    if (!recordId || isPreview || !window.CGData) return;
+    let drawnYears;
+    try {
+      const records = await CGData.forEntity(recordId);
+      if (!records.length) return;
+      const chain = (r) => `${r.year}|${r.street}|${r.cardinality}`;
+      const yearRecords = await CGData.load({ years: [...new Set(records.map((r) => r.year))] });
+      const anchored = new Set(yearRecords.filter((r) => r.lat != null && r.lng != null).map(chain));
+      drawnYears = [...new Set(records.filter((r) => anchored.has(chain(r))).map((r) => r.year))].sort();
+    } catch (err) {
+      return; // no link if the data can't be loaded
+    }
+    if (!drawnYears.length) return;
+    const p = document.createElement('p');
+    p.className = 'entry-map-link';
+    p.innerHTML = `<a href="map?entity=${encodeURIComponent(recordId)}">See on the map →</a> <span class="entry-map-years">(${drawnYears.join(', ')})</span>`;
+    const header = entryContainer.querySelector('.entry-header');
+    if (header) header.after(p);
+    else entryContainer.prepend(p);
+  }
+
   // The form (form.html) posts its height whenever it changes, so the iframe
   // fits the form exactly instead of a fixed height.
   window.addEventListener('message', (event) => {
@@ -280,11 +306,13 @@ function slugifyId(text) {
 
       // Render the form below the successfully loaded article
       showContributionForm(fileId, true);
+      addMapLink(fileId);
 
     } catch (error) {
       console.warn("XML file not found, showing submission form:", error);
       // Render the form alone as a new article request
       showContributionForm(fileId, false);
+      addMapLink(fileId);
     }
   } else {
     // If there is no ?id= parameter in the URL, show a clean form
