@@ -1,5 +1,10 @@
 theme: jekyll-theme-cayman
 
+# The Apps Script web app (/exec URL) that receives contribution form entries
+# (apps-script/Code.gs, setup in apps-script/README.md). Leave empty to keep
+# the form unconnected: it then only previews and downloads.
+contribution_endpoint: ""
+
 defaults:
   # Applies to every page unless a more specific rule below overrides it.
   - scope:
