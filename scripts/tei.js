@@ -269,7 +269,8 @@ window.TEIEntry = (function () {
         has(c.place) ? el('place', null, el('placeName', null, trim(c.place))) : null))) : null,
       relations.length ? el('listRelation', null, relations.map((r) => el('relation', {
         type: r.targetType || '',
-        name: trim(r.relationType) || 'related',
+        // @name is a single word in TEI, so "Family member" becomes Family-member
+        name: trim(r.relationType).replace(/\s+/g, '-') || 'related',
         active: '#subject',
         // Entries are addressed by name on the site (civic?id=…), so a
         // related entry without a link still gets one.
@@ -473,7 +474,7 @@ window.TEIEntry = (function () {
 
     const relations = all(xml, 'relation').map((r) => {
       const name = text(kids(r, 'desc')[0]);
-      const rt = r.getAttribute('name');
+      const rt = (r.getAttribute('name') || '').replace(/-/g, ' ');
       const d = dates(r);
       return `<li>${link(r.getAttribute('passive'), esc(name))}${rt && rt !== 'related' ? ` <span class="pv-dates">${esc(rt)}</span>` : ''}${d ? ` <span class="pv-dates">(${esc(d)})</span>` : ''}</li>`;
     }).join('');

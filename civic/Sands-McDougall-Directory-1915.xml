@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="https://historicalesque.github.io/carlton/schema/carlton.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0" type="topic" xml:lang="en">
+  <teiHeader>
+    <fileDesc>
+      <titleStmt>
+        <title>Sands &amp; McDougall Directory, 1915</title>
+      </titleStmt>
+      <publicationStmt>
+        <publisher>Common Ground</publisher>
+        <idno type="entry">Sands-McDougall-Directory-1915</idno>
+      </publicationStmt>
+      <sourceDesc>
+        <listBibl>
+          <bibl>Sands &amp; McDougall's directory of Melbourne, 1915.</bibl>
+        </listBibl>
+      </sourceDesc>
+    </fileDesc>
+    <revisionDesc status="published">
+      <change when="2026-10-05" type="created">Page for a source, set up by the editorial team.</change>
+    </revisionDesc>
+  </teiHeader>
+  <standOff>
+    <listRelation>
+      <relation type="topic" name="part-of" active="#subject" passive="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directories">
+        <desc>Sands McDougall Directories</desc>
+      </relation>
+    </listRelation>
+  </standOff>
+  <text>
+    <body>
+      <p>The Sands &amp; McDougall directory of Melbourne for 1915. Its Carlton listings are on the site's maps, and new entries that use one of its listings link here as their source.</p>
+    </body>
+  </text>
+</TEI>
