@@ -21,7 +21,7 @@
 - [How the site works](#how-the-site-works)
 - [Repository layout](#repository-layout)
 - [Running the site locally](#running-the-site-locally)
-- [Content: encyclopedia entries (EAC-CPF XML)](#content-encyclopedia-entries-eac-cpf-xml)
+- [Content: encyclopedia entries (TEI XML)](#content-encyclopedia-entries-tei-xml)
 - [Data: directories and electoral rolls](#data-directories-and-electoral-rolls)
 - [Editorial workflows](#editorial-workflows)
 - [Adding a new page or facet](#adding-a-new-page-or-facet)
@@ -95,14 +95,14 @@ With `preview=true`, `id` can be a full URL, such as a raw file on a pull-reques
 | `_config.yml` | Jekyll config. Sets the theme and per-page defaults (layout, `EACCPFpath`, `facet`, whether the contribution form shows). |
 | `_layouts/default.html` | Site shell: header, navigation, sidebar and footer. Does **not** load any data; layouts that need it load it through `scripts/data.js`. |
 | `_layouts/search.html`, `scripts/search.js` | Search page (see [Search, facets and maps](#search-facets-and-maps)). |
-| `_layouts/entry.html` | Fetches and renders one EAC-CPF entry, and adds the contribution form. |
+| `_layouts/entry.html` | Fetches and renders one entry (TEI, or EAC-CPF for any older file), and adds the contribution form. |
 | `_layouts/form.html` | Contribution form (Quill 1.3.6). Builds the entry as TEI, with optional extra sections and a *Show all fields* switch. Not connected yet: it previews the entry and downloads the XML. |
 | `_layouts/new.html` | "Start a new entry" box that redirects to `civic?id=…`. |
 | `_layouts/facet-list.html` | People / Places listings. |
 | `_layouts/map.html`, `_layouts/map3d.html` | 2D Leaflet map and 3D three.js map. |
 | `scripts/map-common.js`, `_includes/map-details-modal.html` | Functions and the details popup shared by both maps. |
 | `*.md` (root) | One small file per page. Mostly front matter that picks a layout. `aToZ.md` is the hand-maintained index of featured pages. |
-| `civic/*.xml` | Published encyclopedia entries (EAC-CPF). |
+| `civic/*.xml` | Published encyclopedia entries (TEI). See `docs/SCHEMA.md`. |
 | `_data/directory/<year>.json`, `_data/electoral-roll/<year>.json` | The directory and electoral-roll records, one file per source and year, one record per line. **Edit these.** See [Data](#data-directories-and-electoral-rolls). |
 | `data/` | What the browser downloads, generated from `_data/` by Jekyll: one small page per data file, `data/index.json` (the list of files), and `uom-land-parcels.geojson` (University of Melbourne land parcels). |
 | `scripts/data.js` | Shared data loader used by every page that shows records. |
@@ -118,19 +118,14 @@ With `preview=true`, `id` can be a full URL, such as a raw file on a pull-reques
 | `scripts/vendor/` | Third-party scripts saved into the repo (MiniSearch). |
 | `styles/site.css` | Site styles. |
 | `images/` | Static images. |
+| `docs/SCHEMA.md` | Reference for the entry format (TEI) and the record fields (JSON). |
+| `docs/proposals/` | Design proposals for work that hasn't started. |
+| `CONTRIBUTING.md` | How to propose a change, entry and data conventions. |
+| `Gemfile` | Ruby gems for building the site locally. |
 
 ## Running the site locally
 
-You need Ruby (3.x) and Bundler. The repo has no `Gemfile` yet, so create one locally (please don't commit it until we agree to; see the roadmap):
-
-```ruby
-# Gemfile
-source "https://rubygems.org"
-gem "github-pages", group: :jekyll_plugins
-gem "webrick"
-```
-
-Then:
+You need Ruby (3.x) and Bundler. The `Gemfile` installs the `github-pages` gem, which pins Jekyll and its plugins to the versions GitHub Pages uses, so a local build matches the live site. Then:
 
 ```bash
 bundle install
@@ -144,23 +139,19 @@ Notes:
 - `admin/review.html` reads from the live GitHub repo. `admin/carlton-data-editor.html` loads the data from the site it's served from, so locally it shows your local files.
 - Submitting the contribution form locally **creates a real pull request** through the live Apps Script. Close any test pull requests afterwards.
 
-## Content: encyclopedia entries (EAC-CPF XML)
+## Content: encyclopedia entries (TEI XML)
 
-Entries follow the EAC-CPF schema (`urn:isbn:1-931666-33-4`). For a full example, see `civic/Corkman-Hotel.xml` or `civic/Larrikins-and-Pushes.xml`.
+Every entry in `civic/` is a TEI file, written to the project customisation in `schema/carlton.odd`. **The full reference is [`docs/SCHEMA.md`](docs/SCHEMA.md)**; the conventions for adding or editing entries are in [`CONTRIBUTING.md`](CONTRIBUTING.md). For a full example, see `civic/Corkman-Hotel.xml`.
 
-**Current conventions.** These are still settling as the project goes. Please update this section when a decision is made.
-
-- **Filename = slug of the entry ID**: spaces become `-`, anything other than letters, digits, `_` and `-` is removed, and the file goes in `civic/`, e.g. `Mary Mather (Pelham Hotel)` → `civic/Mary-Mather-Pelham-Hotel.xml`. The slug logic is `slugifyId()` in `_layouts/entry.html`. A file that doesn't match the slug won't be found.
-- `<recordId>` and `<entityId>` match the filename (without `.xml`).
-- `<maintenanceHistory>` records who contributed and when. The Apps Script sets this for public contributions.
-- `<entityType>`: every entry so far uses `concept`, including people and hotels. *TBD: decide whether to use EAC-CPF's `person` / `corporateBody` / `family`.*
+- **Filename = slug of the entry ID**: spaces become `-`, anything other than letters, digits, `_` and `-` is removed, and the file goes in `civic/`, e.g. `Mary Mather (Pelham Hotel)` → `civic/Mary-Mather-Pelham-Hotel.xml`. The slug logic is `slugifyId()` in `_layouts/entry.html`. A file that doesn't match the slug won't be found. `<idno type="entry">` holds the same slug.
+- `<revisionDesc>` has one `<change>` per contribution or edit.
 - To add an entry to the A–Z, add a link in `aToZ.md` by hand.
 
-Open questions to settle: controlled vocabulary for `entityType` and `localType`, how to cite sources inside entries, how to link entries to directory records, and what to do with entries that have two names (e.g. *Carlton Inn* / *Corkman Hotel*).
+Open questions to settle: fixed lists for `div`, `state` and `relation` types, and what to do with entries that have two names (e.g. *Carlton Inn* / *Corkman Hotel*). See roadmap §4.
 
-### The new entry format (TEI)
+### The schema
 
-Entries are moving to TEI (roadmap §4). The format is described in `schema/carlton.odd`, and `schema/carlton.rng` is the schema generated from it. The contribution form already writes this format. In short, `<TEI type="person|org|family|place|topic">` holds a `teiHeader` (title, authors, sources, one `change` per edit), a `standOff` with the subject's structured facts (`xml:id="subject"`), the chronology and links to other entries, and the article in `text/body`.
+The format is described in `schema/carlton.odd`, and `schema/carlton.rng` is the schema generated from it. The contribution form already writes this format. In short, `<TEI type="person|org|family|place|topic">` holds a `teiHeader` (title, authors, sources, one `change` per edit), a `standOff` with the subject's structured facts (`xml:id="subject"`), the chronology and links to other entries, and the article in `text/body`.
 
 To regenerate the schema after editing `carlton.odd`, you need Java, Saxon HE, the [TEI Stylesheets](https://github.com/TEIC/Stylesheets) and a `p5subset.xml` for TEI P5 4.12.0:
 
@@ -266,7 +257,6 @@ See [Editing the data](#editing-the-data) above. This is separate from entry sub
 - **Field names are inconsistent** (`year` vs `Given Names` vs `Occupation`), and `entityID` mixes numbers and strings (strings are deliberate links made by a person; see the [field reference](#data-directories-and-electoral-rolls)).
 - **The A–Z is maintained by hand** as Markdown. See roadmap §3.
 - **Review page rate limit (unlikely, but confusing if it happens):** `admin/review.html` calls the GitHub API without signing in, which GitHub caps at 60 requests per hour per IP address. Listing submissions uses one request plus one per open pull request. A small editorial team won't normally reach this, but a large backlog of submissions, or several people on one shared network (e.g. a university or library), could. **Symptoms:** the review page shows an error, an empty list, or submissions that won't load, even though they're visible on GitHub. **Fix:** wait up to an hour, or review directly on GitHub in the meantime.
-- **Entries use EAC-CPF loosely.** Every entry is `<entityType>concept</entityType>` (EAC-CPF expects `person`, `corporateBody` or `family`), and most of the schema's structure goes unused. Entries are moving to TEI instead; see roadmap §4.
 - **No automated checks.** Malformed XML or a broken data file can be merged without anyone noticing. See roadmap §5.
 
 ---
@@ -279,7 +269,7 @@ This is a living plan, so reorder it as priorities and funding change. Items are
 
 Goal: pages only download the data they need, show visitors what's happening while it loads, and the data becomes easier to edit, review and reuse.
 
-- [ ] **Agree on a data schema**: consistent `camelCase` field names (`givenNames`, `surname`, `occupation`, …), a clear rule for `entityID` (numeric record ID plus a separate `personId`/`placeId` for linking across years), and which fields are required. Write it up in `data/SCHEMA.md`.
+- [ ] **Agree on a data schema**: consistent `camelCase` field names (`givenNames`, `surname`, `occupation`, …), a clear rule for `entityID` (numeric record ID plus a separate `personId`/`placeId` for linking across years), and which fields are required. Write it up in `docs/SCHEMA.md`. The current fields and a starting proposal are written up there; the names still need agreeing before any file changes.
 - [x] **Split the data into JSON files**: one file per source and year in `_data/`, one record per line, with `data/index.json` generated by Jekyll (field names unchanged). Converted by `tools/convert-map-data.js`.
 - [x] **Shared data loader** (`scripts/data.js`): each page fetches only the files it needs, in parallel, at most once per page (the browser's cache covers moving between pages). People/Places and search use each year as soon as it arrives; the contribution form fetches only the files holding that entry's records.
 - [x] **Loading feedback for visitors**: "Loading the 1905 directory… (4 of 9)", and a message with a *Try again* button if a file fails to load.
@@ -348,8 +338,8 @@ Decided on 2026-10-04: entries move from EAC-CPF to [TEI P5](https://tei-c.org/g
 ### 5. Quality and safety nets
 
 - [ ] **GitHub Action that runs on every pull request**: check that XML is well-formed and valid against `schema/carlton.rng`, check that data JSON is valid against the schema, and check that the entry filename matches the `recordId`. Editors would then see a green tick or red cross on each submission.
-- [ ] Commit a `Gemfile` so local builds match GitHub Pages.
-- [ ] Contributor guide (`CONTRIBUTING.md`) setting out entry conventions as they're agreed.
+- [x] Commit a `Gemfile` so local builds match GitHub Pages.
+- [x] Contributor guide (`CONTRIBUTING.md`) setting out entry conventions as they're agreed. Update it as conventions change.
 
 ### 6. Maps and community geocoding
 
@@ -370,7 +360,7 @@ Placing records on the map is **ongoing community work**: about 16% of records h
 - [x] **Restyle the contribution form to match the site**: use the site's tokens and fonts, and size the iframe to its content instead of `min-height: 800px` (#48). (The double rule under entry titles was removed in #43.)
 - [x] **Give "Suggest new article" a proper page**: `new.md` now has a heading and a short explanation, and the field and button use the site's styles.
 - [x] **People / Places contents**: show the year after each street name, e.g. "Bouverie Street (1905) listings". Sort by street within each year. One long page is fine (#51). (The extra `.facet-list` side padding was removed in #43.)
-- [ ] **Mobile pass**:
+- [x] **Mobile pass** (checked again on 2026-10-05: no page scrolls sideways at phone width):
   - [x] 2D map: collapse the layers panel on phones and use the moss accent colour.
   - [x] 3D map: add a ← Home link and use `100dvh`.
   - [x] Nav: fit all five items on one row on phones.
