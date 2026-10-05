@@ -109,6 +109,7 @@ With `preview=true`, `id` can be a full URL, such as a raw file on a pull-reques
 | `scripts/tei.js` | Builds an entry as TEI from the contribution form, checks it, and renders TEI entries (entry pages and the form's preview). |
 | `schema/carlton.odd`, `schema/carlton.rng` | The TEI entry format: the customisation (with its documentation) and the schema generated from it. |
 | `tools/convert-map-data.js` | One-off script that split the old `map-data.js` into the files in `_data/`. |
+| `tools/convert-eac-to-tei.html` | One-off page that converted the EAC-CPF entries in `civic/` to TEI with `scripts/tei.js`. Not linked from the site. |
 | `admin/index.html` | Admin landing page for the editorial team, linking to each tool (served at `admin/`). The site footer links here. |
 | `admin/review.html` | Plain-language review page for the editorial team. |
 | `admin/carlton-data-editor.html` | Browser-based editor for the directory and electoral-roll files. |
@@ -337,7 +338,7 @@ Decided on 2026-10-04: entries move from EAC-CPF to [TEI P5](https://tei-c.org/g
 - [x] **Entry pages render TEI** (`_layouts/entry.html`, with the renderer in `scripts/tei.js`), and still show EAC-CPF files until they're converted.
 - [ ] **Entry style guide**: generate readable documentation from `carlton.odd` (TEI Stylesheets `odd2html`), with one worked example per entry type. Tighten the customisation as conventions settle, e.g. fixed lists for `div`, `state` and `relation` types, and drop modules nobody uses.
 - [ ] **Map the collaborators' types**: list the types used in the partners' existing EAC-CPF records (places, concepts and others) and map each to a TEI entry type, then agree the mapping with them.
-- [ ] **Convert the existing entries**: a script that turns each `civic/*.xml` into TEI (title, authors, article, dates), then a check by hand of each entry type. Also test by resubmitting existing entries through the form.
+- [x] **Convert the existing entries**: all 22 `civic/*.xml` converted by `tools/convert-eac-to-tei.html` (title, authors, submission date and note, article; type set per entry in the page's `KINDS` list). All validate against `schema/carlton.rng`, and every article's text matches the original. Still to do: check the types by hand, and test by resubmitting entries through the form once it's connected.
 - [ ] **New Apps Script**, written from scratch: check the XML is well-formed, set the entry id, filename and date itself, save a copy to the Sheet and open the pull request.
 - [ ] **Search, People/Places and the maps read the TEI subject records** (names, addresses, coordinates), so entries appear on the map and alongside their directory listings. Search already finds TEI entries by title and article text.
 - [ ] Later: generate EAC-CPF 2.0 (people, businesses, families) or RiC data from the TEI files for archives and partners who want it.
