@@ -133,7 +133,7 @@ _[&uarr; Back to Top](#featured-pages-a-to-z)_
 
 [Fair Rents Board](civic?id=Fair%20Rents%20Board)
 
-[Foutains](civic?id=Foutains)
+[Fountains](civic?id=Fountains)
 
 _[&uarr; Back to Top](#featured-pages-a-to-z)_
 
