@@ -50,9 +50,18 @@
     const parsed = await Promise.all(files.map(async (name) => {
       try {
         const xml = new DOMParser().parseFromString(await (await fetch(`civic/${name}.xml`)).text(), 'application/xml');
-        const title = xml.getElementsByTagName('part')[0]?.textContent.trim() || name.replace(/-/g, ' ');
-        const html = xml.getElementsByTagName('abstract')[0]?.textContent || '';
-        const text = new DOMParser().parseFromString(html, 'text/html').body.textContent.replace(/\s+/g, ' ').trim();
+        let title, text;
+        if (xml.documentElement.localName === 'TEI') {
+          // TEI entries (schema/carlton.odd): the title, and the article's text
+          title = xml.getElementsByTagName('title')[0]?.textContent.trim();
+          text = (xml.getElementsByTagName('body')[0]?.textContent || '').replace(/\s+/g, ' ').trim();
+        } else {
+          // EAC-CPF entries: the first name part, and the HTML article in <abstract>
+          title = xml.getElementsByTagName('part')[0]?.textContent.trim();
+          const html = xml.getElementsByTagName('abstract')[0]?.textContent || '';
+          text = new DOMParser().parseFromString(html, 'text/html').body.textContent.replace(/\s+/g, ' ').trim();
+        }
+        title = title || name.replace(/-/g, ' ');
         return { name, title, text };
       } catch (e) { return null; }
     }));

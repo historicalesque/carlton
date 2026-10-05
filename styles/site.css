@@ -10,6 +10,7 @@
      8. Map page             (used by map.html only)
      9. 3D Map page         (used by map3d.html only)
     10. Generated facet list (Table of Contents + listings)
+    11. TEI entries          (scripts/tei.js: entry pages and the form's preview)
    ============================================================ */
 
 /* 1. PALETTE & TOKENS ------------------------------------------------- */
@@ -1436,3 +1437,34 @@ html.map3d-page, body.map3d-page {
 @media (max-width: 600px) {
     .leaflet-bottom.leaflet-left .map-focus-notice { margin-bottom: 26px; } /* clear of the attribution line */
 }
+
+/* 11. TEI ENTRIES ------------------------------------------------------
+   Markup from TEIEntry.render() in scripts/tei.js, used on entry pages for
+   entries written in TEI and in the contribution form's preview. */
+.pv-entry {
+  color: var(--ink-soft);
+  font-size: 15px;
+  line-height: 1.6;
+}
+.pv-entry h1 { font-family: var(--font-serif); font-weight: normal; color: var(--ink); font-size: 1.6rem; line-height: 1.25; }
+.pv-entry h2 { font-family: var(--font-serif); font-weight: normal; color: var(--ink); font-size: 1.15rem; margin: 20px 0 6px; }
+.pv-entry p, .pv-entry ul, .pv-entry ol { margin-bottom: 10px; }
+.pv-entry ul, .pv-entry ol { padding-left: 22px; }
+.pv-entry a { color: var(--moss); }
+.pv-type { font-size: 11px; text-transform: uppercase; letter-spacing: .12em; color: var(--moss); margin-bottom: 2px !important; }
+.pv-life { color: var(--ink-faint); }
+.pv-dates { color: var(--ink-faint); font-size: 0.92em; }
+.pv-facts { display: grid; grid-template-columns: max-content 1fr; gap: 4px 14px; margin: 14px 0 18px; padding: 12px 14px; background: var(--paper); border-left: 3px solid var(--moss); font-size: 14px; }
+.pv-facts dt { color: var(--ink-faint); }
+.pv-facts dd { color: var(--ink); overflow-wrap: anywhere; }
+@media (max-width: 480px) {
+  .pv-facts { grid-template-columns: 1fr; }
+  .pv-facts dd { margin-bottom: 6px; }
+}
+.pv-table { overflow-x: auto; margin-bottom: 12px; }
+.pv-table table { border-collapse: collapse; font-size: 14px; }
+.pv-table td { border: 1px solid var(--paper-line); padding: 5px 8px; vertical-align: top; }
+.pv-chron { border-collapse: collapse; width: 100%; margin-bottom: 12px; font-size: 14px; }
+.pv-chron th, .pv-chron td { border-bottom: 1px solid var(--paper-line); padding: 5px 8px 5px 0; text-align: left; vertical-align: top; }
+.pv-chron th { white-space: nowrap; color: var(--ink); font-weight: normal; font-family: var(--font-mono); }
+.pv-by { font-style: italic; color: var(--ink-faint); text-align: right; margin-top: 16px; }

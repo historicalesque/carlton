@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="http://www.tei-c.org/release/xml/tei/custom/schema/relaxng/tei_odds.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0" xml:lang="en">
+  <teiHeader>
+    <fileDesc>
+      <titleStmt>
+        <title>Common Ground entries: TEI customisation</title>
+      </titleStmt>
+      <publicationStmt>
+        <publisher>Common Ground (historicalesque/carlton)</publisher>
+        <p>Source of the schema in <ref target="carlton.rng">schema/carlton.rng</ref>. Edit this file, then regenerate the schema as described in the README.</p>
+      </publicationStmt>
+      <sourceDesc>
+        <p>Written for the site; based on TEI P5.</p>
+      </sourceDesc>
+    </fileDesc>
+  </teiHeader>
+  <text>
+    <body>
+      <head>Common Ground entries</head>
+
+      <div xml:id="intro">
+        <head>What an entry is</head>
+        <p>Each entry on the site is one TEI file in <ident>civic/</ident>. Its <gi>TEI</gi> element says what
+          the entry is about in <att>type</att>: a <val>person</val>, an <val>org</val> (a business or organisation,
+          such as a hotel or brewery), a <val>family</val>, a <val>place</val> (a street, building or area) or a
+          <val>topic</val> (such as cesspits or street numbering).</p>
+        <p>An entry has three parts:</p>
+        <list>
+          <item><gi>teiHeader</gi>: the title, the authors, the sources the authors used (<gi>sourceDesc</gi>/<gi>listBibl</gi>),
+            and one <gi>change</gi> in <gi>revisionDesc</gi> for each contribution or edit.</item>
+          <item><gi>standOff</gi>: the structured facts about the subject. A person goes in <gi>listPerson</gi>/<gi>person</gi>,
+            a family in <gi>listPerson</gi>/<gi>personGrp</gi>, a business in <gi>listOrg</gi>/<gi>org</gi> and a place in
+            <gi>listPlace</gi>/<gi>place</gi>, with <att>xml:id</att> <val>subject</val>. Topics have no subject record.
+            Dated events go in <gi>listEvent</gi> (shown as the Chronology) and links to other entries in <gi>listRelation</gi>.</item>
+          <item><gi>text</gi>/<gi>body</gi>: the article. Each heading starts a new <gi>div</gi>.</item>
+        </list>
+        <p>Dates use <att>when</att>, <att>from</att> and <att>to</att> with ISO values (a year is enough), and
+          <att>cert</att> <val>low</val> when the contributor marked them as approximate.</p>
+      </div>
+
+      <div xml:id="schema">
+        <head>Schema</head>
+        <schemaSpec ident="carlton" start="TEI" prefix="tei_" docLang="en">
+          <moduleRef key="tei"/>
+          <moduleRef key="core"/>
+          <moduleRef key="header"/>
+          <moduleRef key="textstructure"/>
+          <moduleRef key="namesdates"/>
+          <moduleRef key="linking"/>
+          <moduleRef key="figures"/>
+
+          <!-- What the entry is about -->
+          <elementSpec ident="TEI" mode="change">
+            <attList>
+              <attDef ident="type" mode="change" usage="req">
+                <valList type="closed" mode="replace">
+                  <valItem ident="person"><desc>A person.</desc></valItem>
+                  <valItem ident="org"><desc>A business or organisation, such as a hotel, brewery, school or society.</desc></valItem>
+                  <valItem ident="family"><desc>A family.</desc></valItem>
+                  <valItem ident="place"><desc>A place: a street, building, block or area.</desc></valItem>
+                  <valItem ident="topic"><desc>A topic, such as cesspits or street numbering.</desc></valItem>
+                  <valItem ident="unknown"><desc>The contributor didn't say. Editors should change it before accepting.</desc></valItem>
+                </valList>
+              </attDef>
+            </attList>
+          </elementSpec>
+
+          <!-- Text styles the contribution form produces -->
+          <elementSpec ident="hi" mode="change">
+            <attList>
+              <attDef ident="rend" mode="change">
+                <valList type="semi" mode="add">
+                  <valItem ident="italic"/>
+                  <valItem ident="bold"/>
+                  <valItem ident="underline"/>
+                </valList>
+              </attDef>
+            </attList>
+          </elementSpec>
+
+          <elementSpec ident="list" mode="change">
+            <attList>
+              <attDef ident="rend" mode="change">
+                <valList type="semi" mode="add">
+                  <valItem ident="bulleted"/>
+                  <valItem ident="numbered"/>
+                </valList>
+              </attDef>
+            </attList>
+          </elementSpec>
+        </schemaSpec>
+      </div>
+    </body>
+  </text>
+</TEI>

@@ -37,9 +37,9 @@
 
 Common Ground is a static website hosted on **GitHub Pages** and built with **Jekyll**, using the `jekyll-theme-cayman` theme with a custom layout. It has no server or database of its own:
 
-- **Encyclopedia entries** are [EAC-CPF](https://eac.staatsbibliothek-berlin.de/) XML files in `civic/`. The browser fetches them and renders them on the fly.
+- **Encyclopedia entries** are XML files in `civic/`. The browser fetches them and renders them on the fly. Existing entries are [EAC-CPF](https://eac.staatsbibliothek-berlin.de/); entries are moving to [TEI](https://tei-c.org/guidelines/p5/) (roadmap §4), and entry pages show both.
 - **Historical directory data** (Sands & McDougall directories and electoral rolls) is one JSON file per source and year in `_data/`. Jekyll publishes compact copies in `data/` plus an index, and each page loads only the files it needs through `scripts/data.js`.
-- **Public contributions** go through a Google Apps Script web app. It saves a copy of each submission to a Google Sheet in the team's shared Google Drive folder, then opens a pull request on this repository. The sheet is a user-friendly backup while the submission process is being settled. The editorial team then merges the pull request (accept) or closes it (reject).
+- **Public contributions** go through a Google Apps Script web app. (The contribution form has been replaced by a TEI version that isn't connected yet; a new Apps Script will be written for it. See roadmap §4.) It saves a copy of each submission to a Google Sheet in the team's shared Google Drive folder, then opens a pull request on this repository. The sheet is a user-friendly backup while the submission process is being settled. The editorial team then merges the pull request (accept) or closes it (reject).
 
 The project is deliberately a **perpetual work in progress**. Gaps in the data and entries that don't exist yet are invitations for the community to contribute, not defects.
 
@@ -56,8 +56,8 @@ Nothing is published until a pull request is merged into `main`. GitHub Pages re
                  │   <year>.json via scripts/data.js     in the browser by _layouts/entry.html) │
                  └──────────────────────────────────────────────────────────────────────────────┘
 
- Contributor ──▶ form (_layouts/form.html, Quill editor)
-                   │  POST JSON {authorName, articleTitle, prefilledId, articleText}
+ Contributor ──▶ form (_layouts/form.html, Quill editor; builds the entry as TEI)
+                   │  not connected yet (was: POST JSON to the old Apps Script)
                    ▼
                  Google Apps Script web app ──▶ 1. copy to Google Sheet (team shared Drive, backup)
                                             ──▶ 2. new branch + civic/<slug>.xml + pull request
@@ -74,7 +74,7 @@ Nothing is published until a pull request is merged into `main`. GitHub Pages re
 
 1. turns the `id` into a filename slug (`Corkman-Hotel`);
 2. fetches `civic/Corkman-Hotel.xml`;
-3. parses the EAC-CPF XML (namespace `urn:isbn:1-931666-33-4`) and renders it;
+3. parses the XML and renders it: TEI entries with `TEIEntry.render()` from `scripts/tei.js`, older EAC-CPF entries (namespace `urn:isbn:1-931666-33-4`) with the code in the layout;
 4. adds the contribution form underneath. If no file exists yet, the form takes the entry's place so the community can create it. The form (`_layouts/form.html`, in an iframe) reports its height to the entry page, which sizes the iframe to fit.
 
 With `preview=true`, `id` can be a full URL, such as a raw file on a pull-request branch. This is how `admin/review.html` previews submissions before they are merged. Preview mode also hides the banner, menu, footer and contribution form, so the review frame shows just the article.
@@ -96,7 +96,7 @@ With `preview=true`, `id` can be a full URL, such as a raw file on a pull-reques
 | `_layouts/default.html` | Site shell: header, navigation, sidebar and footer. Does **not** load any data; layouts that need it load it through `scripts/data.js`. |
 | `_layouts/search.html`, `scripts/search.js` | Search page (see [Search, facets and maps](#search-facets-and-maps)). |
 | `_layouts/entry.html` | Fetches and renders one EAC-CPF entry, and adds the contribution form. |
-| `_layouts/form.html` | Rich-text contribution form (Quill 1.3.6) that posts to Google Apps Script. |
+| `_layouts/form.html` | Contribution form (Quill 1.3.6). Builds the entry as TEI, with optional extra sections and a *Show all fields* switch. Not connected yet: it previews the entry and downloads the XML. |
 | `_layouts/new.html` | "Start a new entry" box that redirects to `civic?id=…`. |
 | `_layouts/facet-list.html` | People / Places listings. |
 | `_layouts/map.html`, `_layouts/map3d.html` | 2D Leaflet map and 3D three.js map. |
@@ -106,6 +106,8 @@ With `preview=true`, `id` can be a full URL, such as a raw file on a pull-reques
 | `_data/directory/<year>.json`, `_data/electoral-roll/<year>.json` | The directory and electoral-roll records, one file per source and year, one record per line. **Edit these.** See [Data](#data-directories-and-electoral-rolls). |
 | `data/` | What the browser downloads, generated from `_data/` by Jekyll: one small page per data file, `data/index.json` (the list of files), and `uom-land-parcels.geojson` (University of Melbourne land parcels). |
 | `scripts/data.js` | Shared data loader used by every page that shows records. |
+| `scripts/tei.js` | Builds an entry as TEI from the contribution form, checks it, and renders TEI entries (entry pages and the form's preview). |
+| `schema/carlton.odd`, `schema/carlton.rng` | The TEI entry format: the customisation (with its documentation) and the schema generated from it. |
 | `tools/convert-map-data.js` | One-off script that split the old `map-data.js` into the files in `_data/`. |
 | `admin/index.html` | Admin landing page for the editorial team, linking to each tool (served at `admin/`). The site footer links here. |
 | `admin/review.html` | Plain-language review page for the editorial team. |
@@ -154,6 +156,17 @@ Entries follow the EAC-CPF schema (`urn:isbn:1-931666-33-4`). For a full example
 - To add an entry to the A–Z, add a link in `aToZ.md` by hand.
 
 Open questions to settle: controlled vocabulary for `entityType` and `localType`, how to cite sources inside entries, how to link entries to directory records, and what to do with entries that have two names (e.g. *Carlton Inn* / *Corkman Hotel*).
+
+### The new entry format (TEI)
+
+Entries are moving to TEI (roadmap §4). The format is described in `schema/carlton.odd`, and `schema/carlton.rng` is the schema generated from it. The contribution form already writes this format. In short, `<TEI type="person|org|family|place|topic">` holds a `teiHeader` (title, authors, sources, one `change` per edit), a `standOff` with the subject's structured facts (`xml:id="subject"`), the chronology and links to other entries, and the article in `text/body`.
+
+To regenerate the schema after editing `carlton.odd`, you need Java, Saxon HE, the [TEI Stylesheets](https://github.com/TEIC/Stylesheets) and a `p5subset.xml` for TEI P5 4.12.0:
+
+```
+java -jar saxon.jar -s:schema/carlton.odd -xsl:Stylesheets/odds/odd2odd.xsl -o:carlton.compiled.odd defaultSource=p5subset.xml
+java -jar saxon.jar -s:carlton.compiled.odd -xsl:Stylesheets/odds/odd2relax.xsl -o:schema/carlton.rng
+```
 
 ## Data: directories and electoral rolls
 
@@ -239,7 +252,7 @@ See [Editing the data](#editing-the-data) above. This is separate from entry sub
 | Service / library | Used by | Notes |
 |---|---|---|
 | GitHub Pages | Hosting | Builds from `main`. |
-| Google Apps Script web app | `_layouts/form.html` (`SCRIPT_URL`) | Saves a copy of each submission to a Google Sheet in the team's shared Drive folder (backup), then turns it into a branch and pull request. Its source is kept outside this repo. |
+| Google Apps Script web app | Not used at the moment | The old script saved a copy of each submission to a Google Sheet in the team's shared Drive folder (backup), then turned it into a branch and pull request. Its source is kept outside this repo. A new script will be written for the TEI form (roadmap §4). |
 | GitHub REST API (no sign-in) | `admin/review.html` | Limited to 60 requests/hour per visitor IP address. See [Known issues](#known-issues-and-gotchas). |
 | Quill 1.3.6 | Contribution form | cdn.quilljs.com |
 | Leaflet 1.9.4 | 2D map | cdnjs |
@@ -252,7 +265,7 @@ See [Editing the data](#editing-the-data) above. This is separate from entry sub
 - **Field names are inconsistent** (`year` vs `Given Names` vs `Occupation`), and `entityID` mixes numbers and strings (strings are deliberate links made by a person; see the [field reference](#data-directories-and-electoral-rolls)).
 - **The A–Z is maintained by hand** as Markdown. See roadmap §3.
 - **Review page rate limit (unlikely, but confusing if it happens):** `admin/review.html` calls the GitHub API without signing in, which GitHub caps at 60 requests per hour per IP address. Listing submissions uses one request plus one per open pull request. A small editorial team won't normally reach this, but a large backlog of submissions, or several people on one shared network (e.g. a university or library), could. **Symptoms:** the review page shows an error, an empty list, or submissions that won't load, even though they're visible on GitHub. **Fix:** wait up to an hour, or review directly on GitHub in the meantime.
-- **Entries use EAC-CPF loosely.** Every entry is `<entityType>concept</entityType>` (EAC-CPF expects `person`, `corporateBody` or `family`), and most of the schema's structure goes unused. See roadmap §4.
+- **Entries use EAC-CPF loosely.** Every entry is `<entityType>concept</entityType>` (EAC-CPF expects `person`, `corporateBody` or `family`), and most of the schema's structure goes unused. Entries are moving to TEI instead; see roadmap §4.
 - **No automated checks.** Malformed XML or a broken data file can be merged without anyone noticing. See roadmap §5.
 
 ---
@@ -313,25 +326,26 @@ Goal: editors never need to touch GitHub directly. Done in small, fundable steps
 - [ ] Evaluate a git-based CMS such as [Decap CMS](https://decapcms.org/) or [Sveltia CMS](https://github.com/sveltia/sveltia-cms). These provide Markdown page editing, an editorial approval workflow and media uploads out of the box, and run on GitHub Pages without a server (they may need a small sign-in service). They may cover the Markdown editor and part of the review flow more cheaply than custom tools, but are less suited to the XML entries and the directory data.
 - [ ] Later: revisit whether the Google Apps Script is still the best way to receive submissions, depending on which options above are chosen.
 
-### 4. Making full and correct use of EAC-CPF
+### 4. Moving entries to TEI
 
-Goal: entries become proper, interoperable archival authority records that other systems (e.g. Trove, archives, the Encyclopedia of Melbourne) could understand and link to.
+Goal: entries become valid, documented XML that covers everything the site writes about: people, businesses, families, places and topics. Archives and partners can still have EAC-CPF or Records in Contexts (RiC) data, generated from the TEI files.
 
-- [ ] **Use the right `entityType`**: `person`, `corporateBody` (hotels, breweries, companies, societies) or `family`. Topics like *Cesspits* or *Street Numbering* aren't really EAC-CPF entities, so decide whether they stay as entries with a local type (`localControl` / `localType`, e.g. "Topic", "Street", "Building") or move to a separate format. Using `concept` for everything is the first thing to correct.
-- [ ] **Structured names**: `nameEntry` with proper `part localType="surname"` / `"forename"`, plus alternative and historical names (`nameEntryParallel`, `useDates`), e.g. *Carlton Inn* / *Corkman Hotel*. This would also fix the renderer, which currently assumes the first two `part`s are the family name and the given name.
-- [ ] **Dates**: `existDates` with `dateRange` and `standardDate` attributes, so entries can be sorted, filtered by period and shown on a timeline.
-- [ ] **Places**: `places` / `place` with `placeEntry` and coordinates (`latitude`/`longitude`), linking entries to the map.
-- [ ] **Occupations, functions and legal status**: `occupations`, `functions`, `legalStatuses` (e.g. a hotel's licence).
-- [ ] **Relationships**: `cpfRelation` between entries (licensee ↔ hotel, person ↔ family) and `resourceRelation` to sources and to directory records, displayed on the page as "Related" links.
-- [ ] **Sources and citations**: `sources` / `source` for each entry, shown as a reference list.
-- [ ] **Richer narrative**: structured `biogHist` (`abstract`, `chronList` for dated events), and render them on entry pages.
-- [ ] **Better maintenance records**: one `maintenanceEvent` per edit (created / revised), with the agent who made it, and use `maintenanceStatus` correctly (`new` → `revised`).
-- [ ] Have the submission form and editors produce valid, richer XML. Write a short EAC-CPF style guide (`docs/eac-cpf-guide.md`) with examples for each entity type.
-- [ ] Validate entries against the EAC-CPF schema (see §5).
+Decided on 2026-10-04: entries move from EAC-CPF to [TEI P5](https://tei-c.org/guidelines/p5/) with a project customisation (`schema/carlton.odd`). EAC-CPF only allows people, families and corporate bodies, so places and topics can't be recorded properly in it. The site doesn't need to keep working while this happens, so the contribution form is replaced directly rather than run alongside a second form.
+
+- [x] **Project customisation** `schema/carlton.odd`, and the schema generated from it, `schema/carlton.rng` (TEI P5 4.12.0). It sets the entry types (person, org, family, place, topic) and the text styles the form uses.
+- [x] **Contribution form writes TEI** (`_layouts/form.html`): the simple form, optional sections and a *Show all fields* switch, building TEI in the browser with a preview and *Download XML*. Not connected yet; keep refining the UI before connecting it.
+- [x] **Entry pages render TEI** (`_layouts/entry.html`, with the renderer in `scripts/tei.js`), and still show EAC-CPF files until they're converted.
+- [ ] **Entry style guide**: generate readable documentation from `carlton.odd` (TEI Stylesheets `odd2html`), with one worked example per entry type. Tighten the customisation as conventions settle, e.g. fixed lists for `div`, `state` and `relation` types, and drop modules nobody uses.
+- [ ] **Map the collaborators' types**: list the types used in the partners' existing EAC-CPF records (places, concepts and others) and map each to a TEI entry type, then agree the mapping with them.
+- [ ] **Convert the existing entries**: a script that turns each `civic/*.xml` into TEI (title, authors, article, dates), then a check by hand of each entry type. Also test by resubmitting existing entries through the form.
+- [ ] **New Apps Script**, written from scratch: check the XML is well-formed, set the entry id, filename and date itself, save a copy to the Sheet and open the pull request.
+- [ ] **Search, People/Places and the maps read the TEI subject records** (names, addresses, coordinates), so entries appear on the map and alongside their directory listings. Search already finds TEI entries by title and article text.
+- [ ] Later: generate EAC-CPF 2.0 (people, businesses, families) or RiC data from the TEI files for archives and partners who want it.
+- [ ] Validate entries against `schema/carlton.rng` before merging (in an XML editor such as Oxygen, or with `jing`).
 
 ### 5. Quality and safety nets
 
-- [ ] **GitHub Action that runs on every pull request**: check that XML is well-formed and valid EAC-CPF, check that data JSON is valid against the schema, and check that the entry filename matches the `recordId`. Editors would then see a green tick or red cross on each submission.
+- [ ] **GitHub Action that runs on every pull request**: check that XML is well-formed and valid against `schema/carlton.rng`, check that data JSON is valid against the schema, and check that the entry filename matches the `recordId`. Editors would then see a green tick or red cross on each submission.
 - [ ] Commit a `Gemfile` so local builds match GitHub Pages.
 - [ ] Contributor guide (`CONTRIBUTING.md`) setting out entry conventions as they're agreed.
 

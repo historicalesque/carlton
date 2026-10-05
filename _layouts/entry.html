@@ -8,6 +8,8 @@ layout: default
 </div>
 
 <script src="scripts/data.js?v={{ site.time | date: '%s' }}"></script>
+<!-- Renders entries written in TEI (schema/carlton.odd) -->
+<script src="scripts/tei.js?v={{ site.time | date: '%s' }}"></script>
 <script type="module">
 // Helper: Cleans up the incoming prefilled ID parameter to ensure a valid, safe filename
 function slugifyId(text) {
@@ -152,162 +154,173 @@ function slugifyId(text) {
       
       const text = await response.text();
       const xml = new DOMParser().parseFromString(text, "text/xml");
+
+      // Entries written in TEI (the new format, see schema/carlton.odd) are
+      // rendered by scripts/tei.js; older entries are EAC-CPF, read below.
+      if (xml.documentElement && xml.documentElement.namespaceURI === TEIEntry.NS) {
+        entryContainer.innerHTML = TEIEntry.render(text);
+        const title = entryContainer.querySelector('h1')?.textContent;
+        if (title) document.title = `Common Ground - ${title}`;
+        showContributionForm(fileId, true);
+        addMapLink(fileId);
+      } else {
       
-      // The EAC-CPF namespace used in your document
-      const ns = "urn:isbn:1-931666-33-4";
+        // The EAC-CPF namespace used in your document
+        const ns = "urn:isbn:1-931666-33-4";
 
-      // 2. Extract Fields safely using namespaced queries
-      const familyName = xml.getElementsByTagNameNS(ns, "part").item(0)?.textContent || "";
-      const givenName = xml.getElementsByTagNameNS(ns, "part").item(1)?.textContent || "";
-      const fullName = givenName ? `${givenName} ${familyName}` : familyName;
+        // 2. Extract Fields safely using namespaced queries
+        const familyName = xml.getElementsByTagNameNS(ns, "part").item(0)?.textContent || "";
+        const givenName = xml.getElementsByTagNameNS(ns, "part").item(1)?.textContent || "";
+        const fullName = givenName ? `${givenName} ${familyName}` : familyName;
 
-      if (fullName) {
-        document.title = `Common Ground - ${fullName}`;
-      }  
+        if (fullName) {
+          document.title = `Common Ground - ${fullName}`;
+        }  
 
-      const fromDate = xml.getElementsByTagNameNS(ns, "fromDate")[0]?.textContent || "";
-      const toDate = xml.getElementsByTagNameNS(ns, "toDate")[0]?.textContent || "";
-      const lifeSpan = fromDate ? `(${fromDate} – ${toDate || 'Present'})` : "";
+        const fromDate = xml.getElementsByTagNameNS(ns, "fromDate")[0]?.textContent || "";
+        const toDate = xml.getElementsByTagNameNS(ns, "toDate")[0]?.textContent || "";
+        const lifeSpan = fromDate ? `(${fromDate} – ${toDate || 'Present'})` : "";
 
-      const placeElements = xml.getElementsByTagNameNS(ns, "place");
-      let placesHtml = "";
-      for (let place of placeElements) {
-        const role = place.getElementsByTagNameNS(ns, "placeRole")[0]?.textContent || "Location";
-        const entry = place.getElementsByTagNameNS(ns, "placeEntry")[0]?.textContent || "";
-        if (entry) {
-          placesHtml += `<li><strong>${role}:</strong> ${entry}</li>`;
+        const placeElements = xml.getElementsByTagNameNS(ns, "place");
+        let placesHtml = "";
+        for (let place of placeElements) {
+          const role = place.getElementsByTagNameNS(ns, "placeRole")[0]?.textContent || "Location";
+          const entry = place.getElementsByTagNameNS(ns, "placeEntry")[0]?.textContent || "";
+          if (entry) {
+            placesHtml += `<li><strong>${role}:</strong> ${entry}</li>`;
+          }
         }
-      }
 
-      const occupationElements = xml.getElementsByTagNameNS(ns, "occupation");
-      let occupations = [];
-      for (let occ of occupationElements) {
-        const term = occ.getElementsByTagNameNS(ns, "term")[0]?.textContent;
-        if (term) occupations.push(term);
-      }
-      const occupationText = occupations.join(", ");
-
-      const abstractNode = xml.getElementsByTagNameNS(ns, "abstract")[0];
-      const abstractHtml = abstractNode ? abstractNode.textContent : "No description available.";
-
-      let authorName = "";
-      const events = xml.getElementsByTagNameNS(ns, "maintenanceEvent");
-      for (let event of events) {
-        const type = event.getElementsByTagNameNS(ns, "eventType")[0]?.textContent;
-        if (type === "created") {
-          authorName = event.getElementsByTagNameNS(ns, "agent")[0]?.textContent || "";
-          break;
+        const occupationElements = xml.getElementsByTagNameNS(ns, "occupation");
+        let occupations = [];
+        for (let occ of occupationElements) {
+          const term = occ.getElementsByTagNameNS(ns, "term")[0]?.textContent;
+          if (term) occupations.push(term);
         }
-      }
+        const occupationText = occupations.join(", ");
 
-      let digitalObjectsHtml = "";
-      let referencesHtml = "";
-      const resourceRelations = xml.getElementsByTagNameNS(ns, "resourceRelation");
+        const abstractNode = xml.getElementsByTagNameNS(ns, "abstract")[0];
+        const abstractHtml = abstractNode ? abstractNode.textContent : "No description available.";
+
+        let authorName = "";
+        const events = xml.getElementsByTagNameNS(ns, "maintenanceEvent");
+        for (let event of events) {
+          const type = event.getElementsByTagNameNS(ns, "eventType")[0]?.textContent;
+          if (type === "created") {
+            authorName = event.getElementsByTagNameNS(ns, "agent")[0]?.textContent || "";
+            break;
+          }
+        }
+
+        let digitalObjectsHtml = "";
+        let referencesHtml = "";
+        const resourceRelations = xml.getElementsByTagNameNS(ns, "resourceRelation");
       
-      for (let rel of resourceRelations) {
-        if (rel.getAttribute("resourceRelationType") === "subjectOf") continue;
+        for (let rel of resourceRelations) {
+          if (rel.getAttribute("resourceRelationType") === "subjectOf") continue;
 
-        const note = rel.getElementsByTagNameNS(ns, "p")[0]?.textContent || "";
-        const bibref = rel.getElementsByTagNameNS(ns, "bibref")[0];
+          const note = rel.getElementsByTagNameNS(ns, "p")[0]?.textContent || "";
+          const bibref = rel.getElementsByTagNameNS(ns, "bibref")[0];
         
-        if (bibref || note.toLowerCase().includes("source used")) {
-          if (bibref) {
-            const author = bibref.getElementsByTagName("name")[0]?.textContent || "";
-            const title = bibref.getElementsByTagName("title")[0]?.textContent || "";
-            const series = bibref.getElementsByTagName("bibseries")[0]?.getElementsByTagName("title")[0]?.textContent || "";
-            const publisher = bibref.getElementsByTagName("publisher")[0]?.textContent?.replace(/<br\s*\/?>/gi, ', ') || "";
-            const place = bibref.getElementsByTagName("place")[0]?.textContent || "";
-            const date = bibref.getElementsByTagName("date")[0]?.textContent || "";
-            const href = bibref.getElementsByTagName("extptr")[0]?.getAttribute("href") || "";
+          if (bibref || note.toLowerCase().includes("source used")) {
+            if (bibref) {
+              const author = bibref.getElementsByTagName("name")[0]?.textContent || "";
+              const title = bibref.getElementsByTagName("title")[0]?.textContent || "";
+              const series = bibref.getElementsByTagName("bibseries")[0]?.getElementsByTagName("title")[0]?.textContent || "";
+              const publisher = bibref.getElementsByTagName("publisher")[0]?.textContent?.replace(/<br\s*\/?>/gi, ', ') || "";
+              const place = bibref.getElementsByTagName("place")[0]?.textContent || "";
+              const date = bibref.getElementsByTagName("date")[0]?.textContent || "";
+              const href = bibref.getElementsByTagName("extptr")[0]?.getAttribute("href") || "";
 
-            let citationParts = [];
-            if (author) citationParts.push(author);
-            if (title) citationParts.push(title);
-            if (series) citationParts.push(`in <em>${series}</em>`);
-            if (publisher) citationParts.push(publisher);
-            if (place) citationParts.push(place);
-            if (date) citationParts.push(date);
+              let citationParts = [];
+              if (author) citationParts.push(author);
+              if (title) citationParts.push(title);
+              if (series) citationParts.push(`in <em>${series}</em>`);
+              if (publisher) citationParts.push(publisher);
+              if (place) citationParts.push(place);
+              if (date) citationParts.push(date);
             
-            let citationText = citationParts.join(", ");
-            if (href) {
-              citationText += `, <a href="${href}" target="_blank" rel="noopener">${href}</a>`;
+              let citationText = citationParts.join(", ");
+              if (href) {
+                citationText += `, <a href="${href}" target="_blank" rel="noopener">${href}</a>`;
+              }
+              if (citationText) {
+                referencesHtml += `<li>${citationText}.</li>`;
+              }
             }
-            if (citationText) {
-              referencesHtml += `<li>${citationText}.</li>`;
+          } 
+          else if (rel.getAttribute("resourceRelationType") === "other") {
+            const title = rel.getElementsByTagNameNS(ns, "relationEntry")[0]?.textContent || "";
+            const descNode = rel.getElementsByTagNameNS(ns, "abstract")[0] || rel.getElementsByTagNameNS(ns, "p")[0];
+            const desc = descNode ? descNode.textContent : "";
+          
+            if (title) {
+              digitalObjectsHtml += `
+                <div class="digital-object-item" style="margin-bottom: 15px; padding-left: 10px; border-left: 3px solid #ccc;">
+                  <strong>${title}</strong>
+                  ${desc ? `<p style="margin: 5px 0 0 0; font-size: 0.95em; color: #555;">${desc}</p>` : ''}
+                </div>`;
             }
           }
-        } 
-        else if (rel.getAttribute("resourceRelationType") === "other") {
-          const title = rel.getElementsByTagNameNS(ns, "relationEntry")[0]?.textContent || "";
-          const descNode = rel.getElementsByTagNameNS(ns, "abstract")[0] || rel.getElementsByTagNameNS(ns, "p")[0];
-          const desc = descNode ? descNode.textContent : "";
+        }
+
+        let seeAlsoHtml = "";
+        const cpfRelations = xml.getElementsByTagNameNS(ns, "cpfRelation");
+        if (cpfRelations.length > 0) {
+          let linksList = "";
+          for (let rel of cpfRelations) {
+            const entryName = rel.getElementsByTagNameNS(ns, "relationEntry")[0]?.textContent?.trim() || "";
+            const originalHref = rel.getAttribute("xlink:href") || "";
           
-          if (title) {
-            digitalObjectsHtml += `
-              <div class="digital-object-item" style="margin-bottom: 15px; padding-left: 10px; border-left: 3px solid #ccc;">
-                <strong>${title}</strong>
-                ${desc ? `<p style="margin: 5px 0 0 0; font-size: 0.95em; color: #555;">${desc}</p>` : ''}
-              </div>`;
+            const idMatch = originalHref.match(/(EM\d+)/);
+            const targetId = idMatch ? idMatch[0] : null;
+
+            if (entryName && targetId) {
+              linksList += `<li><a href="?id=${targetId}">${entryName}</a></li>`;
+            }
+          }
+          if (linksList) {
+            seeAlsoHtml = `
+              <section class="see-also" style="margin-top: 30px;">
+                <h3>See Also</h3>
+                <ul style="line-height: 1.6;">${linksList}</ul>
+              </section>`;
           }
         }
+
+        // 3. Construct and Inject the HTML Layout for the XML record
+        entryContainer.innerHTML = `
+          <article class="biography">
+            <header class="entry-header">
+              <h1 class="entry-title">${fullName}</h1>
+              <p class="life-span">${lifeSpan}</p>
+            </header>
+
+            ${(occupationText || placesHtml) ? `
+            <section class="quick-facts">
+              <ul>
+                ${occupationText ? `<li><strong>Occupation:</strong> ${occupationText}</li>` : ''}
+                ${placesHtml}
+              </ul>
+            </section>
+            ` : ''}
+
+            <section class="biography-text">
+              <div>${abstractHtml}</div>
+              ${authorName ? `<p class="author-credit" style="display:none; margin-top: 20px; font-style: italic; text-align: right; color: #666;">By ${authorName}</p>` : ''}
+            </section>
+
+            ${digitalObjectsHtml ? `<hr /><section class="digital-resources" style="margin-top: 20px;"><h3>Images & Artifacts</h3>${digitalObjectsHtml}</section>` : ''}
+            ${referencesHtml ? `<hr /><section class="references" style="margin-top: 20px;"><h3>References</h3><ul style="line-height: 1.6; padding-left: 20px;">${referencesHtml}</ul></section>` : ''}
+            ${seeAlsoHtml}
+          </article>
+        `;
+
+        // Render the form below the successfully loaded article
+        showContributionForm(fileId, true);
+        addMapLink(fileId);
+
       }
-
-      let seeAlsoHtml = "";
-      const cpfRelations = xml.getElementsByTagNameNS(ns, "cpfRelation");
-      if (cpfRelations.length > 0) {
-        let linksList = "";
-        for (let rel of cpfRelations) {
-          const entryName = rel.getElementsByTagNameNS(ns, "relationEntry")[0]?.textContent?.trim() || "";
-          const originalHref = rel.getAttribute("xlink:href") || "";
-          
-          const idMatch = originalHref.match(/(EM\d+)/);
-          const targetId = idMatch ? idMatch[0] : null;
-
-          if (entryName && targetId) {
-            linksList += `<li><a href="?id=${targetId}">${entryName}</a></li>`;
-          }
-        }
-        if (linksList) {
-          seeAlsoHtml = `
-            <section class="see-also" style="margin-top: 30px;">
-              <h3>See Also</h3>
-              <ul style="line-height: 1.6;">${linksList}</ul>
-            </section>`;
-        }
-      }
-
-      // 3. Construct and Inject the HTML Layout for the XML record
-      entryContainer.innerHTML = `
-        <article class="biography">
-          <header class="entry-header">
-            <h1 class="entry-title">${fullName}</h1>
-            <p class="life-span">${lifeSpan}</p>
-          </header>
-
-          ${(occupationText || placesHtml) ? `
-          <section class="quick-facts">
-            <ul>
-              ${occupationText ? `<li><strong>Occupation:</strong> ${occupationText}</li>` : ''}
-              ${placesHtml}
-            </ul>
-          </section>
-          ` : ''}
-
-          <section class="biography-text">
-            <div>${abstractHtml}</div>
-            ${authorName ? `<p class="author-credit" style="display:none; margin-top: 20px; font-style: italic; text-align: right; color: #666;">By ${authorName}</p>` : ''}
-          </section>
-
-          ${digitalObjectsHtml ? `<hr /><section class="digital-resources" style="margin-top: 20px;"><h3>Images & Artifacts</h3>${digitalObjectsHtml}</section>` : ''}
-          ${referencesHtml ? `<hr /><section class="references" style="margin-top: 20px;"><h3>References</h3><ul style="line-height: 1.6; padding-left: 20px;">${referencesHtml}</ul></section>` : ''}
-          ${seeAlsoHtml}
-        </article>
-      `;
-
-      // Render the form below the successfully loaded article
-      showContributionForm(fileId, true);
-      addMapLink(fileId);
-
     } catch (error) {
       console.warn("XML file not found, showing submission form:", error);
       // Render the form alone as a new article request
