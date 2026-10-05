@@ -85,7 +85,7 @@ With `preview=true`, `id` can be a full URL, such as a raw file on a pull-reques
 - **People / Places** (`_layouts/facet-list.html`): load only the files for one `source`. `people` shows electoral rolls and `places` shows directories. Results are grouped by source/year → street → side of street, and each year is drawn as soon as its file arrives (oldest first). Within each year the streets are sorted, so each street appears once per year, and the contents list shows the year after each street (e.g. "Bouverie Street (1905) listings").
 - **Map** (`_layouts/map.html`): Leaflet 1.9.4. It plots records that have `lat`/`lng`, with University of Melbourne land parcels (`data/uom-land-parcels.geojson`) as an overlay. Both maps set up their years and controls from `data/index.json` and draw each year as soon as its file arrives. Records without coordinates are placed between mapped ones from the same year and street, so they are drawn with their year; cross-year links are added once every year has arrived.
 - **3D Map** (`_layouts/map3d.html`): three.js r128 with OrbitControls. Experimental. It shows the records only: the historic map layers and land parcels stay on the 2D map.
-- Both maps share `scripts/map-common.js` (data loading, year colours, cross-year links from string `entityID`s, marker shapes) and the details popup in `_includes/map-details-modal.html`, which links to the matching entry.
+- Both maps share `scripts/map-common.js` (data loading, year colours, cross-year links from string `entityID`s, marker shapes) and the details popup in `_includes/map-details-modal.html`, which links to the record's entry ("Read the entry" when `civic/<entityID>.xml` exists, "Start an entry" otherwise). The 2D map also takes `map?entity=<entityID>`: it ticks the years that entity appears in, rings its markers and zooms to them. Entries link there with "See on the map" when the map draws at least one of their records.
 - **Featured pages A–Z** (`aToZ.md` + `scripts/az-status.js`): Jekyll lists the files in `civic/` into the page at build time, and the script marks links with no entry yet (pencil icon, "Not yet written") and entries created in the last 14 days ("New"). A legend above the letter index explains both.
 
 ## Repository layout
@@ -339,10 +339,9 @@ Goal: entries become proper, interoperable archival authority records that other
 
 Placing records on the map is **ongoing community work**: about 16% of records have coordinates today, and that number should keep growing as volunteers contribute. The aim here is to make that work easy and inviting, not to finish it.
 
-- [ ] **"Help put this on the map"**: on records without coordinates, a prompt that lets a volunteer drop a pin on the map and submit it for review.
+- [ ] **"Help put this on the map"**: on records without coordinates, a prompt that lets a volunteer drop a pin on the map and submit it for review. Waiting on the new contribution form (form2) being connected: pins would travel the same route as other contributions (form, Apps Script, Sheet, pull request).
 - [ ] Show geocoding progress (e.g. "1,454 of 9,236 records mapped") on the map page as a community goal.
-- [ ] Year slider/filter on the 2D map to show the precinct changing from 1900 to 1930.
-- [ ] Link map markers to entries and entries to map locations (see §4, Places).
+- [x] Link map markers to entries and entries to map locations: the details popup says "Read the entry" when the record's `entityID` has an entry, and entries with drawn records get a "See on the map" link to `map?entity=<entityID>`, which rings those markers. (§4, Places, would later let an entry name its places directly.)
 - [ ] Historical base map overlays (e.g. MMBW plans), if suitable public-domain scans are available.
 - [x] **Bring the experimental 3D map in line with the 2D map**: same data and features, and refactor so both maps share functions (e.g. data loading, filtering, popups) instead of duplicating code. Done in #46 with `scripts/map-common.js`.
 

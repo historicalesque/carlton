@@ -9,3 +9,8 @@
         <div class="coords-box" id="modal-coords">—</div>
     </div>
 </div>
+<script>
+  // Every published entry, listed by Jekyll at build time, so the details
+  // popup can link a record to its entry (scripts/map-common.js).
+  window.ENTRY_FILES = [{% for f in site.static_files %}{% if f.path contains '/civic/' and f.extname == '.xml' %}"{{ f.basename }}",{% endif %}{% endfor %}];
+</script>
