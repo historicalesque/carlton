@@ -12,12 +12,12 @@
       </publicationStmt>
       <sourceDesc>
         <listBibl>
-          <bibl>Sands &amp; McDougall's directory of Melbourne, 1930.</bibl>
+          <bibl><ref target="https://viewer.slv.vic.gov.au/?entity=IE14133704&amp;mode=browse">Sands &amp; McDougall's directory of Victoria, 1930. Digitised by State Library Victoria.</ref></bibl>
         </listBibl>
       </sourceDesc>
     </fileDesc>
-    <revisionDesc status="published">
-      <change when="2026-10-05" type="created">Page for a source, set up by the editorial team.</change>
+    <revisionDesc status="draft">
+      <change when="2026-10-05" type="created">Page for a source, drafted from State Library Victoria records.</change>
     </revisionDesc>
   </teiHeader>
   <standOff>
@@ -29,7 +29,9 @@
   </standOff>
   <text>
     <body>
-      <p>The Sands &amp; McDougall directory of Melbourne for 1930. Its Carlton listings are on the site's maps, and new entries that use one of its listings link here as their source.</p>
+      <p><hi rend="italic">Sands &amp; McDougall's directory of Victoria, 1930</hi>. 2,291 pages.</p>
+      <p>State Library Victoria has digitised this directory, and you can <ref target="https://viewer.slv.vic.gov.au/?entity=IE14133704&amp;mode=browse">read it online</ref>.</p>
+      <p>Its Carlton listings are on the site's maps, and new entries that use one of its listings link here as their source.</p>
     </body>
   </text>
 </TEI>

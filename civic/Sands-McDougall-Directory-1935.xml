@@ -4,15 +4,15 @@
   <teiHeader>
     <fileDesc>
       <titleStmt>
-        <title>Sands &amp; McDougall Directory, 1920</title>
+        <title>Sands &amp; McDougall Directory, 1935</title>
       </titleStmt>
       <publicationStmt>
         <publisher>Common Ground</publisher>
-        <idno type="entry">Sands-McDougall-Directory-1920</idno>
+        <idno type="entry">Sands-McDougall-Directory-1935</idno>
       </publicationStmt>
       <sourceDesc>
         <listBibl>
-          <bibl><ref target="https://viewer.slv.vic.gov.au/?entity=IE13852804&amp;mode=browse">Sands &amp; McDougall's directory of Victoria, 1920. Digitised by State Library Victoria.</ref></bibl>
+          <bibl><ref target="https://viewer.slv.vic.gov.au/?entity=IE14054304&amp;mode=browse">Sands &amp; McDougall's directory of Victoria, 1935. Digitised by State Library Victoria.</ref></bibl>
         </listBibl>
       </sourceDesc>
     </fileDesc>
@@ -29,9 +29,8 @@
   </standOff>
   <text>
     <body>
-      <p><hi rend="italic">Sands &amp; McDougall's directory of Victoria, 1920</hi>. 3,144 pages.</p>
-      <p>State Library Victoria has digitised this directory, and you can <ref target="https://viewer.slv.vic.gov.au/?entity=IE13852804&amp;mode=browse">read it online</ref>.</p>
-      <p>Its Carlton listings are on the site's maps, and new entries that use one of its listings link here as their source.</p>
+      <p><hi rend="italic">Sands &amp; McDougall's directory of Victoria, 1935</hi>. 2,236 pages.</p>
+      <p>State Library Victoria has digitised this directory, and you can <ref target="https://viewer.slv.vic.gov.au/?entity=IE14054304&amp;mode=browse">read it online</ref>.</p>
     </body>
   </text>
 </TEI>
