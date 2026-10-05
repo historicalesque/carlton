@@ -48,6 +48,7 @@
 
     /* --- Directory record(s) this entry is about (as in the old form) --- */
     .entity-container { margin-bottom: 24px; }
+    .prefill-note { background: var(--paper-deep); border-left: 3px solid var(--moss); padding: 8px 12px; margin: -12px 0 24px; font-size: 14px; }
     .entity-card {
       background-color: var(--paper);
       border: 1px solid var(--paper-line);
@@ -653,7 +654,10 @@
   if (urlParams.has('advanced')) setShowAll(true);
 
   if (targetId && window.CGData) {
-    CGData.forEntity(targetId).then(showRecords).catch(() => {});
+    CGData.forEntity(targetId).then((records) => {
+      showRecords(records);
+      if (urlParams.has('new')) prefill(records);
+    }).catch(() => {});
   }
 
   function addressOf(record) {
@@ -679,6 +683,69 @@
     }
     changed();
     row.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }
+
+  /* ---------- Brand new entries: fill in what the records say ---------- */
+  // Only for a record with no entry yet (?new, from entry.html). Directory
+  // listings like "28 Thompson, Mrs W.T." aren't parsed for names or types:
+  // too easy to get wrong. Electoral roll records have clean name fields.
+  const STREET_TYPES = ['intersection', 'right-of-way'];
+  const pageOf = (id) => new URL(`civic?id=${encodeURIComponent(id)}`, document.baseURI).href;
+
+  function sourceOf(record) {
+    if (record.source === 'Directory') {
+      return {
+        text: `Sands & McDougall Directory, ${record.year}${record.pages ? `, ${/\D/.test(record.pages) ? 'pp.' : 'p.'} ${record.pages}` : ''}: ${record.listing}`,
+        href: pageOf(`Sands-McDougall-Directory-${record.year}`)
+      };
+    }
+    const where = String(record.Notes || '').split(/Electoral Roll,\s*/i)[1];
+    const who = [`${record['Given Names'] || ''} ${record.Surname || ''}`.trim(), record.Address, record.Occupation].filter(Boolean).join(', ');
+    return { text: `Electoral roll, ${record.year}${where ? `, ${where}` : ''}: ${who}`, href: pageOf('Electoral-Rolls') };
+  }
+
+  function setRows(listName, values) {
+    form.querySelectorAll(`[data-list="${listName}"] .row`).forEach((r) => r.remove());
+    values.forEach((v) => addRow(listName, v));
+    if (!values.length) addRow(listName);
+    form.querySelector(`details[data-section="${listName}"]`)?.setAttribute('open', '');
+  }
+
+  function prefill(records) {
+    records = records.filter((r) => !STREET_TYPES.includes(String(r.type).toLowerCase())).sort((a, b) => a.year - b.year);
+    if (!records.length) return;
+
+    // One address row per address, covering every year it's listed
+    const places = new Map();
+    records.forEach((r) => {
+      const address = r.source === 'Electoral roll' && r.Address ? `${r.Address}, Carlton` : addressOf(r);
+      if (!address) return;
+      const key = address.toLowerCase();
+      const p = places.get(key) || { address, from: r.year, to: r.year };
+      p.to = r.year;
+      if (r.lat != null && r.lng != null) { p.lat = Number(r.lat).toFixed(6); p.lng = Number(r.lng).toFixed(6); }
+      places.set(key, p);
+    });
+    setRows('places', [...places.values()].map((p) => ({ ...p, from: String(p.from), to: p.to === p.from ? String(p.from) : String(p.to) })));
+    setRows('sources', records.map(sourceOf));
+
+    const voters = records.filter((r) => r.source === 'Electoral roll');
+    if (voters.length) {
+      const v = voters[voters.length - 1];
+      form.querySelector('input[name="kind"][value="person"]').checked = true;
+      applyKindLabels();
+      if (!$('articleTitle').value.trim()) $('articleTitle').value = `${v['Given Names'] || ''} ${v.Surname || ''}`.trim();
+      $('surname').value = v.Surname || '';
+      $('forenames').value = v['Given Names'] || '';
+      const jobs = voters.filter((r) => r.Occupation);
+      if (jobs.length) setRows('occupations', jobs.map((r) => ({ term: r.Occupation, from: String(r.year), to: String(r.year) })));
+    }
+
+    const note = document.createElement('p');
+    note.className = 'prefill-note';
+    note.textContent = 'We’ve filled in some of the form from these records. Please check it, and change anything that’s wrong.';
+    $('details-container').append(note);
+    changed();
   }
 
   function showRecords(records) {
