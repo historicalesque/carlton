@@ -4,7 +4,7 @@
   <teiHeader>
     <fileDesc>
       <titleStmt>
-        <title>Captain William Radcliffe</title>
+        <title>Captain William Ratcliffe</title>
         <author>Dr Jeff Atkinson</author>
       </titleStmt>
       <publicationStmt>
@@ -23,7 +23,7 @@
   <standOff>
     <listPerson>
       <person xml:id="subject">
-        <persName type="main">Captain William Radcliffe</persName>
+        <persName type="main">Captain William Ratcliffe</persName>
       </person>
     </listPerson>
   </standOff>

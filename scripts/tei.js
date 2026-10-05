@@ -478,7 +478,6 @@ window.TEIEntry = (function () {
       return `<li>${link(r.getAttribute('passive'), esc(name))}${rt && rt !== 'related' ? ` <span class="pv-dates">${esc(rt)}</span>` : ''}${d ? ` <span class="pv-dates">(${esc(d)})</span>` : ''}</li>`;
     }).join('');
     const sources = all(one(xml, 'sourceDesc'), 'bibl').map((b) => `<li>${mixed(b)}</li>`).join('');
-    const authors = all(one(xml, 'titleStmt'), 'author').map(text);
 
     return `
       <article class="pv-entry">
@@ -490,7 +489,6 @@ window.TEIEntry = (function () {
         ${chronHtml}
         ${relations ? `<h2>Related</h2><ul>${relations}</ul>` : ''}
         ${sources ? `<h2>References</h2><ul>${sources}</ul>` : ''}
-        ${authors.length ? `<p class="pv-by">By ${esc(authors.join(', '))}</p>` : ''}
       </article>`;
   }
 
