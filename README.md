@@ -339,7 +339,7 @@ Goal: entries become proper, interoperable archival authority records that other
 
 Placing records on the map is **ongoing community work**: about 16% of records have coordinates today, and that number should keep growing as volunteers contribute. The aim here is to make that work easy and inviting, not to finish it.
 
-- [ ] **"Help put this on the map"**: on records without coordinates, a prompt that lets a volunteer drop a pin on the map and submit it for review.
+- [ ] **"Help put this on the map"**: on records without coordinates, a prompt that lets a volunteer drop a pin on the map and submit it for review. Waiting on the new contribution form (form2) being connected: pins would travel the same route as other contributions (form, Apps Script, Sheet, pull request).
 - [ ] Show geocoding progress (e.g. "1,454 of 9,236 records mapped") on the map page as a community goal.
 - [x] Link map markers to entries and entries to map locations: the details popup says "Read the entry" when the record's `entityID` has an entry, and entries with drawn records get a "See on the map" link to `map?entity=<entityID>`, which rings those markers. (§4, Places, would later let an entry name its places directly.)
 - [ ] Historical base map overlays (e.g. MMBW plans), if suitable public-domain scans are available.
