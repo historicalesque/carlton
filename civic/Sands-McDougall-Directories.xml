@@ -18,12 +18,72 @@
     <revisionDesc status="published">
       <change when="2026-09-05" type="created">Public contribution via custom rich-text submission form by Mitchell Harrop.</change>
       <change when="2026-10-05" type="converted">Converted from EAC-CPF to TEI.</change>
+      <change when="2026-10-05" type="revised">Linked to a page for each digitised directory.</change>
     </revisionDesc>
   </teiHeader>
+  <standOff>
+    <listRelation>
+      <relation type="topic" name="edition" active="#subject" passive="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1860">
+        <desc>Sands, Kenny &amp; Co. Directory, 1860</desc>
+      </relation>
+      <relation type="topic" name="edition" active="#subject" passive="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1865">
+        <desc>Sands &amp; McDougall Directory, 1865</desc>
+      </relation>
+      <relation type="topic" name="edition" active="#subject" passive="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1870">
+        <desc>Sands &amp; McDougall Directory, 1870</desc>
+      </relation>
+      <relation type="topic" name="edition" active="#subject" passive="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1875">
+        <desc>Sands &amp; McDougall Directory, 1875</desc>
+      </relation>
+      <relation type="topic" name="edition" active="#subject" passive="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1880">
+        <desc>Sands &amp; McDougall Directory, 1880</desc>
+      </relation>
+      <relation type="topic" name="edition" active="#subject" passive="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1885">
+        <desc>Sands &amp; McDougall Directory, 1885</desc>
+      </relation>
+      <relation type="topic" name="edition" active="#subject" passive="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1890">
+        <desc>Sands &amp; McDougall Directory, 1890</desc>
+      </relation>
+      <relation type="topic" name="edition" active="#subject" passive="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1895">
+        <desc>Sands &amp; McDougall Directory, 1895</desc>
+      </relation>
+      <relation type="topic" name="edition" active="#subject" passive="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1900">
+        <desc>Sands &amp; McDougall Directory, 1900</desc>
+      </relation>
+      <relation type="topic" name="edition" active="#subject" passive="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1905">
+        <desc>Sands &amp; McDougall Directory, 1905</desc>
+      </relation>
+      <relation type="topic" name="edition" active="#subject" passive="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1910">
+        <desc>Sands &amp; McDougall Directory, 1910</desc>
+      </relation>
+      <relation type="topic" name="edition" active="#subject" passive="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1915">
+        <desc>Sands &amp; McDougall Directory, 1915</desc>
+      </relation>
+      <relation type="topic" name="edition" active="#subject" passive="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1920">
+        <desc>Sands &amp; McDougall Directory, 1920</desc>
+      </relation>
+      <relation type="topic" name="edition" active="#subject" passive="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1925">
+        <desc>Sands &amp; McDougall Directory, 1925</desc>
+      </relation>
+      <relation type="topic" name="edition" active="#subject" passive="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1930">
+        <desc>Sands &amp; McDougall Directory, 1930</desc>
+      </relation>
+      <relation type="topic" name="edition" active="#subject" passive="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1935">
+        <desc>Sands &amp; McDougall Directory, 1935</desc>
+      </relation>
+      <relation type="topic" name="edition" active="#subject" passive="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1940">
+        <desc>Sands &amp; McDougall Directory, 1940</desc>
+      </relation>
+      <relation type="topic" name="edition" active="#subject" passive="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1944">
+        <desc>Sands &amp; McDougall Directory, 1944–1945</desc>
+      </relation>
+    </listRelation>
+  </standOff>
   <text>
     <body>
       <p>This is all of the Directory listings:</p>
       <p><ref target="places">https://historicalesque.github.io/carlton/places</ref></p>
+      <p>State Library Victoria has digitised one directory every five years. Each has its own page here: <ref target="civic?id=Sands-McDougall-Directory-1860">1860</ref>, <ref target="civic?id=Sands-McDougall-Directory-1865">1865</ref>, <ref target="civic?id=Sands-McDougall-Directory-1870">1870</ref>, <ref target="civic?id=Sands-McDougall-Directory-1875">1875</ref>, <ref target="civic?id=Sands-McDougall-Directory-1880">1880</ref>, <ref target="civic?id=Sands-McDougall-Directory-1885">1885</ref>, <ref target="civic?id=Sands-McDougall-Directory-1890">1890</ref>, <ref target="civic?id=Sands-McDougall-Directory-1895">1895</ref>, <ref target="civic?id=Sands-McDougall-Directory-1900">1900</ref>, <ref target="civic?id=Sands-McDougall-Directory-1905">1905</ref>, <ref target="civic?id=Sands-McDougall-Directory-1910">1910</ref>, <ref target="civic?id=Sands-McDougall-Directory-1915">1915</ref>, <ref target="civic?id=Sands-McDougall-Directory-1920">1920</ref>, <ref target="civic?id=Sands-McDougall-Directory-1925">1925</ref>, <ref target="civic?id=Sands-McDougall-Directory-1930">1930</ref>, <ref target="civic?id=Sands-McDougall-Directory-1935">1935</ref>, <ref target="civic?id=Sands-McDougall-Directory-1940">1940</ref> and <ref target="civic?id=Sands-McDougall-Directory-1944">1944–1945</ref>.</p>
     </body>
   </text>
 </TEI>
