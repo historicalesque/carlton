@@ -29,7 +29,9 @@
      chronology:     [{ date, event, place }],
      relations:      [{ name, targetType, relationType, href, from, to }],
      sources:        [{ text, href }],
-     articleHtml, note
+     articleHtml, note,
+     changes:        [{ when, type, text }],  // later edits, optional
+     status          // revisionDesc/@status, "draft" unless given
    }
 */
 window.TEIEntry = (function () {
@@ -196,9 +198,11 @@ window.TEIEntry = (function () {
           ? el('listBibl', null, sources.map((s) => el('bibl', null,
               has(s.href) ? el('ref', { target: trim(s.href) }, trim(s.text) || trim(s.href)) : trim(s.text))))
           : el('p', null, 'Contributed through the website. No sources listed.'))),
-      el('revisionDesc', { status: 'draft' },
+      el('revisionDesc', { status: entry.status || 'draft' },
         el('change', { when: today, type: 'created' },
-          `${trim(entry.note) || 'Contributed through the contribution form'}${authors.length ? ` by ${authors.join(', ')}` : ''}.`))
+          `${trim(entry.note) || 'Contributed through the contribution form'}${authors.length ? ` by ${authors.join(', ')}` : ''}.`),
+        // Later edits, e.g. a conversion: [{ when, type, text }]
+        (entry.changes || []).map((c) => el('change', { when: c.when, type: c.type }, c.text)))
     ));
 
     // standOff: the subject
@@ -367,7 +371,14 @@ window.TEIEntry = (function () {
 
   /* ---------- Render an entry back to HTML ---------- */
   const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
-  const link = (href, html) => (href && /^https?:/i.test(href) ? `<a href="${esc(href)}" target="_blank" rel="noopener">${html}</a>` : html);
+  // Links to other sites open in a new tab; links within the site (e.g.
+  // civic?id=…, people) open in place. Script and data URLs are dropped.
+  const link = (href, html) => {
+    if (!href || /^\s*(javascript|data|vbscript):/i.test(href)) return html;
+    return /^https?:/i.test(href)
+      ? `<a href="${esc(href)}" target="_blank" rel="noopener">${html}</a>`
+      : `<a href="${esc(href)}">${html}</a>`;
+  };
 
   function render(xmlText) {
     const xml = new DOMParser().parseFromString(xmlText, 'application/xml');

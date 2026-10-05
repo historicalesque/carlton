@@ -1,0 +1,131 @@
+---
+layout: null
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Convert entries from EAC-CPF to TEI</title>
+  <link rel="stylesheet" href="../styles/site.css?v={{ site.time | date: '%s' }}">
+  <style>
+    body { background: var(--paper); color: var(--ink-soft); font-family: var(--font-ui); padding: 24px 16px; max-width: 900px; margin: 0 auto; }
+    h1 { font-family: var(--font-serif); font-weight: normal; color: var(--ink); margin-bottom: 8px; }
+    p { margin-bottom: 12px; }
+    table { border-collapse: collapse; width: 100%; font-size: 14px; }
+    th, td { text-align: left; padding: 6px 8px; border-bottom: 1px solid var(--paper-line); vertical-align: top; }
+    a { color: var(--moss); }
+    .skip { color: var(--ink-faint); }
+  </style>
+</head>
+<body>
+<h1>Convert entries from EAC-CPF to TEI</h1>
+<p>A one-off tool for the move to TEI (README roadmap §4). It reads every entry in <code>civic/</code> that is still
+  EAC-CPF, converts it with the same code as the contribution form (<code>scripts/tei.js</code>), and offers each
+  result for download. Upload the files to <code>civic/</code> on a branch, replacing the old ones.</p>
+<p>It keeps the title, the authors, the date and description of the original submission, and the article. The type of
+  each entry comes from the list in this page (<code>KINDS</code>); EAC-CPF said <code>concept</code> for everything.
+  The boilerplate eMelbourne citation (<code>resourceRelation</code>) that every old entry carries is left out.</p>
+<p id="status">Converting…</p>
+<table>
+  <thead><tr><th>File</th><th>Title</th><th>Type</th><th>Result</th></tr></thead>
+  <tbody id="rows"></tbody>
+</table>
+
+<script src="../scripts/tei.js?v={{ site.time | date: '%s' }}"></script>
+<script>
+  const FILES = [{% for f in site.static_files %}{% if f.path contains '/civic/' and f.extname == '.xml' %}"{{ f.basename }}",{% endif %}{% endfor %}];
+
+  // What each existing entry is about. Anything not listed becomes "unknown"
+  // for an editor to set.
+  const KINDS = {
+    '41-Perseverance-hotel-Strain-Mrs-Cath-Barry-Street': 'org',
+    'Ballarat-Road': 'place',
+    'Berkley-Arms-hotel-Lissaman-Wm-Berkley-Street': 'org',
+    'Bouverie-Street': 'place',
+    'Captain-William-Ratcliffe': 'person',
+    'Carlton-Brewery': 'org',
+    'Carlton-Inn': 'org',
+    'Cesspits': 'topic',
+    'Corkman-Hotel': 'org',
+    'Electoral-Rolls': 'topic',
+    'Emu-Hotel': 'org',
+    'Engineering': 'topic',
+    'Inspector-of-Nuisances': 'topic',
+    'Larrikins-and-Pushes': 'topic',
+    'Leister-A-E-mtr-car-pntrs-trmmrs-Leicester-Street': 'org',
+    'Mary-Mather-Pelham-Hotel': 'person',
+    'Pelham-Hotel': 'org',
+    'Pelham-Street': 'place',
+    'Queer-History': 'topic',
+    'Sands-McDougall-Directories': 'topic',
+    'Squares-in-Carlton': 'topic',
+    'Street-Numbering': 'topic'
+  };
+  const EAC = 'urn:isbn:1-931666-33-4';
+  const TODAY = new Date().toISOString().slice(0, 10);
+
+  // The article: usually HTML inside a CDATA block in <abstract>, but a few
+  // entries have the HTML as elements in the EAC-CPF namespace instead.
+  function articleHtml(abstract) {
+    if (!abstract) return '';
+    if ([...abstract.childNodes].every((n) => n.nodeType !== 1)) return abstract.textContent;
+    return [...abstract.childNodes].map((n) => (n.nodeType === 1
+      ? new XMLSerializer().serializeToString(n).replace(/ xmlns(:\w+)?="[^"]*"/g, '')
+      : n.textContent)).join('');
+  }
+
+  function toEntry(name, xml) {
+    const one = (tag) => xml.getElementsByTagNameNS(EAC, tag)[0];
+    const text = (tag) => (one(tag) ? one(tag).textContent.trim() : '');
+    const html = articleHtml(one('abstract'));
+    return {
+      recordId: name,
+      title: text('part'),
+      kind: KINDS[name] || '',
+      // Several authors were typed into one field, separated by commas
+      authors: text('agent').split(/\s*,\s*/).filter(Boolean),
+      date: text('eventDateTime') || TODAY,
+      note: text('eventDescription') || 'Contributed through the website',
+      // An article with no markup at all becomes one paragraph
+      articleHtml: /<\w/.test(html) ? html : `<p>${html.replace(/[&<]/g, (c) => (c === '&' ? '&amp;' : '&lt;'))}</p>`,
+      status: 'published',
+      changes: [{ when: TODAY, type: 'converted', text: 'Converted from EAC-CPF to TEI.' }]
+    };
+  }
+
+  (async () => {
+    const rows = document.getElementById('rows');
+    let done = 0;
+    for (const name of FILES) {
+      const tr = rows.insertRow();
+      tr.insertCell().textContent = `${name}.xml`;
+      const titleCell = tr.insertCell(); const kindCell = tr.insertCell(); const result = tr.insertCell();
+      try {
+        const xml = new DOMParser().parseFromString(await (await fetch(`../civic/${name}.xml`)).text(), 'application/xml');
+        if (xml.documentElement.namespaceURI === TEIEntry.NS) {
+          result.innerHTML = '<span class="skip">Already TEI</span>';
+          continue;
+        }
+        const entry = toEntry(name, xml);
+        titleCell.textContent = entry.title;
+        kindCell.textContent = entry.kind || 'unknown';
+        const tei = TEIEntry.build(entry);
+        const a = document.createElement('a');
+        a.href = URL.createObjectURL(new Blob([tei], { type: 'application/xml' }));
+        a.download = `${name}.xml`;
+        a.textContent = 'Download';
+        a.className = 'download';
+        a.dataset.name = name;
+        result.append(a);
+        done++;
+      } catch (err) {
+        result.textContent = `Failed: ${err.message}`;
+      }
+    }
+    document.getElementById('status').textContent = `${done} of ${FILES.length} entries converted.`;
+  })();
+</script>
+</body>
+</html>

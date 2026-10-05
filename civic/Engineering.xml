@@ -1,69 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<?oxygen RNGSchema="shared/cpf.rng" type="xml"?>
-<eac-cpf xmlns="urn:isbn:1-931666-33-4" 
-         xmlns:xlink="http://www.w3.org/1999/xlink" 
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
-         xsi:schemaLocation="urn:isbn:1-931666-33-4 http://eac.staatsbibliothek-berlin.de/schema/cpf.xsd">
-  <control>
-    <recordId>Engineering</recordId>
-    <maintenanceStatus>new</maintenanceStatus>
-    <maintenanceAgency>
-      <agencyCode>AU-EMEL</agencyCode>
-      <agencyName>eMelbourne - The Encyclopedia of Melbourne Online</agencyName>
-      <descriptiveNote><p></p></descriptiveNote>
-    </maintenanceAgency>
-    <languageDeclaration>
-      <language languageCode="eng">English</language>
-      <script scriptCode="Latn">Latin</script>
-    </languageDeclaration>
-    <conventionDeclaration>
-      <abbreviation>AACR2</abbreviation>
-      <citation>Anglo-American Cataloguing Rules</citation>
-    </conventionDeclaration>
-    <localControl localType="typeOfEntity">
-      <term>Entry</term>
-    </localControl>
-    <maintenanceHistory>
-      <maintenanceEvent>
-        <eventType>created</eventType>
-        <eventDateTime standardDateTime="2026-09-22">2026-09-22</eventDateTime>
-        <agentType>human</agentType>
-        <agent>Andy May</agent>
-        <eventDescription>Public contribution via custom rich-text submission form</eventDescription>
-      </maintenanceEvent>
-    </maintenanceHistory>
-  </control>
-  <cpfDescription>
-    <identity>
-      <entityId>Engineering</entityId>
-      <entityType>concept</entityType>
-      <nameEntry>
-        <part>Engineering firms</part>
-        <authorizedForm>AACR2</authorizedForm>
-      </nameEntry>
-    </identity>
-    <description>
-      <places></places>
-      <biogHist>
-        <abstract><![CDATA[<p>We have yet to do a close analysis of engineering firms in the precinct, but it is clear a number of important businesses included motor engineers, milling engineers, electrical engineers, and manufacturers of agricultural machinery. In this sense — and in today’s parlance — we might say that the area was part of an innovation precinct. Historian John Lack, who is researching H.V. McKay of Sunshine Harvester fame, mentions a story that some of his early machinery was manufactured by a form on Elizabeth Street and tested in Lincoln Square.</p><p>&nbsp;</p><p>There are many newspapers references to Scott &amp; Young’s Atlas Company of Engineers at 108 Bouverie Street. A quick search tells us that it was established by Scotsman John Scott, who arrived in Victoria in 1859 and first established the company on the corner of Queen and Latrobe Streets around 1868 before it moved to Bouverie Street (listed at Queen Street in 1886 but a robbery reported at Bouverie Street in 1889). Scott died in 1909 aged 73, predeceased by the other principal of the firm George Young. The business was auctioned in December 1909 as a going concern but it is unclear at this point whether the sale went through or the plant was broken up. The last entry in S&amp;M is 1910.</p><p>&nbsp;<a href="http://nla.gov.au/nla.news-article222596444">http://nla.gov.au/nla.news-article222596444</a></p><p>&nbsp;<a href="http://nla.gov.au/nla.news-article10755580">http://nla.gov.au/nla.news-article10755580</a></p><p><a href="http://nla.gov.au/nla.news-article176998399">http://nla.gov.au/nla.news-article176998399</a></p><p><a href="http://nla.gov.au/nla.news-article197503973">http://nla.gov.au/nla.news-article197503973</a></p><p>Melbourne became an engineering powerhouse on the back of the goldrush and its demand for heavy mining machinery. As Matthew Churchward notes in eMelbourne: “The city's rapid growth also created a demand for new products, with ornamental cast-iron lace and columns being turned out amid the Chilian mills, Berdan pans, stamp batteries and pumps for the mines … The gold rushes attracted dozens of skilled metalworkers to the colony, many of whom established their own businesses over coming decades”. <a href="https://www.emelbourne.net.au/biogs/EM00524b.htm">https://www.emelbourne.net.au/biogs/EM00524b.htm</a></p><p>&nbsp;</p><p>In 1890, the Atlas company made a large diamond drill for the Queensland Government, capable of boring to a depth of 3000 feet [Argus, 4 June 1890, p. 9 <a href="http://nla.gov.au/nla.news-article8609904">http://nla.gov.au/nla.news-article8609904</a>], and advertised the manufacture of “Wood-working Machinery, Diamond Drills, the improved “Tiffin” Well-borer and Rock drilling Machines, “Althouse” Windmills, Pumps, Engines, Boilers etc” (<em>Argus</em>, 28 April 1890, p. 10) <a href="http://nla.gov.au/nla.news-article8603083">http://nla.gov.au/nla.news-article8603083</a></p><p>Churchward also tells us that ‘The greatest contributor to public expenditure was the Victorian Railways, which in the peak year of 1889 let £300,000 worth of contracts to Melbourne firms for everything from dog spikes and platelayers' trolleys to goods wagons and bridge girders’. In 1907, manufacture of the ‘Wood-Gilbert Rail Planer’ at the Atlas company’s Bouverie Street plant revolutionised the upkeep of railway tracks [<a href="http://nla.gov.au/nla.news-article151799087">http://nla.gov.au/nla.news-article151799087</a>]</p><p>Nicholson &amp; Morrow were agricultural engineers of Bouverie and Leicester Streets in an 1887 advertisement in the Weekly Times showing their champion ploughs and horseworks, the latter being a mechanical device of cogs and pulleys driven by horses walking in a circle around it.</p><p><a href="http://nla.gov.au/nla.news-article220482762">http://nla.gov.au/nla.news-article220482762</a></p>]]></abstract>
-      </biogHist>
-    </description>
-    <relations>
-      <resourceRelation resourceRelationType="subjectOf">
-        <relationEntry localType="published">'Engineering firms', in &lt;span style="font-style:italic"&gt;eMelbourne - The Encyclopedia of Melbourne Online&lt;/span&gt;, School of Historical Studies, Department of History, The University of Melbourne</relationEntry>
-        <objectXMLWrap>
-          <bibref xmlns="urn:isbn:1-931666-22-9">
-            <title render="italic">Engineering firms</title>
-            <imprint>
-              <publisher>School of Historical Studies&lt;br /&gt; Department of History, The University of Melbourne</publisher>
-            </imprint>
-            <bibseries>
-              <title render="italic">eMelbourne - The Encyclopedia of Melbourne Online</title>
-            </bibseries>
-            <extptr linktype="simple" href="Engineering.xml"></extptr>
-          </bibref>
-        </objectXMLWrap>
-      </resourceRelation>
-    </relations>
-  </cpfDescription>
-</eac-cpf>
+<?xml-model href="https://historicalesque.github.io/carlton/schema/carlton.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0" type="topic" xml:lang="en">
+  <teiHeader>
+    <fileDesc>
+      <titleStmt>
+        <title>Engineering firms</title>
+        <author>Andy May</author>
+      </titleStmt>
+      <publicationStmt>
+        <publisher>Common Ground</publisher>
+        <idno type="entry">Engineering</idno>
+      </publicationStmt>
+      <sourceDesc>
+        <p>Contributed through the website. No sources listed.</p>
+      </sourceDesc>
+    </fileDesc>
+    <revisionDesc status="published">
+      <change when="2026-09-22" type="created">Public contribution via custom rich-text submission form by Andy May.</change>
+      <change when="2026-10-05" type="converted">Converted from EAC-CPF to TEI.</change>
+    </revisionDesc>
+  </teiHeader>
+  <text>
+    <body>
+      <p>We have yet to do a close analysis of engineering firms in the precinct, but it is clear a number of important businesses included motor engineers, milling engineers, electrical engineers, and manufacturers of agricultural machinery. In this sense — and in today’s parlance — we might say that the area was part of an innovation precinct. Historian John Lack, who is researching H.V. McKay of Sunshine Harvester fame, mentions a story that some of his early machinery was manufactured by a form on Elizabeth Street and tested in Lincoln Square.</p>
+      <p>There are many newspapers references to Scott &amp; Young’s Atlas Company of Engineers at 108 Bouverie Street. A quick search tells us that it was established by Scotsman John Scott, who arrived in Victoria in 1859 and first established the company on the corner of Queen and Latrobe Streets around 1868 before it moved to Bouverie Street (listed at Queen Street in 1886 but a robbery reported at Bouverie Street in 1889). Scott died in 1909 aged 73, predeceased by the other principal of the firm George Young. The business was auctioned in December 1909 as a going concern but it is unclear at this point whether the sale went through or the plant was broken up. The last entry in S&amp;M is 1910.</p>
+      <p><ref target="http://nla.gov.au/nla.news-article222596444">http://nla.gov.au/nla.news-article222596444</ref></p>
+      <p><ref target="http://nla.gov.au/nla.news-article10755580">http://nla.gov.au/nla.news-article10755580</ref></p>
+      <p><ref target="http://nla.gov.au/nla.news-article176998399">http://nla.gov.au/nla.news-article176998399</ref></p>
+      <p><ref target="http://nla.gov.au/nla.news-article197503973">http://nla.gov.au/nla.news-article197503973</ref></p>
+      <p>Melbourne became an engineering powerhouse on the back of the goldrush and its demand for heavy mining machinery. As Matthew Churchward notes in eMelbourne: “The city's rapid growth also created a demand for new products, with ornamental cast-iron lace and columns being turned out amid the Chilian mills, Berdan pans, stamp batteries and pumps for the mines … The gold rushes attracted dozens of skilled metalworkers to the colony, many of whom established their own businesses over coming decades”. <ref target="https://www.emelbourne.net.au/biogs/EM00524b.htm">https://www.emelbourne.net.au/biogs/EM00524b.htm</ref></p>
+      <p>In 1890, the Atlas company made a large diamond drill for the Queensland Government, capable of boring to a depth of 3000 feet [Argus, 4 June 1890, p. 9 <ref target="http://nla.gov.au/nla.news-article8609904">http://nla.gov.au/nla.news-article8609904</ref>], and advertised the manufacture of “Wood-working Machinery, Diamond Drills, the improved “Tiffin” Well-borer and Rock drilling Machines, “Althouse” Windmills, Pumps, Engines, Boilers etc” (<hi rend="italic">Argus</hi>, 28 April 1890, p. 10) <ref target="http://nla.gov.au/nla.news-article8603083">http://nla.gov.au/nla.news-article8603083</ref></p>
+      <p>Churchward also tells us that ‘The greatest contributor to public expenditure was the Victorian Railways, which in the peak year of 1889 let £300,000 worth of contracts to Melbourne firms for everything from dog spikes and platelayers' trolleys to goods wagons and bridge girders’. In 1907, manufacture of the ‘Wood-Gilbert Rail Planer’ at the Atlas company’s Bouverie Street plant revolutionised the upkeep of railway tracks [<ref target="http://nla.gov.au/nla.news-article151799087">http://nla.gov.au/nla.news-article151799087</ref>]</p>
+      <p>Nicholson &amp; Morrow were agricultural engineers of Bouverie and Leicester Streets in an 1887 advertisement in the Weekly Times showing their champion ploughs and horseworks, the latter being a mechanical device of cogs and pulleys driven by horses walking in a circle around it.</p>
+      <p><ref target="http://nla.gov.au/nla.news-article220482762">http://nla.gov.au/nla.news-article220482762</ref></p>
+    </body>
+  </text>
+</TEI>

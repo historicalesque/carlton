@@ -1,69 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<?oxygen RNGSchema="shared/cpf.rng" type="xml"?>
-<eac-cpf xmlns="urn:isbn:1-931666-33-4" 
-         xmlns:xlink="http://www.w3.org/1999/xlink" 
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
-         xsi:schemaLocation="urn:isbn:1-931666-33-4 http://eac.staatsbibliothek-berlin.de/schema/cpf.xsd">
-  <control>
-    <recordId>Queer-History</recordId>
-    <maintenanceStatus>new</maintenanceStatus>
-    <maintenanceAgency>
-      <agencyCode>AU-EMEL</agencyCode>
-      <agencyName>eMelbourne - The Encyclopedia of Melbourne Online</agencyName>
-      <descriptiveNote><p></p></descriptiveNote>
-    </maintenanceAgency>
-    <languageDeclaration>
-      <language languageCode="eng">English</language>
-      <script scriptCode="Latn">Latin</script>
-    </languageDeclaration>
-    <conventionDeclaration>
-      <abbreviation>AACR2</abbreviation>
-      <citation>Anglo-American Cataloguing Rules</citation>
-    </conventionDeclaration>
-    <localControl localType="typeOfEntity">
-      <term>Entry</term>
-    </localControl>
-    <maintenanceHistory>
-      <maintenanceEvent>
-        <eventType>created</eventType>
-        <eventDateTime standardDateTime="2026-10-03">2026-10-03</eventDateTime>
-        <agentType>human</agentType>
-        <agent>Jacobin Bosman</agent>
-        <eventDescription>Public contribution via custom rich-text submission form</eventDescription>
-      </maintenanceEvent>
-    </maintenanceHistory>
-  </control>
-  <cpfDescription>
-    <identity>
-      <entityId>Queer-History</entityId>
-      <entityType>concept</entityType>
-      <nameEntry>
-        <part>Queer History</part>
-        <authorizedForm>AACR2</authorizedForm>
-      </nameEntry>
-    </identity>
-    <description>
-      <places></places>
-      <biogHist>
-        <abstract><![CDATA[<p>The Melbourne University precinct has a long and storied twentieth-century queer history. Union House hosted several 'firsts' in the 1960s and 1970s, including public discussions on homosexual law reform, and meetings of the Campaign Against Moral Persecution (CAMP) and the Gay Liberation Front. The university grounds themselves were the site of a number of beats. The wider Carlton area had some significant nineteenth-century associations with beats, male sex work, and cross-gender expression (particularly around Carlton Gardens and the Exhibition Building). However, other parts of Carlton have attracted less scrutiny. </p><p>An incident that occurred just beyond the university gates on Grattan Street in 1897 may suggest that an earlier sexual subculture operated in the area. According to newspaper reports in <em>The Age </em>and <em>Bendigo Independent</em>, John Lempriere Irvine was arrested on 27 September, 1897 on a charge of "behaving in an insulting/indecent manner." His accuser, Ernest Smith, raised the charge after Irvine had approached he and another youth while they stood outside the Victoria Bowling Club, at the corner of Leicester and Grattan Streets around 8pm. Irvine, Smith said, greeted him by saying "Hallo, are you working?" and offering him three shillings for what the <em>Bendigo Independent </em>coyly termed "compliance." According to Smith, he and his friends ran to police when Irvine would not desist from haranguing him, eventually fetching Constable Stephens from his duty in Queensberry Street. Irvine, for his part, escaped to an unknown house on Barry Street. When arrested, he claimed that he had been assailed by a larrikin push, and escaped to Barry Street for shelter. Tried in the Carlton Police Court at Drummond Street on 7 October, 1897, the case was dismissed. </p><p>Sexual intimacy between male persons was a criminal offence in Victoria until the late twentieth century. Sentencing was, in practice, highly variable. However, the <em>Crimes Act 1890 </em>provided for sentencing ranging from a maximum of ten years imprisonment for misdemeanour sexual acts; committing 'sodomy' or 'buggery' carried a fifteen year maximum sentence where the act did not entail violence, or was committed with a male over the age of fourteen. A summary offence, such as insulting behaviour, could still attract sentences ranging from months to years. Sentencing could also incorporate whipping, hard labour and periods of solitary confinement. Moreover, respectable men stood to lose their position in society, both socially and economically. The latter was, indeed, the outcome for Irvine despite his acquittal.  </p><p>Within this context, Irvine's decision to approach Smith with "Hallo, are you working?" suggests the plausible presence of working-class male sex work in proximity to the area. The greeting provided some degree of plausible deniability for the man making an approach, but appears regularly in trial depositions involving male sex work. Moreover, Ernest Smith belonged to the age group and socio-economic category most connected with male sex work in Melbourne during this period. Although impossible to know exactly what transpired that night, or why, the Irvine case offers a plausible scope for further investigation. </p><p><strong>Further Reading:</strong></p><p>Australian Queer Archives and the State of Victoria Department of Environment, Land, Water, and Planning, <em>A History of LGBTQ+ Victoria in 100 Places and Objects</em>, 2021.</p><p>Wayne Murdoch, <em>The Mystery of the Handsome Man: The Double Life of John Lempriere Irvine</em>, 2020.</p>]]></abstract>
-      </biogHist>
-    </description>
-    <relations>
-      <resourceRelation resourceRelationType="subjectOf">
-        <relationEntry localType="published">'Queer History', in &lt;span style="font-style:italic"&gt;eMelbourne - The Encyclopedia of Melbourne Online&lt;/span&gt;, School of Historical Studies, Department of History, The University of Melbourne</relationEntry>
-        <objectXMLWrap>
-          <bibref xmlns="urn:isbn:1-931666-22-9">
-            <title render="italic">Queer History</title>
-            <imprint>
-              <publisher>School of Historical Studies&lt;br /&gt; Department of History, The University of Melbourne</publisher>
-            </imprint>
-            <bibseries>
-              <title render="italic">eMelbourne - The Encyclopedia of Melbourne Online</title>
-            </bibseries>
-            <extptr linktype="simple" href="Queer-History.xml"></extptr>
-          </bibref>
-        </objectXMLWrap>
-      </resourceRelation>
-    </relations>
-  </cpfDescription>
-</eac-cpf>
+<?xml-model href="https://historicalesque.github.io/carlton/schema/carlton.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0" type="topic" xml:lang="en">
+  <teiHeader>
+    <fileDesc>
+      <titleStmt>
+        <title>Queer History</title>
+        <author>Jacobin Bosman</author>
+      </titleStmt>
+      <publicationStmt>
+        <publisher>Common Ground</publisher>
+        <idno type="entry">Queer-History</idno>
+      </publicationStmt>
+      <sourceDesc>
+        <p>Contributed through the website. No sources listed.</p>
+      </sourceDesc>
+    </fileDesc>
+    <revisionDesc status="published">
+      <change when="2026-10-03" type="created">Public contribution via custom rich-text submission form by Jacobin Bosman.</change>
+      <change when="2026-10-05" type="converted">Converted from EAC-CPF to TEI.</change>
+    </revisionDesc>
+  </teiHeader>
+  <text>
+    <body>
+      <p>The Melbourne University precinct has a long and storied twentieth-century queer history. Union House hosted several 'firsts' in the 1960s and 1970s, including public discussions on homosexual law reform, and meetings of the Campaign Against Moral Persecution (CAMP) and the Gay Liberation Front. The university grounds themselves were the site of a number of beats. The wider Carlton area had some significant nineteenth-century associations with beats, male sex work, and cross-gender expression (particularly around Carlton Gardens and the Exhibition Building). However, other parts of Carlton have attracted less scrutiny.</p>
+      <p>An incident that occurred just beyond the university gates on Grattan Street in 1897 may suggest that an earlier sexual subculture operated in the area. According to newspaper reports in <hi rend="italic">The Age </hi>and <hi rend="italic">Bendigo Independent</hi>, John Lempriere Irvine was arrested on 27 September, 1897 on a charge of "behaving in an insulting/indecent manner." His accuser, Ernest Smith, raised the charge after Irvine had approached he and another youth while they stood outside the Victoria Bowling Club, at the corner of Leicester and Grattan Streets around 8pm. Irvine, Smith said, greeted him by saying "Hallo, are you working?" and offering him three shillings for what the <hi rend="italic">Bendigo Independent </hi>coyly termed "compliance." According to Smith, he and his friends ran to police when Irvine would not desist from haranguing him, eventually fetching Constable Stephens from his duty in Queensberry Street. Irvine, for his part, escaped to an unknown house on Barry Street. When arrested, he claimed that he had been assailed by a larrikin push, and escaped to Barry Street for shelter. Tried in the Carlton Police Court at Drummond Street on 7 October, 1897, the case was dismissed.</p>
+      <p>Sexual intimacy between male persons was a criminal offence in Victoria until the late twentieth century. Sentencing was, in practice, highly variable. However, the <hi rend="italic">Crimes Act 1890 </hi>provided for sentencing ranging from a maximum of ten years imprisonment for misdemeanour sexual acts; committing 'sodomy' or 'buggery' carried a fifteen year maximum sentence where the act did not entail violence, or was committed with a male over the age of fourteen. A summary offence, such as insulting behaviour, could still attract sentences ranging from months to years. Sentencing could also incorporate whipping, hard labour and periods of solitary confinement. Moreover, respectable men stood to lose their position in society, both socially and economically. The latter was, indeed, the outcome for Irvine despite his acquittal.</p>
+      <p>Within this context, Irvine's decision to approach Smith with "Hallo, are you working?" suggests the plausible presence of working-class male sex work in proximity to the area. The greeting provided some degree of plausible deniability for the man making an approach, but appears regularly in trial depositions involving male sex work. Moreover, Ernest Smith belonged to the age group and socio-economic category most connected with male sex work in Melbourne during this period. Although impossible to know exactly what transpired that night, or why, the Irvine case offers a plausible scope for further investigation.</p>
+      <p><hi rend="bold">Further Reading:</hi></p>
+      <p>Australian Queer Archives and the State of Victoria Department of Environment, Land, Water, and Planning, <hi rend="italic">A History of LGBTQ+ Victoria in 100 Places and Objects</hi>, 2021.</p>
+      <p>Wayne Murdoch, <hi rend="italic">The Mystery of the Handsome Man: The Double Life of John Lempriere Irvine</hi>, 2020.</p>
+    </body>
+  </text>
+</TEI>
