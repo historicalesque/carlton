@@ -308,14 +308,14 @@ Goal: editors never need to touch GitHub directly. Done in small, fundable steps
 **Entries and submissions**
 
 - [x] Clearer review page: three numbered steps and two buttons, links back to Admin and the site, and the preview shows just the article (#50).
-- [x] **Accept/Reject without GitHub**: editors pick Accept or Reject in a Decision column in the submissions Sheet, with an optional reason kept in the Sheet. The Apps Script merges or closes the pull request a minute later. The review page is open to everyone.
-- [x] **Before/after table** on the review page for new versions of existing entries (`scripts/tei-compare.js`).
-- [x] **Suggest changes** on the review page: anyone can open a submission in the contribution form (filled in by `TEIEntry.parse()`), fix it and send it back as a new version of the same pull request. Each suggestion is a row on the Sheet's *Reviews* tab with its own Decision column, and the review page shows every version and what each changes.
+- [x] **Accept/Reject without GitHub**: editors pick Accept or Reject in a Decision column in the submissions Sheet, with an optional reason kept in the Sheet. The Apps Script merges or closes the pull request a minute later. The review page is open to everyone (#14).
+- [x] **Before/after table** on the review page for new versions of existing entries (`scripts/tei-compare.js`) (#14).
+- [x] **Suggest changes** on the review page: anyone can open a submission in the contribution form (filled in by `TEIEntry.parse()`), fix it and send it back as a new version of the same pull request. Each suggestion is a row on the Sheet's *Reviews* tab with its own Decision column, and the review page shows every version and what each changes (#15).
 
 **Directory/map data**
 
-- [ ] **Data editor saves by pull request**: replace "download, then upload to GitHub by hand" with a *Submit changes* button that opens a pull request, as the contribution form already does. This removes the riskiest manual step and becomes much easier once the data is split into per-year JSON (§1).
-- [ ] **Data-change preview on the review page**: show a readable table of changed records (before → after) instead of a raw diff.
+- [ ] **Data editor sends changes through the Apps Script**: replace "download, then upload to GitHub by hand" with a *Send changes* button, as the contribution form already does. The editor sends only the records that changed; `apps-script/Code.gs` applies them to the current files, opens a pull request and adds a row to a *Data changes* tab in the Sheet, where editors Accept or Reject it in the Decision column like any other submission.
+- [ ] **Data-change preview on the review page**: list data pull requests next to entry submissions, with a readable table of changed records (before → after) instead of a raw diff.
 - [x] Data editor uses the same fonts, colours and buttons as the review page, with one main *Download* button (#50).
 
 **Off-the-shelf options to compare against building our own**
@@ -352,7 +352,6 @@ Decided on 2026-10-04: entries move from EAC-CPF to [TEI P5](https://tei-c.org/g
 
 Placing records on the map is **ongoing community work**: about 16% of records have coordinates today, and that number should keep growing as volunteers contribute. The aim here is to make that work easy and inviting, not to finish it.
 
-- [ ] **"Help put this on the map"**: on records without coordinates, a prompt that lets a volunteer drop a pin on the map and submit it for review. Waiting on the new contribution form (form2) being connected: pins would travel the same route as other contributions (form, Apps Script, Sheet, pull request).
 - [ ] Show geocoding progress (e.g. "1,454 of 9,236 records mapped") on the map page as a community goal.
 - [x] Link map markers to entries and entries to map locations: the details popup says "Read the entry" when the record's `entityID` has an entry, and entries with drawn records get a "See on the map" link to `map?entity=<entityID>`, which rings those markers. (§4, Places, would later let an entry name its places directly.)
 - [ ] Historical base map overlays (e.g. MMBW plans), if suitable public-domain scans are available.
