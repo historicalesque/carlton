@@ -20,6 +20,7 @@
     </fileDesc>
     <revisionDesc status="draft">
       <change when="2026-10-06" type="created">Contributed through the contribution form by Andy May.</change>
+      <change when="2026-10-06" type="revised">Changes suggested by Andy May: Small typo.</change>
     </revisionDesc>
   </teiHeader>
   <standOff>
@@ -46,7 +47,7 @@
       <p>John Thomas Best, estate agent and member of the firm of Sydney C. Arnold and Co., gave evidence similar to that given by Mr Annear.</p>
       <p>Mrs Agnes Touraine, the licensee of the hotel, said that the takings of the house were from L20 to L23 per week. She supplied from 15 to 16 meals per day. There were seven public bed-rooms, and these were always occupied. She had a number of friends in Gippsland, who made the hotel their home when in Melbourne.</p>
       <p>The Board reserved Its decision."</p>
-      <p>Herald, 2 Jun 1908: 3</p>
+      <p><hi rend="italic">Herald</hi>, 2 Jun 1908: 3.</p>
     </body>
   </text>
 </TEI>
