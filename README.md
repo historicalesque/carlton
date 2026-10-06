@@ -10,7 +10,7 @@
 > - **Search everything:** [Search](https://historicalesque.github.io/carlton/search) finds entries, directory listings and electoral-roll records in one box.
 > - **Browse the histories:** [Featured pages A–Z](https://historicalesque.github.io/carlton/aToZ) · [Map](https://historicalesque.github.io/carlton/map) · [People](https://historicalesque.github.io/carlton/people) · [Places](https://historicalesque.github.io/carlton/places)
 > - **Share a story or add to an entry:** open any entry on the site and use the *Contribute* form at the bottom, or [start a new entry](https://historicalesque.github.io/carlton/new).
-> - **Editorial team:** start at the [Admin page](https://historicalesque.github.io/carlton/admin/), which links to each editorial tool. To review submissions, go to the [Submission review page](https://historicalesque.github.io/carlton/admin/review.html) and follow the steps it gives you.
+> - **Editorial team:** start at the [Admin page](https://historicalesque.github.io/carlton/admin/), which links to each editorial tool. To review submissions, read them on the [Submission review page](https://historicalesque.github.io/carlton/admin/review.html), then accept or reject each one in the Decision column of the team's submissions spreadsheet.
 > - **Project partners:** [Melbourne History Workshop](https://melbournehistoryworkshop.com) · [Carlton Community History Group](https://cchg.asn.au)
 
 ---
@@ -39,7 +39,7 @@ Common Ground is a static website hosted on **GitHub Pages** and built with **Je
 
 - **Encyclopedia entries** are XML files in `civic/`. The browser fetches them and renders them on the fly. Existing entries are [EAC-CPF](https://eac.staatsbibliothek-berlin.de/); entries are moving to [TEI](https://tei-c.org/guidelines/p5/) (roadmap §4), and entry pages show both.
 - **Historical directory data** (Sands & McDougall directories and electoral rolls) is one JSON file per source and year in `_data/`. Jekyll publishes compact copies in `data/` plus an index, and each page loads only the files it needs through `scripts/data.js`.
-- **Public contributions** go through a Google Apps Script web app. The form builds each entry as TEI and sends it to the script in `apps-script/Code.gs`, which saves a copy to a Google Sheet in the team's shared Google Drive folder, then opens a pull request on this repository. The form only sends once `contribution_endpoint` is set in `_config.yml` (setup: `apps-script/README.md`). The sheet is a user-friendly backup while the submission process is being settled. The editorial team then merges the pull request (accept) or closes it (reject).
+- **Public contributions** go through a Google Apps Script web app. The form builds each entry as TEI and sends it to the script in `apps-script/Code.gs`, which saves a copy to a Google Sheet in the team's shared Google Drive folder, then opens a pull request on this repository. The form only sends once `contribution_endpoint` is set in `_config.yml` (setup: `apps-script/README.md`). The sheet is a user-friendly backup while the submission process is being settled. The editorial team then picks *Accept* or *Reject* in the Sheet's Decision column, and the script merges or closes the pull request a minute later.
 
 The project is deliberately a **perpetual work in progress**. Gaps in the data and entries that don't exist yet are invitations for the community to contribute, not defects.
 
@@ -62,10 +62,12 @@ Nothing is published until a pull request is merged into `main`. GitHub Pages re
                  apps-script/Code.gs web app ─▶ 1. copy to Google Sheet (team shared Drive, backup)
                                             ──▶ 2. new branch + civic/<slug>.xml + pull request
                                                          │
- Editor ────▶ admin/ ▶ review.html ── lists open PRs touching civic/, previews them ──┐
-                                                         │                            │
-                                                         ▼                            ▼
-                                            Merge on GitHub (accept)   Close on GitHub (reject)
+ Anyone ────▶ admin/ ▶ review.html ── lists open PRs touching civic/, previews them,
+                                       before/after table for new versions of entries
+ Editor ─────▶ Google Sheet: Decision column (Accept / Reject)
+                                                         │  a minute later (apps-script/Code.gs)
+                                                         ▼
+                                       merge the PR (accept)  /  close the PR (reject)
 ```
 
 ### Entry pages
@@ -107,12 +109,13 @@ With `preview=true`, `id` can be a full URL, such as a raw file on a pull-reques
 | `data/` | What the browser downloads, generated from `_data/` by Jekyll: one small page per data file, `data/index.json` (the list of files), and `uom-land-parcels.geojson` (University of Melbourne land parcels). |
 | `scripts/data.js` | Shared data loader used by every page that shows records. |
 | `scripts/tei.js` | Builds an entry as TEI from the contribution form, checks it, and renders TEI entries (entry pages and the form's preview). |
+| `scripts/tei-compare.js` | Before/after table of two TEI entries (field by field, then the article paragraph by paragraph), used by the review page for new versions of existing entries. |
 | `schema/carlton.odd`, `schema/carlton.rng` | The TEI entry format: the customisation (with its documentation) and the schema generated from it. |
 | `tools/convert-map-data.js` | One-off script that split the old `map-data.js` into the files in `_data/`. |
 | `apps-script/Code.gs`, `apps-script/README.md` | The Google Apps Script that receives contribution form entries, saves a row to the Sheet and opens a pull request, and how to set it up. The repo copy is the master; it's pasted into the Sheet's script editor. |
 | `tools/convert-eac-to-tei.html` | One-off page that converted the EAC-CPF entries in `civic/` to TEI with `scripts/tei.js`. Not linked from the site. |
 | `admin/index.html` | Admin landing page for the editorial team, linking to each tool (served at `admin/`). The site footer links here. |
-| `admin/review.html` | Plain-language review page for the editorial team. |
+| `admin/review.html` | Plain-language review page: previews submissions and, for new versions of entries, what would change. Open to everyone; editors decide in the Sheet. |
 | `admin/carlton-data-editor.html` | Browser-based editor for the directory and electoral-roll files. |
 | `scripts/az-status.js` | Marks Featured pages links as "New" or "Not yet written". |
 | `scripts/banner-parallax.js` | Header banner effect. |
@@ -219,15 +222,15 @@ Use `admin/carlton-data-editor.html`. It loads the live data, lets you search an
 
 ### Reviewing a public submission (editorial team)
 
-1. Open **`admin/review.html`** (or the [Admin page](https://historicalesque.github.io/carlton/admin/), then *Review submissions*). It lists open pull requests that add or change files in `civic/`.
-2. Pick a submission to see a live preview of the entry as it would appear on the site.
-3. Sign in to GitHub, then follow the link to the pull request:
-   - **Accept:** *Merge pull request* → *Confirm merge*.
-   - **Reject:** *Close pull request*. Ideally leave a short comment saying why.
-   - **Needs changes:** edit the XML file on the pull request branch on GitHub, then merge.
-4. The site updates a minute or two after merging.
+1. Open **`admin/review.html`** (or the [Admin page](https://historicalesque.github.io/carlton/admin/), then *Review submissions*). It lists open pull requests that add or change files in `civic/`. Anyone can read it; no sign-in is needed.
+2. Pick a submission to see a preview of the entry as it would appear on the site. If it is a new version of an entry that's already on the site, a **What changes** table shows the current entry next to the new version. Anything the new version leaves out is marked, because accepting replaces the whole entry.
+3. Decide in the team's submissions spreadsheet (the Sheet the Apps Script is attached to). Each submission is a row with a link back to the review page. In the **Decision** column, pick:
+   - **Accept** to publish it. The Status column says "Publishing in about a minute". Then the script merges the pull request and the Status column says "Published".
+   - **Reject** to turn it down. The script closes the pull request. The *Reason* column is optional and stays in the Sheet.
+4. Picked the wrong one? Clear the Decision cell within the minute to cancel.
+5. The site updates a minute or two after a submission is published.
 
-The review page walks reviewers through these steps in plain language. If you change the workflow, update both that page and this section.
+Only people the Sheet is shared with (as editors) can decide. The review page explains this in plain language. If you change the workflow, update both that page and this section. Setup and details: `apps-script/README.md`.
 
 ### Updating directory/map data
 
@@ -304,8 +307,9 @@ Goal: editors never need to touch GitHub directly. Done in small, fundable steps
 **Entries and submissions**
 
 - [x] Clearer review page: three numbered steps and two buttons, links back to Admin and the site, and the preview shows just the article (#50).
-- [ ] **Accept/Reject buttons on the review page** (through the existing submission service or GitHub sign-in), with a "reason for rejection" box that is posted as a comment for the record.
-- [ ] Edit a submission's text in the review page before accepting it.
+- [x] **Accept/Reject without GitHub**: editors pick Accept or Reject in a Decision column in the submissions Sheet, with an optional reason kept in the Sheet. The Apps Script merges or closes the pull request a minute later. The review page is open to everyone.
+- [x] **Before/after table** on the review page for new versions of existing entries (`scripts/tei-compare.js`).
+- [ ] **Suggest changes** on the review page: anyone can open a submission in the contribution form, fix it and send it back as a new version, logged on a *Reviews* tab with its own Decision column. Needs `TEIEntry.parse()` to fill the form from TEI.
 
 **Directory/map data**
 
