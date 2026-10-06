@@ -280,6 +280,9 @@
     button.secondary, button.small { background: var(--paper); color: var(--moss-deep); }
     button.secondary:hover, button.small:hover { background: var(--sage-light); }
     button.small { font-size: 13px; padding: 6px 12px; }
+    /* A quiet extra for editors, styled as a link so the public isn't distracted */
+    button.text-link { background: none; border: none; padding: 0; font: inherit; font-size: 13px; color: var(--ink-faint); text-decoration: underline; cursor: pointer; }
+    button.text-link:hover { color: var(--moss-deep); }
     .actions { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
     .actions .note { font-size: 13px; color: var(--ink-faint); }
     .hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
@@ -287,7 +290,7 @@
     .send-status.ok { border-left-color: var(--moss); background: var(--sage-light); color: var(--moss-deep); }
     .send-status.error { border-left-color: #8a2c1d; background: #f6e4dc; color: #8a2c1d; }
     @media (max-width: 480px) {
-      .actions button { width: 100%; }
+      .actions button:not(.text-link) { width: 100%; }
     }
 
     /* --- Preview --- */
@@ -455,7 +458,7 @@
 {%- else %}
       <button type="button" class="primary" id="previewBtn">Preview</button>
 {%- endif %}
-      <button type="button" class="secondary" id="downloadBtn">Download XML</button>
+      <button type="button" class="text-link" id="downloadBtn">Download XML <span>(advanced)</span></button>
 {%- unless connected %}
       <span class="note">Nothing is sent until the form is connected.</span>
 {%- endunless %}
