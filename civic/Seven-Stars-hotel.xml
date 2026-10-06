@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="https://historicalesque.github.io/carlton/schema/carlton.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0" type="place" xml:lang="en">
+  <teiHeader>
+    <fileDesc>
+      <titleStmt>
+        <title>Seven Stars hotel</title>
+        <author>Andy May</author>
+      </titleStmt>
+      <publicationStmt>
+        <publisher>Common Ground</publisher>
+        <idno type="entry">Seven-Stars-hotel</idno>
+      </publicationStmt>
+      <sourceDesc>
+        <listBibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1900">Sands &amp; McDougall Directory, 1900, p. 188: 20 Seven Stars hotel-Zeplin, Frederick</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1905">Sands &amp; McDougall Directory, 1905, p. 194: 20 Seven Stars hotel-Zeplin, Frederick</ref></bibl>
+        </listBibl>
+      </sourceDesc>
+    </fileDesc>
+    <revisionDesc status="draft">
+      <change when="2026-10-06" type="created">Contributed through the contribution form by Andy May.</change>
+    </revisionDesc>
+  </teiHeader>
+  <standOff>
+    <listPlace>
+      <place xml:id="subject">
+        <placeName type="main">Seven Stars hotel</placeName>
+        <location type="address" from="1900" to="1905">
+          <address>
+            <addrLine>20 Madeline Street, Carlton</addrLine>
+          </address>
+        </location>
+      </place>
+    </listPlace>
+  </standOff>
+  <text>
+    <body>
+      <p>The Seven Stars Hotel was located in Madeline Street at least from 1853. Levi Lefoe was granted a licence for the hotel in 1853 (<hi rend="italic">Argus</hi>, 15 Sep 1853: 5). Frederick Zeplin transferred the licence to Charles E. Jones in 1882 (<hi rend="italic">Argus</hi>, 2 Nov 1882: 5), and himself is listed as licensee in 1900 and 1905.</p>
+      <p>In 1908, the Licenses Reduction Board considered the case of the Seven Stars Hotel:</p>
+      <p>"Mr O’Hara Wood (instructed by Mr Price) appeared for mortgagees of the house, who are in possession. The licensee of the hotel, Agnes Touralne, was not represented by counsel.</p>
+      <p>Constable S. J. Hallet said that the building was a two-storied one, and contained eight bedrooms upstairs. The hotel was a fairly old building, but it was well furnished throughout. There were a number of other hotels in close proximity to the Seven Stars, some of which were superior in every way. There was one conviction against the present licensee of Sunday trading, on 16th January 1900. In his opinion the hotel was not required for the public convenience of the district. During the eighteen years that he had known the Seven Stars Hotel it had been well conducted.</p>
+      <p>Senior-constable Galvin also gave evidence.</p>
+      <p>Charles S. Price, solicitor, member of the firm of Price and Price, said that his firm represented the mortgagees of the hotel. The present licensee had a lease of the premises for seven years from 1st September last. The rent was L3 per week.</p>
+      <p>Harold D’E. Annear, architect, said that he had inspected the hotel premises. He gave details of the measurements of the land, buildings, etc. The building had apparently been constructed about forty years ago. The premises were in good repair, and the future life of the main building was about 50 or 60 years. The building was valueless except for hotel promises.</p>
+      <p>John Thomas Best, estate agent and member of the firm of Sydney C. Arnold and Co., gave evidence similar to that given by Mr Annear.</p>
+      <p>Mrs Agnes Touraine, the licensee of the hotel, said that the takings of the house were from L20 to L23 per week. She supplied from 15 to 16 meals per day. There were seven public bed-rooms, and these were always occupied. She had a number of friends in Gippsland, who made the hotel their home when in Melbourne.</p>
+      <p>The Board reserved Its decision."</p>
+      <p>Herald, 2 Jun 1908: 3</p>
+    </body>
+  </text>
+</TEI>
