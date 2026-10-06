@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="https://historicalesque.github.io/carlton/schema/carlton.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0" type="org" xml:lang="en">
+  <teiHeader>
+    <fileDesc>
+      <titleStmt>
+        <title>Bush Inn hotel</title>
+        <author>Mitchell Harrop</author>
+      </titleStmt>
+      <publicationStmt>
+        <publisher>Common Ground</publisher>
+        <idno type="entry">Bush-Inn-hotel</idno>
+      </publicationStmt>
+      <sourceDesc>
+        <listBibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1920">Sands &amp; McDougall Directory, 1920, p. 202: 2 Bush Inn hotel</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1925">Sands &amp; McDougall Directory, 1925, p. 231: 2 Bush Inn hotel</ref></bibl>
+        </listBibl>
+      </sourceDesc>
+    </fileDesc>
+    <revisionDesc status="draft">
+      <change when="2026-10-06" type="created">Contributed through the contribution form by Mitchell Harrop.</change>
+      <change when="2026-10-06" type="revised">Changes suggested by Mitchell Harrop: Typo.</change>
+    </revisionDesc>
+  </teiHeader>
+  <standOff>
+    <listOrg>
+      <org xml:id="subject">
+        <orgName type="main">Bush Inn hotel</orgName>
+        <place type="address" from="1920" to="1925">
+          <placeName>2 Bouverie Street, Carlton</placeName>
+        </place>
+      </org>
+    </listOrg>
+  </standOff>
+  <text>
+    <body>
+      <p>Bush Inn hotel was a hotel!</p>
+    </body>
+  </text>
+</TEI>
