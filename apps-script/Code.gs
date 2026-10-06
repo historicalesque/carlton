@@ -11,6 +11,10 @@
  *   3. saves a row to the "TEI submissions" tab of the Sheet it's attached to;
  *   4. opens a pull request on GitHub with the file in civic/.
  *
+ * Anyone can also suggest changes to a submission from the review page
+ * ({ action: "review", pr, xml, reviewer, note }). The script commits that
+ * version to the same pull request and adds a row to the "Reviews" tab.
+ *
  * Editors then decide in the Sheet: each row has a Decision dropdown
  * (Accept / Reject). A minute after someone picks one, the script merges or
  * closes that pull request (see "Decisions" below), so editors never need
@@ -26,6 +30,7 @@ const SETTINGS = {
   base: 'main',
   folder: 'civic',
   sheetName: 'TEI submissions',
+  reviewsName: 'Reviews',
   maxBytes: 500 * 1024,
   maxPerHour: 20,
   timeZone: 'Australia/Melbourne',
@@ -36,6 +41,9 @@ const SETTINGS = {
 // so setUp() can add missing columns to a Sheet made by an older version.
 const COLUMNS = ['Received', 'Kind', 'Title', 'Type', 'Authors', 'Review', 'Decision', 'Reason (editors only)',
   'Status', 'File', 'Pull request', 'Version', 'TEI'];
+// Suggested changes from the review page, one row each
+const REVIEW_COLUMNS = ['Received', 'Changes to', 'Suggested by', 'What changed', 'Review', 'Decision', 'Reason (editors only)',
+  'Status', 'Pull request', 'Version', 'TEI'];
 const PENDING = { Accept: 'Publishing in about a minute. Clear Decision to cancel.', Reject: 'Rejecting in about a minute. Clear Decision to cancel.' };
 const TEI_NS = 'http://www.tei-c.org/ns/1.0';
 // A Sheet cell holds 50,000 characters; the pull request keeps the full copy
@@ -78,6 +86,7 @@ function receive_(e) {
   if (!title) throw userError_('Add a title.');
   const authors = titleEl.getChildren('author', tei).map((a) => a.getText().trim()).filter(String);
   if (!authors.length) throw userError_('Add your name.');
+  if (data.action === 'review') return receiveReview_(data, title);
 
   // The file name follows the site's rule for ?id= (see slugifyId in
   // scripts/map-common.js), so the entry page and the map can find it.
@@ -97,7 +106,7 @@ function receive_(e) {
       .replace(/(<change\b[^>]*\bwhen=")[^"]*(")/g, `$1${today}$2`);
 
     const pr = openPullRequest_(slug, title, authors, xml);
-    saveRow_({
+    saveRow_('submissions', {
       'Received': new Date(),
       'Kind': pr.isNew ? 'New entry' : 'New version',
       'Title': title,
@@ -166,27 +175,108 @@ function github_(method, path, payload, allow404, allowConflict) {
   return JSON.parse(res.getContentText() || '{}');
 }
 
-/* ---------- Sheet ---------- */
+/* ---------- Suggested changes ---------- */
 
-function submissionsSheet_() {
-  const book = SpreadsheetApp.getActiveSpreadsheet();
-  return book.getSheetByName(SETTINGS.sheetName) || book.insertSheet(SETTINGS.sheetName);
+// A new version of an open submission, sent from the review page. It goes on
+// the same pull request as a new commit; the Reviews row records which
+// version it is, so the editors can accept either.
+function receiveReview_(data, title) {
+  const number = Number(data.pr);
+  const reviewer = String(data.reviewer || '').trim().slice(0, 100);
+  const note = String(data.note || '').trim().slice(0, 500);
+  if (!number) throw userError_('The form did not say which submission this changes.');
+  if (!reviewer) throw userError_('Add your name.');
+
+  checkRate_();
+  const lock = LockService.getScriptLock();
+  lock.waitLock(30000);
+  try {
+    const { pr, files } = submission_(number);
+    if (pr.state !== 'open') throw userError_('This submission has already been decided, so it can no longer be changed.');
+    const path = files[0].filename;
+    const slug = path.replace(`${SETTINGS.folder}/`, '').replace(/\.xml$/, '');
+    // Keep the entry's id; date only the newest change (the form keeps the earlier ones)
+    let xml = data.xml.replace(/(<idno type="entry">)[^<]*(<\/idno>)/, `$1${escapeXml_(slug)}$2`);
+    const last = xml.lastIndexOf('<change');
+    if (last !== -1) {
+      const today = Utilities.formatDate(new Date(), SETTINGS.timeZone, 'yyyy-MM-dd');
+      xml = xml.slice(0, last) + xml.slice(last).replace(/(<change\b[^>]*\bwhen=")[^"]*(")/, `$1${today}$2`);
+    }
+
+    // The submission's row should record its own version before the branch moves on
+    const subs = tab_('submissions');
+    const subCols = columns_(subs, COLUMNS);
+    rowsFor_(subs, subCols, number).forEach((row) => {
+      if (!subs.getRange(row, subCols['Version']).getValue()) subs.getRange(row, subCols['Version']).setValue(pr.head.sha);
+    });
+
+    const current = github_('get', `/contents/${encodePath_(path)}?ref=${encodeURIComponent(pr.head.ref)}`);
+    const commit = github_('put', `/contents/${encodePath_(path)}`, {
+      message: `Suggested changes by ${reviewer}${note ? `: ${note}` : ''}`,
+      content: Utilities.base64Encode(xml, Utilities.Charset.UTF_8),
+      sha: current.sha,
+      branch: pr.head.ref
+    }).commit;
+
+    saveRow_('reviews', {
+      'Received': new Date(),
+      'Changes to': title,
+      'Suggested by': reviewer,
+      'What changed': note,
+      'Review': reviewLink_(number, commit.sha),
+      'Status': 'Waiting',
+      'Pull request': pr.html_url,
+      'Version': commit.sha,
+      'TEI': xml.length > CELL_LIMIT ? xml.slice(0, CELL_LIMIT) + ' …' : xml
+    });
+
+    // Tell the editors looking at the submission's row
+    const reviews = tab_('reviews');
+    const count = rowsFor_(reviews, columns_(reviews, REVIEW_COLUMNS), number).length;
+    rowsFor_(subs, subCols, number).forEach((row) => {
+      const cell = subs.getRange(row, subCols['Status']);
+      if (/^Waiting/.test(String(cell.getValue()))) cell.setValue(`Waiting. ${count} suggested change${count === 1 ? '' : 's'} on the Reviews tab`);
+    });
+    return { status: 'success', version: commit.sha };
+  } finally {
+    lock.releaseLock();
+  }
 }
 
-// Makes sure every column in COLUMNS exists, adding any that are missing in
+/* ---------- Sheet ---------- */
+
+const TABS = {
+  submissions: { name: () => SETTINGS.sheetName, columns: COLUMNS },
+  reviews: { name: () => SETTINGS.reviewsName, columns: REVIEW_COLUMNS }
+};
+
+function tab_(key) {
+  const book = SpreadsheetApp.getActiveSpreadsheet();
+  const name = TABS[key].name();
+  return book.getSheetByName(name) || book.insertSheet(name);
+}
+function submissionsSheet_() {
+  return tab_('submissions');
+}
+function tabKeyOf_(sheet) {
+  return Object.keys(TABS).find((k) => TABS[k].name() === sheet.getName()) || '';
+}
+
+// Makes sure every column in the list exists, adding any that are missing in
 // their place, and returns { header name: column number }.
-function columns_(sheet) {
+function columns_(sheet, list) {
+  list = list || COLUMNS;
   if (sheet.getLastRow() === 0) {
-    sheet.getRange(1, 1, 1, COLUMNS.length).setValues([COLUMNS]).setFontWeight('bold');
+    sheet.getRange(1, 1, 1, list.length).setValues([list]).setFontWeight('bold');
     sheet.setFrozenRows(1);
   }
   let header = sheet.getRange(1, 1, 1, sheet.getLastColumn()).getValues()[0];
-  COLUMNS.forEach((name, i) => {
+  list.forEach((name, i) => {
     if (header.indexOf(name) !== -1) return;
     // After the nearest earlier column that exists, or first
     let after = 0;
     for (let j = i - 1; j >= 0; j--) {
-      const at = header.indexOf(COLUMNS[j]);
+      const at = header.indexOf(list[j]);
       if (at !== -1) { after = at + 1; break; }
     }
     if (after === 0) sheet.insertColumnBefore(1); else sheet.insertColumnAfter(after);
@@ -198,61 +288,71 @@ function columns_(sheet) {
   return map;
 }
 
-function saveRow_(values) {
-  const sheet = submissionsSheet_();
-  const cols = columns_(sheet);
+function saveRow_(key, values) {
+  const sheet = tab_(key);
+  const cols = columns_(sheet, TABS[key].columns);
   const row = new Array(sheet.getLastColumn()).fill('');
   Object.keys(values).forEach((name) => { if (cols[name]) row[cols[name] - 1] = values[name]; });
   sheet.appendRow(row);
   sheet.getRange(sheet.getLastRow(), cols['Decision']).setDataValidation(decisionRule_());
 }
 
-function reviewLink_(number) {
-  return `=HYPERLINK("${SETTINGS.site}/admin/review.html?pr=${number}", "Open")`;
+// Row numbers on a tab that belong to one pull request
+function rowsFor_(sheet, cols, number) {
+  const last = sheet.getLastRow();
+  if (last < 2) return [];
+  return sheet.getRange(2, cols['Pull request'], last - 1, 1).getValues()
+    .map((r, i) => (prNumber_(r[0]) === number ? i + 2 : 0)).filter(Boolean);
+}
+
+function reviewLink_(number, version) {
+  return `=HYPERLINK("${SETTINGS.site}/admin/review.html?pr=${number}${version ? `&v=${version}` : ''}", "Open")`;
 }
 
 function decisionRule_() {
   return SpreadsheetApp.newDataValidation()
     .requireValueInList(['Accept', 'Reject'], true)
     .setAllowInvalid(false)
-    .setHelpText('Accept publishes this entry on the site. Reject turns it down. Either runs a minute later; clear the cell before then to cancel.')
+    .setHelpText('Accept publishes this version on the site. Reject turns it down. Either runs a minute later; clear the cell before then to cancel.')
     .build();
 }
 
 /* ---------- Decisions ---------- */
 
 // Run once from the script editor (select setUp, then Run). It adds the new
-// columns and the Decision dropdowns, fills in Review links and Status for
-// rows sent before this version, and switches on the edit trigger. Safe to
-// run again.
+// columns, the Reviews tab and the Decision dropdowns, fills in Review links
+// and Status for rows sent before this version, and switches on the edit
+// trigger. Safe to run again.
 function setUp() {
-  const sheet = submissionsSheet_();
-  const cols = columns_(sheet);
-  const last = sheet.getLastRow();
-  if (last > 1) {
-    sheet.getRange(2, cols['Decision'], last - 1, 1).setDataValidation(decisionRule_());
-    const data = sheet.getRange(2, 1, last - 1, sheet.getLastColumn()).getValues();
-    data.forEach((r, i) => {
-      const number = prNumber_(r[cols['Pull request'] - 1]);
-      if (!number) return;
-      if (!r[cols['Review'] - 1]) sheet.getRange(i + 2, cols['Review']).setFormula(reviewLink_(number));
-      if (r[cols['Status'] - 1]) return;
-      const pr = github_('get', `/pulls/${number}`, null, true);
-      const status = !pr ? 'Not found on GitHub'
-        : pr.merged_at ? 'Published (on GitHub)'
-        : pr.state === 'closed' ? 'Rejected (closed on GitHub)'
-        : 'Waiting';
-      sheet.getRange(i + 2, cols['Status']).setValue(status);
-    });
-  }
-  // Colour the decisions so they stand out
-  const decisions = sheet.getRange(2, cols['Decision'], sheet.getMaxRows() - 1, 1);
-  const rules = sheet.getConditionalFormatRules().filter((rule) =>
-    !rule.getRanges().some((r) => r.getColumn() === cols['Decision']));
-  rules.push(
-    SpreadsheetApp.newConditionalFormatRule().whenTextEqualTo('Accept').setBackground('#D4EDBC').setFontColor('#11734B').setRanges([decisions]).build(),
-    SpreadsheetApp.newConditionalFormatRule().whenTextEqualTo('Reject').setBackground('#FFCFC9').setFontColor('#B10202').setRanges([decisions]).build());
-  sheet.setConditionalFormatRules(rules);
+  Object.keys(TABS).forEach((key) => {
+    const sheet = tab_(key);
+    const cols = columns_(sheet, TABS[key].columns);
+    const last = sheet.getLastRow();
+    if (key === 'submissions' && last > 1) {
+      const data = sheet.getRange(2, 1, last - 1, sheet.getLastColumn()).getValues();
+      data.forEach((r, i) => {
+        const number = prNumber_(r[cols['Pull request'] - 1]);
+        if (!number) return;
+        if (!r[cols['Review'] - 1]) sheet.getRange(i + 2, cols['Review']).setFormula(reviewLink_(number));
+        if (r[cols['Status'] - 1]) return;
+        const pr = github_('get', `/pulls/${number}`, null, true);
+        const status = !pr ? 'Not found on GitHub'
+          : pr.merged_at ? 'Published (on GitHub)'
+          : pr.state === 'closed' ? 'Rejected (closed on GitHub)'
+          : 'Waiting';
+        sheet.getRange(i + 2, cols['Status']).setValue(status);
+      });
+    }
+    // Dropdowns down the whole column, coloured so decisions stand out
+    const decisions = sheet.getRange(2, cols['Decision'], Math.max(sheet.getMaxRows() - 1, 1), 1);
+    decisions.setDataValidation(decisionRule_());
+    const rules = sheet.getConditionalFormatRules().filter((rule) =>
+      !rule.getRanges().some((r) => r.getColumn() === cols['Decision']));
+    rules.push(
+      SpreadsheetApp.newConditionalFormatRule().whenTextEqualTo('Accept').setBackground('#D4EDBC').setFontColor('#11734B').setRanges([decisions]).build(),
+      SpreadsheetApp.newConditionalFormatRule().whenTextEqualTo('Reject').setBackground('#FFCFC9').setFontColor('#B10202').setRanges([decisions]).build());
+    sheet.setConditionalFormatRules(rules);
+  });
 
   // The edit trigger runs as whoever ran setUp, so editors never see a
   // permissions screen. A plain onEdit() can't reach GitHub, hence this.
@@ -260,15 +360,19 @@ function setUp() {
     .filter((t) => t.getHandlerFunction() === 'onDecision')
     .forEach((t) => ScriptApp.deleteTrigger(t));
   ScriptApp.newTrigger('onDecision').forSpreadsheet(SpreadsheetApp.getActiveSpreadsheet()).onEdit().create();
-  console.log('Set up: Decision column ready and the edit trigger is on.');
+  console.log('Set up: Decision columns ready on both tabs and the edit trigger is on.');
 }
 
-// Runs on every edit of the Sheet. Only changes to the Decision column do
+const FINAL = /^(Published|Rejected|Not used)/;
+const dueKey_ = (key, number, version) => `due-${key}-${number}-${version || 'latest'}`;
+
+// Runs on every edit of the Sheet. Only changes to a Decision column do
 // anything: they mark the row as waiting a minute, and schedule a run.
 function onDecision(e) {
   const sheet = e.range.getSheet();
-  if (sheet.getName() !== SETTINGS.sheetName) return;
-  const cols = columns_(sheet);
+  const key = tabKeyOf_(sheet);
+  if (!key) return;
+  const cols = columns_(sheet, TABS[key].columns);
   if (e.range.getColumn() > cols['Decision'] || e.range.getLastColumn() < cols['Decision']) return;
 
   const lock = LockService.getScriptLock();
@@ -279,20 +383,23 @@ function onDecision(e) {
     for (let row = Math.max(e.range.getRow(), 2); row <= e.range.getLastRow(); row++) {
       const decision = sheet.getRange(row, cols['Decision']).getValue();
       const statusCell = sheet.getRange(row, cols['Status']);
-      const status = String(statusCell.getValue());
+      const status = String(statusCell.getDisplayValue());
       const number = prNumber_(sheet.getRange(row, cols['Pull request']).getValue());
+      const version = sheet.getRange(row, cols['Version']).getValue();
       if (!number) continue;
       // Already decided: put the decision back to match what happened
-      if (/^(Published|Rejected)/.test(status)) {
-        sheet.getRange(row, cols['Decision']).setValue(/^Published/.test(status) ? 'Accept' : 'Reject');
+      if (FINAL.test(status)) {
+        // (only this row's own outcome; "Published with suggested changes" etc. leave it blank)
+        const own = /^Published( \d|\s*\()/.test(status) ? 'Accept' : /^Rejected( \d|\s*\()/.test(status) ? 'Reject' : '';
+        sheet.getRange(row, cols['Decision']).setValue(own);
         continue;
       }
       if (PENDING[decision]) {
         statusCell.setValue(PENDING[decision]);
-        props.setProperty(`due-${number}`, String(Date.now() + SETTINGS.graceMs));
+        props.setProperty(dueKey_(key, number, version), String(Date.now() + SETTINGS.graceMs));
         scheduled = true;
       } else {
-        props.deleteProperty(`due-${number}`);
+        props.deleteProperty(dueKey_(key, number, version));
         if (Object.values(PENDING).includes(status)) statusCell.setValue('Waiting');
       }
     }
@@ -303,8 +410,8 @@ function onDecision(e) {
 }
 
 // Runs a minute after a decision (a one-off timer set by onDecision). Carries
-// out every decision whose minute is up, then sets a new timer for any that
-// are still waiting.
+// out every decision whose minute is up, on both tabs, then sets a new timer
+// for any that are still waiting.
 function processDecisions() {
   const lock = LockService.getScriptLock();
   lock.waitLock(30000);
@@ -312,31 +419,34 @@ function processDecisions() {
     ScriptApp.getProjectTriggers()
       .filter((t) => t.getHandlerFunction() === 'processDecisions')
       .forEach((t) => ScriptApp.deleteTrigger(t));
-    const sheet = submissionsSheet_();
-    const cols = columns_(sheet);
     const props = PropertiesService.getScriptProperties();
-    const last = sheet.getLastRow();
-    if (last < 2) return;
-    const data = sheet.getRange(2, 1, last - 1, sheet.getLastColumn()).getValues();
     let nextDue = Infinity;
-    data.forEach((r, i) => {
-      const row = i + 2;
-      const decision = r[cols['Decision'] - 1];
-      if (!PENDING[decision] || r[cols['Status'] - 1] !== PENDING[decision]) return;
-      const number = prNumber_(r[cols['Pull request'] - 1]);
-      const due = Number(props.getProperty(`due-${number}`) || 0);
-      if (due > Date.now()) { nextDue = Math.min(nextDue, due); return; }
-      let status;
-      try {
-        status = decide_(number, decision, r[cols['Version'] - 1], r[cols['Title'] - 1], row);
-      } catch (err) {
-        console.error(err);
-        status = `Couldn't ${decision === 'Accept' ? 'publish' : 'reject'}: ${err.userMessage || 'something went wrong. Pick again to retry, or ask Mitchell.'}`;
-        sheet.getRange(row, cols['Decision']).clearContent();
+    Object.keys(TABS).forEach((key) => {
+      const sheet = tab_(key);
+      const cols = columns_(sheet, TABS[key].columns);
+      const last = sheet.getLastRow();
+      for (let row = 2; row <= last; row++) {
+        const r = sheet.getRange(row, 1, 1, sheet.getLastColumn()).getValues()[0];
+        const decision = r[cols['Decision'] - 1];
+        // Read fresh each time: an earlier decision may have settled this row
+        if (!PENDING[decision] || sheet.getRange(row, cols['Status']).getDisplayValue() !== PENDING[decision]) continue;
+        const number = prNumber_(r[cols['Pull request'] - 1]);
+        const version = r[cols['Version'] - 1];
+        const due = Number(props.getProperty(dueKey_(key, number, version)) || 0);
+        if (due > Date.now()) { nextDue = Math.min(nextDue, due); continue; }
+        const title = key === 'reviews' ? r[cols['Changes to'] - 1] : r[cols['Title'] - 1];
+        let status;
+        try {
+          status = decide_(key, number, decision, version, title, row);
+        } catch (err) {
+          console.error(err);
+          status = `Couldn't ${decision === 'Accept' ? 'publish' : 'reject'}: ${err.userMessage || 'something went wrong. Pick again to retry, or ask Mitchell.'}`;
+          sheet.getRange(row, cols['Decision']).clearContent();
+        }
+        props.deleteProperty(dueKey_(key, number, version));
+        const cell = sheet.getRange(row, cols['Status']);
+        if (status.formula) cell.setFormula(status.formula); else cell.setValue(status);
       }
-      props.deleteProperty(`due-${number}`);
-      const cell = sheet.getRange(row, cols['Status']);
-      if (status.formula) cell.setFormula(status.formula); else cell.setValue(status);
     });
     if (nextDue !== Infinity) schedule_(nextDue - Date.now() + 5000);
   } finally {
@@ -349,24 +459,33 @@ function schedule_(ms) {
   if (!already) ScriptApp.newTrigger('processDecisions').timeBased().after(Math.max(ms, 60000)).create();
 }
 
-// Merges (Accept) or closes (Reject) one submission's pull request, after
-// checking it is a form submission: open, from a submission/ branch in this
-// repository, changing only entry files in civic/.
-function decide_(number, decision, version, title, row) {
+// A pull request the form opened: open or not, from a submission/ branch in
+// this repository, changing only entry files in civic/.
+function submission_(number) {
   const pr = github_('get', `/pulls/${number}`, null, true);
-  if (!pr) throw userError_('the pull request was not found.');
-  if (pr.merged_at) return 'Published (already, on GitHub)';
-  if (pr.state === 'closed') return 'Rejected (already closed on GitHub)';
+  if (!pr) throw userError_('the submission was not found.');
   const files = github_('get', `/pulls/${number}/files?per_page=100`);
   const fromForm = pr.head.repo && pr.head.repo.full_name === SETTINGS.repo
     && /^submission\//.test(pr.head.ref) && pr.base.ref === SETTINGS.base
     && files.length > 0 && files.every((f) => f.filename.indexOf(`${SETTINGS.folder}/`) === 0 && /\.xml$/.test(f.filename));
   if (!fromForm) throw userError_('this is not a form submission, so it has to be handled on GitHub.');
+  return { pr, files };
+}
+
+// Merges (Accept) or closes (Reject) one submission's pull request. A row on
+// the Reviews tab is one suggested version: accepting it publishes that
+// version; rejecting it only turns down the suggestion.
+function decide_(key, number, decision, version, title, row) {
+  const { pr, files } = submission_(number);
+  if (pr.merged_at) return 'Published (already, on GitHub)';
+  if (pr.state === 'closed') return 'Rejected (already closed on GitHub)';
   const when = Utilities.formatDate(new Date(), SETTINGS.timeZone, 'dd/MM HH:mm');
 
   if (decision === 'Reject') {
+    if (key === 'reviews') return `Rejected ${when}`;
     github_('patch', `/pulls/${number}`, { state: 'closed' });
     deleteBranch_(pr.head.ref);
+    settleOthers_(key, row, number, 'Rejected with the submission');
     return `Rejected ${when}`;
   }
 
@@ -379,7 +498,7 @@ function decide_(number, decision, version, title, row) {
       const current = github_('get', `/contents/${path}?ref=${encodeURIComponent(pr.head.ref)}`);
       if (wanted.sha === current.sha) return;
       head = github_('put', `/contents/${path}`, {
-        message: `Put back the version accepted in the Sheet (row ${row})`,
+        message: `Put back the version accepted in the Sheet (${TABS[key].name()}, row ${row})`,
         content: wanted.content.replace(/\n/g, ''),
         sha: current.sha,
         branch: pr.head.ref
@@ -390,12 +509,36 @@ function decide_(number, decision, version, title, row) {
     merge_method: 'squash',
     sha: head,
     commit_title: `Accept: ${title} (#${number})`,
-    commit_message: `Accepted in the submissions Sheet (row ${row}).`
+    commit_message: `Accepted in the submissions Sheet (${TABS[key].name()}, row ${row}).`
   }, false, true);
   if (merge.conflict) throw userError_('the entry changed on the site after this was sent, so it can\'t be published as it is. Ask Mitchell.');
   deleteBranch_(pr.head.ref);
+  settleOthers_(key, row, number, key === 'reviews' ? 'Published with suggested changes (Reviews tab)' : 'Not used: another version was published');
   const entry = files[0].filename.replace(`${SETTINGS.folder}/`, '').replace(/\.xml$/, '');
   return { formula: `=HYPERLINK("${SETTINGS.site}/civic?id=${encodeURIComponent(entry)}", "Published ${when}")` };
+}
+
+// After a decision that ends the submission, mark its other rows on both tabs
+function settleOthers_(key, row, number, submissionStatus) {
+  const props = PropertiesService.getScriptProperties();
+  Object.keys(TABS).forEach((k) => {
+    const sheet = tab_(k);
+    const cols = columns_(sheet, TABS[k].columns);
+    rowsFor_(sheet, cols, number).forEach((r) => {
+      if (k === key && r === row) return;
+      const cell = sheet.getRange(r, cols['Status']);
+      if (FINAL.test(String(cell.getDisplayValue()))) return;
+      // An editor already chose to reject this one: record that
+      if (cell.getDisplayValue() === PENDING.Reject) {
+        cell.setValue(`Rejected ${Utilities.formatDate(new Date(), SETTINGS.timeZone, 'dd/MM HH:mm')}`);
+        props.deleteProperty(dueKey_(k, number, sheet.getRange(r, cols['Version']).getValue()));
+        return;
+      }
+      cell.setValue(k === 'submissions' ? submissionStatus : /^Rejected/.test(submissionStatus) ? 'Rejected with the submission' : 'Not used: another version was published');
+      sheet.getRange(r, cols['Decision']).clearContent();
+      props.deleteProperty(dueKey_(k, number, sheet.getRange(r, cols['Version']).getValue()));
+    });
+  });
 }
 
 function deleteBranch_(ref) {

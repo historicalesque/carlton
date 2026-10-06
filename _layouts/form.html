@@ -9,6 +9,7 @@
   <script src="scripts/data.js?v={{ site.time | date: '%s' }}"></script>
   <!-- Builds the entry as TEI XML (schema/carlton.odd) and the preview -->
   <script src="scripts/tei.js?v={{ site.time | date: '%s' }}"></script>
+  <script src="scripts/tei-compare.js?v={{ site.time | date: '%s' }}"></script>
 
   <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -45,6 +46,13 @@
       margin-bottom: 6px;
     }
     .form-intro { margin-bottom: 20px; font-size: 0.95rem; }
+
+    /* --- "Suggest changes" from the review page (?review=…) --- */
+    .reviewer { background: var(--paper-deep); border: 1px solid var(--sage-dark); padding: 14px 16px 4px; margin-bottom: 24px; }
+    .reviewer .row { display: grid; grid-template-columns: 1fr 2fr; gap: 0 14px; }
+    @media (max-width: 600px) { .reviewer .row { grid-template-columns: 1fr; } }
+    .review-warning { border: 1px solid #C9A227; background: #FBF5E6; padding: 10px 14px; margin-bottom: 20px; font-size: 0.92rem; }
+    .review-warning ul { margin: 6px 0 0; padding-left: 20px; }
 
     /* --- Directory record(s) this entry is about (as in the old form) --- */
     .entity-container { margin-bottom: 24px; }
@@ -329,12 +337,21 @@
 
   <div id="details-container"></div>
 
-  <h2>Suggest Article contents</h2>
-  <p class="form-intro"><i>Instructions go here. Links to editorial guidance, etc. </i></p>
+  <h2 id="formHeading">Suggest Article contents</h2>
+  <p class="form-intro" id="formIntro"><i>Instructions go here. Links to editorial guidance, etc. </i></p>
+  <div class="review-warning" id="reviewWarning" hidden></div>
 
   <form id="contributionForm" novalidate>
+    <!-- Only when suggesting changes to a submission (?review=…) -->
+    <div class="reviewer" id="reviewer" hidden>
+      <div class="row">
+        <div class="field-group"><label for="reviewerName">Your name</label><input type="text" id="reviewerName" autocomplete="name" placeholder="e.g. Sam Jones"></div>
+        <div class="field-group"><label for="reviewNote">What did you change? <span class="optional-tag">Optional</span></label><input type="text" id="reviewNote" placeholder="e.g. Added the 1890 address and fixed the licence date"></div>
+      </div>
+    </div>
+
     <div class="field-group">
-      <label for="authorName">Your name</label>
+      <label for="authorName" id="authorLabel">Your name</label>
       <input type="text" id="authorName" name="authorName" placeholder="e.g. Dr. John Smith" autocomplete="name" required>
     </div>
 
@@ -671,6 +688,10 @@
   /* ---------- Directory records (as in the old form), with "Use this address" ---------- */
   const urlParams = new URLSearchParams(window.location.search);
   const targetId = urlParams.get('id');
+  // Suggesting changes to a submission: ?review=<pull request>&v=<version>&file=civic/<id>.xml
+  const REVIEW = /^\d+$/.test(urlParams.get('review') || '') && /^[0-9a-f]{7,40}$/i.test(urlParams.get('v') || '')
+    && /^civic\/[^/]+\.xml$/.test(urlParams.get('file') || '')
+    ? { pr: Number(urlParams.get('review')), version: urlParams.get('v'), file: urlParams.get('file') } : null;
   if (urlParams.get('title')) $('articleTitle').value = urlParams.get('title');
   else if (targetId && !/^\d+$/.test(targetId)) $('articleTitle').value = targetId.replace(/-/g, ' ');
   if (urlParams.has('advanced')) setShowAll(true);
@@ -932,6 +953,7 @@
       sendStatus('Please fix the problems listed in the preview below, then send again.', 'error');
       return;
     }
+    if (REVIEW) return sendReview(xml);
     // Entries are found by their record's text id (see the map), so a new
     // entry for a record keeps that id; numeric ids fall back to the title.
     const sendId = targetId && !/^\d+$/.test(targetId) ? targetId : '';
@@ -951,6 +973,115 @@
       sendStatus(`Sorry, it didn't send: ${err.message} You can use Download XML to keep a copy.`, 'error');
     }
   });
+
+  /* ---------- Suggest changes (from the review page) ---------- */
+  // The submission is loaded into the form; sending it makes a new version of
+  // that same submission, which the editors see next to the original.
+  let reviewOriginal = '';
+
+  function fillRows(listName, values) {
+    form.querySelectorAll(`[data-list="${listName}"] .row`).forEach((r) => r.remove());
+    values.forEach((v) => addRow(listName, v));
+    if (!values.length) addRow(listName);
+    else form.querySelector(`[data-list="${listName}"]`).closest('details').open = true;
+  }
+
+  function fillForm(entry) {
+    $('authorName').value = entry.authors[0] || '';
+    fillRows('authors', entry.authors.slice(1).map((name) => ({ name })));
+    $('articleTitle').value = entry.title;
+    const kind = form.querySelector(`input[name="kind"][value="${entry.kind}"]`);
+    if (kind) kind.checked = true;
+    $('surname').value = entry.surname;
+    $('forenames').value = entry.forenames;
+    $('dateFrom').value = entry.dates.from;
+    $('dateTo').value = entry.dates.to;
+    $('dateApprox').checked = entry.dates.approximate;
+    if (entry.dates.from || entry.dates.to) form.querySelector('details[data-section="dates"]').open = true;
+    ['otherNames', 'places', 'occupations', 'sources', 'legalStatuses', 'chronology', 'relations'].forEach((n) => fillRows(n, entry[n]));
+    // Fields only shown with "Show all fields"
+    if (entry.surname || entry.forenames || entry.legalStatuses.length || entry.chronology.length || entry.relations.length
+      || entry.places.some((p) => p.role || p.lat)) setShowAll(true);
+    quill.clipboard.dangerouslyPasteHTML(entry.articleHtml || '');
+    applyKindLabels();
+    updateCounts();
+  }
+
+  // Anything the form can't hold would be lost on sending; say so up front
+  function checkRoundTrip() {
+    try {
+      const rebuilt = TEIEntry.build({ ...collect(), recordId: 'check' });
+      const { rows } = lostParts(reviewOriginal, rebuilt);
+      if (!rows.length) return;
+      $('reviewWarning').innerHTML = `<strong>Some of this entry can't be shown in the form</strong>, so sending would leave it out:<ul>${rows.map((r) => `<li>${r}</li>`).join('')}</ul>`;
+      $('reviewWarning').hidden = false;
+    } catch (e) { /* the check is a courtesy; never block editing */ }
+  }
+  function lostParts(a, b) {
+    const A = TEICompare.facts(a); const B = TEICompare.facts(b);
+    const rows = [];
+    A.forEach((f, i) => f.items.forEach((item) => {
+      if (!B[i].items.includes(item)) rows.push(`${f.field}: ${item.length > 80 ? item.slice(0, 80) + '…' : item}`.replace(/[<&]/g, (ch) => (ch === '<' ? '&lt;' : '&amp;')));
+    }));
+    return { rows };
+  }
+
+  // Keep the entry's history and add one line for this change
+  function withHistory(xml) {
+    const old = reviewOriginal.match(/<revisionDesc\b[\s\S]*?<\/revisionDesc>/);
+    if (!old) return xml;
+    const today = new Date().toISOString().slice(0, 10);
+    const esc = (s) => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+    const who = $('reviewerName').value.trim();
+    const what = $('reviewNote').value.trim();
+    const line = `  <change when="${today}" type="revised">Changes suggested by ${esc(who)}${what ? `: ${esc(what.replace(/\.$/, ''))}` : ''}.</change>\n    </revisionDesc>`;
+    const history = old[0].replace(/\s*<\/revisionDesc>$/, `\n    ${line}`);
+    return xml.replace(/<revisionDesc\b[\s\S]*?<\/revisionDesc>/, history);
+  }
+
+  async function sendReview(xml) {
+    const reviewer = $('reviewerName').value.trim();
+    if (!reviewer) {
+      sendStatus('Please add your name at the top of the form, so the editors know who suggested the changes.', 'error');
+      $('reviewerName').focus();
+      return;
+    }
+    $('sendBtn').disabled = true;
+    sendStatus('Sending…');
+    try {
+      const res = await fetch(ENDPOINT, {
+        method: 'POST',
+        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+        body: JSON.stringify({ formVersion: 3, action: 'review', pr: REVIEW.pr, xml: withHistory(xml), reviewer, note: $('reviewNote').value.trim(), website: $('website').value })
+      });
+      const result = await res.json();
+      if (result.status !== 'success') throw new Error(result.message || 'The changes were not accepted.');
+      sendStatus('Thank you! Your changes have been sent to the editors, next to the original.', 'ok');
+      if (window.parent !== window) window.parent.postMessage({ type: 'review-sent', version: result.version || '' }, window.location.origin);
+    } catch (err) {
+      $('sendBtn').disabled = false;
+      sendStatus(`Sorry, it didn't send: ${err.message} You can use Download XML to keep a copy.`, 'error');
+    }
+  }
+
+  if (REVIEW) {
+    $('formHeading').textContent = 'Suggest changes';
+    $('formIntro').textContent = 'Change anything below, then send it. The editors see your version next to the original and decide which to publish.';
+    $('reviewer').hidden = false;
+    $('authorLabel').textContent = 'Author';
+    form.classList.add('review-mode');
+    fetch(`https://raw.githubusercontent.com/historicalesque/carlton/${REVIEW.version}/${REVIEW.file}`)
+      .then((r) => { if (!r.ok) throw new Error(`could not load the submission (${r.status})`); return r.text(); })
+      .then((xml) => {
+        reviewOriginal = xml;
+        fillForm(TEIEntry.parse(xml));
+        checkRoundTrip();
+      })
+      .catch((err) => {
+        $('reviewWarning').textContent = `Sorry, ${err.message}. Go back and try again.`;
+        $('reviewWarning').hidden = false;
+      });
+  }
 
   applyKindLabels();
   updateCounts();

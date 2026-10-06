@@ -493,5 +493,117 @@ window.TEIEntry = (function () {
       </article>`;
   }
 
-  return { NS, build, check, render, parseDate };
+
+  /* ---------- Read an entry back into the form's fields ----------
+     The reverse of build(), for "Suggest changes" on the review page:
+     parse(xml) gives the object collect() would give for that entry. */
+  function parse(xmlText) {
+    const xml = new DOMParser().parseFromString(xmlText, 'application/xml');
+    if (xml.getElementsByTagName('parsererror').length) throw new Error('The entry could not be read.');
+    const all = (ctx, name) => (ctx ? [...ctx.getElementsByTagNameNS(NS, name)] : []);
+    const kids = (ctx, ...names) => (ctx ? [...ctx.children].filter((c) => names.includes(c.localName)) : []);
+    const one = (ctx, name) => all(ctx, name)[0];
+    const text = (ctx) => (ctx ? ctx.textContent.replace(/\s+/g, ' ').trim() : '');
+    const approx = (e) => (e && e.getAttribute('cert') === 'low' ? 'c. ' : '');
+    const years = (e) => {
+      if (!e) return { from: '', to: '' };
+      const w = e.getAttribute('when');
+      if (w) return { from: approx(e) + w, to: approx(e) + w };
+      const f = e.getAttribute('from'); const t = e.getAttribute('to');
+      return { from: f ? approx(e) + f : '', to: t ? approx(e) + t : '' };
+    };
+    const unslug = (s) => (s ? s.replace(/-/g, ' ').replace(/^./, (ch) => ch.toUpperCase()) : '');
+    const geo = (ctx) => { const g = text(one(ctx, 'geo')).split(/\s+/); return g.length === 2 ? { lat: g[0], lng: g[1] } : {}; };
+
+    const root = xml.documentElement;
+    const kind = ['person', 'org', 'family', 'place', 'topic'].includes(root.getAttribute('type')) ? root.getAttribute('type') : '';
+    const titleStmt = one(xml, 'titleStmt');
+    const subject = all(xml, '*').find((e) => e.getAttributeNS(XML_NS, 'id') === 'subject');
+    const names = kids(subject, 'persName', 'orgName', 'placeName', 'name');
+    const main = names.find((n) => n.getAttribute('type') === 'main');
+
+    const entry = {
+      title: text(one(titleStmt, 'title')),
+      kind,
+      surname: text(kids(main, 'surname')[0]),
+      forenames: text(kids(main, 'forename')[0]),
+      authors: kids(titleStmt, 'author').map(text),
+      dates: { from: '', to: '', approximate: false },
+      otherNames: names.filter((n) => n.getAttribute('type') === 'alternative').map((n) => ({ name: text(n), ...years(n) })),
+      places: [], occupations: [], legalStatuses: [], chronology: [], relations: [], sources: [],
+      articleHtml: '',
+      note: ''
+    };
+
+    if (subject) {
+      if (kind === 'person') {
+        const b = kids(subject, 'birth')[0]; const d = kids(subject, 'death')[0];
+        entry.dates = { from: text(b), to: text(d), approximate: [b, d].some((e) => e && e.getAttribute('cert') === 'low') };
+      } else {
+        const span = kind === 'family' ? kids(subject, 'state').find((s) => s.getAttribute('type') === 'presence') : subject;
+        if (span) entry.dates = { from: span.getAttribute('from') || span.getAttribute('when') || '', to: span.getAttribute('to') || span.getAttribute('when') || '', approximate: span.getAttribute('cert') === 'low' };
+      }
+      const termRows = (els) => els.map((e) => ({ term: text(kids(e, 'label')[0] || e), ...years(e) }));
+      entry.occupations = termRows([...kids(subject, 'occupation'),
+        ...kids(subject, 'state').filter((s) => ['activity', 'use'].includes(s.getAttribute('type')))]);
+      entry.legalStatuses = termRows(kids(subject, 'state').filter((s) => s.getAttribute('type') === 'legal'));
+      entry.places = kids(subject, 'residence', 'place', 'location').map((p) => {
+        const role = p.getAttribute('type');
+        return {
+          address: text(kids(p, 'placeName')[0] || one(p, 'addrLine')),
+          ...years(p),
+          role: kind === 'place' || !role || role === 'address' ? '' : unslug(role),
+          ...geo(p)
+        };
+      });
+    }
+
+    entry.chronology = all(xml, 'listEvent').filter((l) => l.getAttribute('type') === 'chronology').flatMap((l) => kids(l, 'event')).map((e) => ({
+      date: approx(e) + (e.getAttribute('when') || ''),
+      event: text(kids(e, 'label')[0]),
+      place: text(one(e, 'placeName'))
+    }));
+    entry.relations = all(xml, 'relation').map((r) => ({
+      name: text(kids(r, 'desc')[0]),
+      targetType: r.getAttribute('type') || '',
+      relationType: (r.getAttribute('name') || '').replace(/-/g, ' ').replace(/^related$/, ''),
+      ...years(r),
+      href: r.getAttribute('passive') || ''
+    }));
+    entry.sources = all(one(xml, 'sourceDesc'), 'bibl').map((b) => {
+      const ref = one(b, 'ref');
+      return { text: text(b), href: ref ? ref.getAttribute('target') || '' : '' };
+    });
+
+    // The article as the HTML Quill edits: headings, paragraphs, lists, tables
+    const mixed = (node) => [...node.childNodes].map((ch) => {
+      if (ch.nodeType === 3) return esc(ch.textContent);
+      if (ch.nodeType !== 1) return '';
+      if (ch.localName === 'hi') {
+        const tag = { italic: 'em', bold: 'strong', underline: 'u' }[ch.getAttribute('rend')];
+        return tag ? `<${tag}>${mixed(ch)}</${tag}>` : mixed(ch);
+      }
+      if (ch.localName === 'ref' && ch.getAttribute('target')) return `<a href="${esc(ch.getAttribute('target'))}">${mixed(ch)}</a>`;
+      return mixed(ch);
+    }).join('');
+    const blocks = (container) => [...container.children].map((ch) => {
+      switch (ch.localName) {
+        case 'p': return ch.textContent.trim() ? `<p>${mixed(ch)}</p>` : '';
+        case 'head': return `<h2>${mixed(ch)}</h2>`;
+        case 'list': {
+          const tag = ch.getAttribute('rend') === 'numbered' ? 'ol' : 'ul';
+          return `<${tag}>${kids(ch, 'item').map((i) => `<li>${mixed(i)}</li>`).join('')}</${tag}>`;
+        }
+        case 'table':
+          return `<table><tbody>${kids(ch, 'row').map((r) => `<tr>${kids(r, 'cell').map((cell) => `<td>${mixed(cell)}</td>`).join('')}</tr>`).join('')}</tbody></table>`;
+        case 'div': return blocks(ch);
+        default: return '';
+      }
+    }).join('');
+    const body = one(xml, 'body');
+    entry.articleHtml = body ? blocks(body) : '';
+    return entry;
+  }
+
+  return { NS, build, check, render, parse, parseDate };
 })();

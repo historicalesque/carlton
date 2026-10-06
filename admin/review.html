@@ -118,6 +118,13 @@
   .changes .lost { display: block; font-size: 0.78rem; color: var(--del-text); margin-top: 4px; font-family: var(--sans); }
   .cell-label { display: none; }
 
+  .versions { font-size: 0.88rem; color: var(--ink-soft); margin: -6px 0 16px; }
+  .versions a { margin-left: 4px; }
+  .suggest { margin-top: 24px; display: flex; flex-wrap: wrap; gap: 12px 20px; align-items: center; }
+  .suggest p { margin: 0; font-size: 0.93rem; color: var(--ink-soft); flex: 1 1 280px; }
+  .notice.ok { border-color: #B9D3C1; background: var(--add-bg); color: var(--add-text); }
+  .form-frame { width: 100%; height: 1400px; border: 1px solid var(--line); border-radius: 6px; background: #fff; display: block; }
+
   .decided-in-sheet {
     margin-top: 24px; padding: 16px 18px; border: 1px solid var(--line); border-radius: 6px; background: var(--paper-raised);
   }
@@ -218,7 +225,8 @@ async function render() {
   const params = new URLSearchParams(window.location.search);
   const prNumber = params.get("pr");
   try {
-    if (prNumber) await renderPrDetail(Number(prNumber), params.get("v"));
+    if (prNumber && params.has("suggest")) await renderSuggest(Number(prNumber), params.get("v"));
+    else if (prNumber) await renderPrDetail(Number(prNumber), params.get("v"), params.has("sent"));
     else await renderPrList();
   } catch (e) {
     $app.innerHTML = `<div class="error">${escapeHtml(e.message)}</div>`;
@@ -265,48 +273,119 @@ async function renderPrList() {
   });
 }
 
+function go(params) {
+  const u = new URL(window.location.href);
+  u.search = new URLSearchParams(params).toString();
+  history.pushState({}, "", u);
+  window.scrollTo(0, 0);
+  render();
+}
+
+// Each commit on a submission's branch is a version: the first is what was
+// sent, later ones are suggested changes (made from this page) by name.
+function versionsOf(commits) {
+  return commits
+    .filter((c) => !/^Put back the version/.test(c.commit.message))
+    .map((c, i) => {
+      const by = (c.commit.message.match(/^Suggested changes by ([^:\n]+)/) || [])[1];
+      return { sha: c.sha, n: i + 1, label: i === 0 ? "as sent" : by ? `changes by ${by.trim()}` : "edited" };
+    });
+}
+
 // version: a commit on the submission's branch (?v=…), for a link to one exact
-// version; otherwise the latest.
-async function renderPrDetail(prNumber, version) {
+// version (the Sheet links each row to its own); otherwise the latest.
+async function renderPrDetail(prNumber, version, sent) {
   $app.innerHTML = `<p class="spinner-text">Loading&hellip;</p>`;
   const repoPath = `/repos/${CONFIG.REPO_OWNER}/${CONFIG.REPO_NAME}`;
-  const pr = await ghApi(`${repoPath}/pulls/${prNumber}`);
-  const files = await ghApi(`${repoPath}/pulls/${prNumber}/files?per_page=100`);
+  const [pr, files, commits] = await Promise.all([
+    ghApi(`${repoPath}/pulls/${prNumber}`),
+    ghApi(`${repoPath}/pulls/${prNumber}/files?per_page=100`),
+    ghApi(`${repoPath}/pulls/${prNumber}/commits?per_page=100`)
+  ]);
   const xmlFiles = files.filter((f) => f.filename.startsWith(CONFIG.XML_PATH_PREFIX) && f.filename.endsWith(".xml"));
-  const ref = version && /^[0-9a-f]{7,40}$/i.test(version) ? version : pr.head.sha;
+  const versions = versionsOf(commits);
+  const wanted = version && /^[0-9a-f]{7,40}$/i.test(version) ? version.toLowerCase() : "";
+  const shown = wanted ? versions.find((v) => v.sha.startsWith(wanted)) : versions[versions.length - 1];
+  const ref = shown ? shown.sha : wanted || pr.head.sha;
+  const open = pr.state === "open";
   const closed = pr.merged_at ? "This submission has been accepted and is on the site."
-    : pr.state === "closed" ? "This submission was turned down." : "";
+    : !open ? "This submission was turned down." : "";
+
+  const otherVersions = versions.filter((v) => v !== shown)
+    .map((v) => `<a href="?pr=${prNumber}&amp;v=${v.sha}" data-v="${v.sha}">Version ${v.n} (${escapeHtml(v.label)})</a>`).join(" &middot; ");
+  const versionLine = versions.length > 1 && shown ? `
+    <p class="versions">Showing version ${shown.n} of ${versions.length} (${escapeHtml(shown.label)})${shown.n === versions.length ? ", the latest" : ""}. Other versions: ${otherVersions}</p>` : "";
 
   $app.innerHTML = `
     <a class="back-link ghost btn" href="javascript:void(0)" id="back">&larr; All submissions</a>
     <h2 style="font-family: var(--serif); font-weight: 500; margin-bottom: 4px;">${escapeHtml(entryTitle(pr))}${badge(xmlFiles)}</h2>
     <p class="meta" style="color: var(--ink-soft); margin-top: 0;">${sentLine(pr)}</p>
+    ${versionLine}
+    ${sent ? `<div class="notice ok"><p><strong>Thank you, your changes have been sent.</strong> This is your version. The editors see it next to the original and decide which to publish.</p></div>` : ""}
     ${closed ? `<div class="notice"><p>${closed}</p></div>` : ""}
     <div id="files"></div>
-    ${closed ? "" : `
+    ${open ? `
+    <section class="suggest">
+      <button class="btn primary" id="suggestBtn">Suggest changes</button>
+      <p>Spotted a mistake, or know more? Change this version in the contribution form and send it. The editors see your version next to this one.</p>
+    </section>
     <section class="decided-in-sheet">
       <h3>Accepting or rejecting</h3>
-      <p>The editors decide in the team's submissions spreadsheet: find this entry's row and pick <strong>Accept</strong> or <strong>Reject</strong> in the <strong>Decision</strong> column. It happens about a minute later, and the entry appears on the site a minute or two after that.</p>
+      <p>The editors decide in the team's submissions spreadsheet: find this entry's row and pick <strong>Accept</strong> or <strong>Reject</strong> in the <strong>Decision</strong> column. Suggested changes have their own rows on the <strong>Reviews</strong> tab, and accepting one publishes that version instead. It happens about a minute later, and the entry appears on the site a minute or two after that.</p>
       <p>Changed your mind within the minute? Clear the Decision cell to cancel.</p>
-    </section>`}
+    </section>` : ""}
   `;
-  document.getElementById("back").onclick = () => {
-    const u = new URL(window.location.href);
-    u.searchParams.delete("pr");
-    u.searchParams.delete("v");
-    history.pushState({}, "", u);
-    render();
-  };
+  document.getElementById("back").onclick = () => go({});
+  $app.querySelectorAll("a[data-v]").forEach((a) => {
+    a.onclick = (e) => { e.preventDefault(); go({ pr: prNumber, v: a.dataset.v }); };
+  });
+  if (open) document.getElementById("suggestBtn").onclick = () => go({ pr: prNumber, v: ref, suggest: "" });
 
+  const previous = shown && shown.n > 1 ? versions[shown.n - 2] : null;
   const $files = document.getElementById("files");
   for (const f of xmlFiles) {
     const block = document.createElement("div");
     $files.appendChild(block);
-    loadFile(block, f, ref);
+    loadFile(block, f, ref, previous);
   }
 }
 
-async function loadFile(block, file, ref) {
+// The contribution form, filled in from this version, in "suggest changes" mode
+async function renderSuggest(prNumber, version) {
+  $app.innerHTML = `<p class="spinner-text">Loading&hellip;</p>`;
+  const repoPath = `/repos/${CONFIG.REPO_OWNER}/${CONFIG.REPO_NAME}`;
+  const [pr, files] = await Promise.all([
+    ghApi(`${repoPath}/pulls/${prNumber}`),
+    ghApi(`${repoPath}/pulls/${prNumber}/files?per_page=100`)
+  ]);
+  const file = files.find((f) => f.filename.startsWith(CONFIG.XML_PATH_PREFIX) && f.filename.endsWith(".xml"));
+  const ref = version && /^[0-9a-f]{7,40}$/i.test(version) ? version : pr.head.sha;
+  if (pr.state !== "open" || !file) { go({ pr: prNumber }); return; }
+
+  const src = `../form.html?review=${prNumber}&v=${encodeURIComponent(ref)}&file=${encodeURIComponent(file.filename)}`;
+  $app.innerHTML = `
+    <a class="back-link ghost btn" href="javascript:void(0)" id="back">&larr; Back to the submission</a>
+    <h2 style="font-family: var(--serif); font-weight: 500; margin-bottom: 4px;">Suggest changes: ${escapeHtml(entryTitle(pr))}</h2>
+    <p class="meta" style="color: var(--ink-soft); margin-top: 0;">Nothing changes on the site until the editors accept a version.</p>
+    <iframe class="form-frame" id="formFrame" src="${src}" title="Suggest changes"></iframe>
+  `;
+  document.getElementById("back").onclick = () => go({ pr: prNumber, v: ref });
+}
+
+// The form tells us its height (so it needs no scroll bar of its own) and when
+// a suggestion has been sent (then show the new version)
+window.addEventListener("message", (event) => {
+  if (event.origin !== window.location.origin || !event.data) return;
+  const frame = document.getElementById("formFrame");
+  if (!frame || event.source !== frame.contentWindow) return;
+  if (event.data.type === "contribution-form-height") frame.style.height = `${event.data.height + 20}px`;
+  if (event.data.type === "review-sent") {
+    const pr = new URLSearchParams(window.location.search).get("pr");
+    setTimeout(() => go({ pr, ...(event.data.version ? { v: event.data.version } : {}), sent: "" }), 1500);
+  }
+});
+
+async function loadFile(block, file, ref, previous) {
   const previewUrl = `https://${CONFIG.REPO_OWNER}.github.io/${CONFIG.REPO_NAME}/civic?id=${encodeURIComponent(rawUrl(ref, file.filename))}&preview=true`;
   const title = file.filename.slice(CONFIG.XML_PATH_PREFIX.length).replace(/\.xml$/, "").replace(/-/g, " ");
   const preview = `
@@ -318,14 +397,33 @@ async function loadFile(block, file, ref) {
       <iframe src="${previewUrl}" class="preview-frame" title="${escapeHtml(title)} preview"></iframe>
     </div>`;
 
-  if (file.status !== "modified") {
+  if (file.status !== "modified" && !previous) {
     block.innerHTML = preview;
     return;
   }
 
+  // The comparisons go above the preview, without reloading the preview frame
+  block.innerHTML = `<div class="since"></div><div class="compare"></div>${preview}`;
+
+  // A later version of the submission: what it changes compared with the one before
+  if (previous) {
+    const $since = block.querySelector(".since");
+    $since.innerHTML = `<p class="spinner-text">Comparing with version ${previous.n}&hellip;</p>`;
+    try {
+      const [before, after] = await Promise.all([fetchText(rawUrl(previous.sha, file.filename)), fetchText(rawUrl(ref, file.filename))]);
+      $since.innerHTML = TEICompare.table(before, after, {
+        title: `What this version changes (compared with version ${previous.n})`,
+        old: `Version ${previous.n}`, new: "This version",
+        lost: "Left out of this version", same: `This version is the same as version ${previous.n}.`
+      }).html;
+    } catch (e) {
+      $since.innerHTML = `<div class="error">Could not compare with version ${previous.n}: ${escapeHtml(e.message)}</div>`;
+    }
+  }
+  if (file.status !== "modified") return;
+
   // A new version of an entry that is already on the site: show what would change
-  // The comparison goes above the preview, without reloading the preview frame
-  block.innerHTML = `<div class="compare"><p class="spinner-text">Comparing with the entry on the site&hellip;</p></div>${preview}`;
+  block.querySelector(".compare").innerHTML = `<p class="spinner-text">Comparing with the entry on the site&hellip;</p>`;
   let compare;
   try {
     const [current, submitted] = await Promise.all([

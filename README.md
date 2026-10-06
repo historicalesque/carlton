@@ -108,7 +108,7 @@ With `preview=true`, `id` can be a full URL, such as a raw file on a pull-reques
 | `_data/directory/<year>.json`, `_data/electoral-roll/<year>.json` | The directory and electoral-roll records, one file per source and year, one record per line. **Edit these.** See [Data](#data-directories-and-electoral-rolls). |
 | `data/` | What the browser downloads, generated from `_data/` by Jekyll: one small page per data file, `data/index.json` (the list of files), and `uom-land-parcels.geojson` (University of Melbourne land parcels). |
 | `scripts/data.js` | Shared data loader used by every page that shows records. |
-| `scripts/tei.js` | Builds an entry as TEI from the contribution form, checks it, and renders TEI entries (entry pages and the form's preview). |
+| `scripts/tei.js` | Builds an entry as TEI from the contribution form, checks it, renders TEI entries (entry pages and the form's preview), and reads an entry back into the form's fields (`parse`, for *Suggest changes*). |
 | `scripts/tei-compare.js` | Before/after table of two TEI entries (field by field, then the article paragraph by paragraph), used by the review page for new versions of existing entries. |
 | `schema/carlton.odd`, `schema/carlton.rng` | The TEI entry format: the customisation (with its documentation) and the schema generated from it. |
 | `tools/convert-map-data.js` | One-off script that split the old `map-data.js` into the files in `_data/`. |
@@ -223,10 +223,11 @@ Use `admin/carlton-data-editor.html`. It loads the live data, lets you search an
 ### Reviewing a public submission (editorial team)
 
 1. Open **`admin/review.html`** (or the [Admin page](https://historicalesque.github.io/carlton/admin/), then *Review submissions*). It lists open pull requests that add or change files in `civic/`. Anyone can read it; no sign-in is needed.
-2. Pick a submission to see a preview of the entry as it would appear on the site. If it is a new version of an entry that's already on the site, a **What changes** table shows the current entry next to the new version. Anything the new version leaves out is marked, because accepting replaces the whole entry.
+2. Pick a submission to see a preview of the entry as it would appear on the site. If someone has suggested changes, the page lists every version and shows what each one changes. Anyone can press **Suggest changes** to fix a submission in the contribution form; that makes a new version, and the original stays as it was. If it is a new version of an entry that's already on the site, a **What changes** table shows the current entry next to the new version. Anything the new version leaves out is marked, because accepting replaces the whole entry.
 3. Decide in the team's submissions spreadsheet (the Sheet the Apps Script is attached to). Each submission is a row with a link back to the review page. In the **Decision** column, pick:
    - **Accept** to publish it. The Status column says "Publishing in about a minute". Then the script merges the pull request and the Status column says "Published".
    - **Reject** to turn it down. The script closes the pull request. The *Reason* column is optional and stays in the Sheet.
+   - Suggested changes are rows on the **Reviews** tab, with their own Decision column. Accepting one publishes that version instead of the original. Rejecting one turns down only that suggestion.
 4. Picked the wrong one? Clear the Decision cell within the minute to cancel.
 5. The site updates a minute or two after a submission is published.
 
@@ -309,7 +310,7 @@ Goal: editors never need to touch GitHub directly. Done in small, fundable steps
 - [x] Clearer review page: three numbered steps and two buttons, links back to Admin and the site, and the preview shows just the article (#50).
 - [x] **Accept/Reject without GitHub**: editors pick Accept or Reject in a Decision column in the submissions Sheet, with an optional reason kept in the Sheet. The Apps Script merges or closes the pull request a minute later. The review page is open to everyone.
 - [x] **Before/after table** on the review page for new versions of existing entries (`scripts/tei-compare.js`).
-- [ ] **Suggest changes** on the review page: anyone can open a submission in the contribution form, fix it and send it back as a new version, logged on a *Reviews* tab with its own Decision column. Needs `TEIEntry.parse()` to fill the form from TEI.
+- [x] **Suggest changes** on the review page: anyone can open a submission in the contribution form (filled in by `TEIEntry.parse()`), fix it and send it back as a new version of the same pull request. Each suggestion is a row on the Sheet's *Reviews* tab with its own Decision column, and the review page shows every version and what each changes.
 
 **Directory/map data**
 
