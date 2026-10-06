@@ -4,8 +4,9 @@
  * title, the facts (dates, names, addresses, occupations, sources …) and the
  * article paragraph by paragraph, with word-level highlights for small edits.
  *
- *   TEICompare.table(currentXml, submittedXml)
+ *   TEICompare.table(currentXml, submittedXml, labels?)
  *     → { html, changes, lost }   lost = things the submission leaves out
+ *   labels: { old, new, lost, title } to compare two versions of a submission
  */
 window.TEICompare = (function () {
   const NS = 'http://www.tei-c.org/ns/1.0';
@@ -20,7 +21,8 @@ window.TEICompare = (function () {
     const w = el.getAttribute('when');
     const f = el.getAttribute('from') || el.getAttribute('notBefore');
     const t = el.getAttribute('to') || el.getAttribute('notAfter');
-    return w ? ` (${w})` : f || t ? ` (${f || '?'}–${t || '?'})` : '';
+    // from="1890" to="1890" says the same as when="1890"
+    return w || (f && f === t) ? ` (${w || f})` : f || t ? ` (${f || '?'}–${t || '?'})` : '';
   };
 
   /* What a reader sees, as a list of fields, each a list of strings */
@@ -96,12 +98,14 @@ window.TEICompare = (function () {
   const isPara = (s) => !/^(Table row|Heading): /.test(s);
   const strip = (s) => s.replace(/^(Table row|Heading): /, '');
 
-  const LOST = '<span class="lost">Disappears from the site if accepted</span>';
+  const LABELS = { old: 'Now on the site', new: 'In this submission', lost: 'Disappears from the site if accepted', title: 'What changes' };
   const cell = (label, html) => `<span class="cell-label">${label}</span>${html}`;
-  const row = (field, oldHtml, newHtml, cls = '') =>
-    `<tr><td class="field">${field}</td><td class="old ${cls}">${cell('Now on the site', oldHtml)}</td><td class="new ${cls}">${cell('In this submission', newHtml)}</td></tr>`;
 
-  function table(currentXml, submittedXml) {
+  function table(currentXml, submittedXml, labels) {
+    const L = { ...LABELS, ...(labels || {}) };
+    const LOST = `<span class="lost">${esc(L.lost)}</span>`;
+    const row = (field, oldHtml, newHtml, cls = '') =>
+      `<tr><td class="field">${field}</td><td class="old ${cls}">${cell(esc(L.old), oldHtml)}</td><td class="new ${cls}">${cell(esc(L.new), newHtml)}</td></tr>`;
     const A = facts(currentXml);
     const B = facts(submittedXml);
     const rows = [];
@@ -143,13 +147,13 @@ window.TEICompare = (function () {
 
     const html = rows.length ? `
       <div class="changes">
-        <div class="changes-header"><span>What changes</span><span class="tag">${rows.length} change${rows.length === 1 ? '' : 's'}</span></div>
+        <div class="changes-header"><span>${esc(L.title)}</span><span class="tag">${rows.length} change${rows.length === 1 ? '' : 's'}</span></div>
         <table>
-          <thead><tr><th></th><th>Now on the site</th><th>In this submission</th></tr></thead>
+          <thead><tr><th></th><th>${esc(L.old)}</th><th>${esc(L.new)}</th></tr></thead>
           <tbody>${rows.join('')}</tbody>
           ${same ? `<tfoot><tr><td colspan="3">${same} other part${same === 1 ? ' is' : 's are'} the same in both.</td></tr></tfoot>` : ''}
         </table>
-      </div>` : '<div class="notice"><p>This version is the same as the entry on the site.</p></div>';
+      </div>` : `<div class="notice"><p>${esc(L.same || 'This version is the same as the entry on the site.')}</p></div>`;
     return { html, changes: rows.length, lost };
   }
 

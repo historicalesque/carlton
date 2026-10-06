@@ -6,7 +6,7 @@
 - adds a row to the **TEI submissions** tab of the Sheet it's attached to;
 - opens a pull request on `historicalesque/carlton`.
 
-Anyone can read submissions on the review page (`admin/review.html`). Editors accept or reject them in the Sheet (see *Deciding* below).
+Anyone can read submissions on the review page (`admin/review.html`), and suggest changes to one there. A suggestion becomes a new version of the same pull request and a row on the **Reviews** tab. Editors accept or reject in the Sheet (see *Deciding* below).
 
 - **New entry**: the pull request adds `civic/<id>.xml`.
 - **Entry that already exists**: the pull request replaces `civic/<id>.xml` with the new version. Its description warns that merging replaces the current entry, so the editor checks *Files changed* first.
@@ -24,6 +24,11 @@ Each submission is a row on the **TEI submissions** tab. Editors only touch two 
 - **Reason (editors only)**: optional. It stays in the Sheet and is never posted anywhere.
 
 **Review** links to the submission on the review page.
+
+**Suggested changes** are rows on the **Reviews** tab: who suggested them, what they changed, and a link to that exact version. Each row has its own Decision column.
+- **Accept** on a Reviews row publishes that version instead of the original.
+- **Reject** on a Reviews row turns down only that suggestion; the submission stays open.
+- Once one version is published (or the submission is rejected), the other rows for it say so ("Not used: another version was published", or "Rejected with the submission").
 
 The script only acts on pull requests the form opened: open ones, from a `submission/…` branch in this repository, changing nothing but `civic/*.xml`. Anything else gets a "Couldn't publish" status and has to be handled on GitHub.
 
@@ -55,7 +60,7 @@ Nothing secret goes in this repo. The Sheet's address and the GitHub token stay 
    The trigger runs as you, so editors never see a permissions screen. Running `setUp` again is safe.
 8. **Share the Sheet** (as *Editor*) with each person who should accept or reject submissions.
 
-After editing `Code.gs` later: *Deploy → Manage deployments →* the pencil icon *→ Version: New version → Deploy*. The URL stays the same. If the new version adds columns or triggers, run `setUp` again.
+After editing `Code.gs` later: *Deploy → Manage deployments →* the pencil icon *→ Version: New version → Deploy*. The URL stays the same. If the new version adds columns, tabs or triggers, run `setUp` again. (The version that added *Suggest changes* adds the Reviews tab, so run `setUp` once after updating to it.)
 
 ## Notes
 
