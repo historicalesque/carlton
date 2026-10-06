@@ -59,7 +59,7 @@ _[&uarr; Back to Top](#featured-pages-a-to-z)_
 
 [Barry Street](civic?id=Barry%20Street)
 
-[Berkley Arms Hotel](civic?id=Berkley%20Arms%20hotel-Lissaman%2C%20Wm.-Berkley%20Street)
+[Berkley Arms Hotel](civic?id=Berkley%20Arms%20hotel)
 
 [Berkeley Street](civic?id=Berkeley%20Street)
 
