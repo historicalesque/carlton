@@ -314,8 +314,7 @@ Goal: editors never need to touch GitHub directly. Done in small, fundable steps
 
 **Directory/map data**
 
-- [ ] **Data editor sends changes through the Apps Script**: replace "download, then upload to GitHub by hand" with a *Send changes* button, as the contribution form already does. The editor sends only the records that changed; `apps-script/Code.gs` applies them to the current files, opens a pull request and adds a row to a *Data changes* tab in the Sheet, where editors Accept or Reject it in the Decision column like any other submission.
-- [ ] **Data-change preview on the review page**: list data pull requests next to entry submissions, with a readable table of changed records (before → after) instead of a raw diff.
+- [ ] **Data editor sends changes through the Apps Script**: replace "download, then upload to GitHub by hand" with a *Send changes* button, as the contribution form already does. The sender gives their name and a short note, and the editor sends only the records that changed. `apps-script/Code.gs` applies them to the current files, refusing any record someone else has changed since, then publishes straight away (a pull request it merges at once, so each change can be undone on GitHub) and adds a row to a *Data changes* tab in the same Sheet. There is no review step.
 - [x] Data editor uses the same fonts, colours and buttons as the review page, with one main *Download* button (#50).
 
 **Off-the-shelf options to compare against building our own**
