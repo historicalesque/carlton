@@ -20,6 +20,7 @@
     </fileDesc>
     <revisionDesc status="draft">
       <change when="2026-10-06" type="created">Contributed through the contribution form by Mitchell Harrop.</change>
+      <change when="2026-10-06" type="revised">Changes suggested by Mitchell Harrop: Typo.</change>
     </revisionDesc>
   </teiHeader>
   <standOff>
@@ -34,7 +35,7 @@
   </standOff>
   <text>
     <body>
-      <p>Bush Inn hotel was a hotel.</p>
+      <p>Bush Inn hotel was a hotel!</p>
     </body>
   </text>
 </TEI>
