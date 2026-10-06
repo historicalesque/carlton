@@ -76,46 +76,68 @@
   }
   .preview-frame { width: 100%; height: 600px; border: none; background: #fff; display: block; }
 
-  .steps { margin-top: 32px; }
-  .steps > h3 {
-    font-family: var(--sans); font-size: 0.75rem; font-weight: 600; letter-spacing: 0.08em;
-    text-transform: uppercase; color: var(--ink-soft); margin: 0 0 8px;
-  }
-  .step-list { list-style: none; counter-reset: step; margin: 0; padding: 0; }
-  .step-list > li {
-    counter-increment: step; position: relative; padding: 18px 0 18px 44px;
-    border-bottom: 1px solid var(--line);
-  }
-  .step-list > li::before {
-    content: counter(step); position: absolute; left: 0; top: 18px;
-    width: 28px; height: 28px; border-radius: 50%; border: 1px solid var(--line);
-    background: var(--paper-raised); text-align: center; line-height: 26px;
-    font-size: 0.85rem; font-weight: 600; color: var(--ink-soft);
-  }
-  .step-list h4 { font-family: var(--serif); font-weight: 500; font-size: 1.1rem; margin: 2px 0 6px; }
-  .step-list p { margin: 0 0 8px; font-size: 0.95rem; max-width: 65ch; }
-  .step-list .optional { font-family: var(--sans); font-size: 0.8rem; color: var(--ink-soft); font-weight: 400; margin-left: 6px; }
-  .choices { margin: 12px 0 0; }
-  .choices dt { font-weight: 600; font-size: 0.95rem; margin-top: 14px; }
-  .choices dt:first-child { margin-top: 0; }
-  .choices dd { margin: 4px 0 0; font-size: 0.95rem; max-width: 65ch; }
-  .choices ol { margin: 6px 0 0; padding-left: 20px; }
-  .choices li { margin-bottom: 4px; }
-
-  .action-bar {
-    display: flex; flex-wrap: wrap; gap: 10px; padding: 14px 16px;
-    border-top: 1px solid var(--line); background: var(--paper-raised);
-  }
-  .decision-bar {
-    display: flex; flex-wrap: wrap; gap: 10px; align-items: center; margin-top: 12px;
-  }
-  .decision-bar .note { font-size: 0.85rem; color: var(--ink-soft); }
   .spinner-text { color: var(--ink-soft); font-size: 0.9rem; padding: 20px 0; }
+
+  .badge {
+    font-family: var(--sans); font-size: 0.72rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase;
+    border-radius: 3px; padding: 2px 7px; margin-left: 8px; vertical-align: 2px; white-space: nowrap;
+  }
+  .badge.new { background: var(--add-bg); color: var(--add-text); }
+  .badge.version { background: #E6EAF0; color: var(--slate); }
+
+  .notice {
+    border-radius: 6px; padding: 14px 16px; margin: 0 0 20px; font-size: 0.92rem;
+    border: 1px solid #C9D3DE; background: #EEF2F6;
+  }
+  .notice.warn { border-color: #E2CFA0; background: #FBF5E6; }
+  .notice p { margin: 0; }
+  .notice p + p { margin-top: 6px; }
+
+  .changes { border: 1px solid var(--line); border-radius: 6px; margin-bottom: 20px; overflow: hidden; background: #fff; }
+  .changes-header {
+    background: var(--paper-raised); padding: 12px 16px; font-size: 0.85rem; font-weight: 600;
+    border-bottom: 1px solid var(--line); display: flex; justify-content: space-between; align-items: center;
+  }
+  .changes-header .tag { font-size: 0.75rem; color: var(--ink-soft); text-transform: uppercase; letter-spacing: 0.08em; font-weight: 500; }
+  .changes table { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
+  .changes th, .changes td { text-align: left; vertical-align: top; padding: 10px 14px; border-bottom: 1px solid var(--line); }
+  .changes thead th {
+    font-size: 0.75rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-soft);
+    font-weight: 600; background: var(--paper);
+  }
+  .changes td.field { width: 18%; font-weight: 500; color: var(--ink-soft); }
+  .changes td.old, .changes td.new { width: 41%; overflow-wrap: anywhere; }
+  .changes ul { margin: 0; padding: 0; list-style: none; }
+  .changes li { margin: 0 0 4px; }
+  .changes .add { background: var(--add-bg); color: var(--add-text); border-radius: 2px; padding: 0 2px; }
+  .changes .del { background: var(--del-bg); color: var(--del-text); border-radius: 2px; padding: 0 2px; text-decoration: line-through; }
+  .changes .none { color: var(--ink-soft); font-style: italic; }
+  .changes .same { color: var(--ink-soft); }
+  .changes .text { font-family: var(--serif); line-height: 1.55; }
+  .changes tfoot td { font-size: 0.85rem; color: var(--ink-soft); background: var(--paper); border-bottom: none; }
+  .changes .lost { display: block; font-size: 0.78rem; color: var(--del-text); margin-top: 4px; font-family: var(--sans); }
+  .cell-label { display: none; }
+
+  .decided-in-sheet {
+    margin-top: 24px; padding: 16px 18px; border: 1px solid var(--line); border-radius: 6px; background: var(--paper-raised);
+  }
+  .decided-in-sheet h3 { font-family: var(--serif); font-weight: 500; font-size: 1.1rem; margin: 0 0 6px; }
+  .decided-in-sheet p { margin: 0 0 6px; font-size: 0.93rem; max-width: 65ch; }
+  .decided-in-sheet p:last-child { margin-bottom: 0; }
 
   @media (max-width: 640px) {
     header { padding: 24px 16px 16px; }
     main { padding: 24px 16px 60px; }
     .preview-frame { height: 70vh; }
+    .changes thead { display: none; }
+    .changes tr { display: block; border-bottom: 1px solid var(--line); padding: 6px 0; }
+    .changes td { display: block; border: none; width: auto !important; padding: 4px 14px; }
+    .changes td.field { padding-top: 8px; }
+    .changes tfoot tr { border-bottom: none; }
+    .cell-label {
+      display: block; font-size: 0.72rem; letter-spacing: 0.06em; text-transform: uppercase;
+      color: var(--ink-soft); margin-bottom: 2px; font-family: var(--sans);
+    }
   }
 </style>
 </head>
@@ -123,17 +145,19 @@
 
 <header>
   <h1>Submission review</h1>
-  <p>New entries from the contribution form, waiting to be accepted or rejected. <a href="./">Admin</a> &middot; <a href="../">Back to the site</a></p>
+  <p>Entries sent in through the contribution form. Anyone can read them here; the editors accept or reject each one. <a href="./">Admin</a> &middot; <a href="../">Back to the site</a></p>
 </header>
 
 <main id="app"></main>
 
+<script src="../scripts/tei-compare.js"></script>
 <script>
 /* ============================== CONFIG ============================== */
 const CONFIG = {
   REPO_OWNER: "historicalesque",
   REPO_NAME: "carlton",
   XML_PATH_PREFIX: "civic/",   // only PRs touching files under this path are shown
+  BASE_BRANCH: "main",         // what is on the site now, for the before/after table
 };
 /* ===================================================================== */
 
@@ -160,15 +184,41 @@ function escapeHtml(s) {
 
 /* ------------------------------ Views ------------------------------ */
 
-function repoUrl(path = "") {
-  return `https://github.com/${CONFIG.REPO_OWNER}/${CONFIG.REPO_NAME}${path}`;
+function rawUrl(ref, path) {
+  return `${RAW}/${CONFIG.REPO_OWNER}/${CONFIG.REPO_NAME}/${ref}/${path}`;
 }
+
+async function fetchText(url) {
+  const res = await fetch(url, { cache: "no-store" });
+  if (!res.ok) throw new Error(`Could not load ${url.split("/").pop()} (${res.status})`);
+  return res.text();
+}
+
+// The Apps Script writes "Submitted through the contribution form by …" in the pull request
+function senderOf(pr) {
+  const m = (pr.body || "").match(/contribution form by (.+?)\.\s*$/m);
+  return m ? m[1].trim() : "";
+}
+
+function sentLine(pr) {
+  const who = senderOf(pr);
+  return `Sent ${timeAgo(pr.created_at)}${who ? ` by ${escapeHtml(who)}` : ""}`;
+}
+
+// A file the pull request changes (rather than adds) is a new version of an existing entry
+const isNewVersion = (xmlFiles) => xmlFiles.some((f) => f.status === "modified");
+const badge = (xmlFiles) => isNewVersion(xmlFiles)
+  ? `<span class="badge version">Changes an entry</span>`
+  : `<span class="badge new">New entry</span>`;
+
+// "New entry: Corkman Hotel" → "Corkman Hotel"
+const entryTitle = (pr) => pr.title.replace(/^(New entry|New version of|Contribution to):\s*/i, "");
 
 async function render() {
   const params = new URLSearchParams(window.location.search);
   const prNumber = params.get("pr");
   try {
-    if (prNumber) await renderPrDetail(Number(prNumber));
+    if (prNumber) await renderPrDetail(Number(prNumber), params.get("v"));
     else await renderPrList();
   } catch (e) {
     $app.innerHTML = `<div class="error">${escapeHtml(e.message)}</div>`;
@@ -176,7 +226,7 @@ async function render() {
 }
 
 async function renderPrList() {
-  $app.innerHTML = `<p class="spinner-text">Loading documents awaiting review&hellip;</p>`;
+  $app.innerHTML = `<p class="spinner-text">Loading submissions&hellip;</p>`;
   const prs = await ghApi(`/repos/${CONFIG.REPO_OWNER}/${CONFIG.REPO_NAME}/pulls?state=open&per_page=50`);
 
   const withXmlFiles = [];
@@ -187,7 +237,7 @@ async function renderPrList() {
   }
 
   if (!withXmlFiles.length) {
-    $app.innerHTML = `<div class="empty">Nothing waiting on you right now. New submissions will show up here — refresh to check again.</div>
+    $app.innerHTML = `<div class="empty">Nothing waiting right now. New submissions will show up here. Refresh to check again.</div>
       <button style="margin-top:16px;" onclick="render()">Refresh</button>`;
     return;
   }
@@ -197,8 +247,8 @@ async function renderPrList() {
     ${withXmlFiles.map(({ pr, xmlFiles }) => `
       <div class="pr-row">
         <div>
-          <p class="title">${escapeHtml(pr.title)}</p>
-          <p class="meta">Submitted ${timeAgo(pr.created_at)} &middot; ${xmlFiles.length} document${xmlFiles.length > 1 ? "s" : ""}</p>
+          <p class="title">${escapeHtml(entryTitle(pr))}${badge(xmlFiles)}</p>
+          <p class="meta">${sentLine(pr)}</p>
         </div>
         <button data-pr="${pr.number}">Review</button>
       </div>
@@ -215,24 +265,35 @@ async function renderPrList() {
   });
 }
 
-async function renderPrDetail(prNumber) {
+// version: a commit on the submission's branch (?v=…), for a link to one exact
+// version; otherwise the latest.
+async function renderPrDetail(prNumber, version) {
   $app.innerHTML = `<p class="spinner-text">Loading&hellip;</p>`;
   const repoPath = `/repos/${CONFIG.REPO_OWNER}/${CONFIG.REPO_NAME}`;
   const pr = await ghApi(`${repoPath}/pulls/${prNumber}`);
   const files = await ghApi(`${repoPath}/pulls/${prNumber}/files?per_page=100`);
   const xmlFiles = files.filter((f) => f.filename.startsWith(CONFIG.XML_PATH_PREFIX) && f.filename.endsWith(".xml"));
+  const ref = version && /^[0-9a-f]{7,40}$/i.test(version) ? version : pr.head.sha;
+  const closed = pr.merged_at ? "This submission has been accepted and is on the site."
+    : pr.state === "closed" ? "This submission was turned down." : "";
 
   $app.innerHTML = `
     <a class="back-link ghost btn" href="javascript:void(0)" id="back">&larr; All submissions</a>
-    <h2 style="font-family: var(--serif); font-weight: 500; margin-bottom: 4px;">${escapeHtml(pr.title)}</h2>
-    <p class="meta" style="color: var(--ink-soft); margin-top: 0;">Submitted ${timeAgo(pr.created_at)}</p>
+    <h2 style="font-family: var(--serif); font-weight: 500; margin-bottom: 4px;">${escapeHtml(entryTitle(pr))}${badge(xmlFiles)}</h2>
+    <p class="meta" style="color: var(--ink-soft); margin-top: 0;">${sentLine(pr)}</p>
+    ${closed ? `<div class="notice"><p>${closed}</p></div>` : ""}
     <div id="files"></div>
-    <div class="decision-bar">
-    </div>
+    ${closed ? "" : `
+    <section class="decided-in-sheet">
+      <h3>Accepting or rejecting</h3>
+      <p>The editors decide in the team's submissions spreadsheet: find this entry's row and pick <strong>Accept</strong> or <strong>Reject</strong> in the <strong>Decision</strong> column. It happens about a minute later, and the entry appears on the site a minute or two after that.</p>
+      <p>Changed your mind within the minute? Clear the Decision cell to cancel.</p>
+    </section>`}
   `;
   document.getElementById("back").onclick = () => {
     const u = new URL(window.location.href);
     u.searchParams.delete("pr");
+    u.searchParams.delete("v");
     history.pushState({}, "", u);
     render();
   };
@@ -240,69 +301,48 @@ async function renderPrDetail(prNumber) {
   const $files = document.getElementById("files");
   for (const f of xmlFiles) {
     const block = document.createElement("div");
-    block.className = "file-block";
-    block.innerHTML = `<div class="file-header">${escapeHtml(f.filename)}</div><div class="spinner-text" style="padding:16px;">Loading preview&hellip;</div>`;
     $files.appendChild(block);
-    loadFilePreview(block, pr, f);
+    loadFile(block, f, ref);
   }
 }
 
-async function loadFilePreview(block, pr, file) {
-  const rawFileUrl = `${RAW}/${CONFIG.REPO_OWNER}/${CONFIG.REPO_NAME}/${pr.head.sha}/${file.filename}`;
-  const previewUrl = `https://${CONFIG.REPO_OWNER}.github.io/${CONFIG.REPO_NAME}/civic?id=${encodeURIComponent(rawFileUrl)}&preview=true`;
-  const editUrl = repoUrl(`/edit/${encodeURIComponent(pr.head.ref)}/${file.filename}`);
+async function loadFile(block, file, ref) {
+  const previewUrl = `https://${CONFIG.REPO_OWNER}.github.io/${CONFIG.REPO_NAME}/civic?id=${encodeURIComponent(rawUrl(ref, file.filename))}&preview=true`;
+  const title = file.filename.slice(CONFIG.XML_PATH_PREFIX.length).replace(/\.xml$/, "").replace(/-/g, " ");
+  const preview = `
+    <div class="file-block">
+      <div class="file-header">
+        <span>${escapeHtml(title)}</span>
+        <span class="tag">${file.status === "modified" ? "Preview of this version" : "Preview"}</span>
+      </div>
+      <iframe src="${previewUrl}" class="preview-frame" title="${escapeHtml(title)} preview"></iframe>
+    </div>`;
 
-  const prUrl = repoUrl(`/pull/${pr.number}`);
+  if (file.status !== "modified") {
+    block.innerHTML = preview;
+    return;
+  }
 
-  block.innerHTML = `
-    <div class="file-header">
-      <span>${escapeHtml(file.filename)}</span>
-      <span class="tag">Preview</span>
-    </div>
-    <iframe src="${previewUrl}" class="preview-frame" title="${escapeHtml(file.filename)} preview"></iframe>
-    <div class="action-bar">
-      <a class="btn primary" href="${prUrl}" target="_blank" rel="noopener">Open on GitHub</a>
-      <a class="btn" href="${editUrl}" target="_blank" rel="noopener">Edit the XML</a>
-    </div>
-  `;
-
-  // The steps are the same for every file in the pull request, so show them once.
-  if (document.getElementById("steps")) return;
-  const steps = document.createElement("section");
-  steps.className = "steps";
-  steps.id = "steps";
-  steps.innerHTML = `
-    <h3>How to review</h3>
-    <ol class="step-list">
-      <li>
-        <h4>Sign in to GitHub</h4>
-        <p>Accepting or rejecting happens on github.com, so sign in there first.</p>
-      </li>
-      <li>
-        <h4>Fix small mistakes <span class="optional">Optional, if you know XML</span></h4>
-        <p>Click <strong>Edit the XML</strong>, make your change and commit it. Then carry on to step 3.</p>
-      </li>
-      <li>
-        <h4>Decide</h4>
-        <p>Read the preview above, then click <strong>Open on GitHub</strong> and do one of these:</p>
-        <dl class="choices">
-          <dt>Looks good</dt>
-          <dd>Click <strong>Merge pull request</strong>, then <strong>Confirm merge</strong>. The entry appears on the site a minute or two later.</dd>
-          <dt>Needs changes</dt>
-          <dd>Revising a submission takes a few steps for now:
-            <ol>
-              <li>Copy the title, author and text to your computer.</li>
-              <li>Click <strong>Close pull request</strong>.</li>
-              <li>Submit the entry again through the <a href="../new" target="_blank" rel="noopener">new entry form</a> with your changes, then refresh this page and accept the new one.</li>
-            </ol>
-          </dd>
-          <dt>Not suitable</dt>
-          <dd>Leave a comment saying why, then click <strong>Close pull request</strong>.</dd>
-        </dl>
-      </li>
-    </ol>
-  `;
-  document.getElementById("files").after(steps);
+  // A new version of an entry that is already on the site: show what would change
+  // The comparison goes above the preview, without reloading the preview frame
+  block.innerHTML = `<div class="compare"><p class="spinner-text">Comparing with the entry on the site&hellip;</p></div>${preview}`;
+  let compare;
+  try {
+    const [current, submitted] = await Promise.all([
+      fetchText(rawUrl(CONFIG.BASE_BRANCH, file.filename)),
+      fetchText(rawUrl(ref, file.filename))
+    ]);
+    const result = TEICompare.table(current, submitted);
+    compare = `
+      <div class="notice warn">
+        <p><strong>This is a new version of an entry that is already on the site.</strong> If the editors accept it, it replaces the current entry.</p>
+        ${result.lost ? `<p>${result.lost} thing${result.lost === 1 ? " is" : "s are"} left out of the new version and would disappear from the site. They are marked below.</p>` : ""}
+      </div>
+      ${result.html}`;
+  } catch (e) {
+    compare = `<div class="error">Could not compare with the entry on the site: ${escapeHtml(e.message)}</div>`;
+  }
+  block.querySelector(".compare").innerHTML = compare;
 }
 
 function timeAgo(iso) {

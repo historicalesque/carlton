@@ -6,12 +6,32 @@
 - adds a row to the **TEI submissions** tab of the Sheet it's attached to;
 - opens a pull request on `historicalesque/carlton`.
 
-Editors accept or reject it on the review page (`admin/review.html`).
+Anyone can read submissions on the review page (`admin/review.html`). Editors accept or reject them in the Sheet (see *Deciding* below).
 
 - **New entry**: the pull request adds `civic/<id>.xml`.
 - **Entry that already exists**: the pull request replaces `civic/<id>.xml` with the new version. Its description warns that merging replaces the current entry, so the editor checks *Files changed* first.
 
 The copy in the repo is the master copy. After changing it, paste it into the script editor again and deploy a new version (step 5).
+
+## Deciding (editors)
+
+Each submission is a row on the **TEI submissions** tab. Editors only touch two columns:
+
+- **Decision**: pick *Accept* or *Reject*.
+  - The **Status** column changes to "Publishing (or Rejecting) in about a minute. Clear Decision to cancel."
+  - About a minute later, the script merges the pull request (Accept) or closes it (Reject), deletes its branch, and writes "Published" (a link to the entry) or "Rejected" with the time.
+  - Clearing the cell before then cancels.
+- **Reason (editors only)**: optional. It stays in the Sheet and is never posted anywhere.
+
+**Review** links to the submission on the review page.
+
+The script only acts on pull requests the form opened: open ones, from a `submission/…` branch in this repository, changing nothing but `civic/*.xml`. Anything else gets a "Couldn't publish" status and has to be handled on GitHub.
+
+If the submission was changed after its row was written, Accept publishes the version recorded on the row (the **Version** column).
+
+If something goes wrong, the Status column says what happened, and the Decision cell is cleared so it can be picked again.
+
+Anyone the Sheet is shared with as an editor can decide. Those people can also open the script and its properties, including the token, so share it only with the editorial team.
 
 ## Setting it up (once)
 
@@ -28,8 +48,14 @@ Nothing secret goes in this repo. The Sheet's address and the GitHub token stay 
 4. **Check it.** Back in the editor, pick `testSetup` from the function menu and press *Run*. Google asks for permission the first time. The log should say `OK: can reach historicalesque/carlton; push access: true`.
 5. **Deploy.** *Deploy → New deployment →* type **Web app**. Set *Execute as*: **Me** and *Who has access*: **Anyone**, then press *Deploy*. Copy the **Web app URL** (it ends in `/exec`).
 6. **Connect the form.** Put that URL in `_config.yml` as `contribution_endpoint`. The form then shows a *Send to the editors* button instead of the "Not connected yet" note.
+7. **Switch on decisions.** In the script editor, pick `setUp` from the function menu and press *Run*. Google asks for permission once more, to let the script run triggers.
 
-After editing `Code.gs` later: *Deploy → Manage deployments →* the pencil icon *→ Version: New version → Deploy*. The URL stays the same.
+   `setUp` adds the Review, Decision, Reason, Status and Version columns to the TEI submissions tab, and fills in Review and Status for rows already there. It also switches on the trigger that watches the Decision column.
+
+   The trigger runs as you, so editors never see a permissions screen. Running `setUp` again is safe.
+8. **Share the Sheet** (as *Editor*) with each person who should accept or reject submissions.
+
+After editing `Code.gs` later: *Deploy → Manage deployments →* the pencil icon *→ Version: New version → Deploy*. The URL stays the same. If the new version adds columns or triggers, run `setUp` again.
 
 ## Notes
 
