@@ -40,11 +40,13 @@ Anyone the Sheet is shared with as an editor can decide. Those people can also o
 
 ## Data changes (data editor)
 
-The data editor (`admin/carlton-data-editor.html`) sends to the same web app, with `action: "data"`, the sender's name, an optional note, and only the records that changed: each as its line in the file before and after (`receiveData_`). There is no review step. The script:
+The data editor (`admin/carlton-data-editor.html`) sends to the same web app, with `action: "data"`, the sender's name, an optional note, and only the records that changed: each as its line in the file before and after (`receiveData_`). The script:
 - checks each record belongs in the file it's sent for (`source` and `year`), and that coordinates are numbers;
-- reads each file from `main` as it is now and swaps in the changed lines, leaving every other line exactly as it was. If a record isn't there any more because someone else changed it since the editor was loaded, nothing is published and the sender is asked to reload;
-- commits the files to a `data/…` branch, opens a pull request and merges it straight away, then deletes the branch. Each send is one commit, so *Revert* on the pull request undoes it;
-- adds a row to the **Data changes** tab: when, who, their note, what changed (e.g. "1905 directory: 3 changed, 1 added"), Status and the pull request.
+- reads each file from `main` and swaps in the changed lines, leaving every other line exactly as it was. If a record isn't there any more because someone else changed it since the editor was loaded, nothing is sent and the sender is asked to reload;
+- commits that to a `data/…` branch and opens a pull request;
+- adds a row to the **Data changes** tab: when, who, their note, what changed (e.g. "1905 directory: 3 changed, 1 added"), **Details** (one line per record, e.g. "lat -37.8041 → -37.8042"), Decision, Reason, Status and the pull request. The last column, *Changes (for the script)*, holds what was sent; don't edit it.
+
+Editors decide in the Decision column, as for entries. **Accept** applies the changes again to the data as it is at that moment (so data changes accepted in between are kept), replaces the branch's commit with that, and merges the pull request. If one of the records has changed since it was sent, the Status says so and nothing is published: reject it and ask the sender to make the changes again. **Reject** closes the pull request.
 
 A record for a year with no file yet is refused (a new year needs a developer, see the main README).
 

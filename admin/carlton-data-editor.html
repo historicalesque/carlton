@@ -454,7 +454,7 @@ layout: null
 <header class="masthead">
   <p class="eyebrow">Carlton &amp; District</p>
   <h1>Street directory &amp; electoral roll data editor</h1>
-  <p class="sub"><span class="intro">Browse, correct and add records from the Sands &amp; McDougall directories and electoral rolls. When you're done, press <b>Send changes</b> to publish them on the site. </span><a href="./">Admin</a> &middot; <a href="../">Back to the site</a></p>
+  <p class="sub"><span class="intro">Browse, correct and add records from the Sands &amp; McDougall directories and electoral rolls. When you're done, press <b>Send changes</b> and the editors will check them before they go on the site. </span><a href="./">Admin</a> &middot; <a href="../">Back to the site</a></p>
   <div class="stats">
     <span><b id="statTotal">0</b> records</span>
     <span><b id="statFiltered">0</b> shown</span>
@@ -557,8 +557,8 @@ layout: null
           <li><b>Start from the current data.</b> This tool loads the live data from the site when it opens. If you've had it open for a long time, reload it before you start.</li>
           <li><b>Make your changes.</b> They stay in this browser tab until you send them, so don't close it.</li>
           <li><b>Press "Send changes".</b> Give your name and, if you like, a short note about what you changed, e.g. <i>"Coordinates for Barry Street, 1905"</i>. Then press <b>Send</b>.</li>
+          <li><b>The editors check them.</b> Your changes go to the editorial team's spreadsheet, where an editor accepts or rejects them. Once accepted, the live site shows them a minute or two later. Until then the site (and this editor, if you reload it) still shows the old data.</li>
         </ol>
-        <div class="callout">Your changes are published straight away; there is no review step. The live site shows them a minute or two later. Each send is kept in the team's spreadsheet, and the developers can undo one if something goes wrong.</div>
         <p>If someone else changed the same records after you opened the editor, nothing is sent and you'll be asked to reload. Use <b>Download changed files</b> first if you want to keep a copy of your work.</p>
         <h3>Advanced: download and upload by hand</h3>
       </div>
@@ -607,7 +607,7 @@ layout: null
         <label for="sendNote">What did you change? <span class="hint">(optional)</span></label>
         <input type="text" id="sendNote" maxlength="300" placeholder="e.g. Coordinates for Barry Street, 1905">
       </div>
-      <p class="hint">Your changes are published straight away, with your name, and show on the site a minute or two later.</p>
+      <p class="hint">An editor checks your changes before they go on the site. Your name goes with them.</p>
       <p class="send-status" id="sendStatus" hidden></p>
     </div>
     <div class="modal-footer">
@@ -1372,8 +1372,8 @@ downloadOverlay.addEventListener('click', (e) => { if(e.target === downloadOverl
 
 /* ============ SEND CHANGES ============
    Sends only the records that changed to the Apps Script
-   (apps-script/Code.gs, receiveData_), which applies them to the files on
-   GitHub as they are now and publishes them straight away. Each change gives
+   (apps-script/Code.gs, receiveData_), which checks them against the files
+   on GitHub and opens a pull request for the editors to accept or reject. Each change gives
    the record's line as it was loaded ("before") and as it is now ("after"),
    so the script can refuse if someone else changed that record since. */
 const ENDPOINT = {{ site.contribution_endpoint | default: '' | jsonify }};
@@ -1453,17 +1453,17 @@ async function sendChanges(){
     });
     const result = await res.json();
     if(result.status !== 'success') throw new Error(result.message || 'The changes were not accepted.');
-    // What was sent is now what's on the site
+    // Sent changes aren't sent again
     originals = new Map();
     rememberOriginals(records);
     baselines = fileTexts();
     setDirty(false);
     document.getElementById('sendNote').value = '';
     confirmBtn.hidden = true;
-    sendStatus('Thank you, your changes are published. The site will show them in a minute or two.', 'ok');
+    sendStatus('Thank you! Your changes have been sent to the editors, who will check them before they appear on the site.', 'ok');
   } catch(err){
     confirmBtn.disabled = false;
-    sendStatus(`Sorry, nothing was published: ${err.message}`, 'error');
+    sendStatus(`Sorry, it didn't send: ${err.message}`, 'error');
   }
 }
 
