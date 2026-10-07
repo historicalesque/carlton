@@ -10,6 +10,7 @@ Anyone can read submissions on the review page (`admin/review.html`), and sugges
 
 - **New entry**: the pull request adds `civic/<id>.xml`.
 - **Entry that already exists**: the pull request replaces `civic/<id>.xml` with the new version. Its description warns that merging replaces the current entry, so the editor checks *Files changed* first.
+- **Records**: the form sends the numbers of the directory and electoral-roll records the entry is about, and they go in the row's **Records** column. A brand new entry whose title gives the file name of an entry that already exists is refused, so it can't replace that entry by accident.
 
 The copy in the repo is the master copy. After changing it, paste it into the script editor again and deploy a new version (step 5).
 
@@ -23,6 +24,8 @@ Each submission is a row on the **TEI submissions** tab. Editors only touch two 
   - Clearing the cell before then cancels.
 - **Reason (editors only)**: optional. It stays in the Sheet and is never posted anywhere.
 
+**Records** lists the records the entry is about, e.g. `1331, 2369`. On Accept, the script changes each one's `entityID` in `_data/` to the entry's id, in the same pull request just before merging it, so the entry and its links are published together. The id is the entry's title (or, if the title has since changed so it no longer gives the entry's file name, the file name), unless the site already has records linked under a name that gives that file name (e.g. `Corkman Hotel`), which is used instead. Records that already have a text id, or that can't be found, are left alone and listed in the Status ("2 records linked, not linked: 1234"). The editors can change the numbers before accepting. A suggested change uses its submission's Records.
+
 **Review** links to the submission on the review page.
 
 **Suggested changes** are rows on the **Reviews** tab: who suggested them, what they changed, and a link to that exact version. Each row has its own Decision column.
@@ -30,7 +33,7 @@ Each submission is a row on the **TEI submissions** tab. Editors only touch two 
 - **Reject** on a Reviews row turns down only that suggestion; the submission stays open.
 - Once one version is published (or the submission is rejected), the other rows for it say so ("Not used: another version was published", or "Rejected with the submission").
 
-The script only acts on pull requests the form opened: open ones, from a `submission/…` branch in this repository, changing nothing but `civic/*.xml`. Anything else gets a "Couldn't publish" status and has to be handled on GitHub.
+The script only acts on pull requests the form opened: open ones, from a `submission/…` branch in this repository, changing one `civic/*.xml` file (and, once its records are being linked, the data files in `_data/`). Anything else gets a "Couldn't publish" status and has to be handled on GitHub.
 
 If the submission was changed after its row was written, Accept publishes the version recorded on the row (the **Version** column).
 
@@ -60,7 +63,7 @@ Nothing secret goes in this repo. The Sheet's address and the GitHub token stay 
    The trigger runs as you, so editors never see a permissions screen. Running `setUp` again is safe.
 8. **Share the Sheet** (as *Editor*) with each person who should accept or reject submissions.
 
-After editing `Code.gs` later: *Deploy → Manage deployments →* the pencil icon *→ Version: New version → Deploy*. The URL stays the same. If the new version adds columns, tabs or triggers, run `setUp` again. (The version that added *Suggest changes* adds the Reviews tab, so run `setUp` once after updating to it.)
+After editing `Code.gs` later: *Deploy → Manage deployments →* the pencil icon *→ Version: New version → Deploy*. The URL stays the same. If the new version adds columns, tabs or triggers, run `setUp` again. (The version that links records adds the Records column by itself, the next time a submission arrives; running `setUp` adds it straight away.) (The version that added *Suggest changes* adds the Reviews tab, so run `setUp` once after updating to it.)
 
 ## Notes
 

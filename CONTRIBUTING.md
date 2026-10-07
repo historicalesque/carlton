@@ -51,6 +51,7 @@ The directory and electoral-roll records are one JSON file per source and year, 
 
 - Keep one record per line, so each change shows up as a one-line difference.
 - Keep spellings as transcribed: variant street and personal names can matter historically.
+- When an entry is accepted, the records it's about get its id as their `entityID` (see the README, *Reviewing a public submission*). That commit is made by the Apps Script, so it's normal to see `_data/` change in an *Accept* commit.
 - Check the file is still valid JSON before committing (`python3 -m json.tool _data/directory/1905.json > /dev/null`). A broken data file breaks search, the maps and the People and Places pages.
 
 ## Writing for the site
