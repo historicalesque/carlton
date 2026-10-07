@@ -34,6 +34,7 @@ const SETTINGS = {
   folder: 'civic',
   sheetName: 'TEI submissions',
   reviewsName: 'Reviews',
+  dataName: 'Data changes',
   maxBytes: 500 * 1024,
   maxPerHour: 20,
   timeZone: 'Australia/Melbourne',
@@ -75,6 +76,7 @@ function receive_(e) {
   // Honeypot: a hidden field people never see, which bots tend to fill in.
   // Pretend it worked so they don't try again.
   if (data.website) return { status: 'success' };
+  if (data.action === 'data') return receiveData_(data);
   if (typeof data.xml !== 'string' || !data.xml.trim()) throw userError_('The entry was empty.');
 
   let doc;
@@ -258,7 +260,9 @@ function receiveReview_(data, title) {
 
 const TABS = {
   submissions: { name: () => SETTINGS.sheetName, columns: COLUMNS },
-  reviews: { name: () => SETTINGS.reviewsName, columns: REVIEW_COLUMNS }
+  reviews: { name: () => SETTINGS.reviewsName, columns: REVIEW_COLUMNS },
+  // Changes from the data editor (see "Data changes" below)
+  data: { name: () => SETTINGS.dataName, get columns() { return DATA_COLUMNS; } }
 };
 
 function tab_(key) {
@@ -328,12 +332,224 @@ function decisionRule_() {
     .build();
 }
 
+/* ---------- Data changes ---------- */
+
+// Changes from the data editor (admin/carlton-data-editor.html):
+//   { action: "data", name, note, changes: [{ file, before, after }] }
+// file is e.g. "directory/1905"; before and after are one record each, as
+// the JSON line it is in the file (before null: a new record; after null:
+// the record is removed). The script checks them against the files on main,
+// refusing the lot if any "before" record isn't there any more (someone
+// else changed it since), opens a pull request from a data/ branch, and
+// adds a row to the "Data changes" tab. Editors decide there, in the
+// Decision column, as for entries. On Accept the changes are applied again
+// to the files as they are then, so changes accepted in between are kept.
+const DATA_COLUMNS = ['Received', 'Sent by', 'Note', 'What changed', 'Details', 'Decision', 'Reason (editors only)',
+  'Status', 'Pull request', 'Version', 'Changes (for the script)'];
+const DATA_FOLDERS = { directory: 'Directory', 'electoral-roll': 'Electoral roll' };
+const DATA_PATH_ = /^_data\/(directory|electoral-roll)\/\d{4}\.json$/;
+
+function receiveData_(data) {
+  const name = String(data.name || '').trim().slice(0, 100);
+  if (!name) throw userError_('Add your name.');
+  const note = String(data.note || '').trim().slice(0, 300);
+  const changes = Array.isArray(data.changes) ? data.changes : [];
+  if (changes.length > 2000) throw userError_('That is too many changes to send at once. Send them in a few smaller batches.');
+  const byFile = groupDataChanges_(changes);
+  const stored = JSON.stringify(byFile);
+  if (stored.length > CELL_LIMIT) throw userError_('That is too many changes to send at once. Send them in a few smaller batches (about 100 records each).');
+
+  checkRate_();
+  const lock = LockService.getScriptLock();
+  lock.waitLock(30000);
+  try {
+    const stamp = Utilities.formatDate(new Date(), SETTINGS.timeZone, 'yyyyMMdd-HHmmss');
+    const branch = `data/${stamp}`;
+    const commit = commitData_(branch, byFile, false, true);
+    const summary = commit.files.map((f) => f.summary).join('; ');
+    const pr = github_('post', '/pulls', {
+      title: `Data changes: ${note || summary}`.slice(0, 200), head: branch, base: SETTINGS.base,
+      body: [
+        `Sent from the data editor by ${name}.`, '',
+        ...commit.files.map((f) => `- ${f.summary}`), '',
+        'The editors accept or reject this on the Data changes tab of the submissions Sheet (the Decision column). Accepting applies these changes to the data as it is then and merges this.'
+      ].join('\n')
+    });
+    saveRow_('data', {
+      'Received': new Date(),
+      'Sent by': name,
+      'Note': note,
+      'What changed': summary,
+      'Details': dataDetails_(byFile),
+      'Status': 'Waiting',
+      'Pull request': pr.html_url,
+      'Version': commit.head,
+      'Changes (for the script)': stored
+    });
+    return { status: 'success', pr: pr.html_url, summary };
+  } finally {
+    lock.releaseLock();
+  }
+}
+
+// Checks each change and groups them by file: { "directory/1905": [{ before, after }] }
+function groupDataChanges_(changes) {
+  const byFile = {};
+  changes.forEach((c) => {
+    const m = /^(directory|electoral-roll)\/(\d{4})$/.exec(String(c && c.file));
+    if (!m) throw userError_('The editor sent a file we do not know.');
+    const before = c.before == null ? null : dataLine_(c.before);
+    const after = c.after == null ? null : dataRecord_(c.after, m[1], Number(m[2]));
+    if (before === null && after === null) return;
+    (byFile[c.file] = byFile[c.file] || []).push({ before, after });
+  });
+  if (!Object.keys(byFile).length) throw userError_('Nothing has changed.');
+  return byFile;
+}
+
+// One record as sent, in the form it's compared in (JSON.stringify of the
+// parsed line, so spacing and number formatting don't matter)
+function dataLine_(line) {
+  let rec;
+  try { rec = JSON.parse(String(line)); } catch (err) { throw userError_('The editor sent a record we could not read.'); }
+  if (!rec || typeof rec !== 'object' || Array.isArray(rec)) throw userError_('The editor sent a record we could not read.');
+  return JSON.stringify(rec);
+}
+
+// A new or changed record: it must belong in the file it's sent for
+function dataRecord_(line, folder, year) {
+  const rec = JSON.parse(dataLine_(line));
+  const label = `"${rec.listing || rec.entityID}"`;
+  if (typeof rec.entityID === 'number' ? !(rec.entityID > 0) : !(typeof rec.entityID === 'string' && rec.entityID.trim())) throw userError_(`${label} needs an ID.`);
+  if (rec.source !== DATA_FOLDERS[folder] || rec.year !== year) throw userError_(`${label} was sent for the wrong file.`);
+  if (('lat' in rec) !== ('lng' in rec) || ('lat' in rec && !(typeof rec.lat === 'number' && typeof rec.lng === 'number'
+    && Math.abs(rec.lat) <= 90 && Math.abs(rec.lng) <= 180))) throw userError_(`${label} has a latitude or longitude that isn't right.`);
+  return JSON.stringify(rec);
+}
+
+function dataLabel_(key) {
+  const [folder, year] = key.split('/');
+  return folder === 'directory' ? `${year} directory` : `${year} electoral roll`;
+}
+
+// What each change does, for the editors: one line per record
+function dataDetails_(byFile) {
+  const lines = [];
+  Object.keys(byFile).sort().forEach((key) => byFile[key].forEach(({ before, after }) => {
+    const was = before && JSON.parse(before), now = after && JSON.parse(after);
+    const rec = now || was;
+    const what = `${dataLabel_(key)}, ${rec.listing || rec.entityID}`;
+    if (!was) lines.push(`Added: ${what}`);
+    else if (!now) lines.push(`Removed: ${what}`);
+    else {
+      const fields = [...new Set([...Object.keys(was), ...Object.keys(now)])]
+        .filter((k) => JSON.stringify(was[k]) !== JSON.stringify(now[k]))
+        .map((k) => `${k} ${was[k] === undefined ? '(none)' : was[k]} → ${now[k] === undefined ? '(none)' : now[k]}`);
+      lines.push(`${what}: ${fields.join('; ') || 'reordered'}`);
+    }
+  }));
+  const text = lines.join('\n');
+  return text.length > CELL_LIMIT ? text.slice(0, CELL_LIMIT) + ' …' : text;
+}
+
+// Applies one file's changes to that file as it is at commit `ref`. Unchanged
+// lines keep their exact text, so the commit shows only the records that
+// changed. atAccept only changes the wording of the errors.
+function applyDataChanges_(key, list, ref, atAccept) {
+  const path = `_data/${key}.json`;
+  const label = `the ${dataLabel_(key)}`;
+  const file = github_('get', `/contents/${encodePath_(path)}?ref=${ref}`, null, true);
+  if (!file) throw userError_(`There is no file for ${label} yet. A new year needs a developer to add it first (see the README).`);
+  const text = Utilities.newBlob(Utilities.base64Decode(file.content.replace(/\n/g, ''))).getDataAsString('UTF-8');
+  // One record per line, as the editor and tools/convert-map-data.js write them
+  const lines = text.split('\n').map((l) => l.trim().replace(/,$/, '')).filter((l) => l.indexOf('{') === 0)
+    .map((l) => ({ text: l, key: JSON.stringify(JSON.parse(l)) }));
+
+  const missing = [];
+  let edited = 0, added = 0, removed = 0;
+  list.forEach(({ before, after }) => {
+    if (before === null) { lines.push({ text: after, key: after, done: true }); added++; return; }
+    const at = lines.findIndex((l) => !l.done && l.key === before);
+    if (at === -1) { missing.push(JSON.parse(before)); return; }
+    if (after === null) { lines.splice(at, 1); removed++; return; }
+    lines[at] = { text: after, key: after, done: true };
+    edited++;
+  });
+  if (missing.length) {
+    const which = missing.slice(0, 3).map((r) => `"${r.listing || r.entityID}"`).join(', ') + (missing.length > 3 ? ` and ${missing.length - 3} more` : '');
+    throw userError_(atAccept
+      ? `${missing.length === 1 ? 'a record' : 'some records'} in ${label} changed after this was sent (${which}), so it can't be applied. Reject it and ask the sender to make the changes again.`
+      : `Someone has changed ${missing.length === 1 ? 'a record' : 'some records'} in ${label} since you loaded the editor (${which}), so nothing was sent. Use "Download changed files" to keep a copy of your work, reload the editor and make those changes again.`);
+  }
+  if (!lines.length) throw userError_(`This would leave ${label} empty. Ask a developer to remove the file instead.`);
+  const counts = [[edited, 'changed'], [added, 'added'], [removed, 'removed']].filter(([n]) => n).map(([n, w]) => `${n} ${w}`);
+  return {
+    path,
+    text: '[\n' + lines.map((l) => l.text).join(',\n') + '\n]\n',
+    summary: `${dataLabel_(key)}: ${counts.join(', ')}`
+  };
+}
+
+// Applies the changes to main as it is now and makes one commit on top of it,
+// on a new branch (create) or replacing the branch's commit, so the pull
+// request always merges cleanly onto main.
+function commitData_(branch, byFile, atAccept, create) {
+  const base = github_('get', `/git/ref/heads/${SETTINGS.base}`).object.sha;
+  const files = Object.keys(byFile).sort().map((key) => applyDataChanges_(key, byFile[key], base, atAccept));
+  const tree = github_('post', '/git/trees', {
+    base_tree: github_('get', `/git/commits/${base}`).tree.sha,
+    tree: files.map((f) => ({ path: f.path, mode: '100644', type: 'blob', content: f.text }))
+  });
+  const commit = github_('post', '/git/commits', { message: `Data changes: ${files.map((f) => f.summary).join('; ')}`, tree: tree.sha, parents: [base] });
+  if (create) github_('post', '/git/refs', { ref: `refs/heads/${branch}`, sha: commit.sha });
+  else github_('patch', `/git/refs/heads/${encodePath_(branch)}`, { sha: commit.sha, force: true });
+  return { head: commit.sha, files };
+}
+
+// Accept or Reject on the Data changes tab (called by processDecisions)
+function decideData_(key, number, decision, version, title, row) {
+  const pr = github_('get', `/pulls/${number}`, null, true);
+  if (!pr) throw userError_('the pull request was not found.');
+  const files = github_('get', `/pulls/${number}/files?per_page=100`);
+  const fromEditor = pr.head.repo && pr.head.repo.full_name === SETTINGS.repo && /^data\//.test(pr.head.ref)
+    && pr.base.ref === SETTINGS.base && files.length > 0 && files.every((f) => DATA_PATH_.test(f.filename));
+  if (!fromEditor) throw userError_('this is not from the data editor, so it has to be handled on GitHub.');
+  if (pr.merged_at) return 'Published (already, on GitHub)';
+  if (pr.state === 'closed') return 'Rejected (already closed on GitHub)';
+  const when = Utilities.formatDate(new Date(), SETTINGS.timeZone, 'dd/MM HH:mm');
+
+  if (decision === 'Reject') {
+    github_('patch', `/pulls/${number}`, { state: 'closed' });
+    deleteBranch_(pr.head.ref);
+    return `Rejected ${when}`;
+  }
+
+  // Apply the changes to the data as it is now, so changes accepted since
+  // this was sent are kept, then merge
+  const sheet = tab_('data');
+  const cols = columns_(sheet, DATA_COLUMNS);
+  let byFile;
+  try { byFile = JSON.parse(sheet.getRange(row, cols['Changes (for the script)']).getValue()); } catch (err) { byFile = null; }
+  if (!byFile) throw userError_('the "Changes (for the script)" cell on this row is missing or was edited.');
+  const commit = commitData_(pr.head.ref, byFile, true, false);
+  // GitHub can take a moment to work out that the pull request can be merged
+  for (let tries = 0; tries < 5; tries++) {
+    if (tries) Utilities.sleep(2000);
+    const merge = github_('put', `/pulls/${number}/merge`, { merge_method: 'squash', sha: commit.head, commit_title: `${pr.title} (#${number})` }, false, true);
+    if (!merge.conflict) {
+      deleteBranch_(pr.head.ref);
+      return `Published ${when}`;
+    }
+  }
+  throw userError_('GitHub could not merge it just now. Pick Accept again to retry.');
+}
+
 /* ---------- Decisions ---------- */
 
 // Run once from the script editor (select setUp, then Run). It adds the new
-// columns, the Reviews tab and the Decision dropdowns, fills in Review links
-// and Status for rows sent before this version, and switches on the edit
-// trigger. Safe to run again.
+// columns, the Reviews and Data changes tabs and the Decision dropdowns,
+// fills in Review links and Status for rows sent before this version, and
+// switches on the edit trigger. Safe to run again.
 function setUp() {
   Object.keys(TABS).forEach((key) => {
     const sheet = tab_(key);
@@ -371,7 +587,7 @@ function setUp() {
     .filter((t) => t.getHandlerFunction() === 'onDecision')
     .forEach((t) => ScriptApp.deleteTrigger(t));
   ScriptApp.newTrigger('onDecision').forSpreadsheet(SpreadsheetApp.getActiveSpreadsheet()).onEdit().create();
-  console.log('Set up: Decision columns ready on both tabs and the edit trigger is on.');
+  console.log('Set up: Decision columns ready on every tab and the edit trigger is on.');
 }
 
 const FINAL = /^(Published|Rejected|Not used)/;
@@ -421,7 +637,7 @@ function onDecision(e) {
 }
 
 // Runs a minute after a decision (a one-off timer set by onDecision). Carries
-// out every decision whose minute is up, on both tabs, then sets a new timer
+// out every decision whose minute is up, on every tab, then sets a new timer
 // for any that are still waiting.
 function processDecisions() {
   const lock = LockService.getScriptLock();
@@ -448,7 +664,7 @@ function processDecisions() {
         const title = key === 'reviews' ? r[cols['Changes to'] - 1] : r[cols['Title'] - 1];
         let status;
         try {
-          status = decide_(key, number, decision, version, title, row);
+          status = (key === 'data' ? decideData_ : decide_)(key, number, decision, version, title, row);
         } catch (err) {
           console.error(err);
           status = `Couldn't ${decision === 'Accept' ? 'publish' : 'reject'}: ${err.userMessage || 'something went wrong. Pick again to retry, or ask Mitchell.'}`;

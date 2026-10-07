@@ -41,6 +41,18 @@ If something goes wrong, the Status column says what happened, and the Decision 
 
 Anyone the Sheet is shared with as an editor can decide. Those people can also open the script and its properties, including the token, so share it only with the editorial team.
 
+## Data changes (data editor)
+
+The data editor (`admin/carlton-data-editor.html`) sends to the same web app, with `action: "data"`, the sender's name, an optional note, and only the records that changed: each as its line in the file before and after (`receiveData_`). The script:
+- checks each record belongs in the file it's sent for (`source` and `year`), and that coordinates are numbers;
+- reads each file from `main` and swaps in the changed lines, leaving every other line exactly as it was. If a record isn't there any more because someone else changed it since the editor was loaded, nothing is sent and the sender is asked to reload;
+- commits that to a `data/…` branch and opens a pull request;
+- adds a row to the **Data changes** tab: when, who, their note, what changed (e.g. "1905 directory: 3 changed, 1 added"), **Details** (one line per record, e.g. "lat -37.8041 → -37.8042"), Decision, Reason, Status and the pull request. The last column, *Changes (for the script)*, holds what was sent; don't edit it.
+
+Editors decide in the Decision column, as for entries. **Accept** applies the changes again to the data as it is at that moment (so data changes accepted in between are kept), replaces the branch's commit with that, and merges the pull request. If one of the records has changed since it was sent, the Status says so and nothing is published: reject it and ask the sender to make the changes again. **Reject** closes the pull request.
+
+A record for a year with no file yet is refused (a new year needs a developer, see the main README).
+
 ## Setting it up (once)
 
 Nothing secret goes in this repo. The Sheet's address and the GitHub token stay in Google.
@@ -68,5 +80,5 @@ After editing `Code.gs` later: *Deploy → Manage deployments →* the pencil ic
 ## Notes
 
 - The token belongs to whoever made it, and pull requests show that person as the author. A classic token with no expiration keeps working until it's deleted on GitHub. It can write to every public repository that account can write to, so keep it only in Script properties.
-- Submissions are capped at 20 an hour, and a hidden "website" field catches simple bots.
+- Submissions are capped at 20 an hour, and a hidden "website" field catches simple bots. Sends from the data editor count towards the same 20.
 - A Sheet cell holds about 50,000 characters, so very long entries are cut short in the Sheet. The pull request always has the full copy.
