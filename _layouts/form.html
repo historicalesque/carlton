@@ -696,11 +696,19 @@
   else if (targetId && !/^\d+$/.test(targetId)) $('articleTitle').value = targetId.replace(/-/g, ' ');
   if (urlParams.has('advanced')) setShowAll(true);
 
-  if (targetId && window.CGData) {
-    CGData.forEntity(targetId).then((records) => {
-      showRecords(records);
-      if (urlParams.has('new')) prefill(records);
-    }).catch(() => {});
+  // An entry that's already on the site: ?entry=<file name>, from entry.html
+  const ENTRY = /^[\w-]+$/.test(urlParams.get('entry') || '') ? urlParams.get('entry') : '';
+
+  if (targetId && !REVIEW) {
+    const records = window.CGData ? CGData.forEntity(targetId).catch(() => []) : Promise.resolve([]);
+    const article = ENTRY
+      ? fetch(new URL(`civic/${ENTRY}.xml`, document.baseURI)).then((r) => (r.ok ? r.text() : '')).catch(() => '')
+      : Promise.resolve('');
+    Promise.all([records, article]).then(([recs, xml]) => {
+      showRecords(recs);
+      if (xml) prefillFromEntry(xml, recs);
+      else if (urlParams.has('new')) prefill(recs);
+    });
   }
 
   function addressOf(record) {
@@ -754,9 +762,11 @@
     form.querySelector(`details[data-section="${listName}"]`)?.setAttribute('open', '');
   }
 
-  function prefill(records) {
+  // What the records say, in the form's own shape
+  function fromRecords(records) {
     records = records.filter((r) => !STREET_TYPES.includes(String(r.type).toLowerCase())).sort((a, b) => a.year - b.year);
-    if (!records.length) return;
+    const found = { places: [], sources: [], occupations: [], voter: null };
+    if (!records.length) return null;
 
     // One address row per address, covering every year it's listed
     const places = new Map();
@@ -769,25 +779,82 @@
       if (r.lat != null && r.lng != null) { p.lat = Number(r.lat).toFixed(6); p.lng = Number(r.lng).toFixed(6); }
       places.set(key, p);
     });
-    setRows('places', [...places.values()].map((p) => ({ ...p, from: String(p.from), to: p.to === p.from ? String(p.from) : String(p.to) })));
-    setRows('sources', records.map(sourceOf));
+    found.places = [...places.values()].map((p) => ({ ...p, from: String(p.from), to: p.to === p.from ? String(p.from) : String(p.to) }));
+    found.sources = records.map(sourceOf);
 
     const voters = records.filter((r) => r.source === 'Electoral roll');
     if (voters.length) {
-      const v = voters[voters.length - 1];
+      found.voter = voters[voters.length - 1];
+      found.occupations = voters.filter((r) => r.Occupation).map((r) => ({ term: r.Occupation, from: String(r.year), to: String(r.year) }));
+    }
+    return found;
+  }
+
+  function prefillNote(text) {
+    const note = document.createElement('p');
+    note.className = 'prefill-note';
+    note.textContent = text;
+    $('details-container').append(note);
+  }
+
+  function prefill(records) {
+    const found = fromRecords(records);
+    if (!found) return;
+    setRows('places', found.places);
+    setRows('sources', found.sources);
+    const v = found.voter;
+    if (v) {
       form.querySelector('input[name="kind"][value="person"]').checked = true;
       applyKindLabels();
       if (!$('articleTitle').value.trim()) $('articleTitle').value = `${v['Given Names'] || ''} ${v.Surname || ''}`.trim();
       $('surname').value = v.Surname || '';
       $('forenames').value = v['Given Names'] || '';
-      const jobs = voters.filter((r) => r.Occupation);
-      if (jobs.length) setRows('occupations', jobs.map((r) => ({ term: r.Occupation, from: String(r.year), to: String(r.year) })));
+      if (found.occupations.length) setRows('occupations', found.occupations);
     }
+    prefillNote('We’ve filled in some of the form from these records. Please check it, and change anything that’s wrong.');
+    changed();
+  }
 
-    const note = document.createElement('p');
-    note.className = 'prefill-note';
-    note.textContent = 'We’ve filled in some of the form from these records. Please check it, and change anything that’s wrong.';
-    $('details-container').append(note);
+  /* ---------- Entries already on the site: start from the article ---------- */
+  // The form starts as the published entry, so a contribution adds to it
+  // rather than replacing it with a blank page. The records only add what
+  // the article doesn't already have: where they disagree (an address's
+  // years, an occupation, a name), the article wins, because whoever wrote
+  // it has probably already weighed up the records.
+  const sameKey = (s) => String(s || '').toLowerCase().replace(/,?\s*carlton\b.*$/, '').replace(/[^a-z0-9]+/g, ' ').trim();
+  const linkKey = (s) => { try { return new URL(s, document.baseURI).search || s; } catch (e) { return s || ''; } };
+  const yearOf = (s) => (String(s || '').match(/\b1[89]\d\d\b/) || [''])[0];
+
+  function addMissing(rows, extra, keysOf) {
+    const seen = new Set(rows.flatMap(keysOf));
+    return rows.concat(extra.filter((r) => !keysOf(r).some((k) => seen.has(k))));
+  }
+
+  function prefillFromEntry(xml, records) {
+    let entry;
+    try { entry = TEIEntry.parse(xml); } catch (e) { return; }
+    const found = fromRecords(records);
+    if (found) {
+      entry.places = addMissing(entry.places, found.places, (p) => [sameKey(p.address)].filter(Boolean));
+      entry.occupations = addMissing(entry.occupations, found.occupations, (o) => [sameKey(o.term)].filter(Boolean));
+      entry.sources = addMissing(entry.sources, found.sources, (s) => [sameKey(s.text), s.href && yearOf(s.text) ? `${linkKey(s.href)} ${yearOf(s.text)}` : '']
+        .filter(Boolean));
+      const v = found.voter;
+      if (v) {
+        if (!entry.kind) entry.kind = 'person';
+        if (!entry.title) entry.title = `${v['Given Names'] || ''} ${v.Surname || ''}`.trim();
+        if (!entry.surname && !entry.forenames && entry.kind === 'person') { entry.surname = v.Surname || ''; entry.forenames = v['Given Names'] || ''; }
+      }
+    }
+    fillForm(entry);
+    // The article's authors stay on as co-authors; "Your name" is for whoever is adding to it
+    $('authorName').value = '';
+    fillRows('authors', entry.authors.map((name) => ({ name })));
+    reviewOriginal = xml;
+    checkRoundTrip();
+    prefillNote(found
+      ? 'We’ve filled in the form from the current entry and these records. Where they disagree, we’ve kept what the entry says. Please check it, and change anything that’s wrong.'
+      : 'We’ve filled in the form from the current entry. Change or add anything you like.');
     changed();
   }
 
