@@ -300,6 +300,8 @@
     button.primary:hover { background: var(--moss-deep); }
     button.secondary, button.small { background: var(--paper); color: var(--moss-deep); }
     button.secondary:hover, button.small:hover { background: var(--sage-light); }
+    /* Greyed out while sending, and for good once it has been sent */
+    button.primary:disabled, button.primary:disabled:hover { background: var(--moss); opacity: 0.45; cursor: not-allowed; }
     button.small { font-size: 13px; padding: 6px 12px; }
     /* A quiet extra for editors, styled as a link so the public isn't distracted */
     button.text-link { background: none; border: none; padding: 0; font: inherit; font-size: 13px; color: var(--ink-faint); text-decoration: underline; cursor: pointer; }
@@ -1186,6 +1188,7 @@
       const result = await res.json();
       if (result.status !== 'success') throw new Error(result.message || 'The submission was not accepted.');
       sendStatus('Thank you! Your entry has been sent to the editorial team, who will review it before it appears on the site.', 'ok');
+      $('sendBtn').textContent = 'Sent';
     } catch (err) {
       $('sendBtn').disabled = false;
       sendStatus(`Sorry, it didn't send: ${err.message} You can use Download XML to keep a copy.`, 'error');
@@ -1295,6 +1298,7 @@
       const result = await res.json();
       if (result.status !== 'success') throw new Error(result.message || 'The changes were not accepted.');
       sendStatus('Thank you! Your changes have been sent to the editors, next to the original.', 'ok');
+      $('sendBtn').textContent = 'Sent';
       if (window.parent !== window) window.parent.postMessage({ type: 'review-sent', version: result.version || '' }, window.location.origin);
     } catch (err) {
       $('sendBtn').disabled = false;
