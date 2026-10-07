@@ -1069,7 +1069,9 @@
     // Fields only shown with "Show all fields"
     if (entry.surname || entry.forenames || entry.legalStatuses.length || entry.chronology.length || entry.relations.length
       || entry.places.some((p) => p.role || p.lat)) setShowAll(true);
-    quill.clipboard.dangerouslyPasteHTML(entry.articleHtml || '');
+    // Not dangerouslyPasteHTML: it also puts the cursor in the editor, which
+    // focuses it and scrolls the entry page down to this form on load.
+    quill.setContents(quill.clipboard.convert(entry.articleHtml || ''));
     applyKindLabels();
     updateCounts();
   }
