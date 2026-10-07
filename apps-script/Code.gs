@@ -3,13 +3,16 @@
  * (_layouts/form.html) and turns each one into a pull request.
  *
  * The form builds the entry as TEI in the browser and POSTs
- *   { formVersion: 3, xml, targetId, website }
+ *   { formVersion: 3, xml, targetId, records, newEntry, website }
  * as text/plain JSON (text/plain avoids a CORS preflight, which Apps Script
  * can't answer). This script:
  *   1. rejects anything malformed, oversized, or with the honeypot filled in;
  *   2. sets the file name, the entry id and the date itself;
  *   3. saves a row to the "TEI submissions" tab of the Sheet it's attached to;
  *   4. opens a pull request on GitHub with the file in civic/.
+ * `records` are the numbered directory and electoral-roll records the entry
+ * is about. They wait in the row's Records column; when the entry is
+ * accepted, they're given the entry's id (see "Linking records" below).
  *
  * Anyone can also suggest changes to a submission from the review page
  * ({ action: "review", pr, xml, reviewer, note }). The script commits that
@@ -39,7 +42,7 @@ const SETTINGS = {
 };
 // The submissions tab's columns, in order. The Sheet is read by header name,
 // so setUp() can add missing columns to a Sheet made by an older version.
-const COLUMNS = ['Received', 'Kind', 'Title', 'Type', 'Authors', 'Review', 'Decision', 'Reason (editors only)',
+const COLUMNS = ['Received', 'Kind', 'Title', 'Type', 'Authors', 'Records', 'Review', 'Decision', 'Reason (editors only)',
   'Status', 'File', 'Pull request', 'Version', 'TEI'];
 // Suggested changes from the review page, one row each
 const REVIEW_COLUMNS = ['Received', 'Changes to', 'Suggested by', 'What changed', 'Review', 'Decision', 'Reason (editors only)',
@@ -94,6 +97,10 @@ function receive_(e) {
   const slug = slugify_(typeof data.targetId === 'string' && data.targetId.trim() ? data.targetId : title);
   if (!slug) throw userError_('The title needs at least one letter or number.');
 
+  // Numbered records only: text ids were linked by the team already
+  const records = (Array.isArray(data.records) ? data.records : [])
+    .map(Number).filter((n) => Number.isInteger(n) && n > 0).slice(0, 200);
+
   checkRate_();
   const lock = LockService.getScriptLock();
   lock.waitLock(30000);
@@ -105,13 +112,14 @@ function receive_(e) {
       .replace(/(<idno type="entry">)[^<]*(<\/idno>)/, `$1${escapeXml_(slug)}$2`)
       .replace(/(<change\b[^>]*\bwhen=")[^"]*(")/g, `$1${today}$2`);
 
-    const pr = openPullRequest_(slug, title, authors, xml);
+    const pr = openPullRequest_(slug, title, authors, xml, { mustBeNew: data.newEntry === true, records });
     saveRow_('submissions', {
       'Received': new Date(),
       'Kind': pr.isNew ? 'New entry' : 'New version',
       'Title': title,
       'Type': root.getAttribute('type') ? root.getAttribute('type').getValue() : '',
       'Authors': authors.join(', '),
+      'Records': records.join(', '),
       'Review': reviewLink_(pr.number),
       'Status': 'Waiting',
       'File': `${SETTINGS.folder}/${slug}.xml`,
@@ -127,11 +135,13 @@ function receive_(e) {
 
 /* ---------- GitHub ---------- */
 
-function openPullRequest_(slug, title, authors, xml) {
+function openPullRequest_(slug, title, authors, xml, { mustBeNew, records }) {
   const path = `${SETTINGS.folder}/${slug}.xml`;
   const baseSha = github_('get', `/git/ref/heads/${SETTINGS.base}`).object.sha;
   const existing = github_('get', `/contents/${encodePath_(path)}?ref=${SETTINGS.base}`, null, true);
   const isNew = !existing;
+  // A new entry named after its title mustn't replace another entry
+  if (mustBeNew && existing) throw userError_(`There is already an entry called "${slug.replace(/-/g, ' ')}". Choose a different title, or open that entry and add to it there.`);
   const stamp = Utilities.formatDate(new Date(), SETTINGS.timeZone, 'yyyyMMdd-HHmmss');
   const branch = `submission/${slug}-${stamp}`;
 
@@ -151,6 +161,7 @@ function openPullRequest_(slug, title, authors, xml) {
       ? `This adds a new entry, \`${path}\`.`
       : `This is a new version of \`${path}\`. **Merging replaces the current entry**, so check the "Files changed" tab and keep anything the new version leaves out.`,
     '',
+    ...(records.length ? [`When it's accepted, these records are linked to the entry (their \`entityID\` becomes the entry's id): ${records.join(', ')}.`, ''] : []),
     'The editors accept or reject this in the submissions Sheet (the Decision column), which merges or closes it.'
   ].join('\n');
   const pr = github_('post', '/pulls', { title: `${isNew ? 'New entry' : 'New version of'}: ${title}`, head: branch, base: SETTINGS.base, body });
@@ -191,9 +202,9 @@ function receiveReview_(data, title) {
   const lock = LockService.getScriptLock();
   lock.waitLock(30000);
   try {
-    const { pr, files } = submission_(number);
+    const { pr, entry } = submission_(number);
     if (pr.state !== 'open') throw userError_('This submission has already been decided, so it can no longer be changed.');
-    const path = files[0].filename;
+    const path = entry.filename;
     const slug = path.replace(`${SETTINGS.folder}/`, '').replace(/\.xml$/, '');
     // Keep the entry's id; date only the newest change (the form keeps the earlier ones)
     let xml = data.xml.replace(/(<idno type="entry">)[^<]*(<\/idno>)/, `$1${escapeXml_(slug)}$2`);
@@ -460,23 +471,31 @@ function schedule_(ms) {
 }
 
 // A pull request the form opened: open or not, from a submission/ branch in
-// this repository, changing only entry files in civic/.
+// this repository, changing one entry file in civic/ (and, once its
+// records are being linked, the data files those records are in).
 function submission_(number) {
   const pr = github_('get', `/pulls/${number}`, null, true);
   if (!pr) throw userError_('the submission was not found.');
   const files = github_('get', `/pulls/${number}/files?per_page=100`);
   const fromForm = pr.head.repo && pr.head.repo.full_name === SETTINGS.repo
     && /^submission\//.test(pr.head.ref) && pr.base.ref === SETTINGS.base
-    && files.length > 0 && files.every((f) => f.filename.indexOf(`${SETTINGS.folder}/`) === 0 && /\.xml$/.test(f.filename));
+    && files.filter(isEntryFile_).length === 1 && files.every((f) => isEntryFile_(f) || DATA_FILE.test(f.filename));
   if (!fromForm) throw userError_('this is not a form submission, so it has to be handled on GitHub.');
-  return { pr, files };
+  return { pr, files, entry: files.find(isEntryFile_) };
+}
+
+// The entry's own file; a submission also changes data files once its
+// records have been linked (only while it's being accepted)
+const DATA_FILE = /^_data\/(directory|electoral-roll)\/\d{4}\.json$/;
+function isEntryFile_(f) {
+  return f.filename.indexOf(`${SETTINGS.folder}/`) === 0 && /\.xml$/.test(f.filename);
 }
 
 // Merges (Accept) or closes (Reject) one submission's pull request. A row on
 // the Reviews tab is one suggested version: accepting it publishes that
 // version; rejecting it only turns down the suggestion.
 function decide_(key, number, decision, version, title, row) {
-  const { pr, files } = submission_(number);
+  const { pr, entry } = submission_(number);
   if (pr.merged_at) return 'Published (already, on GitHub)';
   if (pr.state === 'closed') return 'Rejected (already closed on GitHub)';
   const when = Utilities.formatDate(new Date(), SETTINGS.timeZone, 'dd/MM HH:mm');
@@ -492,19 +511,23 @@ function decide_(key, number, decision, version, title, row) {
   // Publish exactly the version on this row, even if the branch has moved on since
   let head = pr.head.sha;
   if (version && version !== head) {
-    files.forEach((f) => {
-      const path = encodePath_(f.filename);
-      const wanted = github_('get', `/contents/${path}?ref=${version}`);
-      const current = github_('get', `/contents/${path}?ref=${encodeURIComponent(pr.head.ref)}`);
-      if (wanted.sha === current.sha) return;
+    const path = encodePath_(entry.filename);
+    const wanted = github_('get', `/contents/${path}?ref=${version}`);
+    const current = github_('get', `/contents/${path}?ref=${encodeURIComponent(pr.head.ref)}`);
+    if (wanted.sha !== current.sha) {
       head = github_('put', `/contents/${path}`, {
         message: `Put back the version accepted in the Sheet (${TABS[key].name()}, row ${row})`,
         content: wanted.content.replace(/\n/g, ''),
         sha: current.sha,
         branch: pr.head.ref
       }).commit.sha;
-    });
+    }
   }
+
+  // Give the entry's records its id, in the same pull request
+  const slug = entry.filename.replace(`${SETTINGS.folder}/`, '').replace(/\.xml$/, '');
+  const linked = linkRecords_(pr.head.ref, slug, title, recordsFor_(number));
+  if (linked.head) head = linked.head;
   const merge = github_('put', `/pulls/${number}/merge`, {
     merge_method: 'squash',
     sha: head,
@@ -514,8 +537,73 @@ function decide_(key, number, decision, version, title, row) {
   if (merge.conflict) throw userError_('the entry changed on the site after this was sent, so it can\'t be published as it is. Ask Mitchell.');
   deleteBranch_(pr.head.ref);
   settleOthers_(key, row, number, key === 'reviews' ? 'Published with suggested changes (Reviews tab)' : 'Not used: another version was published');
-  const entry = files[0].filename.replace(`${SETTINGS.folder}/`, '').replace(/\.xml$/, '');
-  return { formula: `=HYPERLINK("${SETTINGS.site}/civic?id=${encodeURIComponent(entry)}", "Published ${when}")` };
+  return { formula: `=HYPERLINK("${SETTINGS.site}/civic?id=${encodeURIComponent(slug)}", "Published ${when}${linked.note}")` };
+}
+
+/* ---------- Linking records ---------- */
+
+// The record numbers in a submission's Records column (editors can change
+// them there before accepting). Suggested changes use the submission's row.
+function recordsFor_(number) {
+  const sheet = tab_('submissions');
+  const cols = columns_(sheet, COLUMNS);
+  const rows = rowsFor_(sheet, cols, number);
+  if (!rows.length) return [];
+  const text = String(sheet.getRange(rows[0], cols['Records']).getValue() || '');
+  return [...new Set((text.match(/\d+/g) || []).map(Number))];
+}
+
+// Changes each numbered record's entityID to the entry's id and commits the
+// changed data files to the submission's branch, so accepting publishes the
+// entry and the links together. The id is the one the site already uses for
+// the entry's records if there is one (e.g. "Corkman Hotel"), else the
+// entry's title, else its file name; whichever it is, it gives the entry's
+// file name under the site's rule, so maps and search find the entry.
+// Each file is taken from main as it is now, so nobody's changes are undone.
+// Returns { head, note }: the new branch head (if anything changed) and a
+// note for the Status column.
+function linkRecords_(branch, slug, title, numbers) {
+  if (!numbers.length) return { head: '', note: '' };
+  const index = JSON.parse(UrlFetchApp.fetch(`${SETTINGS.site}/data/index.json`).getContentText());
+  const existing = index.files.flatMap((f) => f.linked || []).find((id) => slugify_(id) === slug);
+  const id = existing || (slugify_(title) === slug ? String(title).trim() : slug);
+
+  const byFile = {};
+  const missing = [];
+  numbers.forEach((n) => {
+    const file = index.files.find((f) => f.ids && f.ids[0] !== null && n >= f.ids[0] && n <= f.ids[1]);
+    if (file) (byFile[`_${file.path}`] = byFile[`_${file.path}`] || new Set()).add(String(n));
+    else missing.push(n);
+  });
+
+  let head = '';
+  const done = new Set();
+  Object.keys(byFile).forEach((path) => {
+    const wanted = byFile[path];
+    const main = github_('get', `/contents/${encodePath_(path)}?ref=${SETTINGS.base}`);
+    const text = Utilities.newBlob(Utilities.base64Decode(main.content.replace(/\n/g, ''))).getDataAsString('UTF-8');
+    // One record per line, each starting {"entityID":…, so only those lines change
+    const out = text.split('\n').map((line) => {
+      const m = line.match(/^\{"entityID":(\d+),/);
+      if (!m || !wanted.has(m[1])) return line;
+      done.add(Number(m[1]));
+      return `{"entityID":${JSON.stringify(id)},` + line.slice(m[0].length);
+    }).join('\n');
+    if (out === text) return;
+    const onBranch = github_('get', `/contents/${encodePath_(path)}?ref=${encodeURIComponent(branch)}`);
+    head = github_('put', `/contents/${encodePath_(path)}`, {
+      message: `Link records to ${id}`,
+      content: Utilities.base64Encode(out, Utilities.Charset.UTF_8),
+      sha: onBranch.sha,
+      branch
+    }).commit.sha;
+  });
+
+  // Already linked (a text id) or not found: left as they are, and listed
+  const skipped = numbers.filter((n) => !done.has(n));
+  const note = `; ${done.size} record${done.size === 1 ? '' : 's'} linked`
+    + (skipped.length ? `, not linked: ${skipped.join(', ')}` : '');
+  return { head, note };
 }
 
 // After a decision that ends the submission, mark its other rows on both tabs

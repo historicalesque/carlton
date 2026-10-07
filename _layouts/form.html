@@ -91,6 +91,19 @@
       margin-right: 4px;
     }
     .entity-card .use-address { margin-top: 8px; }
+    .entity-card .check-line, .entity-card .linked-note { margin-top: 8px; }
+    .linked-note { font-size: 13px; color: var(--ink-faint); }
+
+    /* --- Finding other records the entry is about --- */
+    .record-finder { margin: -12px 0 24px; font-size: 14px; }
+    .record-finder summary { cursor: pointer; color: var(--moss-deep); }
+    .record-finder .finder-body { padding: 10px 0 0; }
+    .finder-status { font-size: 13px; color: var(--ink-faint); margin: 6px 0; }
+    .finder-results { list-style: none; padding: 0; margin: 0; }
+    .finder-results li { display: flex; gap: 10px; align-items: baseline; justify-content: space-between; padding: 6px 0; border-bottom: 1px dashed var(--paper-line); }
+    .finder-results .what { font-family: var(--font-mono); color: var(--ink); overflow-wrap: anywhere; }
+    .finder-results .yr { font-family: var(--font-ui); color: var(--ink-faint); margin-right: 6px; }
+    .finder-results .linked-note { white-space: nowrap; }
 
     /* --- Fields --- */
     .field-group { margin-bottom: 18px; }
@@ -336,6 +349,17 @@
 {%- endunless %}
 
   <div id="details-container"></div>
+  <!-- Other records this entry is about (not when suggesting changes) -->
+  <details class="record-finder" id="recordFinder" hidden>
+    <summary>Is this entry about other records too?</summary>
+    <div class="finder-body">
+      <p class="hint">For example, the same shop or person in other years. Records you add are linked to this entry when the editors accept it.</p>
+      <label for="recordSearch">Search the directories and electoral rolls</label>
+      <input type="text" id="recordSearch" placeholder="e.g. 34 Barry Street, or Spiers" autocomplete="off">
+      <p class="finder-status" id="finderStatus" aria-live="polite"></p>
+      <ul class="finder-results" id="finderResults"></ul>
+    </div>
+  </details>
 
   <h2 id="formHeading">Suggest Article contents</h2>
   <p class="form-intro" id="formIntro"><i>Instructions go here. Links to editorial guidance, etc. </i></p>
@@ -858,40 +882,156 @@
     changed();
   }
 
+  /* ---------- Records this entry is about ---------- */
+  // Numbered records ticked here go with the entry. When the editors accept
+  // it, the Apps Script gives them the entry's id, which links them to the
+  // entry on the maps and in search. Records that already have a text id
+  // were linked by the team, and stay as they are.
+  const linkedRecords = new Map(); // numeric entityID → record, ticked
+  const shownRecords = new Set();   // every record with a card, ticked or not
+  const isNumberId = (id) => /^\d+$/.test(String(id));
+  const recordLabel = (r) => `${r.year} ${r.source === 'Directory' ? 'directory' : 'electoral roll'}`;
+
+  function recordCard(record) {
+    const card = document.createElement('div');
+    card.className = 'entity-card';
+    const h = document.createElement('h3');
+    h.textContent = `The ${recordLabel(record)}`;
+    card.append(h);
+    const ul = document.createElement('ul');
+    for (const [key, value] of Object.entries(record)) {
+      if (value === null || value === undefined || key.startsWith('_')) continue;
+      const li = document.createElement('li');
+      const k = document.createElement('span');
+      k.className = 'prop-key';
+      k.textContent = key.charAt(0).toUpperCase() + key.slice(1) + ':';
+      li.append(k, ' ', String(value));
+      ul.append(li);
+    }
+    card.append(ul);
+    shownRecords.add(String(record.entityID));
+    if (isNumberId(record.entityID)) {
+      linkedRecords.set(String(record.entityID), record);
+      const line = document.createElement('label');
+      line.className = 'check-line';
+      const box = document.createElement('input');
+      box.type = 'checkbox';
+      box.checked = true;
+      box.addEventListener('change', () => {
+        if (box.checked) linkedRecords.set(String(record.entityID), record);
+        else linkedRecords.delete(String(record.entityID));
+      });
+      line.append(box, ' This entry is about this record');
+      card.append(line);
+    } else if (record.entityID !== targetId) {
+      const note = document.createElement('p');
+      note.className = 'linked-note';
+      note.textContent = `Already linked to “${record.entityID}”.`;
+      card.append(note);
+    }
+    if (record.street) {
+      const b = document.createElement('button');
+      b.type = 'button';
+      b.className = 'small use-address';
+      b.textContent = 'Use this address';
+      b.addEventListener('click', () => useAddress(record));
+      card.append(b);
+    }
+    return card;
+  }
+
+  function recordsBox() {
+    let container = $('details-container').querySelector('.entity-container');
+    if (!container) {
+      container = document.createElement('div');
+      container.className = 'entity-container';
+      $('details-container').prepend(container);
+    }
+    return container;
+  }
+
   function showRecords(records) {
     if (!records.length) return;
-    const container = document.createElement('div');
-    container.className = 'entity-container';
-    records.forEach((record, index) => {
-      const card = document.createElement('div');
-      card.className = 'entity-card';
-      if (records.length > 1) {
-        const h = document.createElement('h3');
-        h.textContent = `Item #${index + 1}`;
-        card.append(h);
+    recordsBox().replaceChildren(...records.map(recordCard));
+  }
+
+  /* ---------- Finding other records ---------- */
+  // Loads every directory and electoral roll the first time it's opened, then
+  // matches every word typed against the listing, street, names and year.
+  let allRecords = null;   // every record, once loaded
+  let loadingRecords = null;
+  const searchText = (r) => [r.year, r.listing, r.street, r['Given Names'], r.Surname, r.Address, r.Occupation]
+    .filter(Boolean).join(' ').toLowerCase();
+
+  function loadAllRecords() {
+    if (allRecords || loadingRecords) return;
+    $('finderStatus').textContent = 'Loading the records…';
+    loadingRecords = CGData.load({}).then((list) => {
+      list.forEach((r) => { r._text = searchText(r); });
+      allRecords = list;
+      findRecords();
+    }).catch((err) => {
+      $('finderStatus').textContent = `${err.message} Close and reopen this box to try again.`;
+    }).finally(() => { loadingRecords = null; });
+  }
+
+  function findRecords() {
+    const words = $('recordSearch').value.toLowerCase().split(/\s+/).filter(Boolean);
+    const results = $('finderResults');
+    results.replaceChildren();
+    if (!allRecords) return;
+    if (!words.length || words.join('').length < 2) { $('finderStatus').textContent = 'Type a name, an address or a year.'; return; }
+    const hits = allRecords.filter((r) => !shownRecords.has(String(r.entityID)) && r.entityID !== targetId && words.every((w) => r._text.includes(w)))
+      .sort((a, b) => isNumberId(b.entityID) - isNumberId(a.entityID) || a.year - b.year);
+    $('finderStatus').textContent = !hits.length ? 'No records match.'
+      : hits.length > 30 ? `${hits.length} records match; here are the first 30. Add more words to narrow it down.`
+      : `${hits.length} record${hits.length === 1 ? '' : 's'} match.`;
+    hits.slice(0, 30).forEach((r) => {
+      const li = document.createElement('li');
+      const what = document.createElement('span');
+      what.className = 'what';
+      const yr = document.createElement('span');
+      yr.className = 'yr';
+      yr.textContent = recordLabel(r);
+      const name = r.source === 'Directory' ? r.listing
+        : [`${r['Given Names'] || ''} ${r.Surname || ''}`.trim(), r.Address, r.Occupation].filter(Boolean).join(', ');
+      what.append(yr, name || '');
+      li.append(what);
+      if (isNumberId(r.entityID)) {
+        const add = document.createElement('button');
+        add.type = 'button';
+        add.className = 'small';
+        add.textContent = 'Add';
+        add.addEventListener('click', () => addRecord(r, li));
+        li.append(add);
+      } else {
+        const note = document.createElement('span');
+        note.className = 'linked-note';
+        note.textContent = `Linked to “${r.entityID}”`;
+        li.append(note);
       }
-      const ul = document.createElement('ul');
-      for (const [key, value] of Object.entries(record)) {
-        if (value === null || value === undefined) continue;
-        const li = document.createElement('li');
-        const k = document.createElement('span');
-        k.className = 'prop-key';
-        k.textContent = key.charAt(0).toUpperCase() + key.slice(1) + ':';
-        li.append(k, ' ', String(value));
-        ul.append(li);
-      }
-      card.append(ul);
-      if (record.street) {
-        const b = document.createElement('button');
-        b.type = 'button';
-        b.className = 'small use-address';
-        b.textContent = 'Use this address';
-        b.addEventListener('click', () => useAddress(record));
-        card.append(b);
-      }
-      container.append(card);
+      results.append(li);
     });
-    $('details-container').replaceChildren(container);
+  }
+
+  // Adds the record's card above the form, and a source for it
+  function addRecord(record, li) {
+    recordsBox().append(recordCard(record));
+    const sources = [...form.querySelectorAll('[data-list="sources"] .row')];
+    const empty = sources.find((r) => ![...r.querySelectorAll('input')].some((i) => i.value.trim()));
+    if (empty) empty.remove();
+    addRow('sources', sourceOf(record));
+    form.querySelector('details[data-section="sources"]').open = true;
+    li.remove();
+    $('finderStatus').textContent = `Added the ${recordLabel(record)} record, and a source for it.`;
+    changed();
+  }
+
+  if (!REVIEW && window.CGData) {
+    $('recordFinder').hidden = false;
+    let timer;
+    $('recordFinder').addEventListener('toggle', () => { if ($('recordFinder').open) loadAllRecords(); });
+    $('recordSearch').addEventListener('input', () => { clearTimeout(timer); timer = setTimeout(findRecords, 200); });
   }
 
   /* ---------- Related entries: pick an entry already on the site ---------- */
@@ -1024,13 +1164,24 @@
     // Entries are found by their record's text id (see the map), so a new
     // entry for a record keeps that id; numeric ids fall back to the title.
     const sendId = targetId && !/^\d+$/.test(targetId) ? targetId : '';
+    // A new entry named after its title can't take a name that's already used
+    const taken = !sendId && !ENTRY ? await nameTaken($('articleTitle').value) : '';
+    if (taken) {
+      sendStatus(taken, 'error');
+      return;
+    }
     $('sendBtn').disabled = true;
     sendStatus('Sending…');
     try {
       const res = await fetch(ENDPOINT, {
         method: 'POST',
         headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-        body: JSON.stringify({ formVersion: 3, xml, targetId: sendId, website: $('website').value })
+        body: JSON.stringify({
+          formVersion: 3, xml, targetId: sendId, website: $('website').value,
+          // The numbered records to link to this entry when it's accepted
+          records: [...linkedRecords.keys()].map(Number),
+          newEntry: !sendId && !ENTRY
+        })
       });
       const result = await res.json();
       if (result.status !== 'success') throw new Error(result.message || 'The submission was not accepted.');
@@ -1040,6 +1191,24 @@
       sendStatus(`Sorry, it didn't send: ${err.message} You can use Download XML to keep a copy.`, 'error');
     }
   });
+
+  // The site finds an entry, and the records linked to it, by the file-name
+  // rule (spaces to hyphens, other punctuation dropped), so two names that
+  // give the same file name would collide.
+  const fileNameOf = (text) => String(text).trim().replace(/\s+/g, '-').replace(/[^a-zA-Z0-9_\-]/g, '').replace(/--+/g, '-');
+  async function nameTaken(title) {
+    const name = fileNameOf(title);
+    if (!name) return '';
+    if ((window.ENTRY_FILES || []).includes(name)) {
+      return `There is already an entry called “${name.replace(/-/g, ' ')}”. Choose a different title, or open that entry and add to it there.`;
+    }
+    try {
+      const idx = await CGData.index();
+      const group = idx.files.flatMap((f) => f.linked).find((id) => fileNameOf(id) === name);
+      if (group) return `Some records are already linked as “${group}”. Search the site for “${group}” to write that entry instead, or choose a different title.`;
+    } catch (e) { /* the editors can still catch it */ }
+    return '';
+  }
 
   /* ---------- Suggest changes (from the review page) ---------- */
   // The submission is loaded into the form; sending it makes a new version of
