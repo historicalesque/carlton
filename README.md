@@ -116,7 +116,7 @@ With `preview=true`, `id` can be a full URL, such as a raw file on a pull-reques
 | `tools/convert-eac-to-tei.html` | One-off page that converted the EAC-CPF entries in `civic/` to TEI with `scripts/tei.js`. Not linked from the site. |
 | `admin/index.html` | Admin landing page for the editorial team, linking to each tool (served at `admin/`). The site footer links here. |
 | `admin/review.html` | Plain-language review page: previews submissions and, for new versions of entries, what would change. Open to everyone; editors decide in the Sheet. |
-| `admin/carlton-data-editor.html` | Browser-based editor for the directory and electoral-roll files. |
+| `admin/carlton-data-editor.html` | Browser-based editor for the directory and electoral-roll files. *Send changes* publishes them through the Apps Script. |
 | `scripts/az-status.js` | Marks Featured pages links as "New" or "Not yet written". |
 | `scripts/banner-parallax.js` | Header banner effect. |
 | `scripts/vendor/` | Third-party scripts saved into the repo (MiniSearch). |
@@ -140,7 +140,7 @@ bundle exec jekyll serve
 Notes:
 
 - Internal links leave out `.html` (e.g. `civic?id=…`). GitHub Pages handles this, and `jekyll serve` normally does too. If a link 404s locally, try adding `.html`.
-- `admin/review.html` reads from the live GitHub repo. `admin/carlton-data-editor.html` loads the data from the site it's served from, so locally it shows your local files.
+- `admin/review.html` reads from the live GitHub repo. `admin/carlton-data-editor.html` loads the data from the site it's served from, so locally it shows your local files. Its *Send changes* still publishes to the live repo, and refuses any record that differs from the live copy.
 - Once `contribution_endpoint` is set, sending the contribution form locally **creates a real pull request** through the live Apps Script. Close any test pull requests afterwards.
 
 ## Content: encyclopedia entries (TEI XML)
@@ -216,7 +216,9 @@ Typical record:
 
 ### Editing the data
 
-Use `admin/carlton-data-editor.html`. It loads the live data, lets you search and edit records, and then *Download changed files* gives one download per changed year (e.g. `1905.json`). Someone then has to upload each file to its folder on GitHub by hand (the editor links to the upload page and explains how). Check the downloaded filename is exactly the year (browsers sometimes save `1905 (1).json`), and reload the editor before you start so you don't overwrite someone else's changes. Small fixes can also be made directly on GitHub by editing the line for that record.
+Use `admin/carlton-data-editor.html`. It loads the live data and lets you search, edit and add records. **Send changes** asks for your name and an optional note, then sends only the records that changed to the Apps Script (`receiveData_` in `apps-script/Code.gs`). The script applies them to the files on `main` as they are now, opens a `data/…` pull request and merges it at once, and adds a row to the Sheet's *Data changes* tab. There is no review step. Each send is one commit, so it can be undone with GitHub's *Revert* button. If someone else changed one of the same records since the editor was loaded, nothing is published and the editor asks you to reload. A record for a year that has no file yet is refused, because a new year needs a developer (see *Adding a new year* above).
+
+*Download changed files* still gives one file per changed year for uploading to GitHub by hand. Small fixes can also be made directly on GitHub by editing the line for that record.
 
 ## Editorial workflows
 
@@ -315,7 +317,7 @@ Goal: editors never need to touch GitHub directly. Done in small, fundable steps
 
 **Directory/map data**
 
-- [ ] **Data editor sends changes through the Apps Script**: replace "download, then upload to GitHub by hand" with a *Send changes* button, as the contribution form already does. The sender gives their name and a short note, and the editor sends only the records that changed. `apps-script/Code.gs` applies them to the current files, refusing any record someone else has changed since, then publishes straight away (a pull request it merges at once, so each change can be undone on GitHub) and adds a row to a *Data changes* tab in the same Sheet. There is no review step.
+- [x] **Data editor sends changes through the Apps Script**: replace "download, then upload to GitHub by hand" with a *Send changes* button, as the contribution form already does. The sender gives their name and a short note, and the editor sends only the records that changed. `apps-script/Code.gs` applies them to the current files, refusing any record someone else has changed since, then publishes straight away (a pull request it merges at once, so each change can be undone on GitHub) and adds a row to a *Data changes* tab in the same Sheet. There is no review step.
 - [x] Data editor uses the same fonts, colours and buttons as the review page, with one main *Download* button (#50).
 
 **Off-the-shelf options to compare against building our own**

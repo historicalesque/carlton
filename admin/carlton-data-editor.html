@@ -1,3 +1,7 @@
+---
+# Jekyll only fills in contribution_endpoint (the Apps Script) below
+layout: null
+---
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -357,6 +361,12 @@
     font-size:12px;
   }
 
+  .instructions h3{font-family:var(--serif);font-size:16px;margin:20px 0 6px;}
+  .send-form .field{margin-bottom:12px;}
+  .send-form input{width:100%;}
+  .send-status{margin:12px 0 0;padding:10px 12px;border-radius:4px;font-size:14px;background:var(--paper-alt);}
+  .send-status.ok{background:#E3F0E1;color:#1E4D1A;}
+  .send-status.error{background:var(--red-bg);color:var(--red);}
   .file-list{list-style:none;padding:0;margin:12px 0;}
   .file-list li{display:flex;align-items:center;gap:10px;flex-wrap:wrap;padding:8px 0;border-bottom:1px solid var(--border, #E5E2D8);}
   .file-list li:last-child{border-bottom:0;}
@@ -444,11 +454,11 @@
 <header class="masthead">
   <p class="eyebrow">Carlton &amp; District</p>
   <h1>Street directory &amp; electoral roll data editor</h1>
-  <p class="sub"><span class="intro">Browse, correct and add records from the Sands &amp; McDougall directories and electoral rolls. When you're done, download the changed files and follow the publishing steps to update the live site. </span><a href="./">Admin</a> &middot; <a href="../">Back to the site</a></p>
+  <p class="sub"><span class="intro">Browse, correct and add records from the Sands &amp; McDougall directories and electoral rolls. When you're done, press <b>Send changes</b> to publish them on the site. </span><a href="./">Admin</a> &middot; <a href="../">Back to the site</a></p>
   <div class="stats">
     <span><b id="statTotal">0</b> records</span>
     <span><b id="statFiltered">0</b> shown</span>
-    <span class="dirty-flag" id="dirtyFlag">● Unsaved changes — remember to download the changed files</span>
+    <span class="dirty-flag" id="dirtyFlag">● Unsaved changes — remember to send them</span>
   </div>
 </header>
 
@@ -477,6 +487,7 @@
   <input type="file" id="fileInput" accept=".json" multiple style="display:none">
   <button class="btn secondary push-right" id="howToBtn">How to publish</button>
   <button class="btn" id="downloadBtn">Download changed files</button>
+  <button class="btn" id="sendBtn" hidden>Send changes</button>
 </div>
 
 <div class="table-wrap">
@@ -537,10 +548,20 @@
 <div class="modal-overlay" id="howToOverlay">
   <div class="modal" role="dialog" aria-modal="true" aria-labelledby="howToTitle">
     <div class="modal-header">
-      <h2 id="howToTitle">Publishing your changes to GitHub</h2>
+      <h2 id="howToTitle">Publishing your changes</h2>
       <button class="modal-close" id="howToClose" aria-label="Close">✕</button>
     </div>
     <div class="modal-body instructions">
+      <div id="howToSend" hidden>
+        <ol>
+          <li><b>Start from the current data.</b> This tool loads the live data from the site when it opens. If you've had it open for a long time, reload it before you start.</li>
+          <li><b>Make your changes.</b> They stay in this browser tab until you send them, so don't close it.</li>
+          <li><b>Press "Send changes".</b> Give your name and, if you like, a short note about what you changed, e.g. <i>"Coordinates for Barry Street, 1905"</i>. Then press <b>Send</b>.</li>
+        </ol>
+        <div class="callout">Your changes are published straight away; there is no review step. The live site shows them a minute or two later. Each send is kept in the team's spreadsheet, and the developers can undo one if something goes wrong.</div>
+        <p>If someone else changed the same records after you opened the editor, nothing is sent and you'll be asked to reload. Use <b>Download changed files</b> first if you want to keep a copy of your work.</p>
+        <h3>Advanced: download and upload by hand</h3>
+      </div>
       <p>The data is kept as one file per source and year, e.g. <code>_data/directory/1905.json</code> or <code>_data/electoral-roll/1919.json</code>. You only need to upload the files you changed. You don't need any special software — this is all done in your browser.</p>
       <ol>
         <li><b>Make sure you started from the current data.</b> This tool loads the live data from the site when it opens. If someone else published changes since you opened it, reload the page before editing so you don't overwrite their work.</li>
@@ -566,6 +587,33 @@
       <button class="modal-close" id="downloadClose" aria-label="Close">✕</button>
     </div>
     <div class="modal-body instructions" id="downloadBody"></div>
+  </div>
+</div>
+
+<!-- Send modal: publishes the changes through the Apps Script -->
+<div class="modal-overlay" id="sendOverlay">
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="sendTitle">
+    <div class="modal-header">
+      <h2 id="sendTitle">Send changes</h2>
+      <button class="modal-close" id="sendClose" aria-label="Close">✕</button>
+    </div>
+    <div class="modal-body instructions send-form">
+      <p id="sendSummary"></p>
+      <div class="field">
+        <label for="sendName">Your name</label>
+        <input type="text" id="sendName" maxlength="100" autocomplete="name">
+      </div>
+      <div class="field">
+        <label for="sendNote">What did you change? <span class="hint">(optional)</span></label>
+        <input type="text" id="sendNote" maxlength="300" placeholder="e.g. Coordinates for Barry Street, 1905">
+      </div>
+      <p class="hint">Your changes are published straight away, with your name, and show on the site a minute or two later.</p>
+      <p class="send-status" id="sendStatus" hidden></p>
+    </div>
+    <div class="modal-footer">
+      <button class="btn secondary" id="sendCancel">Cancel</button>
+      <button class="btn green" id="sendConfirm">Send</button>
+    </div>
   </div>
 </div>
 
@@ -616,6 +664,7 @@ let pageSize = 50;
 let dirty = false;
 let editingUid = null;  // null = creating new
 let baselines = {};     // file key (e.g. "directory/1905") → its text as last loaded or downloaded
+let originals = new Map(); // _uid → { key, line } as last loaded or sent, for Send changes
 
 const FOLDERS = { 'Directory': 'directory', 'Electoral roll': 'electoral-roll' };
 const REPO_UPLOAD = 'https://github.com/historicalesque/carlton/upload/main/_data/';
@@ -627,13 +676,16 @@ const collator = new Intl.Collator(undefined, {numeric:true, sensitivity:'base'}
    so an unchanged file downloads exactly as it was. */
 function fileKey(r){ return `${FOLDERS[r.source] || 'directory'}/${r.year}`; }
 
+// One record as its line in the file (without the comma)
+function recordLine(r){
+  const clean = Object.assign({}, r);
+  delete clean._uid;
+  return JSON.stringify(clean);
+}
+
 // Same format as tools/convert-map-data.js: a JSON list, one record per line.
 function serialize(list){
-  return '[\n' + list.map(r => {
-    const clean = Object.assign({}, r);
-    delete clean._uid;
-    return JSON.stringify(clean);
-  }).join(',\n') + '\n]\n';
+  return '[\n' + list.map(recordLine).join(',\n') + '\n]\n';
 }
 
 function fileTexts(){
@@ -654,6 +706,8 @@ function changedFiles(){
 function loadFromArray(arr){
   records = arr.map(r => Object.assign({_uid: nextUid++}, r));
   baselines = fileTexts();
+  originals = new Map();
+  rememberOriginals(records);
   applyFilterSort();
   page = 1;
   setDirty(false);
@@ -1276,6 +1330,8 @@ function downloadFile(change){
   document.body.removeChild(a);
   URL.revokeObjectURL(url);
   baselines[change.key] = change.text;
+  // Downloaded changes are published by uploading the file, so Send leaves them out
+  rememberOriginals(records.filter(r => fileKey(r) === change.key));
   setDirty(changedFiles().length > 0);
 }
 
@@ -1313,6 +1369,114 @@ function showDownloads(){
 document.getElementById('downloadBtn').addEventListener('click', showDownloads);
 document.getElementById('downloadClose').addEventListener('click', () => downloadOverlay.classList.remove('show'));
 downloadOverlay.addEventListener('click', (e) => { if(e.target === downloadOverlay) downloadOverlay.classList.remove('show'); });
+
+/* ============ SEND CHANGES ============
+   Sends only the records that changed to the Apps Script
+   (apps-script/Code.gs, receiveData_), which applies them to the files on
+   GitHub as they are now and publishes them straight away. Each change gives
+   the record's line as it was loaded ("before") and as it is now ("after"),
+   so the script can refuse if someone else changed that record since. */
+const ENDPOINT = {{ site.contribution_endpoint | default: '' | jsonify }};
+const sendOverlay = document.getElementById('sendOverlay');
+const NAME_KEY = 'cg-data-editor-name';
+
+function rememberOriginals(list){
+  list.forEach(r => originals.set(r._uid, { key: fileKey(r), line: recordLine(r) }));
+}
+
+function pendingChanges(){
+  const changes = [];
+  const seen = new Set();
+  records.forEach(r => {
+    seen.add(r._uid);
+    const was = originals.get(r._uid);
+    const key = fileKey(r), line = recordLine(r);
+    if(!was) changes.push({ file: key, before: null, after: line });
+    else if(was.key !== key){
+      changes.push({ file: was.key, before: was.line, after: null });
+      changes.push({ file: key, before: null, after: line });
+    } else if(was.line !== line) changes.push({ file: key, before: was.line, after: line });
+  });
+  originals.forEach((was, uid) => { if(!seen.has(uid)) changes.push({ file: was.key, before: was.line, after: null }); });
+  return changes;
+}
+
+function describeChanges(changes){
+  const byFile = {};
+  changes.forEach(c => {
+    const f = byFile[c.file] = byFile[c.file] || { changed: 0, added: 0, removed: 0 };
+    f[c.before === null ? 'added' : c.after === null ? 'removed' : 'changed']++;
+  });
+  return Object.keys(byFile).sort().map(key => {
+    const [folder, year] = key.split('/');
+    const counts = ['changed', 'added', 'removed'].filter(k => byFile[key][k]).map(k => `${byFile[key][k]} ${k}`).join(', ');
+    return `${folder === 'directory' ? 'the ' + year + ' directory' : 'the ' + year + ' electoral roll'} (${counts})`;
+  });
+}
+
+function sendStatus(text, level){
+  const el = document.getElementById('sendStatus');
+  el.textContent = text;
+  el.className = `send-status ${level || ''}`;
+  el.hidden = !text;
+}
+
+function showSend(){
+  const changes = pendingChanges();
+  const confirmBtn = document.getElementById('sendConfirm');
+  sendStatus('');
+  confirmBtn.hidden = !changes.length;
+  confirmBtn.disabled = false;
+  const parts = describeChanges(changes);
+  document.getElementById('sendSummary').textContent = changes.length
+    ? `You're sending ${changes.length} change${changes.length === 1 ? '' : 's'}: ${parts.join('; ')}.`
+    : 'Nothing has changed since the data was loaded (or since you last sent changes).';
+  try { document.getElementById('sendName').value = localStorage.getItem(NAME_KEY) || document.getElementById('sendName').value; } catch(e){}
+  sendOverlay.classList.add('show');
+  (changes.length ? document.getElementById('sendName') : document.getElementById('sendCancel')).focus();
+}
+
+async function sendChanges(){
+  const name = document.getElementById('sendName').value.trim();
+  if(!name){ sendStatus('Please add your name.', 'error'); document.getElementById('sendName').focus(); return; }
+  try { localStorage.setItem(NAME_KEY, name); } catch(e){}
+  const changes = pendingChanges();
+  if(!changes.length) return;
+  const confirmBtn = document.getElementById('sendConfirm');
+  confirmBtn.disabled = true;
+  sendStatus('Sending…');
+  try {
+    const res = await fetch(ENDPOINT, {
+      method: 'POST',
+      headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+      body: JSON.stringify({ action: 'data', name, note: document.getElementById('sendNote').value.trim(), changes })
+    });
+    const result = await res.json();
+    if(result.status !== 'success') throw new Error(result.message || 'The changes were not accepted.');
+    // What was sent is now what's on the site
+    originals = new Map();
+    rememberOriginals(records);
+    baselines = fileTexts();
+    setDirty(false);
+    document.getElementById('sendNote').value = '';
+    confirmBtn.hidden = true;
+    sendStatus('Thank you, your changes are published. The site will show them in a minute or two.', 'ok');
+  } catch(err){
+    confirmBtn.disabled = false;
+    sendStatus(`Sorry, nothing was published: ${err.message}`, 'error');
+  }
+}
+
+if(ENDPOINT){
+  document.getElementById('sendBtn').hidden = false;
+  document.getElementById('downloadBtn').classList.add('secondary');
+  document.getElementById('howToSend').hidden = false;
+  document.getElementById('sendBtn').addEventListener('click', showSend);
+  document.getElementById('sendConfirm').addEventListener('click', sendChanges);
+}
+document.getElementById('sendClose').addEventListener('click', () => sendOverlay.classList.remove('show'));
+document.getElementById('sendCancel').addEventListener('click', () => sendOverlay.classList.remove('show'));
+sendOverlay.addEventListener('click', (e) => { if(e.target === sendOverlay) sendOverlay.classList.remove('show'); });
 
 /* ============ LOAD DIFFERENT FILE ============ */
 document.getElementById('loadFileBtn').addEventListener('click', () => {
