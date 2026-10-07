@@ -50,9 +50,10 @@ function slugifyId(text) {
     
     const articleId = recordId || 'Unknown ID';
     const encodedId = encodeURIComponent(articleId);
-    // "new" tells the form there's no entry yet, so it fills in what it can
-    // from the directory and electoral roll records
-    const googleFormUrl = `form.html?id=${encodedId}${isExisting ? '' : '&new'}`;
+    // The form fills in what it can from the directory and electoral roll
+    // records: "entry" names the published entry to start from (it wins where
+    // they disagree), and "new" says there's no entry yet
+    const googleFormUrl = `form.html?id=${encodedId}${isExisting ? `&entry=${encodeURIComponent(slugifyId(articleId))}` : '&new'}`;
 
     // Adjust text based on whether the article was loaded or missing
     const heading = isExisting ? "Contribute to this Entry" : "Contribute Information";
