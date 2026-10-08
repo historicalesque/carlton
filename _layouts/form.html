@@ -808,11 +808,22 @@
     found.places = [...places.values()].map((p) => ({ ...p, from: String(p.from), to: p.to === p.from ? String(p.from) : String(p.to) }));
     found.sources = records.map(sourceOf);
 
+    // One occupation row per trade, from the directories and electoral
+    // rolls alike, covering every year it's listed. "None given" on the
+    // rolls isn't an occupation, so it's left out.
+    const occupations = new Map();
+    records.forEach((r) => {
+      const term = String(r.Occupation || '').trim();
+      const key = sameKey(term);
+      if (!key || key === 'none given') return;
+      const o = occupations.get(key) || { term: term[0].toUpperCase() + term.slice(1), from: r.year, to: r.year };
+      o.to = r.year;
+      occupations.set(key, o);
+    });
+    found.occupations = [...occupations.values()].map((o) => ({ term: o.term, from: String(o.from), to: String(o.to) }));
+
     const voters = records.filter((r) => r.source === 'Electoral roll');
-    if (voters.length) {
-      found.voter = voters[voters.length - 1];
-      found.occupations = voters.filter((r) => r.Occupation).map((r) => ({ term: r.Occupation, from: String(r.year), to: String(r.year) }));
-    }
+    if (voters.length) found.voter = voters[voters.length - 1];
     return found;
   }
 
@@ -835,8 +846,8 @@
       if (!$('articleTitle').value.trim()) $('articleTitle').value = `${v['Given Names'] || ''} ${v.Surname || ''}`.trim();
       $('surname').value = v.Surname || '';
       $('forenames').value = v['Given Names'] || '';
-      if (found.occupations.length) setRows('occupations', found.occupations);
     }
+    if (found.occupations.length) setRows('occupations', found.occupations);
     prefillNote('We’ve filled in some of the form from these records. Please check it, and change anything that’s wrong.');
     changed();
   }
