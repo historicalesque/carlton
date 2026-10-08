@@ -1,5 +1,10 @@
 theme: jekyll-theme-cayman
 
+# Old page addresses (e.g. /people, /places) keep working as redirects via
+# `redirect_from` in each page's front matter.
+plugins:
+  - jekyll-redirect-from
+
 # The Apps Script web app (/exec URL) that receives contribution form entries
 # (apps-script/Code.gs, setup in apps-script/README.md). Leave empty to keep
 # the form unconnected: it then only previews and downloads.
@@ -26,13 +31,13 @@ defaults:
   # Facet-list pages: same layout, each just names which slice of
   # the directory data it shows. Add a new scope block here for each new facet.
   - scope:
-      path: "people.md"
+      path: "electoral-rolls.md"
     values:
       layout: facet-list
-      facet: "people"
+      facet: "electoral-rolls"
 
   - scope:
-      path: "places.md"
+      path: "directories.md"
     values:
       layout: facet-list
-      facet: "places"
+      facet: "directories"
