@@ -350,6 +350,7 @@ Decided on 2026-10-04: entries move from EAC-CPF to [TEI P5](https://tei-c.org/g
 - [ ] **GitHub Action that runs on every pull request**: check that XML is well-formed and valid against `schema/carlton.rng`, check that data JSON is valid against the schema, and check that the entry filename matches the `recordId`. Editors would then see a green tick or red cross on each submission.
 - [x] Commit a `Gemfile` so local builds match GitHub Pages.
 - [x] Contributor guide (`CONTRIBUTING.md`) setting out entry conventions as they're agreed. Update it as conventions change.
+- [ ] **Security review**: check the parts that accept input from the public or act on the repository. That covers the Apps Script (`apps-script/Code.gs`): who can call it, what it accepts, rate limits, and how its GitHub token is stored and scoped; how entry pages and the review page render submitted XML and Markdown (`scripts/tei.js`, `scripts/tei-compare.js`), so a submission can't run scripts in an editor's browser; who can see and edit the team's Google Sheet; and the admin pages, which are public. Write up findings and fixes in `docs/`.
 
 ### 6. Maps and community geocoding
 
@@ -375,6 +376,7 @@ Placing records on the map is **ongoing community work**: about 16% of records h
   - [x] Nav: fit all five items on one row on phones.
   - [x] Search on phones: results are cards and filters fold away on the new search page (#44).
 - [x] **Accessibility pass**: keyboard navigation for search and maps, colour contrast, focus styles and alt text. (A site-wide focus outline and a darker `--ink-faint` for small labels were added in #43; the rest in #54.)
+- [ ] **Usability and UX review**: watch a few visitors and volunteer editors try common tasks (find a person or place, follow them across years, read an entry, find it on the map, suggest a new entry or a correction, and for editors, review and accept a submission). Note where they get stuck, then fix the biggest problems first. Include phones and people who are new to the site.
 
 ### 8. Site and content
 
