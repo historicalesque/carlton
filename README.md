@@ -8,7 +8,7 @@
 >
 > - **Read about the project:** [About Common Ground](https://historicalesque.github.io/carlton/)
 > - **Search everything:** [Search](https://historicalesque.github.io/carlton/search) finds entries, directory listings and electoral-roll records in one box.
-> - **Browse the histories:** [Featured pages A–Z](https://historicalesque.github.io/carlton/aToZ) · [Map](https://historicalesque.github.io/carlton/map) · [People](https://historicalesque.github.io/carlton/people) · [Places](https://historicalesque.github.io/carlton/places)
+> - **Browse the histories:** [Featured pages A–Z](https://historicalesque.github.io/carlton/aToZ) · [Map](https://historicalesque.github.io/carlton/map) · [Directories](https://historicalesque.github.io/carlton/directories) · [Electoral rolls](https://historicalesque.github.io/carlton/electoral-rolls)
 > - **Share a story or add to an entry:** open any entry on the site and use the *Contribute* form at the bottom, or [start a new entry](https://historicalesque.github.io/carlton/new).
 > - **Editorial team:** start at the [Admin page](https://historicalesque.github.io/carlton/admin/), which links to each editorial tool. To review submissions, read them on the [Submission review page](https://historicalesque.github.io/carlton/admin/review.html), then accept or reject each one in the Decision column of the team's submissions spreadsheet.
 > - **Project partners:** [Melbourne History Workshop](https://melbournehistoryworkshop.com) · [Carlton Community History Group](https://cchg.asn.au)
@@ -49,7 +49,7 @@ Nothing is published until a pull request is merged into `main`. GitHub Pages re
 
 ```
                  ┌──────────────────────────── GitHub Pages (Jekyll) ───────────────────────────┐
- Visitor ──────▶ │  index / search / aToZ / people / places / map / map3d / civic?id=…            │
+ Visitor ──────▶ │  index / search / aToZ / directories / electoral-rolls / map(3d) / civic?id=…  │
                  │        │                                   │                                  │
                  │        ▼                                   ▼                                  │
                  │   data/index.json + data/<source>/   civic/<slug>.xml  (fetched + parsed     │
@@ -83,8 +83,8 @@ With `preview=true`, `id` can be a full URL, such as a raw file on a pull-reques
 
 ### Search, facets and maps
 
-- **Search page** (`search.md` → `_layouts/search.html` + `scripts/search.js`): one box that searches the entries in `civic/` and every directory and electoral-roll record together, using [MiniSearch](https://github.com/lucaong/minisearch) (vendored in `scripts/vendor/`, MIT). Jekyll lists the entry files into the page at build time and the browser fetches them as ordinary site files (no GitHub API calls). Entries are searchable at once; records join the index as each year's file arrives. Results are grouped into Entries, Places (directories) and People (electoral rolls); records that share a text `entityID` collapse into one result with a row of years. Matching is by prefix with small typos allowed, and a `VARIANTS` list at the top of `scripts/search.js` folds historical spellings and abbreviations together (Berkley/Berkeley, htl → hotel, Wm → William, …); add pairs there. Occupations are searched too: a record's `Occupation` (so "grocer" finds listings abbreviated "grcr"), and an entry's occupations, activities or uses. A record card shows the occupation in full when its listing abbreviates it, and an occupation links to a search for everything else with that trade. The search is kept in the address (`search?q=grocer&year=1910&street=…&src=people`), so it can be shared. If nothing matches, it offers to start a new entry with that name.
-- **People / Places** (`_layouts/facet-list.html`): load only the files for one `source`. `people` shows electoral rolls and `places` shows directories. Results are grouped by source/year → street → side of street, and each year is drawn as soon as its file arrives (oldest first). Within each year the streets are sorted, so each street appears once per year, and the contents list shows the year after each street (e.g. "Bouverie Street (1905) listings").
+- **Search page** (`search.md` → `_layouts/search.html` + `scripts/search.js`): one box that searches the entries in `civic/` and every directory and electoral-roll record together, using [MiniSearch](https://github.com/lucaong/minisearch) (vendored in `scripts/vendor/`, MIT). Jekyll lists the entry files into the page at build time and the browser fetches them as ordinary site files (no GitHub API calls). Entries are searchable at once; records join the index as each year's file arrives. Results are grouped into Entries, Directory listings and Electoral rolls, filtered by dataset rather than by "people" or "places", since directory listings name residents as well as businesses; records that share a text `entityID` collapse into one result with a row of years. Matching is by prefix with small typos allowed, and a `VARIANTS` list at the top of `scripts/search.js` folds historical spellings and abbreviations together (Berkley/Berkeley, htl → hotel, Wm → William, …); add pairs there. Occupations are searched too: a record's `Occupation` (so "grocer" finds listings abbreviated "grcr"), and an entry's occupations, activities or uses. A record card shows the occupation in full when its listing abbreviates it, and an occupation links to a search for everything else with that trade. The search is kept in the address (`search?q=grocer&year=1910&street=…&src=rolls`; `src` is `entries`, `directories` or `rolls`), so it can be shared. If nothing matches, it offers to start a new entry with that name.
+- **Directories / Electoral rolls** (`directories.md`, `electoral-rolls.md` → `_layouts/facet-list.html`): load only the files for one `source`. Results are grouped by source/year → street → side of street, and each year is drawn as soon as its file arrives (oldest first). Within each year the streets are sorted, so each street appears once per year, and the contents list shows the year after each street (e.g. "Bouverie Street (1905) listings").
 - **Map** (`_layouts/map.html`): Leaflet 1.9.4. It plots records that have `lat`/`lng`, with University of Melbourne land parcels (`data/uom-land-parcels.geojson`) as an overlay. Both maps set up their years and controls from `data/index.json` and draw each year as soon as its file arrives. Records without coordinates are placed between mapped ones from the same year and street, so they are drawn with their year; cross-year links are added once every year has arrived.
 - **3D Map** (`_layouts/map3d.html`): three.js r128 with OrbitControls. Experimental. It shows the records only: the historic map layers and land parcels stay on the 2D map.
 - Both maps share `scripts/map-common.js` (data loading, year colours, cross-year links from string `entityID`s, marker shapes) and the details popup in `_includes/map-details-modal.html`, which links to the record's entry ("Read the entry" when `civic/<entityID>.xml` exists, "Start an entry" otherwise). The 2D map also takes `map?entity=<entityID>`: it ticks the years that entity appears in, rings its markers and zooms to them. Entries link there with "See on the map" when the map draws at least one of their records.
@@ -100,7 +100,7 @@ With `preview=true`, `id` can be a full URL, such as a raw file on a pull-reques
 | `_layouts/entry.html` | Fetches and renders one entry (TEI, or EAC-CPF for any older file), and adds the contribution form. |
 | `_layouts/form.html` | Contribution form (Quill 1.3.6). Builds the entry as TEI, with optional extra sections and a *Show all fields* switch. Not connected yet: it previews the entry and downloads the XML. |
 | `_layouts/new.html` | "Start a new entry" box that redirects to `civic?id=…`. |
-| `_layouts/facet-list.html` | People / Places listings. |
+| `_layouts/facet-list.html` | Directories / Electoral rolls listings. |
 | `_layouts/map.html`, `_layouts/map3d.html` | 2D Leaflet map and 3D three.js map. |
 | `scripts/map-common.js`, `_includes/map-details-modal.html` | Functions and the details popup shared by both maps. |
 | `*.md` (root) | One small file per page. Mostly front matter that picks a layout. `aToZ.md` is the hand-maintained index of featured pages. |
@@ -209,7 +209,7 @@ Typical record:
 | Field | Notes |
 |---|---|
 | `entityID` | Usually a number: directories count up from 1, electoral rolls from 999999, so the two never share a number (the rolls were renumbered from 7034–8558 when the data was split, because they overlapped the 1930 directory). A **string** (e.g. `"Bridget O'Neill"`) means someone on the team has decided that several records are the same person or place, and linked them under a new ID they created for that purpose. Many records share a string ID on purpose; the search page shows each linked group as one result with a row of years, and links it to the entry of the same name if there is one (e.g. the Carlton Inn listings are linked under `"Corkman Hotel"`). |
-| `source` | `"Directory"` or `"Electoral roll"`. This decides whether a record appears under People or Places. |
+| `source` | `"Directory"` or `"Electoral roll"`. This decides whether a record appears under Directories or Electoral rolls. |
 | `year`, `pages`, `listing`, `street`, `type`, `cardinality` | As transcribed. `cardinality` is the side of the street (North/South/East/West). |
 | `lat`, `lng` | Optional. About 1,450 records have coordinates so far, and only these appear on the map. Adding more is ongoing community work. |
 | `Surname`, `Given Names`, `Registration Number`, `Address`, `Street Number`, `Gender`, `Occupation`, `Notes` | Electoral-roll fields (Title Case, some with spaces). Directory records also have `Occupation` where the listing gives a trade, spelled out in full ("grcr" → "grocer"), and some have `Notes`. Search uses `Occupation`, and the contribution form fills in an entry's occupations from it. |
@@ -238,12 +238,12 @@ Only people the Sheet is shared with (as editors) can decide. The review page ex
 
 ### Updating directory/map data
 
-See [Editing the data](#editing-the-data) above. This is separate from entry submissions and needs more care, because a broken data file breaks search, the maps and the People/Places pages.
+See [Editing the data](#editing-the-data) above. This is separate from entry submissions and needs more care, because a broken data file breaks search, the maps and the Directories / Electoral rolls pages.
 
 ## Adding a new page or facet
 
 - **Simple page:** add `my-page.md` at the root with front matter (`title`, optionally `layout`). It gets `layout: default` automatically.
-- **New facet list** (like People/Places): add `my-facet.md`, add a `scope` block in `_config.yml` with `layout: facet-list` and `facet: "my-facet"`, and add a matching branch to the `filter` in `_layouts/facet-list.html`.
+- **New facet list** (like Directories / Electoral rolls): add `my-facet.md`, add a `scope` block in `_config.yml` with `layout: facet-list` and `facet: "my-facet"`, and add a matching branch to the `filter` in `_layouts/facet-list.html`.
 - **New entry collection** (another folder like `civic/`): add a page using `layout: entry` and set `EACCPFpath` to the folder name in `_config.yml`.
 - **Navigation:** edit the `<nav>` list in `_layouts/default.html`. Footer links are in the same file.
 
@@ -279,7 +279,7 @@ Goal: pages only download the data they need, show visitors what's happening whi
 
 - [ ] **Agree on a data schema**: consistent `camelCase` field names (`givenNames`, `surname`, `occupation`, …), a clear rule for `entityID` (numeric record ID plus a separate `personId`/`placeId` for linking across years), and which fields are required. Write it up in `docs/SCHEMA.md`. The current fields and a starting proposal are written up there; the names still need agreeing before any file changes.
 - [x] **Split the data into JSON files**: one file per source and year in `_data/`, one record per line, with `data/index.json` generated by Jekyll (field names unchanged). Converted by `tools/convert-map-data.js`.
-- [x] **Shared data loader** (`scripts/data.js`): each page fetches only the files it needs, in parallel, at most once per page (the browser's cache covers moving between pages). People/Places and search use each year as soon as it arrives; the contribution form fetches only the files holding that entry's records.
+- [x] **Shared data loader** (`scripts/data.js`): each page fetches only the files it needs, in parallel, at most once per page (the browser's cache covers moving between pages). The Directories / Electoral rolls pages and search use each year as soon as it arrives; the contribution form fetches only the files holding that entry's records.
 - [x] **Loading feedback for visitors**: "Loading the 1905 directory… (4 of 9)", and a message with a *Try again* button if a file fails to load.
 - [x] Stop loading the data on every page: only the layouts that use it load it now (#44).
 - [x] Convert `UoM_Landuse_2026.js` to `data/uom-land-parcels.geojson`, loaded only by the 2D map.
@@ -341,7 +341,7 @@ Decided on 2026-10-04: entries move from EAC-CPF to [TEI P5](https://tei-c.org/g
 - [x] **Pre-fill new entries from the records**: when a record has no entry yet, the form fills in its addresses (merged across years, with coordinates) and one source per record, linked to that year's directory page (`civic/Sands-McDougall-Directory-<year>.xml`) or to Electoral Rolls. Electoral roll records also set the type, name and occupation. Directory listings aren't parsed for names or types.
 - [x] **New Apps Script**, written from scratch (`apps-script/Code.gs`): checks the XML is well-formed, sets the entry id, filename and date itself, saves a row to the Sheet and opens the pull request. A new version of an existing entry replaces its file in the pull request.
 - [x] **Connect the form**: the script is deployed (`apps-script/README.md`) and `contribution_endpoint` is set in `_config.yml`. Next: send a test entry and check the Sheet row and pull request.
-- [ ] **Search, People/Places and the maps read the TEI subject records** (names, addresses, coordinates), so entries appear on the map and alongside their directory listings. Search already finds TEI entries by title and article text.
+- [ ] **Search, the Directories / Electoral rolls pages and the maps read the TEI subject records** (names, addresses, coordinates), so entries appear on the map and alongside their directory listings. Search already finds TEI entries by title and article text.
 - [ ] Later: generate EAC-CPF 2.0 (people, businesses, families) or RiC data from the TEI files for archives and partners who want it.
 - [ ] Validate entries against `schema/carlton.rng` before merging (in an XML editor such as Oxygen, or with `jing`).
 
