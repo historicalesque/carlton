@@ -26,13 +26,13 @@ defaults:
   # Facet-list pages: same layout, each just names which slice of
   # the directory data it shows. Add a new scope block here for each new facet.
   - scope:
-      path: "people.md"
+      path: "electoral-rolls.md"
     values:
       layout: facet-list
-      facet: "people"
+      facet: "electoral-rolls"
 
   - scope:
-      path: "places.md"
+      path: "directories.md"
     values:
       layout: facet-list
-      facet: "places"
+      facet: "directories"

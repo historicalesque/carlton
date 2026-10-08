@@ -22,7 +22,7 @@
     return t ? (VARIANTS[t] || t) : null;
   };
 
-  const SOURCES = { 'Directory': 'places', 'Electoral roll': 'people' };
+  const SOURCES = { 'Directory': 'directories', 'Electoral roll': 'rolls' };
   const state = { q: '', src: 'all', year: '', street: '' };
   let index, groups = {}, entries = {}, records = [], recordGroup = [], loading = true;
 
@@ -99,7 +99,7 @@
     const docs = [];
     list.forEach((r) => {
       const i = records.push(r) - 1;
-      const kind = SOURCES[r.source] || 'places';
+      const kind = SOURCES[r.source] || 'directories';
       const key = typeof r.entityID === 'string' ? 'g:' + r.entityID : 'r:' + i;
       (groups[key] = groups[key] || { key, kind, records: [] }).records.push(r);
       recordGroup[i] = groups[key];
@@ -124,7 +124,7 @@
   // ---- Search ----------------------------------------------------------
   function run() {
     const q = state.q.trim();
-    const sections = { entries: [], places: [], people: [] };
+    const sections = { entries: [], directories: [], rolls: [] };
     if (q) {
       const seen = {};
       index.search(q).forEach((hit) => {
@@ -206,12 +206,15 @@
     const name = group.key.startsWith('g:') ? group.key.slice(2) : null;
     const hasEntry = name && entries[slugify(name)];
     const years = recs.map((r) => `<li${hits.has(r) ? ' class="hit"' : ''}><span class="yr">${r.year}</span> ${highlight(r.listing, terms)} <span class="pg">${r.pages ? 'p. ' + escapeHtml(r.pages) : ''}</span></li>`).join('');
+    // The title goes where the action does: the entry page, which also lists
+    // every record for this name, whether or not an entry has been written.
+    const href = `civic?id=${encodeURIComponent(hasEntry ? name : shown.entityID)}`;
     const link = hasEntry
-      ? `<a class="result-action" href="civic?id=${encodeURIComponent(name)}">Read the entry →</a>`
-      : `<a class="result-action quiet" href="civic?id=${encodeURIComponent(shown.entityID)}">Start an entry</a>`;
+      ? `<a class="result-action" href="${href}">Read the entry →</a>`
+      : `<a class="result-action quiet" href="${href}">Start an entry</a>`;
     return `<li class="result result-record">
       <div class="result-head">
-        <span class="result-title">${highlight(shown.listing, terms)}</span>
+        <a class="result-title" href="${href}">${highlight(shown.listing, terms)}</a>
         <span class="result-where">${escapeHtml(shown.street)}${shown.cardinality ? ', ' + escapeHtml(shown.cardinality.toLowerCase()) + ' side' : ''}</span>
       </div>
       ${occupationShown(shown) ? `<p class="result-occupation">${occupationLink(shown.Occupation, terms)}</p>` : ''}
@@ -221,7 +224,8 @@
     </li>`;
   }
 
-  const LABELS = { entries: 'Entries', places: 'Places · directories', people: 'People · electoral rolls' };
+  const LABELS = { entries: 'Entries', directories: 'Directory listings', rolls: 'Electoral rolls' };
+  const MORE = { entries: 'entries', directories: 'directory listings', rolls: 'electoral roll records' };
   function render(q, sections) {
     Object.keys(sections).forEach((k) => {
       const n = sections[k].length;
@@ -236,7 +240,7 @@
       resultsEl.innerHTML = '';
       return;
     }
-    const keys = state.src === 'all' ? ['entries', 'places', 'people'] : [state.src];
+    const keys = state.src === 'all' ? ['entries', 'directories', 'rolls'] : [state.src];
     const total = keys.reduce((n, k) => n + sections[k].length, 0);
     if (!total && loading) {
       // The data-status line below says what's still loading.
@@ -256,7 +260,7 @@
       const list = sections[k];
       const limit = state.src === 'all' ? PER_SECTION : list.length;
       const cards = list.slice(0, limit).map(k === 'entries' ? entryCard : recordCard).join('');
-      const more = list.length > limit ? `<button type="button" class="search-more-btn" data-src="${k}">Show all ${list.length.toLocaleString()} ${LABELS[k].split(' ·')[0].toLowerCase()}</button>` : '';
+      const more = list.length > limit ? `<button type="button" class="search-more-btn" data-src="${k}">Show all ${list.length.toLocaleString()} ${MORE[k]}</button>` : '';
       return `<section class="search-section"><h2>${LABELS[k]} <span>${list.length.toLocaleString()}</span></h2><ol class="results">${cards}</ol>${more}</section>`;
     }).join('');
   }
