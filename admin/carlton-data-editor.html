@@ -282,6 +282,7 @@ layout: null
     align-items:center;
     gap:10px;
   }
+  .modal-footer .edit-hint{margin-right:auto;font-size:12px;color:var(--ink-soft);}
   .field-row{
     display:grid;
     grid-template-columns:1fr 1fr;
@@ -458,7 +459,7 @@ layout: null
   <div class="stats">
     <span><b id="statTotal">0</b> records</span>
     <span><b id="statFiltered">0</b> shown</span>
-    <span class="dirty-flag" id="dirtyFlag">● Unsaved changes — remember to send them</span>
+    <span class="dirty-flag" id="dirtyFlag">● Changes not published yet — download the changed files</span>
   </div>
 </header>
 
@@ -538,8 +539,9 @@ layout: null
     </div>
     <div class="modal-body" id="editBody"></div>
     <div class="modal-footer">
+      <span class="edit-hint" id="editHint">Kept in this tab until you publish your changes.</span>
       <button class="btn secondary" id="cancelEdit">Cancel</button>
-      <button class="btn green" id="saveEdit">Save record</button>
+      <button class="btn green" id="saveEdit">Add record</button>
     </div>
   </div>
 </div>
@@ -1038,6 +1040,8 @@ function openEditModal(uid){
   editingUid = uid;
   const rec = uid === null ? null : records.find(r => r._uid === uid);
   editTitle.textContent = rec ? `Edit record ${rec.entityID}` : 'New record';
+  // Nothing leaves the browser until the changes are sent or downloaded, so avoid "Save".
+  document.getElementById('saveEdit').textContent = rec ? 'Keep changes' : 'Add record';
   buildForm(rec);
   editOverlay.classList.add('show');
 }
@@ -1235,7 +1239,7 @@ document.getElementById('saveEdit').addEventListener('click', () => {
   if(lat && lng && !coordsHardValid(lat,lng)) errors.push('Latitude/longitude values are out of valid range.');
 
   if(errors.length){
-    alert('Please fix the following before saving:\n\n- ' + errors.join('\n- '));
+    alert('Please fix the following first:\n\n- ' + errors.join('\n- '));
     return;
   }
 
@@ -1471,6 +1475,8 @@ if(ENDPOINT){
   document.getElementById('sendBtn').hidden = false;
   document.getElementById('downloadBtn').classList.add('secondary');
   document.getElementById('howToSend').hidden = false;
+  document.getElementById('dirtyFlag').textContent = '● Not sent yet — press Send changes when you\'re done';
+  document.getElementById('editHint').textContent = 'Kept in this tab until you press Send changes.';
   document.getElementById('sendBtn').addEventListener('click', showSend);
   document.getElementById('sendConfirm').addEventListener('click', sendChanges);
 }
@@ -1480,7 +1486,7 @@ sendOverlay.addEventListener('click', (e) => { if(e.target === sendOverlay) send
 
 /* ============ LOAD DIFFERENT FILE ============ */
 document.getElementById('loadFileBtn').addEventListener('click', () => {
-  if(dirty && !confirm('You have unsaved changes that will be lost if you load a new file. Continue?')) return;
+  if(dirty && !confirm('You have changes you haven\'t published yet. They will be lost if you load a new file. Continue?')) return;
   document.getElementById('fileInput').click();
 });
 document.getElementById('fileInput').addEventListener('change', async (e) => {
