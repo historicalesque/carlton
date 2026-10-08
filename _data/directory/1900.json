@@ -51,7 +51,7 @@
 {"entityID":50,"source":"Directory","year":1900,"pages":"172","listing":"81 Vacant","street":"Barry Street","type":"Place","cardinality":"West"},
 {"entityID":51,"source":"Directory","year":1900,"pages":"172","listing":"83 Branchflower, F. G.","street":"Barry Street","type":"Place","cardinality":"West"},
 {"entityID":52,"source":"Directory","year":1900,"pages":"172","listing":"85 Hatton, John, btchr","street":"Barry Street","type":"Place","cardinality":"West"},
-{"entityID":53,"source":"Directory","year":1900,"pages":"172","listing":"87-89 Clark, D., grngro","street":"Barry Street","type":"Place","cardinality":"West"},
+{"entityID":53,"source":"Directory","year":1900,"pages":"172","listing":"87-89 Clark, D., grngro","street":"Barry Street","type":"Place","cardinality":"West","Occupation":"Greengrocer"},
 {"entityID":54,"source":"Directory","year":1900,"pages":"172","listing":"Intersection Barry street and Pelham street","street":"Barry Street","type":"Intersection","cardinality":"West","lat":-37.80204358332153,"lng":144.95953202749413},
 {"entityID":55,"source":"Directory","year":1900,"pages":"172","listing":"95 Sumpton, John","street":"Barry Street","type":"Place","cardinality":"West"},
 {"entityID":56,"source":"Directory","year":1900,"pages":"172","listing":"97 McDonald, M. A.","street":"Barry Street","type":"Place","cardinality":"West"},
