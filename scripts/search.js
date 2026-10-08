@@ -22,7 +22,9 @@
     return t ? (VARIANTS[t] || t) : null;
   };
 
-  const SOURCES = { 'Directory': 'places', 'Electoral roll': 'people' };
+  const SOURCES = { 'Directory': 'directories', 'Electoral roll': 'rolls' };
+  // Older shared links used ?src=places / ?src=people.
+  const OLD_SRC = { places: 'directories', people: 'rolls' };
   const state = { q: '', src: 'all', year: '', street: '' };
   let index, groups = {}, entries = {}, records = [], recordGroup = [], loading = true;
 
@@ -32,7 +34,7 @@
   // ---- URL state -------------------------------------------------------
   function readUrl() {
     const p = new URLSearchParams(location.search);
-    state.q = p.get('q') || ''; state.src = p.get('src') || 'all';
+    state.q = p.get('q') || ''; state.src = p.get('src') || 'all'; state.src = OLD_SRC[state.src] || state.src;
     state.year = p.get('year') || ''; state.street = p.get('street') || '';
   }
   function writeUrl() {
@@ -99,7 +101,7 @@
     const docs = [];
     list.forEach((r) => {
       const i = records.push(r) - 1;
-      const kind = SOURCES[r.source] || 'places';
+      const kind = SOURCES[r.source] || 'directories';
       const key = typeof r.entityID === 'string' ? 'g:' + r.entityID : 'r:' + i;
       (groups[key] = groups[key] || { key, kind, records: [] }).records.push(r);
       recordGroup[i] = groups[key];
@@ -124,7 +126,7 @@
   // ---- Search ----------------------------------------------------------
   function run() {
     const q = state.q.trim();
-    const sections = { entries: [], places: [], people: [] };
+    const sections = { entries: [], directories: [], rolls: [] };
     if (q) {
       const seen = {};
       index.search(q).forEach((hit) => {
@@ -221,7 +223,8 @@
     </li>`;
   }
 
-  const LABELS = { entries: 'Entries', places: 'Places · directories', people: 'People · electoral rolls' };
+  const LABELS = { entries: 'Entries', directories: 'Directory listings', rolls: 'Electoral rolls' };
+  const MORE = { entries: 'entries', directories: 'directory listings', rolls: 'electoral roll records' };
   function render(q, sections) {
     Object.keys(sections).forEach((k) => {
       const n = sections[k].length;
@@ -236,7 +239,7 @@
       resultsEl.innerHTML = '';
       return;
     }
-    const keys = state.src === 'all' ? ['entries', 'places', 'people'] : [state.src];
+    const keys = state.src === 'all' ? ['entries', 'directories', 'rolls'] : [state.src];
     const total = keys.reduce((n, k) => n + sections[k].length, 0);
     if (!total && loading) {
       // The data-status line below says what's still loading.
@@ -256,7 +259,7 @@
       const list = sections[k];
       const limit = state.src === 'all' ? PER_SECTION : list.length;
       const cards = list.slice(0, limit).map(k === 'entries' ? entryCard : recordCard).join('');
-      const more = list.length > limit ? `<button type="button" class="search-more-btn" data-src="${k}">Show all ${list.length.toLocaleString()} ${LABELS[k].split(' ·')[0].toLowerCase()}</button>` : '';
+      const more = list.length > limit ? `<button type="button" class="search-more-btn" data-src="${k}">Show all ${list.length.toLocaleString()} ${MORE[k]}</button>` : '';
       return `<section class="search-section"><h2>${LABELS[k]} <span>${list.length.toLocaleString()}</span></h2><ol class="results">${cards}</ol>${more}</section>`;
     }).join('');
   }
