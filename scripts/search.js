@@ -23,8 +23,6 @@
   };
 
   const SOURCES = { 'Directory': 'directories', 'Electoral roll': 'rolls' };
-  // Older shared links used ?src=places / ?src=people.
-  const OLD_SRC = { places: 'directories', people: 'rolls' };
   const state = { q: '', src: 'all', year: '', street: '' };
   let index, groups = {}, entries = {}, records = [], recordGroup = [], loading = true;
 
@@ -34,7 +32,7 @@
   // ---- URL state -------------------------------------------------------
   function readUrl() {
     const p = new URLSearchParams(location.search);
-    state.q = p.get('q') || ''; state.src = p.get('src') || 'all'; state.src = OLD_SRC[state.src] || state.src;
+    state.q = p.get('q') || ''; state.src = p.get('src') || 'all';
     state.year = p.get('year') || ''; state.street = p.get('street') || '';
   }
   function writeUrl() {
