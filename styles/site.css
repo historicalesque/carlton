@@ -158,12 +158,12 @@ body {
     color: var(--moss-bright);
 }
 
-/* Phones: tighter links so all five items fit on one row */
+/* Phones: tighter links; the six items wrap onto a second row when they don't fit */
 @media (max-width: 600px) {
     .main-nav { padding: 0 4px; }
-    .nav-links { flex-wrap: nowrap; justify-content: space-between; }
+    .nav-links { justify-content: center; }
     .nav-links li a {
-        padding: 14px 7px;
+        padding: 12px 8px;
         font-size: 0.85rem;
         letter-spacing: 0;
         white-space: nowrap;

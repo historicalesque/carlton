@@ -17,10 +17,21 @@
     </fileDesc>
     <revisionDesc status="published">
       <change when="2026-10-09" type="created">Moved here from the site page about.md by Common Ground.</change>
+      <change when="2026-10-09" type="revised">Introductory text moved here from the Home page.</change>
     </revisionDesc>
   </teiHeader>
   <text>
     <body>
+      <p>Through a process of community co-design, the Melbourne History Workshop (melbournehistoryworkshop.com) and Carlton Community History Group (cchg.asn.au) have created this website to empower residents, students and community stakeholders to upskill, research, digitise, and map the rich histories of vanished working-class quarters now engrossed as part of The University of Melbourne’s expanded estate.</p>
+      <p>Common Ground is a collaborative effort to recover histories of vanished communities whose stories remain absent in the material traces of the campus.</p>
+      <p>The project encompasses the area:</p>
+      <list rend="bulleted">
+        <item>South of Grattan street,</item>
+        <item>West of Swanston street,</item>
+        <item>East of Elizabeth street and,</item>
+        <item>North of Victoria street.</item>
+      </list>
+      <p><hi rend="italic">Common Ground</hi> focuses on historical methodology and digital skills with a learn-by-doing approach to co-create an annotatable web interface that transforms missing histories into accessible heritage.</p>
       <p>More about the project, the people behind it and how to get involved is coming soon.</p>
       <div>
         <head>Image credits</head>
