@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="https://historicalesque.github.io/carlton/schema/carlton.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0" type="topic" xml:lang="en">
+  <teiHeader>
+    <fileDesc>
+      <titleStmt>
+        <title>About Common Ground</title>
+        <author>Common Ground</author>
+      </titleStmt>
+      <publicationStmt>
+        <publisher>Common Ground</publisher>
+        <idno type="entry">About</idno>
+      </publicationStmt>
+      <sourceDesc>
+        <p>Contributed through the website. No sources listed.</p>
+      </sourceDesc>
+    </fileDesc>
+    <revisionDesc status="published">
+      <change when="2026-10-09" type="created">Moved here from the site page about.md by Common Ground.</change>
+    </revisionDesc>
+  </teiHeader>
+  <text>
+    <body>
+      <p>More about the project, the people behind it and how to get involved is coming soon.</p>
+      <div>
+        <head>Image credits</head>
+        <p><hi rend="bold">Website banner:</hi> historic survey plan of Carlton, from the collection of <ref target="https://handle.slv.vic.gov.au/10381/92019">State Library Victoria</ref>.</p>
+      </div>
+      <div>
+        <head>Licence</head>
+        <list rend="bulleted">
+          <item><hi rend="bold">Written content and transcribed data</hi> on this site are licensed under <ref target="https://creativecommons.org/licenses/by-nc/4.0/">Creative Commons Attribution-NonCommercial 4.0 International (CC BY-NC 4.0)</ref>, unless a page says otherwise. You may share and adapt them for non-commercial purposes if you credit Common Ground.</item>
+          <item><hi rend="bold">The site’s source code</hi> is available under the <ref target="https://github.com/historicalesque/carlton/blob/main/LICENSE">MIT Licence</ref>.</item>
+          <item><hi rend="bold">The historical sources</hi> (Sands &amp; McDougall directories, electoral rolls) are in the public domain. Images and maps from other institutions keep their own terms.</item>
+        </list>
+      </div>
+    </body>
+  </text>
+</TEI>

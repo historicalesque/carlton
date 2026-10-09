@@ -79,6 +79,8 @@ Nothing is published until a pull request is merged into `main`. GitHub Pages re
 3. parses the XML and renders it: TEI entries with `TEIEntry.render()` from `scripts/tei.js`, older EAC-CPF entries (namespace `urn:isbn:1-931666-33-4`) with the code in the layout;
 4. adds the contribution form underneath. If no file exists yet, the form takes the entry's place so the community can create it. The form (`_layouts/form.html`, in an iframe) reports its height to the entry page, which sizes the iframe to fit.
 
+**Site pages are entries too.** The front page, Featured pages and About are `civic/Home.xml`, `civic/Featured-pages.xml` and `civic/About.xml`, listed as `site_pages` in `_config.yml`. Their `.md` pages (`index.md`, `aToZ.md`, `about.md`) use the entry layout and name the file with `entry_id`, so the addresses stay the same. They keep the look of an ordinary page (full-size title, no entry type, no map link), are left out of search, and instead of the contribution form have a small *Suggest an edit to this page* link at the foot, meant for the wider team rather than the public. Suggested edits go through the same form, pull request and Sheet decision as entries. To add another site page, add its file name to `site_pages` and give its `.md` page `layout: entry` and `entry_id`.
+
 With `preview=true`, `id` can be a full URL, such as a raw file on a pull-request branch. This is how `admin/review.html` previews submissions before they are merged. Preview mode also hides the banner, menu, footer and contribution form, so the review frame shows just the article.
 
 ### Search, facets and maps
@@ -88,7 +90,7 @@ With `preview=true`, `id` can be a full URL, such as a raw file on a pull-reques
 - **Map** (`_layouts/map.html`): Leaflet 1.9.4. It plots records that have `lat`/`lng`, with University of Melbourne land parcels (`data/uom-land-parcels.geojson`) as an overlay. Both maps set up their years and controls from `data/index.json` and draw each year as soon as its file arrives. Records without coordinates are placed between mapped ones from the same year and street, so they are drawn with their year; cross-year links are added once every year has arrived.
 - **3D Map** (`_layouts/map3d.html`): three.js r128 with OrbitControls. Experimental. It shows the records only: the historic map layers and land parcels stay on the 2D map.
 - Both maps share `scripts/map-common.js` (data loading, year colours, cross-year links from string `entityID`s, marker shapes) and the details popup in `_includes/map-details-modal.html`, which links to the record's entry ("Read the entry" when `civic/<entityID>.xml` exists, "Start an entry" otherwise). The 2D map also takes `map?entity=<entityID>`: it ticks the years that entity appears in, rings its markers and zooms to them. Entries link there with "See on the map" when the map draws at least one of their records.
-- **Featured pages A–Z** (`aToZ.md` + `scripts/az-status.js`): Jekyll lists the files in `civic/` into the page at build time, and the script marks links with no entry yet (pencil icon, "Not yet written") and entries created in the last 14 days ("New"). A legend above the letter index explains both.
+- **Featured pages A–Z** (`civic/Featured-pages.xml`, shown by `aToZ.md` + `scripts/az-status.js`): the list itself is a site-page entry, one heading per letter. Jekyll lists the files in `civic/` into the page at build time, and once the entry is drawn the script adds the letter index, legend and *Back to top* links, and marks links with no entry yet (pencil icon, "Not yet written") and entries created in the last 14 days ("New"). A legend above the letter index explains both.
 
 ## Repository layout
 
@@ -103,7 +105,7 @@ With `preview=true`, `id` can be a full URL, such as a raw file on a pull-reques
 | `_layouts/facet-list.html` | Directories / Electoral rolls listings. |
 | `_layouts/map.html`, `_layouts/map3d.html` | 2D Leaflet map and 3D three.js map. |
 | `scripts/map-common.js`, `_includes/map-details-modal.html` | Functions and the details popup shared by both maps. |
-| `*.md` (root) | One small file per page. Mostly front matter that picks a layout. `aToZ.md` is the hand-maintained index of featured pages. |
+| `*.md` (root) | One small file per page. Mostly front matter that picks a layout. `index.md`, `aToZ.md` and `about.md` show site-page entries from `civic/` (see [Entry pages](#entry-pages)). |
 | `civic/*.xml` | Published encyclopedia entries (TEI). See `docs/SCHEMA.md`. |
 | `_data/directory/<year>.json`, `_data/electoral-roll/<year>.json` | The directory and electoral-roll records, one file per source and year, one record per line. **Edit these.** See [Data](#data-directories-and-electoral-rolls). |
 | `data/` | What the browser downloads, generated from `_data/` by Jekyll: one small page per data file, `data/index.json` (the list of files), and `uom-land-parcels.geojson` (University of Melbourne land parcels). |
@@ -149,7 +151,7 @@ Every entry in `civic/` is a TEI file, written to the project customisation in `
 
 - **Filename = slug of the entry ID**: spaces become `-`, anything other than letters, digits, `_` and `-` is removed, and the file goes in `civic/`, e.g. `Mary Mather (Pelham Hotel)` → `civic/Mary-Mather-Pelham-Hotel.xml`. The slug logic is `slugifyId()` in `_layouts/entry.html`. A file that doesn't match the slug won't be found. `<idno type="entry">` holds the same slug.
 - `<revisionDesc>` has one `<change>` per contribution or edit.
-- To add an entry to the A–Z, add a link in `aToZ.md` by hand.
+- To add an entry to the A–Z, add a link under its letter in `civic/Featured-pages.xml` (or suggest an edit to the Featured pages page).
 
 Open questions to settle: fixed lists for `div`, `state` and `relation` types, and what to do with entries that have two names (e.g. *Carlton Inn* / *Corkman Hotel*). See roadmap §4.
 
@@ -301,6 +303,8 @@ Goal: pages only download the data they need, show visitors what's happening whi
 Goal: editors never need to touch GitHub directly. Done in small, fundable steps, with each step useful on its own.
 
 **Markdown pages** (`aToZ.md`, `index.md` and other plain pages)
+
+- [x] **Front page, Featured pages and About as entries**: their text is now TEI in `civic/` (`site_pages` in `_config.yml`), so the team can suggest edits with the contribution form, through a small *Suggest an edit to this page* link. This covers most of what the Markdown and A–Z editors below were for; the maps stay as they are.
 
 - [ ] **Editor for Markdown pages**, see the design proposal: [`docs/proposals/markdown-page-editor.md`](docs/proposals/markdown-page-editor.md). Suggested first step: a simple text-and-preview editor for `index.md` and `aToZ.md` that saves through the existing Apps Script, with page edits listed and previewed in `admin/review.html` next to entry submissions. Editors sign in with Google, checked by the Apps Script against an editors list.
 - [x] **Admin landing page** (`admin/index.html`) linking to each admin tool: review, page editor and data editor, plus the editor help (#45). The page editor is a placeholder until it exists. The team's Google Sheet is deliberately not linked, because the page is public.

@@ -5,6 +5,13 @@ theme: jekyll-theme-cayman
 # the form unconnected: it then only previews and downloads.
 contribution_endpoint: "https://script.google.com/macros/s/AKfycbxKYO3HIIwoNWI7ZHyxHvDz9wsvFgQT0KUL3kHgztqtNDaITvjH-uaQiTLEfdGbm2LX/exec"
 
+# Site pages kept as entries in civic/, so the team can suggest edits to them
+# the same way as any entry: the front page, Featured pages and About. Each
+# has a small .md page (layout: entry, entry_id: <file name>). They look like
+# ordinary pages, are left out of search, and have a small "Suggest an edit"
+# link instead of the contribution form.
+site_pages: [Home, Featured-pages, About]
+
 defaults:
   # Applies to every page unless a more specific rule below overrides it.
   - scope:

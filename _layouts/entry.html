@@ -23,13 +23,20 @@ function slugifyId(text) {
   
   const CONFIG = {
     path: '{{ page.EACCPFpath }}',
-    overrideForm: '{{ page.overrideCommunityContributionForm }}' === 'true'
+    overrideForm: '{{ page.overrideCommunityContributionForm }}' === 'true',
+    // Site pages (front page, Featured pages, About) are entries too, listed
+    // in _config.yml. Their own .md page names the entry with entry_id.
+    sitePages: {{ site.site_pages | jsonify }},
+    entryId: {{ page.entry_id | jsonify }}
   };
 
-  // 1. Get the ID from the URL parameters (e.g., ?id=EM02472)
+  // 1. Get the ID from the page (site pages) or the URL (e.g., ?id=EM02472)
   const urlParams = new URLSearchParams(window.location.search);
-  const fileId = urlParams.get('id');
+  const fileId = CONFIG.entryId || urlParams.get('id');
   const isPreview = urlParams.get("preview") === "true";
+  // In preview mode the id is the file's URL, so go by its file name
+  const fileSlug = isPreview && fileId ? decodeURIComponent(fileId.split(/[?#]/)[0].split('/').pop()).replace(/\.xml$/, '') : slugifyId(fileId || '');
+  const isSitePage = (CONFIG.sitePages || []).includes(fileSlug);
 
   // In preview mode (the submission review page's preview frame), hide the
   // site chrome so the frame shows the article itself.
@@ -40,11 +47,21 @@ function slugifyId(text) {
   }
   
   const entryContainer = document.getElementById('encyclopedia-entry');
+  if (isSitePage) {
+    entryContainer.classList.add('site-page');
+    // Opened as civic?id=…: the "Common Ground" line above entries isn't wanted
+    if (!CONFIG.entryId) entryContainer.parentElement.querySelectorAll(':scope > h2').forEach((h) => h.remove());
+  }
 
   // Helper function to inject the Google Form
   function showContributionForm(recordId, isExisting = false) {
+    if (isPreview) return;
+    if (isSitePage) {
+      if (isExisting) showPageSuggest(recordId);
+      return;
+    }
     // If the override config is active, exit early without displaying the form
-    if (CONFIG.overrideForm || isPreview) {
+    if (CONFIG.overrideForm) {
       return; 
     }
     
@@ -79,6 +96,25 @@ function slugifyId(text) {
     }
 
     if (recordId) nameRecord(recordId);
+  }
+
+  // Site pages: a small "Suggest an edit" link at the foot of the page, for
+  // the wider team rather than the public. The form loads only when opened.
+  function showPageSuggest(recordId) {
+    const slug = slugifyId(recordId);
+    const box = document.createElement('details');
+    box.className = 'page-suggest';
+    box.innerHTML = `<summary>Suggest an edit to this page</summary>
+      <p>Changes to this page are read by the editorial team before they appear.</p>`;
+    box.addEventListener('toggle', () => {
+      if (!box.open || box.querySelector('iframe')) return;
+      const frame = document.createElement('iframe');
+      frame.className = 'contribution-frame';
+      frame.title = 'Suggest an edit to this page';
+      frame.src = `form.html?id=${encodeURIComponent(slug)}&entry=${encodeURIComponent(slug)}`;
+      box.append(frame);
+    });
+    entryContainer.append(box);
   }
 
   // A numeric ID is a directory or electoral-roll record, which means nothing
@@ -163,7 +199,7 @@ function slugifyId(text) {
       if (xml.documentElement && xml.documentElement.namespaceURI === TEIEntry.NS) {
         entryContainer.innerHTML = TEIEntry.render(text);
         const title = entryContainer.querySelector('h1')?.textContent;
-        if (title) document.title = `Common Ground - ${title}`;
+        if (title && !CONFIG.entryId) document.title = `Common Ground - ${title}`;
         // Authors aren't shown on the page for now, only in its metadata
         for (const author of xml.getElementsByTagNameNS(TEIEntry.NS, 'author')) {
           const meta = document.createElement('meta');
@@ -172,7 +208,8 @@ function slugifyId(text) {
           document.head.append(meta);
         }
         showContributionForm(fileId, true);
-        addMapLink(fileId);
+        if (!isSitePage) addMapLink(fileId);
+        document.dispatchEvent(new CustomEvent('entry-rendered'));
       } else {
       
         // The EAC-CPF namespace used in your document
@@ -332,10 +369,14 @@ function slugifyId(text) {
 
       }
     } catch (error) {
-      console.warn("XML file not found, showing submission form:", error);
-      // Render the form alone as a new article request
-      showContributionForm(fileId, false);
-      addMapLink(fileId);
+      if (isSitePage) {
+        entryContainer.innerHTML = '<p>Sorry, this page couldn\'t be loaded. Please try again later.</p>';
+      } else {
+        console.warn("XML file not found, showing submission form:", error);
+        // Render the form alone as a new article request
+        showContributionForm(fileId, false);
+        addMapLink(fileId);
+      }
     }
   } else {
     // If there is no ?id= parameter in the URL, show a clean form
