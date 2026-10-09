@@ -6,7 +6,7 @@
 - adds a row to the **TEI submissions** tab of the Sheet it's attached to;
 - opens a pull request on `historicalesque/carlton`.
 
-Anyone can read submissions on the review page (`admin/review.html`), and suggest changes to one there. A suggestion becomes a new version of the same pull request and its own row on the **TEI submissions** tab, just below the submission. Editors accept or reject in the Sheet (see *Deciding* below).
+Anyone can read submissions on the review page (`admin/review.html`), and suggest changes to one there. A suggestion becomes a new version of the same pull request, and updates that submission's row on the **TEI submissions** tab. Editors accept or reject in the Sheet (see *Deciding* below).
 
 - **New entry**: the pull request adds `civic/<id>.xml`.
 - **Entry that already exists**: the pull request replaces `civic/<id>.xml` with the new version. Its description warns that merging replaces the current entry, so the editor checks *Files changed* first.
@@ -27,14 +27,11 @@ Each submission is a row on the **TEI submissions** tab. Editors only touch two 
 
 **Review** links to the submission on the review page.
 
-**Suggested changes** are rows on the same tab, just below the submission they change, with **Kind** "Suggested changes". The **Suggested changes** column says who suggested them and what they changed, and **Review** links to that exact version. The submission's own row says how many there are ("Waiting. 1 suggested change (rows below)"). Each row has its own Decision.
-- **Accept** on a suggested-changes row publishes that version instead of the original. Its Records start as the submission's; edit them on that row if needed.
-- **Reject** on a suggested-changes row turns down only that suggestion; the submission stays open.
-- Once one version is published (or the submission is rejected), the other rows for it say so ("Published with suggested changes (below)", "Not used: another version was published", or "Rejected with the submission").
+**Suggested changes** don't add rows. Each one updates the submission's own row: a line in the **Suggested changes** column (who, when and what they changed), the Status says "Waiting. Changed since it was sent", and Version and TEI become the new version's. So there is one row and one decision per submission, and **Accept** publishes the latest version. Earlier versions are still listed on the review page. If the editors prefer an earlier one, they reject the submission and ask for it to be sent again.
 
 The script only acts on pull requests the form opened: open ones, from a `submission/…` branch in this repository, changing one `civic/*.xml` file (and, once its records are being linked, the data files in `_data/`). Anything else gets a "Couldn't publish" status and has to be handled on GitHub.
 
-If the submission was changed after its row was written, Accept publishes the version recorded on the row (the **Version** column).
+If the pull request was changed some other way (on GitHub) after its row was written, Accept publishes the version recorded on the row (the **Version** column).
 
 If something goes wrong, the Status column says what happened, and the Decision cell is cleared so it can be picked again.
 
@@ -74,7 +71,7 @@ Nothing secret goes in this repo. The Sheet's address and the GitHub token stay 
    The trigger runs as you, so editors never see a permissions screen. Running `setUp` again is safe.
 8. **Share the Sheet** (as *Editor*) with each person who should accept or reject submissions.
 
-After editing `Code.gs` later: *Deploy → Manage deployments →* the pencil icon *→ Version: New version → Deploy*. The URL stays the same. If the new version adds columns, tabs or triggers, run `setUp` again. (The version that links records adds the Records column by itself, the next time a submission arrives; running `setUp` adds it straight away.) (The version that put suggested changes on the TEI submissions tab adds a *Suggested changes* column and no longer uses the Reviews tab. Run `setUp` once after updating to it: it also moves any rows left on the Reviews tab across, below their submissions. Then delete the Reviews tab.)
+After editing `Code.gs` later: *Deploy → Manage deployments →* the pencil icon *→ Version: New version → Deploy*. The URL stays the same. If the new version adds columns, tabs or triggers, run `setUp` again. (The version that links records adds the Records column by itself, the next time a submission arrives; running `setUp` adds it straight away.) (The version that stopped using the Reviews tab adds a *Suggested changes* column. Run `setUp` once after updating to it: it also folds any suggestions still waiting on the Reviews tab into their submissions' rows. Then delete the Reviews tab.)
 
 ## Notes
 

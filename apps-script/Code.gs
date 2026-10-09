@@ -16,8 +16,8 @@
  *
  * Anyone can also suggest changes to a submission from the review page
  * ({ action: "review", pr, xml, reviewer, note }). The script commits that
- * version to the same pull request and adds a row for it on the same tab,
- * just below the submission's other rows.
+ * version to the same pull request and updates the submission's row, so
+ * accepting it publishes the latest version.
  *
  * Editors then decide in the Sheet: each row has a Decision dropdown
  * (Accept / Reject). As soon as someone picks one, the script merges or
@@ -41,12 +41,12 @@ const SETTINGS = {
 };
 // The submissions tab's columns, in order. The Sheet is read by header name,
 // so setUp() can add missing columns to a Sheet made by an older version.
-// A suggested change is a row too, with Kind SUGGESTED and who sent it and
-// what they changed in "Suggested changes".
+// "Suggested changes" lists the changes made to a submission since it was
+// sent, one line each: who, when and what.
 const COLUMNS = ['Received', 'Kind', 'Title', 'Type', 'Authors', 'Suggested changes', 'Records', 'Review', 'Decision',
   'Reason (editors only)', 'Status', 'File', 'Pull request', 'Version', 'TEI'];
-const SUGGESTED = 'Suggested changes';
-// The tab suggested changes used to go on; setUp() moves its rows across
+// The tab suggested changes used to go on; setUp() folds its rows into the
+// submissions they change
 const OLD_REVIEWS_TAB = 'Reviews';
 // Shown in Status while a decision is being carried out
 const PENDING = { Accept: 'Publishing…', Reject: 'Rejecting…' };
@@ -193,8 +193,9 @@ function github_(method, path, payload, allow404, allowConflict) {
 
 // A new version of an open submission, sent from the review page. It goes on
 // the same pull request as a new commit; its row records which
-// version it is, so the editors can accept either. The row goes just below
-// the submission's other rows, so they read together.
+// The submission's row then points at it (Version, TEI) and lists it under
+// "Suggested changes", so one row and one decision cover every version, and
+// Accept publishes the latest. Earlier versions stay on the review page.
 function receiveReview_(data, title) {
   const number = Number(data.pr);
   const reviewer = String(data.reviewer || '').trim().slice(0, 100);
@@ -218,13 +219,6 @@ function receiveReview_(data, title) {
       xml = xml.slice(0, last) + xml.slice(last).replace(/(<change\b[^>]*\bwhen=")[^"]*(")/, `$1${today}$2`);
     }
 
-    // The submission's row should record its own version before the branch moves on
-    const subs = tab_('submissions');
-    const subCols = columns_(subs, COLUMNS);
-    rowsFor_(subs, subCols, number).forEach((row) => {
-      if (!subs.getRange(row, subCols['Version']).getValue()) subs.getRange(row, subCols['Version']).setValue(pr.head.sha);
-    });
-
     const current = github_('get', `/contents/${encodePath_(path)}?ref=${encodeURIComponent(pr.head.ref)}`);
     const commit = github_('put', `/contents/${encodePath_(path)}`, {
       message: `Suggested changes by ${reviewer}${note ? `: ${note}` : ''}`,
@@ -233,27 +227,11 @@ function receiveReview_(data, title) {
       branch: pr.head.ref
     }).commit;
 
-    const rows = rowsFor_(subs, subCols, number);
-    const first = rows.find((r) => subs.getRange(r, subCols['Kind']).getValue() !== SUGGESTED) || rows[0];
-    const from = (name) => (first ? subs.getRange(first, subCols[name]).getValue() : '');
-    saveRow_('submissions', {
-      'Received': new Date(),
-      'Kind': SUGGESTED,
-      'Title': title,
-      'Type': from('Type'),
-      'Authors': from('Authors'),
-      'Suggested changes': `By ${reviewer}${note ? `: ${note}` : ''}`,
-      'Records': from('Records'),
-      'Review': reviewLink_(number, commit.sha),
-      'Status': 'Waiting',
-      'File': path,
-      'Pull request': pr.html_url,
-      'Version': commit.sha,
-      'TEI': xml.length > CELL_LIMIT ? xml.slice(0, CELL_LIMIT) + ' …' : xml
-    }, rows[rows.length - 1]);
-
-    // Tell the editors looking at the submission's row
-    if (first) waitingNote_(subs, subCols, first, rows.length);
+    const subs = tab_('submissions');
+    const cols = columns_(subs, COLUMNS);
+    rowsFor_(subs, cols, number).forEach((row) => addChange_(subs, cols, row, {
+      who: reviewer, note, when: new Date(), version: commit.sha, xml
+    }));
     return { status: 'success', version: commit.sha };
   } finally {
     lock.releaseLock();
@@ -306,22 +284,13 @@ function columns_(sheet, list) {
   return map;
 }
 
-// Adds a row at the bottom, or just below row `after` if given
-function saveRow_(key, values, after) {
+function saveRow_(key, values) {
   const sheet = tab_(key);
   const cols = columns_(sheet, TABS[key].columns);
   const row = new Array(sheet.getLastColumn()).fill('');
   Object.keys(values).forEach((name) => { if (cols[name]) row[cols[name] - 1] = values[name]; });
-  let at;
-  if (after && after < sheet.getLastRow()) {
-    sheet.insertRowAfter(after);
-    at = after + 1;
-    sheet.getRange(at, 1, 1, row.length).setValues([row]);
-  } else {
-    sheet.appendRow(row);
-    at = sheet.getLastRow();
-  }
-  sheet.getRange(at, cols['Decision']).setDataValidation(decisionRule_());
+  sheet.appendRow(row);
+  sheet.getRange(sheet.getLastRow(), cols['Decision']).setDataValidation(decisionRule_());
 }
 
 // Row numbers on a tab that belong to one pull request
@@ -336,10 +305,17 @@ function reviewLink_(number, version) {
   return `=HYPERLINK("${SETTINGS.site}/admin/review.html?pr=${number}${version ? `&v=${version}` : ''}", "Open")`;
 }
 
-// "Waiting. 2 suggested changes (rows below)" on a submission's own row
-function waitingNote_(sheet, cols, row, count) {
-  const cell = sheet.getRange(row, cols['Status']);
-  if (/^Waiting/.test(String(cell.getValue()))) cell.setValue(`Waiting. ${count} suggested change${count === 1 ? '' : 's'} (rows below)`);
+// Records one suggested change on a submission's row: a line under
+// "Suggested changes", and Version and TEI become the new version's
+function addChange_(sheet, cols, row, { who, note, when, version, xml }) {
+  const list = sheet.getRange(row, cols['Suggested changes']);
+  const line = `${who} (${Utilities.formatDate(when, SETTINGS.timeZone, 'dd/MM')})${note ? `: ${note}` : ''}`;
+  const lines = String(list.getValue() || '').split('\n').filter(String).concat(line);
+  list.setValue(lines.join('\n'));
+  sheet.getRange(row, cols['Version']).setValue(version);
+  if (xml) sheet.getRange(row, cols['TEI']).setValue(xml.length > CELL_LIMIT ? xml.slice(0, CELL_LIMIT) + ' …' : xml);
+  const status = sheet.getRange(row, cols['Status']);
+  if (/^Waiting/.test(String(status.getValue()))) status.setValue(`Waiting. Changed since it was sent (${lines.length} suggested change${lines.length === 1 ? '' : 's'})`);
 }
 
 function decisionRule_() {
@@ -715,27 +691,21 @@ function isEntryFile_(f) {
   return f.filename.indexOf(`${SETTINGS.folder}/`) === 0 && /\.xml$/.test(f.filename);
 }
 
-// Merges (Accept) or closes (Reject) one submission's pull request. A
-// suggested-changes row is one suggested version: accepting it publishes that
-// version; rejecting it only turns down the suggestion.
+// Merges (Accept) or closes (Reject) one submission's pull request
 function decide_(key, number, decision, version, title, row) {
   const { pr, entry } = submission_(number);
-  const sheet = tab_(key);
-  const cols = columns_(sheet, COLUMNS);
-  const suggested = sheet.getRange(row, cols['Kind']).getValue() === SUGGESTED;
   if (pr.merged_at) return 'Published (already, on GitHub)';
   if (pr.state === 'closed') return 'Rejected (already closed on GitHub)';
   const when = Utilities.formatDate(new Date(), SETTINGS.timeZone, 'dd/MM HH:mm');
 
   if (decision === 'Reject') {
-    if (suggested) return `Rejected ${when}`;
     github_('patch', `/pulls/${number}`, { state: 'closed' });
     deleteBranch_(pr.head.ref);
-    settleOthers_(key, row, number, 'Rejected with the submission');
     return `Rejected ${when}`;
   }
 
-  // Publish exactly the version on this row, even if the branch has moved on since
+  // Publish exactly the version on this row, even if the branch was changed
+  // some other way since (on GitHub)
   let head = pr.head.sha;
   if (version && version !== head) {
     const path = encodePath_(entry.filename);
@@ -755,23 +725,34 @@ function decide_(key, number, decision, version, title, row) {
   const slug = entry.filename.replace(`${SETTINGS.folder}/`, '').replace(/\.xml$/, '');
   const linked = linkRecords_(pr.head.ref, slug, title, recordsFor_(row));
   if (linked.head) head = linked.head;
-  const merge = github_('put', `/pulls/${number}/merge`, {
-    merge_method: 'squash',
-    sha: head,
-    commit_title: `Accept: ${title} (#${number})`,
-    commit_message: `Accepted in the submissions Sheet (${TABS[key].name()}, row ${row}).`
-  }, false, true);
-  if (merge.conflict) throw userError_('the entry changed on the site after this was sent, so it can\'t be published as it is. Ask Mitchell.');
+  // Right after a commit (putting a version back, linking records) GitHub
+  // takes a few seconds to work out that the pull request can be merged,
+  // and refuses until then, so try a few times
+  let merge;
+  for (let tries = 0; tries < 6; tries++) {
+    if (tries) Utilities.sleep(3000);
+    merge = github_('put', `/pulls/${number}/merge`, {
+      merge_method: 'squash',
+      sha: head,
+      commit_title: `Accept: ${title} (#${number})`,
+      commit_message: `Accepted in the submissions Sheet (${TABS[key].name()}, row ${row}).`
+    }, false, true);
+    if (!merge.conflict) break;
+  }
+  if (merge.conflict) {
+    const now = github_('get', `/pulls/${number}`);
+    throw userError_(now.mergeable === false
+      ? 'the entry changed on the site after this was sent, so it can\'t be published as it is. Ask Mitchell.'
+      : 'GitHub wasn\'t ready to publish it yet. Pick Accept again in a minute.');
+  }
   deleteBranch_(pr.head.ref);
-  settleOthers_(key, row, number, suggested ? 'Published with suggested changes (below)' : 'Not used: another version was published');
   return { formula: `=HYPERLINK("${SETTINGS.site}/civic?id=${encodeURIComponent(slug)}", "Published ${when}${linked.note}")` };
 }
 
 /* ---------- Linking records ---------- */
 
 // The record numbers in the accepted row's Records column (editors can
-// change them there before accepting). A suggested change starts with its
-// submission's.
+// change them there before accepting).
 function recordsFor_(row) {
   const sheet = tab_('submissions');
   const cols = columns_(sheet, COLUMNS);
@@ -832,30 +813,10 @@ function linkRecords_(branch, slug, title, numbers) {
   return { head, note };
 }
 
-// After a decision that ends the submission, mark its other rows: the
-// submission's own row gets `submissionStatus`, suggested changes are "not
-// used" (or rejected with it).
-function settleOthers_(key, row, number, submissionStatus) {
-  const sheet = tab_(key);
-  const cols = columns_(sheet, COLUMNS);
-  rowsFor_(sheet, cols, number).forEach((r) => {
-    if (r === row) return;
-    const cell = sheet.getRange(r, cols['Status']);
-    if (FINAL.test(String(cell.getDisplayValue()))) return;
-    // An editor already chose to reject this one: record that
-    if (cell.getDisplayValue() === PENDING.Reject) {
-      cell.setValue(`Rejected ${Utilities.formatDate(new Date(), SETTINGS.timeZone, 'dd/MM HH:mm')}`);
-      return;
-    }
-    const suggested = sheet.getRange(r, cols['Kind']).getValue() === SUGGESTED;
-    cell.setValue(!suggested ? submissionStatus : /^Rejected/.test(submissionStatus) ? 'Rejected with the submission' : 'Not used: another version was published');
-    sheet.getRange(r, cols['Decision']).clearContent();
-  });
-}
-
-// Suggested changes used to go on a separate Reviews tab. Moves any rows
-// still there onto the submissions tab, below their submission, unless
-// they're there already (same Version). The Reviews tab can then be deleted.
+// Suggested changes used to go on a separate Reviews tab. Folds each one
+// still waiting there into the row of the submission it changes, as if it
+// had arrived now: the newest becomes the version Accept publishes. The
+// Reviews tab can then be deleted. Safe to run again.
 function moveOldReviews_() {
   const old = SpreadsheetApp.getActiveSpreadsheet().getSheetByName(OLD_REVIEWS_TAB);
   if (!old || old.getLastRow() < 2) return;
@@ -863,37 +824,21 @@ function moveOldReviews_() {
   const get = (r, name) => (header.indexOf(name) === -1 ? '' : r[header.indexOf(name)]);
   const subs = tab_('submissions');
   const cols = columns_(subs, COLUMNS);
-  old.getRange(2, 1, old.getLastRow() - 1, old.getLastColumn()).getValues().forEach((r) => {
-    const number = prNumber_(get(r, 'Pull request'));
-    const version = get(r, 'Version');
-    if (!number) return;
-    const last = subs.getLastRow();
-    const versions = last < 2 ? [] : subs.getRange(2, cols['Version'], last - 1, 1).getValues().map((v) => v[0]);
-    if (version && versions.includes(version)) return;
-    const rows = rowsFor_(subs, cols, number);
-    const first = rows[0];
-    const from = (name) => (first ? subs.getRange(first, cols[name]).getValue() : '');
-    const who = get(r, 'Suggested by'), what = get(r, 'What changed');
-    saveRow_('submissions', {
-      'Received': get(r, 'Received'),
-      'Kind': SUGGESTED,
-      'Title': get(r, 'Changes to'),
-      'Type': from('Type'),
-      'Authors': from('Authors'),
-      'Suggested changes': `By ${who}${what ? `: ${what}` : ''}`,
-      'Records': from('Records'),
-      'Review': reviewLink_(number, version),
-      // A decision still pending there is picked again here
-      'Decision': FINAL.test(String(get(r, 'Status'))) ? get(r, 'Decision') : '',
-      'Reason (editors only)': get(r, 'Reason (editors only)'),
-      'Status': FINAL.test(String(get(r, 'Status'))) ? get(r, 'Status') : 'Waiting',
-      'File': from('File'),
-      'Pull request': get(r, 'Pull request'),
-      'Version': version,
-      'TEI': get(r, 'TEI')
-    }, rows[rows.length - 1]);
-    if (first) waitingNote_(subs, cols, first, rows.length);
-  });
+  old.getRange(2, 1, old.getLastRow() - 1, old.getLastColumn()).getValues()
+    .filter((r) => prNumber_(get(r, 'Pull request')) && !FINAL.test(String(get(r, 'Status'))))
+    .sort((a, b) => new Date(get(a, 'Received')) - new Date(get(b, 'Received')))
+    .forEach((r) => {
+      const version = get(r, 'Version');
+      rowsFor_(subs, cols, prNumber_(get(r, 'Pull request'))).forEach((row) => {
+        if (FINAL.test(subs.getRange(row, cols['Status']).getDisplayValue())) return;
+        if (String(subs.getRange(row, cols['Suggested changes']).getValue()).indexOf(`[${String(version).slice(0, 7)}]`) !== -1) return;
+        addChange_(subs, cols, row, {
+          who: get(r, 'Suggested by'),
+          note: `${get(r, 'What changed') || ''} [${String(version).slice(0, 7)}]`.trim(),
+          when: new Date(get(r, 'Received') || Date.now()), version, xml: get(r, 'TEI')
+        });
+      });
+    });
 }
 
 function deleteBranch_(ref) {

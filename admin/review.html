@@ -321,17 +321,17 @@ async function renderPrDetail(prNumber, version, sent) {
     <h2 style="font-family: var(--serif); font-weight: 500; margin-bottom: 4px;">${escapeHtml(entryTitle(pr))}${badge(xmlFiles)}</h2>
     <p class="meta" style="color: var(--ink-soft); margin-top: 0;">${sentLine(pr)}</p>
     ${versionLine}
-    ${sent ? `<div class="notice ok"><p><strong>Thank you, your changes have been sent.</strong> This is your version. The editors see it next to the original and decide which to publish.</p></div>` : ""}
+    ${sent ? `<div class="notice ok"><p><strong>Thank you, your changes have been sent.</strong> This is now the version the editors will decide on. Earlier versions are still listed here.</p></div>` : ""}
     ${closed ? `<div class="notice"><p>${closed}</p></div>` : ""}
     <div id="files"></div>
     ${open ? `
     <section class="suggest">
       <button class="btn primary" id="suggestBtn">Suggest changes</button>
-      <p>Spotted a mistake, or know more? Change this version in the contribution form and send it. The editors see your version next to this one.</p>
+      <p>Spotted a mistake, or know more? Change this version in the contribution form and send it. Your version then becomes the one the editors decide on; this one stays listed here.</p>
     </section>
     <section class="decided-in-sheet">
       <h3>Accepting or rejecting</h3>
-      <p>The editors decide in the team's submissions spreadsheet: find this entry's row and pick <strong>Accept</strong> or <strong>Reject</strong> in the <strong>Decision</strong> column. Suggested changes have their own rows just below it, marked <strong>Suggested changes</strong>, and accepting one publishes that version instead. It happens straight away, and the entry appears on the site a minute or two after that.</p>
+      <p>The editors decide in the team's submissions spreadsheet: find this entry's row and pick <strong>Accept</strong> or <strong>Reject</strong> in the <strong>Decision</strong> column. Suggested changes update that same row (they're listed in its <strong>Suggested changes</strong> column), and Accept publishes the latest version. It happens straight away, and the entry appears on the site a minute or two after that.</p>
     </section>` : ""}
   `;
   document.getElementById("back").onclick = () => go({});
