@@ -39,7 +39,7 @@ Common Ground is a static website hosted on **GitHub Pages** and built with **Je
 
 - **Encyclopedia entries** are XML files in `civic/`. The browser fetches them and renders them on the fly. Existing entries are [EAC-CPF](https://eac.staatsbibliothek-berlin.de/); entries are moving to [TEI](https://tei-c.org/guidelines/p5/) (roadmap §4), and entry pages show both.
 - **Historical directory data** (Sands & McDougall directories and electoral rolls) is one JSON file per source and year in `_data/`. Jekyll publishes compact copies in `data/` plus an index, and each page loads only the files it needs through `scripts/data.js`.
-- **Public contributions** go through a Google Apps Script web app. The form builds each entry as TEI and sends it to the script in `apps-script/Code.gs`, which saves a copy to a Google Sheet in the team's shared Google Drive folder, then opens a pull request on this repository. The form only sends once `contribution_endpoint` is set in `_config.yml` (setup: `apps-script/README.md`). The sheet is a user-friendly backup while the submission process is being settled. The editorial team then picks *Accept* or *Reject* in the Sheet's Decision column, and the script merges or closes the pull request a minute later.
+- **Public contributions** go through a Google Apps Script web app. The form builds each entry as TEI and sends it to the script in `apps-script/Code.gs`, which saves a copy to a Google Sheet in the team's shared Google Drive folder, then opens a pull request on this repository. The form only sends once `contribution_endpoint` is set in `_config.yml` (setup: `apps-script/README.md`). The sheet is a user-friendly backup while the submission process is being settled. The editorial team then picks *Accept* or *Reject* in the Sheet's Decision column, and the script merges or closes the pull request straight away.
 
 The project is deliberately a **perpetual work in progress**. Gaps in the data and entries that don't exist yet are invitations for the community to contribute, not defects.
 
@@ -65,7 +65,7 @@ Nothing is published until a pull request is merged into `main`. GitHub Pages re
  Anyone ────▶ admin/ ▶ review.html ── lists open PRs touching civic/, previews them,
                                        before/after table for new versions of entries
  Editor ─────▶ Google Sheet: Decision column (Accept / Reject)
-                                                         │  a minute later (apps-script/Code.gs)
+                                                         │  straight away (apps-script/Code.gs)
                                                          ▼
                                        merge the PR (accept)  /  close the PR (reject)
 ```
@@ -229,11 +229,11 @@ Use `admin/carlton-data-editor.html`. It loads the live data and lets you search
 1. Open **`admin/review.html`** (or the [Admin page](https://historicalesque.github.io/carlton/admin/), then *Review submissions*). It lists open pull requests that add or change files in `civic/`. Anyone can read it; no sign-in is needed.
 2. Pick a submission to see a preview of the entry as it would appear on the site. If someone has suggested changes, the page lists every version and shows what each one changes. Anyone can press **Suggest changes** to fix a submission in the contribution form; that makes a new version, and the original stays as it was. If it is a new version of an entry that's already on the site, a **What changes** table shows the current entry next to the new version. Anything the new version leaves out is marked, because accepting replaces the whole entry.
 3. Decide in the team's submissions spreadsheet (the Sheet the Apps Script is attached to). Each submission is a row with a link back to the review page. In the **Decision** column, pick:
-   - **Accept** to publish it. The Status column says "Publishing in about a minute". Then the script merges the pull request and the Status column says "Published".
+   - **Accept** to publish it. The script merges the pull request straight away and the Status column says "Published".
    - **Reject** to turn it down. The script closes the pull request. The *Reason* column is optional and stays in the Sheet.
-   - Suggested changes are rows on the **Reviews** tab, with their own Decision column. Accepting one publishes that version instead of the original. Rejecting one turns down only that suggestion.
+   - Suggested changes are rows on the same tab, just below the submission, marked *Suggested changes* in the Kind column, each with its own Decision. Accepting one publishes that version instead of the original. Rejecting one turns down only that suggestion.
    - The **Records** column lists the directory and electoral-roll records the entry is about. Accepting links them to the entry (their `entityID` becomes the entry's id) in the same pull request. Edit the numbers before accepting if they're wrong; the Status column says how many were linked.
-4. Picked the wrong one? Clear the Decision cell within the minute to cancel.
+4. A decision happens as soon as it's picked and can't be undone from the Sheet, so check first.
 5. The site updates a minute or two after a submission is published.
 
 Only people the Sheet is shared with (as editors) can decide. The review page explains this in plain language. If you change the workflow, update both that page and this section. Setup and details: `apps-script/README.md`.
@@ -315,9 +315,9 @@ Goal: editors never need to touch GitHub directly. Done in small, fundable steps
 **Entries and submissions**
 
 - [x] Clearer review page: three numbered steps and two buttons, links back to Admin and the site, and the preview shows just the article (#50).
-- [x] **Accept/Reject without GitHub**: editors pick Accept or Reject in a Decision column in the submissions Sheet, with an optional reason kept in the Sheet. The Apps Script merges or closes the pull request a minute later. The review page is open to everyone (#14).
+- [x] **Accept/Reject without GitHub**: editors pick Accept or Reject in a Decision column in the submissions Sheet, with an optional reason kept in the Sheet. The Apps Script merges or closes the pull request straight away (it first waited a minute, so a mis-tap could be cancelled; dropped because it added to the wait for the site to rebuild). The review page is open to everyone (#14).
 - [x] **Before/after table** on the review page for new versions of existing entries (`scripts/tei-compare.js`) (#14).
-- [x] **Suggest changes** on the review page: anyone can open a submission in the contribution form (filled in by `TEIEntry.parse()`), fix it and send it back as a new version of the same pull request. Each suggestion is a row on the Sheet's *Reviews* tab with its own Decision column, and the review page shows every version and what each changes (#15).
+- [x] **Suggest changes** on the review page: anyone can open a submission in the contribution form (filled in by `TEIEntry.parse()`), fix it and send it back as a new version of the same pull request. Each suggestion is a row on the Sheet's *TEI submissions* tab, just below its submission, with its own Decision (#15; moved off the separate *Reviews* tab later), and the review page shows every version and what each changes.
 - [x] **Link a new entry's records to it when it's accepted**: a new entry can be about several records, e.g. one hotel's listings in several Sands & McDougall directories. The form lists the records the entry was started from (each can be unticked), and *Is this entry about other records too?* finds and adds more. The numbered ones go in the Sheet's *Records* column. When an editor accepts the entry, `apps-script/Code.gs` changes those records' `entityID`s in `_data/` to the entry's id in the same pull request, so search, the maps and the entry page link them to the entry. The id is the entry's title (e.g. `"Spiers shop"` for `civic/Spiers-shop.xml`), or the id the entry's records already share. Records that already have a text `entityID` are left alone. A new entry can't take a title whose file name is already used by an entry or by linked records.
 
 **Directory/map data**
