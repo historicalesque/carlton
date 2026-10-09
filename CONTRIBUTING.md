@@ -43,7 +43,7 @@ Entries are TEI files. The format is described in [docs/SCHEMA.md](docs/SCHEMA.m
 - Check the file is well-formed (`xmllint --noout civic/My-Entry.xml`) and, if you can, valid against `schema/carlton.rng` (Oxygen, or `jing schema/carlton.rng civic/My-Entry.xml`).
 - To list a new entry under Featured pages, add a link to `aToZ.md` by hand.
 
-The easiest way to write a new entry is the site's form: fill it in, use *Download XML*, and start from that file.
+The easiest way to write a new entry is the site's form: fill it in, press *Preview*, copy the XML from *Show the TEI XML*, and start from that.
 
 ## Records (`_data/`)
 

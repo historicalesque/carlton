@@ -105,7 +105,7 @@ function slugifyId(text) {
     const box = document.createElement('details');
     box.className = 'page-suggest';
     box.innerHTML = `<summary>Suggest an edit to this page</summary>
-      <p>Changes to this page are read by the editorial team before they appear.</p>`;
+      <p>Suggested changes to this page are reviewed by the editorial team.</p>`;
     box.addEventListener('toggle', () => {
       if (!box.open || box.querySelector('iframe')) return;
       const frame = document.createElement('iframe');

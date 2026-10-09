@@ -96,6 +96,8 @@
 
     /* --- Finding other records the entry is about --- */
     .record-finder { margin: -12px 0 24px; font-size: 14px; }
+    /* Nothing above it (e.g. site pages): don't pull it up out of the frame */
+    #details-container:empty + .record-finder { margin-top: 0; }
     .record-finder summary { cursor: pointer; color: var(--moss-deep); }
     .record-finder .finder-body { padding: 10px 0 0; }
     .finder-status { font-size: 13px; color: var(--ink-faint); margin: 6px 0; }
@@ -304,8 +306,6 @@
     button.primary:disabled, button.primary:disabled:hover { background: var(--moss); opacity: 0.45; cursor: not-allowed; }
     button.small { font-size: 13px; padding: 6px 12px; }
     /* A quiet extra for editors, styled as a link so the public isn't distracted */
-    button.text-link { background: none; border: none; padding: 0; font: inherit; font-size: 13px; color: var(--ink-faint); text-decoration: underline; cursor: pointer; }
-    button.text-link:hover { color: var(--moss-deep); }
     .actions { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
     .actions .note { font-size: 13px; color: var(--ink-faint); }
     .hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
@@ -313,7 +313,7 @@
     .send-status.ok { border-left-color: var(--moss); background: var(--sage-light); color: var(--moss-deep); }
     .send-status.error { border-left-color: #8a2c1d; background: #f6e4dc; color: #8a2c1d; }
     @media (max-width: 480px) {
-      .actions button:not(.text-link) { width: 100%; }
+      .actions button { width: 100%; }
     }
 
     /* --- Preview --- */
@@ -347,7 +347,7 @@
 {%- comment %} An empty string is truthy in Liquid; default turns it into false {% endcomment %}
 {%- assign connected = site.contribution_endpoint | default: false %}
 {%- unless connected %}
-  <p class="test-note"><strong>Not connected yet.</strong> This new form doesn't send anything: use <em>Preview</em> to see how the entry would look, or download the XML.</p>
+  <p class="test-note"><strong>Not connected yet.</strong> This new form doesn't send anything: use <em>Preview</em> to see how the entry would look and its XML.</p>
 {%- endunless %}
 
   <div id="details-container"></div>
@@ -501,7 +501,6 @@
 {%- else %}
       <button type="button" class="primary" id="previewBtn">Preview</button>
 {%- endif %}
-      <button type="button" class="text-link" id="downloadBtn">Download XML <span>(advanced)</span></button>
 {%- unless connected %}
       <span class="note">Nothing is sent until the form is connected.</span>
 {%- endunless %}
@@ -696,7 +695,7 @@
   }
   $('showAll').addEventListener('change', (e) => setShowAll(e.target.checked));
 
-  /* ---------- Section counts ("2 added") ---------- */
+  /* ---------- Section markers ("Prefilled", "Added") ---------- */
   function updateCounts() {
     form.querySelectorAll('details.section').forEach((d) => {
       let n = 0;
@@ -707,8 +706,16 @@
         n = [...d.querySelectorAll('input[type="text"]')].some((i) => i.value.trim()) ? 1 : 0;
       }
       if (d.dataset.section === 'names' && ($('surname').value.trim() || $('forenames').value.trim())) n = Math.max(n, 1);
-      d.querySelector('.sum-count').textContent = n ? (rows.length ? `${n} added` : 'Added') : '';
+      d.querySelector('.sum-count').textContent = n ? (d.dataset.prefilled ? 'Prefilled' : 'Added') : '';
     });
+  }
+  // Sections with something in them once the form has been filled in for the
+  // reader say "Prefilled"; ones they fill in themselves say "Added"
+  function markPrefilled() {
+    form.querySelectorAll('details.section').forEach((d) => {
+      if (d.querySelector('.sum-count').textContent) d.dataset.prefilled = 'true';
+    });
+    updateCounts();
   }
 
   /* ---------- Directory records (as in the old form), with "Use this address" ---------- */
@@ -850,6 +857,7 @@
     if (found.occupations.length) setRows('occupations', found.occupations);
     prefillNote('We’ve filled in some of the form from these records. Please check it, and change anything that’s wrong.');
     changed();
+    markPrefilled();
   }
 
   /* ---------- Entries already on the site: start from the article ---------- */
@@ -889,10 +897,10 @@
     fillRows('authors', entry.authors.map((name) => ({ name })));
     reviewOriginal = xml;
     checkRoundTrip();
-    prefillNote(found
-      ? 'We’ve filled in the form from the current entry and these records. Where they disagree, we’ve kept what the entry says. Please check it, and change anything that’s wrong.'
-      : 'We’ve filled in the form from the current entry. Change or add anything you like.');
+    // Filled from the entry alone needs no note: the reader sees it's filled in
+    if (found) prefillNote('We’ve filled in the form from the current entry and these records. Where they disagree, we’ve kept what the entry says. Please check it, and change anything that’s wrong.');
     changed();
+    markPrefilled();
   }
 
   /* ---------- Records this entry is about ---------- */
@@ -1149,14 +1157,6 @@
     showPreview();
     $('preview').scrollIntoView({ behavior: 'smooth', block: 'start' });
   });
-  $('downloadBtn').addEventListener('click', () => {
-    const xml = showPreview();
-    const a = document.createElement('a');
-    a.href = URL.createObjectURL(new Blob([xml], { type: 'application/xml' }));
-    a.download = `${collect().recordId || 'entry'}.xml`;
-    a.click();
-    setTimeout(() => URL.revokeObjectURL(a.href), 1000);
-  });
 
   /* ---------- Send (when _config.yml has contribution_endpoint) ---------- */
   // The Apps Script in apps-script/Code.gs receives this, sets the file
@@ -1202,7 +1202,7 @@
       $('sendBtn').textContent = 'Sent';
     } catch (err) {
       $('sendBtn').disabled = false;
-      sendStatus(`Sorry, it didn't send: ${err.message} You can use Download XML to keep a copy.`, 'error');
+      sendStatus(`Sorry, it didn't send: ${err.message} Please try again in a moment.`, 'error');
     }
   });
 
@@ -1313,7 +1313,7 @@
       if (window.parent !== window) window.parent.postMessage({ type: 'review-sent', version: result.version || '' }, window.location.origin);
     } catch (err) {
       $('sendBtn').disabled = false;
-      sendStatus(`Sorry, it didn't send: ${err.message} You can use Download XML to keep a copy.`, 'error');
+      sendStatus(`Sorry, it didn't send: ${err.message} Please try again in a moment.`, 'error');
     }
   }
 
@@ -1328,6 +1328,7 @@
       .then((xml) => {
         reviewOriginal = xml;
         fillForm(TEIEntry.parse(xml));
+        markPrefilled();
         checkRoundTrip();
       })
       .catch((err) => {
