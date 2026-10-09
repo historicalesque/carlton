@@ -132,7 +132,7 @@ Jekyll publishes compact copies in `data/` and a list of the files in `data/inde
 | `lat`, `lng` | number or `null` | some | Coordinates. About 1,450 records have them; only these appear on the map. |
 | `Occupation`, `Notes` | string | electoral rolls, some directory | |
 | `Surname`, `Given Names`, `Gender` | string | electoral rolls | |
-| `Registration Number` | number | electoral rolls | |
+| `Registration Number` | number | electoral rolls | Kept in the data but never searched or shown at the start of a listing. |
 | `Address` | string | electoral rolls | As printed, e.g. `"29 Barkly Place"`. |
 | `Street Number` | string or number | electoral rolls | |
 
@@ -145,7 +145,7 @@ Directory example:
 Electoral-roll example:
 
 ```json
-{"entityID":1001209,"source":"Electoral roll","type":"Voter","year":1919,"listing":"Registration Number:1260, Clara Larkin, 29 Barkly Place, home duties, F","Registration Number":1260,"Surname":"Larkin","Given Names":"Clara","Address":"29 Barkly Place","Street Number":"29","street":"Barkly Place","cardinality":"North","Occupation":"home duties","Gender":"F","Notes":"…","lat":-37.8029738,"lng":144.9613147}
+{"entityID":1001209,"source":"Electoral roll","type":"Voter","year":1919,"listing":"Clara Larkin, 29 Barkly Place, home duties, F","Registration Number":1260,"Surname":"Larkin","Given Names":"Clara","Address":"29 Barkly Place","Street Number":"29","street":"Barkly Place","cardinality":"North","Occupation":"home duties","Gender":"F","Notes":"…","lat":-37.8029738,"lng":144.9613147}
 ```
 
 ### `entityID`
