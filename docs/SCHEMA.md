@@ -89,7 +89,7 @@ ISO values in `@when`, `@from` and `@to`; a year (`1856`) or year and month (`18
 
 - `civic/Corkman-Hotel.xml`: an `org` with a long article, headings and a table.
 - `civic/Sands-McDougall-Directory-1905.xml`: a `topic` source page with a source and a `part-of` relation.
-- Run any entry through the form's *Show all fields* switch and *Download XML* to see every optional part filled in.
+- Run any entry through the form's *Show all fields* switch and *Preview* (*Show the TEI XML*) to see every optional part filled in.
 
 ### Checking an entry
 
