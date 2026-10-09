@@ -17,18 +17,12 @@
     </fileDesc>
     <revisionDesc status="draft">
       <change when="2026-10-10" type="created">Contributed through the contribution form by Mitchell Harrop.</change>
-      <change when="2026-10-10" type="revised">Changes suggested by Andrew May: Added two references.</change>
     </revisionDesc>
   </teiHeader>
   <text>
     <body>
       <p>"From 1941 to 1943, Wilfred Prest (1907–1985), the newly appointed professor of economics in the Faculty of Commerce at the University of Melbourne, undertook a survey of living conditions throughout the suburbs of Melbourne. Prest’s team of female interviewers went door to door across approximately 6,500 Melbourne addresses, recording information about the residents’ ages, occupations and wages, noting details of living costs and nutrition, and observing the size and condition of the home."</p>
       <p><ref target="https://library.unimelb.edu.au/asc/teaching-and-learning/objects/University-of-Melbourne-Social-Survey">https://library.unimelb.edu.au/asc/teaching-and-learning/objects/University-of-Melbourne-Social-Survey</ref></p>
-      <div>
-        <head>References</head>
-        <p>Katrina Dean &amp; Shirin Heinrich, ‘Wartime census: The University of Melbourne Social Survey’, UMA Bulletin, no. 31, July 2012, pp. 1–2.</p>
-        <p>Ellen Warne, Shurlee Swain, Patricia Grimshaw &amp; John Lack, ‘Women in conversation: A wartime social survey in Melbourne, Australia, 1941–43’, Women’s History Review, vol. 12, no. 4, December 2003, pp. 527–46.</p>
-      </div>
     </body>
   </text>
 </TEI>
