@@ -20,7 +20,7 @@
  * just below the submission's other rows.
  *
  * Editors then decide in the Sheet: each row has a Decision dropdown
- * (Accept / Reject). A minute after someone picks one, the script merges or
+ * (Accept / Reject). As soon as someone picks one, the script merges or
  * closes that pull request (see "Decisions" below), so editors never need
  * GitHub.
  *
@@ -37,9 +37,7 @@ const SETTINGS = {
   dataName: 'Data changes',
   maxBytes: 500 * 1024,
   maxPerHour: 20,
-  timeZone: 'Australia/Melbourne',
-  // How long a decision waits before it runs, so a mis-tap can be undone
-  graceMs: 60 * 1000
+  timeZone: 'Australia/Melbourne'
 };
 // The submissions tab's columns, in order. The Sheet is read by header name,
 // so setUp() can add missing columns to a Sheet made by an older version.
@@ -50,7 +48,8 @@ const COLUMNS = ['Received', 'Kind', 'Title', 'Type', 'Authors', 'Suggested chan
 const SUGGESTED = 'Suggested changes';
 // The tab suggested changes used to go on; setUp() moves its rows across
 const OLD_REVIEWS_TAB = 'Reviews';
-const PENDING = { Accept: 'Publishing in about a minute. Clear Decision to cancel.', Reject: 'Rejecting in about a minute. Clear Decision to cancel.' };
+// Shown in Status while a decision is being carried out
+const PENDING = { Accept: 'Publishing…', Reject: 'Rejecting…' };
 const TEI_NS = 'http://www.tei-c.org/ns/1.0';
 // A Sheet cell holds 50,000 characters; the pull request keeps the full copy
 const CELL_LIMIT = 49000;
@@ -347,7 +346,7 @@ function decisionRule_() {
   return SpreadsheetApp.newDataValidation()
     .requireValueInList(['Accept', 'Reject'], true)
     .setAllowInvalid(false)
-    .setHelpText('Accept publishes this version on the site. Reject turns it down. Either runs a minute later; clear the cell before then to cancel.')
+    .setHelpText('Accept publishes this version on the site. Reject turns it down. Either happens straight away and can\'t be undone here.')
     .build();
 }
 
@@ -525,7 +524,7 @@ function commitData_(branch, byFile, atAccept, create) {
   return { head: commit.sha, files };
 }
 
-// Accept or Reject on the Data changes tab (called by processDecisions)
+// Accept or Reject on the Data changes tab (called by decideRow_)
 function decideData_(key, number, decision, version, title, row) {
   const pr = github_('get', `/pulls/${number}`, null, true);
   if (!pr) throw userError_('the pull request was not found.');
@@ -612,54 +611,69 @@ function setUp() {
 }
 
 const FINAL = /^(Published|Rejected|Not used)/;
-const dueKey_ = (key, number, version) => `due-${key}-${number}-${version || 'latest'}`;
 
 // Runs on every edit of the Sheet. Only changes to a Decision column do
-// anything: they mark the row as waiting a minute, and schedule a run.
+// anything: the script carries the decision out straight away (merging or
+// closing the pull request) and writes the outcome in Status.
 function onDecision(e) {
   const sheet = e.range.getSheet();
   const key = tabKeyOf_(sheet);
   if (!key) return;
   const cols = columns_(sheet, TABS[key].columns);
   if (e.range.getColumn() > cols['Decision'] || e.range.getLastColumn() < cols['Decision']) return;
+  const first = Math.max(e.range.getRow(), 2), last = e.range.getLastRow();
 
   const lock = LockService.getScriptLock();
-  lock.waitLock(30000);
-  try {
-    const props = PropertiesService.getScriptProperties();
-    let scheduled = false;
-    for (let row = Math.max(e.range.getRow(), 2); row <= e.range.getLastRow(); row++) {
-      const decision = sheet.getRange(row, cols['Decision']).getValue();
-      const statusCell = sheet.getRange(row, cols['Status']);
-      const status = String(statusCell.getDisplayValue());
-      const number = prNumber_(sheet.getRange(row, cols['Pull request']).getValue());
-      const version = sheet.getRange(row, cols['Version']).getValue();
-      if (!number) continue;
-      // Already decided: put the decision back to match what happened
-      if (FINAL.test(status)) {
-        // (only this row's own outcome; "Published with suggested changes" etc. leave it blank)
-        const own = /^Published( \d|\s*\()/.test(status) ? 'Accept' : /^Rejected( \d|\s*\()/.test(status) ? 'Reject' : '';
-        sheet.getRange(row, cols['Decision']).setValue(own);
-        continue;
-      }
-      if (PENDING[decision]) {
-        statusCell.setValue(PENDING[decision]);
-        props.setProperty(dueKey_(key, number, version), String(Date.now() + SETTINGS.graceMs));
-        scheduled = true;
-      } else {
-        props.deleteProperty(dueKey_(key, number, version));
-        if (Object.values(PENDING).includes(status)) statusCell.setValue('Waiting');
-      }
+  if (!lock.tryLock(60000)) {
+    // Another decision is still running: say so, so the editor can pick again
+    for (let row = first; row <= last; row++) {
+      if (!PENDING[sheet.getRange(row, cols['Decision']).getValue()]) continue;
+      if (FINAL.test(sheet.getRange(row, cols['Status']).getDisplayValue())) continue;
+      sheet.getRange(row, cols['Status']).setValue('Busy with another decision. Pick again.');
+      sheet.getRange(row, cols['Decision']).clearContent();
     }
-    if (scheduled) schedule_(SETTINGS.graceMs + 5000);
+    return;
+  }
+  try {
+    for (let row = first; row <= last; row++) decideRow_(sheet, key, cols, row);
   } finally {
     lock.releaseLock();
   }
 }
 
-// Runs a minute after a decision (a one-off timer set by onDecision). Carries
-// out every decision whose minute is up, on every tab, then sets a new timer
-// for any that are still waiting.
+// Carries out the Decision on one row (the caller holds the script lock)
+function decideRow_(sheet, key, cols, row) {
+  const decision = sheet.getRange(row, cols['Decision']).getValue();
+  const cell = sheet.getRange(row, cols['Status']);
+  const status = String(cell.getDisplayValue());
+  const number = prNumber_(sheet.getRange(row, cols['Pull request']).getValue());
+  if (!number) return;
+  // Already decided: put the decision back to match what happened
+  if (FINAL.test(status)) {
+    // (only this row's own outcome; "Published with suggested changes" etc. leave it blank)
+    const own = /^Published( \d|\s*\()/.test(status) ? 'Accept' : /^Rejected( \d|\s*\()/.test(status) ? 'Reject' : '';
+    sheet.getRange(row, cols['Decision']).setValue(own);
+    return;
+  }
+  if (!PENDING[decision]) return;
+  cell.setValue(PENDING[decision]);
+  SpreadsheetApp.flush();
+  const version = sheet.getRange(row, cols['Version']).getValue();
+  const title = sheet.getRange(row, cols['Title']).getValue();
+  let outcome;
+  try {
+    outcome = (key === 'data' ? decideData_ : decide_)(key, number, decision, version, title, row);
+  } catch (err) {
+    console.error(err);
+    outcome = `Couldn't ${decision === 'Accept' ? 'publish' : 'reject'}: ${err.userMessage || 'something went wrong. Pick again to retry, or ask Mitchell.'}`;
+    sheet.getRange(row, cols['Decision']).clearContent();
+  }
+  if (outcome.formula) cell.setFormula(outcome.formula); else cell.setValue(outcome);
+}
+
+// Earlier versions waited a minute before acting and left a timer to call
+// this. It now carries out any decision still showing as in progress, and
+// removes that timer.
 function processDecisions() {
   const lock = LockService.getScriptLock();
   lock.waitLock(30000);
@@ -667,44 +681,17 @@ function processDecisions() {
     ScriptApp.getProjectTriggers()
       .filter((t) => t.getHandlerFunction() === 'processDecisions')
       .forEach((t) => ScriptApp.deleteTrigger(t));
-    const props = PropertiesService.getScriptProperties();
-    let nextDue = Infinity;
     Object.keys(TABS).forEach((key) => {
       const sheet = tab_(key);
       const cols = columns_(sheet, TABS[key].columns);
-      const last = sheet.getLastRow();
-      for (let row = 2; row <= last; row++) {
-        const r = sheet.getRange(row, 1, 1, sheet.getLastColumn()).getValues()[0];
-        const decision = r[cols['Decision'] - 1];
-        // Read fresh each time: an earlier decision may have settled this row
-        if (!PENDING[decision] || sheet.getRange(row, cols['Status']).getDisplayValue() !== PENDING[decision]) continue;
-        const number = prNumber_(r[cols['Pull request'] - 1]);
-        const version = r[cols['Version'] - 1];
-        const due = Number(props.getProperty(dueKey_(key, number, version)) || 0);
-        if (due > Date.now()) { nextDue = Math.min(nextDue, due); continue; }
-        const title = r[cols['Title'] - 1];
-        let status;
-        try {
-          status = (key === 'data' ? decideData_ : decide_)(key, number, decision, version, title, row);
-        } catch (err) {
-          console.error(err);
-          status = `Couldn't ${decision === 'Accept' ? 'publish' : 'reject'}: ${err.userMessage || 'something went wrong. Pick again to retry, or ask Mitchell.'}`;
-          sheet.getRange(row, cols['Decision']).clearContent();
-        }
-        props.deleteProperty(dueKey_(key, number, version));
-        const cell = sheet.getRange(row, cols['Status']);
-        if (status.formula) cell.setFormula(status.formula); else cell.setValue(status);
+      for (let row = 2; row <= sheet.getLastRow(); row++) {
+        const status = sheet.getRange(row, cols['Status']).getDisplayValue();
+        if (/^(Publishing|Rejecting)\b/.test(status)) decideRow_(sheet, key, cols, row);
       }
     });
-    if (nextDue !== Infinity) schedule_(nextDue - Date.now() + 5000);
   } finally {
     lock.releaseLock();
   }
-}
-
-function schedule_(ms) {
-  const already = ScriptApp.getProjectTriggers().some((t) => t.getHandlerFunction() === 'processDecisions');
-  if (!already) ScriptApp.newTrigger('processDecisions').timeBased().after(Math.max(ms, 60000)).create();
 }
 
 // A pull request the form opened: open or not, from a submission/ branch in
@@ -849,7 +836,6 @@ function linkRecords_(branch, slug, title, numbers) {
 // submission's own row gets `submissionStatus`, suggested changes are "not
 // used" (or rejected with it).
 function settleOthers_(key, row, number, submissionStatus) {
-  const props = PropertiesService.getScriptProperties();
   const sheet = tab_(key);
   const cols = columns_(sheet, COLUMNS);
   rowsFor_(sheet, cols, number).forEach((r) => {
@@ -859,13 +845,11 @@ function settleOthers_(key, row, number, submissionStatus) {
     // An editor already chose to reject this one: record that
     if (cell.getDisplayValue() === PENDING.Reject) {
       cell.setValue(`Rejected ${Utilities.formatDate(new Date(), SETTINGS.timeZone, 'dd/MM HH:mm')}`);
-      props.deleteProperty(dueKey_(key, number, sheet.getRange(r, cols['Version']).getValue()));
       return;
     }
     const suggested = sheet.getRange(r, cols['Kind']).getValue() === SUGGESTED;
     cell.setValue(!suggested ? submissionStatus : /^Rejected/.test(submissionStatus) ? 'Rejected with the submission' : 'Not used: another version was published');
     sheet.getRange(r, cols['Decision']).clearContent();
-    props.deleteProperty(dueKey_(key, number, sheet.getRange(r, cols['Version']).getValue()));
   });
 }
 

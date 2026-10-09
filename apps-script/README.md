@@ -19,9 +19,8 @@ The copy in the repo is the master copy. After changing it, paste it into the sc
 Each submission is a row on the **TEI submissions** tab. Editors only touch two columns:
 
 - **Decision**: pick *Accept* or *Reject*.
-  - The **Status** column changes to "Publishing (or Rejecting) in about a minute. Clear Decision to cancel."
-  - About a minute later, the script merges the pull request (Accept) or closes it (Reject), deletes its branch, and writes "Published" (a link to the entry) or "Rejected" with the time.
-  - Clearing the cell before then cancels.
+  - The script acts straight away: the **Status** column says "Publishing…" (or "Rejecting…") for a few seconds while it merges the pull request (Accept) or closes it (Reject) and deletes its branch, then "Published" (a link to the entry) or "Rejected" with the time.
+  - This can't be undone from the Sheet, so check before picking. The site itself then takes a minute or two to rebuild after a Publish.
 - **Reason (editors only)**: optional. It stays in the Sheet and is never posted anywhere.
 
 **Records** lists the records the entry is about, e.g. `1331, 2369`. On Accept, the script changes each one's `entityID` in `_data/` to the entry's id, in the same pull request just before merging it, so the entry and its links are published together. The id is the entry's title (or, if the title has since changed so it no longer gives the entry's file name, the file name), unless the site already has records linked under a name that gives that file name (e.g. `Corkman Hotel`), which is used instead. Records that already have a text id, or that can't be found, are left alone and listed in the Status ("2 records linked, not linked: 1234"). The editors can change the numbers before accepting. A suggested change starts with its submission's Records.
