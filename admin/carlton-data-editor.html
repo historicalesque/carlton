@@ -1313,7 +1313,7 @@ function recordMatchesSearch(r, term){
   if(!term) return true;
   const hay = [
     r.entityID, r.source, r.year, r.street, r.type, r.cardinality, r.listing,
-    r.Surname, r['Given Names'], r.Address, r.Occupation, r.pages
+    r.Surname, r['Given Names'], r.Address, r.Occupation, r.pages, r['Registration Number']
   ].filter(v => v !== undefined && v !== null).join(' ').toLowerCase();
   return hay.includes(term);
 }

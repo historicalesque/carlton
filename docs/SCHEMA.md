@@ -132,7 +132,7 @@ Jekyll publishes compact copies in `data/` and a list of the files in `data/inde
 | `lat`, `lng` | number or `null` | some | Coordinates. About 1,450 records have them; only these appear on the map. |
 | `Occupation`, `Notes` | string | electoral rolls, some directory | |
 | `Surname`, `Given Names`, `Gender` | string | electoral rolls | |
-| `Registration Number` | number | electoral rolls | Kept in the data but never searched or shown at the start of a listing. |
+| `Registration Number` | number | electoral rolls | Kept in the data and searchable in the admin data editor, but not shown at the start of a listing or matched by the public search. |
 | `Address` | string | electoral rolls | As printed, e.g. `"29 Barkly Place"`. |
 | `Street Number` | string or number | electoral rolls | |
 
