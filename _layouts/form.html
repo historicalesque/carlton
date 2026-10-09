@@ -1226,7 +1226,7 @@
 
   /* ---------- Suggest changes (from the review page) ---------- */
   // The submission is loaded into the form; sending it makes a new version of
-  // that same submission, which the editors see next to the original.
+  // that same submission, which becomes the version the editors decide on.
   let reviewOriginal = '';
 
   function fillRows(listName, values) {
@@ -1308,7 +1308,7 @@
       });
       const result = await res.json();
       if (result.status !== 'success') throw new Error(result.message || 'The changes were not accepted.');
-      sendStatus('Thank you! Your changes have been sent to the editors, next to the original.', 'ok');
+      sendStatus('Thank you! Your changes have been sent to the editors.', 'ok');
       $('sendBtn').textContent = 'Sent';
       if (window.parent !== window) window.parent.postMessage({ type: 'review-sent', version: result.version || '' }, window.location.origin);
     } catch (err) {
@@ -1319,7 +1319,7 @@
 
   if (REVIEW) {
     $('formHeading').textContent = 'Suggest changes';
-    $('formIntro').textContent = 'Change anything below, then send it. The editors see your version next to the original and decide which to publish.';
+    $('formIntro').textContent = 'Change anything below, then send it. Your version becomes the one the editors decide on.';
     $('reviewer').hidden = false;
     $('authorLabel').textContent = 'Author';
     form.classList.add('review-mode');
