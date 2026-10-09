@@ -5,6 +5,7 @@
     <fileDesc>
       <titleStmt>
         <title>Corkman Hotel</title>
+        <author>Andy May</author>
         <author>Andrew May</author>
         <author>Chloe T</author>
       </titleStmt>
@@ -25,7 +26,7 @@
       </sourceDesc>
     </fileDesc>
     <revisionDesc status="draft">
-      <change when="2026-10-08" type="created">Contributed through the contribution form by Andrew May, Chloe T.</change>
+      <change when="2026-10-09" type="created">Contributed through the contribution form by Andy May, Andrew May, Chloe T.</change>
     </revisionDesc>
   </teiHeader>
   <standOff>
@@ -53,7 +54,7 @@
   <text>
     <body>
       <div>
-        <head>Corkman Hotel</head>
+        <head>Corkman Hotel (aka Carlton Inn)</head>
         <p>One of Carlton’s earliest hotel buildings, on the corner of Leicester and Pelham Streets, the Carlton Inn and first licensed to George Edmonds (Edmunds) in 1856. At the time the Carlton Inn was built, the area north of Victoria Street, including Carlton and parts of North Melbourne, was not subject to the provisions of the <hi rend="italic">Melbourne Building Act</hi> (1849). Buildings could be constructed and demolished without permits and this contributed to the somewhat haphazard development of Carlton in its early days. Later known as the Corkman Irish Pub, the building was demolished illegally over the weekend of 16 and 17 October 2016, though subject to a heritage overlay and despite a stop-work order being issued by the Melbourne City Council.</p>
       </div>
       <div>
