@@ -1469,3 +1469,45 @@ html.map3d-page, body.map3d-page {
 .pv-chron { border-collapse: collapse; width: 100%; margin-bottom: 12px; font-size: 14px; }
 .pv-chron th, .pv-chron td { border-bottom: 1px solid var(--paper-line); padding: 5px 8px 5px 0; text-align: left; vertical-align: top; }
 .pv-chron th { white-space: nowrap; color: var(--ink); font-weight: normal; font-family: var(--font-mono); }
+
+/* 12. SITE PAGES ---------------------------------------------------------
+   The front page, Featured pages and About are entries too (site_pages in
+   _config.yml), drawn by entry.html. They keep the look of an ordinary
+   page: a full-size title, no entry type, and a quiet "Suggest an edit"
+   link at the foot instead of the contribution form. */
+.site-page .pv-type { display: none; }
+.site-page .pv-entry { font-size: inherit; line-height: inherit; }
+.main-content .site-page .pv-entry h1 { font-size: 2.2rem; margin-bottom: 20px; }
+.site-page .pv-entry h2 { font-size: 1.5rem; margin: 28px 0 10px; }
+.site-page .pv-entry p { margin-bottom: 20px; }
+.site-page .pv-entry ul, .site-page .pv-entry ol { margin-bottom: 20px; }
+.site-page .pv-entry li { margin-bottom: 6px; }
+.site-page .az-top { font-size: 0.9rem; font-style: italic; }
+.main-content .site-page ul.az-index { padding-left: 0; }
+
+.page-suggest {
+    margin-top: 48px;
+    padding-top: 10px;
+    border-top: 1px solid var(--paper-line);
+    font-size: 0.82rem;
+    color: var(--ink-faint);
+}
+.page-suggest summary {
+    display: inline-block;
+    cursor: pointer;
+    color: var(--ink-faint);
+    text-decoration: underline;
+    text-decoration-color: var(--paper-line);
+    text-underline-offset: 3px;
+}
+.page-suggest summary::-webkit-details-marker { display: none; }
+.page-suggest summary:hover,
+.page-suggest[open] summary { color: var(--moss-deep); }
+.main-content .page-suggest p { font-size: 0.85rem; color: var(--ink-faint); margin: 10px 0; }
+.page-suggest .contribution-frame {
+    display: block;
+    width: 100%;
+    height: 600px;          /* until the form reports its real height */
+    border: 0;
+    background: transparent;
+}
