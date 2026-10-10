@@ -112,6 +112,7 @@ The Sands & McDougall directory and electoral-roll records. One file per source 
 
 ```
 _data/directory/1857.json … 1940.json        (16 files, 40,257 records)
+_data/directory/1857.json … 1940.json        (16 files, 37,957 records)
 _data/electoral-roll/1919.json, 1928.json    (2 files, 1,525 records)
 ```
 
