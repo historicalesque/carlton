@@ -284,6 +284,7 @@ a.result-title { text-decoration: underline; text-decoration-color: var(--sage-d
 .results .result-meta { margin: 6px 0 0; font: 0.8rem var(--font-mono); color: var(--moss); }
 .result-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 2px 12px; }
 .result-where { font: italic 0.92rem var(--font-serif); color: var(--ink-faint); }
+.result-note { margin: 4px 0 0; font-size: 0.85rem; color: var(--ink-faint); }
 .results .result-years { display: flex; flex-wrap: wrap; gap: 4px; margin: 8px 0 0; }
 .result-years span {
     font: 0.75rem var(--font-mono); padding: 1px 6px; border: 1px solid var(--paper-line); color: var(--ink-faint);

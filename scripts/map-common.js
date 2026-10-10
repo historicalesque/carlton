@@ -362,6 +362,7 @@ window.MapCommon = (function () {
             }
         } else if (source === 'directory') {
             if (entry.type) bodyHtml += `<p><strong>Type:</strong> ${entry.type}</p>`;
+            if (entry.Notes) bodyHtml += `<p><strong>Note:</strong> ${escapeHtml(entry.Notes)}</p>`;
         }
         m.body.innerHTML = bodyHtml;
 
