@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="https://historicalesque.github.io/carlton/schema/carlton.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0" type="topic" xml:lang="en">
+  <teiHeader>
+    <fileDesc>
+      <titleStmt>
+        <title>Victorian Police Gazette</title>
+        <author>Andy May</author>
+      </titleStmt>
+      <publicationStmt>
+        <publisher>Common Ground</publisher>
+        <idno type="entry">Victorian-Police-Gazette</idno>
+      </publicationStmt>
+      <sourceDesc>
+        <p>Contributed through the website. No sources listed.</p>
+      </sourceDesc>
+    </fileDesc>
+    <revisionDesc status="draft">
+      <change when="2026-10-11" type="created">Contributed through the contribution form by Andy May.</change>
+    </revisionDesc>
+  </teiHeader>
+  <text>
+    <body>
+      <p>The <hi rend="italic">Victorian Police Gazette</hi> (VPG) was issued weekly from December 1853 as a confidential resource to be distributed among members of the Police force as well as officers involved in the administration of justice. It provided a wealth of material of interest to the local and family historian, including missing persons, witnesses to crime, and victims of crime. It also include weekly information on housebreaking and stealing from dwelling houses, robberies, arson, murders, inquests, lost horses and cattle, deserters of wives and children, escaped prisoners and reports on those released as well as some information from interstate police gazettes.</p>
+      <p>What sorts of things can it tell us about Carlton? It was never meant as a record of community life, but it turns out to be one. Checked against directories, rate books and maps, the VPG helps us to populate Carlton’s streets with named people, businesses, possessions and events that would otherwise be lost.</p>
+      <p>The VPG ties people to street addresses: almost every entry, listing or notice gives a name, a street number and often an occupation, so the VPG works much like a directory. It reveals streets of homes and workplaces (factories, dealers, shops, hotels and small traders) mixed together. Read together, these entries give a working cross-section of an inner-suburban street that directories and rate books only partly capture.</p>
+      <list rend="bulleted">
+        <item>It records Carlton's migrant communities: many of the names point to the communities that shaped prewar and interwar Carlton, including Greek, Italian, Chinese and Jewish.</item>
+        <item>Because several people share one address, entries also hint at boarding houses and shared lodgings. This is the kind of household arrangement a census would usually reveal, but no Australian census returns survive for this period.</item>
+        <item>It lists the belongings of ordinary people: theft reports had to describe stolen goods so they could be identified, so they read like inventories — a crystal wireless set and a gramophone; a Borsalino hat, poplin shirts, and a gold-mounted amber cigarette holder; bicycles described down to their ‘Major Taylor handles’ and Brooks racing saddles; from Wilson's shop, MacRobertson’s chocolates, Town Talk tobacco and P.K. chewing gum; from Sher’s factory, ‘Japanese’ and ‘British’ zip fasteners. Each comes with a value in pounds and shillings. This is rare evidence of consumer goods, brands, prices and how working-class people dressed and spent their money.</item>
+        <item>It shows how people lived and worked, for example, through the 1920s and the Depression: transport moves from horses to cars; bicycles, the cheap way to get to work, are among the most often stolen items; some residents reported thefts at the wharves, which suggests Carlton men did waterside work.</item>
+        <item>It captures personal hardship that rarely survives elsewhere, as some notices touch on private trouble: a warrant against a young man for deserting his illegitimate child; a 68-year-old man sought by his brother through the "Missing Friends" column; an invalid pensioner with a withered arm who has gone missing. Family breakdown, disability and poverty seldom leave a record, and these notices often include physical descriptions of people for whom no photograph survives.</item>
+      </list>
+      <p>State Library Victoria has a useful blog on using the VPG to research your ancestors</p>
+      <p><ref target="https://blogs.slv.vic.gov.au/family-matters/using-the-victorian-police-gazettes-to-research-your-ancestors/">https://blogs.slv.vic.gov.au/family-matters/using-the-victorian-police-gazettes-to-research-your-ancestors/</ref></p>
+    </body>
+  </text>
+</TEI>
