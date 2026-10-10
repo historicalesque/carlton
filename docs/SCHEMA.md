@@ -89,7 +89,7 @@ ISO values in `@when`, `@from` and `@to`; a year (`1856`) or year and month (`18
 
 - `civic/Corkman-Hotel.xml`: an `org` with a long article, headings and a table.
 - `civic/Sands-McDougall-Directory-1905.xml`: a `topic` source page with a source and a `part-of` relation.
-- Run any entry through the form's *Show all fields* switch and *Download XML* to see every optional part filled in.
+- Run any entry through the form's *Show all fields* switch and *Preview* (*Show the TEI XML*) to see every optional part filled in.
 
 ### Checking an entry
 
@@ -132,7 +132,7 @@ Jekyll publishes compact copies in `data/` and a list of the files in `data/inde
 | `lat`, `lng` | number or `null` | some | Coordinates. About 1,450 records have them; only these appear on the map. |
 | `Occupation`, `Notes` | string | electoral rolls, some directory | |
 | `Surname`, `Given Names`, `Gender` | string | electoral rolls | |
-| `Registration Number` | number | electoral rolls | |
+| `Registration Number` | number | electoral rolls | Kept in the data and searchable in the admin data editor, but not shown at the start of a listing or matched by the public search. |
 | `Address` | string | electoral rolls | As printed, e.g. `"29 Barkly Place"`. |
 | `Street Number` | string or number | electoral rolls | |
 
@@ -145,7 +145,7 @@ Directory example:
 Electoral-roll example:
 
 ```json
-{"entityID":1001209,"source":"Electoral roll","type":"Voter","year":1919,"listing":"Registration Number:1260, Clara Larkin, 29 Barkly Place, home duties, F","Registration Number":1260,"Surname":"Larkin","Given Names":"Clara","Address":"29 Barkly Place","Street Number":"29","street":"Barkly Place","cardinality":"North","Occupation":"home duties","Gender":"F","Notes":"…","lat":-37.8029738,"lng":144.9613147}
+{"entityID":1001209,"source":"Electoral roll","type":"Voter","year":1919,"listing":"Clara Larkin, 29 Barkly Place, home duties, F","Registration Number":1260,"Surname":"Larkin","Given Names":"Clara","Address":"29 Barkly Place","Street Number":"29","street":"Barkly Place","cardinality":"North","Occupation":"home duties","Gender":"F","Notes":"…","lat":-37.8029738,"lng":144.9613147}
 ```
 
 ### `entityID`

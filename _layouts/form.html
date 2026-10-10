@@ -56,7 +56,7 @@
 
     /* --- Directory record(s) this entry is about (as in the old form) --- */
     .entity-container { margin-bottom: 24px; }
-    .prefill-note { background: var(--paper-deep); border-left: 3px solid var(--moss); padding: 8px 12px; margin: -12px 0 24px; font-size: 14px; }
+    .prefill-note { background: var(--paper-deep); border-left: 3px solid var(--moss); padding: 8px 12px; margin: 0 0 24px; font-size: 14px; }
     .entity-card {
       background-color: var(--paper);
       border: 1px solid var(--paper-line);
@@ -91,6 +91,21 @@
       margin-right: 4px;
     }
     .entity-card .use-address { margin-top: 8px; }
+    .entity-card .check-line, .entity-card .linked-note { margin-top: 8px; }
+    .linked-note { font-size: 13px; color: var(--ink-faint); }
+
+    /* --- Finding other records the entry is about --- */
+    .record-finder { margin: -12px 0 24px; font-size: 14px; }
+    /* Nothing above it (e.g. site pages): don't pull it up out of the frame */
+    #details-container:empty + .record-finder { margin-top: 0; }
+    .record-finder summary { cursor: pointer; color: var(--moss-deep); }
+    .record-finder .finder-body { padding: 10px 0 0; }
+    .finder-status { font-size: 13px; color: var(--ink-faint); margin: 6px 0; }
+    .finder-results { list-style: none; padding: 0; margin: 0; }
+    .finder-results li { display: flex; gap: 10px; align-items: baseline; justify-content: space-between; padding: 6px 0; border-bottom: 1px dashed var(--paper-line); }
+    .finder-results .what { font-family: var(--font-mono); color: var(--ink); overflow-wrap: anywhere; }
+    .finder-results .yr { font-family: var(--font-ui); color: var(--ink-faint); margin-right: 6px; }
+    .finder-results .linked-note { white-space: nowrap; }
 
     /* --- Fields --- */
     .field-group { margin-bottom: 18px; }
@@ -178,7 +193,7 @@
     .ql-snow .ql-picker-options { background: var(--paper); }
     .ql-snow .ql-tooltip { background: var(--paper); border-color: var(--sage-dark); color: var(--ink-soft); box-shadow: none; }
     .ql-snow .ql-tooltip a, .ql-editor a { color: var(--moss); }
-    #editor-container { height: 220px; }
+    #editor-container { height: 440px; }
     .ql-table-embed table { border-collapse: collapse; width: 100%; }
     .ql-table-embed td, .ql-table-embed th { border: 1px solid var(--paper-line); padding: 6px 8px; }
 
@@ -287,10 +302,10 @@
     button.primary:hover { background: var(--moss-deep); }
     button.secondary, button.small { background: var(--paper); color: var(--moss-deep); }
     button.secondary:hover, button.small:hover { background: var(--sage-light); }
+    /* Greyed out while sending, and for good once it has been sent */
+    button.primary:disabled, button.primary:disabled:hover { background: var(--moss); opacity: 0.45; cursor: not-allowed; }
     button.small { font-size: 13px; padding: 6px 12px; }
     /* A quiet extra for editors, styled as a link so the public isn't distracted */
-    button.text-link { background: none; border: none; padding: 0; font: inherit; font-size: 13px; color: var(--ink-faint); text-decoration: underline; cursor: pointer; }
-    button.text-link:hover { color: var(--moss-deep); }
     .actions { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
     .actions .note { font-size: 13px; color: var(--ink-faint); }
     .hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
@@ -298,7 +313,7 @@
     .send-status.ok { border-left-color: var(--moss); background: var(--sage-light); color: var(--moss-deep); }
     .send-status.error { border-left-color: #8a2c1d; background: #f6e4dc; color: #8a2c1d; }
     @media (max-width: 480px) {
-      .actions button:not(.text-link) { width: 100%; }
+      .actions button { width: 100%; }
     }
 
     /* --- Preview --- */
@@ -332,10 +347,21 @@
 {%- comment %} An empty string is truthy in Liquid; default turns it into false {% endcomment %}
 {%- assign connected = site.contribution_endpoint | default: false %}
 {%- unless connected %}
-  <p class="test-note"><strong>Not connected yet.</strong> This new form doesn't send anything: use <em>Preview</em> to see how the entry would look, or download the XML.</p>
+  <p class="test-note"><strong>Not connected yet.</strong> This new form doesn't send anything: use <em>Preview</em> to see how the entry would look and its XML.</p>
 {%- endunless %}
 
   <div id="details-container"></div>
+  <!-- Other records this entry is about (not when suggesting changes) -->
+  <details class="record-finder" id="recordFinder" hidden>
+    <summary>Is this entry about other records too?</summary>
+    <div class="finder-body">
+      <p class="hint">For example, the same shop or person in other years. Records you add are linked to this entry when the editors accept it.</p>
+      <label for="recordSearch">Search the directories and electoral rolls</label>
+      <input type="text" id="recordSearch" placeholder="e.g. 34 Barry Street, or Spiers" autocomplete="off">
+      <p class="finder-status" id="finderStatus" aria-live="polite"></p>
+      <ul class="finder-results" id="finderResults"></ul>
+    </div>
+  </details>
 
   <h2 id="formHeading">Suggest Article contents</h2>
   <p class="form-intro" id="formIntro"><i>Instructions go here. Links to editorial guidance, etc. </i></p>
@@ -475,7 +501,6 @@
 {%- else %}
       <button type="button" class="primary" id="previewBtn">Preview</button>
 {%- endif %}
-      <button type="button" class="text-link" id="downloadBtn">Download XML <span>(advanced)</span></button>
 {%- unless connected %}
       <span class="note">Nothing is sent until the form is connected.</span>
 {%- endunless %}
@@ -670,7 +695,7 @@
   }
   $('showAll').addEventListener('change', (e) => setShowAll(e.target.checked));
 
-  /* ---------- Section counts ("2 added") ---------- */
+  /* ---------- Section markers ("Prefilled", "Added") ---------- */
   function updateCounts() {
     form.querySelectorAll('details.section').forEach((d) => {
       let n = 0;
@@ -681,8 +706,16 @@
         n = [...d.querySelectorAll('input[type="text"]')].some((i) => i.value.trim()) ? 1 : 0;
       }
       if (d.dataset.section === 'names' && ($('surname').value.trim() || $('forenames').value.trim())) n = Math.max(n, 1);
-      d.querySelector('.sum-count').textContent = n ? (rows.length ? `${n} added` : 'Added') : '';
+      d.querySelector('.sum-count').textContent = n ? (d.dataset.prefilled ? 'Prefilled' : 'Added') : '';
     });
+  }
+  // Sections with something in them once the form has been filled in for the
+  // reader say "Prefilled"; ones they fill in themselves say "Added"
+  function markPrefilled() {
+    form.querySelectorAll('details.section').forEach((d) => {
+      if (d.querySelector('.sum-count').textContent) d.dataset.prefilled = 'true';
+    });
+    updateCounts();
   }
 
   /* ---------- Directory records (as in the old form), with "Use this address" ---------- */
@@ -696,11 +729,19 @@
   else if (targetId && !/^\d+$/.test(targetId)) $('articleTitle').value = targetId.replace(/-/g, ' ');
   if (urlParams.has('advanced')) setShowAll(true);
 
-  if (targetId && window.CGData) {
-    CGData.forEntity(targetId).then((records) => {
-      showRecords(records);
-      if (urlParams.has('new')) prefill(records);
-    }).catch(() => {});
+  // An entry that's already on the site: ?entry=<file name>, from entry.html
+  const ENTRY = /^[\w-]+$/.test(urlParams.get('entry') || '') ? urlParams.get('entry') : '';
+
+  if (targetId && !REVIEW) {
+    const records = window.CGData ? CGData.forEntity(targetId).catch(() => []) : Promise.resolve([]);
+    const article = ENTRY
+      ? fetch(new URL(`civic/${ENTRY}.xml`, document.baseURI)).then((r) => (r.ok ? r.text() : '')).catch(() => '')
+      : Promise.resolve('');
+    Promise.all([records, article]).then(([recs, xml]) => {
+      showRecords(recs);
+      if (xml) prefillFromEntry(xml, recs);
+      else if (urlParams.has('new')) prefill(recs);
+    });
   }
 
   function addressOf(record) {
@@ -754,9 +795,11 @@
     form.querySelector(`details[data-section="${listName}"]`)?.setAttribute('open', '');
   }
 
-  function prefill(records) {
+  // What the records say, in the form's own shape
+  function fromRecords(records) {
     records = records.filter((r) => !STREET_TYPES.includes(String(r.type).toLowerCase())).sort((a, b) => a.year - b.year);
-    if (!records.length) return;
+    const found = { places: [], sources: [], occupations: [], voter: null };
+    if (!records.length) return null;
 
     // One address row per address, covering every year it's listed
     const places = new Map();
@@ -769,62 +812,247 @@
       if (r.lat != null && r.lng != null) { p.lat = Number(r.lat).toFixed(6); p.lng = Number(r.lng).toFixed(6); }
       places.set(key, p);
     });
-    setRows('places', [...places.values()].map((p) => ({ ...p, from: String(p.from), to: p.to === p.from ? String(p.from) : String(p.to) })));
-    setRows('sources', records.map(sourceOf));
+    found.places = [...places.values()].map((p) => ({ ...p, from: String(p.from), to: p.to === p.from ? String(p.from) : String(p.to) }));
+    found.sources = records.map(sourceOf);
+
+    // One occupation row per trade, from the directories and electoral
+    // rolls alike, covering every year it's listed. "None given" on the
+    // rolls isn't an occupation, so it's left out.
+    const occupations = new Map();
+    records.forEach((r) => {
+      const term = String(r.Occupation || '').trim();
+      const key = sameKey(term);
+      if (!key || key === 'none given') return;
+      const o = occupations.get(key) || { term: term[0].toUpperCase() + term.slice(1), from: r.year, to: r.year };
+      o.to = r.year;
+      occupations.set(key, o);
+    });
+    found.occupations = [...occupations.values()].map((o) => ({ term: o.term, from: String(o.from), to: String(o.to) }));
 
     const voters = records.filter((r) => r.source === 'Electoral roll');
-    if (voters.length) {
-      const v = voters[voters.length - 1];
+    if (voters.length) found.voter = voters[voters.length - 1];
+    return found;
+  }
+
+  function prefillNote(text) {
+    const note = document.createElement('p');
+    note.className = 'prefill-note';
+    note.textContent = text;
+    $('details-container').append(note);
+  }
+
+  function prefill(records) {
+    const found = fromRecords(records);
+    if (!found) return;
+    setRows('places', found.places);
+    setRows('sources', found.sources);
+    const v = found.voter;
+    if (v) {
       form.querySelector('input[name="kind"][value="person"]').checked = true;
       applyKindLabels();
       if (!$('articleTitle').value.trim()) $('articleTitle').value = `${v['Given Names'] || ''} ${v.Surname || ''}`.trim();
       $('surname').value = v.Surname || '';
       $('forenames').value = v['Given Names'] || '';
-      const jobs = voters.filter((r) => r.Occupation);
-      if (jobs.length) setRows('occupations', jobs.map((r) => ({ term: r.Occupation, from: String(r.year), to: String(r.year) })));
     }
-
-    const note = document.createElement('p');
-    note.className = 'prefill-note';
-    note.textContent = 'We’ve filled in some of the form from these records. Please check it, and change anything that’s wrong.';
-    $('details-container').append(note);
+    if (found.occupations.length) setRows('occupations', found.occupations);
+    prefillNote('We’ve filled in some of the form from these records. Please check it, and change anything that’s wrong.');
     changed();
+    markPrefilled();
+  }
+
+  /* ---------- Entries already on the site: start from the article ---------- */
+  // The form starts as the published entry, so a contribution adds to it
+  // rather than replacing it with a blank page. The records only add what
+  // the article doesn't already have: where they disagree (an address's
+  // years, an occupation, a name), the article wins, because whoever wrote
+  // it has probably already weighed up the records.
+  const sameKey = (s) => String(s || '').toLowerCase().replace(/,?\s*carlton\b.*$/, '').replace(/[^a-z0-9]+/g, ' ').trim();
+  const linkKey = (s) => { try { return new URL(s, document.baseURI).search || s; } catch (e) { return s || ''; } };
+  const yearOf = (s) => (String(s || '').match(/\b1[89]\d\d\b/) || [''])[0];
+
+  function addMissing(rows, extra, keysOf) {
+    const seen = new Set(rows.flatMap(keysOf));
+    return rows.concat(extra.filter((r) => !keysOf(r).some((k) => seen.has(k))));
+  }
+
+  function prefillFromEntry(xml, records) {
+    let entry;
+    try { entry = TEIEntry.parse(xml); } catch (e) { return; }
+    const found = fromRecords(records);
+    if (found) {
+      entry.places = addMissing(entry.places, found.places, (p) => [sameKey(p.address)].filter(Boolean));
+      entry.occupations = addMissing(entry.occupations, found.occupations, (o) => [sameKey(o.term)].filter(Boolean));
+      entry.sources = addMissing(entry.sources, found.sources, (s) => [sameKey(s.text), s.href && yearOf(s.text) ? `${linkKey(s.href)} ${yearOf(s.text)}` : '']
+        .filter(Boolean));
+      const v = found.voter;
+      if (v) {
+        if (!entry.kind) entry.kind = 'person';
+        if (!entry.title) entry.title = `${v['Given Names'] || ''} ${v.Surname || ''}`.trim();
+        if (!entry.surname && !entry.forenames && entry.kind === 'person') { entry.surname = v.Surname || ''; entry.forenames = v['Given Names'] || ''; }
+      }
+    }
+    fillForm(entry);
+    // The article's authors stay on as co-authors; "Your name" is for whoever is adding to it
+    $('authorName').value = '';
+    fillRows('authors', entry.authors.map((name) => ({ name })));
+    reviewOriginal = xml;
+    checkRoundTrip();
+    // Filled from the entry alone needs no note: the reader sees it's filled in
+    if (found) prefillNote('We’ve filled in the form from the current entry and these records. Where they disagree, we’ve kept what the entry says. Please check it, and change anything that’s wrong.');
+    changed();
+    markPrefilled();
+  }
+
+  /* ---------- Records this entry is about ---------- */
+  // Numbered records ticked here go with the entry. When the editors accept
+  // it, the Apps Script gives them the entry's id, which links them to the
+  // entry on the maps and in search. Records that already have a text id
+  // were linked by the team, and stay as they are.
+  const linkedRecords = new Map(); // numeric entityID → record, ticked
+  const shownRecords = new Set();   // every record with a card, ticked or not
+  const isNumberId = (id) => /^\d+$/.test(String(id));
+  const recordLabel = (r) => `${r.year} ${r.source === 'Directory' ? 'directory' : 'electoral roll'}`;
+
+  function recordCard(record) {
+    const card = document.createElement('div');
+    card.className = 'entity-card';
+    const h = document.createElement('h3');
+    h.textContent = `The ${recordLabel(record)}`;
+    card.append(h);
+    const ul = document.createElement('ul');
+    for (const [key, value] of Object.entries(record)) {
+      if (value === null || value === undefined || key.startsWith('_')) continue;
+      const li = document.createElement('li');
+      const k = document.createElement('span');
+      k.className = 'prop-key';
+      k.textContent = key.charAt(0).toUpperCase() + key.slice(1) + ':';
+      li.append(k, ' ', String(value));
+      ul.append(li);
+    }
+    card.append(ul);
+    shownRecords.add(String(record.entityID));
+    if (isNumberId(record.entityID)) {
+      linkedRecords.set(String(record.entityID), record);
+      const line = document.createElement('label');
+      line.className = 'check-line';
+      const box = document.createElement('input');
+      box.type = 'checkbox';
+      box.checked = true;
+      box.addEventListener('change', () => {
+        if (box.checked) linkedRecords.set(String(record.entityID), record);
+        else linkedRecords.delete(String(record.entityID));
+      });
+      line.append(box, ' This entry is about this record');
+      card.append(line);
+    } else if (record.entityID !== targetId) {
+      const note = document.createElement('p');
+      note.className = 'linked-note';
+      note.textContent = `Already linked to “${record.entityID}”.`;
+      card.append(note);
+    }
+    if (record.street) {
+      const b = document.createElement('button');
+      b.type = 'button';
+      b.className = 'small use-address';
+      b.textContent = 'Use this address';
+      b.addEventListener('click', () => useAddress(record));
+      card.append(b);
+    }
+    return card;
+  }
+
+  function recordsBox() {
+    let container = $('details-container').querySelector('.entity-container');
+    if (!container) {
+      container = document.createElement('div');
+      container.className = 'entity-container';
+      $('details-container').prepend(container);
+    }
+    return container;
   }
 
   function showRecords(records) {
     if (!records.length) return;
-    const container = document.createElement('div');
-    container.className = 'entity-container';
-    records.forEach((record, index) => {
-      const card = document.createElement('div');
-      card.className = 'entity-card';
-      if (records.length > 1) {
-        const h = document.createElement('h3');
-        h.textContent = `Item #${index + 1}`;
-        card.append(h);
+    recordsBox().replaceChildren(...records.map(recordCard));
+  }
+
+  /* ---------- Finding other records ---------- */
+  // Loads every directory and electoral roll the first time it's opened, then
+  // matches every word typed against the listing, street, names and year.
+  let allRecords = null;   // every record, once loaded
+  let loadingRecords = null;
+  const searchText = (r) => [r.year, r.listing, r.street, r['Given Names'], r.Surname, r.Address, r.Occupation]
+    .filter(Boolean).join(' ').toLowerCase();
+
+  function loadAllRecords() {
+    if (allRecords || loadingRecords) return;
+    $('finderStatus').textContent = 'Loading the records…';
+    loadingRecords = CGData.load({}).then((list) => {
+      list.forEach((r) => { r._text = searchText(r); });
+      allRecords = list;
+      findRecords();
+    }).catch((err) => {
+      $('finderStatus').textContent = `${err.message} Close and reopen this box to try again.`;
+    }).finally(() => { loadingRecords = null; });
+  }
+
+  function findRecords() {
+    const words = $('recordSearch').value.toLowerCase().split(/\s+/).filter(Boolean);
+    const results = $('finderResults');
+    results.replaceChildren();
+    if (!allRecords) return;
+    if (!words.length || words.join('').length < 2) { $('finderStatus').textContent = 'Type a name, an address or a year.'; return; }
+    const hits = allRecords.filter((r) => !shownRecords.has(String(r.entityID)) && r.entityID !== targetId && words.every((w) => r._text.includes(w)))
+      .sort((a, b) => isNumberId(b.entityID) - isNumberId(a.entityID) || a.year - b.year);
+    $('finderStatus').textContent = !hits.length ? 'No records match.'
+      : hits.length > 30 ? `${hits.length} records match; here are the first 30. Add more words to narrow it down.`
+      : `${hits.length} record${hits.length === 1 ? '' : 's'} match.`;
+    hits.slice(0, 30).forEach((r) => {
+      const li = document.createElement('li');
+      const what = document.createElement('span');
+      what.className = 'what';
+      const yr = document.createElement('span');
+      yr.className = 'yr';
+      yr.textContent = recordLabel(r);
+      const name = r.source === 'Directory' ? r.listing
+        : [`${r['Given Names'] || ''} ${r.Surname || ''}`.trim(), r.Address, r.Occupation].filter(Boolean).join(', ');
+      what.append(yr, name || '');
+      li.append(what);
+      if (isNumberId(r.entityID)) {
+        const add = document.createElement('button');
+        add.type = 'button';
+        add.className = 'small';
+        add.textContent = 'Add';
+        add.addEventListener('click', () => addRecord(r, li));
+        li.append(add);
+      } else {
+        const note = document.createElement('span');
+        note.className = 'linked-note';
+        note.textContent = `Linked to “${r.entityID}”`;
+        li.append(note);
       }
-      const ul = document.createElement('ul');
-      for (const [key, value] of Object.entries(record)) {
-        if (value === null || value === undefined) continue;
-        const li = document.createElement('li');
-        const k = document.createElement('span');
-        k.className = 'prop-key';
-        k.textContent = key.charAt(0).toUpperCase() + key.slice(1) + ':';
-        li.append(k, ' ', String(value));
-        ul.append(li);
-      }
-      card.append(ul);
-      if (record.street) {
-        const b = document.createElement('button');
-        b.type = 'button';
-        b.className = 'small use-address';
-        b.textContent = 'Use this address';
-        b.addEventListener('click', () => useAddress(record));
-        card.append(b);
-      }
-      container.append(card);
+      results.append(li);
     });
-    $('details-container').replaceChildren(container);
+  }
+
+  // Adds the record's card above the form, and a source for it
+  function addRecord(record, li) {
+    recordsBox().append(recordCard(record));
+    const sources = [...form.querySelectorAll('[data-list="sources"] .row')];
+    const empty = sources.find((r) => ![...r.querySelectorAll('input')].some((i) => i.value.trim()));
+    if (empty) empty.remove();
+    addRow('sources', sourceOf(record));
+    form.querySelector('details[data-section="sources"]').open = true;
+    li.remove();
+    $('finderStatus').textContent = `Added the ${recordLabel(record)} record, and a source for it.`;
+    changed();
+  }
+
+  if (!REVIEW && window.CGData) {
+    $('recordFinder').hidden = false;
+    let timer;
+    $('recordFinder').addEventListener('toggle', () => { if ($('recordFinder').open) loadAllRecords(); });
+    $('recordSearch').addEventListener('input', () => { clearTimeout(timer); timer = setTimeout(findRecords, 200); });
   }
 
   /* ---------- Related entries: pick an entry already on the site ---------- */
@@ -929,14 +1157,6 @@
     showPreview();
     $('preview').scrollIntoView({ behavior: 'smooth', block: 'start' });
   });
-  $('downloadBtn').addEventListener('click', () => {
-    const xml = showPreview();
-    const a = document.createElement('a');
-    a.href = URL.createObjectURL(new Blob([xml], { type: 'application/xml' }));
-    a.download = `${collect().recordId || 'entry'}.xml`;
-    a.click();
-    setTimeout(() => URL.revokeObjectURL(a.href), 1000);
-  });
 
   /* ---------- Send (when _config.yml has contribution_endpoint) ---------- */
   // The Apps Script in apps-script/Code.gs receives this, sets the file
@@ -957,26 +1177,56 @@
     // Entries are found by their record's text id (see the map), so a new
     // entry for a record keeps that id; numeric ids fall back to the title.
     const sendId = targetId && !/^\d+$/.test(targetId) ? targetId : '';
+    // A new entry named after its title can't take a name that's already used
+    const taken = !sendId && !ENTRY ? await nameTaken($('articleTitle').value) : '';
+    if (taken) {
+      sendStatus(taken, 'error');
+      return;
+    }
     $('sendBtn').disabled = true;
     sendStatus('Sending…');
     try {
       const res = await fetch(ENDPOINT, {
         method: 'POST',
         headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-        body: JSON.stringify({ formVersion: 3, xml, targetId: sendId, website: $('website').value })
+        body: JSON.stringify({
+          formVersion: 3, xml, targetId: sendId, website: $('website').value,
+          // The numbered records to link to this entry when it's accepted
+          records: [...linkedRecords.keys()].map(Number),
+          newEntry: !sendId && !ENTRY
+        })
       });
       const result = await res.json();
       if (result.status !== 'success') throw new Error(result.message || 'The submission was not accepted.');
       sendStatus('Thank you! Your entry has been sent to the editorial team, who will review it before it appears on the site.', 'ok');
+      $('sendBtn').textContent = 'Sent';
     } catch (err) {
       $('sendBtn').disabled = false;
-      sendStatus(`Sorry, it didn't send: ${err.message} You can use Download XML to keep a copy.`, 'error');
+      sendStatus(`Sorry, it didn't send: ${err.message} Please try again in a moment.`, 'error');
     }
   });
 
+  // The site finds an entry, and the records linked to it, by the file-name
+  // rule (spaces to hyphens, other punctuation dropped), so two names that
+  // give the same file name would collide.
+  const fileNameOf = (text) => String(text).trim().replace(/\s+/g, '-').replace(/[^a-zA-Z0-9_\-]/g, '').replace(/--+/g, '-');
+  async function nameTaken(title) {
+    const name = fileNameOf(title);
+    if (!name) return '';
+    if ((window.ENTRY_FILES || []).includes(name)) {
+      return `There is already an entry called “${name.replace(/-/g, ' ')}”. Choose a different title, or open that entry and add to it there.`;
+    }
+    try {
+      const idx = await CGData.index();
+      const group = idx.files.flatMap((f) => f.linked).find((id) => fileNameOf(id) === name);
+      if (group) return `Some records are already linked as “${group}”. Search the site for “${group}” to write that entry instead, or choose a different title.`;
+    } catch (e) { /* the editors can still catch it */ }
+    return '';
+  }
+
   /* ---------- Suggest changes (from the review page) ---------- */
   // The submission is loaded into the form; sending it makes a new version of
-  // that same submission, which the editors see next to the original.
+  // that same submission, which becomes the version the editors decide on.
   let reviewOriginal = '';
 
   function fillRows(listName, values) {
@@ -1002,7 +1252,9 @@
     // Fields only shown with "Show all fields"
     if (entry.surname || entry.forenames || entry.legalStatuses.length || entry.chronology.length || entry.relations.length
       || entry.places.some((p) => p.role || p.lat)) setShowAll(true);
-    quill.clipboard.dangerouslyPasteHTML(entry.articleHtml || '');
+    // Not dangerouslyPasteHTML: it also puts the cursor in the editor, which
+    // focuses it and scrolls the entry page down to this form on load.
+    quill.setContents(quill.clipboard.convert(entry.articleHtml || ''));
     applyKindLabels();
     updateCounts();
   }
@@ -1056,17 +1308,18 @@
       });
       const result = await res.json();
       if (result.status !== 'success') throw new Error(result.message || 'The changes were not accepted.');
-      sendStatus('Thank you! Your changes have been sent to the editors, next to the original.', 'ok');
+      sendStatus('Thank you! Your changes have been sent to the editors.', 'ok');
+      $('sendBtn').textContent = 'Sent';
       if (window.parent !== window) window.parent.postMessage({ type: 'review-sent', version: result.version || '' }, window.location.origin);
     } catch (err) {
       $('sendBtn').disabled = false;
-      sendStatus(`Sorry, it didn't send: ${err.message} You can use Download XML to keep a copy.`, 'error');
+      sendStatus(`Sorry, it didn't send: ${err.message} Please try again in a moment.`, 'error');
     }
   }
 
   if (REVIEW) {
     $('formHeading').textContent = 'Suggest changes';
-    $('formIntro').textContent = 'Change anything below, then send it. The editors see your version next to the original and decide which to publish.';
+    $('formIntro').textContent = 'Change anything below, then send it. Your version becomes the one the editors decide on.';
     $('reviewer').hidden = false;
     $('authorLabel').textContent = 'Author';
     form.classList.add('review-mode');
@@ -1075,6 +1328,7 @@
       .then((xml) => {
         reviewOriginal = xml;
         fillForm(TEIEntry.parse(xml));
+        markPrefilled();
         checkRoundTrip();
       })
       .catch((err) => {

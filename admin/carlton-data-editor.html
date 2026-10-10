@@ -1,3 +1,7 @@
+---
+# Jekyll only fills in contribution_endpoint (the Apps Script) below
+layout: null
+---
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -278,6 +282,7 @@
     align-items:center;
     gap:10px;
   }
+  .modal-footer .edit-hint{margin-right:auto;font-size:12px;color:var(--ink-soft);}
   .field-row{
     display:grid;
     grid-template-columns:1fr 1fr;
@@ -357,6 +362,12 @@
     font-size:12px;
   }
 
+  .instructions h3{font-family:var(--serif);font-size:16px;margin:20px 0 6px;}
+  .send-form .field{margin-bottom:12px;}
+  .send-form input{width:100%;}
+  .send-status{margin:12px 0 0;padding:10px 12px;border-radius:4px;font-size:14px;background:var(--paper-alt);}
+  .send-status.ok{background:#E3F0E1;color:#1E4D1A;}
+  .send-status.error{background:var(--red-bg);color:var(--red);}
   .file-list{list-style:none;padding:0;margin:12px 0;}
   .file-list li{display:flex;align-items:center;gap:10px;flex-wrap:wrap;padding:8px 0;border-bottom:1px solid var(--border, #E5E2D8);}
   .file-list li:last-child{border-bottom:0;}
@@ -444,11 +455,11 @@
 <header class="masthead">
   <p class="eyebrow">Carlton &amp; District</p>
   <h1>Street directory &amp; electoral roll data editor</h1>
-  <p class="sub"><span class="intro">Browse, correct and add records from the Sands &amp; McDougall directories and electoral rolls. When you're done, download the changed files and follow the publishing steps to update the live site. </span><a href="./">Admin</a> &middot; <a href="../">Back to the site</a></p>
+  <p class="sub"><span class="intro">Browse, correct and add records from the Sands &amp; McDougall directories and electoral rolls. When you're done, press <b>Send changes</b> and the editors will check them before they go on the site. </span><a href="./">Admin</a> &middot; <a href="../">Back to the site</a></p>
   <div class="stats">
     <span><b id="statTotal">0</b> records</span>
     <span><b id="statFiltered">0</b> shown</span>
-    <span class="dirty-flag" id="dirtyFlag">● Unsaved changes — remember to download the changed files</span>
+    <span class="dirty-flag" id="dirtyFlag">● Changes not published yet — download the changed files</span>
   </div>
 </header>
 
@@ -477,6 +488,7 @@
   <input type="file" id="fileInput" accept=".json" multiple style="display:none">
   <button class="btn secondary push-right" id="howToBtn">How to publish</button>
   <button class="btn" id="downloadBtn">Download changed files</button>
+  <button class="btn" id="sendBtn" hidden>Send changes</button>
 </div>
 
 <div class="table-wrap">
@@ -527,8 +539,9 @@
     </div>
     <div class="modal-body" id="editBody"></div>
     <div class="modal-footer">
+      <span class="edit-hint" id="editHint">Kept in this tab until you publish your changes.</span>
       <button class="btn secondary" id="cancelEdit">Cancel</button>
-      <button class="btn green" id="saveEdit">Save record</button>
+      <button class="btn green" id="saveEdit">Add record</button>
     </div>
   </div>
 </div>
@@ -537,10 +550,20 @@
 <div class="modal-overlay" id="howToOverlay">
   <div class="modal" role="dialog" aria-modal="true" aria-labelledby="howToTitle">
     <div class="modal-header">
-      <h2 id="howToTitle">Publishing your changes to GitHub</h2>
+      <h2 id="howToTitle">Publishing your changes</h2>
       <button class="modal-close" id="howToClose" aria-label="Close">✕</button>
     </div>
     <div class="modal-body instructions">
+      <div id="howToSend" hidden>
+        <ol>
+          <li><b>Start from the current data.</b> This tool loads the live data from the site when it opens. If you've had it open for a long time, reload it before you start.</li>
+          <li><b>Make your changes.</b> They stay in this browser tab until you send them, so don't close it.</li>
+          <li><b>Press "Send changes".</b> Give your name and, if you like, a short note about what you changed, e.g. <i>"Coordinates for Barry Street, 1905"</i>. Then press <b>Send</b>.</li>
+          <li><b>The editors check them.</b> Your changes go to the editorial team's spreadsheet, where an editor accepts or rejects them. Once accepted, the live site shows them a minute or two later. Until then the site (and this editor, if you reload it) still shows the old data.</li>
+        </ol>
+        <p>If someone else changed the same records after you opened the editor, nothing is sent and you'll be asked to reload. Use <b>Download changed files</b> first if you want to keep a copy of your work.</p>
+        <h3>Advanced: download and upload by hand</h3>
+      </div>
       <p>The data is kept as one file per source and year, e.g. <code>_data/directory/1905.json</code> or <code>_data/electoral-roll/1919.json</code>. You only need to upload the files you changed. You don't need any special software — this is all done in your browser.</p>
       <ol>
         <li><b>Make sure you started from the current data.</b> This tool loads the live data from the site when it opens. If someone else published changes since you opened it, reload the page before editing so you don't overwrite their work.</li>
@@ -569,6 +592,33 @@
   </div>
 </div>
 
+<!-- Send modal: publishes the changes through the Apps Script -->
+<div class="modal-overlay" id="sendOverlay">
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="sendTitle">
+    <div class="modal-header">
+      <h2 id="sendTitle">Send changes</h2>
+      <button class="modal-close" id="sendClose" aria-label="Close">✕</button>
+    </div>
+    <div class="modal-body instructions send-form">
+      <p id="sendSummary"></p>
+      <div class="field">
+        <label for="sendName">Your name</label>
+        <input type="text" id="sendName" maxlength="100" autocomplete="name">
+      </div>
+      <div class="field">
+        <label for="sendNote">What did you change? <span class="hint">(optional)</span></label>
+        <input type="text" id="sendNote" maxlength="300" placeholder="e.g. Coordinates for Barry Street, 1905">
+      </div>
+      <p class="hint">An editor checks your changes before they go on the site. Your name goes with them.</p>
+      <p class="send-status" id="sendStatus" hidden></p>
+    </div>
+    <div class="modal-footer">
+      <button class="btn secondary" id="sendCancel">Cancel</button>
+      <button class="btn green" id="sendConfirm">Send</button>
+    </div>
+  </div>
+</div>
+
 <script src="../scripts/data.js"></script>
 <script>
 'use strict';
@@ -576,12 +626,12 @@
 /* ============ REFERENCE LISTS (generated) ============
    No record data lives in this file — only small helper word-lists
    used for autocomplete suggestions once you've loaded a file. */
-const OCCUPATION_WHITELIST = ["agent","artist","assistant c.p.s.","attendant","baker","barman","billiard-marker","biscuit maker","blacksmith","bodymaker","bookbinder","bookmaker","boot machinist","boot repairer","bootmaker","bottler","boxmaker","brassworker","bricklayer","broom maker","brush maker","builder","butcher","cafe proprietor","cafe worker","canister maker","canvasser","caretaker","carpenter","carrier","cartage contractor","carter","ceiling fixer","chemical worker","cigar maker","cigarmaker","civil servant","cleaner","clerk","clicker","coachpainter","commission agent","confectioner","contractor","cook","council employee","cycle mechanic","dairyman","dealer","domestic","doorkeeper","drainer","draper","dressmaker","driver","electrician","engine driver","engine-driver","engineer","factory employee","factory hand","farmer","finisher","fire brigade officer","fireman","fitter","florist","french polisher","fruiterer","gardener","gripman","grocer","groom","hairdresser","home duties","horse collar maker","hotelkeeper","iron worker","ironmoulder","ironworker","labourer","laundress","leadworker","leather dresser","leather worker","letter carrier","letter-carrier","licensed victualler","lin'g cutter","lithographer","M.C.C. employee","machinist","manager","mantlemaker","manufacturer","mason","mattress maker","mechanic","metal worker","mill hand","milliner","miner","minister","modeller","motor mechanic","musician","night watchman","no occupation","none given","nurse","overseer","packer","painter","pantrymaid","paper ruler","paperhanger","pastrycook","photographer","platelayer","plumber","polisher","porter","postal emp.","postal employee","printer","printer's assistant","prospector","public servant","railway employ","railway employee","railway servant","retired public servant","rigger","rubber worker","saddler","sailor","sales","salesman","school teacher","seaman","seamstress","sheet metal worker","ship's fireman","shirt cutter","shoemaker","shopkeeper","showman","shunter","stableman","stationer","stevedore","stoker","stonemason","storekeeper","storeman","street cleaner","striker","student","tailor","tailoress","teacher","telephonist","textile worker","tiler and slater","timekeeper","tinsmith","tobacco worker","tobacco-worker","tram employee","traveller","turner","typiste","upholsterer","useful","usher","vaudeville artist","ventriloquist","waitress","watchmaker","watchman","waterside worker","wheelwright","wicker worker","wire weaver","wood merchant","wood worker"];
+const OCCUPATION_WHITELIST = ["accountant","aerated water manufacturer","agent","agricultural engineer","agricultural implement maker","agricultural machinery yard","art and pattern carver","art carver","art metal worker","artist","asphalter","assistant c.p.s.","attendant","auction rooms","auto grinding works","axle maker","baker","baker and pastrycook","bakers' supplies","barman","bedding manufacturer","belting manufacturer","belting manufacturer and oil importer","billiard-marker","biscuit maker","biscuit manufacturer","blacksmith","blacksmith and engineer","blouses and mantles","boarding house","boarding house keeper","bodymaker","bookbinder","bookmaker","bookseller","boot and slipper factory","boot factory","boot machinist","boot manufacturer","boot repairer","boot shop","boot sole sewer","boot upper maker","bootmaker","bottle merchant","bottler","box factory","box maker and printer","box manufacturer","boxmaker","brassfounder","brassworker","bricklayer","broom maker","brooms","brush maker","brush manufacturer","buggy and motor body builder","buggy and motor trimmer","builder","butcher","cab proprietor","cabinetmaker","cabman","cafe proprietor","cafe worker","calendar printer and boxmaker","canister maker","canvasser","cap manufacturer","cardboard boxes","caretaker","carpenter","carriage builder","carrier","cartage contractor","carter","carver","case dealer","case maker","caterer","ceiling fixer","chain maker","chair maker","chemical worker","chemist","cigar maker","cigar manufacturer","cigarmaker","civil servant","cleaner","cleaner and presser","clerk","clicker","clothier","clothing and hat manufacturer","clothing manufacturer","coach wheel maker","coach wheeler and body maker","coachbuilder","coachbuilders' brassware","coachbuilders' ironmonger","coachbuilders' materials importer","coachpainter","coffee roaster","commission agent","confectioner","confectioner and fancy goods","confectioner and fruiterer","confectioner and greengrocer","confectioner and grocer","confectioner and pastrycook","confectioner and wood yard","confectionery","contractor","cook","cooper and vat builder","coppersmith","cordial factory","cordial manufacturer","costumier","council employee","cycle mechanic","dairy","dairy produce","dairyman","dealer","decorator","dining rooms","director","disinfectant manufacturer","domestic","doorkeeper","drainer","draper","draper and furniture warehouse","drapery and furniture warehouse","dressmaker","driver","electric motor repairer","electrical engineer","electrician","electroplated brass goods manufacturer","electroplater","engine driver","engine-driver","engineer","engineer and brassfinisher","engineer and costume stand manufacturer","estate agent","estate and commission agent","factory","factory employee","factory hand","fancy goods","fancy goods manufacturer","fancy leather goods","farmer","farrier","financier","finisher","fire brigade officer","fireman","fishmonger","fitter","florist","flour and grain store","flour miller","flour mills","french polisher","fruit preserver","fruiterer","fruiterer and confectioner","fruiterer and greengrocer","fruiterer and storekeeper","furnisher","furniture and wire mattress manufacturer","furniture carrier","furniture dealer","furniture factory","furniture manufacturer","furniture shop","furniture store","furrier","garage","gardener","general dealer","general decorator","general store","ginger preserver","greengrocer","gripman","grocer","groom","hairdresser","hairdresser and confectioner","hairdresser and tobacconist","ham and beef shop","hame and saddle tree maker","hame maker","hardware importer","hardware manufacturer","harrow manufacturer","hat manufacturer","hat shape manufacturer","hay and corn store","head teacher","herbalist","home duties","horse collar maker","hosiery manufacturer","hotelkeeper","ice cream factory","ice merchant","implement maker","importer","inspector of police","insurance agent","iron and zinc founder","iron merchant","iron worker","ironfounder","ironmoulder","ironworker","joiner and builder","knitted goods","knitted goods manufacturer","knitting depot","labour agent","labourer","ladies' college","ladies' draper","ladies' tailor","laundress","laundry","leadlight manufacturer","leadworker","leather dresser","leather worker","lecturer","letter carrier","letter-carrier","licensed victualler","lin'g cutter","lithographer","livery stables","lodging house","lorry builder","M.C.C. employee","machinery yard","machinist","maids' home","manager","manageress","mantle maker","mantle manufacturer","mantlemaker","manufacturer","manufacturing confectioner","manufacturing stationer","manufacturing stationer and printer","marble worker","margarine manufacturer","marine store","mason","mathematical instrument maker","matron","mattress maker","mattress manufacturer","mechanic","medical bookseller","merchant","metal dealer","metal worker","mica merchant","mill and grain store","mill hand","miller","milliner","millinery and cap manufacturer","millinery manufacturer","milling engineer","millwright","mine manager","miner","minister","modeller","monumental mason","motor accessories","motor agent","motor and coach painter","motor body builder","motor car importer","motor car painter and trimmer","motor engineer","motor garage","motor mechanic","motor panel works","music teacher","musician","newsagent","night watchman","no occupation","none given","nurse","officer in charge","overseer","oyster saloon","packer","packer and manufacturer","packing case dealer","painter","pantrymaid","paper bag manufacturer","paper box manufacturer","paper ruler","paperhanger","pastrycook","pattern carver","pawnbroker","peel merchant","phenyle manufacturer","photographer","physician","platelayer","plumber","polisher","porter","postal emp.","postal employee","poultry expert","preserving works","principal","printer","printer's assistant","private hospital","produce merchant","proprietor","prospector","public servant","railway employ","railway employee","railway servant","refreshments","registry office","restaurant","retired public servant","rigger","rubber worker","sack merchant","saddler","sailor","sales","salesman","sanitary plumber","sauce manufacturer","school teacher","seaman","seamstress","secondhand dealer","secretary","sergeant-major","sheet metal worker","ship's fireman","shirt cutter","shoemaker","shopkeeper","showman","shunter","signwriter","singing teacher","skin specialist","skylight manufacturer","slipper maker","small goods","sole sewer","stableman","stables","stains and polishes","stationer","stevedore","stoker","stonemason","store","store yard","storekeeper","storeman","straw hat factory","street cleaner","striker","student","sub-inspector of police","superintendent","superintendent and secretary","surgeon","sweep","tailor","tailoress","tea rooms","teacher","telephonist","tent and blind manufacturer","tent maker","textile worker","tiler and slater","timber and iron merchant","timber brokers","timber merchant","timber yard","timekeeper","tinsmith","tobacco worker","tobacco-worker","tobacconist","toilet goods manufacturer","toy manufacturer","tram employee","traveller","turner","typiste","underclothing manufacturer","upholsterer","useful","usher","van proprietor","vaudeville artist","venetian blind manufacturer","ventriloquist","violin teacher","waitress","warehouseman","warrant officer","washing machine","watchmaker","watchman","waterproof clothing and hat manufacturer","waterproof clothing manufacturer","waterside worker","wheelwright","white worker","wholesale confectioner","wholesale fruiterer","wicker furniture factory","wicker furniture manufacturer","wicker worker","wire weaver","wire worker","wood and coal","wood and coal merchant","wood and coal yard","wood merchant","wood turner","wood worker","wood yard","zinc founder","zinc ornamental worker"];
 const KNOWN_STREETS_SEED = ["Ballarat Road","Banbridge Place","Barkly Place","Barkly Street","Barry Street","Berkeley Street","Berkley Place","Berkley Street","Bouverie Place","Bouverie Street","Church Street","Cumberland Place","Grattan Street","Grove Place","Lansdowne Place","Leicester Place","Leicester Street","Lincoln Cottages","Lincoln Place","Lincoln Place North","Lincoln Place South","Lincoln Square","Lincoln Square North","Lincoln Square South","Lincoln Street","Little Barkly Street","Little Berkeley Street","Little Cardigan Street","Little Grattan Street","Little Pelham Street","Little Queensberry Place","Little Queensberry Street","Madeline Street","Malvina Place","Pelham Place","Pelham Street","Prince of Wales Place","Queensberry Place","Queensberry Street","Scott's Place","Swanston Street"];
 
-/* A tiny, intentionally short starter list of occupation abbreviations.
-   Extend this yourself as you come across more in the listings —
-   just add "abbrev": "full occupation" pairs. */
+/* Occupation abbreviations, mostly the endings of Directory listings
+   (e.g. "grcr" → "grocer"). Extend this yourself as you come across more
+   in the listings — just add "abbrev": "full occupation" pairs. */
 const OCCUPATION_ABBREVIATIONS = {
   "lab": "labourer",
   "labr": "labourer",
@@ -595,7 +645,444 @@ const OCCUPATION_ABBREVIATIONS = {
   "gro": "grocer",
   "grcr": "grocer",
   "drsmkr": "dressmaker",
-  "cstmr": "costermonger"
+  "cstmr": "costermonger",
+  "& co. (factory)": "factory",
+  "& co. axle makers": "axle maker",
+  "& co. mica merchts": "mica merchant",
+  "& co. mt alexander preserving wks": "preserving works",
+  "& co. pty ltd hat mnfrs": "hat manufacturer",
+  "& co. wholesale frtrs": "wholesale fruiterer",
+  "& co. zinc ornamental workers": "zinc ornamental worker",
+  "accnt": "accountant",
+  "acent": "agent",
+  "actn rms": "auction rooms",
+  "aerated water mfrs": "aerated water manufacturer",
+  "agric imp mkrs": "agricultural implement maker",
+  "agricl impl maker": "agricultural implement maker",
+  "agricultural engnrs": "agricultural engineer",
+  "agricultural impl makers": "agricultural implement maker",
+  "art & pattern carver": "art and pattern carver",
+  "asphltr": "asphalter",
+  "auto grinding wks": "auto grinding works",
+  "axle makers": "axle maker",
+  "baker & pastryck": "baker and pastrycook",
+  "bakers": "baker",
+  "bakers & pstrycks": "baker and pastrycook",
+  "bedding manufactr": "bedding manufacturer",
+  "belting mnfrs": "belting manufacturer",
+  "belting mnfrs & oil imprs": "belting manufacturer and oil importer",
+  "biscuit mfr": "biscuit manufacturer",
+  "bkr": "baker",
+  "bkr & pstryck": "baker and pastrycook",
+  "bkrs": "baker",
+  "bkrs supplies": "bakers' supplies",
+  "bksm": "blacksmith",
+  "bksms & engrs": "blacksmith and engineer",
+  "blcksm": "blacksmith",
+  "bldr": "builder",
+  "blksm": "blacksmith",
+  "blksmth": "blacksmith",
+  "blouses & mantles": "blouses and mantles",
+  "bnd mfr": "venetian blind manufacturer",
+  "boardg house keeper": "boarding house keeper",
+  "bookslr": "bookseller",
+  "boot & slipper factory": "boot and slipper factory",
+  "boot mfr": "boot manufacturer",
+  "boot mfrs": "boot manufacturer",
+  "boot mnfrs": "boot manufacturer",
+  "bootmkr": "bootmaker",
+  "bootmr": "bootmaker",
+  "bottle mecht": "bottle merchant",
+  "box fcy": "box factory",
+  "box fty": "box factory",
+  "box makers & prntrs": "box maker and printer",
+  "box mnfrs": "box manufacturer",
+  "brass fndrs": "brassfounder",
+  "brassfounders": "brassfounder",
+  "brdg ho": "boarding house",
+  "brdho": "boarding house",
+  "brdhse": "boarding house",
+  "brdnghse": "boarding house",
+  "brdrsr": "hairdresser",
+  "brdrsr & tobacconist": "hairdresser and tobacconist",
+  "brdsr tb": "hairdresser and tobacconist",
+  "brmfndrs": "brassfounder",
+  "brush mnfr": "brush manufacturer",
+  "bt mfrs": "boot manufacturer",
+  "bt rpr": "boot repairer",
+  "btchr": "butcher",
+  "btmkr": "bootmaker",
+  "btmkrs": "bootmaker",
+  "btmr": "bootmaker",
+  "btshop": "boot shop",
+  "buggy & motor body bldr": "buggy and motor body builder",
+  "buggy & motor trimmer": "buggy and motor trimmer",
+  "butc": "butcher",
+  "cab prp": "cab proprietor",
+  "cabinet maker": "cabinetmaker",
+  "cabt maker": "cabinetmaker",
+  "cabt mkr": "cabinetmaker",
+  "cabtmkr": "cabinetmaker",
+  "cap mfr": "cap manufacturer",
+  "cap mnfr": "cap manufacturer",
+  "carboard boxes": "cardboard boxes",
+  "caretkr": "caretaker",
+  "carr": "carrier",
+  "carriage builders": "carriage builder",
+  "cartage contractors": "cartage contractor",
+  "case dealers": "case dealer",
+  "case mkr": "case maker",
+  "cbt maker": "cabinetmaker",
+  "cbt mkr": "cabinetmaker",
+  "cbtmkr": "cabinetmaker",
+  "cbtmr": "cabinetmaker",
+  "cbtnmr": "cabinetmaker",
+  "cfr": "confectioner",
+  "chainmkr": "chain maker",
+  "chainmr": "chain maker",
+  "chair makers": "chair maker",
+  "chbldrs' brassware": "coachbuilders' brassware",
+  "chblds' ironmngr": "coachbuilders' ironmonger",
+  "chmst": "chemist",
+  "clndr prntrs & bxmkrs": "calendar printer and boxmaker",
+  "clnr & prsr": "cleaner and presser",
+  "clo mfr": "clothing manufacturer",
+  "clo mnfr": "clothing manufacturer",
+  "clothiers": "clothier",
+  "clothing & hat mfrs": "clothing and hat manufacturer",
+  "clothing manufa": "clothing manufacturer",
+  "clothing manufr": "clothing manufacturer",
+  "clothing mnfr": "clothing manufacturer",
+  "clothing mnfrs": "clothing manufacturer",
+  "clthng mfrs": "clothing manufacturer",
+  "clthng mnfrs": "clothing manufacturer",
+  "cnfctnr": "confectioner",
+  "cnfr": "confectioner",
+  "cnfr & frtr": "confectioner and fruiterer",
+  "cnfr & pstry": "confectioner and pastrycook",
+  "cnft": "confectioner",
+  "coach builder": "coachbuilder",
+  "coach wheeler & body mkr": "coach wheeler and body maker",
+  "cof rstr": "coffee roaster",
+  "coh whl mkrs": "coach wheel maker",
+  "com agt": "commission agent",
+  "conf": "confectioner",
+  "confectioners": "confectioner",
+  "confnr": "confectioner",
+  "confr": "confectioner",
+  "confr & fancy goods": "confectioner and fancy goods",
+  "confr & fcy goods": "confectioner and fancy goods",
+  "confr & grcr": "confectioner and grocer",
+  "confr & pstry": "confectioner and pastrycook",
+  "confr & wd yd": "confectioner and wood yard",
+  "confr and grngrcr": "confectioner and greengrocer",
+  "conopsm": "coppersmith",
+  "cont": "contractor",
+  "contr": "contractor",
+  "cooper & vat bdr": "cooper and vat builder",
+  "coppersm": "coppersmith",
+  "copprsm": "coppersmith",
+  "cordial mfrs": "cordial manufacturer",
+  "costum": "costumier",
+  "costumiere": "costumier",
+  "costumieres": "costumier",
+  "cpntr": "carpenter",
+  "crpntr": "carpenter",
+  "crtk": "caretaker",
+  "crtke": "caretaker",
+  "crtkr": "caretaker",
+  "cstme": "costumier",
+  "ctrer": "caterer",
+  "dairy prod": "dairy produce",
+  "dertr": "decorator",
+  "disinfectant manufacturers": "disinfectant manufacturer",
+  "dlr": "dealer",
+  "dmk": "dressmaker",
+  "dng rms": "dining rooms",
+  "dpr": "draper",
+  "dpry & furn wareho": "drapery and furniture warehouse",
+  "drap": "draper",
+  "draper and furn wareho": "draper and furniture warehouse",
+  "drpr": "draper",
+  "drpr & furn whse": "draper and furniture warehouse",
+  "drpy & frn w'hse": "drapery and furniture warehouse",
+  "drsm": "dressmaker",
+  "drsmk": "dressmaker",
+  "drsmr": "dressmaker",
+  "dry & furn warehse": "drapery and furniture warehouse",
+  "dskr": "dressmaker",
+  "elctrn": "electrician",
+  "elec engnr": "electrical engineer",
+  "elec mtr repairs": "electric motor repairer",
+  "elec plte brs goods manufacturer": "electroplated brass goods manufacturer",
+  "elect": "electrician",
+  "electro plater": "electroplater",
+  "engineers": "engineer",
+  "engnr": "engineer",
+  "engnr & costm stand mfr": "engineer and costume stand manufacturer",
+  "engnr (stores rm)": "engineer",
+  "engnrs": "engineer",
+  "engrs & brassfnshrs": "engineer and brassfinisher",
+  "est & com agent": "estate and commission agent",
+  "est agt": "estate agent",
+  "estate agents": "estate agent",
+  "fancy gds": "fancy goods",
+  "fany gds mfr": "fancy goods manufacturer",
+  "fcy gds": "fancy goods",
+  "fishmngr": "fishmonger",
+  "fishmr": "fishmonger",
+  "flour millers": "flour miller",
+  "fncy lthr gds": "fancy leather goods",
+  "frn mnfr": "furniture manufacturer",
+  "frn mnfrs": "furniture manufacturer",
+  "frnch plshr": "french polisher",
+  "frnshr": "furnisher",
+  "frtr": "fruiterer",
+  "frtr & cnfr": "fruiterer and confectioner",
+  "frtr & gngrer": "fruiterer and greengrocer",
+  "frtrs & store": "fruiterer and storekeeper",
+  "fruit preservers": "fruit preserver",
+  "frutr": "fruiterer",
+  "fshmngr": "fishmonger",
+  "fur & wire mattr mnfctrs": "furniture and wire mattress manufacturer",
+  "furn carrier": "furniture carrier",
+  "furn dealer": "furniture dealer",
+  "furn dlr": "furniture dealer",
+  "furn fac": "furniture factory",
+  "furn manufacturers": "furniture manufacturer",
+  "furn mfr": "furniture manufacturer",
+  "furn mfrs": "furniture manufacturer",
+  "furn mnfctrs": "furniture manufacturer",
+  "furn mnfr": "furniture manufacturer",
+  "furn mnfrs": "furniture manufacturer",
+  "furn shop": "furniture shop",
+  "furn store": "furniture store",
+  "furniture fctry": "furniture factory",
+  "furriers": "furrier",
+  "gar": "garage",
+  "gcr": "grocer",
+  "gen dealr": "general dealer",
+  "gen dlr": "general dealer",
+  "gen store": "general store",
+  "gen str": "general store",
+  "general carpenters": "carpenter",
+  "ger": "grocer",
+  "ginger preservers": "ginger preserver",
+  "gn str": "general store",
+  "gon str": "general store",
+  "gr": "grocer",
+  "grdnr": "gardener",
+  "greengrcr": "greengrocer",
+  "grnger": "greengrocer",
+  "grngrcr": "greengrocer",
+  "grngro": "greengrocer",
+  "grocers": "grocer",
+  "hairdr": "hairdresser",
+  "hairdresser and tbcenst": "hairdresser and tobacconist",
+  "hairdresser and tbcst": "hairdresser and tobacconist",
+  "hairdrr and tobacconist": "hairdresser and tobacconist",
+  "hairdrsr": "hairdresser",
+  "hairdsr": "hairdresser",
+  "hame & saddle tree mkr": "hame and saddle tree maker",
+  "hame mk": "hame maker",
+  "hardware importers": "hardware importer",
+  "harrow mnfr": "harrow manufacturer",
+  "hat mfrs": "hat manufacturer",
+  "hat mnfr": "hat manufacturer",
+  "hat mnfrs": "hat manufacturer",
+  "hat shape mfrs": "hat shape manufacturer",
+  "hay & corn store": "hay and corn store",
+  "hd tchr": "head teacher",
+  "hd tr": "head teacher",
+  "hdrst": "hairdresser",
+  "hosiery mnfr": "hosiery manufacturer",
+  "hrblst": "herbalist",
+  "hrd r": "hairdresser",
+  "hrdr": "hairdresser",
+  "hrdrsr": "hairdresser",
+  "hrdrsr & tbcnst": "hairdresser and tobacconist",
+  "hrdrsr & tobacconist": "hairdresser and tobacconist",
+  "hrdrst": "hairdresser",
+  "hrdsr": "hairdresser",
+  "hrdsr & confr": "hairdresser and confectioner",
+  "hrs collar mkr": "horse collar maker",
+  "ice cream fctry": "ice cream factory",
+  "ice merchants": "ice merchant",
+  "implement makers": "implement maker",
+  "importers": "importer",
+  "indry": "laundry",
+  "ins agt": "insurance agent",
+  "iron & zinc fndrs": "iron and zinc founder",
+  "iron founders": "ironfounder",
+  "iron merch (str)": "iron merchant",
+  "iron merchts": "iron merchant",
+  "ironfounders": "ironfounder",
+  "jun. butcher": "butcher",
+  "knitting dep": "knitting depot",
+  "kntd gds mnfr": "knitted goods manufacturer",
+  "labor agent": "labour agent",
+  "ladies' dpr": "ladies' draper",
+  "lctr": "lecturer",
+  "ldry": "laundry",
+  "lds' drpr": "ladies' draper",
+  "lds' tlr": "ladies' tailor",
+  "leadlight mnfrs": "leadlight manufacturer",
+  "lndry": "laundry",
+  "lodginghouse": "lodging house",
+  "lorry bldr": "lorry builder",
+  "lory bldrs": "lorry builder",
+  "manfng confrs": "manufacturing confectioner",
+  "mantle mkrs": "mantle maker",
+  "mantle mnfr": "mantle manufacturer",
+  "mar str": "marine store",
+  "mathematical inst maker": "mathematical instrument maker",
+  "matr": "matron",
+  "mattress manufr": "mattress manufacturer",
+  "medical bkslr": "medical bookseller",
+  "merchs": "merchant",
+  "metal dlr": "metal dealer",
+  "mfg strs & pr...s": "manufacturing stationer and printer",
+  "mfr w prf clthng & hat mnfr": "waterproof clothing and hat manufacturer",
+  "mfrng stationers (factory)": "manufacturing stationer",
+  "mgrss": "manageress",
+  "mica merchts": "mica merchant",
+  "mill & grain strs": "mill and grain store",
+  "millnry & cap mfrs": "millinery and cap manufacturer",
+  "milnr": "milliner",
+  "mlnr": "milliner",
+  "mlnry mfrs": "millinery manufacturer",
+  "mlur": "milliner",
+  "mngr": "manager",
+  "motor engineers": "motor engineer",
+  "motor panel wks": "motor panel works",
+  "mrgne mnfr": "margarine manufacturer",
+  "mscn": "musician",
+  "mtr & cch pntr": "motor and coach painter",
+  "mtr accs": "motor accessories",
+  "mtr agnts": "motor agent",
+  "mtr bdy bldrs": "motor body builder",
+  "mtr car imprtrs": "motor car importer",
+  "mtr car pntrs & trmmrs": "motor car painter and trimmer",
+  "mtr engnr": "motor engineer",
+  "mtr gar": "motor garage",
+  "mtr grge": "motor garage",
+  "mtr mechanic": "motor mechanic",
+  "mus teacher": "music teacher",
+  "mus. tchr": "music teacher",
+  "news agent": "newsagent",
+  "news agt": "newsagent",
+  "nrs": "nurse",
+  "nrse": "nurse",
+  "nws agcy": "newsagent",
+  "officer in ch": "officer in charge",
+  "oystr sln": "oyster saloon",
+  "oystr slon": "oyster saloon",
+  "packers & manfrs": "packer and manufacturer",
+  "paper bag mnfr": "paper bag manufacturer",
+  "paper box mfr": "paper box manufacturer",
+  "paper box mnfr": "paper box manufacturer",
+  "pastryck": "pastrycook",
+  "pawnbkr": "pawnbroker",
+  "peel mr": "peel merchant",
+  "phenyle mfrs": "phenyle manufacturer",
+  "phtgr": "photographer",
+  "physn": "physician",
+  "plbr": "plumber",
+  "pntr": "painter",
+  "pntrs": "painter",
+  "pprtrs": "proprietor",
+  "prcpl": "principal",
+  "prd mer": "produce merchant",
+  "prin": "principal",
+  "printers": "printer",
+  "prncpl": "principal",
+  "prncpl erskine college": "principal",
+  "prntrs": "printer",
+  "proptr": "proprietor",
+  "pstry ck": "pastrycook",
+  "pstryck": "pastrycook",
+  "pstryks": "pastrycook",
+  "pstyck": "pastrycook",
+  "ptrn carver": "pattern carver",
+  "pwnbrkr": "pawnbroker",
+  "reg office": "registry office",
+  "rfshts": "refreshments",
+  "sackmer": "sack merchant",
+  "sadlr": "saddler",
+  "scndhd dealer": "secondhand dealer",
+  "sec": "secretary",
+  "sectry": "secretary",
+  "secy": "secretary",
+  "sign writer": "signwriter",
+  "signwrtr": "signwriter",
+  "skylight manfr": "skylight manufacturer",
+  "skylight manufacturers": "skylight manufacturer",
+  "srgt-mjr": "sergeant-major",
+  "stains & polishes": "stains and polishes",
+  "stbls": "stables",
+  "store yd": "store yard",
+  "str": "store",
+  "str yd": "store yard",
+  "strs": "store",
+  "sub-insp of police": "sub-inspector of police",
+  "sup": "superintendent",
+  "sup & sec": "superintendent and secretary",
+  "supt": "superintendent",
+  "supt and sec": "superintendent and secretary",
+  "surg": "surgeon",
+  "tair": "tailor",
+  "talr": "tailor",
+  "tbcnst": "tobacconist",
+  "tchr singing": "singing teacher",
+  "tea rms": "tea rooms",
+  "teachers": "teacher",
+  "tent & blind mnfr": "tent and blind manufacturer",
+  "tent mkr": "tent maker",
+  "timber brks": "timber brokers",
+  "timber merchants": "timber merchant",
+  "tinsmiths": "tinsmith",
+  "tlr": "tailor",
+  "tmbr & iron mers": "timber and iron merchant",
+  "tmbr & iron mners": "timber and iron merchant",
+  "tmbr merchant": "timber merchant",
+  "tnt mkr": "tent maker",
+  "toilet mnfr": "toilet goods manufacturer",
+  "toy mfr": "toy manufacturer",
+  "underclotg mfr": "underclothing manufacturer",
+  "underclothing manufactr": "underclothing manufacturer",
+  "underclothing mfr": "underclothing manufacturer",
+  "uphlstr": "upholsterer",
+  "uphols": "upholsterer",
+  "van prop": "van proprietor",
+  "ven bd mfr": "venetian blind manufacturer",
+  "warr officer": "warrant officer",
+  "waterproof clthng mnfrs": "waterproof clothing manufacturer",
+  "wckrwkr": "wicker worker",
+  "wckwkrs": "wicker worker",
+  "wd & cl yd": "wood and coal yard",
+  "wd mer": "wood merchant",
+  "wd yard": "wood yard",
+  "wd yd": "wood yard",
+  "wdyd": "wood yard",
+  "wh1sle confrs": "wholesale confectioner",
+  "wheel-wright": "wheelwright",
+  "wheelwrights": "wheelwright",
+  "white wkr": "white worker",
+  "whl-rght": "wheelwright",
+  "wholesale frtrs": "wholesale fruiterer",
+  "whwkr": "white worker",
+  "wicker furniture mfr": "wicker furniture manufacturer",
+  "wire wrkr": "wire worker",
+  "wkr furn. fcty": "wicker furniture factory",
+  "wood & coal": "wood and coal",
+  "wood mer": "wood merchant",
+  "wood trnr": "wood turner",
+  "wood workers": "wood worker",
+  "woodyd": "wood yard",
+  "wrhsmn (bulk strs)": "warehouseman",
+  "wtchmkr": "watchmaker",
+  "zinc founders": "zinc founder",
+  "zinc ornamental workers": "zinc ornamental worker"
 };
 
 /* Roughly Carlton + immediate surrounding suburbs, with generous padding.
@@ -616,6 +1103,7 @@ let pageSize = 50;
 let dirty = false;
 let editingUid = null;  // null = creating new
 let baselines = {};     // file key (e.g. "directory/1905") → its text as last loaded or downloaded
+let originals = new Map(); // _uid → { key, line } as last loaded or sent, for Send changes
 
 const FOLDERS = { 'Directory': 'directory', 'Electoral roll': 'electoral-roll' };
 const REPO_UPLOAD = 'https://github.com/historicalesque/carlton/upload/main/_data/';
@@ -627,13 +1115,16 @@ const collator = new Intl.Collator(undefined, {numeric:true, sensitivity:'base'}
    so an unchanged file downloads exactly as it was. */
 function fileKey(r){ return `${FOLDERS[r.source] || 'directory'}/${r.year}`; }
 
+// One record as its line in the file (without the comma)
+function recordLine(r){
+  const clean = Object.assign({}, r);
+  delete clean._uid;
+  return JSON.stringify(clean);
+}
+
 // Same format as tools/convert-map-data.js: a JSON list, one record per line.
 function serialize(list){
-  return '[\n' + list.map(r => {
-    const clean = Object.assign({}, r);
-    delete clean._uid;
-    return JSON.stringify(clean);
-  }).join(',\n') + '\n]\n';
+  return '[\n' + list.map(recordLine).join(',\n') + '\n]\n';
 }
 
 function fileTexts(){
@@ -654,6 +1145,8 @@ function changedFiles(){
 function loadFromArray(arr){
   records = arr.map(r => Object.assign({_uid: nextUid++}, r));
   baselines = fileTexts();
+  originals = new Map();
+  rememberOriginals(records);
   applyFilterSort();
   page = 1;
   setDirty(false);
@@ -984,6 +1477,8 @@ function openEditModal(uid){
   editingUid = uid;
   const rec = uid === null ? null : records.find(r => r._uid === uid);
   editTitle.textContent = rec ? `Edit record ${rec.entityID}` : 'New record';
+  // Nothing leaves the browser until the changes are sent or downloaded, so avoid "Save".
+  document.getElementById('saveEdit').textContent = rec ? 'Keep changes' : 'Add record';
   buildForm(rec);
   editOverlay.classList.add('show');
 }
@@ -1181,7 +1676,7 @@ document.getElementById('saveEdit').addEventListener('click', () => {
   if(lat && lng && !coordsHardValid(lat,lng)) errors.push('Latitude/longitude values are out of valid range.');
 
   if(errors.length){
-    alert('Please fix the following before saving:\n\n- ' + errors.join('\n- '));
+    alert('Please fix the following first:\n\n- ' + errors.join('\n- '));
     return;
   }
 
@@ -1276,6 +1771,8 @@ function downloadFile(change){
   document.body.removeChild(a);
   URL.revokeObjectURL(url);
   baselines[change.key] = change.text;
+  // Downloaded changes are published by uploading the file, so Send leaves them out
+  rememberOriginals(records.filter(r => fileKey(r) === change.key));
   setDirty(changedFiles().length > 0);
 }
 
@@ -1314,9 +1811,119 @@ document.getElementById('downloadBtn').addEventListener('click', showDownloads);
 document.getElementById('downloadClose').addEventListener('click', () => downloadOverlay.classList.remove('show'));
 downloadOverlay.addEventListener('click', (e) => { if(e.target === downloadOverlay) downloadOverlay.classList.remove('show'); });
 
+/* ============ SEND CHANGES ============
+   Sends only the records that changed to the Apps Script
+   (apps-script/Code.gs, receiveData_), which checks them against the files
+   on GitHub and opens a pull request for the editors to accept or reject. Each change gives
+   the record's line as it was loaded ("before") and as it is now ("after"),
+   so the script can refuse if someone else changed that record since. */
+const ENDPOINT = {{ site.contribution_endpoint | default: '' | jsonify }};
+const sendOverlay = document.getElementById('sendOverlay');
+const NAME_KEY = 'cg-data-editor-name';
+
+function rememberOriginals(list){
+  list.forEach(r => originals.set(r._uid, { key: fileKey(r), line: recordLine(r) }));
+}
+
+function pendingChanges(){
+  const changes = [];
+  const seen = new Set();
+  records.forEach(r => {
+    seen.add(r._uid);
+    const was = originals.get(r._uid);
+    const key = fileKey(r), line = recordLine(r);
+    if(!was) changes.push({ file: key, before: null, after: line });
+    else if(was.key !== key){
+      changes.push({ file: was.key, before: was.line, after: null });
+      changes.push({ file: key, before: null, after: line });
+    } else if(was.line !== line) changes.push({ file: key, before: was.line, after: line });
+  });
+  originals.forEach((was, uid) => { if(!seen.has(uid)) changes.push({ file: was.key, before: was.line, after: null }); });
+  return changes;
+}
+
+function describeChanges(changes){
+  const byFile = {};
+  changes.forEach(c => {
+    const f = byFile[c.file] = byFile[c.file] || { changed: 0, added: 0, removed: 0 };
+    f[c.before === null ? 'added' : c.after === null ? 'removed' : 'changed']++;
+  });
+  return Object.keys(byFile).sort().map(key => {
+    const [folder, year] = key.split('/');
+    const counts = ['changed', 'added', 'removed'].filter(k => byFile[key][k]).map(k => `${byFile[key][k]} ${k}`).join(', ');
+    return `${folder === 'directory' ? 'the ' + year + ' directory' : 'the ' + year + ' electoral roll'} (${counts})`;
+  });
+}
+
+function sendStatus(text, level){
+  const el = document.getElementById('sendStatus');
+  el.textContent = text;
+  el.className = `send-status ${level || ''}`;
+  el.hidden = !text;
+}
+
+function showSend(){
+  const changes = pendingChanges();
+  const confirmBtn = document.getElementById('sendConfirm');
+  sendStatus('');
+  confirmBtn.hidden = !changes.length;
+  confirmBtn.disabled = false;
+  const parts = describeChanges(changes);
+  document.getElementById('sendSummary').textContent = changes.length
+    ? `You're sending ${changes.length} change${changes.length === 1 ? '' : 's'}: ${parts.join('; ')}.`
+    : 'Nothing has changed since the data was loaded (or since you last sent changes).';
+  try { document.getElementById('sendName').value = localStorage.getItem(NAME_KEY) || document.getElementById('sendName').value; } catch(e){}
+  sendOverlay.classList.add('show');
+  (changes.length ? document.getElementById('sendName') : document.getElementById('sendCancel')).focus();
+}
+
+async function sendChanges(){
+  const name = document.getElementById('sendName').value.trim();
+  if(!name){ sendStatus('Please add your name.', 'error'); document.getElementById('sendName').focus(); return; }
+  try { localStorage.setItem(NAME_KEY, name); } catch(e){}
+  const changes = pendingChanges();
+  if(!changes.length) return;
+  const confirmBtn = document.getElementById('sendConfirm');
+  confirmBtn.disabled = true;
+  sendStatus('Sending…');
+  try {
+    const res = await fetch(ENDPOINT, {
+      method: 'POST',
+      headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+      body: JSON.stringify({ action: 'data', name, note: document.getElementById('sendNote').value.trim(), changes })
+    });
+    const result = await res.json();
+    if(result.status !== 'success') throw new Error(result.message || 'The changes were not accepted.');
+    // Sent changes aren't sent again
+    originals = new Map();
+    rememberOriginals(records);
+    baselines = fileTexts();
+    setDirty(false);
+    document.getElementById('sendNote').value = '';
+    confirmBtn.hidden = true;
+    sendStatus('Thank you! Your changes have been sent to the editors, who will check them before they appear on the site.', 'ok');
+  } catch(err){
+    confirmBtn.disabled = false;
+    sendStatus(`Sorry, it didn't send: ${err.message}`, 'error');
+  }
+}
+
+if(ENDPOINT){
+  document.getElementById('sendBtn').hidden = false;
+  document.getElementById('downloadBtn').classList.add('secondary');
+  document.getElementById('howToSend').hidden = false;
+  document.getElementById('dirtyFlag').textContent = '● Not sent yet — press Send changes when you\'re done';
+  document.getElementById('editHint').textContent = 'Kept in this tab until you press Send changes.';
+  document.getElementById('sendBtn').addEventListener('click', showSend);
+  document.getElementById('sendConfirm').addEventListener('click', sendChanges);
+}
+document.getElementById('sendClose').addEventListener('click', () => sendOverlay.classList.remove('show'));
+document.getElementById('sendCancel').addEventListener('click', () => sendOverlay.classList.remove('show'));
+sendOverlay.addEventListener('click', (e) => { if(e.target === sendOverlay) sendOverlay.classList.remove('show'); });
+
 /* ============ LOAD DIFFERENT FILE ============ */
 document.getElementById('loadFileBtn').addEventListener('click', () => {
-  if(dirty && !confirm('You have unsaved changes that will be lost if you load a new file. Continue?')) return;
+  if(dirty && !confirm('You have changes you haven\'t published yet. They will be lost if you load a new file. Continue?')) return;
   document.getElementById('fileInput').click();
 });
 document.getElementById('fileInput').addEventListener('change', async (e) => {

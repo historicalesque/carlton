@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="https://historicalesque.github.io/carlton/schema/carlton.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0" type="topic" xml:lang="en">
+  <teiHeader>
+    <fileDesc>
+      <titleStmt>
+        <title>Common Ground: Community Histories of the Campus Precinct 1850s-1950s</title>
+        <author>Common Ground</author>
+      </titleStmt>
+      <publicationStmt>
+        <publisher>Common Ground</publisher>
+        <idno type="entry">Home</idno>
+      </publicationStmt>
+      <sourceDesc>
+        <p>Contributed through the website. No sources listed.</p>
+      </sourceDesc>
+    </fileDesc>
+    <revisionDesc status="published">
+      <change when="2026-10-09" type="created">Moved here from the site page index.md by Common Ground.</change>
+      <change when="2026-10-09" type="revised">Introductory text moved to the About page; placeholder sentence added.</change>
+    </revisionDesc>
+  </teiHeader>
+  <text>
+    <body>
+      <p>Welcome to Common Ground. Read more <ref target="about">about the project</ref>.</p>
+    </body>
+  </text>
+</TEI>

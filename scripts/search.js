@@ -22,7 +22,7 @@
     return t ? (VARIANTS[t] || t) : null;
   };
 
-  const SOURCES = { 'Directory': 'places', 'Electoral roll': 'people' };
+  const SOURCES = { 'Directory': 'directories', 'Electoral roll': 'rolls' };
   const state = { q: '', src: 'all', year: '', street: '' };
   let index, groups = {}, entries = {}, records = [], recordGroup = [], loading = true;
 
@@ -50,11 +50,20 @@
     const parsed = await Promise.all(files.map(async (name) => {
       try {
         const xml = new DOMParser().parseFromString(await (await fetch(`civic/${name}.xml`)).text(), 'application/xml');
-        let title, text;
+        let title, text, occupations = [];
         if (xml.documentElement.localName === 'TEI') {
-          // TEI entries (schema/carlton.odd): the title, and the article's text
+          // TEI entries (schema/carlton.odd): the title, the article's text,
+          // and the subject's occupations, a business's activities or a
+          // place's uses
           title = xml.getElementsByTagName('title')[0]?.textContent.trim();
           text = (xml.getElementsByTagName('body')[0]?.textContent || '').replace(/\s+/g, ' ').trim();
+          const subject = [...xml.getElementsByTagName('*')].find((e) => e.getAttribute('xml:id') === 'subject');
+          if (subject) {
+            occupations = [...subject.children]
+              .filter((e) => e.localName === 'occupation' || (e.localName === 'state' && ['activity', 'use'].includes(e.getAttribute('type'))))
+              .map((e) => ([...e.children].find((c) => c.localName === 'label') || e).textContent.replace(/\s+/g, ' ').trim())
+              .filter(Boolean);
+          }
         } else {
           // EAC-CPF entries: the first name part, and the HTML article in <abstract>
           title = xml.getElementsByTagName('part')[0]?.textContent.trim();
@@ -62,11 +71,11 @@
           text = new DOMParser().parseFromString(html, 'text/html').body.textContent.replace(/\s+/g, ' ').trim();
         }
         title = title || name.replace(/-/g, ' ');
-        return { name, title, text };
+        return { name, title, text, occupations: [...new Set(occupations)] };
       } catch (e) { return null; }
     }));
     parsed.filter(Boolean).forEach((e) => { entries[e.name] = e; });
-    index.addAll(Object.values(entries).map((e) => ({ id: 'e:' + e.name, kind: 'entry', title: e.title, text: e.text })));
+    index.addAll(Object.values(entries).map((e) => ({ id: 'e:' + e.name, kind: 'entry', title: e.title, text: e.text, occupation: e.occupations.join(' ') })));
   }
 
   function buildIndex() {
@@ -75,7 +84,7 @@
       storeFields: ['kind'],
       processTerm: fold,
       searchOptions: {
-        boost: { title: 4, listing: 2 },
+        boost: { title: 4, listing: 2, occupation: 2 },
         prefix: true,
         fuzzy: (term) => (term.length > 4 ? 0.2 : false),
         combineWith: 'AND',
@@ -90,7 +99,7 @@
     const docs = [];
     list.forEach((r) => {
       const i = records.push(r) - 1;
-      const kind = SOURCES[r.source] || 'places';
+      const kind = SOURCES[r.source] || 'directories';
       const key = typeof r.entityID === 'string' ? 'g:' + r.entityID : 'r:' + i;
       (groups[key] = groups[key] || { key, kind, records: [] }).records.push(r);
       recordGroup[i] = groups[key];
@@ -115,7 +124,7 @@
   // ---- Search ----------------------------------------------------------
   function run() {
     const q = state.q.trim();
-    const sections = { entries: [], places: [], people: [] };
+    const sections = { entries: [], directories: [], rolls: [] };
     if (q) {
       const seen = {};
       index.search(q).forEach((hit) => {
@@ -171,11 +180,21 @@
     return (start > 0 ? '… ' : '') + marked(text.slice(start, end), re) + (end < text.length ? ' …' : '');
   }
 
+  // A trade or use, linked to a search for everything else with it.
+  // Directory listings abbreviate them ("ice cream fctry"), so the card shows
+  // the occupation in full whenever the listing doesn't already say it.
+  function occupationLink(term, terms) {
+    return `<a href="?q=${encodeURIComponent(term)}" data-q="${escapeHtml(term)}">${highlight(term, terms)}</a>`;
+  }
+  const plain = (s) => ` ${String(s || '').toLowerCase().replace(/&/g, ' and ').replace(/[^a-z0-9]+/g, ' ').trim()} `;
+  const occupationShown = (r) => r.Occupation && r.Occupation !== 'none given' && !plain(r.listing).includes(plain(r.Occupation));
+
   function entryCard({ entry, terms }) {
     const linked = groups['g:' + entry.title];
     const years = linked ? [...new Set(linked.records.map((r) => r.year))] : [];
     return `<li class="result result-entry">
       <a class="result-title" href="civic?id=${encodeURIComponent(entry.title)}">${highlight(entry.title, terms)}</a>
+      ${entry.occupations.length ? `<p class="result-occupation">${entry.occupations.map((o) => occupationLink(o, terms)).join(' · ')}</p>` : ''}
       <p class="result-snippet">${snippet(entry.text, terms)}</p>
       ${years.length ? `<p class="result-meta">Also in the directories: ${years.join(' · ')}</p>` : ''}
     </li>`;
@@ -187,14 +206,18 @@
     const name = group.key.startsWith('g:') ? group.key.slice(2) : null;
     const hasEntry = name && entries[slugify(name)];
     const years = recs.map((r) => `<li${hits.has(r) ? ' class="hit"' : ''}><span class="yr">${r.year}</span> ${highlight(r.listing, terms)} <span class="pg">${r.pages ? 'p. ' + escapeHtml(r.pages) : ''}</span></li>`).join('');
+    // The title goes where the action does: the entry page, which also lists
+    // every record for this name, whether or not an entry has been written.
+    const href = `civic?id=${encodeURIComponent(hasEntry ? name : shown.entityID)}`;
     const link = hasEntry
-      ? `<a class="result-action" href="civic?id=${encodeURIComponent(name)}">Read the entry →</a>`
-      : `<a class="result-action quiet" href="civic?id=${encodeURIComponent(shown.entityID)}">Start an entry</a>`;
+      ? `<a class="result-action" href="${href}">Read the entry →</a>`
+      : `<a class="result-action quiet" href="${href}">Start an entry</a>`;
     return `<li class="result result-record">
       <div class="result-head">
-        <span class="result-title">${highlight(shown.listing, terms)}</span>
+        <a class="result-title" href="${href}">${highlight(shown.listing, terms)}</a>
         <span class="result-where">${escapeHtml(shown.street)}${shown.cardinality ? ', ' + escapeHtml(shown.cardinality.toLowerCase()) + ' side' : ''}</span>
       </div>
+      ${occupationShown(shown) ? `<p class="result-occupation">${occupationLink(shown.Occupation, terms)}</p>` : ''}
       ${shown.source === 'Directory' && shown.Notes ? `<p class="result-note">Note: ${escapeHtml(shown.Notes)}</p>` : ''}
       <p class="result-years">${[...new Set(recs.map((r) => r.year))].map((y) => `<span class="${[...hits].some((h) => h.year === y) ? 'on' : ''}">${y}</span>`).join('')}</p>
       ${recs.length > 1 ? `<details class="result-trace"><summary>Across ${recs.length} listings</summary><ol>${years}</ol></details>` : ''}
@@ -202,7 +225,8 @@
     </li>`;
   }
 
-  const LABELS = { entries: 'Entries', places: 'Places · directories', people: 'People · electoral rolls' };
+  const LABELS = { entries: 'Entries', directories: 'Directory listings', rolls: 'Electoral rolls' };
+  const MORE = { entries: 'entries', directories: 'directory listings', rolls: 'electoral roll records' };
   function render(q, sections) {
     Object.keys(sections).forEach((k) => {
       const n = sections[k].length;
@@ -217,7 +241,7 @@
       resultsEl.innerHTML = '';
       return;
     }
-    const keys = state.src === 'all' ? ['entries', 'places', 'people'] : [state.src];
+    const keys = state.src === 'all' ? ['entries', 'directories', 'rolls'] : [state.src];
     const total = keys.reduce((n, k) => n + sections[k].length, 0);
     if (!total && loading) {
       // The data-status line below says what's still loading.
@@ -237,7 +261,7 @@
       const list = sections[k];
       const limit = state.src === 'all' ? PER_SECTION : list.length;
       const cards = list.slice(0, limit).map(k === 'entries' ? entryCard : recordCard).join('');
-      const more = list.length > limit ? `<button type="button" class="search-more-btn" data-src="${k}">Show all ${list.length.toLocaleString()} ${LABELS[k].split(' ·')[0].toLowerCase()}</button>` : '';
+      const more = list.length > limit ? `<button type="button" class="search-more-btn" data-src="${k}">Show all ${list.length.toLocaleString()} ${MORE[k]}</button>` : '';
       return `<section class="search-section"><h2>${LABELS[k]} <span>${list.length.toLocaleString()}</span></h2><ol class="results">${cards}</ol>${more}</section>`;
     }).join('');
   }
@@ -248,6 +272,14 @@
   input.addEventListener('input', () => { clearTimeout(t); t = setTimeout(() => { state.q = input.value; update(); }, 150); });
   form.addEventListener('submit', (e) => { e.preventDefault(); state.q = input.value; update(); });
   document.addEventListener('click', (e) => {
+    const o = e.target.closest('a[data-q]');
+    if (o && !e.metaKey && !e.ctrlKey && !e.shiftKey) {
+      e.preventDefault();
+      state.q = input.value = o.dataset.q; update();
+      window.scrollTo({ top: $('searchPage').offsetTop });
+      input.focus({ preventScroll: true });
+      return;
+    }
     const b = e.target.closest('[data-src]');
     if (!b) return;
     state.src = b.dataset.src; update(); window.scrollTo({ top: $('searchPage').offsetTop });

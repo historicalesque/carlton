@@ -158,12 +158,12 @@ body {
     color: var(--moss-bright);
 }
 
-/* Phones: tighter links so all five items fit on one row */
+/* Phones: tighter links; the six items wrap onto a second row when they don't fit */
 @media (max-width: 600px) {
     .main-nav { padding: 0 4px; }
-    .nav-links { flex-wrap: nowrap; justify-content: space-between; }
+    .nav-links { justify-content: center; }
     .nav-links li a {
-        padding: 14px 7px;
+        padding: 12px 8px;
         font-size: 0.85rem;
         letter-spacing: 0;
         white-space: nowrap;
@@ -282,6 +282,8 @@ body {
 a.result-title { text-decoration: underline; text-decoration-color: var(--sage-dark); text-underline-offset: 3px; }
 .results .result-snippet { margin: 6px 0 0; color: var(--ink-soft); font-size: 0.95rem; line-height: 1.55; }
 .results .result-meta { margin: 6px 0 0; font: 0.8rem var(--font-mono); color: var(--moss); }
+.results .result-occupation { margin: 4px 0 0; font: italic 0.92rem var(--font-serif); color: var(--ink-soft); }
+.result-occupation a { color: var(--moss); }
 .result-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 2px 12px; }
 .result-where { font: italic 0.92rem var(--font-serif); color: var(--ink-faint); }
 .result-note { margin: 4px 0 0; font-size: 0.85rem; color: var(--ink-faint); }
@@ -313,7 +315,7 @@ a.result-title { text-decoration: underline; text-decoration-color: var(--sage-d
 @media (max-width: 600px) {
     .search-box input { font-size: 1rem; padding: 10px 12px; }
     .search-box button { padding: 0 14px; }
-    .search-tabs { flex-wrap: nowrap; overflow-x: auto; max-width: 100%; }
+    .search-tabs { flex-wrap: nowrap; overflow-x: auto; max-width: 100%; min-width: 0; }
     .search-tabs button { white-space: nowrap; }
     .search-more-body { padding: 10px; }
 }
@@ -321,14 +323,14 @@ a.result-title { text-decoration: underline; text-decoration-color: var(--sage-d
 /* 6. PAGE LAYOUT & TYPOGRAPHY -------------------------------------------- */
 .layout-container {
     display: grid;
-    grid-template-columns: 1fr 320px;
+    grid-template-columns: minmax(0, 1fr) 320px;
     gap: 40px;
     padding: 40px;
 }
 
 @media (max-width: 768px) {
     .layout-container {
-        grid-template-columns: 1fr;
+        grid-template-columns: minmax(0, 1fr);
         padding: 20px;
         gap: 30px;
     }
@@ -1468,3 +1470,45 @@ html.map3d-page, body.map3d-page {
 .pv-chron { border-collapse: collapse; width: 100%; margin-bottom: 12px; font-size: 14px; }
 .pv-chron th, .pv-chron td { border-bottom: 1px solid var(--paper-line); padding: 5px 8px 5px 0; text-align: left; vertical-align: top; }
 .pv-chron th { white-space: nowrap; color: var(--ink); font-weight: normal; font-family: var(--font-mono); }
+
+/* 12. SITE PAGES ---------------------------------------------------------
+   The front page, Featured pages and About are entries too (site_pages in
+   _config.yml), drawn by entry.html. They keep the look of an ordinary
+   page: a full-size title, no entry type, and a quiet "Suggest an edit"
+   link at the foot instead of the contribution form. */
+.site-page .pv-type { display: none; }
+.site-page .pv-entry { font-size: inherit; line-height: inherit; }
+.main-content .site-page .pv-entry h1 { font-size: 2.2rem; margin-bottom: 20px; }
+.site-page .pv-entry h2 { font-size: 1.5rem; margin: 28px 0 10px; }
+.site-page .pv-entry p { margin-bottom: 20px; }
+.site-page .pv-entry ul, .site-page .pv-entry ol { margin-bottom: 20px; }
+.site-page .pv-entry li { margin-bottom: 6px; }
+.site-page .az-top { font-size: 0.9rem; font-style: italic; }
+.main-content .site-page ul.az-index { padding-left: 0; }
+
+.page-suggest {
+    margin-top: 48px;
+    padding-top: 10px;
+    border-top: 1px solid var(--paper-line);
+    font-size: 0.82rem;
+    color: var(--ink-faint);
+}
+.page-suggest summary {
+    display: inline-block;
+    cursor: pointer;
+    color: var(--ink-faint);
+    text-decoration: underline;
+    text-decoration-color: var(--paper-line);
+    text-underline-offset: 3px;
+}
+.page-suggest summary::-webkit-details-marker { display: none; }
+.page-suggest summary:hover,
+.page-suggest[open] summary { color: var(--moss-deep); }
+.main-content .page-suggest p { font-size: 0.85rem; color: var(--ink-faint); margin: 10px 0; }
+.page-suggest .contribution-frame {
+    display: block;
+    width: 100%;
+    height: 600px;          /* until the form reports its real height */
+    border: 0;
+    background: transparent;
+}

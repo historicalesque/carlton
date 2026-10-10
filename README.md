@@ -8,7 +8,7 @@
 >
 > - **Read about the project:** [About Common Ground](https://historicalesque.github.io/carlton/)
 > - **Search everything:** [Search](https://historicalesque.github.io/carlton/search) finds entries, directory listings and electoral-roll records in one box.
-> - **Browse the histories:** [Featured pages A–Z](https://historicalesque.github.io/carlton/aToZ) · [Map](https://historicalesque.github.io/carlton/map) · [People](https://historicalesque.github.io/carlton/people) · [Places](https://historicalesque.github.io/carlton/places)
+> - **Browse the histories:** [Featured pages A–Z](https://historicalesque.github.io/carlton/aToZ) · [Map](https://historicalesque.github.io/carlton/map) · [Directories](https://historicalesque.github.io/carlton/directories) · [Electoral rolls](https://historicalesque.github.io/carlton/electoral-rolls)
 > - **Share a story or add to an entry:** open any entry on the site and use the *Contribute* form at the bottom, or [start a new entry](https://historicalesque.github.io/carlton/new).
 > - **Editorial team:** start at the [Admin page](https://historicalesque.github.io/carlton/admin/), which links to each editorial tool. To review submissions, read them on the [Submission review page](https://historicalesque.github.io/carlton/admin/review.html), then accept or reject each one in the Decision column of the team's submissions spreadsheet.
 > - **Project partners:** [Melbourne History Workshop](https://melbournehistoryworkshop.com) · [Carlton Community History Group](https://cchg.asn.au)
@@ -39,7 +39,7 @@ Common Ground is a static website hosted on **GitHub Pages** and built with **Je
 
 - **Encyclopedia entries** are XML files in `civic/`. The browser fetches them and renders them on the fly. Existing entries are [EAC-CPF](https://eac.staatsbibliothek-berlin.de/); entries are moving to [TEI](https://tei-c.org/guidelines/p5/) (roadmap §4), and entry pages show both.
 - **Historical directory data** (Sands & McDougall directories and electoral rolls) is one JSON file per source and year in `_data/`. Jekyll publishes compact copies in `data/` plus an index, and each page loads only the files it needs through `scripts/data.js`.
-- **Public contributions** go through a Google Apps Script web app. The form builds each entry as TEI and sends it to the script in `apps-script/Code.gs`, which saves a copy to a Google Sheet in the team's shared Google Drive folder, then opens a pull request on this repository. The form only sends once `contribution_endpoint` is set in `_config.yml` (setup: `apps-script/README.md`). The sheet is a user-friendly backup while the submission process is being settled. The editorial team then picks *Accept* or *Reject* in the Sheet's Decision column, and the script merges or closes the pull request a minute later.
+- **Public contributions** go through a Google Apps Script web app. The form builds each entry as TEI and sends it to the script in `apps-script/Code.gs`, which saves a copy to a Google Sheet in the team's shared Google Drive folder, then opens a pull request on this repository. The form only sends once `contribution_endpoint` is set in `_config.yml` (setup: `apps-script/README.md`). The sheet is a user-friendly backup while the submission process is being settled. The editorial team then picks *Accept* or *Reject* in the Sheet's Decision column, and the script merges or closes the pull request straight away.
 
 The project is deliberately a **perpetual work in progress**. Gaps in the data and entries that don't exist yet are invitations for the community to contribute, not defects.
 
@@ -49,7 +49,7 @@ Nothing is published until a pull request is merged into `main`. GitHub Pages re
 
 ```
                  ┌──────────────────────────── GitHub Pages (Jekyll) ───────────────────────────┐
- Visitor ──────▶ │  index / search / aToZ / people / places / map / map3d / civic?id=…            │
+ Visitor ──────▶ │  index / search / aToZ / directories / electoral-rolls / map(3d) / civic?id=…  │
                  │        │                                   │                                  │
                  │        ▼                                   ▼                                  │
                  │   data/index.json + data/<source>/   civic/<slug>.xml  (fetched + parsed     │
@@ -65,7 +65,7 @@ Nothing is published until a pull request is merged into `main`. GitHub Pages re
  Anyone ────▶ admin/ ▶ review.html ── lists open PRs touching civic/, previews them,
                                        before/after table for new versions of entries
  Editor ─────▶ Google Sheet: Decision column (Accept / Reject)
-                                                         │  a minute later (apps-script/Code.gs)
+                                                         │  straight away (apps-script/Code.gs)
                                                          ▼
                                        merge the PR (accept)  /  close the PR (reject)
 ```
@@ -79,16 +79,18 @@ Nothing is published until a pull request is merged into `main`. GitHub Pages re
 3. parses the XML and renders it: TEI entries with `TEIEntry.render()` from `scripts/tei.js`, older EAC-CPF entries (namespace `urn:isbn:1-931666-33-4`) with the code in the layout;
 4. adds the contribution form underneath. If no file exists yet, the form takes the entry's place so the community can create it. The form (`_layouts/form.html`, in an iframe) reports its height to the entry page, which sizes the iframe to fit.
 
+**Site pages are entries too.** The front page, Featured pages and About are `civic/Home.xml`, `civic/Featured-pages.xml` and `civic/About.xml`, listed as `site_pages` in `_config.yml`. Their `.md` pages (`index.md`, `aToZ.md`, `about.md`) use the entry layout and name the file with `entry_id`, so the addresses stay the same. They keep the look of an ordinary page (full-size title, no entry type, no map link), are left out of search, and instead of the contribution form have a small *Suggest an edit to this page* link at the foot, meant for the wider team rather than the public. Suggested edits go through the same form, pull request and Sheet decision as entries. To add another site page, add its file name to `site_pages` and give its `.md` page `layout: entry` and `entry_id`.
+
 With `preview=true`, `id` can be a full URL, such as a raw file on a pull-request branch. This is how `admin/review.html` previews submissions before they are merged. Preview mode also hides the banner, menu, footer and contribution form, so the review frame shows just the article.
 
 ### Search, facets and maps
 
-- **Search page** (`search.md` → `_layouts/search.html` + `scripts/search.js`): one box that searches the entries in `civic/` and every directory and electoral-roll record together, using [MiniSearch](https://github.com/lucaong/minisearch) (vendored in `scripts/vendor/`, MIT). Jekyll lists the entry files into the page at build time and the browser fetches them as ordinary site files (no GitHub API calls). Entries are searchable at once; records join the index as each year's file arrives. Results are grouped into Entries, Places (directories) and People (electoral rolls); records that share a text `entityID` collapse into one result with a row of years. Matching is by prefix with small typos allowed, and a `VARIANTS` list at the top of `scripts/search.js` folds historical spellings and abbreviations together (Berkley/Berkeley, htl → hotel, Wm → William, …); add pairs there. The search is kept in the address (`search?q=grocer&year=1910&street=…&src=people`), so it can be shared. If nothing matches, it offers to start a new entry with that name.
-- **People / Places** (`_layouts/facet-list.html`): load only the files for one `source`. `people` shows electoral rolls and `places` shows directories. Results are grouped by source/year → street → side of street, and each year is drawn as soon as its file arrives (oldest first). Within each year the streets are sorted, so each street appears once per year, and the contents list shows the year after each street (e.g. "Bouverie Street (1905) listings").
+- **Search page** (`search.md` → `_layouts/search.html` + `scripts/search.js`): one box that searches the entries in `civic/` and every directory and electoral-roll record together, using [MiniSearch](https://github.com/lucaong/minisearch) (vendored in `scripts/vendor/`, MIT). Jekyll lists the entry files into the page at build time and the browser fetches them as ordinary site files (no GitHub API calls). Entries are searchable at once; records join the index as each year's file arrives. Results are grouped into Entries, Directory listings and Electoral rolls, filtered by dataset rather than by "people" or "places", since directory listings name residents as well as businesses; records that share a text `entityID` collapse into one result with a row of years. Matching is by prefix with small typos allowed, and a `VARIANTS` list at the top of `scripts/search.js` folds historical spellings and abbreviations together (Berkley/Berkeley, htl → hotel, Wm → William, …); add pairs there. Occupations are searched too: a record's `Occupation` (so "grocer" finds listings abbreviated "grcr"), and an entry's occupations, activities or uses. A record card shows the occupation in full when its listing abbreviates it, and an occupation links to a search for everything else with that trade. The search is kept in the address (`search?q=grocer&year=1910&street=…&src=rolls`; `src` is `entries`, `directories` or `rolls`), so it can be shared. If nothing matches, it offers to start a new entry with that name.
+- **Directories / Electoral rolls** (`directories.md`, `electoral-rolls.md` → `_layouts/facet-list.html`): load only the files for one `source`. Results are grouped by source/year → street → side of street, and each year is drawn as soon as its file arrives (oldest first). Within each year the streets are sorted, so each street appears once per year, and the contents list shows the year after each street (e.g. "Bouverie Street (1905) listings").
 - **Map** (`_layouts/map.html`): Leaflet 1.9.4. It plots records that have `lat`/`lng`, with University of Melbourne land parcels (`data/uom-land-parcels.geojson`) as an overlay. Both maps set up their years and controls from `data/index.json` and draw each year as soon as its file arrives. Records without coordinates are placed between mapped ones from the same year and street, so they are drawn with their year; cross-year links are added once every year has arrived.
 - **3D Map** (`_layouts/map3d.html`): three.js r128 with OrbitControls. Experimental. It shows the records only: the historic map layers and land parcels stay on the 2D map.
 - Both maps share `scripts/map-common.js` (data loading, year colours, cross-year links from string `entityID`s, marker shapes) and the details popup in `_includes/map-details-modal.html`, which links to the record's entry ("Read the entry" when `civic/<entityID>.xml` exists, "Start an entry" otherwise). The 2D map also takes `map?entity=<entityID>`: it ticks the years that entity appears in, rings its markers and zooms to them. Entries link there with "See on the map" when the map draws at least one of their records.
-- **Featured pages A–Z** (`aToZ.md` + `scripts/az-status.js`): Jekyll lists the files in `civic/` into the page at build time, and the script marks links with no entry yet (pencil icon, "Not yet written") and entries created in the last 14 days ("New"). A legend above the letter index explains both.
+- **Featured pages A–Z** (`civic/Featured-pages.xml`, shown by `aToZ.md` + `scripts/az-status.js`): the list itself is a site-page entry, one heading per letter. Jekyll lists the files in `civic/` into the page at build time, and once the entry is drawn the script adds the letter index, legend and *Back to top* links, and marks links with no entry yet (pencil icon, "Not yet written") and entries created in the last 14 days ("New"). A legend above the letter index explains both.
 
 ## Repository layout
 
@@ -100,10 +102,10 @@ With `preview=true`, `id` can be a full URL, such as a raw file on a pull-reques
 | `_layouts/entry.html` | Fetches and renders one entry (TEI, or EAC-CPF for any older file), and adds the contribution form. |
 | `_layouts/form.html` | Contribution form (Quill 1.3.6). Builds the entry as TEI, with optional extra sections and a *Show all fields* switch. Not connected yet: it previews the entry and downloads the XML. |
 | `_layouts/new.html` | "Start a new entry" box that redirects to `civic?id=…`. |
-| `_layouts/facet-list.html` | People / Places listings. |
+| `_layouts/facet-list.html` | Directories / Electoral rolls listings. |
 | `_layouts/map.html`, `_layouts/map3d.html` | 2D Leaflet map and 3D three.js map. |
 | `scripts/map-common.js`, `_includes/map-details-modal.html` | Functions and the details popup shared by both maps. |
-| `*.md` (root) | One small file per page. Mostly front matter that picks a layout. `aToZ.md` is the hand-maintained index of featured pages. |
+| `*.md` (root) | One small file per page. Mostly front matter that picks a layout. `index.md`, `aToZ.md` and `about.md` show site-page entries from `civic/` (see [Entry pages](#entry-pages)). |
 | `civic/*.xml` | Published encyclopedia entries (TEI). See `docs/SCHEMA.md`. |
 | `_data/directory/<year>.json`, `_data/electoral-roll/<year>.json` | The directory and electoral-roll records, one file per source and year, one record per line. **Edit these.** See [Data](#data-directories-and-electoral-rolls). |
 | `data/` | What the browser downloads, generated from `_data/` by Jekyll: one small page per data file, `data/index.json` (the list of files), and `uom-land-parcels.geojson` (University of Melbourne land parcels). |
@@ -116,7 +118,7 @@ With `preview=true`, `id` can be a full URL, such as a raw file on a pull-reques
 | `tools/convert-eac-to-tei.html` | One-off page that converted the EAC-CPF entries in `civic/` to TEI with `scripts/tei.js`. Not linked from the site. |
 | `admin/index.html` | Admin landing page for the editorial team, linking to each tool (served at `admin/`). The site footer links here. |
 | `admin/review.html` | Plain-language review page: previews submissions and, for new versions of entries, what would change. Open to everyone; editors decide in the Sheet. |
-| `admin/carlton-data-editor.html` | Browser-based editor for the directory and electoral-roll files. |
+| `admin/carlton-data-editor.html` | Browser-based editor for the directory and electoral-roll files. *Send changes* sends them through the Apps Script for the editors to accept or reject. |
 | `scripts/az-status.js` | Marks Featured pages links as "New" or "Not yet written". |
 | `scripts/banner-parallax.js` | Header banner effect. |
 | `scripts/vendor/` | Third-party scripts saved into the repo (MiniSearch). |
@@ -140,7 +142,7 @@ bundle exec jekyll serve
 Notes:
 
 - Internal links leave out `.html` (e.g. `civic?id=…`). GitHub Pages handles this, and `jekyll serve` normally does too. If a link 404s locally, try adding `.html`.
-- `admin/review.html` reads from the live GitHub repo. `admin/carlton-data-editor.html` loads the data from the site it's served from, so locally it shows your local files.
+- `admin/review.html` reads from the live GitHub repo. `admin/carlton-data-editor.html` loads the data from the site it's served from, so locally it shows your local files. Its *Send changes* still goes to the live Apps Script and opens a real pull request (reject it in the Sheet afterwards), and refuses any record that differs from the live copy.
 - Once `contribution_endpoint` is set, sending the contribution form locally **creates a real pull request** through the live Apps Script. Close any test pull requests afterwards.
 
 ## Content: encyclopedia entries (TEI XML)
@@ -149,7 +151,7 @@ Every entry in `civic/` is a TEI file, written to the project customisation in `
 
 - **Filename = slug of the entry ID**: spaces become `-`, anything other than letters, digits, `_` and `-` is removed, and the file goes in `civic/`, e.g. `Mary Mather (Pelham Hotel)` → `civic/Mary-Mather-Pelham-Hotel.xml`. The slug logic is `slugifyId()` in `_layouts/entry.html`. A file that doesn't match the slug won't be found. `<idno type="entry">` holds the same slug.
 - `<revisionDesc>` has one `<change>` per contribution or edit.
-- To add an entry to the A–Z, add a link in `aToZ.md` by hand.
+- To add an entry to the A–Z, add a link under its letter in `civic/Featured-pages.xml` (or suggest an edit to the Featured pages page).
 
 Open questions to settle: fixed lists for `div`, `state` and `relation` types, and what to do with entries that have two names (e.g. *Carlton Inn* / *Corkman Hotel*). See roadmap §4.
 
@@ -209,38 +211,41 @@ Typical record:
 | Field | Notes |
 |---|---|
 | `entityID` | Usually a number: directories count up from 1, electoral rolls from 999999, so the two never share a number (the rolls were renumbered from 7034–8558 when the data was split, because they overlapped the 1930 directory). A **string** (e.g. `"Bridget O'Neill"`) means someone on the team has decided that several records are the same person or place, and linked them under a new ID they created for that purpose. Many records share a string ID on purpose; the search page shows each linked group as one result with a row of years, and links it to the entry of the same name if there is one (e.g. the Carlton Inn listings are linked under `"Corkman Hotel"`). |
-| `source` | `"Directory"` or `"Electoral roll"`. This decides whether a record appears under People or Places. |
+| `source` | `"Directory"` or `"Electoral roll"`. This decides whether a record appears under Directories or Electoral rolls. |
 | `year`, `pages`, `listing`, `street`, `type`, `cardinality` | As transcribed. `cardinality` is the side of the street (North/South/East/West). |
 | `lat`, `lng` | Optional. About 1,450 records have coordinates so far, and only these appear on the map. Adding more is ongoing community work. |
-| `Surname`, `Given Names`, `Registration Number`, `Address`, `Street Number`, `Gender`, `Occupation`, `Notes` | Electoral-roll fields (Title Case, some with spaces). Some later directory records also have `Occupation` / `Notes`. |
+| `Surname`, `Given Names`, `Registration Number`, `Address`, `Street Number`, `Gender`, `Occupation`, `Notes` | Electoral-roll fields (Title Case, some with spaces). `Registration Number` stays in the data (and the admin data editor can search it), but electoral-roll `listing`s no longer start with it, so the public search never matches it. Directory records also have `Occupation` where the listing gives a trade, spelled out in full ("grcr" → "grocer"), and some have `Notes`. Search uses `Occupation`, and the contribution form fills in an entry's occupations from it. |
 
 ### Editing the data
 
-Use `admin/carlton-data-editor.html`. It loads the live data, lets you search and edit records, and then *Download changed files* gives one download per changed year (e.g. `1905.json`). Someone then has to upload each file to its folder on GitHub by hand (the editor links to the upload page and explains how). Check the downloaded filename is exactly the year (browsers sometimes save `1905 (1).json`), and reload the editor before you start so you don't overwrite someone else's changes. Small fixes can also be made directly on GitHub by editing the line for that record.
+Use `admin/carlton-data-editor.html`. It loads the live data and lets you search, edit and add records. **Send changes** asks for your name and an optional note, then sends only the records that changed to the Apps Script (`receiveData_` in `apps-script/Code.gs`). The script checks them against the files on `main`, opens a `data/…` pull request and adds a row to the Sheet's *Data changes* tab, listing each changed record (e.g. "lat -37.8041 → -37.8042"). An editor picks *Accept* or *Reject* in that row's Decision column, as for entries. Accept applies the changes to the data as it is then (so changes accepted in between are kept) and merges the pull request. If someone else changed one of the same records since the editor was loaded, nothing is sent and the editor asks you to reload; the same check at Accept stops a change that no longer fits. A record for a year that has no file yet is refused, because a new year needs a developer (see *Adding a new year* above).
+
+*Download changed files* still gives one file per changed year for uploading to GitHub by hand. Small fixes can also be made directly on GitHub by editing the line for that record.
 
 ## Editorial workflows
 
 ### Reviewing a public submission (editorial team)
 
 1. Open **`admin/review.html`** (or the [Admin page](https://historicalesque.github.io/carlton/admin/), then *Review submissions*). It lists open pull requests that add or change files in `civic/`. Anyone can read it; no sign-in is needed.
-2. Pick a submission to see a preview of the entry as it would appear on the site. If someone has suggested changes, the page lists every version and shows what each one changes. Anyone can press **Suggest changes** to fix a submission in the contribution form; that makes a new version, and the original stays as it was. If it is a new version of an entry that's already on the site, a **What changes** table shows the current entry next to the new version. Anything the new version leaves out is marked, because accepting replaces the whole entry.
+2. Pick a submission to see a preview of the entry as it would appear on the site. If someone has suggested changes, the page lists every version and shows what each one changes. Anyone can press **Suggest changes** to fix a submission in the contribution form; that makes a new version, which becomes the one the editors decide on (earlier versions stay listed). If it is a new version of an entry that's already on the site, a **What changes** table shows the current entry next to the new version. Anything the new version leaves out is marked, because accepting replaces the whole entry.
 3. Decide in the team's submissions spreadsheet (the Sheet the Apps Script is attached to). Each submission is a row with a link back to the review page. In the **Decision** column, pick:
-   - **Accept** to publish it. The Status column says "Publishing in about a minute". Then the script merges the pull request and the Status column says "Published".
+   - **Accept** to publish it. The script merges the pull request straight away and the Status column says "Published".
    - **Reject** to turn it down. The script closes the pull request. The *Reason* column is optional and stays in the Sheet.
-   - Suggested changes are rows on the **Reviews** tab, with their own Decision column. Accepting one publishes that version instead of the original. Rejecting one turns down only that suggestion.
-4. Picked the wrong one? Clear the Decision cell within the minute to cancel.
+   - Suggested changes don't add rows: they update the submission's row (listed in its *Suggested changes* column), and Accept publishes the latest version.
+   - The **Records** column lists the directory and electoral-roll records the entry is about. Accepting links them to the entry (their `entityID` becomes the entry's id) in the same pull request. Edit the numbers before accepting if they're wrong; the Status column says how many were linked.
+4. A decision happens as soon as it's picked and can't be undone from the Sheet, so check first.
 5. The site updates a minute or two after a submission is published.
 
 Only people the Sheet is shared with (as editors) can decide. The review page explains this in plain language. If you change the workflow, update both that page and this section. Setup and details: `apps-script/README.md`.
 
 ### Updating directory/map data
 
-See [Editing the data](#editing-the-data) above. This is separate from entry submissions and needs more care, because a broken data file breaks search, the maps and the People/Places pages.
+See [Editing the data](#editing-the-data) above. This is separate from entry submissions and needs more care, because a broken data file breaks search, the maps and the Directories / Electoral rolls pages.
 
 ## Adding a new page or facet
 
 - **Simple page:** add `my-page.md` at the root with front matter (`title`, optionally `layout`). It gets `layout: default` automatically.
-- **New facet list** (like People/Places): add `my-facet.md`, add a `scope` block in `_config.yml` with `layout: facet-list` and `facet: "my-facet"`, and add a matching branch to the `filter` in `_layouts/facet-list.html`.
+- **New facet list** (like Directories / Electoral rolls): add `my-facet.md`, add a `scope` block in `_config.yml` with `layout: facet-list` and `facet: "my-facet"`, and add a matching branch to the `filter` in `_layouts/facet-list.html`.
 - **New entry collection** (another folder like `civic/`): add a page using `layout: entry` and set `EACCPFpath` to the folder name in `_config.yml`.
 - **Navigation:** edit the `<nav>` list in `_layouts/default.html`. Footer links are in the same file.
 
@@ -276,7 +281,7 @@ Goal: pages only download the data they need, show visitors what's happening whi
 
 - [ ] **Agree on a data schema**: consistent `camelCase` field names (`givenNames`, `surname`, `occupation`, …), a clear rule for `entityID` (numeric record ID plus a separate `personId`/`placeId` for linking across years), and which fields are required. Write it up in `docs/SCHEMA.md`. The current fields and a starting proposal are written up there; the names still need agreeing before any file changes.
 - [x] **Split the data into JSON files**: one file per source and year in `_data/`, one record per line, with `data/index.json` generated by Jekyll (field names unchanged). Converted by `tools/convert-map-data.js`.
-- [x] **Shared data loader** (`scripts/data.js`): each page fetches only the files it needs, in parallel, at most once per page (the browser's cache covers moving between pages). People/Places and search use each year as soon as it arrives; the contribution form fetches only the files holding that entry's records.
+- [x] **Shared data loader** (`scripts/data.js`): each page fetches only the files it needs, in parallel, at most once per page (the browser's cache covers moving between pages). The Directories / Electoral rolls pages and search use each year as soon as it arrives; the contribution form fetches only the files holding that entry's records.
 - [x] **Loading feedback for visitors**: "Loading the 1905 directory… (4 of 9)", and a message with a *Try again* button if a file fails to load.
 - [x] Stop loading the data on every page: only the layouts that use it load it now (#44).
 - [x] Convert `UoM_Landuse_2026.js` to `data/uom-land-parcels.geojson`, loaded only by the 2D map.
@@ -299,6 +304,8 @@ Goal: editors never need to touch GitHub directly. Done in small, fundable steps
 
 **Markdown pages** (`aToZ.md`, `index.md` and other plain pages)
 
+- [x] **Front page, Featured pages and About as entries**: their text is now TEI in `civic/` (`site_pages` in `_config.yml`), so the team can suggest edits with the contribution form, through a small *Suggest an edit to this page* link. This covers most of what the Markdown and A–Z editors below were for; the maps stay as they are.
+
 - [ ] **Editor for Markdown pages**, see the design proposal: [`docs/proposals/markdown-page-editor.md`](docs/proposals/markdown-page-editor.md). Suggested first step: a simple text-and-preview editor for `index.md` and `aToZ.md` that saves through the existing Apps Script, with page edits listed and previewed in `admin/review.html` next to entry submissions. Editors sign in with Google, checked by the Apps Script against an editors list.
 - [x] **Admin landing page** (`admin/index.html`) linking to each admin tool: review, page editor and data editor, plus the editor help (#45). The page editor is a placeholder until it exists. The team's Google Sheet is deliberately not linked, because the page is public.
 - [ ] **Visual editor for Markdown pages**: an admin page that lists the site's editable pages, opens one in a word-processor-style editor (headings, bold/italic, links, bullet lists; no Markdown syntax needed), shows a live preview in the site's own styles, and saves by opening a pull request that goes through the usual review. Front matter (`title`, `layout`) is shown as simple form fields or hidden, so it can't be broken by accident.
@@ -308,14 +315,14 @@ Goal: editors never need to touch GitHub directly. Done in small, fundable steps
 **Entries and submissions**
 
 - [x] Clearer review page: three numbered steps and two buttons, links back to Admin and the site, and the preview shows just the article (#50).
-- [x] **Accept/Reject without GitHub**: editors pick Accept or Reject in a Decision column in the submissions Sheet, with an optional reason kept in the Sheet. The Apps Script merges or closes the pull request a minute later. The review page is open to everyone.
-- [x] **Before/after table** on the review page for new versions of existing entries (`scripts/tei-compare.js`).
-- [x] **Suggest changes** on the review page: anyone can open a submission in the contribution form (filled in by `TEIEntry.parse()`), fix it and send it back as a new version of the same pull request. Each suggestion is a row on the Sheet's *Reviews* tab with its own Decision column, and the review page shows every version and what each changes.
+- [x] **Accept/Reject without GitHub**: editors pick Accept or Reject in a Decision column in the submissions Sheet, with an optional reason kept in the Sheet. The Apps Script merges or closes the pull request straight away (it first waited a minute, so a mis-tap could be cancelled; dropped because it added to the wait for the site to rebuild). The review page is open to everyone (#14).
+- [x] **Before/after table** on the review page for new versions of existing entries (`scripts/tei-compare.js`) (#14).
+- [x] **Suggest changes** on the review page: anyone can open a submission in the contribution form (filled in by `TEIEntry.parse()`), fix it and send it back as a new version of the same pull request. Each suggestion updates its submission's row on the Sheet's *TEI submissions* tab, so there is one decision per submission and Accept publishes the latest version (#15). The review page shows every version and what each changes.
+- [x] **Link a new entry's records to it when it's accepted**: a new entry can be about several records, e.g. one hotel's listings in several Sands & McDougall directories. The form lists the records the entry was started from (each can be unticked), and *Is this entry about other records too?* finds and adds more. The numbered ones go in the Sheet's *Records* column. When an editor accepts the entry, `apps-script/Code.gs` changes those records' `entityID`s in `_data/` to the entry's id in the same pull request, so search, the maps and the entry page link them to the entry. The id is the entry's title (e.g. `"Spiers shop"` for `civic/Spiers-shop.xml`), or the id the entry's records already share. Records that already have a text `entityID` are left alone. A new entry can't take a title whose file name is already used by an entry or by linked records.
 
 **Directory/map data**
 
-- [ ] **Data editor saves by pull request**: replace "download, then upload to GitHub by hand" with a *Submit changes* button that opens a pull request, as the contribution form already does. This removes the riskiest manual step and becomes much easier once the data is split into per-year JSON (§1).
-- [ ] **Data-change preview on the review page**: show a readable table of changed records (before → after) instead of a raw diff.
+- [x] **Data editor sends changes through the Apps Script**: replace "download, then upload to GitHub by hand" with a *Send changes* button, as the contribution form already does. The sender gives their name and a short note, and the editor sends only the records that changed. `apps-script/Code.gs` applies them to the current files, refusing any record someone else has changed since, then opens a pull request and adds a row to a *Data changes* tab in the same Sheet, where an editor accepts or rejects it in the Decision column.
 - [x] Data editor uses the same fonts, colours and buttons as the review page, with one main *Download* button (#50).
 
 **Off-the-shelf options to compare against building our own**
@@ -330,7 +337,7 @@ Goal: entries become valid, documented XML that covers everything the site write
 Decided on 2026-10-04: entries move from EAC-CPF to [TEI P5](https://tei-c.org/guidelines/p5/) with a project customisation (`schema/carlton.odd`). EAC-CPF only allows people, families and corporate bodies, so places and topics can't be recorded properly in it. The site doesn't need to keep working while this happens, so the contribution form is replaced directly rather than run alongside a second form.
 
 - [x] **Project customisation** `schema/carlton.odd`, and the schema generated from it, `schema/carlton.rng` (TEI P5 4.12.0). It sets the entry types (person, org, family, place, topic) and the text styles the form uses.
-- [x] **Contribution form writes TEI** (`_layouts/form.html`): the simple form, optional sections and a *Show all fields* switch, building TEI in the browser with a preview and *Download XML*. Not connected yet; keep refining the UI before connecting it.
+- [x] **Contribution form writes TEI** (`_layouts/form.html`): the simple form, optional sections and a *Show all fields* switch, building TEI in the browser with a preview that shows the XML. Not connected yet; keep refining the UI before connecting it.
 - [x] **Entry pages render TEI** (`_layouts/entry.html`, with the renderer in `scripts/tei.js`), and still show EAC-CPF files until they're converted.
 - [ ] **Entry style guide**: generate readable documentation from `carlton.odd` (TEI Stylesheets `odd2html`), with one worked example per entry type. Tighten the customisation as conventions settle, e.g. fixed lists for `div`, `state` and `relation` types, and drop modules nobody uses.
 - [ ] **Map the collaborators' types**: list the types used in the partners' existing EAC-CPF records (places, concepts and others) and map each to a TEI entry type, then agree the mapping with them.
@@ -338,7 +345,7 @@ Decided on 2026-10-04: entries move from EAC-CPF to [TEI P5](https://tei-c.org/g
 - [x] **Pre-fill new entries from the records**: when a record has no entry yet, the form fills in its addresses (merged across years, with coordinates) and one source per record, linked to that year's directory page (`civic/Sands-McDougall-Directory-<year>.xml`) or to Electoral Rolls. Electoral roll records also set the type, name and occupation. Directory listings aren't parsed for names or types.
 - [x] **New Apps Script**, written from scratch (`apps-script/Code.gs`): checks the XML is well-formed, sets the entry id, filename and date itself, saves a row to the Sheet and opens the pull request. A new version of an existing entry replaces its file in the pull request.
 - [x] **Connect the form**: the script is deployed (`apps-script/README.md`) and `contribution_endpoint` is set in `_config.yml`. Next: send a test entry and check the Sheet row and pull request.
-- [ ] **Search, People/Places and the maps read the TEI subject records** (names, addresses, coordinates), so entries appear on the map and alongside their directory listings. Search already finds TEI entries by title and article text.
+- [ ] **Search, the Directories / Electoral rolls pages and the maps read the TEI subject records** (names, addresses, coordinates), so entries appear on the map and alongside their directory listings. Search already finds TEI entries by title and article text.
 - [ ] Later: generate EAC-CPF 2.0 (people, businesses, families) or RiC data from the TEI files for archives and partners who want it.
 - [ ] Validate entries against `schema/carlton.rng` before merging (in an XML editor such as Oxygen, or with `jing`).
 
@@ -347,12 +354,12 @@ Decided on 2026-10-04: entries move from EAC-CPF to [TEI P5](https://tei-c.org/g
 - [ ] **GitHub Action that runs on every pull request**: check that XML is well-formed and valid against `schema/carlton.rng`, check that data JSON is valid against the schema, and check that the entry filename matches the `recordId`. Editors would then see a green tick or red cross on each submission.
 - [x] Commit a `Gemfile` so local builds match GitHub Pages.
 - [x] Contributor guide (`CONTRIBUTING.md`) setting out entry conventions as they're agreed. Update it as conventions change.
+- [ ] **Security review**: check the parts that accept input from the public or act on the repository. That covers the Apps Script (`apps-script/Code.gs`): who can call it, what it accepts, rate limits, and how its GitHub token is stored and scoped; how entry pages and the review page render submitted XML and Markdown (`scripts/tei.js`, `scripts/tei-compare.js`), so a submission can't run scripts in an editor's browser; who can see and edit the team's Google Sheet; and the admin pages, which are public. Write up findings and fixes in `docs/`.
 
 ### 6. Maps and community geocoding
 
 Placing records on the map is **ongoing community work**: about 16% of records have coordinates today, and that number should keep growing as volunteers contribute. The aim here is to make that work easy and inviting, not to finish it.
 
-- [ ] **"Help put this on the map"**: on records without coordinates, a prompt that lets a volunteer drop a pin on the map and submit it for review. Waiting on the new contribution form (form2) being connected: pins would travel the same route as other contributions (form, Apps Script, Sheet, pull request).
 - [ ] Show geocoding progress (e.g. "1,454 of 9,236 records mapped") on the map page as a community goal.
 - [x] Link map markers to entries and entries to map locations: the details popup says "Read the entry" when the record's `entityID` has an entry, and entries with drawn records get a "See on the map" link to `map?entity=<entityID>`, which rings those markers. (§4, Places, would later let an entry name its places directly.)
 - [ ] Historical base map overlays (e.g. MMBW plans), if suitable public-domain scans are available.
@@ -373,6 +380,7 @@ Placing records on the map is **ongoing community work**: about 16% of records h
   - [x] Nav: fit all five items on one row on phones.
   - [x] Search on phones: results are cards and filters fold away on the new search page (#44).
 - [x] **Accessibility pass**: keyboard navigation for search and maps, colour contrast, focus styles and alt text. (A site-wide focus outline and a darker `--ink-faint` for small labels were added in #43; the rest in #54.)
+- [ ] **Usability and UX review**: watch a few visitors and volunteer editors try common tasks (find a person or place, follow them across years, read an entry, find it on the map, suggest a new entry or a correction, and for editors, review and accept a submission). Note where they get stuck, then fix the biggest problems first. Include phones and people who are new to the site.
 
 ### 8. Site and content
 

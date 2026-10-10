@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="https://historicalesque.github.io/carlton/schema/carlton.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0" type="topic" xml:lang="en">
+  <teiHeader>
+    <fileDesc>
+      <titleStmt>
+        <title>Melbourne and Metropolitan Board of Works maps</title>
+        <author>Mitchell Harrop</author>
+      </titleStmt>
+      <publicationStmt>
+        <publisher>Common Ground</publisher>
+        <idno type="entry">MMBW</idno>
+      </publicationStmt>
+      <sourceDesc>
+        <p>Contributed through the website. No sources listed.</p>
+      </sourceDesc>
+    </fileDesc>
+    <revisionDesc status="draft">
+      <change when="2026-10-10" type="created">Contributed through the contribution form by Mitchell Harrop.</change>
+      <change when="2026-10-10" type="revised">Changes suggested by Andrew May: Added a link to State Lib.</change>
+    </revisionDesc>
+  </teiHeader>
+  <text>
+    <body>
+      <p>Melbourne and Metropolitan Board of Works maps or MMBW.</p>
+      <p><ref target="https://www.slv.vic.gov.au/search-discover/explore-collections-format/maps/maps-melbourne-city-suburbs/mmbw-plans">https://www.slv.vic.gov.au/search-discover/explore-collections-format/maps/maps-melbourne-city-suburbs/mmbw-plans</ref></p>
+    </body>
+  </text>
+</TEI>
