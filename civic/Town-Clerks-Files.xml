@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="https://historicalesque.github.io/carlton/schema/carlton.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0" type="topic" xml:lang="en">
+  <teiHeader>
+    <fileDesc>
+      <titleStmt>
+        <title>Town Clerk's Files</title>
+        <author>Mitchell Harrop</author>
+      </titleStmt>
+      <publicationStmt>
+        <publisher>Common Ground</publisher>
+        <idno type="entry">Town-Clerks-Files</idno>
+      </publicationStmt>
+      <sourceDesc>
+        <p>Contributed through the website. No sources listed.</p>
+      </sourceDesc>
+    </fileDesc>
+    <revisionDesc status="draft">
+      <change when="2026-10-10" type="created">Contributed through the contribution form by Mitchell Harrop.</change>
+    </revisionDesc>
+  </teiHeader>
+  <text>
+    <body>
+      <p><ref target="https://omeka.cloud.unimelb.edu.au/melbourne-history/inside-the-town-clerks-office">https://omeka.cloud.unimelb.edu.au/melbourne-history/inside-the-town-clerks-office</ref></p>
+    </body>
+  </text>
+</TEI>
