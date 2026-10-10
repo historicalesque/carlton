@@ -18,6 +18,7 @@
     </fileDesc>
     <revisionDesc status="draft">
       <change when="2026-10-10" type="created">Page for a source, drafted from the Melbourne History Resources copy.</change>
+      <change when="2026-10-10" type="revised">Added the project area.</change>
     </revisionDesc>
   </teiHeader>
   <standOff>
@@ -32,6 +33,7 @@
       <p><hi rend="italic">Sands &amp; McDougall's Melbourne and Suburban Directory for 1867</hi>.</p>
       <p>A copy of the full directory is held by Melbourne History Resources, and you can <ref target="https://omeka.cloud.unimelb.edu.au/melbourne-history/items/show/6">read it online</ref>.</p>
       <p>The 1867 directory has its own Carlton section, under North Melbourne (pp. 65–87), covering the area east of the Elizabeth-street extension between Victoria-street east and Neill-street, as far east as Nicholson-street. It lists each street house by house, side by side, with the cross streets in order. All of the section is included here. Rathdowne and Berkeley streets are stored as Rathdown and Berkley streets to match the later years.</p>
+      <p>The project covers the area south of Grattan Street, west of Swanston Street, east of Elizabeth Street and north of Victoria Street.</p>
     </body>
   </text>
 </TEI>

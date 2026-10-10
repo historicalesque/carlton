@@ -18,6 +18,7 @@
     </fileDesc>
     <revisionDesc status="draft">
       <change when="2026-10-05" type="created">Page for a source, drafted from State Library Victoria records.</change>
+      <change when="2026-10-10" type="revised">Added the project area.</change>
     </revisionDesc>
   </teiHeader>
   <standOff>
@@ -32,6 +33,7 @@
       <p><hi rend="italic">Sands &amp; McDougall's Melbourne and suburban directory, 1875</hi>. 1,106 pages.</p>
       <p>State Library Victoria has digitised this directory, and you can <ref target="https://viewer.slv.vic.gov.au/?entity=IE13713044&amp;mode=browse">read it online</ref>.</p>
       <p>The 1875 directory has its own Carlton section, under North Melbourne (pp. 87–114), covering the area east of the Elizabeth-street extension between Victoria-street east and Park-street, as far east as Nicholson-street, including the streets it marks "N Carlton". It lists the streets alphabetically, each house by house with the cross streets in order. All of the section is included here. Rathdowne, Berkeley and Neil (or Neild) streets are stored as Rathdown, Berkley and Neill streets to match the later years.</p>
+      <p>The project covers the area south of Grattan Street, west of Swanston Street, east of Elizabeth Street and north of Victoria Street.</p>
     </body>
   </text>
 </TEI>
