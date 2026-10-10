@@ -45,9 +45,6 @@ const SETTINGS = {
 // sent, one line each: who, when and what.
 const COLUMNS = ['Received', 'Kind', 'Title', 'Type', 'Authors', 'Suggested changes', 'Records', 'Review', 'Decision',
   'Reason (editors only)', 'Status', 'File', 'Pull request', 'Version', 'TEI'];
-// The tab suggested changes used to go on; setUp() folds its rows into the
-// submissions they change
-const OLD_REVIEWS_TAB = 'Reviews';
 // Shown in Status while a decision is being carried out
 const PENDING = { Accept: 'Publishing…', Reject: 'Rejecting…' };
 const TEI_NS = 'http://www.tei-c.org/ns/1.0';
@@ -546,12 +543,10 @@ function decideData_(key, number, decision, version, title, row) {
 /* ---------- Decisions ---------- */
 
 // Run once from the script editor (select setUp, then Run). It adds the new
-// columns, the Data changes tab and the Decision dropdowns, moves any rows
-// left on the old Reviews tab onto the submissions tab,
-// fills in Review links and Status for rows sent before this version, and
+// columns, the Data changes tab and the Decision dropdowns, fills in Review
+// links and Status for rows sent before this version, and
 // switches on the edit trigger. Safe to run again.
 function setUp() {
-  moveOldReviews_();
   Object.keys(TABS).forEach((key) => {
     const sheet = tab_(key);
     const cols = columns_(sheet, TABS[key].columns);
@@ -816,36 +811,6 @@ function linkRecords_(branch, slug, title, numbers) {
   const note = `; ${done.size} record${done.size === 1 ? '' : 's'} linked`
     + (skipped.length ? `, not linked: ${skipped.join(', ')}` : '');
   return { head, note };
-}
-
-// Suggested changes used to go on a separate Reviews tab. Folds each one
-// still waiting there into the row of the submission it changes, as if it
-// had arrived now: the newest becomes the version Accept publishes. Then
-// deletes the Reviews tab. Safe to run again.
-function moveOldReviews_() {
-  const old = SpreadsheetApp.getActiveSpreadsheet().getSheetByName(OLD_REVIEWS_TAB);
-  if (!old) return;
-  if (old.getLastRow() < 2) { SpreadsheetApp.getActiveSpreadsheet().deleteSheet(old); return; }
-  const header = old.getRange(1, 1, 1, old.getLastColumn()).getValues()[0];
-  const get = (r, name) => (header.indexOf(name) === -1 ? '' : r[header.indexOf(name)]);
-  const subs = tab_('submissions');
-  const cols = columns_(subs, COLUMNS);
-  old.getRange(2, 1, old.getLastRow() - 1, old.getLastColumn()).getValues()
-    .filter((r) => prNumber_(get(r, 'Pull request')) && !FINAL.test(String(get(r, 'Status'))))
-    .sort((a, b) => new Date(get(a, 'Received')) - new Date(get(b, 'Received')))
-    .forEach((r) => {
-      const version = get(r, 'Version');
-      rowsFor_(subs, cols, prNumber_(get(r, 'Pull request'))).forEach((row) => {
-        if (FINAL.test(subs.getRange(row, cols['Status']).getDisplayValue())) return;
-        if (String(subs.getRange(row, cols['Suggested changes']).getValue()).indexOf(`[${String(version).slice(0, 7)}]`) !== -1) return;
-        addChange_(subs, cols, row, {
-          who: get(r, 'Suggested by'),
-          note: `${get(r, 'What changed') || ''} [${String(version).slice(0, 7)}]`.trim(),
-          when: new Date(get(r, 'Received') || Date.now()), version, xml: get(r, 'TEI')
-        });
-      });
-    });
-  SpreadsheetApp.getActiveSpreadsheet().deleteSheet(old);
 }
 
 function deleteBranch_(ref) {
