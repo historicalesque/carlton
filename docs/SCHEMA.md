@@ -111,7 +111,7 @@ Tracked in roadmap §4: fixed lists for `div`, `state` and `relation` types, a r
 The Sands & McDougall directory and electoral-roll records. One file per source and year, each a JSON list with one record per line:
 
 ```
-_data/directory/1857.json … 1940.json        (13 files, 35,748 records)
+_data/directory/1857.json … 1940.json        (14 files, 37,166 records)
 _data/electoral-roll/1919.json, 1928.json    (2 files, 1,525 records)
 ```
 
