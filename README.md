@@ -188,7 +188,7 @@ Pages load the data through `scripts/data.js` (`CGData.load(...)`, `CGData.forEn
 
 | Source | Years | Records |
 |---|---|---|
-| Directory (Sands & McDougall) | 1880, 1900, 1905, 1910, 1915, 1920, 1925, 1930, 1935 | ~10,600 |
+| Directory (Sands & McDougall) | 1880, 1900, 1905, 1910, 1915, 1920, 1925, 1930, 1935 | ~13,900 |
 | Electoral roll | 1919, 1928 | ~1,500 |
 
 Typical record:
