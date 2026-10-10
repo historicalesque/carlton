@@ -218,6 +218,7 @@
         <span class="result-where">${escapeHtml(shown.street)}${shown.cardinality ? ', ' + escapeHtml(shown.cardinality.toLowerCase()) + ' side' : ''}</span>
       </div>
       ${occupationShown(shown) ? `<p class="result-occupation">${occupationLink(shown.Occupation, terms)}</p>` : ''}
+      ${shown.source === 'Directory' && shown.Notes ? `<p class="result-note">Note: ${escapeHtml(shown.Notes)}</p>` : ''}
       <p class="result-years">${[...new Set(recs.map((r) => r.year))].map((y) => `<span class="${[...hits].some((h) => h.year === y) ? 'on' : ''}">${y}</span>`).join('')}</p>
       ${recs.length > 1 ? `<details class="result-trace"><summary>Across ${recs.length} listings</summary><ol>${years}</ol></details>` : ''}
       ${link}
