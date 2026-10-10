@@ -42,11 +42,17 @@
       <relation type="topic" name="edition" active="#subject" passive="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1863">
         <desc>Sands &amp; McDougall Directory, 1863</desc>
       </relation>
+      <relation type="topic" name="edition" active="#subject" passive="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1864">
+        <desc>Sands &amp; McDougall Directory, 1864</desc>
+      </relation>
       <relation type="topic" name="edition" active="#subject" passive="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1865">
         <desc>Sands &amp; McDougall Directory, 1865</desc>
       </relation>
       <relation type="topic" name="edition" active="#subject" passive="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1866">
         <desc>Sands &amp; McDougall Directory, 1866</desc>
+      </relation>
+      <relation type="topic" name="edition" active="#subject" passive="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1867">
+        <desc>Sands &amp; McDougall Directory, 1867</desc>
       </relation>
       <relation type="topic" name="edition" active="#subject" passive="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1868">
         <desc>Sands &amp; McDougall Directory, 1868</desc>
@@ -117,7 +123,7 @@
     <body>
       <p>This is all of the Directory listings:</p>
       <p><ref target="places">https://historicalesque.github.io/carlton/places</ref></p>
-      <p>Melbourne History Resources holds copies of the directories for <ref target="civic?id=Sands-McDougall-Directory-1857">1857</ref>, <ref target="civic?id=Sands-McDougall-Directory-1858">1858</ref>, <ref target="civic?id=Sands-McDougall-Directory-1859">1859</ref>, <ref target="civic?id=Sands-McDougall-Directory-1862">1862</ref>, <ref target="civic?id=Sands-McDougall-Directory-1863">1863</ref>, <ref target="civic?id=Sands-McDougall-Directory-1866">1866</ref>, <ref target="civic?id=Sands-McDougall-Directory-1868">1868</ref>, <ref target="civic?id=Sands-McDougall-Directory-1869">1869</ref>, <ref target="civic?id=Sands-McDougall-Directory-1871">1871</ref>, <ref target="civic?id=Sands-McDougall-Directory-1872">1872</ref> and <ref target="civic?id=Sands-McDougall-Directory-1873">1873</ref>.</p>
+      <p>Melbourne History Resources holds copies of the directories for <ref target="civic?id=Sands-McDougall-Directory-1857">1857</ref>, <ref target="civic?id=Sands-McDougall-Directory-1858">1858</ref>, <ref target="civic?id=Sands-McDougall-Directory-1859">1859</ref>, <ref target="civic?id=Sands-McDougall-Directory-1862">1862</ref>, <ref target="civic?id=Sands-McDougall-Directory-1863">1863</ref>, <ref target="civic?id=Sands-McDougall-Directory-1864">1864</ref>, <ref target="civic?id=Sands-McDougall-Directory-1866">1866</ref>, <ref target="civic?id=Sands-McDougall-Directory-1867">1867</ref>, <ref target="civic?id=Sands-McDougall-Directory-1868">1868</ref>, <ref target="civic?id=Sands-McDougall-Directory-1869">1869</ref>, <ref target="civic?id=Sands-McDougall-Directory-1871">1871</ref>, <ref target="civic?id=Sands-McDougall-Directory-1872">1872</ref> and <ref target="civic?id=Sands-McDougall-Directory-1873">1873</ref>.</p>
       <p>State Library Victoria has digitised one directory every five years. Each has its own page here: <ref target="civic?id=Sands-McDougall-Directory-1860">1860</ref>, <ref target="civic?id=Sands-McDougall-Directory-1865">1865</ref>, <ref target="civic?id=Sands-McDougall-Directory-1870">1870</ref>, <ref target="civic?id=Sands-McDougall-Directory-1875">1875</ref>, <ref target="civic?id=Sands-McDougall-Directory-1880">1880</ref>, <ref target="civic?id=Sands-McDougall-Directory-1885">1885</ref>, <ref target="civic?id=Sands-McDougall-Directory-1890">1890</ref>, <ref target="civic?id=Sands-McDougall-Directory-1895">1895</ref>, <ref target="civic?id=Sands-McDougall-Directory-1900">1900</ref>, <ref target="civic?id=Sands-McDougall-Directory-1905">1905</ref>, <ref target="civic?id=Sands-McDougall-Directory-1910">1910</ref>, <ref target="civic?id=Sands-McDougall-Directory-1915">1915</ref>, <ref target="civic?id=Sands-McDougall-Directory-1920">1920</ref>, <ref target="civic?id=Sands-McDougall-Directory-1925">1925</ref>, <ref target="civic?id=Sands-McDougall-Directory-1930">1930</ref>, <ref target="civic?id=Sands-McDougall-Directory-1935">1935</ref>, <ref target="civic?id=Sands-McDougall-Directory-1940">1940</ref> and <ref target="civic?id=Sands-McDougall-Directory-1944">1944–1945</ref>.</p>
     </body>
   </text>
