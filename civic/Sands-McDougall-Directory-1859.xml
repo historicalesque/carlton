@@ -18,6 +18,7 @@
     </fileDesc>
     <revisionDesc status="draft">
       <change when="2026-10-10" type="created">Page for a source, drafted from the Melbourne History Resources copy.</change>
+      <change when="2026-10-10" type="revised">Added the project area.</change>
     </revisionDesc>
   </teiHeader>
   <standOff>
@@ -32,6 +33,7 @@
       <p><hi rend="italic">Sands &amp; Kenny's Commercial and General Melbourne Directory for 1859</hi>.</p>
       <p>A copy of the full directory is held by Melbourne History Resources, and you can <ref target="https://omeka.cloud.unimelb.edu.au/melbourne-history/items/show/18">read it online</ref>.</p>
       <p>The 1859 directory is too early to have a Carlton section. The streets that later became Carlton are listed under North Melbourne (pp. 70–77), and this year they are listed house by house, side by side, with the cross streets. The listings here are the streets that lie in what later became Carlton: Bouverie, Cardigan, Drummond, Leicester, Lygon, Madeline (now Swanston), Rathdowne, Queensberry-street, East (both sides) and the north side of Victoria-street, East. Leicester-street is printed without sides. Corners have map coordinates only where a later directory gives the same corner.</p>
+      <p>The project covers the area south of Grattan Street, west of Swanston Street, east of Elizabeth Street and north of Victoria Street.</p>
     </body>
   </text>
 </TEI>

@@ -18,6 +18,7 @@
     </fileDesc>
     <revisionDesc status="draft">
       <change when="2026-10-10" type="created">Page for a source, drafted from the Melbourne History Resources copy.</change>
+      <change when="2026-10-10" type="revised">Added the project area.</change>
     </revisionDesc>
   </teiHeader>
   <standOff>
@@ -32,6 +33,7 @@
       <p><hi rend="italic">Sands &amp; McDougall's Melbourne and Suburban Directory for 1879</hi>.</p>
       <p>A copy of the full directory is held by Melbourne History Resources, and you can <ref target="https://omeka.cloud.unimelb.edu.au/melbourne-history/items/show/22">read it online</ref>.</p>
       <p>The 1879 directory has its own section for "Carlton and North Carlton, including Parkville" (pp. 61–81), bounded by Parkside-street to the north, Victoria-street east to the south, Nicholson-street to the east and Flemington-road to the west. It lists the streets alphabetically, four columns to a page, each house by house with the cross streets in order. The Carlton and North Carlton streets are included here, with Sydney-road as in the 1880 directory. The Parkville streets the section names (Bayles, Degraves, Fitzgibbon, Gatehouse, Morrah, Park and Wimble), and Royal Park, Royal Park-road, Flemington-road, Manningham, Southgate and the Church-street off Flemington-road, are left out. A few cross-street lines print Rathdowne-street or Neil-street; they are stored as Rathdown and Neill streets to match the later years.</p>
+      <p>The project covers the area south of Grattan Street, west of Swanston Street, east of Elizabeth Street and north of Victoria Street.</p>
     </body>
   </text>
 </TEI>

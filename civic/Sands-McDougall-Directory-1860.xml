@@ -18,6 +18,7 @@
     </fileDesc>
     <revisionDesc status="draft">
       <change when="2026-10-05" type="created">Page for a source, drafted from State Library Victoria records.</change>
+      <change when="2026-10-10" type="revised">Added the project area.</change>
     </revisionDesc>
   </teiHeader>
   <standOff>
@@ -32,6 +33,7 @@
       <p><hi rend="italic">Sands, Kenny &amp; Co.'s commercial and general Melbourne directory for 1860</hi>. 467 pages.</p>
       <p>State Library Victoria has digitised this directory, and you can <ref target="https://viewer.slv.vic.gov.au/?entity=IE13647144&amp;mode=browse">read it online</ref>.</p>
       <p>The 1860 directory has only a short Carlton section (pp. 94–95), covering Barkly, Carlton, Elgin and Faraday streets; for Cardigan, Drummond, Lygon, Madeline and Rathdowne streets it refers back to North Melbourne. Those streets, and the other streets that later became Carlton, are taken from the North Melbourne section (pp. 80–92), which lists them house by house, side by side, with the cross streets: Bouverie, Cardigan, Drummond, Grattan (both sides), Leicester, Lygon, Madeline (now Swanston), Pelham (both sides), Queensberry-street East (both sides), Rathdowne and the north side of Victoria-street East. Leicester-street is printed without sides. The rest of the North Melbourne section (Arden, Chapel, Chetwynd, Courteney, Curzon, Errol, Howard, Leveson, Flemington-road, Queensberry-street West and Victoria-street West) is left out. Rathdowne-street is stored as Rathdown Street to match the later years. Corners have map coordinates only where a later directory gives the same corner.</p>
+      <p>The project covers the area south of Grattan Street, west of Swanston Street, east of Elizabeth Street and north of Victoria Street.</p>
     </body>
   </text>
 </TEI>
