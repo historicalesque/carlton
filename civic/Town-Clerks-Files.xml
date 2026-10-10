@@ -17,11 +17,13 @@
     </fileDesc>
     <revisionDesc status="draft">
       <change when="2026-10-10" type="created">Contributed through the contribution form by Mitchell Harrop.</change>
+      <change when="2026-10-10" type="revised">Changes suggested by Andrew May: Added a link.</change>
     </revisionDesc>
   </teiHeader>
   <text>
     <body>
       <p><ref target="https://omeka.cloud.unimelb.edu.au/melbourne-history/inside-the-town-clerks-office">https://omeka.cloud.unimelb.edu.au/melbourne-history/inside-the-town-clerks-office</ref></p>
+      <p><ref target="https://prov.vic.gov.au/explore-collection/explore-topic/city-melbourne/town-clerks-subject-index-correspondence-1840-1997">https://prov.vic.gov.au/explore-collection/explore-topic/city-melbourne/town-clerks-subject-index-correspondence-1840-1997</ref></p>
     </body>
   </text>
 </TEI>
