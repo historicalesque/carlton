@@ -19,6 +19,7 @@
     <revisionDesc status="draft">
       <change when="2026-10-10" type="created">Page for a source, drafted from the Melbourne History Resources copy.</change>
       <change when="2026-10-10" type="revised">Added the project area.</change>
+      <change when="2026-10-10" type="revised">Kept only the listings inside the project area.</change>
     </revisionDesc>
   </teiHeader>
   <standOff>
@@ -32,8 +33,8 @@
     <body>
       <p><hi rend="italic">Sands, Kenny &amp; Co's Commercial and General Melbourne Directory for 1861</hi>.</p>
       <p>A copy of the full directory is held by Melbourne History Resources, and you can <ref target="https://omeka.cloud.unimelb.edu.au/melbourne-history/items/show/21">read it online</ref>.</p>
-      <p>The 1861 directory has no Carlton section of its own: the streets that later became Carlton are listed under North Melbourne and Hotham (pp. 80–92), street by street, each side house by house with the cross streets in order. Included here are Bouverie, Cardigan, Drummond, Grattan, Leicester, Lygon, Madeline, Pelham and Rathdowne streets, both sides of Queensberry-street East and the north side of Victoria-street East. Left out as North Melbourne or Parkville are Arden, Chetwynd, Curzon, Errol, Howard and Leveson streets, Flemington Road, Queensberry-street West and Victoria-street West. Rathdowne-street is stored as Rathdown Street to match the later years.</p>
-      <p>The project covers the area south of Grattan Street, west of Swanston Street, east of Elizabeth Street and north of Victoria Street.</p>
+      <p>The 1861 directory has no Carlton section of its own: the streets that later became Carlton are listed under North Melbourne and Hotham (pp. 80–92), street by street, each side house by house with the cross streets in order. The streets in what later became Carlton are Bouverie, Cardigan, Drummond, Grattan, Leicester, Lygon, Madeline, Pelham and Rathdowne streets, both sides of Queensberry-street East and the north side of Victoria-street East. Left out as North Melbourne or Parkville are Arden, Chetwynd, Curzon, Errol, Howard and Leveson streets, Flemington Road, Queensberry-street West and Victoria-street West. Rathdowne-street is stored as Rathdown Street to match the later years.</p>
+      <p>The project covers the area south of Grattan Street, west of Swanston Street, east of Elizabeth Street and north of Victoria Street, and only the listings inside it are kept here.</p>
     </body>
   </text>
 </TEI>

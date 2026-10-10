@@ -19,6 +19,7 @@
     <revisionDesc status="draft">
       <change when="2026-10-10" type="created">Page for a source, drafted from the Melbourne History Resources copy.</change>
       <change when="2026-10-10" type="revised">Added the project area.</change>
+      <change when="2026-10-10" type="revised">Kept only the listings inside the project area.</change>
     </revisionDesc>
   </teiHeader>
   <standOff>
@@ -32,8 +33,8 @@
     <body>
       <p><hi rend="italic">Sands &amp; McDougall's Melbourne and Suburban Directory for 1876</hi>.</p>
       <p>A copy of the full directory is held by Melbourne History Resources, and you can <ref target="https://omeka.cloud.unimelb.edu.au/melbourne-history/items/show/25">read it online</ref>.</p>
-      <p>The 1876 directory has its own Carlton section, under North Melbourne (pp. 61–77), covering the area east of the Elizabeth-street extension between Victoria-street east and Park-street, as far east as Nicholson-street, including the streets it marks "N Carlton". It lists the streets alphabetically, four columns to a page, each house by house with the cross streets in order. All of the section is included here. Rathdowne, Berkeley, Neild and McArthur are stored as Rathdown, Berkley, Neill and Macarthur to match the later years.</p>
-      <p>The project covers the area south of Grattan Street, west of Swanston Street, east of Elizabeth Street and north of Victoria Street.</p>
+      <p>The 1876 directory has its own Carlton section, under North Melbourne (pp. 61–77), covering the area east of the Elizabeth-street extension between Victoria-street east and Park-street, as far east as Nicholson-street, including the streets it marks "N Carlton". It lists the streets alphabetically, four columns to a page, each house by house with the cross streets in order. Rathdowne, Berkeley, Neild and McArthur are stored as Rathdown, Berkley, Neill and Macarthur to match the later years.</p>
+      <p>The project covers the area south of Grattan Street, west of Swanston Street, east of Elizabeth Street and north of Victoria Street, and only the listings inside it are kept here.</p>
     </body>
   </text>
 </TEI>

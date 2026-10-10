@@ -19,6 +19,7 @@
     <revisionDesc status="draft">
       <change when="2026-10-05" type="created">Page for a source, drafted from State Library Victoria records.</change>
       <change when="2026-10-10" type="revised">Added the project area and the page range.</change>
+      <change when="2026-10-10" type="revised">Kept only the listings inside the project area.</change>
     </revisionDesc>
   </teiHeader>
   <standOff>
@@ -33,7 +34,7 @@
       <p><hi rend="italic">Sands &amp; McDougall's Melbourne and suburban directory, 1890</hi>. 1,480 pages.</p>
       <p>State Library Victoria has digitised this directory, and you can <ref target="https://viewer.slv.vic.gov.au/?entity=IE13751504&amp;mode=browse">read it online</ref>.</p>
       <p>The listings here come from the 1890 directory's Carlton section, pp. 119–145.</p>
-      <p>The project covers the area south of Grattan Street, west of Swanston Street, east of Elizabeth Street and north of Victoria Street.</p>
+      <p>The project covers the area south of Grattan Street, west of Swanston Street, east of Elizabeth Street and north of Victoria Street, and only the listings inside it are kept here.</p>
     </body>
   </text>
 </TEI>
