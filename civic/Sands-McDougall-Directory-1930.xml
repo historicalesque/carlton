@@ -19,6 +19,7 @@
     <revisionDesc status="draft">
       <change when="2026-10-05" type="created">Page for a source, drafted from State Library Victoria records.</change>
       <change when="2026-10-10" type="revised">Added the project area and the page range.</change>
+      <change when="2026-10-10" type="revised">Kept only the listings inside the project area.</change>
     </revisionDesc>
   </teiHeader>
   <standOff>
@@ -34,7 +35,7 @@
       <p>State Library Victoria has digitised this directory, and you can <ref target="https://viewer.slv.vic.gov.au/?entity=IE14133704&amp;mode=browse">read it online</ref>.</p>
       <p>Its Carlton listings are on the site's maps, and new entries that use one of its listings link here as their source.</p>
       <p>The listings here come from the 1930 directory's Carlton section. Its page range is still to be noted.</p>
-      <p>The project covers the area south of Grattan Street, west of Swanston Street, east of Elizabeth Street and north of Victoria Street.</p>
+      <p>The project covers the area south of Grattan Street, west of Swanston Street, east of Elizabeth Street and north of Victoria Street, and only the listings inside it are kept here.</p>
     </body>
   </text>
 </TEI>

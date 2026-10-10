@@ -111,9 +111,11 @@ Tracked in roadmap §4: fixed lists for `div`, `state` and `relation` types, a r
 The Sands & McDougall directory and electoral-roll records. One file per source and year, each a JSON list with one record per line:
 
 ```
-_data/directory/1857.json … 1940.json        (34 files, 98,025 records)
+_data/directory/1857.json … 1940.json        (35 files, 25,630 records)
 _data/electoral-roll/1919.json, 1928.json    (2 files, 1,525 records)
 ```
+
+Directory records cover only the project area: south of Grattan Street, west of Swanston Street, east of Elizabeth Street and north of Victoria Street.
 
 Jekyll publishes compact copies in `data/` and a list of the files in `data/index.json`; see the README's *Data* section for how the browser loads them.
 
@@ -127,9 +129,9 @@ Jekyll publishes compact copies in `data/` and a list of the files in `data/inde
 | `type` | string | all | What the listing is, as transcribed (`Hotel`, `Intersection`, `Place`, …). Electoral-roll records are all `"Voter"`. |
 | `listing` | string | all | The listing as transcribed. For electoral rolls, a summary line built from the other fields. |
 | `street` | string | all | Street name. Spellings are kept as transcribed, because variants can matter historically. |
-| `cardinality` | string | nearly all | Side of the street: `North`, `South`, `East` or `West`. Missing or empty on about 30 directory records. |
+| `cardinality` | string | nearly all | Side of the street: `North`, `South`, `East` or `West`. Missing or empty on about 1,100 directory records. |
 | `pages` | string (a few numbers) | directory | Page reference(s) in the directory, such as `"172"` or `"241-242"`. |
-| `lat`, `lng` | number or `null` | some | Coordinates. About 1,450 records have them; only these appear on the map. |
+| `lat`, `lng` | number or `null` | some | Coordinates. About 2,650 directory records have them; only these appear on the map. |
 | `Occupation`, `Notes` | string | electoral rolls, some directory | |
 | `Surname`, `Given Names`, `Gender` | string | electoral rolls | |
 | `Registration Number` | number | electoral rolls | Kept in the data and searchable in the admin data editor, but not shown at the start of a listing or matched by the public search. |
@@ -151,7 +153,7 @@ Electoral-roll example:
 ### `entityID`
 
 - A **number** is the record's own id. Directory records count up from 1 and electoral-roll records from 999999, so the two sources never share a number.
-- A **string** means someone on the team has linked several records as the same person or place, under a name they chose, e.g. `"Corkman Hotel"`. If an entry exists with the same name (`civic/Corkman-Hotel.xml`), the maps, search and the entry link to each other. About 1,900 directory records are linked this way.
+- A **string** means someone on the team has linked several records as the same person or place, under a name they chose, e.g. `"Corkman Hotel"`. If an entry exists with the same name (`civic/Corkman-Hotel.xml`), the maps, search and the entry link to each other. About 1,300 directory records are linked this way.
 
 ### Proposed changes (to agree)
 
