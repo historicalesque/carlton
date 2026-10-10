@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const targetElement = container.querySelector('p.loading');
   // Inject the Liquid Front Matter variable into JavaScript
   const pageFacet = "{{ page.facet }}".toLowerCase().trim();
-  const source = { directories: 'Directory', 'electoral-rolls': 'Electoral roll' }[pageFacet]; // anything else: show all
+  const source = { 'electoral-rolls': 'Electoral roll' }[pageFacet]; // anything else: show all
 
   const createSlug = (str) => String(str).toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
 

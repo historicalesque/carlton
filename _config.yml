@@ -37,9 +37,3 @@ defaults:
     values:
       layout: facet-list
       facet: "electoral-rolls"
-
-  - scope:
-      path: "directories.md"
-    values:
-      layout: facet-list
-      facet: "directories"

@@ -8,7 +8,7 @@
 >
 > - **Read about the project:** [About Common Ground](https://historicalesque.github.io/carlton/)
 > - **Search everything:** [Search](https://historicalesque.github.io/carlton/search) finds entries, directory listings and electoral-roll records in one box.
-> - **Browse the histories:** [Featured pages A–Z](https://historicalesque.github.io/carlton/aToZ) · [Map](https://historicalesque.github.io/carlton/map) · [Directories](https://historicalesque.github.io/carlton/directories) · [Electoral rolls](https://historicalesque.github.io/carlton/electoral-rolls)
+> - **Browse the histories:** [Featured pages A–Z](https://historicalesque.github.io/carlton/aToZ) · [Map](https://historicalesque.github.io/carlton/map) · [Electoral rolls](https://historicalesque.github.io/carlton/electoral-rolls)
 > - **Share a story or add to an entry:** open any entry on the site and use the *Contribute* form at the bottom, or [start a new entry](https://historicalesque.github.io/carlton/new).
 > - **Editorial team:** start at the [Admin page](https://historicalesque.github.io/carlton/admin/), which links to each editorial tool. To review submissions, read them on the [Submission review page](https://historicalesque.github.io/carlton/admin/review.html), then accept or reject each one in the Decision column of the team's submissions spreadsheet.
 > - **Project partners:** [Melbourne History Workshop](https://melbournehistoryworkshop.com) · [Carlton Community History Group](https://cchg.asn.au)
@@ -49,7 +49,7 @@ Nothing is published until a pull request is merged into `main`. GitHub Pages re
 
 ```
                  ┌──────────────────────────── GitHub Pages (Jekyll) ───────────────────────────┐
- Visitor ──────▶ │  index / search / aToZ / directories / electoral-rolls / map(3d) / civic?id=…  │
+ Visitor ──────▶ │  index / search / aToZ / electoral-rolls / map(3d) / civic?id=…              │
                  │        │                                   │                                  │
                  │        ▼                                   ▼                                  │
                  │   data/index.json + data/<source>/   civic/<slug>.xml  (fetched + parsed     │
@@ -86,7 +86,7 @@ With `preview=true`, `id` can be a full URL, such as a raw file on a pull-reques
 ### Search, facets and maps
 
 - **Search page** (`search.md` → `_layouts/search.html` + `scripts/search.js`): one box that searches the entries in `civic/` and every directory and electoral-roll record together, using [MiniSearch](https://github.com/lucaong/minisearch) (vendored in `scripts/vendor/`, MIT). Jekyll lists the entry files into the page at build time and the browser fetches them as ordinary site files (no GitHub API calls). Entries are searchable at once; records join the index as each year's file arrives. Results are grouped into Entries, Directory listings and Electoral rolls, filtered by dataset rather than by "people" or "places", since directory listings name residents as well as businesses; records that share a text `entityID` collapse into one result with a row of years. Matching is by prefix with small typos allowed, and a `VARIANTS` list at the top of `scripts/search.js` folds historical spellings and abbreviations together (Berkley/Berkeley, htl → hotel, Wm → William, …); add pairs there. Occupations are searched too: a record's `Occupation` (so "grocer" finds listings abbreviated "grcr"), and an entry's occupations, activities or uses. A record card shows the occupation in full when its listing abbreviates it, and an occupation links to a search for everything else with that trade. The search is kept in the address (`search?q=grocer&year=1910&street=…&src=rolls`; `src` is `entries`, `directories` or `rolls`), so it can be shared. If nothing matches, it offers to start a new entry with that name.
-- **Directories / Electoral rolls** (`directories.md`, `electoral-rolls.md` → `_layouts/facet-list.html`): load only the files for one `source`. Results are grouped by source/year → street → side of street, and each year is drawn as soon as its file arrives (oldest first). Within each year the streets are sorted, so each street appears once per year, and the contents list shows the year after each street (e.g. "Bouverie Street (1905) listings").
+- **Electoral rolls** (`electoral-rolls.md` → `_layouts/facet-list.html`): loads only the electoral-roll files. (A matching Directories page was removed because the directory data grew too large to read as one list; directory records are still found through Search and the entry pages.) Results are grouped by source/year → street → side of street, and each year is drawn as soon as its file arrives (oldest first). Within each year the streets are sorted, so each street appears once per year, and the contents list shows the year after each street (e.g. "Bouverie Street (1905) listings").
 - **Map** (`_layouts/map.html`): Leaflet 1.9.4. It plots records that have `lat`/`lng`, with University of Melbourne land parcels (`data/uom-land-parcels.geojson`) as an overlay. Both maps set up their years and controls from `data/index.json` and draw each year as soon as its file arrives. Records without coordinates are placed between mapped ones from the same year and street, so they are drawn with their year; cross-year links are added once every year has arrived.
 - **3D Map** (`_layouts/map3d.html`): three.js r128 with OrbitControls. Experimental. It shows the records only: the historic map layers and land parcels stay on the 2D map.
 - Both maps share `scripts/map-common.js` (data loading, year colours, cross-year links from string `entityID`s, marker shapes) and the details popup in `_includes/map-details-modal.html`, which links to the record's entry ("Read the entry" when `civic/<entityID>.xml` exists, "Start an entry" otherwise). The 2D map also takes `map?entity=<entityID>`: it ticks the years that entity appears in, rings its markers and zooms to them. Entries link there with "See on the map" when the map draws at least one of their records.
@@ -102,7 +102,7 @@ With `preview=true`, `id` can be a full URL, such as a raw file on a pull-reques
 | `_layouts/entry.html` | Fetches and renders one entry (TEI, or EAC-CPF for any older file), and adds the contribution form. |
 | `_layouts/form.html` | Contribution form (Quill 1.3.6). Builds the entry as TEI, with optional extra sections and a *Show all fields* switch. Not connected yet: it previews the entry and downloads the XML. |
 | `_layouts/new.html` | "Start a new entry" box that redirects to `civic?id=…`. |
-| `_layouts/facet-list.html` | Directories / Electoral rolls listings. |
+| `_layouts/facet-list.html` | Electoral rolls listings. |
 | `_layouts/map.html`, `_layouts/map3d.html` | 2D Leaflet map and 3D three.js map. |
 | `scripts/map-common.js`, `_includes/map-details-modal.html` | Functions and the details popup shared by both maps. |
 | `*.md` (root) | One small file per page. Mostly front matter that picks a layout. `index.md`, `aToZ.md` and `about.md` show site-page entries from `civic/` (see [Entry pages](#entry-pages)). |
@@ -245,7 +245,7 @@ See [Editing the data](#editing-the-data) above. This is separate from entry sub
 ## Adding a new page or facet
 
 - **Simple page:** add `my-page.md` at the root with front matter (`title`, optionally `layout`). It gets `layout: default` automatically.
-- **New facet list** (like Directories / Electoral rolls): add `my-facet.md`, add a `scope` block in `_config.yml` with `layout: facet-list` and `facet: "my-facet"`, and add a matching branch to the `filter` in `_layouts/facet-list.html`.
+- **New facet list** (like Electoral rolls): add `my-facet.md`, add a `scope` block in `_config.yml` with `layout: facet-list` and `facet: "my-facet"`, and add a matching branch to the `filter` in `_layouts/facet-list.html`.
 - **New entry collection** (another folder like `civic/`): add a page using `layout: entry` and set `EACCPFpath` to the folder name in `_config.yml`.
 - **Navigation:** edit the `<nav>` list in `_layouts/default.html`. Footer links are in the same file.
 
