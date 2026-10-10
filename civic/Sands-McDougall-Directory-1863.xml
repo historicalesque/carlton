@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="https://historicalesque.github.io/carlton/schema/carlton.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0" type="topic" xml:lang="en">
+  <teiHeader>
+    <fileDesc>
+      <titleStmt>
+        <title>Sands &amp; McDougall Directory, 1863</title>
+      </titleStmt>
+      <publicationStmt>
+        <publisher>Common Ground</publisher>
+        <idno type="entry">Sands-McDougall-Directory-1863</idno>
+      </publicationStmt>
+      <sourceDesc>
+        <listBibl>
+          <bibl><ref target="https://omeka.cloud.unimelb.edu.au/melbourne-history/items/show/16">Sands &amp; McDougall, “Sands &amp; McDougall's Melbourne and Suburban Directory for 1863,” Melbourne History Resources.</ref></bibl>
+        </listBibl>
+      </sourceDesc>
+    </fileDesc>
+    <revisionDesc status="draft">
+      <change when="2026-10-10" type="created">Page for a source, drafted from the Melbourne History Resources copy.</change>
+    </revisionDesc>
+  </teiHeader>
+  <standOff>
+    <listRelation>
+      <relation type="topic" name="part-of" active="#subject" passive="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directories">
+        <desc>Sands McDougall Directories</desc>
+      </relation>
+    </listRelation>
+  </standOff>
+  <text>
+    <body>
+      <p><hi rend="italic">Sands &amp; McDougall's Melbourne and Suburban Directory for 1863</hi>.</p>
+      <p>A copy of the full directory is held by Melbourne History Resources, and you can <ref target="https://omeka.cloud.unimelb.edu.au/melbourne-history/items/show/16">read it online</ref>.</p>
+    </body>
+  </text>
+</TEI>
