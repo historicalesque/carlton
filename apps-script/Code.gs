@@ -54,8 +54,13 @@ const TEI_NS = 'http://www.tei-c.org/ns/1.0';
 // A Sheet cell holds 50,000 characters; the pull request keeps the full copy
 const CELL_LIMIT = 49000;
 
+// Which version of this script is running. Opening the web app's address
+// (contribution_endpoint in _config.yml) shows it, so it's easy to check
+// that the form talks to the latest deployment.
+const SCRIPT_VERSION = '2026-10-10: suggested changes update the submission\'s row';
+
 function doGet() {
-  return ContentService.createTextOutput('Common Ground submissions: send entries with POST.');
+  return ContentService.createTextOutput(`Common Ground submissions: send entries with POST.\nVersion ${SCRIPT_VERSION}`);
 }
 
 function doPost(e) {
@@ -583,7 +588,7 @@ function setUp() {
     .filter((t) => t.getHandlerFunction() === 'onDecision')
     .forEach((t) => ScriptApp.deleteTrigger(t));
   ScriptApp.newTrigger('onDecision').forSpreadsheet(SpreadsheetApp.getActiveSpreadsheet()).onEdit().create();
-  console.log('Set up: Decision columns ready on every tab and the edit trigger is on.');
+  console.log(`Set up (version ${SCRIPT_VERSION}): Decision columns ready on every tab and the edit trigger is on.`);
 }
 
 const FINAL = /^(Published|Rejected|Not used)/;
@@ -815,11 +820,12 @@ function linkRecords_(branch, slug, title, numbers) {
 
 // Suggested changes used to go on a separate Reviews tab. Folds each one
 // still waiting there into the row of the submission it changes, as if it
-// had arrived now: the newest becomes the version Accept publishes. The
-// Reviews tab can then be deleted. Safe to run again.
+// had arrived now: the newest becomes the version Accept publishes. Then
+// deletes the Reviews tab. Safe to run again.
 function moveOldReviews_() {
   const old = SpreadsheetApp.getActiveSpreadsheet().getSheetByName(OLD_REVIEWS_TAB);
-  if (!old || old.getLastRow() < 2) return;
+  if (!old) return;
+  if (old.getLastRow() < 2) { SpreadsheetApp.getActiveSpreadsheet().deleteSheet(old); return; }
   const header = old.getRange(1, 1, 1, old.getLastColumn()).getValues()[0];
   const get = (r, name) => (header.indexOf(name) === -1 ? '' : r[header.indexOf(name)]);
   const subs = tab_('submissions');
@@ -839,6 +845,7 @@ function moveOldReviews_() {
         });
       });
     });
+  SpreadsheetApp.getActiveSpreadsheet().deleteSheet(old);
 }
 
 function deleteBranch_(ref) {
