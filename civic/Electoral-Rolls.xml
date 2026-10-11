@@ -5,6 +5,7 @@
     <fileDesc>
       <titleStmt>
         <title>Electoral Rolls</title>
+        <author>Andy May</author>
         <author>Mitchell Harrop</author>
       </titleStmt>
       <publicationStmt>
@@ -15,15 +16,208 @@
         <p>Contributed through the website. No sources listed.</p>
       </sourceDesc>
     </fileDesc>
-    <revisionDesc status="published">
-      <change when="2026-09-05" type="created">Public contribution via custom rich-text submission form by Mitchell Harrop.</change>
-      <change when="2026-10-05" type="converted">Converted from EAC-CPF to TEI.</change>
+    <revisionDesc status="draft">
+      <change when="2026-10-11" type="created">Contributed through the contribution form by Andy May, Mitchell Harrop.</change>
     </revisionDesc>
   </teiHeader>
   <text>
     <body>
-      <p>For a full list of people in the electoral rolls, see:</p>
-      <p><ref target="people">https://historicalesque.github.io/carlton/people</ref></p>
+      <p>The Commonwealth Franchise Act 1902 granted voting rights to most men and women over 21, excluding Aboriginal and Torres Strait Islander people. Compulsory enrolment was introduced in 1911. Electoral rolls are available from 1903. Victoria stopped maintaining a separate State electoral roll on 31 January 1924 (the year compulsory voting was introduced), after which a joint electoral roll arrangement was entered into with the Commonwealth. Aboriginal and Torres Strait Islander people gained the right to vote in Commonwealth elections in 1962. Federal electoral rolls include the name and address of the voter, their occupation, gender, and a registration number. The original records are held by the Australian Election Commission.</p>
+      <p>Voters were listed in electoral districts and subdistricts according to their address. These boundaries could change over time. Relevant subdivisions include:</p>
+      <list rend="bulleted">
+        <item>Subdivision of Cardigan, Division of Melbourne</item>
+        <item>Subdivision of Carlton South, Division of Melbourne</item>
+        <item>Subdivision of Carlton, Division of Batman</item>
+      </list>
+      <div>
+        <head>Notes re Electoral Roll information</head>
+        <list rend="bulleted">
+          <item>Some registration numbers have a blank or illegible occupation field</item>
+          <item>Sometimes there are gaps in the data</item>
+          <item>Some entries appear to have a mismatch between the given name and the printed gender code — these have been corrected where a clear judgement can be made. This includes entries where female name and occupation (e.g. tailoress) is listed as M.</item>
+          <item>Many occupations are abbreviated and where possible these have been spelled out. Where they have been clearly misspelled, they have been corrected. For example:</item>
+        </list>
+        <table>
+          <row>
+            <cell>rly porter</cell>
+            <cell>railway porter</cell>
+          </row>
+          <row>
+            <cell>asst</cell>
+            <cell>assistant</cell>
+          </row>
+          <row>
+            <cell>emp</cell>
+            <cell>employee</cell>
+          </row>
+          <row>
+            <cell>S.A.</cell>
+            <cell>salvation army</cell>
+          </row>
+          <row>
+            <cell>h. duties</cell>
+            <cell>home duties</cell>
+          </row>
+          <row>
+            <cell>civ. engnr.</cell>
+            <cell>civil engineer</cell>
+          </row>
+          <row>
+            <cell>c. caretaker</cell>
+            <cell>church caretaker</cell>
+          </row>
+          <row>
+            <cell>bank mgr.</cell>
+            <cell>bank manager</cell>
+          </row>
+          <row>
+            <cell>rail. emp.</cell>
+            <cell>railway employee</cell>
+          </row>
+          <row>
+            <cell>medical practnr.</cell>
+            <cell>medical practitioner</cell>
+          </row>
+          <row>
+            <cell>board. house kpr.</cell>
+            <cell>boarding house keeper</cell>
+          </row>
+          <row>
+            <cell>hrdrssr.</cell>
+            <cell>hairdresser</cell>
+          </row>
+          <row>
+            <cell>painter’s lab</cell>
+            <cell>painter’s labourer</cell>
+          </row>
+          <row>
+            <cell>S.S. teacher</cell>
+            <cell>Sunday School teacher</cell>
+          </row>
+          <row>
+            <cell>h.d.</cell>
+            <cell>home duties</cell>
+          </row>
+          <row>
+            <cell>brassfishr.</cell>
+            <cell>brassfinisher</cell>
+          </row>
+          <row>
+            <cell>hotel lic.</cell>
+            <cell>hotel licensee</cell>
+          </row>
+          <row>
+            <cell>tchr.</cell>
+            <cell>teacher</cell>
+          </row>
+          <row>
+            <cell>physical cult. tchr.</cell>
+            <cell>physical culture teacher</cell>
+          </row>
+          <row>
+            <cell>stngrphr.</cell>
+            <cell>stenographer</cell>
+          </row>
+          <row>
+            <cell>lic. vict.</cell>
+            <cell>licensed victualler</cell>
+          </row>
+          <row>
+            <cell>proptr.</cell>
+            <cell>proprietor</cell>
+          </row>
+          <row>
+            <cell>mtr. engr.</cell>
+            <cell>motor engineer</cell>
+          </row>
+          <row>
+            <cell>dental mech.</cell>
+            <cell>dental mechanic</cell>
+          </row>
+          <row>
+            <cell>civil svt.</cell>
+            <cell>civil servant</cell>
+          </row>
+          <row>
+            <cell>ldghouse. kpr.</cell>
+            <cell>lodginghouse keeper</cell>
+          </row>
+          <row>
+            <cell>tinsith</cell>
+            <cell>tinsmith</cell>
+          </row>
+          <row>
+            <cell>assistant opr.</cell>
+            <cell>assistant operator</cell>
+          </row>
+          <row>
+            <cell>b.h. keeper</cell>
+            <cell>boarding house keeper</cell>
+          </row>
+          <row>
+            <cell>sheet mtl wkr</cell>
+            <cell>sheet metal worker</cell>
+          </row>
+          <row>
+            <cell>ad. man</cell>
+            <cell>advertising man</cell>
+          </row>
+          <row>
+            <cell>tram.</cell>
+            <cell>tram</cell>
+          </row>
+          <row>
+            <cell>ofcr</cell>
+            <cell>officer</cell>
+          </row>
+          <row>
+            <cell>co. master</cell>
+            <cell>college master</cell>
+          </row>
+          <row>
+            <cell>paperhngr.</cell>
+            <cell>paperhanger</cell>
+          </row>
+        </table>
+        <list rend="bulleted">
+          <item>Street names have been corrected where they are misspelled. Where a individual’s name and address lacks a street number, this has sometimes been added through cross-checking with street directory data.</item>
+        </list>
+        <table>
+          <row>
+            <cell>Gratton Street</cell>
+            <cell>Grattan Street</cell>
+          </row>
+          <row>
+            <cell>Bambridge Place</cell>
+            <cell>Banbridge Place</cell>
+          </row>
+          <row>
+            <cell>Berkley</cell>
+            <cell>Berkeley</cell>
+          </row>
+          <row>
+            <cell>State School Queensberry Street</cell>
+            <cell>State School 224-228 Queensberry Street</cell>
+          </row>
+          <row>
+            <cell>John Williams Pelham Street</cell>
+            <cell>149 Pelham Street in 1930 S&amp;M</cell>
+          </row>
+          <row>
+            <cell>Fire Station Bouverie Street</cell>
+            <cell>195 Bouverie Street [1915 S&amp;M]</cell>
+          </row>
+        </table>
+      </div>
+      <div>
+        <head>For a full list of people in the electoral rolls, see:</head>
+        <p><ref target="https://historicalesque.github.io/carlton/people">https://historicalesque.github.io/carlton/people</ref></p>
+      </div>
+      <div>
+        <head>For further information see:</head>
+        <p>State Library of Victoria, “Researching your Victorian ancestors: Electoral rolls”. <ref target="https://guides.slv.vic.gov.au/victorianancestors/electoral">https://guides.slv.vic.gov.au/victorianancestors/electoral</ref>.</p>
+        <p>National Library of Australia, "Electoral rolls research guide” <ref target="https://www.library.gov.au/research/family-history/electoral-rolls-research-guide">https://www.library.gov.au/research/family-history/electoral-rolls-research-guide</ref>.</p>
+      </div>
     </body>
   </text>
 </TEI>
