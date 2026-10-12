@@ -1749,7 +1749,7 @@ function reorderDirectory(rec){
   return out;
 }
 function reorderElectoral(rec){
-  const order = ['entityID','source','type','year','listing','Registration Number','Surname','Given Names','Address','Street Number','street','cardinality','Occupation','Gender','lat','lng'];
+  const order = ['entityID','source','type','year','listing','Registration Number','Surname','Given Names','Address','Street Number','street','cardinality','Occupation','Gender','Subdivision','lat','lng'];
   const out = {};
   order.forEach(k => { if(rec[k] !== undefined && rec[k] !== '') out[k] = rec[k]; });
   Object.keys(rec).forEach(k => { if(!(k in out) && rec[k] !== undefined && rec[k] !== '') out[k] = rec[k]; });

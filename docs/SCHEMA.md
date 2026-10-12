@@ -134,6 +134,7 @@ Jekyll publishes compact copies in `data/` and a list of the files in `data/inde
 | `lat`, `lng` | number or `null` | some | Coordinates. About 2,650 directory records have them; only these appear on the map. |
 | `Occupation`, `Notes` | string | electoral rolls, some directory | |
 | `Surname`, `Given Names`, `Gender` | string | electoral rolls | |
+| `Subdivision` | string | electoral rolls | The roll's subdivision, e.g. `"Cardigan"` (every record so far). |
 | `Registration Number` | number | electoral rolls | Kept in the data and searchable in the admin data editor, but not shown at the start of a listing or matched by the public search. |
 | `Address` | string | electoral rolls | As printed, e.g. `"29 Barkly Place"`. |
 | `Street Number` | string or number | electoral rolls | |
@@ -147,7 +148,7 @@ Directory example:
 Electoral-roll example:
 
 ```json
-{"entityID":1001209,"source":"Electoral roll","type":"Voter","year":1919,"listing":"Clara Larkin, 29 Barkly Place, home duties, F","Registration Number":1260,"Surname":"Larkin","Given Names":"Clara","Address":"29 Barkly Place","Street Number":"29","street":"Barkly Place","cardinality":"North","Occupation":"home duties","Gender":"F","Notes":"…","lat":-37.8029738,"lng":144.9613147}
+{"entityID":1001209,"source":"Electoral roll","type":"Voter","year":1919,"listing":"Clara Larkin, 29 Barkly Place, home duties, F","Registration Number":1260,"Surname":"Larkin","Given Names":"Clara","Address":"29 Barkly Place","Street Number":"29","street":"Barkly Place","cardinality":"North","Occupation":"home duties","Gender":"F","Subdivision":"Cardigan","Notes":"…","lat":-37.8029738,"lng":144.9613147}
 ```
 
 ### `entityID`
@@ -161,7 +162,7 @@ Roadmap §1 asks the team to agree a cleaner schema. A suggestion to start from,
 
 | Today | Proposed |
 |---|---|
-| `Surname`, `Given Names`, `Registration Number`, `Street Number`, `Address`, `Occupation`, `Gender`, `Notes` | `surname`, `givenNames`, `registrationNumber`, `streetNumber`, `address`, `occupation`, `gender`, `notes` |
+| `Surname`, `Given Names`, `Registration Number`, `Street Number`, `Address`, `Occupation`, `Gender`, `Subdivision`, `Notes` | `surname`, `givenNames`, `registrationNumber`, `streetNumber`, `address`, `occupation`, `gender`, `subdivision`, `notes` |
 | `entityID` (number or string) | `id`: always the record's own number; `linkId`: the shared name for linked records, only when set |
 | `pages` (string or number) | `pages`: always a string |
 | `cardinality` | `side` |

@@ -214,7 +214,7 @@ Typical record:
 | `source` | `"Directory"` or `"Electoral roll"`. This decides whether a record appears under Directories or Electoral rolls. |
 | `year`, `pages`, `listing`, `street`, `type`, `cardinality` | As transcribed. `cardinality` is the side of the street (North/South/East/West). |
 | `lat`, `lng` | Optional. About 2,650 directory records have coordinates so far, and only these appear on the map. Adding more is ongoing community work. |
-| `Surname`, `Given Names`, `Registration Number`, `Address`, `Street Number`, `Gender`, `Occupation`, `Notes` | Electoral-roll fields (Title Case, some with spaces). `Registration Number` stays in the data (and the admin data editor can search it), but electoral-roll `listing`s no longer start with it, so the public search never matches it. Directory records also have `Occupation` where the listing gives a trade, spelled out in full ("grcr" → "grocer"), and some have `Notes`. Search uses `Occupation`, and the contribution form fills in an entry's occupations from it. |
+| `Surname`, `Given Names`, `Registration Number`, `Address`, `Street Number`, `Gender`, `Subdivision`, `Occupation`, `Notes` | Electoral-roll fields (Title Case, some with spaces). `Subdivision` is the roll's subdivision of the Division of Melbourne (`"Cardigan"` for every record so far). `Registration Number` stays in the data (and the admin data editor can search it), but electoral-roll `listing`s no longer start with it, so the public search never matches it. Directory records also have `Occupation` where the listing gives a trade, spelled out in full ("grcr" → "grocer"), and some have `Notes`. Search uses `Occupation`, and the contribution form fills in an entry's occupations from it. |
 
 ### Editing the data
 
