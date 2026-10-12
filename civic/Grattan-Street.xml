@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="https://historicalesque.github.io/carlton/schema/carlton.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0" type="place" xml:lang="en">
+  <teiHeader>
+    <fileDesc>
+      <titleStmt>
+        <title>Grattan Street</title>
+        <author>Chloe Tobin</author>
+      </titleStmt>
+      <publicationStmt>
+        <publisher>Common Ground</publisher>
+        <idno type="entry">Grattan-Street</idno>
+      </publicationStmt>
+      <sourceDesc>
+        <p>Contributed through the website. No sources listed.</p>
+      </sourceDesc>
+    </fileDesc>
+    <revisionDesc status="draft">
+      <change when="2026-10-12" type="created">Contributed through the contribution form by Chloe Tobin.</change>
+    </revisionDesc>
+  </teiHeader>
+  <standOff>
+    <listPlace>
+      <place xml:id="subject">
+        <placeName type="main">Grattan Street</placeName>
+      </place>
+    </listPlace>
+  </standOff>
+  <text>
+    <body>
+      <p>Grattan street intersects from left to right with Elizabeth Street, Berkley Street, Barry Street, Leicester Street, Malvina Place, Bouverie Street, Little Grattan Street, and Swanston Street.</p>
+      <p>Notably the Prince Alfred hotel stands on the corner of Bouverie Street and Grattan Street,</p>
+      <p>opposite the grounds of the University of Melbourne.</p>
+      <p>University Square is also nestled South of Grattan street, North of Pelham Street, East of Barry Street and West of Leicester Street and has undergone many urban changes.</p>
+    </body>
+  </text>
+</TEI>
