@@ -7,17 +7,38 @@
 // ═══════════════════════════════════════════════════════════
 window.MapCommon = (function () {
 
-    // ── Years, colours and sources ──
+    // ── Layers, colours and labels ──
+    // A layer is one data file: a source and a year, e.g. "1905 Directory"
+    // and "1905 Electoral roll", so each has its own checkbox and colour.
     // These take records or the list of data files (CGData.files()), which
     // also have a year and a source, so a map can be set up before any
     // records arrive.
-    function getYears(data) {
-        return [...new Set(data.map(e => e.year))].sort((a, b) => a - b);
+    function layerOf(e) {
+        return `${e.year} ${e.source}`;
     }
 
-    // Interpolate a colour for each year across a fixed palette:
+    // Oldest first; within a year, in source order (Directory, Electoral roll)
+    function getLayers(data) {
+        const byLayer = {};
+        data.forEach(e => { byLayer[layerOf(e)] = e; });
+        return Object.keys(byLayer).sort((a, b) =>
+            byLayer[a].year - byLayer[b].year || byLayer[a].source.localeCompare(byLayer[b].source));
+    }
+
+    // "1905 Electoral roll" → 1905
+    function layerYear(layer) {
+        return parseInt(layer, 10);
+    }
+
+    // "1905 Electoral roll" → "1905 (Electoral roll)"
+    function layerLabel(layer) {
+        const year = String(layerYear(layer));
+        return `${year} (${layer.slice(year.length + 1)})`;
+    }
+
+    // Interpolate a colour for each layer across a fixed palette:
     // oldest → warm rust, stepping through amber/teal/violet → newest steel blue.
-    // Works for any number of years automatically.
+    // Works for any number of layers automatically.
     const YEAR_PALETTE = [
         [181,  69, 27],  // warm rust
         [184, 134, 11],  // amber
@@ -26,35 +47,24 @@ window.MapCommon = (function () {
         [42, 100, 160],  // steel blue
     ];
 
-    function getYearColors(years) {
+    function getLayerColors(layers) {
         function lerp(a, b, t) { return a + (b - a) * t; }
         function toHex(r, g, b) {
             return '#' + [r, g, b].map(v => Math.round(v).toString(16).padStart(2, '0')).join('');
         }
         const colors = {};
-        years.forEach((year, i) => {
-            const t   = years.length === 1 ? 0 : i / (years.length - 1);
+        layers.forEach((layer, i) => {
+            const t   = layers.length === 1 ? 0 : i / (layers.length - 1);
             const raw = t * (YEAR_PALETTE.length - 1);
             const lo  = Math.floor(raw), hi = Math.min(lo + 1, YEAR_PALETTE.length - 1);
             const f   = raw - lo;
-            colors[year] = toHex(
+            colors[layer] = toHex(
                 lerp(YEAR_PALETTE[lo][0], YEAR_PALETTE[hi][0], f),
                 lerp(YEAR_PALETTE[lo][1], YEAR_PALETTE[hi][1], f),
                 lerp(YEAR_PALETTE[lo][2], YEAR_PALETTE[hi][2], f)
             );
         });
         return colors;
-    }
-
-    // year → "Directory", "Electoral roll" or "Directory, Electoral roll"
-    function getYearSources(data, years) {
-        const sources = {};
-        years.forEach(year => {
-            sources[year] = [...new Set(
-                data.filter(e => e.year === year && e.source).map(e => e.source)
-            )].join(', ');
-        });
-        return sources;
     }
 
     // { minLat, maxLat, minLng, maxLng } of every mapped record, from the
@@ -102,20 +112,21 @@ window.MapCommon = (function () {
         }).then(records => run(() => onAll(records)));
     }
 
-    // ── Chains: one per year + street + side ──
-    function chainKey(year, street, side) {
-        return `${year}-${street}-${side}`;
+    // ── Chains: one per layer + street + side ──
+    function chainKey(layer, street, side) {
+        return `${layer}-${street}-${side}`;
     }
 
-    // Returns { chains: [{ year, street, side }], rawChains: { key → [entry copies] } }
+    // Returns { chains: [{ layer, year, street, side }], rawChains: { key → [entry copies] } }
     function buildChains(data) {
         const chains = [];
         const rawChains = {};
         data.forEach(e => {
-            const key = chainKey(e.year, e.street, e.cardinality);
+            const layer = layerOf(e);
+            const key = chainKey(layer, e.street, e.cardinality);
             if (!rawChains[key]) {
                 rawChains[key] = [];
-                chains.push({ year: e.year, street: e.street, side: e.cardinality });
+                chains.push({ layer, year: e.year, street: e.street, side: e.cardinality });
             }
             rawChains[key].push({ ...e });
         });
@@ -123,18 +134,18 @@ window.MapCommon = (function () {
     }
 
     // Cross-year links are records whose entityID is a string (a deliberate
-    // link made by a person). Returns { entityID → [{ year, street, side, idx }] }
+    // link made by a person). Returns { entityID → [{ layer, year, street, side, idx }] }
     // with each group sorted oldest first.
     function buildCrossYearIndex(chains, rawChains) {
         const byId = {};
-        chains.forEach(({ year, street, side }) => {
-            rawChains[chainKey(year, street, side)].forEach((e, idx) => {
+        chains.forEach(({ layer, year, street, side }) => {
+            rawChains[chainKey(layer, street, side)].forEach((e, idx) => {
                 if (typeof e.entityID !== 'string') return;
                 if (!byId[e.entityID]) byId[e.entityID] = [];
-                byId[e.entityID].push({ year, street, side, idx });
+                byId[e.entityID].push({ layer, year, street, side, idx });
             });
         });
-        Object.values(byId).forEach(g => g.sort((a, b) => a.year - b.year));
+        Object.values(byId).forEach(g => g.sort((a, b) => a.year - b.year || a.layer.localeCompare(b.layer)));
         return byId;
     }
 
@@ -389,7 +400,7 @@ window.MapCommon = (function () {
     }
 
     return {
-        getYears, getYearColors, getYearSources,
+        layerOf, getLayers, layerYear, layerLabel, getLayerColors,
         getBoundsFromFiles, loadByYear,
         chainKey, buildChains, buildCrossYearIndex,
         bezier, sideSign, applyOffset, computeChain,
