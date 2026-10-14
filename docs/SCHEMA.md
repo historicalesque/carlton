@@ -112,7 +112,7 @@ The Sands & McDougall directory and electoral-roll records. One file per source 
 
 ```
 _data/directory/1857.json … 1940.json        (36 files, 26,785 records)
-_data/electoral-roll/1919.json, 1928.json    (2 files, 1,525 records)
+_data/electoral-roll/1905.json, 1919.json, 1928.json    (3 files, 2,076 records)
 ```
 
 Directory records cover only the project area: south of Grattan Street, west of Swanston Street, east of Elizabeth Street and north of Victoria Street.
