@@ -896,7 +896,7 @@
 {"entityID":25062,"source":"Directory","year":1895,"pages":"154","listing":"57 Cumberland, J., butchr","street":"Madeline Street","type":"Place","cardinality":"West"},
 {"entityID":25063,"source":"Directory","year":1895,"pages":"154","listing":"59 Vacant","street":"Madeline Street","type":"Place","cardinality":"West"},
 {"entityID":25064,"source":"Directory","year":1895,"pages":"154","listing":"61 Vacant","street":"Madeline Street","type":"Place","cardinality":"West"},
-{"entityID":25065,"source":"Directory","year":1895,"pages":"154","listing":"63 Greenleese, J. H., statnr","street":"Madeline Street","type":"Place","cardinality":"West"},
+{"entityID":"Greenlees family","source":"Directory","year":1895,"pages":"154","listing":"63 Greenleese, J. H., statnr","street":"Madeline Street","type":"Place","cardinality":"West"},
 {"entityID":25066,"source":"Directory","year":1895,"pages":"154","listing":"65 Vacant","street":"Madeline Street","type":"Place","cardinality":"West"},
 {"entityID":25067,"source":"Directory","year":1895,"pages":"154","listing":"67 McKernan, R. H., pntr","street":"Madeline Street","type":"Place","cardinality":"West","Occupation":"painter"},
 {"entityID":25068,"source":"Directory","year":1895,"pages":"154","listing":"69 Impey, George, dealer","street":"Madeline Street","type":"Place","cardinality":"West","Occupation":"dealer"},
