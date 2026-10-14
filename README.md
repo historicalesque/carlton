@@ -173,7 +173,7 @@ The records come from public-domain sources: the **Sands & McDougall Directories
 
 ```
 _data/directory/1857.json … 1940.json
-_data/electoral-roll/1919.json, 1928.json
+_data/electoral-roll/1905.json, 1919.json, 1928.json
 ```
 
 Each file is a JSON list with **one record per line**, so a change to a record shows up on GitHub as a one-line change. These are the files to edit.
@@ -190,7 +190,7 @@ Pages load the data through `scripts/data.js` (`CGData.load(...)`, `CGData.forEn
 | Source | Years | Records |
 |---|---|---|
 | Directory (Sands & McDougall) | 1857, 1858, 1859, 1860, 1861, 1862, 1863, 1864, 1865, 1866, 1867, 1868, 1869, 1870, 1871, 1872, 1873, 1874, 1875, 1876, 1877, 1878, 1879, 1880, 1885, 1890, 1895, 1900, 1905, 1910, 1915, 1920, 1925, 1930, 1935, 1940 | ~27,000 |
-| Electoral roll | 1919, 1928 | ~1,500 |
+| Electoral roll | 1905, 1919, 1928 | ~2,100 |
 
 Typical record:
 
@@ -211,7 +211,7 @@ Typical record:
 
 | Field | Notes |
 |---|---|
-| `entityID` | Usually a number: directories count up from 1, electoral rolls from 999999, so the two never share a number (the rolls were renumbered from 7034–8558 when the data was split, because they overlapped the 1930 directory). A **string** (e.g. `"Bridget O'Neill"`) means someone on the team has decided that several records are the same person or place, and linked them under a new ID they created for that purpose. Many records share a string ID on purpose; the search page shows each linked group as one result with a row of years, and links it to the entry of the same name if there is one (e.g. the Carlton Inn listings are linked under `"Corkman Hotel"`). Most text IDs were made by `tools/link-exact-matches.js`, which links listings that are identical (ignoring case and spacing) on the same side of the same street in two or more years, and voters with the same name and address on both rolls. It names them after the person or business (`"James Hepburn"`), adding the street, number or side when a name is already taken, and keeps the team's own ID when one of the records already has one. Records sharing a text ID share coordinates: if the ones with coordinates agree to within about 5 m, the others get them. |
+| `entityID` | Usually a number: directories count up from 1, electoral rolls from 999999, so the two never share a number (the rolls were renumbered from 7034–8558 when the data was split, because they overlapped the 1930 directory). A **string** (e.g. `"Bridget O'Neill"`) means someone on the team has decided that several records are the same person or place, and linked them under a new ID they created for that purpose. Many records share a string ID on purpose; the search page shows each linked group as one result with a row of years, and links it to the entry of the same name if there is one (e.g. the Carlton Inn listings are linked under `"Corkman Hotel"`). Most text IDs were made by `tools/link-exact-matches.js`, which links listings that are identical (ignoring case and spacing) on the same side of the same street in two or more years, and voters with the same name and address on two or more rolls. It names them after the person or business (`"James Hepburn"`), adding the street, number or side when a name is already taken, and keeps the team's own ID when one of the records already has one. Records sharing a text ID share coordinates: if the ones with coordinates agree to within about 5 m, the others get them. |
 | `source` | `"Directory"` or `"Electoral roll"`. This decides whether a record appears under Directories or Electoral rolls. |
 | `year`, `pages`, `listing`, `street`, `type`, `cardinality` | As transcribed. `cardinality` is the side of the street (North/South/East/West). |
 | `lat`, `lng` | Optional. About 2,650 directory records have coordinates so far, and only these appear on the map. Adding more is ongoing community work. |
