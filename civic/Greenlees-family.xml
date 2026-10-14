@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="https://historicalesque.github.io/carlton/schema/carlton.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0" type="family" xml:lang="en">
+  <teiHeader>
+    <fileDesc>
+      <titleStmt>
+        <title>Greenlees family</title>
+        <author>Andy May</author>
+      </titleStmt>
+      <publicationStmt>
+        <publisher>Common Ground</publisher>
+        <idno type="entry">Greenlees-family</idno>
+      </publicationStmt>
+      <sourceDesc>
+        <listBibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1895">Sands &amp; McDougall Directory, 1895, p. 154: 63 Greenleese, J. H., statnr</ref></bibl>
+        </listBibl>
+      </sourceDesc>
+    </fileDesc>
+    <revisionDesc status="draft">
+      <change when="2026-10-14" type="created">Contributed through the contribution form by Andy May.</change>
+    </revisionDesc>
+  </teiHeader>
+  <standOff>
+    <listPerson>
+      <personGrp xml:id="subject" role="family">
+        <name type="main">Greenlees family</name>
+        <residence when="1895">
+          <placeName>63 Madeline Street, Carlton</placeName>
+        </residence>
+      </personGrp>
+    </listPerson>
+  </standOff>
+  <text>
+    <body>
+      <p><hi rend="italic">The Leader</hi> of <ref target="http://nla.gov.au/nla.news-article198370105">8 November 1913</ref> recorded the death of John Henry Greenlees aged 59 at his residence 63 Madeline Street. John was the son of wine and spirit merchant Richard Greenlees of Wigan in Lancashire. He had been a resident of Carlton for 40 years. He was survived by his wife Amelia Frances (née Edwards, married 1873), and children Harry, Bert, Sarah, Fuchsia, Richard, Florrie (Florence, who had married Richard Reed in 1912), William and Arthur. Electoral rolls and directories from 1895 to 1925 show the occupation of members of the family.</p>
+      <table>
+        <row>
+          <cell>Albert</cell>
+          <cell>painter</cell>
+          <cell>1905</cell>
+          <cell>electoral roll</cell>
+          <cell>63 Madeline Street</cell>
+        </row>
+        <row>
+          <cell>Amelia</cell>
+          <cell>home duties</cell>
+          <cell>1905</cell>
+          <cell>electoral roll</cell>
+          <cell>63 Madeline Street</cell>
+        </row>
+        <row>
+          <cell>Fuchsia</cell>
+          <cell>shopkeeper</cell>
+          <cell>1905</cell>
+          <cell>electoral roll</cell>
+          <cell>63 Madeline Street</cell>
+        </row>
+        <row>
+          <cell>John</cell>
+          <cell>painter</cell>
+          <cell>1905</cell>
+          <cell>electoral roll</cell>
+          <cell>63 Madeline Street</cell>
+        </row>
+        <row>
+          <cell>Mrs A.</cell>
+          <cell>stationer</cell>
+          <cell>1905</cell>
+          <cell>directory</cell>
+          <cell>63 Madeline Street</cell>
+        </row>
+        <row>
+          <cell>Henry E.</cell>
+          <cell>stationer</cell>
+          <cell>1900</cell>
+          <cell>directory</cell>
+          <cell>63 Madeline Street</cell>
+        </row>
+        <row>
+          <cell>William B.</cell>
+          <cell>news agent</cell>
+          <cell>1925</cell>
+          <cell>directory</cell>
+          <cell>71 Madeline Street</cell>
+        </row>
+        <row>
+          <cell>Mrs A.F.</cell>
+          <cell>stationer</cell>
+          <cell>1910</cell>
+          <cell>directory</cell>
+          <cell>63 Madeline Street</cell>
+        </row>
+        <row>
+          <cell>Mrs A.F.</cell>
+          <cell>stationer</cell>
+          <cell>1915</cell>
+          <cell>directory</cell>
+          <cell>63 Madeline Street</cell>
+        </row>
+        <row>
+          <cell>J.H.</cell>
+          <cell>stationer</cell>
+          <cell>1895</cell>
+          <cell>directory</cell>
+          <cell>63 Madeline Street</cell>
+        </row>
+        <row>
+          <cell>William B.</cell>
+          <cell>news agent</cell>
+          <cell>1920</cell>
+          <cell>directory</cell>
+          <cell>63 Madeline Street</cell>
+        </row>
+        <row>
+          <cell>Amelia Frances</cell>
+          <cell>news agent</cell>
+          <cell>1919</cell>
+          <cell>electoral roll</cell>
+          <cell>63 Madeline Street</cell>
+        </row>
+        <row>
+          <cell>William barton Whittlese</cell>
+          <cell>labourer</cell>
+          <cell>1919</cell>
+          <cell>electoral roll</cell>
+          <cell>63 Madeline Street</cell>
+        </row>
+      </table>
+      <p>Amelia was originally from Tasmania and <ref target="http://nla.gov.au/nla.news-article205848230">died in 1931</ref> at the residence of her daughter Mrs Breen, Sherbrooke, Sassafras.</p>
+    </body>
+  </text>
+</TEI>
