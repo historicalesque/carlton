@@ -17,12 +17,14 @@
     </fileDesc>
     <revisionDesc status="draft">
       <change when="2026-10-12" type="created">Contributed through the contribution form by Chloe Tobin.</change>
+      <change when="2026-10-15" type="revised">Changes suggested by Patrick Gigacz: This version has some good stuff and some not-so-good stuff.</change>
     </revisionDesc>
   </teiHeader>
   <standOff>
     <listPlace>
       <place xml:id="subject">
         <placeName type="main">Queensberry Street</placeName>
+        <placeName type="alternative">Queensbury Street</placeName>
       </place>
     </listPlace>
   </standOff>
