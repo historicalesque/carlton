@@ -49,6 +49,7 @@
         <p><ref target="civic?id=Boarding%20Houses">Boarding Houses</ref></p>
         <p><ref target="civic?id=Bouverie%20Place">Bouverie Place</ref></p>
         <p><ref target="civic?id=Bouverie%20Street">Bouverie Street</ref></p>
+        <p><ref target="civic?id=Bush%20Inn%20hotel">Bush Inn Hotel</ref></p>
       </div>
       <div>
         <head>C</head>
@@ -75,6 +76,7 @@
         <p><ref target="civic?id=Early%20Purchasers%20and%20Developers%20of%20Land">Early Purchasers and Developers of Land</ref></p>
         <p><ref target="civic?id=Electoral%20Rolls">Electoral Rolls</ref></p>
         <p><ref target="civic?id=Emu%20Hotel">Emu Hotel</ref></p>
+        <p><ref target="civic?id=Engineering">Engineering Firms</ref></p>
       </div>
       <div>
         <head>F</head>
@@ -84,6 +86,7 @@
       <div>
         <head>G</head>
         <p><ref target="civic?id=Grattan%20Street">Grattan Street</ref></p>
+        <p><ref target="civic?id=Greenlees%20family">Greenlees Family</ref></p>
         <p><ref target="civic?id=Grove%20Place">Grove Place</ref></p>
       </div>
       <div>
@@ -134,6 +137,7 @@
         <p><ref target="civic?id=Malvina%20Place">Malvina Place</ref></p>
         <p><ref target="civic?id=Mary%20Mather%20%28Pelham%20Hotel%29">Mary Mather (Pelham Hotel)</ref></p>
         <p><ref target="civic?id=MMBW">Melbourne and Metropolitan Board of Works maps</ref></p>
+        <p><ref target="civic?id=Myer%20Despatch%20Buildings">Myer Despatch Buildings</ref></p>
       </div>
       <div>
         <head>N</head>
@@ -167,6 +171,7 @@
       <div>
         <head>S</head>
         <p><ref target="civic?id=Sands%20%26%20McDougall%20Directories">Sands &amp; McDougall Directories</ref></p>
+        <p><ref target="civic?id=Seven%20Stars%20hotel">Seven Stars Hotel</ref></p>
         <p><ref target="civic?id=Sex%20Work%20%28male%29">Sex Work (male)</ref></p>
         <p><hi rend="underline">Snowball, John</hi></p>
         <p><ref target="civic?id=Spanish%20Flu%20in%20Carlton">Spanish Flu in Carlton</ref></p>
@@ -178,13 +183,16 @@
         <p><ref target="civic?id=Tenants">Tenants</ref></p>
         <p><ref target="civic?id=Terraces">Terraces</ref></p>
         <p><ref target="civic?id=Town%20Clerk%27s%20Files">Town Clerk’s Files</ref></p>
+        <p><ref target="civic?id=Trees">Trees</ref></p>
       </div>
       <div>
         <head>U</head>
+        <p><ref target="civic?id=University%20Cricket%20ground">University Cricket Ground</ref></p>
       </div>
       <div>
         <head>V</head>
         <p><ref target="civic?id=Victorian%20Police%20Gazette">Victorian Police Gazette</ref></p>
+        <p><ref target="civic?id=The%20Engineers%20of%20University%20Square">Victorian Engineers of University Square, The</ref></p>
       </div>
       <div>
         <head>W</head>
