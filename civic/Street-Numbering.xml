@@ -5,7 +5,8 @@
     <fileDesc>
       <titleStmt>
         <title>Street Numbering</title>
-        <author>Andy May</author>
+        <author>Barbara Minchinton</author>
+        <author>Barbara Minchinton</author>
       </titleStmt>
       <publicationStmt>
         <publisher>Common Ground</publisher>
@@ -15,14 +16,15 @@
         <p>Contributed through the website. No sources listed.</p>
       </sourceDesc>
     </fileDesc>
-    <revisionDesc status="published">
-      <change when="2026-09-11" type="created">Public contribution via custom rich-text submission form by Andy May.</change>
-      <change when="2026-10-05" type="converted">Converted from EAC-CPF to TEI.</change>
+    <revisionDesc status="draft">
+      <change when="2026-10-22" type="created">Contributed through the contribution form by Barbara Minchinton, Barbara Minchinton.</change>
     </revisionDesc>
   </teiHeader>
   <text>
     <body>
-      <p>We need an article on this - we think that most renumbering took place in the late 1880s.</p>
+      <p>If you are looking for a particular property, and you have obtained the street number from the directories or elsewhere, you need to be aware that Melbourne’s street numbers were officially changed from 1889, although unofficial use of old numbers continued in some areas.</p>
+      <p>In the gold rush era Elizabeth Street was deemed the beginning of two separate series of numbers for the streets crossing it – Bourke Street West and Bourke Street East, for example. Owners could take any number for their property providing it was not already in use, but confusion arose with the proliferation of rights-of-way and the erection of arcades etc, and some owners also disliked the diminutive impression of ‘a’ or ‘b’ on their building number. When the Melbourne City Council decided to renumber the city in 1887, they adopted a system using odd numbers on one side of a street and even numbers on the other (<hi rend="italic">The Age</hi>, 27 August 1887, p.14). The physical work of renumbering buildings in the city took place throughout 1888-89, and the new numbers first appeared in the <hi rend="italic">Sands &amp; McDougall Directory</hi> for 1889 (<hi rend="italic">The Argus</hi>, 17 January 1889, p. 4).</p>
+      <p>For a more detailed history of street numbering Melbourne, see <ref target="https://www.hothamhistory.org.au/%EF%BB%BFstreet-numbers-have-a-history-of-their-own/">https://www.hothamhistory.org.au/%EF%BB%BFstreet-numbers-have-a-history-of-their-own/</ref> accessed 22 October 2026.</p>
     </body>
   </text>
 </TEI>
