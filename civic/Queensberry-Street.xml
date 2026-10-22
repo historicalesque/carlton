@@ -5,6 +5,7 @@
     <fileDesc>
       <titleStmt>
         <title>Queensberry Street</title>
+        <author>Mitchell Harrop</author>
         <author>Chloe Tobin</author>
       </titleStmt>
       <publicationStmt>
@@ -16,8 +17,7 @@
       </sourceDesc>
     </fileDesc>
     <revisionDesc status="draft">
-      <change when="2026-10-12" type="created">Contributed through the contribution form by Chloe Tobin.</change>
-      <change when="2026-10-15" type="revised">Changes suggested by Patrick Gigacz: This version has some good stuff and some not-so-good stuff.</change>
+      <change when="2026-10-23" type="created">Contributed through the contribution form by Mitchell Harrop, Chloe Tobin.</change>
     </revisionDesc>
   </teiHeader>
   <standOff>
@@ -30,7 +30,7 @@
   </standOff>
   <text>
     <body>
-      <p>In the scope of our project, Queensberry Street runs horizontally between Elizabeth Street and Swanston Street. It intersects from left to right with Elizabeth Street, Berkley Street, Barry and Leicester Streets, Lansdowne Place, Storey Place, David Terrace, and Swanston Street.</p>
+      <p>In the scope of our project, Queensberry Street runs west-east between Elizabeth Street and Swanston Street. It intersects from east to west with Elizabeth Street, Berkley Street, Barry and Leicester Streets, Lansdowne Place, Storey Place, David Terrace, and Swanston Street.</p>
       <p>Buildings include the Queensberry hotel that sits at the corner of Queensberry Street and Swanston Street, the State School and the Church and Mission hall.</p>
     </body>
   </text>
