@@ -174,7 +174,7 @@ const $app = document.getElementById("app");
 
 async function ghApi(path) {
   const res = await fetch(API + path);
-  if (res.status === 403) {
+  if (res.status === 403 || res.status === 429) {
     const remaining = res.headers.get("x-ratelimit-remaining");
     if (remaining === "0") {
       const reset = new Date(Number(res.headers.get("x-ratelimit-reset")) * 1000);
@@ -184,6 +184,33 @@ async function ghApi(path) {
   if (!res.ok) throw new Error(`GitHub API error (${res.status})`);
   return res.json();
 }
+
+// Without signing in, GitHub allows each network 60 API requests an hour, so
+// anything that can't change is kept in the browser: a pull request's files
+// and commits as of one head commit stay the same until someone pushes to it.
+// (pick keeps only what this page uses, so the stored copy stays small)
+async function ghApiCached(path, key, pick) {
+  const storeKey = `review:${CONFIG.REPO_OWNER}/${CONFIG.REPO_NAME}:${key}`;
+  try {
+    const stored = localStorage.getItem(storeKey);
+    if (stored) return JSON.parse(stored);
+  } catch (e) { /* no storage: just ask GitHub */ }
+  const value = pick(await ghApi(path));
+  try { localStorage.setItem(storeKey, JSON.stringify(value)); } catch (e) { /* full or blocked */ }
+  return value;
+}
+
+const prFiles = (pr) => ghApiCached(
+  `/repos/${CONFIG.REPO_OWNER}/${CONFIG.REPO_NAME}/pulls/${pr.number}/files?per_page=100`,
+  `files:${pr.number}:${pr.head.sha}`,
+  (files) => files.map((f) => ({ filename: f.filename, status: f.status }))
+);
+
+const prCommits = (pr) => ghApiCached(
+  `/repos/${CONFIG.REPO_OWNER}/${CONFIG.REPO_NAME}/pulls/${pr.number}/commits?per_page=100`,
+  `commits:${pr.number}:${pr.head.sha}`,
+  (commits) => commits.map((c) => ({ sha: c.sha, commit: { message: c.commit.message } }))
+);
 
 function escapeHtml(s) {
   return s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
@@ -239,7 +266,7 @@ async function renderPrList() {
 
   const withXmlFiles = [];
   for (const pr of prs) {
-    const files = await ghApi(`/repos/${CONFIG.REPO_OWNER}/${CONFIG.REPO_NAME}/pulls/${pr.number}/files?per_page=100`);
+    const files = await prFiles(pr);
     const xmlFiles = files.filter((f) => f.filename.startsWith(CONFIG.XML_PATH_PREFIX) && f.filename.endsWith(".xml"));
     if (xmlFiles.length) withXmlFiles.push({ pr, xmlFiles });
   }
@@ -297,11 +324,8 @@ function versionsOf(commits) {
 async function renderPrDetail(prNumber, version, sent) {
   $app.innerHTML = `<p class="spinner-text">Loading&hellip;</p>`;
   const repoPath = `/repos/${CONFIG.REPO_OWNER}/${CONFIG.REPO_NAME}`;
-  const [pr, files, commits] = await Promise.all([
-    ghApi(`${repoPath}/pulls/${prNumber}`),
-    ghApi(`${repoPath}/pulls/${prNumber}/files?per_page=100`),
-    ghApi(`${repoPath}/pulls/${prNumber}/commits?per_page=100`)
-  ]);
+  const pr = await ghApi(`${repoPath}/pulls/${prNumber}`);
+  const [files, commits] = await Promise.all([prFiles(pr), prCommits(pr)]);
   const xmlFiles = files.filter((f) => f.filename.startsWith(CONFIG.XML_PATH_PREFIX) && f.filename.endsWith(".xml"));
   const versions = versionsOf(commits);
   const wanted = version && /^[0-9a-f]{7,40}$/i.test(version) ? version.toLowerCase() : "";
@@ -353,10 +377,8 @@ async function renderPrDetail(prNumber, version, sent) {
 async function renderSuggest(prNumber, version) {
   $app.innerHTML = `<p class="spinner-text">Loading&hellip;</p>`;
   const repoPath = `/repos/${CONFIG.REPO_OWNER}/${CONFIG.REPO_NAME}`;
-  const [pr, files] = await Promise.all([
-    ghApi(`${repoPath}/pulls/${prNumber}`),
-    ghApi(`${repoPath}/pulls/${prNumber}/files?per_page=100`)
-  ]);
+  const pr = await ghApi(`${repoPath}/pulls/${prNumber}`);
+  const files = await prFiles(pr);
   const file = files.find((f) => f.filename.startsWith(CONFIG.XML_PATH_PREFIX) && f.filename.endsWith(".xml"));
   const ref = version && /^[0-9a-f]{7,40}$/i.test(version) ? version : pr.head.sha;
   if (pr.state !== "open" || !file) { go({ pr: prNumber }); return; }
