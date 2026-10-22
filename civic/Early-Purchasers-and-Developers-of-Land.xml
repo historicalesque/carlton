@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="https://historicalesque.github.io/carlton/schema/carlton.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0" type="topic" xml:lang="en">
+  <teiHeader>
+    <fileDesc>
+      <titleStmt>
+        <title>Early Purchasers and Developers of Land</title>
+        <author>Barbara Minchinton</author>
+      </titleStmt>
+      <publicationStmt>
+        <publisher>Common Ground</publisher>
+        <idno type="entry">Early-Purchasers-and-Developers-of-Land</idno>
+      </publicationStmt>
+      <sourceDesc>
+        <p>Contributed through the website. No sources listed.</p>
+      </sourceDesc>
+    </fileDesc>
+    <revisionDesc status="draft">
+      <change when="2026-10-22" type="created">Contributed through the contribution form by Barbara Minchinton.</change>
+    </revisionDesc>
+  </teiHeader>
+  <text>
+    <body>
+      <p>Carlton was surveyed by Robert Hoddle in 1852, and early plans show the usual array of Melbourne's pre-Separation property speculators sprinkled among the first Crown Grantees. Thomas Budds Payne is there, so is Thomas Le Mesurier Winter, but the new beneficiaries of the gold rushes are there too. Thomas Monahan of Swanston Street publican fame and Samuel Ramsden the stonemason of Clifton Hill quarries are both well-represented. There are others, too, such as John Harbison, who started as a land dealer and made a fortune directly from the frantic land dealings of the 1850s. But after that first flush of purchasers there came those, like <hi rend="underline">John Snowball</hi>, whose names are not among the first Crown Grantees, but who created the first subdivisions that grew into houses. He came as a mason, became a builder, and turned vacant land into rentable property. And there is <hi rend="underline">John Ryan</hi>, too, who turned up from Bathurst with enough money to create a substantial property portfolio, but where did his money come from?</p>
+    </body>
+  </text>
+</TEI>
