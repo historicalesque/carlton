@@ -6,11 +6,11 @@ theme: jekyll-theme-cayman
 contribution_endpoint: "https://script.google.com/macros/s/AKfycbxKYO3HIIwoNWI7ZHyxHvDz9wsvFgQT0KUL3kHgztqtNDaITvjH-uaQiTLEfdGbm2LX/exec"
 
 # Site pages kept as entries in civic/, so the team can suggest edits to them
-# the same way as any entry: the front page, Featured pages and About. Each
-# has a small .md page (layout: entry, entry_id: <file name>). They look like
-# ordinary pages, are left out of search, and have a small "Suggest an edit"
-# link instead of the contribution form.
-site_pages: [Home, Featured-pages, About]
+# the same way as any entry: the front page, Featured pages, About and
+# Acknowledgements. Each has a small .md page (layout: entry, entry_id: <file
+# name>). They look like ordinary pages, are left out of search, and have a
+# small "Suggest an edit" link instead of the contribution form.
+site_pages: [Home, Featured-pages, About, Acknowledgements]
 
 defaults:
   # Applies to every page unless a more specific rule below overrides it.
