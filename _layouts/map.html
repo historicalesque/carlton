@@ -469,6 +469,29 @@ const CustomControl = L.Control.extend({
             });
         });
 
+        // A modern street map, drawn under the historic maps (zIndex 0;
+        // Leaflet gives other tile layers 1) so it shows through where they
+        // are see-through or faded with their sliders.
+        const baseTitle = L.DomUtil.create('div', 'panel-section-title', container);
+        baseTitle.innerText = 'Base Map';
+
+        const osmRow  = L.DomUtil.create('div', 'layer-control-row', container);
+        const osmLbl  = L.DomUtil.create('label', 'layer-label-container', osmRow);
+        const osmCb   = L.DomUtil.create('input', '', osmLbl); osmCb.type = 'checkbox'; osmCb.checked = false;
+        const osmSpan = L.DomUtil.create('span', '', osmLbl); osmSpan.innerText = 'OpenStreetMap (today)';
+        const osmSc   = L.DomUtil.create('div', 'slider-container', osmRow);
+        osmSc.innerHTML = '<span>0%</span>';
+        const osmSl   = L.DomUtil.create('input', 'opacity-slider', osmSc);
+        osmSl.type = 'range'; osmSl.min = 0; osmSl.max = 100; osmSl.value = 100;
+        osmSl.setAttribute('aria-label', 'Opacity of OpenStreetMap');
+        osmSc.insertAdjacentHTML('beforeend', '<span>100%</span>');
+        const osmLayer = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom:20, maxNativeZoom:19, zIndex:0,
+            attribution:'&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+        });
+        L.DomEvent.on(osmCb, 'change', () => osmCb.checked ? osmLayer.addTo(map) : map.removeLayer(osmLayer));
+        L.DomEvent.on(osmSl, 'input',  () => osmLayer.setOpacity(osmSl.value/100));
+
         const mapTitle = L.DomUtil.create('div', 'panel-section-title', container);
         mapTitle.innerText = 'Historic Map Layers';
 
