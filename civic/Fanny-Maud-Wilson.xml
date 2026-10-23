@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="https://historicalesque.github.io/carlton/schema/carlton.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0" type="person" xml:lang="en">
+  <teiHeader>
+    <fileDesc>
+      <titleStmt>
+        <title>Fanny Maud Wilson</title>
+        <author>Andy May</author>
+      </titleStmt>
+      <publicationStmt>
+        <publisher>Common Ground</publisher>
+        <idno type="entry">Fanny-Maud-Wilson</idno>
+      </publicationStmt>
+      <sourceDesc>
+        <p>Contributed through the website. No sources listed.</p>
+      </sourceDesc>
+    </fileDesc>
+    <revisionDesc status="draft">
+      <change when="2026-10-23" type="created">Contributed through the contribution form by Andy May.</change>
+    </revisionDesc>
+  </teiHeader>
+  <standOff>
+    <listPerson>
+      <person xml:id="subject">
+        <persName type="main">Fanny Maud Wilson</persName>
+      </person>
+    </listPerson>
+  </standOff>
+  <text>
+    <body>
+      <p>Fanny Maude Wilson (1870-1946) set up Melbourne's first free kindergarten in the Baptist Mission hall in Bouverie Street.</p>
+      <p>We are curious to learn more about her life and what brought her specifically to work in Carlton.</p>
+      <div>
+        <head>Sources</head>
+        <p>Deborah Towns, "Wilson, Maud (1870 - 1946)", <hi rend="italic">T</hi><ref target="he Encyclopedia of Women and Leadership in Twentieth-Century Australia."><hi rend="italic">he Encyclopedia of Women and Leadership in Twentieth-Century Australia.</hi></ref></p>
+      </div>
+    </body>
+  </text>
+</TEI>
