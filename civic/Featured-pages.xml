@@ -7,6 +7,7 @@
         <title>Feature Pages</title>
         <author>Andy May</author>
         <author>Andy May</author>
+        <author>Andy May</author>
         <author>Mitchell Harrop</author>
         <author>Barbara Minchinton</author>
         <author>Common Ground</author>
@@ -20,7 +21,7 @@
       </sourceDesc>
     </fileDesc>
     <revisionDesc status="draft">
-      <change when="2026-10-23" type="created">Contributed through the contribution form by Andy May, Andy May, Mitchell Harrop, Barbara Minchinton, Common Ground.</change>
+      <change when="2026-10-23" type="created">Contributed through the contribution form by Andy May, Andy May, Andy May, Mitchell Harrop, Barbara Minchinton, Common Ground.</change>
     </revisionDesc>
   </teiHeader>
   <standOff>
@@ -37,6 +38,7 @@
         <head>Can you help?</head>
         <p>These featured pages are only a line or two long so far, or are items of particular interest to individual researchers who are looking for more information from others! If you know more about any of them, clock on the item and add what you know.</p>
         <p><ref target="civic?id=Fanny-Maud-Wilson">Fanny Maud Wilson</ref></p>
+        <p><ref target="civic?id=Lincoln%20Square">Lincoln Square</ref></p>
       </div>
       <div>
         <head>A</head>
