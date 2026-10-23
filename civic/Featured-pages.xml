@@ -5,6 +5,7 @@
     <fileDesc>
       <titleStmt>
         <title>Feature Pages</title>
+        <author>Andy May</author>
         <author>Mitchell Harrop</author>
         <author>Barbara Minchinton</author>
         <author>Common Ground</author>
@@ -18,7 +19,7 @@
       </sourceDesc>
     </fileDesc>
     <revisionDesc status="draft">
-      <change when="2026-10-23" type="created">Contributed through the contribution form by Mitchell Harrop, Barbara Minchinton, Common Ground.</change>
+      <change when="2026-10-23" type="created">Contributed through the contribution form by Andy May, Mitchell Harrop, Barbara Minchinton, Common Ground.</change>
     </revisionDesc>
   </teiHeader>
   <standOff>
@@ -34,9 +35,7 @@
       <div>
         <head>Can you help?</head>
         <p>These featured pages are only a line or two long so far. If you know more about any of them, select it and add what you know.</p>
-        <p><ref target="civic?id=Ballarat%20Road">Ballarat Road</ref></p>
-        <p><ref target="civic?id=Berkley%20Arms%20hotel">Berkley Arms Hotel</ref></p>
-        <p><ref target="civic?id=Pelham%20Street">Pelham Street</ref></p>
+        <p>Fanny Maud Wilson</p>
       </div>
       <div>
         <head>A</head>
