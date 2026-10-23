@@ -445,6 +445,31 @@ const CustomControl = L.Control.extend({
         setOpen(!window.matchMedia('(max-width: 600px)').matches);
         L.DomEvent.on(toggle, 'click', () => setOpen(container.classList.contains('panel-collapsed')));
 
+        // What the map shows: one line, with the rest folded away. The years
+        // come from the data files, so they stay right as years are added.
+        const yearsOf = source => LAYERS.filter(l => l.endsWith(source)).map(MapCommon.layerYear);
+        const dirYears  = yearsOf('Directory');
+        const rollYears = yearsOf('Electoral roll');
+        const sources = [
+            dirYears.length  ? `a Sands &amp; McDougall street directory (${dirYears[0]}–${dirYears[dirYears.length - 1]})` : '',
+            rollYears.length ? `an electoral roll (${rollYears.join(', ')})` : '',
+        ].filter(Boolean).join(' or ');
+        const intro = L.DomUtil.create('div', 'map-intro', container);
+        intro.innerHTML = `
+            <p>Listings from Carlton's street directories and electoral rolls, drawn street by street.
+            Pick years to compare, lay historic or modern maps underneath, and click a dot for details.</p>
+            <details>
+                <summary>More about this map</summary>
+                <p>Each dot is a listing from ${sources}, placed along the side of the street where it appeared.
+                Crosses mark street intersections and lanes. A glowing dot is an estimated position,
+                placed between its mapped neighbours on the same street.</p>
+                <p>Tick <strong>Years</strong> to compare listings. Each year has its own colour, and when several
+                are on, their lines bow out from the street so they don't overlap. Dashed lines join records
+                linked as the same place across years. Click a dot to see the full listing.</p>
+                <p>Turn on the 1896–97 MMBW detail plans or today's OpenStreetMap underneath, and use the
+                sliders to fade between them. Blue shapes are University of Melbourne properties today.</p>
+            </details>`;
+
         const yearTitle = L.DomUtil.create('div', 'panel-section-title', container);
         yearTitle.innerText = 'Years';
 

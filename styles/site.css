@@ -740,6 +740,18 @@ html.map-page, body.map-page, body.map-page #map {
     border-bottom: 1px solid var(--paper-line);
 }
 
+/* Short explanation at the top of the panel, with more behind a toggle */
+.map-intro {
+    font-size: 12px; line-height: 1.45; color: var(--ink);
+    font-family: var(--font-serif);
+}
+.map-intro p { margin: 0 0 6px; }
+.map-intro summary {
+    cursor: pointer; color: var(--moss); font-weight: bold;
+    margin-bottom: 6px;
+}
+.map-intro summary:hover { color: var(--moss-deep); }
+
 .layer-control-row {
     display: flex; flex-direction: column;
     margin-bottom: 8px; padding-bottom: 8px;
@@ -801,6 +813,7 @@ html.map-page, body.map-page, body.map-page #map {
         cursor: pointer;
     }
     .panel-toggle:hover { background: var(--moss-deep); }
+    .map-intro { margin-top: 10px; }
     .panel-collapsed { width: auto; padding: 6px !important; }
     .panel-collapsed > :not(.control-home-link):not(.panel-toggle) { display: none; }
     .panel-collapsed .control-home-link { margin-bottom: 6px; }
