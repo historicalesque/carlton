@@ -153,6 +153,7 @@ Every entry in `civic/` is a TEI file, written to the project customisation in `
 - **Filename = slug of the entry ID**: spaces become `-`, anything other than letters, digits, `_` and `-` is removed, and the file goes in `civic/`, e.g. `Mary Mather (Pelham Hotel)` → `civic/Mary-Mather-Pelham-Hotel.xml`. The slug logic is `slugifyId()` in `_layouts/entry.html`. A file that doesn't match the slug won't be found. `<idno type="entry">` holds the same slug.
 - `<revisionDesc>` has one `<change>` per contribution or edit.
 - To add an entry to the A–Z, add a link under its letter in `civic/Featured-pages.xml` (or suggest an edit to the Featured pages page).
+- The **Can you help?** box at the top of the A–Z lists featured pages that need more writing. To add or remove one, add or remove its link under the *Can you help?* heading in `civic/Featured-pages.xml` (or suggest an edit to the Featured pages page). `scripts/az-status.js` finds that heading by its text, boxes the section and leaves it out of the letter index.
 
 Open questions to settle: fixed lists for `div`, `state` and `relation` types, and what to do with entries that have two names (e.g. *Carlton Inn* / *Corkman Hotel*). See roadmap §4.
 
