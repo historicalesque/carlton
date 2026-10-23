@@ -32,6 +32,13 @@
     <body>
       <p>Select a letter below to jump directly to that section.</p>
       <div>
+        <head>Can you help?</head>
+        <p>These featured pages are only a line or two long so far. If you know more about any of them, select it and add what you know.</p>
+        <p><ref target="civic?id=Ballarat%20Road">Ballarat Road</ref></p>
+        <p><ref target="civic?id=Berkley%20Arms%20hotel">Berkley Arms Hotel</ref></p>
+        <p><ref target="civic?id=Pelham%20Street">Pelham Street</ref></p>
+      </div>
+      <div>
         <head>A</head>
         <p><ref target="civic?id=Architecture">Architecture</ref></p>
       </div>

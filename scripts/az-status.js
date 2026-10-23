@@ -105,10 +105,31 @@
         });
     }
 
+    // The "Can you help?" section: featured pages that need more writing.
+    // Edit the page and list links under a heading with this text; the
+    // section is boxed and left out of the letter index.
+    const HELP_HEADING = /^can you help\??$/i;
+
+    // Box the help heading and everything up to the next heading
+    function boxHelp(head) {
+        const box = document.createElement('section');
+        box.className = 'az-help';
+        box.setAttribute('aria-labelledby', head.id);
+        head.before(box);
+        let node = head;
+        while (node && !(node !== head && node.tagName === 'H2')) {
+            const next = node.nextSibling;
+            box.appendChild(node);
+            node = next;
+        }
+    }
+
     // Letter buttons above the sections (one per heading), the legend for
     // the badges, and a "Back to top" link at the end of each section.
     function addIndex(article) {
-        const heads = [...article.querySelectorAll('.pv-body h2')];
+        const all = [...article.querySelectorAll('.pv-body h2')];
+        const help = all.find(function (h) { return HELP_HEADING.test(h.textContent.trim()); });
+        const heads = all.filter(function (h) { return h !== help; });
         if (!heads.length) return;
         const title = article.querySelector('h1');
         if (title && !title.id) title.id = 'featured-pages-a-to-z';
@@ -132,7 +153,11 @@
         legend.className = 'az-legend';
         legend.innerHTML = '<span class="az-badge az-badge-new">✦ New</span> added in the last two weeks &nbsp; ' +
             '<span class="az-badge az-badge-missing">' + PENCIL + '</span> not yet written, select it to write the page';
-        heads[0].before(legend, index);
+        all[0].before(legend, index);
+        if (help) {
+            help.id = help.id || 'can-you-help';
+            boxHelp(help);
+        }
     }
 
     if (document.querySelector('#encyclopedia-entry .pv-entry')) run();

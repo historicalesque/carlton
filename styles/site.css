@@ -482,6 +482,17 @@ a.result-title { text-decoration: underline; text-decoration-color: var(--sage-d
     color: var(--paper);
 }
 
+/* A–Z "Can you help?" box: featured pages that need more writing */
+.main-content section.az-help {
+    margin: 0 0 28px;
+    padding: 14px 18px 4px;
+    background-color: var(--paper-deep);
+    border-left: 4px solid var(--moss);
+    border-radius: 3px;
+}
+
+.main-content section.az-help h2 { margin-top: 0; }
+
 /* A–Z entry status badges (scripts/az-status.js) */
 .az-badge {
     display: inline-block;
