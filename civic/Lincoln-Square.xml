@@ -5,6 +5,7 @@
     <fileDesc>
       <titleStmt>
         <title>Lincoln Square</title>
+        <author>Andy May</author>
         <author>Johnny Bell</author>
         <author>Andy May</author>
       </titleStmt>
@@ -17,7 +18,7 @@
       </sourceDesc>
     </fileDesc>
     <revisionDesc status="draft">
-      <change when="2026-10-23" type="created">Contributed through the contribution form by Johnny Bell, Andy May.</change>
+      <change when="2026-10-23" type="created">Contributed through the contribution form by Andy May, Johnny Bell, Andy May.</change>
     </revisionDesc>
   </teiHeader>
   <standOff>
@@ -30,7 +31,7 @@
   <text>
     <body>
       <p>Lincoln Square appears on government plans as early as 1852. Given other local street names (e.g. Pelham Street) it seems probably that it is named after Henry Pelham-Clinton, 5th Duke of Newcastle and Earl of Lincoln who was Secretary of State for the Colonies in the early 1850s when Carlton was being laid out.</p>
-      <p>Lincoln Square is bounded ti the east by Swanston Street, to the west by Bouverie Street, and Lincoln Place North &amp; Lincoln Place South.</p>
+      <p>Lincoln Square is bounded to the east by Swanston Street, to the west by Bouverie Street, and Lincoln Place North and Lincoln Place South.</p>
     </body>
   </text>
 </TEI>
