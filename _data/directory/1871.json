@@ -327,8 +327,6 @@
 {"entityID":160462,"source":"Directory","year":1871,"pages":"80","listing":"161 Gilchrist, J. & J., brassfounders and pattern-makers","street":"Bouverie Street","type":"Place","cardinality":"West"},
 {"entityID":"Intersection Bouverie street and Grattan street (Bouverie Street, West side)","source":"Directory","year":1871,"pages":"80","listing":"Intersection Bouverie street and Grattan street","street":"Bouverie Street","type":"Intersection","cardinality":"West","lat":-37.80029940917306,"lng":144.96249656780145},
 {"entityID":"Wm. Richardson","source":"Directory","year":1871,"pages":"83","listing":"1 Richardson, Wm.","street":"Lansdowne Place","type":"Place","cardinality":"West"},
-{"entityID":160841,"source":"Directory","year":1871,"pages":"83","listing":"3 Carpenter, Mrs.","street":"Lansdowne Place","type":"Place","cardinality":"West"},
-{"entityID":160842,"source":"Directory","year":1871,"pages":"83","listing":"4 Murphy, Daniel","street":"Lansdowne Place","type":"Place","cardinality":"West"},
 {"entityID":"Intersection Grattan street and Elizabeth street (extension) (Grattan Street, North side)","source":"Directory","year":1871,"pages":"90","listing":"Intersection Grattan street and Elizabeth street (extension)","street":"Grattan Street","type":"Intersection","cardinality":"North"},
 {"entityID":"University","source":"Directory","year":1871,"pages":"90","listing":"University","street":"Grattan Street","type":"Place","cardinality":"North"},
 {"entityID":"Martin H. Irving","source":"Directory","year":1871,"pages":"90","listing":"Irving, Martin H., resident, professor","street":"Grattan Street","type":"Place","cardinality":"North"},
