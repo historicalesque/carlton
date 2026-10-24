@@ -131,7 +131,10 @@ Jekyll publishes compact copies in `data/` and a list of the files in `data/inde
 | `street` | string | all | Street name. Spellings are kept as transcribed, because variants can matter historically. |
 | `cardinality` | string | nearly all | Side of the street: `North`, `South`, `East` or `West`. Missing or empty on about 1,100 directory records. |
 | `pages` | string (a few numbers) | directory | Page reference(s) in the directory, such as `"172"` or `"241-242"`. |
-| `lat`, `lng` | number or `null` | some | Coordinates. About 2,650 directory records have them; only these appear on the map. |
+| `lat`, `lng` | number or `null` | some | Coordinates. About 6,300 directory records have them; only these appear on the map. |
+| `coordConfidence` | string | records with a point | How sure we are of the point: `high`, `medium` or `low`. Missing on points added before October 2026, which are not yet rated. |
+| `coordSource` | string | records with a point | Where the point comes from, e.g. `"MMBW detail plan 1177 (c. 1895)"` or `"Mitchell, from Google Maps (24 Oct 2026)"`. |
+| `coordNote` | string | some records with a point | How the point was worked out, e.g. `"house No. 93 on the plan"` or `"same name on this street in every directory from 1880 to 1890, where it is No. 55"`. |
 | `Occupation`, `Notes` | string | electoral rolls, some directory | |
 | `Surname`, `Given Names`, `Gender` | string | electoral rolls | |
 | `Subdivision` | string | electoral rolls | The roll's subdivision, e.g. `"Cardigan"` (every record so far). |
@@ -150,6 +153,25 @@ Electoral-roll example:
 ```json
 {"entityID":1001209,"source":"Electoral roll","type":"Voter","year":1919,"listing":"Clara Larkin, 29 Barkly Place, home duties, F","Registration Number":1260,"Surname":"Larkin","Given Names":"Clara","Address":"29 Barkly Place","Street Number":"29","street":"Barkly Place","cardinality":"North","Occupation":"home duties","Gender":"F","Subdivision":"Cardigan","Notes":"…","lat":-37.8029738,"lng":144.9613147}
 ```
+
+### Map points: `_data/points.csv`
+
+The evidence behind the points, kept apart from the records. One row per thing read off a source map, with the source, the position, a confidence and a note:
+
+| Column | Notes |
+|---|---|
+| `place` | What the point is: a house (`Bouverie Street 93`), a corner (`Alma Street & Leicester Street`), a landmark (`Baptist Hall`), or a corner used to fit the sheet (`control corner LQ`). |
+| `kind` | `house number`, `street corner`, `landmark` or `fit control`. |
+| `source`, `sheet` | The map and sheet number. |
+| `x`, `y` | Pixel position on the full-size scan of the sheet (two values, `a/b`, when read on two sheets). |
+| `lat`, `lng` | The position on today's map, from an affine fit of the sheet to street corners already in the data. |
+| `confidence`, `note` | As for the record fields above. |
+
+How the confidence is set for records placed from the 1895 MMBW plans:
+
+- `high`: a numbered house in 1895 read clearly on the plan; the same occupant at the same number in 1890 or 1900; a landmark named in 1890–1900; a corner drawn on the plan.
+- `medium`: a numbered house in 1890 or 1900 with a different occupant (the numbering is assumed unchanged from 1895; where the same name is on the same street in both years, 83% have the same number); a landmark in other years; the first house of a named terrace or cottage row; a plan reading marked uncertain.
+- `low`: a name carried back before 1890, when the street numbers changed, because the same name is listed on the same street in every directory back to that year; a terrace placed in another year.
 
 ### `entityID`
 
