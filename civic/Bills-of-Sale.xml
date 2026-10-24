@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="https://historicalesque.github.io/carlton/schema/carlton.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0" type="topic" xml:lang="en">
+  <teiHeader>
+    <fileDesc>
+      <titleStmt>
+        <title>Bills of Sale</title>
+        <author>Andy May</author>
+      </titleStmt>
+      <publicationStmt>
+        <publisher>Common Ground</publisher>
+        <idno type="entry">Bills-of-Sale</idno>
+      </publicationStmt>
+      <sourceDesc>
+        <p>Contributed through the website. No sources listed.</p>
+      </sourceDesc>
+    </fileDesc>
+    <revisionDesc status="draft">
+      <change when="2026-10-24" type="created">Contributed through the contribution form by Andy May.</change>
+    </revisionDesc>
+  </teiHeader>
+  <text>
+    <body>
+      <p>From 1864, Bills of Sale were mortgages against personal chattels used by individuals and small businesses to raise finance. The governing Act was <hi rend="italic">The</hi> <hi rend="italic">Instruments and Securities Statute 1864</hi> (27 Vict. No. 204). Schedules of the chattels were attached to the bills. The schedules list the grantors’ chattels against which a bill was drawn. When the bill was against furniture, the inventory is often given on a room-by-room basis, sometimes identify the occupant of the room. For businesses such as hotels, the chattels are of plant (including furnishings) and equipment. Bills of Sale were filed with the Registrar-General’s Department.</p>
+      <p>Bills of Sale are held at the Public Record Office Victoria in series VPRS 8350. This information on Bills of Sale is adapted from the <ref target="https://prov.vic.gov.au/archive/VPRS8350/about">PROV website</ref>.</p>
+      <p>A single sentence of 471 words in Part VII of the Act explains that Bills of Sale are to be filed in the Supreme Court. Take a breath before you read it! You can <ref target="https://classic.austlii.edu.au/au/legis/vic/hist_act/tiass1864424/">read the whole Act on AustLII.</ref></p>
+      <p>56: Every bill of sale of personal chattels made after, the commencement of this Act either absolutely or conditionally or subject or not subject to any trusts and whereby the grantee or holder shall have power either with or without notice and either immediately after the making of such bill of sale or at any future time to seize or take possession of any property and effects comprised in or made subject to such bill of sale and every schedule or inventory which shall be thereto annexed or therein referred to or a true copy thereof respectively and of every attestation of the execution thereof shall (together with an affidavit of the time of such bill of sale being made or given and a description of the residence and occupation of the person making or giving the same or in case the same shall be made or given by any person under or in the execution of any process then a description of the residence and occupation of the person against whom such process shall have issued and of every attesting witness to such bill of sale) be filed in the office of the Registrar-General within ten days after the making or giving such bill of sale otherwise such bill of sale shall as against all assignees of the estate and effects of the person whose goods or any of them are comprised in such bill of sale under any laws now or hereafter to be in force relating to bankruptcy or insolvency or under any assignment for the benefit of the creditors of such person and as against all officers and other persons seizing any property or effects comprised in such bill of sale in the execution of any process of any court of law or equity authorizing the seizure of the goods of the person by whom or of whose goods such bill of sale shall have been made and against every person on whose behalf such process shall have been issued be null and void to all intents and purposes whatsoever so far as regards the property in or right to the possession of any personal chattels comprised in such bill of sale which at or after the time of such bankruptcy or of the estate of the debtor being placed under sequestration or of the execution by the debtor of such assignment for the benefit of his creditors or of executing such process (as the case may be) and after the expiration of the said period of ten days shall be in the possession or apparent possession of the person making such bill of sale or of any person against whom the process shall have issued under or in the execution of which such bill of sale shall have been made or given as the case may be.</p>
+    </body>
+  </text>
+</TEI>
