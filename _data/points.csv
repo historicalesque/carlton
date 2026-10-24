@@ -1,0 +1,844 @@
+place,kind,source,sheet,x,y,lat,lng,confidence,note
+Alma Street 10,house number,MMBW detail plans 1179 & 1180 (c. 1895),1179,2560,2850,-37.805528,144.961132,high,plan names it Alma Pl
+Alma Street 11,house number,MMBW detail plans 1179 & 1180 (c. 1895),1179,2550,3000,-37.805629,144.961104,high,plan names it Alma Pl
+Alma Street 15,house number,MMBW detail plans 1179 & 1180 (c. 1895),1179,2470,3000,-37.80562,144.961035,high,plan names it Alma Pl
+Alma Street 16,house number,MMBW detail plans 1179 & 1180 (c. 1895),1179,2400,2850,-37.805511,144.960993,high,plan names it Alma Pl
+Alma Street 18,house number,MMBW detail plans 1179 & 1180 (c. 1895),1179,2300,2850,-37.805501,144.960907,high,plan names it Alma Pl
+Alma Street 21,house number,MMBW detail plans 1179 & 1180 (c. 1895),1179,2320,3000,-37.805604,144.960904,high,plan names it Alma Pl
+Alma Street 23,house number,MMBW detail plans 1179 & 1180 (c. 1895),1179,2290,3030,-37.805621,144.960874,high,plan names it Alma Pl
+Ballarat Street 8,house number,MMBW detail plans 1179 & 1180 (c. 1895),1179,4180,2340,-37.805355,144.962604,high,
+Ballarat Street 10,house number,MMBW detail plans 1179 & 1180 (c. 1895),1179,4120,2340,-37.805348,144.962552,high,
+Ballarat Street 12,house number,MMBW detail plans 1179 & 1180 (c. 1895),1179,4060,2340,-37.805342,144.9625,high,
+Ballarat Street 14,house number,MMBW detail plans 1179 & 1180 (c. 1895),1179,4000,2340,-37.805336,144.962448,high,
+Ballarat Street 16,house number,MMBW detail plans 1179 & 1180 (c. 1895),1179,3950,2340,-37.805331,144.962405,high,
+Ballarat Street 18,house number,MMBW detail plans 1179 & 1180 (c. 1895),1179,3900,2340,-37.805325,144.962361,high,
+Ballarat Street 32,house number,MMBW detail plans 1179 & 1180 (c. 1895),1179,3490,2340,-37.805282,144.962006,high,
+Ballarat Street 34,house number,MMBW detail plans 1179 & 1180 (c. 1895),1179,3400,2340,-37.805272,144.961927,high,
+Ballarat Street 36,house number,MMBW detail plans 1179 & 1180 (c. 1895),1179,3320,2340,-37.805264,144.961858,high,
+Banbridge Place 9,house number,MMBW detail plan 1177 (c. 1895),1177,5400,2200,-37.801225,144.961924,high,
+Barkly Place 18,house number,MMBW detail plan 1177 (c. 1895),1177,2420,1985,-37.803283,144.961371,high,
+Barkly Place 24,house number,MMBW detail plan 1177 (c. 1895),1177,2720,1965,-37.803072,144.961391,high,
+Barkly Place 26,house number,MMBW detail plan 1177 (c. 1895),1177,2780,1965,-37.80303,144.961398,high,
+Barkly Place 28,house number,MMBW detail plan 1177 (c. 1895),1177,2850,1965,-37.802982,144.961407,high,
+Barkly Place 29,house number,MMBW detail plan 1177 (c. 1895),1177,2890,1830,-37.802941,144.961295,high,
+Barkly Place 30,house number,MMBW detail plan 1177 (c. 1895),1177,2910,1965,-37.80294,144.961414,high,
+Barkly Place 31,house number,MMBW detail plan 1177 (c. 1895),1177,2890,1790,-37.802937,144.961261,high,
+Barkly Place 33,house number,MMBW detail plan 1177 (c. 1895),1177,2890,1720,-37.80293,144.9612,high,
+Barkly Place 35,house number,MMBW detail plan 1177 (c. 1895),1177,2890,1670,-37.802925,144.961157,high,
+Barkly Place 37,house number,MMBW detail plan 1177 (c. 1895),1177,2890,1620,-37.802921,144.961114,high,arm running north from Barkly Pl to Leicester Pl
+Barry Street 31,house number,MMBW detail plans 1175 & 1176 (c. 1895),1175,3600,6130,-37.803322,144.959689,high,
+Barry Street 33,house number,MMBW detail plans 1175 & 1176 (c. 1895),1175,3560,6100,-37.803298,144.959655,high,
+Barry Street 34,house number,MMBW detail plans 1175 & 1176 (c. 1895),1175,3920,5900,-37.803195,144.960014,high,
+Barry Street 35,house number,MMBW detail plans 1175 & 1176 (c. 1895),1175,3520,6060,-37.803266,144.959623,high,
+Barry Street 36,house number,MMBW detail plans 1175 & 1176 (c. 1895),1175,3900,5860,-37.803165,144.960001,high,
+Barry Street 37,house number,MMBW detail plans 1175 & 1176 (c. 1895),1175,3480,6040,-37.803249,144.959589,high,
+Barry Street 38,house number,MMBW detail plans 1175 & 1176 (c. 1895),1175,3930,5760,-37.803099,144.960041,high,
+Barry Street 40,house number,MMBW detail plans 1175 & 1176 (c. 1895),1175,3920,5720,-37.803071,144.960037,high,
+Barry Street 41,house number,MMBW detail plans 1175 & 1176 (c. 1895),1175,3400,5950,-37.803179,144.959526,high,Sir Redmond Barry hotel
+Barry Street 42,house number,MMBW detail plans 1175 & 1176 (c. 1895),1175,3910,5650,-37.803022,144.960037,high,
+Barry Street 43,house number,MMBW detail plans 1175 & 1176 (c. 1895),1175,3440,5830,-37.8031,144.959578,high,
+Barry Street 44,house number,MMBW detail plans 1175 & 1176 (c. 1895),1175,3890,5570,-37.802965,144.960028,high,
+Barry Street 45,house number,MMBW detail plans 1175 & 1176 (c. 1895),1175,3400,5760,-37.803048,144.95955,high,
+Barry Street 46,house number,MMBW detail plans 1175 & 1176 (c. 1895),1175,3870,5540,-37.802942,144.960013,high,
+Barry Street 47,house number,MMBW detail plans 1175 & 1176 (c. 1895),1175,3370,5730,-37.803025,144.959526,high,
+Barry Street 48,house number,MMBW detail plans 1175 & 1176 (c. 1895),1175,3830,5470,-37.80289,144.959985,high,
+Barry Street 50,house number,MMBW detail plans 1175 & 1176 (c. 1895),1175,3800,5400,-37.802839,144.959966,high,
+Barry Street 51,house number,MMBW detail plans 1175 & 1176 (c. 1895),1175,3320,5600,-37.80293,144.959496,high,
+Barry Street 52,house number,MMBW detail plans 1175 & 1176 (c. 1895),1175,3770,5350,-37.802801,144.959945,high,
+Barry Street 53,house number,MMBW detail plans 1175 & 1176 (c. 1895),1175,3290,5550,-37.802893,144.959475,high,
+Barry Street 54,house number,MMBW detail plans 1175 & 1176 (c. 1895),1175,3730,5300,-37.802763,144.959914,high,
+Barry Street 55,house number,MMBW detail plans 1175 & 1176 (c. 1895),1175,3230,5480,-37.802839,144.959428,high,
+Barry Street 56,house number,MMBW detail plans 1175 & 1176 (c. 1895),1175,3680,5200,-37.802689,144.95988,high,
+Barry Street 58,house number,MMBW detail plans 1175 & 1176 (c. 1895),1175,3640,5160,-37.802658,144.959848,high,
+Barry Street 60,house number,MMBW detail plans 1175 & 1176 (c. 1895),1175,3600,5100,-37.802613,144.959819,high,
+Barry Street 61,house number,MMBW detail plans 1175 & 1176 (c. 1895),1175,3170,5340,-37.802736,144.95939,high,
+Barry Street 62,house number,MMBW detail plans 1175 & 1176 (c. 1895),1175,3570,5040,-37.802569,144.959799,high,
+Barry Street 64,house number,MMBW detail plans 1175 & 1176 (c. 1895),1175,3550,5000,-37.802539,144.959785,high,
+Barry Street 65,house number,MMBW detail plans 1175 & 1176 (c. 1895),1175,3140,5210,-37.802644,144.959379,high,
+Barry Street 66,house number,MMBW detail plans 1175 & 1176 (c. 1895),1175,3500,4970,-37.802514,144.959743,high,
+Barry Street 67,house number,MMBW detail plans 1175 & 1176 (c. 1895),1175,3130,5110,-37.802574,144.959382,high,
+Barry Street 68,house number,MMBW detail plans 1175 & 1176 (c. 1895),1175,3440,4930,-37.80248,144.959692,high,
+Barry Street 70,house number,MMBW detail plans 1175 & 1176 (c. 1895),1175,3410,4850,-37.802422,144.959674,high,
+Barry Street 71,house number,MMBW detail plans 1175 & 1176 (c. 1895),1175,3070,5020,-37.802506,144.959338,high,
+Barry Street 73,house number,MMBW detail plans 1175 & 1176 (c. 1895),1175,3050,5000,-37.802491,144.959322,high,
+Barry Street 75,house number,MMBW detail plans 1175 & 1176 (c. 1895),1175,3020,4940,-37.802446,144.959302,high,
+Barry Street 77,house number,MMBW detail plans 1175 & 1176 (c. 1895),1175,2990,4870,-37.802395,144.959283,high,
+Barry Street 79,house number,MMBW detail plans 1175 & 1176 (c. 1895),1175,2950,4850,-37.802378,144.959248,high,
+Barry Street 81,house number,MMBW detail plans 1175 & 1176 (c. 1895),1175,2910,4770,-37.802319,144.959221,high,
+Barry Street 83,house number,MMBW detail plans 1175 & 1176 (c. 1895),1175,2880,4710,-37.802274,144.959201,high,
+Barry Street 85,house number,MMBW detail plans 1175 & 1176 (c. 1895),1175,2830,4630,-37.802214,144.959165,high,
+Barry Street 95,house number,MMBW detail plans 1175 & 1176 (c. 1895),1175,2930,4040,-37.801818,144.959332,high,
+Barry Street 97,house number,MMBW detail plans 1175 & 1176 (c. 1895),1175,2930,3970,-37.801769,144.959341,high,
+Barry Street 99,house number,MMBW detail plans 1175 & 1176 (c. 1895),1175,2930,3900,-37.801721,144.95935,high,
+Barry Street 101,house number,MMBW detail plans 1175 & 1176 (c. 1895),1175,2930,3820,-37.801666,144.95936,high,
+Barry Street 103,house number,MMBW detail plans 1175 & 1176 (c. 1895),1175,2930,3750,-37.801618,144.959369,high,
+Barry Street 105,house number,MMBW detail plans 1175 & 1176 (c. 1895),1175,2920,3690,-37.801576,144.959367,high,
+Barry Street 107,house number,MMBW detail plans 1175 & 1176 (c. 1895),1175,2930,3610,-37.801521,144.959386,high,
+Barry Street 109,house number,MMBW detail plans 1175 & 1176 (c. 1895),1175,2930,3540,-37.801473,144.959395,high,
+Barry Street 111,house number,MMBW detail plans 1175 & 1176 (c. 1895),1175,2920,3440,-37.801403,144.959398,high,
+Barry Street 113,house number,MMBW detail plans 1175 & 1176 (c. 1895),1175,2930,3380,-37.801363,144.959415,high,
+Barry Street 121,house number,MMBW detail plans 1175 & 1176 (c. 1895),1175,2880,3140,-37.801193,144.959399,high,
+Barry Street 123,house number,MMBW detail plans 1175 & 1176 (c. 1895),1175,2930,3040,-37.801129,144.959458,high,
+Barry Street 125,house number,MMBW detail plans 1175 & 1176 (c. 1895),1175,2930,3000,-37.801101,144.959463,high,
+Barry Street 127,house number,MMBW detail plans 1175 & 1176 (c. 1895),1175,2960,2860,-37.801008,144.959509,high,
+Barry Street 129,house number,MMBW detail plans 1175 & 1176 (c. 1895),1175,2960,2780,-37.800952,144.959519,high,
+Barry Street 131,house number,MMBW detail plans 1175 & 1176 (c. 1895),1175,2960,2710,-37.800904,144.959528,high,
+Barry Street 135,house number,MMBW detail plans 1175 & 1176 (c. 1895),1175,2960,2620,-37.800842,144.959539,high,
+Barry Street 137,house number,MMBW detail plans 1175 & 1176 (c. 1895),1175,2960,2540,-37.800787,144.959549,high,
+Barry Street 147,house number,MMBW detail plans 1175 & 1176 (c. 1895),1175,2960,2280,-37.800608,144.959582,high,
+Barry Street 149,house number,MMBW detail plans 1175 & 1176 (c. 1895),1175,2960,2200,-37.800553,144.959592,medium,uncertain reading
+Barry Street 151,house number,MMBW detail plans 1175 & 1176 (c. 1895),1175,2960,2120,-37.800498,144.959602,high,
+Barry Street 153,house number,MMBW detail plans 1175 & 1176 (c. 1895),1175,2960,2030,-37.800436,144.959614,high,
+Barry Street 155,house number,MMBW detail plans 1175 & 1176 (c. 1895),1175,2960,1940,-37.800374,144.959625,high,
+Barry Street 157,house number,MMBW detail plans 1175 & 1176 (c. 1895),1175,2960,1840,-37.800305,144.959638,high,
+Barry Street 159,house number,MMBW detail plans 1175 & 1176 (c. 1895),1175,2960,1760,-37.80025,144.959648,high,
+Barry Street 163,house number,MMBW detail plans 1175 & 1176 (c. 1895),1175,2960,1600,-37.800139,144.959668,high,
+Berkley Street 80,house number,MMBW detail plans 1175 & 1176 (c. 1895),1175,3150,6330,-37.803417,144.959246,high,
+Berkley Street 82,house number,MMBW detail plans 1175 & 1176 (c. 1895),1175,3120,6270,-37.803372,144.959226,high,
+Berkley Street 84,house number,MMBW detail plans 1175 & 1176 (c. 1895),1175,3090,6230,-37.803342,144.959203,high,
+Berkley Street 86,house number,MMBW detail plans 1175 & 1176 (c. 1895),1175,3070,6170,-37.803299,144.959192,high,
+Berkley Street 88,house number,MMBW detail plans 1175 & 1176 (c. 1895),1175,3050,6140,-37.803276,144.959178,high,
+Berkley Street 90,house number,MMBW detail plans 1175 & 1176 (c. 1895),1175,3010,6050,-37.80321,144.959152,high,
+Berkley Street 95,house number,MMBW detail plans 1175 & 1176 (c. 1895),1175,2700,6170,-37.803263,144.958849,high,
+Berkley Street 96,house number,MMBW detail plans 1175 & 1176 (c. 1895),1175,2920,5960,-37.803139,144.95908,medium,uncertain reading
+Berkley Street 97,house number,MMBW detail plans 1175 & 1176 (c. 1895),1175,2620,6050,-37.803172,144.958791,high,Barkly Arms hotel
+Berkley Street 100,house number,MMBW detail plans 1175 & 1176 (c. 1895),1175,2920,5850,-37.803064,144.959094,high,
+Berkley Street 101,house number,MMBW detail plans 1175 & 1176 (c. 1895),1175,2630,5960,-37.803111,144.958811,high,
+Berkley Street 102,house number,MMBW detail plans 1175 & 1176 (c. 1895),1175,2890,5800,-37.803026,144.959072,high,
+Berkley Street 103,house number,MMBW detail plans 1175 & 1176 (c. 1895),1175,2610,5920,-37.803082,144.958798,high,
+Berkley Street 104,house number,MMBW detail plans 1175 & 1176 (c. 1895),1175,2860,5750,-37.802989,144.959051,high,
+Berkley Street 106,house number,MMBW detail plans 1175 & 1176 (c. 1895),1175,2830,5680,-37.802938,144.959032,high,
+Berkley Street 107,house number,MMBW detail plans 1175 & 1176 (c. 1895),1175,2510,5850,-37.803024,144.958714,high,
+Berkley Street 109,house number,MMBW detail plans 1175 & 1176 (c. 1895),1175,2480,5780,-37.802973,144.958695,high,
+Berkley Street 110,house number,MMBW detail plans 1175 & 1176 (c. 1895),1175,2800,5580,-37.802866,144.959017,high,
+Berkley Street 112,house number,MMBW detail plans 1175 & 1176 (c. 1895),1175,2780,5530,-37.80283,144.959005,high,
+Berkley Street 113,house number,MMBW detail plans 1175 & 1176 (c. 1895),1175,2470,5690,-37.80291,144.958697,high,
+Berkley Street 114,house number,MMBW detail plans 1175 & 1176 (c. 1895),1175,2750,5480,-37.802792,144.958983,high,
+Berkley Street 116,house number,MMBW detail plans 1175 & 1176 (c. 1895),1175,2720,5420,-37.802748,144.958963,high,
+Berkley Street 117,house number,MMBW detail plans 1175 & 1176 (c. 1895),1175,2460,5600,-37.802847,144.958699,high,
+Berkley Street 118,house number,MMBW detail plans 1175 & 1176 (c. 1895),1175,2690,5350,-37.802697,144.958944,high,
+Berkley Street 119,house number,MMBW detail plans 1175 & 1176 (c. 1895),1175,2430,5550,-37.80281,144.958678,high,
+Berkley Street 120,house number,MMBW detail plans 1175 & 1176 (c. 1895),1175,2660,5300,-37.80266,144.958922,high,
+Berkley Street 121,house number,MMBW detail plans 1175 & 1176 (c. 1895),1175,2400,5490,-37.802765,144.958657,high,
+Berkley Street 122,house number,MMBW detail plans 1175 & 1176 (c. 1895),1175,2630,5220,-37.802602,144.958905,high,
+Berkley Street 123,house number,MMBW detail plans 1175 & 1176 (c. 1895),1175,2380,5420,-37.802715,144.958648,high,
+Berkley Street 124,house number,MMBW detail plans 1175 & 1176 (c. 1895),1175,2580,5160,-37.802555,144.958866,high,
+Berkley Street 134,house number,MMBW detail plans 1175 & 1176 (c. 1895),1175,2520,4990,-37.802432,144.958832,high,
+Berkley Street 136,house number,MMBW detail plans 1175 & 1176 (c. 1895),1175,2480,4920,-37.80238,144.958804,high,
+Berkley Street 138,house number,MMBW detail plans 1175 & 1176 (c. 1895),1175,2460,4860,-37.802337,144.958793,high,
+Berkley Street 140,house number,MMBW detail plans 1175 & 1176 (c. 1895),1175,2420,4800,-37.802292,144.958763,high,
+Berkley Street 144,house number,MMBW detail plans 1175 & 1176 (c. 1895),1175,2420,4700,-37.802223,144.958776,high,
+Berkley Street 162,house number,MMBW detail plans 1175 & 1176 (c. 1895),1175,2110,3880,-37.801628,144.958592,high,
+Berkley Street 164,house number,MMBW detail plans 1175 & 1176 (c. 1895),1175,2110,3830,-37.801594,144.958598,high,
+Berkley Street 165,house number,MMBW detail plans 1175 & 1176 (c. 1895),1175,1810,3820,-37.801558,144.958322,high,
+Berkley Street 166,house number,MMBW detail plans 1175 & 1176 (c. 1895),1175,2130,3770,-37.801554,144.958625,high,
+Berkley Street 167,house number,MMBW detail plans 1175 & 1176 (c. 1895),1175,1720,3740,-37.801494,144.958248,high,
+Berkley Street 170,house number,MMBW detail plans 1175 & 1176 (c. 1895),1175,2150,3640,-37.801467,144.95866,high,
+Berkley Street 171,house number,MMBW detail plans 1175 & 1176 (c. 1895),1175,1810,3650,-37.80144,144.958343,high,
+Berkley Street 172,house number,MMBW detail plans 1175 & 1176 (c. 1895),1175,2150,3580,-37.801425,144.958667,high,
+Berkley Street 173,house number,MMBW detail plans 1175 & 1176 (c. 1895),1175,1770,3560,-37.801375,144.958317,high,
+Berkley Street 174,house number,MMBW detail plans 1175 & 1176 (c. 1895),1175,2160,3530,-37.801392,144.958683,high,
+Berkley Street 175,house number,MMBW detail plans 1175 & 1176 (c. 1895),1175,1770,3510,-37.80134,144.958324,high,
+Berkley Street 176,house number,MMBW detail plans 1175 & 1176 (c. 1895),1175,2160,3480,-37.801357,144.958689,high,
+Berkley Street 177,house number,MMBW detail plans 1175 & 1176 (c. 1895),1175,1790,3420,-37.80128,144.958354,high,
+Berkley Street 178,house number,MMBW detail plans 1175 & 1176 (c. 1895),1175,2160,3420,-37.801316,144.958697,high,
+Berkley Street 179,house number,MMBW detail plans 1175 & 1176 (c. 1895),1175,1810,3310,-37.801206,144.958386,high,
+Berkley Street 181,house number,MMBW detail plans 1175 & 1176 (c. 1895),1175,1810,3240,-37.801158,144.958395,high,
+Berkley Street 182,house number,MMBW detail plans 1175 & 1176 (c. 1895),1175,2160,3270,-37.801213,144.958716,high,
+Berkley Street 183,house number,MMBW detail plans 1175 & 1176 (c. 1895),1175,1810,3190,-37.801124,144.958401,high,
+Berkley Street 184,house number,MMBW detail plans 1175 & 1176 (c. 1895),1175,2160,3200,-37.801164,144.958724,high,
+Berkley Street 185,house number,MMBW detail plans 1175 & 1176 (c. 1895),1175,1810,3140,-37.801089,144.958408,high,
+Berkley Street 186,house number,MMBW detail plans 1175 & 1176 (c. 1895),1175,2170,3120,-37.80111,144.958744,high,
+Berkley Street 187,house number,MMBW detail plans 1175 & 1176 (c. 1895),1175,1810,3070,-37.801041,144.958416,high,
+Berkley Street 188,house number,MMBW detail plans 1175 & 1176 (c. 1895),1175,2150,3040,-37.801053,144.958735,high,
+Berkley Street 189,house number,MMBW detail plans 1175 & 1176 (c. 1895),1175,1810,3010,-37.801,144.958424,high,
+Berkley Street 190,house number,MMBW detail plans 1175 & 1176 (c. 1895),1175,2130,2960,-37.800996,144.958727,high,
+Berkley Street 191,house number,MMBW detail plans 1175 & 1176 (c. 1895),1175,1810,2920,-37.800938,144.958435,high,
+Berkley Street 192,house number,MMBW detail plans 1175 & 1176 (c. 1895),1175,2160,2930,-37.800978,144.958759,high,
+Berkley Street 193,house number,MMBW detail plans 1175 & 1176 (c. 1895),1175,1820,2870,-37.800904,144.958451,high,
+Berkley Street 194,house number,MMBW detail plans 1175 & 1176 (c. 1895),1175,2160,2860,-37.80093,144.958767,high,
+Berkley Street 196,house number,MMBW detail plans 1175 & 1176 (c. 1895),1175,2160,2790,-37.800882,144.958776,high,
+Berkley Street 197,house number,MMBW detail plans 1175 & 1176 (c. 1895),1175,1810,2800,-37.800855,144.958451,high,
+Berkley Street 198,house number,MMBW detail plans 1175 & 1176 (c. 1895),1175,2150,2760,-37.80086,144.958771,high,
+Berkley Street 200,house number,MMBW detail plans 1175 & 1176 (c. 1895),1175,2200,2720,-37.800838,144.958822,high,
+Berkley Street 201,house number,MMBW detail plans 1175 & 1176 (c. 1895),1175,1830,2710,-37.800795,144.958481,high,
+Berkley Street 202,house number,MMBW detail plans 1175 & 1176 (c. 1895),1175,2160,2650,-37.800785,144.958794,high,
+Berkley Street 203,house number,MMBW detail plans 1175 & 1176 (c. 1895),1175,1820,2650,-37.800753,144.958479,high,
+Berkley Street 204,house number,MMBW detail plans 1175 & 1176 (c. 1895),1175,2270,2560,-37.800734,144.958907,high,
+Berkley Street 205,house number,MMBW detail plans 1175 & 1176 (c. 1895),1175,1830,2510,-37.800657,144.958506,high,
+Berkley Street 207,house number,MMBW detail plans 1175 & 1176 (c. 1895),1175,1820,2460,-37.800622,144.958503,high,
+Berkley Street 208,house number,MMBW detail plans 1175 & 1176 (c. 1895),1175,2160,2420,-37.800627,144.958823,high,
+Berkley Street 209,house number,MMBW detail plans 1175 & 1176 (c. 1895),1175,1830,2400,-37.800581,144.95852,high,
+Berkley Street 210,house number,MMBW detail plans 1175 & 1176 (c. 1895),1175,2160,2340,-37.800572,144.958833,high,
+Berkley Street 211,house number,MMBW detail plans 1175 & 1176 (c. 1895),1175,1810,2340,-37.800538,144.958509,high,
+Berkley Street 212,house number,MMBW detail plans 1175 & 1176 (c. 1895),1175,2160,2230,-37.800496,144.958847,high,
+Berkley Street 214,house number,MMBW detail plans 1175 & 1176 (c. 1895),1175,2210,2160,-37.800453,144.958902,high,
+Berkley Street 216,house number,MMBW detail plans 1175 & 1176 (c. 1895),1175,2140,2110,-37.800411,144.958844,high,
+Berkley Street 218,house number,MMBW detail plans 1175 & 1176 (c. 1895),1175,2160,2010,-37.800345,144.958875,high,
+Berkley Street 223,house number,MMBW detail plans 1175 & 1176 (c. 1895),1175,1800,2000,-37.800303,144.958542,high,
+Berkley Street 225,house number,MMBW detail plans 1175 & 1176 (c. 1895),1175,1830,1890,-37.80023,144.958584,high,
+Berkley Street 227,house number,MMBW detail plans 1175 & 1176 (c. 1895),1175,1830,1840,-37.800195,144.95859,high,
+Bouverie Place 16,house number,MMBW detail plans 1179 & 1180 (c. 1895),1179,2440,3150,-37.805718,144.960989,high,
+Bouverie Street 7,house number,MMBW detail plans 1179 & 1180 (c. 1895),1179,2830,3660,-37.806104,144.961262,high,
+Bouverie Street 10,house number,MMBW detail plans 1179 & 1180 (c. 1895),1179,3290,3520,-37.806058,144.961679,high,
+Bouverie Street 12,house number,MMBW detail plans 1179 & 1180 (c. 1895),1179,3290,3440,-37.806004,144.961689,high,
+Bouverie Street 13,house number,MMBW detail plans 1179 & 1180 (c. 1895),1179,2780,3440,-37.80595,144.961247,high,
+Bouverie Street 15,house number,MMBW detail plans 1179 & 1180 (c. 1895),1179,2800,3440,-37.805952,144.961264,high,
+Bouverie Street 16,house number,MMBW detail plans 1179 & 1180 (c. 1895),1179,3240,2800,-37.805566,144.961729,high,printed as 16 to 48
+Bouverie Street 17,house number,MMBW detail plans 1179 & 1180 (c. 1895),1179,2830,3330,-37.805881,144.961304,high,
+Bouverie Street 19,house number,MMBW detail plans 1179 & 1180 (c. 1895),1179,2830,3200,-37.805793,144.961321,high,
+Bouverie Street 21,house number,MMBW detail plans 1179 & 1180 (c. 1895),1179,2810,3110,-37.80573,144.961315,high,
+Bouverie Street 25,house number,MMBW detail plans 1179 & 1180 (c. 1895),1179,2830,3020,-37.805672,144.961344,high,
+Bouverie Street 29,house number,MMBW detail plans 1179 & 1180 (c. 1895),1179,2810,2870,-37.805568,144.961347,high,
+Bouverie Street 31,house number,MMBW detail plans 1179 & 1180 (c. 1895),1179,2810,2830,-37.805541,144.961352,high,
+Bouverie Street 33,house number,MMBW detail plans 1179 & 1180 (c. 1895),1179,2790,2810,-37.805526,144.961337,high,
+Bouverie Street 35,house number,MMBW detail plans 1179 & 1180 (c. 1895),1179,2810,2770,-37.805501,144.96136,high,
+Bouverie Street 39,house number,MMBW detail plans 1179 & 1180 (c. 1895),1179,2780,2600,-37.805383,144.961356,high,
+Bouverie Street 49,house number,MMBW detail plans 1179 & 1180 (c. 1895),1179,2825,2330,-37.805205,144.96143,high,
+Bouverie Street 51,house number,MMBW detail plans 1179 & 1180 (c. 1895),1179,2825,2320,-37.805198,144.961431,high,
+Bouverie Street 52,house number,MMBW detail plans 1179 & 1180 (c. 1895),1179,3250,2280,-37.805216,144.961805,high,
+Bouverie Street 53,house number,MMBW detail plans 1179 & 1180 (c. 1895),1179,2825,2250,-37.805151,144.96144,high,
+Bouverie Street 54,house number,MMBW detail plans 1179 & 1180 (c. 1895),1179,3280,2240,-37.805192,144.961836,high,
+Bouverie Street 55,house number,MMBW detail plans 1179 & 1180 (c. 1895),1179,2825,2200,-37.805117,144.961446,high,
+Bouverie Street 56,house number,MMBW detail plans 1179 & 1180 (c. 1895),1179,3250,2200,-37.805162,144.961815,high,
+Bouverie Street 57,house number,MMBW detail plans 1179 & 1180 (c. 1895),1179,2825,2140,-37.805077,144.961454,high,
+Bouverie Street 58,house number,MMBW detail plans 1179 & 1180 (c. 1895),1179,3250,2100,-37.805094,144.961828,high,
+Bouverie Street 59,house number,MMBW detail plans 1179 & 1180 (c. 1895),1179,2825,2100,-37.80505,144.961459,high,
+Bouverie Street 61,house number,MMBW detail plans 1179 & 1180 (c. 1895),1179,2825,2050,-37.805016,144.961466,high,
+Bouverie Street 63,house number,MMBW detail plans 1179 & 1180 (c. 1895),1179,2825,2000,-37.804982,144.961472,high,
+Bouverie Street 65,house number,MMBW detail plans 1179 & 1180 (c. 1895),1179,2825,1960,-37.804955,144.961478,high,
+Bouverie Street 67,house number,MMBW detail plans 1179 & 1180 (c. 1895),1179,2825,1920,-37.804928,144.961483,high,
+Bouverie Street 69,house number,MMBW detail plans 1179 & 1180 (c. 1895),1179,2825,1870,-37.804894,144.961489,high,
+Bouverie Street 70,house number,MMBW detail plans 1179 & 1180 (c. 1895),1179,3240,1720,-37.804837,144.961869,high,
+Bouverie Street 71,house number,MMBW detail plans 1179 & 1180 (c. 1895),1179,2825,1820,-37.80486,144.961496,high,
+Bouverie Street 72,house number,MMBW detail plans 1179 & 1180 (c. 1895),1179,3270,1700,-37.804826,144.961898,high,
+Bouverie Street 73,house number,MMBW detail plans 1179 & 1180 (c. 1895),1179,2825,1780,-37.804833,144.961501,high,
+Bouverie Street 74,house number,MMBW detail plans 1179 & 1180 (c. 1895),1179,3250,1660,-37.804797,144.961885,high,
+Bouverie Street 76,house number,MMBW detail plans 1179 & 1180 (c. 1895),1179,3250,1600,-37.804757,144.961893,high,
+Bouverie Street 77,house number,MMBW detail plans 1179 & 1180 (c. 1895),1179,2825,1620,-37.804725,144.961522,high,
+Bouverie Street 78,house number,MMBW detail plans 1179 & 1180 (c. 1895),1179,3250,1550,-37.804723,144.9619,high,
+Bouverie Street 79,house number,MMBW detail plans 1179 & 1180 (c. 1895),1179,2825,1580,-37.804698,144.961527,high,
+Bouverie Street 80,house number,MMBW detail plans 1179 & 1180 (c. 1895),1179,3250,1490,-37.804682,144.961907,high,
+Bouverie Street 81,house number,MMBW detail plans 1179 & 1180 (c. 1895),1179,2825,1550,-37.804678,144.961531,high,
+Bouverie Street 82,house number,MMBW detail plans 1179 & 1180 (c. 1895),1179,3250,1410,-37.804628,144.961918,high,
+Bouverie Street 83,house number,MMBW detail plans 1179 & 1180 (c. 1895),1179,2825,1510,-37.804651,144.961536,high,
+Bouverie Street 84,house number,MMBW detail plans 1179 & 1180 (c. 1895),1179,3250,1340,-37.804581,144.961927,high,
+Bouverie Street 85,house number,MMBW detail plans 1179 & 1180 (c. 1895),1179,2825,1460,-37.804617,144.961542,high,
+Bouverie Street 86,house number,MMBW detail plans 1179 & 1180 (c. 1895),1179,3250,1290,-37.804547,144.961933,high,
+Bouverie Street 87,house number,MMBW detail plans 1179 & 1180 (c. 1895),1179,2825,1370,-37.804556,144.961554,high,
+Bouverie Street 89,house number,MMBW detail plans 1179 & 1180 (c. 1895),1179,2825,1330,-37.804529,144.961559,high,
+Bouverie Street 93,house number,MMBW detail plan 1177 (c. 1895),1177,1120,2475,-37.804237,144.961635,high,
+Bouverie Street 95,house number,MMBW detail plan 1177 (c. 1895),1177,1170,2475,-37.804202,144.961641,high,
+Bouverie Street 97,house number,MMBW detail plan 1177 (c. 1895),1177,1215,2475,-37.804171,144.961646,high,
+Bouverie Street 99,house number,MMBW detail plan 1177 (c. 1895),1177,1250,2475,-37.804147,144.961651,high,
+Bouverie Street 100,house number,MMBW detail plan 1177 (c. 1895),1177,1390,2895,-37.804089,144.962031,high,
+Bouverie Street 101,house number,MMBW detail plan 1177 (c. 1895),1177,1290,2475,-37.804119,144.961656,high,
+Bouverie Street 102,house number,MMBW detail plan 1177 (c. 1895),1177,1450,2895,-37.804047,144.962038,high,
+Bouverie Street 103,house number,MMBW detail plan 1177 (c. 1895),1177,1335,2475,-37.804087,144.961661,high,
+Bouverie Street 104,house number,MMBW detail plan 1177 (c. 1895),1177,1520,2895,-37.803999,144.962047,high,
+Bouverie Street 105,house number,MMBW detail plan 1177 (c. 1895),1177,1375,2475,-37.804059,144.961666,high,
+Bouverie Street 106,house number,MMBW detail plan 1177 (c. 1895),1177,1580,2895,-37.803957,144.962054,high,
+Bouverie Street 107,house number,MMBW detail plan 1177 (c. 1895),1177,1420,2475,-37.804028,144.961672,high,
+Bouverie Street 108,house number,MMBW detail plan 1177 (c. 1895),1177,1680,2895,-37.803887,144.962067,high,
+Bouverie Street 109,house number,MMBW detail plan 1177 (c. 1895),1177,1475,2475,-37.80399,144.961678,high,
+Bouverie Street 111,house number,MMBW detail plan 1177 (c. 1895),1177,1530,2475,-37.803951,144.961685,high,
+Bouverie Street 113,house number,MMBW detail plan 1177 (c. 1895),1177,1580,2475,-37.803916,144.961691,high,
+Bouverie Street 116,house number,MMBW detail plan 1177 (c. 1895),1177,1900,2895,-37.803733,144.962094,high,
+Bouverie Street 118,house number,MMBW detail plan 1177 (c. 1895),1177,1980,2895,-37.803678,144.962104,high,
+Bouverie Street 120,house number,MMBW detail plan 1177 (c. 1895),1177,2060,2895,-37.803622,144.962114,high,
+Bouverie Street 121,house number,MMBW detail plan 1177 (c. 1895),1177,1850,2440,-37.803725,144.961694,high,
+Bouverie Street 129,house number,MMBW detail plan 1177 (c. 1895),1177,2045,2470,-37.803592,144.961744,high,
+Bouverie Street 131,house number,MMBW detail plan 1177 (c. 1895),1177,2110,2440,-37.803543,144.961726,high,
+Bouverie Street 135,house number,MMBW detail plan 1177 (c. 1895),1177,2240,2470,-37.803456,144.961768,high,
+Bouverie Street 139,house number,MMBW detail plan 1177 (c. 1895),1177,2440,2470,-37.803316,144.961793,high,
+Bouverie Street 141,house number,MMBW detail plan 1177 (c. 1895),1177,2500,2470,-37.803274,144.9618,high,
+Bouverie Street 143,house number,MMBW detail plan 1177 (c. 1895),1177,2560,2470,-37.803232,144.961808,high,
+Bouverie Street 144,house number,MMBW detail plan 1177 (c. 1895),1177,5090,2880,-37.801507,144.962474,high,
+Bouverie Street 145,house number,MMBW detail plan 1177 (c. 1895),1177,2630,2470,-37.803183,144.961816,high,
+Bouverie Street 147,house number,MMBW detail plan 1177 (c. 1895),1177,2690,2470,-37.803142,144.961824,high,
+Bouverie Street 149,house number,MMBW detail plan 1177 (c. 1895),1177,2790,2470,-37.803072,144.961836,high,
+Bouverie Street 151,house number,MMBW detail plan 1177 (c. 1895),1177,2850,2470,-37.80303,144.961844,high,
+Bouverie Street 154,house number,MMBW detail plan 1177 (c. 1895),1177,5440,2900,-37.801265,144.962535,high,
+Bouverie Street 155,house number,MMBW detail plan 1177 (c. 1895),1177,2920,2470,-37.802981,144.961852,high,
+Bouverie Street 156,house number,MMBW detail plan 1177 (c. 1895),1177,5540,2900,-37.801195,144.962547,high,
+Bouverie Street 157,house number,MMBW detail plan 1177 (c. 1895),1177,2980,2470,-37.802939,144.96186,high,
+Bouverie Street 159,house number,MMBW detail plan 1177 (c. 1895),1177,3040,2470,-37.802897,144.961867,high,
+Bouverie Street 161,house number,MMBW detail plan 1177 (c. 1895),1177,3100,2470,-37.802856,144.961874,high,
+Bouverie Street 165,house number,MMBW detail plan 1177 (c. 1895),1177,3220,2470,-37.802772,144.961889,high,
+Bouverie Street 166,house number,MMBW detail plan 1177 (c. 1895),1177,5900,2900,-37.800944,144.962591,high,
+Bouverie Street 167,house number,MMBW detail plan 1177 (c. 1895),1177,3290,2470,-37.802723,144.961898,high,
+Bouverie Street 168,house number,MMBW detail plan 1177 (c. 1895),1177,5950,2900,-37.800909,144.962597,high,
+Bouverie Street 169,house number,MMBW detail plan 1177 (c. 1895),1177,3360,2470,-37.802674,144.961906,high,
+Bouverie Street 170,house number,MMBW detail plan 1177 (c. 1895),1177,6020,2900,-37.80086,144.962606,high,
+Bouverie Street 171,house number,MMBW detail plan 1177 (c. 1895),1177,3420,2470,-37.802632,144.961914,high,
+Bouverie Street 172,house number,MMBW detail plan 1177 (c. 1895),1177,6150,2900,-37.800769,144.962622,high,
+Bouverie Street 173,house number,MMBW detail plan 1177 (c. 1895),1177,3500,2470,-37.802577,144.961924,high,
+Bouverie Street 174,house number,MMBW detail plan 1177 (c. 1895),1177,6230,2900,-37.800713,144.962632,high,
+Bouverie Street 176,house number,MMBW detail plan 1177 (c. 1895),1177,6280,2900,-37.800679,144.962638,high,
+Bouverie Street 178,house number,MMBW detail plan 1177 (c. 1895),1177,6340,2900,-37.800637,144.962646,high,
+Bouverie Street 180,house number,MMBW detail plan 1177 (c. 1895),1177,6400,2900,-37.800595,144.962653,high,
+Bouverie Street 182,house number,MMBW detail plan 1177 (c. 1895),1177,6470,2900,-37.800546,144.962662,high,
+Bouverie Street 187,house number,MMBW detail plan 1177 (c. 1895),1177,4220,2470,-37.802074,144.962012,high,
+Bouverie Street 189,house number,MMBW detail plan 1177 (c. 1895),1177,4290,2470,-37.802025,144.962021,high,
+Bouverie Street 191,house number,MMBW detail plan 1177 (c. 1895),1177,4360,2470,-37.801977,144.96203,high,
+Bouverie Street 207,house number,MMBW detail plan 1177 (c. 1895),1177,4800,2470,-37.80167,144.962084,high,
+Bouverie Street 209,house number,MMBW detail plan 1177 (c. 1895),1177,4900,2470,-37.8016,144.962096,high,
+Bouverie Street 211,house number,MMBW detail plan 1177 (c. 1895),1177,4970,2470,-37.801551,144.962105,high,
+Bouverie Street 213,house number,MMBW detail plan 1177 (c. 1895),1177,5040,2470,-37.801502,144.962114,high,
+Bouverie Street 215,house number,MMBW detail plan 1177 (c. 1895),1177,5100,2470,-37.80146,144.962121,high,
+Bouverie Street 217,house number,MMBW detail plan 1177 (c. 1895),1177,5230,2470,-37.80137,144.962137,high,
+Bouverie Street 219,house number,MMBW detail plan 1177 (c. 1895),1177,5290,2470,-37.801328,144.962144,high,
+Bouverie Street 221,house number,MMBW detail plan 1177 (c. 1895),1177,5340,2470,-37.801293,144.962151,high,
+Bouverie Street 223,house number,MMBW detail plan 1177 (c. 1895),1177,5440,2470,-37.801223,144.962163,high,
+Bouverie Street 225,house number,MMBW detail plan 1177 (c. 1895),1177,5530,2470,-37.80116,144.962174,high,
+Bouverie Street 227,house number,MMBW detail plan 1177 (c. 1895),1177,5580,2470,-37.801126,144.96218,high,
+Bouverie Street 229,house number,MMBW detail plan 1177 (c. 1895),1177,5620,2470,-37.801098,144.962185,high,
+Bouverie Street 231,house number,MMBW detail plan 1177 (c. 1895),1177,5660,2470,-37.80107,144.96219,high,
+Bouverie Street 233,house number,MMBW detail plan 1177 (c. 1895),1177,5700,2470,-37.801042,144.962195,high,
+Bouverie Street 235,house number,MMBW detail plan 1177 (c. 1895),1177,5740,2470,-37.801014,144.9622,high,
+Bouverie Street 237,house number,MMBW detail plan 1177 (c. 1895),1177,5820,2470,-37.800958,144.96221,high,
+Bouverie Street 239,house number,MMBW detail plan 1177 (c. 1895),1177,5920,2470,-37.800888,144.962222,high,
+Bouverie Street 243,house number,MMBW detail plan 1177 (c. 1895),1177,6010,2470,-37.800826,144.962233,high,
+Bouverie Street 247,house number,MMBW detail plan 1177 (c. 1895),1177,6140,2470,-37.800735,144.962249,high,
+Bouverie Street 249,house number,MMBW detail plan 1177 (c. 1895),1177,6200,2470,-37.800693,144.962257,high,
+Bouverie Street 251,house number,MMBW detail plan 1177 (c. 1895),1177,6250,2470,-37.800658,144.962263,high,
+Bouverie Street 253,house number,MMBW detail plan 1177 (c. 1895),1177,6330,2470,-37.800602,144.962273,high,
+Brompton Row 6,house number,MMBW detail plan 1177 (c. 1895),1177,1410,3410,-37.804125,144.962479,high,
+Brompton Row 7,house number,MMBW detail plan 1177 (c. 1895),1177,1350,3300,-37.804156,144.962376,high,
+Brompton Row 8,house number,MMBW detail plan 1177 (c. 1895),1177,1450,3410,-37.804097,144.962484,high,
+Brompton Row 9,house number,MMBW detail plan 1177 (c. 1895),1177,1450,3210,-37.804078,144.962311,high,
+Brompton Row 10,house number,MMBW detail plan 1177 (c. 1895),1177,1510,3410,-37.804055,144.962491,high,
+Brompton Row 12,house number,MMBW detail plan 1177 (c. 1895),1177,1570,3410,-37.804013,144.962498,high,
+Church Street 7,house number,MMBW detail plan 1177 (c. 1895),1177,5765,3850,-37.801129,144.963396,high,east of Bouverie
+Church Street 9,house number,MMBW detail plan 1177 (c. 1895),1177,5765,3800,-37.801124,144.963353,high,east of Bouverie
+Church Street 10,house number,MMBW detail plan 1177 (c. 1895),1177,5900,3740,-37.801024,144.963318,high,east of Bouverie
+Church Street 11,house number,MMBW detail plan 1177 (c. 1895),1177,5765,3740,-37.801118,144.963301,high,east of Bouverie
+Church Street 12,house number,MMBW detail plan 1177 (c. 1895),1177,5900,3700,-37.80102,144.963283,high,east of Bouverie
+Church Street 13,house number,MMBW detail plan 1177 (c. 1895),1177,5765,3690,-37.801114,144.963258,high,east of Bouverie
+Church Street 15,house number,MMBW detail plan 1177 (c. 1895),1177,5765,3640,-37.801109,144.963214,high,east of Bouverie
+Church Street 17,house number,MMBW detail plan 1177 (c. 1895),1177,5765,3590,-37.801104,144.963171,high,east of Bouverie
+Church Street 20,house number,MMBW detail plan 1177 (c. 1895),1177,5900,3420,-37.800993,144.963041,high,east of Bouverie
+Church Street 21,house number,MMBW detail plan 1177 (c. 1895),1177,5765,3420,-37.801088,144.963024,high,east of Bouverie
+Church Street 22,house number,MMBW detail plan 1177 (c. 1895),1177,5900,3370,-37.800989,144.962998,high,east of Bouverie
+Church Street 23,house number,MMBW detail plan 1177 (c. 1895),1177,5765,3350,-37.801081,144.962964,high,east of Bouverie
+Church Street 24,house number,MMBW detail plan 1177 (c. 1895),1177,5900,3320,-37.800984,144.962954,high,east of Bouverie
+Church Street 25,house number,MMBW detail plan 1177 (c. 1895),1177,5765,3300,-37.801076,144.962921,high,east of Bouverie
+Church Street 38,house number,MMBW detail plan 1177 (c. 1895),1177,5890,2300,-37.800893,144.962071,high,west of Bouverie
+Church Street 40,house number,MMBW detail plan 1177 (c. 1895),1177,5940,2170,-37.800846,144.961965,high,west of Bouverie
+Church Street 42,house number,MMBW detail plan 1177 (c. 1895),1177,5890,2170,-37.800881,144.961959,high,west of Bouverie
+Church Street 44,house number,MMBW detail plan 1177 (c. 1895),1177,5890,2110,-37.800875,144.961907,high,west of Bouverie
+Church Street 46,house number,MMBW detail plan 1177 (c. 1895),1177,5900,2040,-37.800861,144.961848,high,west of Bouverie
+Church Street 48,house number,MMBW detail plan 1177 (c. 1895),1177,5900,1975,-37.800855,144.961792,high,west of Bouverie
+Church Street 50,house number,MMBW detail plan 1177 (c. 1895),1177,5900,1910,-37.800849,144.961735,high,west of Bouverie
+Cumberland Place 6,house number,MMBW detail plan 1177 (c. 1895),1177,2010,3070,-37.803674,144.962259,high,
+Cumberland Place 8,house number,MMBW detail plan 1177 (c. 1895),1177,1880,3100,-37.803767,144.962269,high,
+Cumberland Place 10,house number,MMBW detail plan 1177 (c. 1895),1177,2030,3160,-37.803668,144.962339,high,
+Cumberland Place 12,house number,MMBW detail plan 1177 (c. 1895),1177,2030,3210,-37.803673,144.962382,high,
+Cumberland Place 14,house number,MMBW detail plan 1177 (c. 1895),1177,1910,3250,-37.803761,144.962402,high,
+Cumberland Place 16,house number,MMBW detail plan 1177 (c. 1895),1177,1910,3300,-37.803765,144.962445,high,
+Cumberland Place 17,house number,MMBW detail plan 1177 (c. 1895),1177,2150,3460,-37.803613,144.962613,high,
+Cumberland Place 18,house number,MMBW detail plan 1177 (c. 1895),1177,1930,3350,-37.803756,144.962491,high,
+Cumberland Place 19,house number,MMBW detail plan 1177 (c. 1895),1177,2210,3460,-37.803571,144.962621,high,
+Cumberland Place 20,house number,MMBW detail plan 1177 (c. 1895),1177,1930,3400,-37.803761,144.962534,high,
+Cumberland Place 21,house number,MMBW detail plan 1177 (c. 1895),1177,2240,3445,-37.803549,144.962611,high,
+Cumberland Place 22,house number,MMBW detail plan 1177 (c. 1895),1177,1930,3445,-37.803765,144.962573,high,
+Cumberland Place 23,house number,MMBW detail plan 1177 (c. 1895),1177,2300,3445,-37.803507,144.962619,high,
+Cumberland Place 24,house number,MMBW detail plan 1177 (c. 1895),1177,1930,3490,-37.80377,144.962612,high,
+Cumberland Place 25,house number,MMBW detail plan 1177 (c. 1895),1177,2350,3445,-37.803472,144.962625,high,
+Cumberland Place 26,house number,MMBW detail plan 1177 (c. 1895),1177,2060,3550,-37.803685,144.96268,high,
+Cumberland Place 28,house number,MMBW detail plan 1177 (c. 1895),1177,2150,3580,-37.803625,144.962717,high,
+Cumberland Place 30,house number,MMBW detail plan 1177 (c. 1895),1177,2215,3570,-37.803578,144.962716,high,
+Cumberland Place 32,house number,MMBW detail plan 1177 (c. 1895),1177,2270,3580,-37.803541,144.962732,high,
+Cumberland Place 34,house number,MMBW detail plan 1177 (c. 1895),1177,2330,3580,-37.803499,144.962739,high,
+Elizabeth Street North 602,house number,MMBW detail plans 1175 & 1176 (c. 1895),1175,2920,7540,-37.804228,144.95888,high,
+Elizabeth Street North 604,house number,MMBW detail plans 1175 & 1176 (c. 1895),1175,2850,7500,-37.804194,144.95882,high,
+Elizabeth Street North 614,house number,MMBW detail plans 1175 & 1176 (c. 1895),1175,2670,7050,-37.803866,144.95871,high,printed as 614 616; Royal Artillery hotel
+Elizabeth Street North 618,house number,MMBW detail plans 1175 & 1176 (c. 1895),1175,2550,6860,-37.803724,144.958623,high,
+Elizabeth Street North 620,house number,MMBW detail plans 1175 & 1176 (c. 1895),1175,2590,6880,-37.803741,144.958658,high,
+Elizabeth Street North 624,house number,MMBW detail plans 1175 & 1176 (c. 1895),1175,2620,6930,-37.803779,144.958679,high,Phoenix Foundry
+Elizabeth Street North 626,house number,MMBW detail plans 1175 & 1176 (c. 1895),1175,2520,6720,-37.803624,144.958613,high,
+Elizabeth Street North 630,house number,MMBW detail plans 1175 & 1176 (c. 1895),1175,2430,6560,-37.803505,144.95855,high,
+Elizabeth Street North 632,house number,MMBW detail plans 1175 & 1176 (c. 1895),1175,2460,6510,-37.803474,144.958584,high,
+Elizabeth Street North 634,house number,MMBW detail plans 1175 & 1176 (c. 1895),1175,2400,6460,-37.803434,144.958535,high,printed as 634 636
+Elizabeth Street North 638,house number,MMBW detail plans 1175 & 1176 (c. 1895),1175,2230,6310,-37.803314,144.958396,high,printed as 638 to 640
+Elizabeth Street North 642,house number,MMBW detail plans 1175 & 1176 (c. 1895),1175,2190,6220,-37.803248,144.958371,high,printed as 642 to 644
+Elizabeth Street North 646,house number,MMBW detail plans 1175 & 1176 (c. 1895),1175,2150,6170,-37.80321,144.95834,high,
+Elizabeth Street North 648,house number,MMBW detail plans 1175 & 1176 (c. 1895),1175,2120,6130,-37.803179,144.958317,high,
+Elizabeth Street North 650,house number,MMBW detail plans 1175 & 1176 (c. 1895),1175,2110,6030,-37.803109,144.95832,high,printed as 652 to 650; Manchester Arms hotel
+Elizabeth Street North 654,house number,MMBW detail plans 1175 & 1176 (c. 1895),1175,2060,5980,-37.80307,144.95828,high,
+Elizabeth Street North 656,house number,MMBW detail plans 1175 & 1176 (c. 1895),1175,2040,5920,-37.803027,144.958269,high,printed as 656 to 658
+Elizabeth Street North 662,house number,MMBW detail plans 1175 & 1176 (c. 1895),1175,1950,5770,-37.802915,144.958205,high,
+Elizabeth Street North 664,house number,MMBW detail plans 1175 & 1176 (c. 1895),1175,1920,5700,-37.802863,144.958186,high,
+Elizabeth Street North 666,house number,MMBW detail plans 1175 & 1176 (c. 1895),1175,1880,5650,-37.802825,144.958155,high,
+Elizabeth Street North 668,house number,MMBW detail plans 1175 & 1176 (c. 1895),1175,1810,5450,-37.802681,144.958116,high,printed as 668 to 674
+Elizabeth Street North 708,house number,MMBW detail plans 1175 & 1176 (c. 1895),1175,1390,4580,-37.802041,144.957836,high,Commercial Bank
+Grattan Street 159,house number,MMBW detail plan 1177 (c. 1895),1177,6620,3960,-37.800543,144.963597,high,
+Grattan Street 161,house number,MMBW detail plan 1177 (c. 1895),1177,6620,3920,-37.800539,144.963562,high,
+Grattan Street 163,house number,MMBW detail plan 1177 (c. 1895),1177,6620,3720,-37.80052,144.963389,high,
+Grattan Street 165,house number,MMBW detail plan 1177 (c. 1895),1177,6620,3690,-37.800517,144.963363,high,
+Grattan Street 167,house number,MMBW detail plan 1177 (c. 1895),1177,6620,3620,-37.80051,144.963303,high,
+Grattan Street 169,house number,MMBW detail plan 1177 (c. 1895),1177,6620,3560,-37.800505,144.963251,high,
+Grattan Street 171,house number,MMBW detail plan 1177 (c. 1895),1177,6620,3480,-37.800497,144.963182,high,
+Grattan Street 173,house number,MMBW detail plan 1177 (c. 1895),1177,6620,3430,-37.800492,144.963138,high,
+Grattan Street 175,house number,MMBW detail plan 1177 (c. 1895),1177,6620,3360,-37.800485,144.963078,high,
+Grattan Street 177,house number,MMBW detail plan 1177 (c. 1895),1177,6620,3320,-37.800482,144.963043,high,
+Grattan Street 179,house number,MMBW detail plan 1177 (c. 1895),1177,6620,3250,-37.800475,144.962983,high,
+Grattan Street 183,house number,MMBW detail plan 1177 (c. 1895),1177,6620,3080,-37.800459,144.962836,high,
+Grattan Street 187,house number,MMBW detail plan 1177 (c. 1895),1177,6620,2910,-37.800442,144.962689,high,
+Grattan Street 191,house number,MMBW detail plan 1177 (c. 1895),1177,6610,2450,-37.800405,144.96229,high,
+Grattan Street 195,house number,MMBW detail plan 1177 (c. 1895),1177,6600,2380,-37.800405,144.962228,high,
+Grattan Street 197,house number,MMBW detail plan 1177 (c. 1895),1177,6600,2320,-37.8004,144.962176,high,
+Grattan Street 199,house number,MMBW detail plan 1177 (c. 1895),1177,6600,2290,-37.800397,144.96215,high,
+Grattan Street 201,house number,MMBW detail plan 1177 (c. 1895),1177,6600,2240,-37.800392,144.962107,high,
+Grattan Street 203,house number,MMBW detail plan 1177 (c. 1895),1177,6560,2150,-37.800411,144.962024,high,
+Grattan Street 205,house number,MMBW detail plan 1177 (c. 1895),1177,6600,2080,-37.800377,144.961969,high,
+Grattan Street 207,house number,MMBW detail plan 1177 (c. 1895),1177,6600,2020,-37.800371,144.961917,high,
+Grattan Street 209,house number,MMBW detail plan 1177 (c. 1895),1177,6600,1960,-37.800365,144.961865,high,
+Grattan Street 211,house number,MMBW detail plan 1177 (c. 1895),1177,6600,1900,-37.800359,144.961813,high,
+Grattan Street 213,house number,MMBW detail plan 1177 (c. 1895),1177,6560,1790,-37.800377,144.961713,high,
+Grattan Street 215,house number,MMBW detail plan 1177 (c. 1895),1177,6560,1710,-37.800369,144.961644,high,
+Grattan Street 217,house number,MMBW detail plan 1177 (c. 1895),1177,6560,1640,-37.800362,144.961583,high,
+Grattan Street 251,house number,MMBW detail plans 1175 & 1176 (c. 1895),1175,2250,1610,-37.800078,144.959009,high,
+Grattan Street 253,house number,MMBW detail plans 1175 & 1176 (c. 1895),1175,2170,1610,-37.80007,144.958935,high,
+Harp of Erin Lane 6,house number,MMBW detail plan 1177 (c. 1895),1177,2060,3790,-37.803708,144.962887,high,plan labels the lane Lincoln Pl
+Harp of Erin Lane 7,house number,MMBW detail plan 1177 (c. 1895),1177,1790,3920,-37.803908,144.962967,high,plan labels the lane Lincoln Pl
+Harp of Erin Lane 8,house number,MMBW detail plan 1177 (c. 1895),1177,1910,3790,-37.803812,144.962869,high,plan labels the lane Lincoln Pl
+Harp of Erin Lane 12,house number,MMBW detail plan 1177 (c. 1895),1177,2000,3700,-37.803741,144.962802,high,plan labels the lane Lincoln Pl
+Harp of Erin Lane 13,house number,MMBW detail plan 1177 (c. 1895),1177,1680,3700,-37.803964,144.962763,high,plan labels the lane Lincoln Pl
+Harp of Erin Lane 14,house number,MMBW detail plan 1177 (c. 1895),1177,1900,3700,-37.803811,144.96279,high,plan labels the lane Lincoln Pl
+Harp of Erin Lane 15,house number,MMBW detail plan 1177 (c. 1895),1177,1790,3690,-37.803886,144.962768,high,plan labels the lane Lincoln Pl
+Harp of Erin Lane 16,house number,MMBW detail plan 1177 (c. 1895),1177,1910,3610,-37.803795,144.962713,high,plan labels the lane Lincoln Pl
+Harp of Erin Lane 17,house number,MMBW detail plan 1177 (c. 1895),1177,1700,3600,-37.803941,144.962679,high,plan labels the lane Lincoln Pl
+Harp of Erin Lane 18,house number,MMBW detail plan 1177 (c. 1895),1177,2060,3610,-37.80369,144.962732,high,plan labels the lane Lincoln Pl
+Harp of Erin Lane 21,house number,MMBW detail plan 1177 (c. 1895),1177,1765,3540,-37.803889,144.962635,high,plan labels the lane Lincoln Pl
+Lansdowne Place 1,house number,MMBW detail plans 1179 & 1180 (c. 1895),1179,2240,2180,-37.805042,144.960941,high,
+Lansdowne Place 2,house number,MMBW detail plans 1179 & 1180 (c. 1895),1179,2420,2270,-37.805122,144.961086,high,
+Lansdowne Place 3,house number,MMBW detail plans 1179 & 1180 (c. 1895),1179,2240,2110,-37.804995,144.96095,high,
+Lansdowne Place 4,house number,MMBW detail plans 1179 & 1180 (c. 1895),1179,2460,2270,-37.805126,144.961121,high,
+Lansdowne Place 5,house number,MMBW detail plans 1179 & 1180 (c. 1895),1179,2600,1830,-37.804843,144.961299,medium,uncertain reading
+Lansdowne Place 15,house number,MMBW detail plans 1179 & 1180 (c. 1895),1179,2200,1990,-37.804909,144.960931,high,
+Lansdowne Place 17,house number,MMBW detail plans 1179 & 1180 (c. 1895),1179,2210,1900,-37.80485,144.960952,high,
+Lansdowne Place 21,house number,MMBW detail plans 1179 & 1180 (c. 1895),1179,2440,1890,-37.804867,144.961152,high,
+Lansdowne Place 25,house number,MMBW detail plans 1179 & 1180 (c. 1895),1179,2300,1830,-37.804812,144.961039,medium,uncertain reading
+Lansdowne Place 27,house number,MMBW detail plans 1179 & 1180 (c. 1895),1179,2200,1830,-37.804801,144.960952,high,
+Lansdowne Place 29,house number,MMBW detail plans 1179 & 1180 (c. 1895),1179,2470,1740,-37.804769,144.961198,high,
+Lansdowne Place 33,house number,MMBW detail plans 1179 & 1180 (c. 1895),1179,2410,1610,-37.804675,144.961163,high,
+Lansdowne Place 35,house number,MMBW detail plans 1179 & 1180 (c. 1895),1179,2460,1610,-37.80468,144.961206,high,
+Lansdowne Place 40,house number,MMBW detail plans 1179 & 1180 (c. 1895),1179,2580,1410,-37.804558,144.961336,high,
+Lansdowne Place 41,house number,MMBW detail plans 1179 & 1180 (c. 1895),1179,2440,1520,-37.804617,144.9612,high,
+Lansdowne Place 43,house number,MMBW detail plans 1179 & 1180 (c. 1895),1179,2440,1430,-37.804556,144.961212,high,
+Leicester Place 38,house number,MMBW detail plan 1177 (c. 1895),1177,2960,1620,-37.802872,144.961122,high,
+Leicester Place 40,house number,MMBW detail plan 1177 (c. 1895),1177,3020,1620,-37.80283,144.96113,high,
+Leicester Place 42,house number,MMBW detail plan 1177 (c. 1895),1177,3110,1620,-37.802767,144.961141,high,
+Leicester Place 46,house number,MMBW detail plan 1177 (c. 1895),1177,3160,1640,-37.802734,144.961164,high,
+Leicester Place 48,house number,MMBW detail plan 1177 (c. 1895),1177,3260,1660,-37.802666,144.961194,high,
+Leicester Place 50,house number,MMBW detail plan 1177 (c. 1895),1177,3260,1720,-37.802672,144.961246,high,
+Leicester Street 2,house number,MMBW detail plans 1179 & 1180 (c. 1895),1179,1600,3700,-37.806001,144.960189,high,printed as 2 to 6
+Leicester Street 13,house number,MMBW detail plans 1179 & 1180 (c. 1895),1179,1160,3320,-37.805698,144.959856,high,
+Leicester Street 15,house number,MMBW detail plans 1179 & 1180 (c. 1895),1179,1160,3260,-37.805657,144.959864,high,
+Leicester Street 25,house number,MMBW detail plans 1179 & 1180 (c. 1895),1179,1160,3050,-37.805516,144.959891,high,
+Leicester Street 27,house number,MMBW detail plans 1179 & 1180 (c. 1895),1179,1160,2970,-37.805461,144.959901,high,
+Leicester Street 29,house number,MMBW detail plans 1179 & 1180 (c. 1895),1179,1160,2940,-37.805441,144.959905,high,
+Leicester Street 30,house number,MMBW detail plans 1179 & 1180 (c. 1895),1179,1600,2860,-37.805434,144.960298,high,
+Leicester Street 31,house number,MMBW detail plans 1179 & 1180 (c. 1895),1179,1160,2790,-37.80534,144.959925,high,
+Leicester Street 32,house number,MMBW detail plans 1179 & 1180 (c. 1895),1179,1620,2770,-37.805375,144.960327,high,
+Leicester Street 33,house number,MMBW detail plans 1179 & 1180 (c. 1895),1179,1160,2730,-37.805299,144.959933,high,
+Leicester Street 35,house number,MMBW detail plans 1179 & 1180 (c. 1895),1179,1160,2660,-37.805252,144.959942,high,
+Leicester Street 36,house number,MMBW detail plans 1179 & 1180 (c. 1895),1179,1610,2610,-37.805266,144.960339,high,
+Leicester Street 42,house number,MMBW detail plans 1179 & 1180 (c. 1895),1179,1600,2450,-37.805157,144.960351,high,
+Leicester Street 44,house number,MMBW detail plans 1179 & 1180 (c. 1895),1179,1640,2410,-37.805134,144.960391,high,
+Leicester Street 46,house number,MMBW detail plans 1179 & 1180 (c. 1895),1179,1640,2370,-37.805107,144.960396,high,
+Leicester Street 48,house number,MMBW detail plans 1179 & 1180 (c. 1895),1179,1640,2330,-37.80508,144.960401,high,
+Leicester Street 50,house number,MMBW detail plans 1179 & 1180 (c. 1895),1179,1640,2240,-37.805019,144.960413,high,
+Leicester Street 51,house number,MMBW detail plans 1179 & 1180 (c. 1895),1179,1160,2060,-37.804847,144.960019,high,
+Leicester Street 52,house number,MMBW detail plans 1179 & 1180 (c. 1895),1179,1590,2190,-37.80498,144.960376,high,
+Leicester Street 53,house number,MMBW detail plans 1179 & 1180 (c. 1895),1179,1160,1980,-37.804793,144.96003,high,
+Leicester Street 56,house number,MMBW detail plans 1179 & 1180 (c. 1895),1179,1600,2090,-37.804914,144.960397,high,Leicester hotel
+Leicester Street 57,house number,MMBW detail plans 1179 & 1180 (c. 1895),1179,1160,1850,-37.804705,144.960047,high,
+Leicester Street 58,house number,MMBW detail plans 1179 & 1180 (c. 1895),1179,1600,1990,-37.804846,144.96041,high,
+Leicester Street 59,house number,MMBW detail plans 1179 & 1180 (c. 1895),1179,1160,1790,-37.804664,144.960054,high,
+Leicester Street 61,house number,MMBW detail plans 1179 & 1180 (c. 1895),1179,1160,1750,-37.804637,144.96006,high,
+Leicester Street 63,house number,MMBW detail plans 1179 & 1180 (c. 1895),1179,1160,1680,-37.80459,144.960069,high,
+Leicester Street 64,house number,MMBW detail plans 1179 & 1180 (c. 1895),1179,1600,1830,-37.804738,144.960431,high,
+Leicester Street 65,house number,MMBW detail plans 1179 & 1180 (c. 1895),1179,1160,1600,-37.804536,144.960079,high,
+Leicester Street 67,house number,MMBW detail plans 1179 & 1180 (c. 1895),1179,1160,1520,-37.804482,144.960089,high,
+Leicester Street 109,house number,MMBW detail plans 1175 & 1176 (c. 1895),1175,4190,6020,-37.803304,144.960249,high,Axle Works
+Leicester Street 111,house number,MMBW detail plans 1175 & 1176 (c. 1895),1175,4190,5940,-37.803249,144.960259,high,
+Leicester Street 113,house number,MMBW detail plans 1175 & 1176 (c. 1895),1175,4190,5900,-37.803221,144.960264,high,
+Leicester Street 114,house number,MMBW detail plans 1175 & 1176 (c. 1895) + MMBW detail plan 1177 (c. 1895),1175/1177,4640/2205,5980/1240,-37.803341,144.960686,high,"read on sheets 1175 and 1177, 5 m apart, averaged"
+Leicester Street 115,house number,MMBW detail plans 1175 & 1176 (c. 1895),1175,4190,5830,-37.803173,144.960273,high,
+Leicester Street 117,house number,MMBW detail plans 1175 & 1176 (c. 1895),1175,4190,5760,-37.803125,144.960282,high,
+Leicester Street 118,house number,MMBW detail plans 1175 & 1176 (c. 1895) + MMBW detail plan 1177 (c. 1895),1175/1177,4680/4630/2335,5880/5880/1235,-37.803259,144.960703,high,"read on sheets 1175 and 1177, 4 m apart, averaged"
+Leicester Street 121,house number,MMBW detail plans 1175 & 1176 (c. 1895),1175,4190,5680,-37.803069,144.960292,high,
+Leicester Street 127,house number,MMBW detail plans 1175 & 1176 (c. 1895),1175,4190,5520,-37.802959,144.960313,high,
+Leicester Street 129,house number,MMBW detail plans 1175 & 1176 (c. 1895),1175,4190,5450,-37.802911,144.960321,high,
+Leicester Street 130,house number,MMBW detail plans 1175 & 1176 (c. 1895) + MMBW detail plan 1177 (c. 1895),1175/1177,4670/2600,5500/1230,-37.803039,144.960751,medium,"read on sheets 1175 and 1177, 11 m apart, averaged; uncertain reading"
+Leicester Street 131,house number,MMBW detail plans 1175 & 1176 (c. 1895),1175,4190,5370,-37.802856,144.960331,high,
+Leicester Street 133,house number,MMBW detail plans 1175 & 1176 (c. 1895),1175,4190,5320,-37.802821,144.960338,high,
+Leicester Street 136,house number,MMBW detail plans 1175 & 1176 (c. 1895) + MMBW detail plan 1177 (c. 1895),1175/1177,4670/2810,5370/1235,-37.802921,144.960774,high,"read on sheets 1175 and 1177, 4 m apart, averaged"
+Leicester Street 137,house number,MMBW detail plans 1175 & 1176 (c. 1895),1175,4140,5220,-37.802748,144.960304,high,
+Leicester Street 138,house number,MMBW detail plans 1175 & 1176 (c. 1895) + MMBW detail plan 1177 (c. 1895),1175/1177,4670/2870,5290/1235,-37.802872,144.960782,high,"read on sheets 1175 and 1177, 6 m apart, averaged"
+Leicester Street 139,house number,MMBW detail plans 1175 & 1176 (c. 1895),1175,4210,5120,-37.802686,144.960382,high,
+Leicester Street 140,house number,MMBW detail plans 1175 & 1176 (c. 1895) + MMBW detail plan 1177 (c. 1895),1175/1177,4680/2920,5240/1235,-37.802839,144.960793,high,"read on sheets 1175 and 1177, 6 m apart, averaged"
+Leicester Street 141,house number,MMBW detail plans 1175 & 1176 (c. 1895),1175,4170,5060,-37.80264,144.960352,high,
+Leicester Street 142,house number,MMBW detail plans 1175 & 1176 (c. 1895) + MMBW detail plan 1177 (c. 1895),1175/1177,4680/2960,5180/1235,-37.802803,144.9608,high,"read on sheets 1175 and 1177, 7 m apart, averaged"
+Leicester Street 143,house number,MMBW detail plans 1175 & 1176 (c. 1895),1175,4180,5000,-37.8026,144.960369,high,
+Leicester Street 144,house number,MMBW detail plans 1175 & 1176 (c. 1895) + MMBW detail plan 1177 (c. 1895),1175/1177,4680/3030,5110/1235,-37.802755,144.960808,high,"read on sheets 1175 and 1177, 7 m apart, averaged"
+Leicester Street 145,house number,MMBW detail plans 1175 & 1176 (c. 1895),1175,4170,4940,-37.802558,144.960367,high,
+Leicester Street 146,house number,MMBW detail plans 1175 & 1176 (c. 1895) + MMBW detail plan 1177 (c. 1895),1175/1177,4680/3080,5060/1235,-37.80272,144.960814,high,"read on sheets 1175 and 1177, 7 m apart, averaged"
+Leicester Street 147,house number,MMBW detail plans 1175 & 1176 (c. 1895),1175,4170,4870,-37.802509,144.960376,high,
+Leicester Street 148,house number,MMBW detail plans 1175 & 1176 (c. 1895) + MMBW detail plan 1177 (c. 1895),1175/1177,4680/3130,4990/1235,-37.802679,144.960822,high,"read on sheets 1175 and 1177, 9 m apart, averaged"
+Leicester Street 149,house number,MMBW detail plans 1175 & 1176 (c. 1895),1175,4190,4800,-37.802463,144.960404,high,
+Leicester Street 150,house number,MMBW detail plans 1175 & 1176 (c. 1895) + MMBW detail plan 1177 (c. 1895),1175/1177,4680/3180,4920/1235,-37.802637,144.960829,high,"read on sheets 1175 and 1177, 10 m apart, averaged"
+Leicester Street 152,house number,MMBW detail plans 1175 & 1176 (c. 1895) + MMBW detail plan 1177 (c. 1895),1175/1177,4680/3240,4860/1235,-37.802596,144.960837,high,"read on sheets 1175 and 1177, 10 m apart, averaged"
+Leicester Street 162,house number,MMBW detail plans 1175 & 1176 (c. 1895) + MMBW detail plan 1177 (c. 1895),1175/1177,4690/3650,4560/1230,-37.802349,144.960883,high,"read on sheets 1175 and 1177, 2 m apart, averaged"
+Leicester Street 174,house number,MMBW detail plans 1175 & 1176 (c. 1895) + MMBW detail plan 1177 (c. 1895),1175/1177,4720/4370,3790/1245,-37.801835,144.960997,high,"read on sheets 1175 and 1177, 6 m apart, averaged"
+Leicester Street 176,house number,MMBW detail plans 1175 & 1176 (c. 1895) + MMBW detail plan 1177 (c. 1895),1175/1177,4720/4420,3740/1245,-37.8018,144.961004,high,"read on sheets 1175 and 1177, 6 m apart, averaged"
+Leicester Street 178,house number,MMBW detail plans 1175 & 1176 (c. 1895) + MMBW detail plan 1177 (c. 1895),1175/1177,4730/4470,3680/1245,-37.801763,144.961015,high,"read on sheets 1175 and 1177, 7 m apart, averaged"
+Leicester Street 182,house number,MMBW detail plans 1175 & 1176 (c. 1895) + MMBW detail plan 1177 (c. 1895),1175/1177,4720/4610,3540/1255,-37.801666,144.961032,high,"read on sheets 1175 and 1177, 6 m apart, averaged"
+Leicester Street 184,house number,MMBW detail plans 1175 & 1176 (c. 1895) + MMBW detail plan 1177 (c. 1895),1175/1177,4720/4690,3470/1255,-37.801614,144.961041,high,"read on sheets 1175 and 1177, 5 m apart, averaged"
+Leicester Street 186,house number,MMBW detail plans 1175 & 1176 (c. 1895) + MMBW detail plan 1177 (c. 1895),1175/1177,4720/4760,3400/1255,-37.801565,144.96105,high,"read on sheets 1175 and 1177, 5 m apart, averaged"
+Leicester Street 188,house number,MMBW detail plans 1175 & 1176 (c. 1895) + MMBW detail plan 1177 (c. 1895),1175/1177,4730/4870,3280/1270,-37.801487,144.961075,high,"read on sheets 1175 and 1177, 6 m apart, averaged"
+Leicester Street 190,house number,MMBW detail plans 1175 & 1176 (c. 1895) + MMBW detail plan 1177 (c. 1895),1175/1177,4730/4960,3220/1270,-37.801435,144.961085,high,"read on sheets 1175 and 1177, 4 m apart, averaged"
+Leicester Street 192,house number,MMBW detail plans 1175 & 1176 (c. 1895) + MMBW detail plan 1177 (c. 1895),1175/1177,4730/5010,3150/1270,-37.801394,144.961093,high,"read on sheets 1175 and 1177, 5 m apart, averaged"
+Leicester Street 198,house number,MMBW detail plan 1177 (c. 1895),1177,5110,1300,-37.801341,144.961111,high,
+Leicester Street 200,house number,MMBW detail plan 1177 (c. 1895),1177,5200,1300,-37.801279,144.961122,high,
+Leicester Street 202,house number,MMBW detail plan 1177 (c. 1895),1177,5390,1425,-37.801158,144.961253,high,
+Leicester Street 204,house number,MMBW detail plan 1177 (c. 1895),1177,5430,1425,-37.80113,144.961258,high,
+Leicester Street 206,house number,MMBW detail plans 1175 & 1176 (c. 1895) + MMBW detail plan 1177 (c. 1895),1175/1177,4710/5520,2690/1270,-37.801056,144.961143,high,"read on sheets 1175 and 1177, 2 m apart, averaged"
+Leicester Street 208,house number,MMBW detail plans 1175 & 1176 (c. 1895) + MMBW detail plan 1177 (c. 1895),1175/1177,4720/5580,2620/1270,-37.801012,144.961157,high,"read on sheets 1175 and 1177, 2 m apart, averaged"
+Leicester Street 210,house number,MMBW detail plans 1175 & 1176 (c. 1895) + MMBW detail plan 1177 (c. 1895),1175/1177,4720/5680,2510/1280,-37.800939,144.961174,high,"read on sheets 1175 and 1177, 2 m apart, averaged"
+Leicester Street 212,house number,MMBW detail plans 1175 & 1176 (c. 1895) + MMBW detail plan 1177 (c. 1895),1175/1177,4720/5740,2440/1280,-37.800894,144.961182,high,"read on sheets 1175 and 1177, 2 m apart, averaged"
+Leicester Street 214,house number,MMBW detail plans 1175 & 1176 (c. 1895) + MMBW detail plan 1177 (c. 1895),1175/1177,4720/5800,2380/1280,-37.800852,144.961189,high,"read on sheets 1175 and 1177, 2 m apart, averaged"
+Leicester Street 216,house number,MMBW detail plans 1175 & 1176 (c. 1895) + MMBW detail plan 1177 (c. 1895),1175/1177,4760/5900,2290/1340,-37.800792,144.961246,high,"read on sheets 1175 and 1177, 1 m apart, averaged"
+Leicester Street 218,house number,MMBW detail plan 1177 (c. 1895),1177,5980,1340,-37.800738,144.961252,high,
+Leicester Street 220,house number,MMBW detail plans 1175 & 1176 (c. 1895) + MMBW detail plan 1177 (c. 1895),1175/1177,4760/6070,2090/1340,-37.800663,144.961269,high,"read on sheets 1175 and 1177, 3 m apart, averaged"
+Leicester Street 222,house number,MMBW detail plans 1175 & 1176 (c. 1895) + MMBW detail plan 1177 (c. 1895),1175/1177,4720/6150,2030/1280,-37.80061,144.961233,high,"read on sheets 1175 and 1177, 2 m apart, averaged"
+Leicester Street 224,house number,MMBW detail plans 1175 & 1176 (c. 1895) + MMBW detail plan 1177 (c. 1895),1175/1177,4720/6220,1960/1280,-37.800562,144.961242,high,"read on sheets 1175 and 1177, 2 m apart, averaged"
+Leicester Street 226,house number,MMBW detail plans 1175 & 1176 (c. 1895) + MMBW detail plan 1177 (c. 1895),1175/1177,4720/6280,1890/1280,-37.800517,144.96125,high,"read on sheets 1175 and 1177, 3 m apart, averaged"
+Leicester Street 228,house number,MMBW detail plans 1175 & 1176 (c. 1895) + MMBW detail plan 1177 (c. 1895),1175/1177,4720/6340,1830/1280,-37.800474,144.961257,high,"read on sheets 1175 and 1177, 3 m apart, averaged"
+Leicester Street 230,house number,MMBW detail plans 1175 & 1176 (c. 1895) + MMBW detail plan 1177 (c. 1895),1175/1177,4720/6410,1780/1280,-37.800433,144.961265,high,"read on sheets 1175 and 1177, 2 m apart, averaged"
+Leicester Street 232,house number,MMBW detail plans 1175 & 1176 (c. 1895) + MMBW detail plan 1177 (c. 1895),1175/1177,4720/6480,1700/1280,-37.800382,144.961275,high,"read on sheets 1175 and 1177, 2 m apart, averaged"
+Leicester Street 234,house number,MMBW detail plans 1175 & 1176 (c. 1895) + MMBW detail plan 1177 (c. 1895),1175/1177,4720/6550,1620/1280,-37.80033,144.961284,high,"read on sheets 1175 and 1177, 3 m apart, averaged"
+Lincoln Place 11,house number,MMBW detail plan 1177 (c. 1895),1177,2610,3800,-37.803325,144.962964,high,plan names it Lincoln Square South; directory lists these as Lincoln Place
+Lincoln Place 13,house number,MMBW detail plan 1177 (c. 1895),1177,2610,3750,-37.80332,144.962921,high,plan names it Lincoln Square South; directory lists these as Lincoln Place
+Lincoln Place 15,house number,MMBW detail plan 1177 (c. 1895),1177,2610,3700,-37.803315,144.962877,high,plan names it Lincoln Square South; directory lists these as Lincoln Place
+Lincoln Place 17,house number,MMBW detail plan 1177 (c. 1895),1177,2610,3650,-37.803311,144.962834,high,plan names it Lincoln Square South; directory lists these as Lincoln Place
+Lincoln Place 19,house number,MMBW detail plan 1177 (c. 1895),1177,2610,3600,-37.803306,144.962791,high,plan names it Lincoln Square South; directory lists these as Lincoln Place
+Lincoln Place 21,house number,MMBW detail plan 1177 (c. 1895),1177,2610,3555,-37.803301,144.962752,high,plan names it Lincoln Square South; directory lists these as Lincoln Place
+Lincoln Place 25,house number,MMBW detail plan 1177 (c. 1895),1177,2610,3420,-37.803289,144.962635,high,plan names it Lincoln Square South; directory lists these as Lincoln Place
+Lincoln Place 27,house number,MMBW detail plan 1177 (c. 1895),1177,2610,3350,-37.803282,144.962575,high,plan names it Lincoln Square South; directory lists these as Lincoln Place
+Lincoln Place 29,house number,MMBW detail plan 1177 (c. 1895),1177,2610,3270,-37.803274,144.962506,high,plan names it Lincoln Square South; directory lists these as Lincoln Place
+Lincoln Place 31,house number,MMBW detail plan 1177 (c. 1895),1177,2610,3210,-37.803268,144.962454,high,plan names it Lincoln Square South; directory lists these as Lincoln Place
+Lincoln Place 34,house number,MMBW detail plan 1177 (c. 1895),1177,5115,3110,-37.801511,144.962676,high,plan names it Lincoln Square North; directory lists these as Lincoln Place
+Lincoln Place 36,house number,MMBW detail plan 1177 (c. 1895),1177,5115,3030,-37.801504,144.962607,high,plan names it Lincoln Square North; directory lists these as Lincoln Place
+Lincoln Place 38,house number,MMBW detail plan 1177 (c. 1895),1177,5115,2960,-37.801497,144.962546,high,plan names it Lincoln Square North; directory lists these as Lincoln Place
+Little Grattan Street 5,house number,MMBW detail plan 1177 (c. 1895),1177,6200,3700,-37.800811,144.96332,high,
+Little Grattan Street 7,house number,MMBW detail plan 1177 (c. 1895),1177,6200,3640,-37.800805,144.963268,high,
+Little Grattan Street 9,house number,MMBW detail plan 1177 (c. 1895),1177,6200,3590,-37.8008,144.963225,high,
+Little Grattan Street 11,house number,MMBW detail plan 1177 (c. 1895),1177,6190,3530,-37.800802,144.963172,high,
+Little Grattan Street 13,house number,MMBW detail plan 1177 (c. 1895),1177,6190,3440,-37.800793,144.963094,high,
+Little Grattan Street 15,house number,MMBW detail plan 1177 (c. 1895),1177,6170,3390,-37.800802,144.963048,high,
+Little Grattan Street 17,house number,MMBW detail plan 1177 (c. 1895),1177,6170,3330,-37.800796,144.962996,high,
+Little Pelham Street 6,house number,MMBW detail plan 1177 (c. 1895),1177,4550,2230,-37.801821,144.961846,high,
+Little Pelham Street 9,house number,MMBW detail plan 1177 (c. 1895),1177,4380,2200,-37.801937,144.961799,high,9 is printed on the plan
+Little Pelham Street 10,house number,MMBW detail plan 1177 (c. 1895),1177,4410,2140,-37.80191,144.961751,high,
+Little Pelham Street 12,house number,MMBW detail plan 1177 (c. 1895),1177,4560,2060,-37.801798,144.9617,high,
+Little Pelham Street 16,house number,MMBW detail plan 1177 (c. 1895),1177,4530,1990,-37.801812,144.961636,high,
+Little Pelham Street 18,house number,MMBW detail plan 1177 (c. 1895),1177,4510,1910,-37.801818,144.961564,high,
+Little Pelham Street 20,house number,MMBW detail plan 1177 (c. 1895),1177,4540,1820,-37.801789,144.96149,high,
+Little Pelham Street 22,house number,MMBW detail plan 1177 (c. 1895),1177,4440,1840,-37.80186,144.961495,high,
+Little Pelham Street 24,house number,MMBW detail plan 1177 (c. 1895),1177,4420,1740,-37.801865,144.961406,high,
+Little Pelham Street 26,house number,MMBW detail plan 1177 (c. 1895),1177,4420,1660,-37.801857,144.961337,high,
+Little Pelham Street 28,house number,MMBW detail plan 1177 (c. 1895),1177,4410,1570,-37.801856,144.961258,high,
+Madeline Street 1,house number,MMBW detail plans 1179 & 1180 (c. 1895),1179,4490,3740,-37.806333,144.962692,high,
+Madeline Street 3,house number,MMBW detail plans 1179 & 1180 (c. 1895),1179,4510,3740,-37.806335,144.962709,high,
+Madeline Street 4,house number,MMBW detail plans 1179 & 1180 (c. 1895),1179,4900,3770,-37.806397,144.963044,high,
+Madeline Street 5,house number,MMBW detail plans 1179 & 1180 (c. 1895),1179,4520,3680,-37.806296,144.962726,high,
+Madeline Street 6,house number,MMBW detail plans 1179 & 1180 (c. 1895),1179,4900,3700,-37.80635,144.963053,high,
+Madeline Street 7,house number,MMBW detail plans 1179 & 1180 (c. 1895),1179,4520,3620,-37.806255,144.962734,high,
+Madeline Street 8,house number,MMBW detail plans 1179 & 1180 (c. 1895),1179,4920,3650,-37.806318,144.963077,high,
+Madeline Street 9,house number,MMBW detail plans 1179 & 1180 (c. 1895),1179,4520,3520,-37.806188,144.962747,high,
+Madeline Street 10,house number,MMBW detail plans 1179 & 1180 (c. 1895),1179,4920,3620,-37.806298,144.963081,high,
+Madeline Street 11,house number,MMBW detail plans 1179 & 1180 (c. 1895),1179,4520,3460,-37.806147,144.962754,high,
+Madeline Street 13,house number,MMBW detail plans 1179 & 1180 (c. 1895),1179,4520,3420,-37.80612,144.96276,high,
+Madeline Street 15,house number,MMBW detail plans 1179 & 1180 (c. 1895),1179,4510,3390,-37.806099,144.962755,high,
+Madeline Street 16,house number,MMBW detail plans 1179 & 1180 (c. 1895),1179,4920,3420,-37.806163,144.963107,high,
+Madeline Street 17,house number,MMBW detail plans 1179 & 1180 (c. 1895),1179,4520,3260,-37.806012,144.96278,medium,uncertain reading (17 or 19)
+Madeline Street 20,house number,MMBW detail plans 1179 & 1180 (c. 1895),1179,4900,3270,-37.806059,144.963109,high,
+Madeline Street 21,house number,MMBW detail plans 1179 & 1180 (c. 1895),1179,4520,3190,-37.805965,144.962789,high,
+Madeline Street 22,house number,MMBW detail plans 1179 & 1180 (c. 1895),1179,4950,3220,-37.806031,144.963159,high,
+Madeline Street 23,house number,MMBW detail plans 1179 & 1180 (c. 1895),1179,4520,3130,-37.805924,144.962797,high,
+Madeline Street 24,house number,MMBW detail plans 1179 & 1180 (c. 1895),1179,4940,3160,-37.805989,144.963158,high,
+Madeline Street 25,house number,MMBW detail plans 1179 & 1180 (c. 1895),1179,4520,3010,-37.805843,144.962813,high,
+Madeline Street 26,house number,MMBW detail plans 1179 & 1180 (c. 1895),1179,4940,3100,-37.805948,144.963166,high,
+Madeline Street 27,house number,MMBW detail plans 1179 & 1180 (c. 1895),1179,4520,2940,-37.805796,144.962822,high,
+Madeline Street 28,house number,MMBW detail plans 1179 & 1180 (c. 1895),1179,4940,3020,-37.805894,144.963176,high,
+Madeline Street 29,house number,MMBW detail plans 1179 & 1180 (c. 1895),1179,4520,2880,-37.805756,144.96283,high,
+Madeline Street 30,house number,MMBW detail plans 1179 & 1180 (c. 1895),1179,4920,2860,-37.805784,144.963179,high,
+Madeline Street 31,house number,MMBW detail plans 1179 & 1180 (c. 1895),1179,4520,2830,-37.805722,144.962836,high,
+Madeline Street 32,house number,MMBW detail plans 1179 & 1180 (c. 1895),1179,4940,2810,-37.805753,144.963203,high,
+Madeline Street 33,house number,MMBW detail plans 1179 & 1180 (c. 1895),1179,4520,2770,-37.805681,144.962844,high,
+Madeline Street 34,house number,MMBW detail plans 1179 & 1180 (c. 1895),1179,4920,2770,-37.805723,144.963191,high,
+Madeline Street 35,house number,MMBW detail plans 1179 & 1180 (c. 1895),1179,4520,2710,-37.805641,144.962852,high,
+Madeline Street 36,house number,MMBW detail plans 1179 & 1180 (c. 1895),1179,4940,2720,-37.805692,144.963215,high,
+Madeline Street 37,house number,MMBW detail plans 1179 & 1180 (c. 1895),1179,4520,2650,-37.8056,144.962859,high,
+Madeline Street 38,house number,MMBW detail plans 1179 & 1180 (c. 1895),1179,4940,2670,-37.805658,144.963221,high,
+Madeline Street 39,house number,MMBW detail plans 1179 & 1180 (c. 1895),1179,4520,2610,-37.805573,144.962865,high,
+Madeline Street 40,house number,MMBW detail plans 1179 & 1180 (c. 1895),1179,4950,2610,-37.805619,144.963238,high,
+Madeline Street 45,house number,MMBW detail plans 1179 & 1180 (c. 1895),1179,4510,2340,-37.80539,144.962891,high,
+Madeline Street 47,house number,MMBW detail plans 1179 & 1180 (c. 1895),1179,4510,2270,-37.805342,144.9629,high,
+Madeline Street 49,house number,MMBW detail plans 1179 & 1180 (c. 1895),1179,4510,2220,-37.805309,144.962906,high,
+Madeline Street 51,house number,MMBW detail plans 1179 & 1180 (c. 1895),1179,4510,2160,-37.805268,144.962914,high,
+Madeline Street 53,house number,MMBW detail plans 1179 & 1180 (c. 1895),1179,4510,2110,-37.805234,144.962921,high,
+Madeline Street 54,house number,MMBW detail plans 1179 & 1180 (c. 1895),1179,4940,2060,-37.805246,144.9633,high,
+Madeline Street 55,house number,MMBW detail plans 1179 & 1180 (c. 1895),1179,4510,2060,-37.805201,144.962927,high,
+Madeline Street 56,house number,MMBW detail plans 1179 & 1180 (c. 1895),1179,4940,2000,-37.805205,144.963308,high,
+Madeline Street 57,house number,MMBW detail plans 1179 & 1180 (c. 1895),1179,4510,2000,-37.80516,144.962935,high,
+Madeline Street 58,house number,MMBW detail plans 1179 & 1180 (c. 1895),1179,4940,1940,-37.805165,144.963316,high,
+Madeline Street 59,house number,MMBW detail plans 1179 & 1180 (c. 1895),1179,4510,1960,-37.805133,144.96294,high,
+Madeline Street 60,house number,MMBW detail plans 1179 & 1180 (c. 1895),1179,4940,1870,-37.805118,144.963325,high,
+Madeline Street 61,house number,MMBW detail plans 1179 & 1180 (c. 1895),1179,4510,1910,-37.805099,144.962947,high,
+Madeline Street 62,house number,MMBW detail plans 1179 & 1180 (c. 1895),1179,4940,1810,-37.805077,144.963333,high,
+Madeline Street 63,house number,MMBW detail plans 1179 & 1180 (c. 1895),1179,4510,1860,-37.805065,144.962953,high,
+Madeline Street 65,house number,MMBW detail plans 1179 & 1180 (c. 1895),1179,4510,1800,-37.805025,144.962961,high,
+Madeline Street 66,house number,MMBW detail plans 1179 & 1180 (c. 1895),1179,4940,1640,-37.804962,144.963355,high,
+Madeline Street 67,house number,MMBW detail plans 1179 & 1180 (c. 1895),1179,4510,1720,-37.804971,144.962971,high,
+Madeline Street 68,house number,MMBW detail plans 1179 & 1180 (c. 1895),1179,4940,1580,-37.804922,144.963363,high,
+Madeline Street 69,house number,MMBW detail plans 1179 & 1180 (c. 1895),1179,4510,1640,-37.804917,144.962982,high,
+Madeline Street 71,house number,MMBW detail plans 1179 & 1180 (c. 1895),1179,4510,1580,-37.804876,144.962989,high,
+Madeline Street 72,house number,MMBW detail plans 1179 & 1180 (c. 1895),1179,4940,1400,-37.8048,144.963386,high,
+Madeline Street 73,house number,MMBW detail plans 1179 & 1180 (c. 1895),1179,4510,1520,-37.804836,144.962997,high,
+Madeline Street 74,house number,MMBW detail plans 1179 & 1180 (c. 1895),1179,4940,1310,-37.804739,144.963398,high,
+Madeline Street 75,house number,MMBW detail plans 1179 & 1180 (c. 1895),1179,4510,1460,-37.804795,144.963005,high,
+Madeline Street 77,house number,MMBW detail plans 1179 & 1180 (c. 1895),1179,4510,1380,-37.804741,144.963015,high,
+Madeline Street 79,house number,MMBW detail plans 1179 & 1180 (c. 1895),1179,4510,1310,-37.804694,144.963024,high,
+Madeline Street 83,house number,MMBW detail plan 1177 (c. 1895),1177,1130,4145,-37.80439,144.96308,high,
+Madeline Street 85,house number,MMBW detail plan 1177 (c. 1895),1177,1210,4145,-37.804335,144.96309,high,
+Madeline Street 87,house number,MMBW detail plan 1177 (c. 1895),1177,1290,4145,-37.804279,144.963099,high,
+Madeline Street 91,house number,MMBW detail plan 1177 (c. 1895),1177,1400,4145,-37.804202,144.963113,high,
+Madeline Street 93,house number,MMBW detail plan 1177 (c. 1895),1177,1460,4145,-37.80416,144.96312,high,
+Madeline Street 95,house number,MMBW detail plan 1177 (c. 1895),1177,1560,4145,-37.80409,144.963133,high,
+Madeline Street 99,house number,MMBW detail plan 1177 (c. 1895),1177,1620,4145,-37.804049,144.96314,high,
+Madeline Street 101,house number,MMBW detail plan 1177 (c. 1895),1177,1680,4145,-37.804007,144.963147,high,
+Madeline Street 103,house number,MMBW detail plan 1177 (c. 1895),1177,1720,4145,-37.803979,144.963152,high,
+Madeline Street 105,house number,MMBW detail plan 1177 (c. 1895),1177,1770,4145,-37.803944,144.963159,high,
+Madeline Street 107,house number,MMBW detail plan 1177 (c. 1895),1177,1890,4145,-37.80386,144.963173,high,
+Madeline Street 109,house number,MMBW detail plan 1177 (c. 1895),1177,1970,4145,-37.803804,144.963183,high,
+Madeline Street 111,house number,MMBW detail plan 1177 (c. 1895),1177,2070,4145,-37.803735,144.963196,high,
+Madeline Street 113,house number,MMBW detail plan 1177 (c. 1895),1177,2140,4145,-37.803686,144.963204,high,
+Madeline Street 155,house number,MMBW detail plan 1177 (c. 1895),1177,5530,4140,-37.801321,144.963618,high,
+Madeline Street 157,house number,MMBW detail plan 1177 (c. 1895),1177,5590,4140,-37.801279,144.963625,high,
+Madeline Street 159,house number,MMBW detail plan 1177 (c. 1895),1177,5650,4140,-37.801237,144.963633,high,
+Madeline Street 161,house number,MMBW detail plan 1177 (c. 1895),1177,5710,4140,-37.801195,144.96364,high,
+Madeline Street 163,house number,MMBW detail plan 1177 (c. 1895),1177,5910,4140,-37.801056,144.963665,high,
+Madeline Street 165,house number,MMBW detail plan 1177 (c. 1895),1177,5960,4140,-37.801021,144.963671,high,
+Madeline Street 167,house number,MMBW detail plan 1177 (c. 1895),1177,6020,4140,-37.800979,144.963678,high,
+Madeline Street 169,house number,MMBW detail plan 1177 (c. 1895),1177,6060,4140,-37.800951,144.963683,high,
+Madeline Street 171,house number,MMBW detail plan 1177 (c. 1895),1177,6100,4140,-37.800923,144.963688,high,
+Madeline Street 173,house number,MMBW detail plan 1177 (c. 1895),1177,6160,4140,-37.800881,144.963695,high,
+Madeline Street 175,house number,MMBW detail plan 1177 (c. 1895),1177,6230,4140,-37.800832,144.963704,high,
+Madeline Street 177,house number,MMBW detail plan 1177 (c. 1895),1177,6280,4140,-37.800797,144.96371,high,
+Madeline Street 179,house number,MMBW detail plan 1177 (c. 1895),1177,6340,4140,-37.800756,144.963718,high,
+Madeline Street 181,house number,MMBW detail plan 1177 (c. 1895),1177,6400,4140,-37.800714,144.963725,high,
+Madeline Street 183,house number,MMBW detail plan 1177 (c. 1895),1177,6470,4140,-37.800665,144.963734,high,
+Madeline Street 185,house number,MMBW detail plan 1177 (c. 1895),1177,6530,4140,-37.800623,144.963741,high,
+Madeline Street 187,house number,MMBW detail plan 1177 (c. 1895),1177,6580,4140,-37.800588,144.963747,high,
+Madeline Street 189,house number,MMBW detail plan 1177 (c. 1895),1177,6640,4140,-37.800546,144.963755,high,
+Madeline Street 191,house number,MMBW detail plan 1177 (c. 1895),1177,6690,4140,-37.800511,144.963761,high,
+Malvina Place 8,house number,MMBW detail plan 1177 (c. 1895),1177,6150,1900,-37.800673,144.961758,high,
+Malvina Place 10,house number,MMBW detail plan 1177 (c. 1895),1177,6230,1900,-37.800618,144.961767,high,
+Malvina Place 12,house number,MMBW detail plan 1177 (c. 1895),1177,6290,1900,-37.800576,144.961775,high,
+Malvina Place 14,house number,MMBW detail plan 1177 (c. 1895),1177,6340,1900,-37.800541,144.961781,high,
+Pelham Street 142,house number,MMBW detail plan 1177 (c. 1895),1177,4050,2370,-37.802183,144.961905,high,Chelmsloe Cottages
+Pelham Street 144,house number,MMBW detail plan 1177 (c. 1895),1177,4050,2310,-37.802178,144.961853,high,Chelmsloe Cottages
+Pelham Street 145,house number,MMBW detail plan 1177 (c. 1895),1177,3640,2210,-37.802454,144.961716,high,Durham Terrace
+Pelham Street 147,house number,MMBW detail plan 1177 (c. 1895),1177,3700,2120,-37.802404,144.961646,high,Durham Terrace
+Pelham Street 149,house number,MMBW detail plan 1177 (c. 1895),1177,3640,2100,-37.802443,144.961621,high,Durham Terrace
+Pelham Street 150,house number,MMBW detail plan 1177 (c. 1895),1177,4050,2125,-37.80216,144.961693,high,Chelmsloe Cottages
+Pelham Street 151,house number,MMBW detail plan 1177 (c. 1895),1177,3640,2010,-37.802435,144.961543,high,Durham Terrace
+Pelham Street 152,house number,MMBW detail plan 1177 (c. 1895),1177,4050,2060,-37.802154,144.961637,high,Chelmsloe Cottages
+Pelham Street 153,house number,MMBW detail plan 1177 (c. 1895),1177,3640,1955,-37.80243,144.961496,high,Durham Terrace
+Pelham Street 154,house number,MMBW detail plan 1177 (c. 1895),1177,4050,2010,-37.802149,144.961594,high,Chelmsloe Cottages
+Pelham Street 155,house number,MMBW detail plan 1177 (c. 1895),1177,3640,1880,-37.802422,144.961431,high,Durham Terrace
+Pelham Street 156,house number,MMBW detail plan 1177 (c. 1895),1177,4050,1950,-37.802143,144.961542,high,Chelmsloe Cottages
+Pelham Street 157,house number,MMBW detail plan 1177 (c. 1895),1177,3640,1800,-37.802415,144.961362,high,
+Pelham Street 159,house number,MMBW detail plan 1177 (c. 1895),1177,3700,1690,-37.802362,144.961274,high,
+Pelham Street 160,house number,MMBW detail plan 1177 (c. 1895),1177,4050,1870,-37.802135,144.961473,high,Chelmsloe Cottages
+Pelham Street 162,house number,MMBW detail plan 1177 (c. 1895),1177,4050,1830,-37.802132,144.961438,high,Chelmsloe Cottages
+Pelham Street 163,house number,MMBW detail plan 1177 (c. 1895),1177,3650,1620,-37.80239,144.961207,high,
+Pelham Street 164,house number,MMBW detail plan 1177 (c. 1895),1177,4050,1790,-37.802128,144.961404,high,Chelmsloe Cottages
+Pelham Street 166,house number,MMBW detail plan 1177 (c. 1895),1177,4050,1745,-37.802123,144.961365,high,
+Pelham Street 168,house number,MMBW detail plan 1177 (c. 1895),1177,4050,1700,-37.802119,144.961326,high,
+Pelham Street 170,house number,MMBW detail plan 1177 (c. 1895),1177,4050,1640,-37.802113,144.961274,high,
+Pelham Street 172,house number,MMBW detail plan 1177 (c. 1895),1177,4050,1600,-37.80211,144.961239,high,
+Pelham Street 174,house number,MMBW detail plan 1177 (c. 1895),1177,4050,1560,-37.802106,144.961205,high,
+Pelham Street 176,house number,MMBW detail plan 1177 (c. 1895),1177,4050,1520,-37.802102,144.96117,high,
+Pelham Street 178,house number,MMBW detail plan 1177 (c. 1895),1177,4050,1470,-37.802097,144.961127,high,
+Pelham Street 179,house number,MMBW detail plans 1175 & 1176 (c. 1895),1175,4180,4520,-37.802269,144.96043,high,
+Pelham Street 180,house number,MMBW detail plan 1177 (c. 1895),1177,4050,1420,-37.802092,144.961084,high,
+Pelham Street 181,house number,MMBW detail plans 1175 & 1176 (c. 1895),1175,4120,4520,-37.802264,144.960374,high,
+Pelham Street 182,house number,MMBW detail plan 1177 (c. 1895),1177,4050,1360,-37.802087,144.961032,high,
+Pelham Street 183,house number,MMBW detail plans 1175 & 1176 (c. 1895),1175,4070,4520,-37.802259,144.960328,high,
+Pelham Street 184,house number,MMBW detail plans 1175 & 1176 (c. 1895) + MMBW detail plan 1177 (c. 1895),1175/1177,4710/4050,4120/1310,-37.802064,144.96098,high,"read on sheets 1175 and 1177, 4 m apart, averaged"
+Pelham Street 186,house number,MMBW detail plans 1175 & 1176 (c. 1895) + MMBW detail plan 1177 (c. 1895),1175/1177,4630/4050,4120/1240,-37.802056,144.960913,high,"read on sheets 1175 and 1177, 5 m apart, averaged"
+Pelham Street 187,house number,MMBW detail plans 1175 & 1176 (c. 1895),1175,3880,4525,-37.802244,144.960151,high,
+Pelham Street 191,house number,MMBW detail plans 1175 & 1176 (c. 1895),1175,3790,4525,-37.802235,144.960068,high,
+Pelham Street 193,house number,MMBW detail plans 1175 & 1176 (c. 1895),1175,3730,4525,-37.802229,144.960012,high,
+Pelham Street 194,house number,MMBW detail plans 1175 & 1176 (c. 1895),1175,2820,4110,-37.801855,144.959221,high,
+Pelham Street 196,house number,MMBW detail plans 1175 & 1176 (c. 1895),1175,2920,4110,-37.801865,144.959314,high,
+Pelham Street 202,house number,MMBW detail plans 1175 & 1176 (c. 1895),1175,2660,4110,-37.80184,144.959073,high,
+Pelham Street 204,house number,MMBW detail plans 1175 & 1176 (c. 1895),1175,2560,4080,-37.801809,144.958984,high,
+Pelham Street 205,house number,MMBW detail plans 1175 & 1176 (c. 1895),1175,2760,4525,-37.802135,144.959113,high,
+Pelham Street 206,house number,MMBW detail plans 1175 & 1176 (c. 1895),1175,2510,4080,-37.801805,144.958938,high,
+Pelham Street 207,house number,MMBW detail plans 1175 & 1176 (c. 1895),1175,2700,4525,-37.802129,144.959057,high,
+Pelham Street 208,house number,MMBW detail plans 1175 & 1176 (c. 1895),1175,2420,4110,-37.801816,144.95885,high,
+Pelham Street 209,house number,MMBW detail plans 1175 & 1176 (c. 1895),1175,2650,4525,-37.802125,144.959011,high,
+Pelham Street 210,house number,MMBW detail plans 1175 & 1176 (c. 1895),1175,2340,4095,-37.801798,144.958778,high,
+Pelham Street 211,house number,MMBW detail plans 1175 & 1176 (c. 1895),1175,2600,4525,-37.80212,144.958965,high,
+Pelham Street 212,house number,MMBW detail plans 1175 & 1176 (c. 1895),1175,2290,4095,-37.801794,144.958732,high,
+Pelham Street 213,house number,MMBW detail plans 1175 & 1176 (c. 1895),1175,2560,4525,-37.802116,144.958928,high,
+Pelham Street 214,house number,MMBW detail plans 1175 & 1176 (c. 1895),1175,2240,4095,-37.801789,144.958685,high,
+Pelham Street 215,house number,MMBW detail plans 1175 & 1176 (c. 1895),1175,2510,4525,-37.802111,144.958881,high,
+Pelham Street 216,house number,MMBW detail plans 1175 & 1176 (c. 1895),1175,2190,4095,-37.801784,144.958639,high,
+Pelham Street 217,house number,MMBW detail plans 1175 & 1176 (c. 1895),1175,2460,4525,-37.802106,144.958835,high,
+Pelham Street 218,house number,MMBW detail plans 1175 & 1176 (c. 1895),1175,2120,4095,-37.801777,144.958574,high,
+Pelham Street 219,house number,MMBW detail plans 1175 & 1176 (c. 1895),1175,2400,4525,-37.8021,144.958779,high,
+Pelham Street 222,house number,MMBW detail plans 1175 & 1176 (c. 1895),1175,1800,4095,-37.801746,144.958278,high,
+Pelham Street 226,house number,MMBW detail plans 1175 & 1176 (c. 1895),1175,1680,4095,-37.801734,144.958166,high,
+Pelham Street 227,house number,MMBW detail plans 1175 & 1176 (c. 1895),1175,1860,4540,-37.802059,144.958277,high,
+Pelham Street 228,house number,MMBW detail plans 1175 & 1176 (c. 1895),1175,1620,4095,-37.801729,144.958111,high,
+Pelham Street 229,house number,MMBW detail plans 1175 & 1176 (c. 1895),1175,1810,4540,-37.802054,144.958231,high,
+Pelham Street 230,house number,MMBW detail plans 1175 & 1176 (c. 1895),1175,1540,4095,-37.801721,144.958037,high,
+Pelham Street 231,house number,MMBW detail plans 1175 & 1176 (c. 1895),1175,1740,4540,-37.802047,144.958166,high,
+Pelham Street 232,house number,MMBW detail plans 1175 & 1176 (c. 1895),1175,1480,4095,-37.801715,144.957981,high,
+Pelham Street 233,house number,MMBW detail plans 1175 & 1176 (c. 1895),1175,1690,4540,-37.802042,144.958119,high,
+Pelham Street 234,house number,MMBW detail plans 1175 & 1176 (c. 1895),1175,1430,4095,-37.80171,144.957935,high,
+Pelham Street 236,house number,MMBW detail plans 1175 & 1176 (c. 1895),1175,1370,4095,-37.801704,144.957879,high,
+Prince of Wales Place 1,house number,MMBW detail plan 1177 (c. 1895),1177,5100,2170,-37.801432,144.961862,high,
+Prince of Wales Place 2,house number,MMBW detail plan 1177 (c. 1895),1177,5250,2150,-37.801325,144.961863,high,
+Prince of Wales Place 3,house number,MMBW detail plan 1177 (c. 1895),1177,5090,2120,-37.801434,144.961817,high,
+Prince of Wales Place 15,house number,MMBW detail plan 1177 (c. 1895),1177,5080,2030,-37.801432,144.961738,high,
+Queensberry Street 166,house number,MMBW detail plan 1177 (c. 1895),1177,1115,3880,-37.804376,144.962849,high,
+Queensberry Street 168,house number,MMBW detail plan 1177 (c. 1895),1177,1115,3790,-37.804367,144.962771,high,
+Queensberry Street 169,house number,MMBW detail plans 1179 & 1180 (c. 1895),1179,4160,1310,-37.804657,144.962721,high,
+Queensberry Street 170,house number,MMBW detail plan 1177 (c. 1895),1177,1115,3700,-37.804358,144.962693,high,
+Queensberry Street 171,house number,MMBW detail plans 1179 & 1180 (c. 1895),1179,4090,1310,-37.80465,144.96266,high,
+Queensberry Street 172,house number,MMBW detail plan 1177 (c. 1895),1177,1115,3660,-37.804354,144.962658,high,
+Queensberry Street 173,house number,MMBW detail plans 1179 & 1180 (c. 1895),1179,3940,1310,-37.804634,144.96253,high,
+Queensberry Street 174,house number,MMBW detail plan 1177 (c. 1895),1177,1115,3610,-37.80435,144.962615,high,
+Queensberry Street 177,house number,MMBW detail plans 1179 & 1180 (c. 1895),1179,3820,1290,-37.804608,144.962428,high,
+Queensberry Street 178,house number,MMBW detail plan 1177 (c. 1895),1177,1115,3490,-37.804338,144.962512,high,
+Queensberry Street 180,house number,MMBW detail plan 1177 (c. 1895),1177,1115,3460,-37.804335,144.962486,high,
+Queensberry Street 182,house number,MMBW detail plan 1177 (c. 1895),1177,1115,3410,-37.80433,144.962442,high,
+Queensberry Street 183,house number,MMBW detail plans 1179 & 1180 (c. 1895),1179,3640,1290,-37.804589,144.962272,high,Rising Sun hotel
+Queensberry Street 184,house number,MMBW detail plan 1177 (c. 1895),1177,1115,3300,-37.80432,144.962347,high,
+Queensberry Street 185,house number,MMBW detail plans 1179 & 1180 (c. 1895),1179,3570,1290,-37.804581,144.962211,high,
+Queensberry Street 186,house number,MMBW detail plan 1177 (c. 1895),1177,1115,3240,-37.804314,144.962295,high,
+Queensberry Street 187,house number,MMBW detail plans 1179 & 1180 (c. 1895),1179,3520,1290,-37.804576,144.962168,high,
+Queensberry Street 188,house number,MMBW detail plan 1177 (c. 1895),1177,1115,3150,-37.804306,144.962218,high,
+Queensberry Street 189,house number,MMBW detail plans 1179 & 1180 (c. 1895),1179,3470,1290,-37.804571,144.962124,high,
+Queensberry Street 190,house number,MMBW detail plan 1177 (c. 1895),1177,1115,3080,-37.804299,144.962157,high,
+Queensberry Street 191,house number,MMBW detail plans 1179 & 1180 (c. 1895),1179,3410,1290,-37.804564,144.962072,high,
+Queensberry Street 192,house number,MMBW detail plan 1177 (c. 1895),1177,1115,2990,-37.80429,144.962079,high,
+Queensberry Street 193,house number,MMBW detail plans 1179 & 1180 (c. 1895),1179,3360,1290,-37.804559,144.962029,high,
+Queensberry Street 194,house number,MMBW detail plan 1177 (c. 1895),1177,1115,2920,-37.804283,144.962019,high,
+Queensberry Street 208,house number,MMBW detail plan 1177 (c. 1895),1177,1100,2320,-37.804236,144.961498,high,
+Queensberry Street 210,house number,MMBW detail plan 1177 (c. 1895),1177,1100,2280,-37.804233,144.961464,high,
+Queensberry Street 213,house number,MMBW detail plans 1179 & 1180 (c. 1895),1179,2470,1290,-37.804465,144.961256,high,
+Queensberry Street 215,house number,MMBW detail plans 1179 & 1180 (c. 1895),1179,2420,1290,-37.80446,144.961213,high,
+Queensberry Street 217,house number,MMBW detail plans 1179 & 1180 (c. 1895),1179,2340,1290,-37.804451,144.961143,high,
+Queensberry Street 219,house number,MMBW detail plans 1179 & 1180 (c. 1895),1179,2240,1290,-37.804441,144.961057,high,
+Queensberry Street 259,house number,MMBW detail plans 1175 & 1176 (c. 1895),1175,4170,7500,-37.804321,144.960044,high,Mills hotel
+Queensberry Street 261,house number,MMBW detail plans 1175 & 1176 (c. 1895),1175,4100,7500,-37.804315,144.959979,high,
+Queensberry Street 263,house number,MMBW detail plans 1175 & 1176 (c. 1895),1175,4050,7500,-37.80431,144.959933,high,
+Queensberry Street 265,house number,MMBW detail plans 1175 & 1176 (c. 1895),1175,4000,7500,-37.804305,144.959886,high,
+Queensberry Street 267,house number,MMBW detail plans 1175 & 1176 (c. 1895),1175,3950,7500,-37.8043,144.95984,high,
+Queensberry Street 269,house number,MMBW detail plans 1175 & 1176 (c. 1895),1175,3900,7500,-37.804295,144.959793,high,
+Queensberry Street 281,house number,MMBW detail plans 1175 & 1176 (c. 1895),1175,3330,7500,-37.80424,144.959265,high,printed 282? read as 281
+Queensberry Street 283,house number,MMBW detail plans 1175 & 1176 (c. 1895),1175,3270,7500,-37.804234,144.95921,high,
+Queensberry Street 285,house number,MMBW detail plans 1175 & 1176 (c. 1895),1175,3170,7500,-37.804225,144.959117,high,
+Sydney Road 2,house number,MMBW detail plans 1175 & 1176 (c. 1895),1175,1010,3810,-37.801473,144.957582,high,
+Sydney Road 12,house number,MMBW detail plans 1175 & 1176 (c. 1895),1175,1000,3540,-37.801286,144.957606,high,
+Sydney Road 22,house number,MMBW detail plans 1175 & 1176 (c. 1895),1175,1000,3220,-37.801066,144.957647,high,
+Sydney Road 26,house number,MMBW detail plans 1175 & 1176 (c. 1895),1175,1060,3160,-37.80103,144.95771,high,
+Sydney Road 28,house number,MMBW detail plans 1175 & 1176 (c. 1895),1175,1000,3050,-37.800949,144.957668,high,
+Sydney Road 30,house number,MMBW detail plans 1175 & 1176 (c. 1895),1175,1050,3030,-37.80094,144.957717,high,
+Sydney Road 32,house number,MMBW detail plans 1175 & 1176 (c. 1895),1175,1020,2830,-37.800799,144.957715,high,
+Sydney Road 34,house number,MMBW detail plans 1175 & 1176 (c. 1895),1175,1060,2800,-37.800782,144.957756,high,
+Sydney Road 50,house number,MMBW detail plans 1175 & 1176 (c. 1895),1175,1000,2310,-37.800439,144.957762,high,
+Victoria Street 138,house number,MMBW detail plans 1179 & 1180 (c. 1895),1179,4410,3790,-37.806359,144.962616,medium,uncertain reading
+Victoria Street 142,house number,MMBW detail plans 1179 & 1180 (c. 1895),1179,4350,3790,-37.806352,144.962564,high,Royal hotel
+Victoria Street 144,house number,MMBW detail plans 1179 & 1180 (c. 1895),1179,4260,3790,-37.806343,144.962486,high,
+Victoria Street 146,house number,MMBW detail plans 1179 & 1180 (c. 1895),1179,4170,3790,-37.806333,144.962408,high,
+Victoria Street 148,house number,MMBW detail plans 1179 & 1180 (c. 1895),1179,4110,3790,-37.806327,144.962356,high,
+Victoria Street 152,house number,MMBW detail plans 1179 & 1180 (c. 1895),1179,3960,3790,-37.806311,144.962225,high,
+Victoria Street 154,house number,MMBW detail plans 1179 & 1180 (c. 1895),1179,3910,3790,-37.806306,144.962182,high,
+Victoria Street 156,house number,MMBW detail plans 1179 & 1180 (c. 1895),1179,3720,3790,-37.806286,144.962017,high,printed as 162 to 156
+Victoria Street 164,house number,MMBW detail plans 1179 & 1180 (c. 1895),1179,3520,3790,-37.806265,144.961844,high,
+Victoria Street 166,house number,MMBW detail plans 1179 & 1180 (c. 1895),1179,3460,3790,-37.806258,144.961791,high,
+Victoria Street 168,house number,MMBW detail plans 1179 & 1180 (c. 1895),1179,3400,3790,-37.806252,144.961739,high,
+Victoria Street 170,house number,MMBW detail plans 1179 & 1180 (c. 1895),1179,3300,3790,-37.806241,144.961653,high,
+Victoria Street 180,house number,MMBW detail plans 1179 & 1180 (c. 1895),1179,2660,3800,-37.806181,144.961096,high,
+Victoria Street 182,house number,MMBW detail plans 1179 & 1180 (c. 1895),1179,2610,3800,-37.806175,144.961052,high,
+Victoria Street 184,house number,MMBW detail plans 1179 & 1180 (c. 1895),1179,2560,3800,-37.80617,144.961009,high,
+Victoria Street 186,house number,MMBW detail plans 1179 & 1180 (c. 1895),1179,2510,3800,-37.806165,144.960966,high,
+Victoria Street 188,house number,MMBW detail plans 1179 & 1180 (c. 1895),1179,2400,3800,-37.806153,144.96087,high,printed as 206 to 188
+Victoria Street 210,house number,MMBW detail plans 1179 & 1180 (c. 1895),1179,1960,3800,-37.806107,144.960488,high,
+Victoria Street 218,house number,MMBW detail plans 1179 & 1180 (c. 1895),1179,1740,3800,-37.806083,144.960297,high,
+Alma Street & Leicester Street,street corner,MMBW detail plans 1179 & 1180 (c. 1895),1179,1400,2940,-37.805467,144.960114,high,Alma Pl meets Leicester St
+Alma Street & Bouverie Street,street corner,MMBW detail plans 1179 & 1180 (c. 1895),1179,3060,2940,-37.805642,144.961554,high,Alma Pl meets Bouverie St
+Harp Of Erin Lane & Madeline Street,street corner,MMBW detail plan 1177 (c. 1895),1177,1830,4400,-37.803927,144.963386,high,lane printed as Lincoln Pl on the plan
+Church Street & Madeline Street,street corner,MMBW detail plan 1177 (c. 1895),1177,5810,4400,-37.80115,144.963877,high,Church St east of Bouverie
+Bouverie Street & Church Street,street corner,MMBW detail plan 1177 (c. 1895),1177,5820,2650,-37.800975,144.962365,high,Church St east of Bouverie
+control corner BeG,fit control,MMBW detail plans 1175 & 1176 (c. 1895),1175,2035,1380,-37.799922,144.958796,,dataset point used to fit the sheet; plan puts it 4.6 m away
+control corner BaG,fit control,MMBW detail plans 1175 & 1176 (c. 1895),1175,3150,1380,-37.800024,144.959842,,dataset point used to fit the sheet; plan puts it 3.3 m away
+control corner LG,fit control,MMBW detail plans 1175 & 1176 (c. 1895),1175,4475,1380,-37.800148,144.96116,,dataset point used to fit the sheet; plan puts it 5.5 m away
+control corner BeP,fit control,MMBW detail plans 1175 & 1176 (c. 1895),1175,2045,4380,-37.801934,144.95849,,dataset point used to fit the sheet; plan puts it 4.0 m away
+control corner BaP,fit control,MMBW detail plans 1175 & 1176 (c. 1895),1175,3135,4380,-37.802044,144.959532,,dataset point used to fit the sheet; plan puts it 5.6 m away
+control corner LP,fit control,MMBW detail plans 1175 & 1176 (c. 1895),1175,4478,4375,-37.802147,144.960675,,dataset point used to fit the sheet; plan puts it 7.2 m away
+control corner LQ,fit control,MMBW detail plans 1175 & 1176 (c. 1895),1175,4470,7290,-37.804227,144.960314,,dataset point used to fit the sheet; plan puts it 3.8 m away
+control corner BeQ,fit control,MMBW detail plans 1175 & 1176 (c. 1895),1175,3510,7290,-37.804148,144.95948,,dataset point used to fit the sheet; plan puts it 4.3 m away
+control corner LQ,fit control,MMBW detail plan 1177 (c. 1895),1177,940,1040,-37.804227,144.960314,,dataset point used to fit the sheet; plan puts it 5.1 m away
+control corner LP,fit control,MMBW detail plan 1177 (c. 1895),1177,3895,1042,-37.802147,144.960675,,dataset point used to fit the sheet; plan puts it 5.8 m away
+control corner LG,fit control,MMBW detail plan 1177 (c. 1895),1177,6820,1050,-37.800148,144.96116,,dataset point used to fit the sheet; plan puts it 5.5 m away
+control corner BQ,fit control,MMBW detail plan 1177 (c. 1895),1177,960,2650,-37.804329,144.961881,,dataset point used to fit the sheet; plan puts it 10.9 m away
+control corner BP,fit control,MMBW detail plan 1177 (c. 1895),1177,3900,2658,-37.802317,144.962149,,dataset point used to fit the sheet; plan puts it 1.2 m away
+control corner BG,fit control,MMBW detail plan 1177 (c. 1895),1177,6820,2662,-37.800299,144.962497,,dataset point used to fit the sheet; plan puts it 2.2 m away
+control corner MQ,fit control,MMBW detail plan 1177 (c. 1895),1177,955,4402,-37.80458,144.963248,,dataset point used to fit the sheet; plan puts it 5.6 m away
+control corner MG,fit control,MMBW detail plan 1177 (c. 1895),1177,6815,4405,-37.800414,144.963977,,dataset point used to fit the sheet; plan puts it 4.7 m away
+control corner LQ,fit control,MMBW detail plans 1179 & 1180 (c. 1895),1179,1415,1070,-37.804227,144.960314,,dataset point used to fit the sheet; plan puts it 5.4 m away
+control corner BQ,fit control,MMBW detail plans 1179 & 1180 (c. 1895),1179,3055,1050,-37.804329,144.961881,,dataset point used to fit the sheet; plan puts it 8.5 m away
+control corner MQ,fit control,MMBW detail plans 1179 & 1180 (c. 1895),1179,4750,1050,-37.80458,144.963248,,dataset point used to fit the sheet; plan puts it 4.4 m away
+control corner LV,fit control,MMBW detail plans 1179 & 1180 (c. 1895),1179,1440,4030,-37.806204,144.959955,,dataset point used to fit the sheet; plan puts it 4.6 m away
+control corner BV,fit control,MMBW detail plans 1179 & 1180 (c. 1895),1179,3060,4030,-37.806408,144.96145,,dataset point used to fit the sheet; plan puts it 4.6 m away
+control corner MV,fit control,MMBW detail plans 1179 & 1180 (c. 1895),1179,4755,4035,-37.806554,144.96291,,dataset point used to fit the sheet; plan puts it 2.4 m away
+control corner BB,fit control,MMBW detail plans 1179 & 1180 (c. 1895),1179,3060,2460,-37.805286,144.961704,,dataset point used to fit the sheet; plan puts it 8.4 m away
+control corner MB,fit control,MMBW detail plans 1179 & 1180 (c. 1895),1179,4760,2450,-37.805479,144.962983,,dataset point used to fit the sheet; plan puts it 9.8 m away
+Flour Mill,landmark,MMBW detail plan 1177 (c. 1895),1177,1500,1450,-37.803874,144.960795,high,building named on the plan
+State School No. 2365,landmark,MMBW detail plan 1177 (c. 1895),1177,1210,2000,-37.804129,144.961235,high,building named on the plan
+Baptist Hall,landmark,MMBW detail plan 1177 (c. 1895),1177,5700,3000,-37.801093,144.962653,high,building named on the plan
+Fire Station,landmark,MMBW detail plan 1177 (c. 1895),1177,4630,2420,-37.801784,144.96202,high,building named on the plan
+Hotel (Emu) at Bouverie and Pelham,landmark,MMBW detail plan 1177 (c. 1895),1177,3570,2420,-37.802523,144.961889,high,building named on the plan
+"Standard hotel, 148 Pelham Street",landmark,MMBW detail plan 1177 (c. 1895),1177,4050,2230,-37.80217,144.961784,high,building named on the plan
+Bush Inn,landmark,MMBW detail plans 1179 & 1180 (c. 1895),1179,3280,3740,-37.806206,144.961642,high,building named on the plan
+Savings Bank,landmark,MMBW detail plans 1179 & 1180 (c. 1895),1179,2780,3760,-37.806166,144.961205,high,building named on the plan
+Carlton Brewery,landmark,MMBW detail plans 1179 & 1180 (c. 1895),1179,3300,2900,-37.80564,144.961768,high,building named on the plan
+Commercial Hotel,landmark,MMBW detail plans 1179 & 1180 (c. 1895),1179,2780,1310,-37.804511,144.961523,high,building named on the plan
+Queensberry Hotel,landmark,MMBW detail plans 1179 & 1180 (c. 1895),1179,4300,1290,-37.804658,144.962845,high,building named on the plan
+Nugget Hotel,landmark,MMBW detail plans 1179 & 1180 (c. 1895),1179,2790,2050,-37.805012,144.961436,high,building named on the plan
+Victoria Hotel,landmark,MMBW detail plans 1179 & 1180 (c. 1895),1179,2770,1750,-37.804807,144.961457,high,building named on the plan
+Royal Hotel,landmark,MMBW detail plans 1179 & 1180 (c. 1895),1179,4300,3730,-37.806306,144.962528,high,building named on the plan
+Bowling Green,landmark,MMBW detail plans 1175 & 1176 (c. 1895),1175,3700,2000,-37.800487,144.960303,high,building named on the plan
+Reserve,landmark,MMBW detail plans 1175 & 1176 (c. 1895),1175,3760,2860,-37.801085,144.96025,high,building named on the plan
+Horse Market Hotel,landmark,MMBW detail plans 1175 & 1176 (c. 1895),1175,1030,1850,-37.800125,144.957848,high,building named on the plan
+Harvest Home Hotel,landmark,MMBW detail plans 1175 & 1176 (c. 1895),1175,1170,2500,-37.800586,144.957895,high,building named on the plan
+Mills Hotel,landmark,MMBW detail plans 1175 & 1176 (c. 1895),1175,4170,7500,-37.804321,144.960044,high,building named on the plan
+Royal Artillery Hotel,landmark,MMBW detail plans 1175 & 1176 (c. 1895),1175,2670,7050,-37.803866,144.95871,high,building named on the plan
+Manchester Arms Hotel,landmark,MMBW detail plans 1175 & 1176 (c. 1895),1175,2150,6000,-37.803092,144.958361,high,building named on the plan
+Barkly Arms Hotel,landmark,MMBW detail plans 1175 & 1176 (c. 1895),1175,2620,6050,-37.803172,144.958791,high,building named on the plan
+Sir Redmond Barry Hotel,landmark,MMBW detail plans 1175 & 1176 (c. 1895),1175,3400,5950,-37.803179,144.959526,high,building named on the plan
+Axle Works,landmark,MMBW detail plans 1175 & 1176 (c. 1895),1175,4140,6230,-37.803444,144.960176,high,building named on the plan
+Phoenix Foundry,landmark,MMBW detail plans 1175 & 1176 (c. 1895),1175,2600,6850,-37.803722,144.958671,high,building named on the plan
+Elizabeth Street & Queensberry Street,street corner,MMBW detail plans 1175 & 1176 (c. 1895),1175,2310,7270,-37.803983,144.958349,medium,"corner as drawn c. 1895, about 42 m west of today's corner; the junction was later rebuilt"
+Grattan Street & Sydney Road,street corner,MMBW detail plans 1175 & 1176 (c. 1895),1175,540,1330,-37.799719,144.957459,medium,"corner as drawn c. 1895, about 28 m west of today's corner; read near the sheet edge, outside the fitted corners"
