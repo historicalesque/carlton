@@ -7,6 +7,7 @@
         <title>Carlton Common Ground: Community Histories of the Campus Precinct 1850s-1950s</title>
         <author>Andy May</author>
         <author>Andy May</author>
+        <author>Andy May</author>
         <author>Common Ground</author>
       </titleStmt>
       <publicationStmt>
@@ -18,28 +19,28 @@
       </sourceDesc>
     </fileDesc>
     <revisionDesc status="draft">
-      <change when="2026-10-25" type="created">Contributed through the contribution form by Andy May, Andy May, Common Ground.</change>
+      <change when="2026-10-25" type="created">Contributed through the contribution form by Andy May, Andy May, Andy May, Common Ground.</change>
     </revisionDesc>
   </teiHeader>
   <text>
     <body>
       <div>
         <head><hi rend="bold">Welcome to Carlton Common Ground</hi></head>
-        <p>Discover the lost streets of south-west Carlton. Before the University of Melbourne extended its footprint across this extended precinct, the blocks between Grattan, Swanston, Victoria and Elizabeth streets were home to working families, shops, pubs, factories, churches and schools. The Common Ground Project brings their stories back to light.</p>
+        <p>Discover the lost streets of south-west Carlton. Before the University of Melbourne extended its footprint across this broader precinct from the later part of the twentieth century, the blocks between Grattan, Swanston, Victoria and Elizabeth streets were home to working families, shops, pubs, factories, churches and schools. The Common Ground Project brings their stories back to light.</p>
         <p>We’ve drawn on electoral rolls, city directories, rate books, maps and a range of other archives to build a searchable record of who lived and worked here.</p>
       </div>
       <div>
         <head><hi rend="bold">Start exploring</hi></head>
         <list rend="bulleted">
-          <item><ref target="carlton/search"><hi rend="bold">Find a person:</hi> search residents by name</ref></item>
-          <item><ref target="carlton/search"><hi rend="bold">Find a place:</hi> search for a street address, house name, lane, park or square</ref></item>
-          <item><ref target="carlton/search"><hi rend="bold">Find a business or organisation:</hi> search for a company, hotel, school, church or institution</ref></item>
-          <item><ref target="carlton/aToZ"><hi rend="bold">Find a topic:</hi> browse featured entries on the history of the area</ref></item>
+          <item><ref target="https://historicalesque.github.io/carlton/search"><hi rend="bold">Find a person:</hi> search residents by name</ref></item>
+          <item><ref target="https://historicalesque.github.io/carlton/search"><hi rend="bold">Find a place:</hi> search for a street address, house name, lane, park or square</ref></item>
+          <item><ref target="https://historicalesque.github.io/carlton/search"><hi rend="bold">Find a business or organisation:</hi> search for a company, hotel, school, church or institution</ref></item>
+          <item><ref target="https://historicalesque.github.io/carlton/aToZ"><hi rend="bold">Find a topic:</hi> browse featured entries on the history of the area</ref></item>
         </list>
       </div>
       <div>
         <head><hi rend="bold">Add your story</hi></head>
-        <p>This history belongs to the community, and it’s still being written. Know something we’ve missed? <ref target="carlton/new">Update an entry, share a family story, or suggest a new entry.</ref></p>
+        <p>This history belongs to the community, and it’s still being written. Know something we’ve missed? <ref target="https://historicalesque.github.io/carlton/new">Update an entry, share a family story, or suggest a new entry.</ref></p>
       </div>
     </body>
   </text>
