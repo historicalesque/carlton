@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="https://historicalesque.github.io/carlton/schema/carlton.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0" type="unknown" xml:lang="en">
+  <teiHeader>
+    <fileDesc>
+      <titleStmt>
+        <title>Charity Organisation Society</title>
+        <author>Andy May</author>
+      </titleStmt>
+      <publicationStmt>
+        <publisher>Common Ground</publisher>
+        <idno type="entry">Charity-Organisation-Society</idno>
+      </publicationStmt>
+      <sourceDesc>
+        <p>Contributed through the website. No sources listed.</p>
+      </sourceDesc>
+    </fileDesc>
+    <revisionDesc status="draft">
+      <change when="2026-10-25" type="created">Contributed through the contribution form by Andy May.</change>
+    </revisionDesc>
+  </teiHeader>
+  <text>
+    <body>
+      <p>Charity records contain information abut individuals and families who lived in the Carlton area. Mark Peel summarises the history of the Charity Organisation Society in his <ref target="https://www.emelbourne.net.au/biogs/EM00327b.htm">eMelbourne entry</ref>:</p>
+      <p>"Founded in 1887, the Charity Organisation Society (COS) borrowed from its British parent both a name and founding beliefs: that poverty could be solved by reforming poor people, and that the efforts of charitable bodies lacked effective co-ordination. In order to overcome what it saw as 'indiscriminate giving', the COS offered detailed investigations of each case and a centralised record system to ensure that only 'deserving types' received aid. The severe 1890s depression revealed the limits of COS influence and resources. The respect it earned by convening two Australasian charity conferences was quickly lost when, in 1893, its president, Professor E.E. Morris, sent a 'begging letter' to London highlighting the city's desperate economic plight.</p>
+      <p>The society enjoyed a revival in the 1920s, under new secretary S. Greig Smith, who co-ordinated regular case conferences at the new Exhibition Street headquarters, helping to pioneer 'case-work' and lay the foundations for the profession of social work. Its major function, however, was still assessing whether people who approached Melbourne's charities were 'truly' deserving. During the 1930s depression, the COS took a leading role in the distribution of unemployment relief, only to be overcome by the sheer weight of need (its four or five investigators dealt with thousands of cases each year) and a lack of co-operation from competing organisations."</p>
+      <p>The Charity Organisation Society changed its name to the Citizens' Welfare Service (CWS) in 1946.  material relevant to CCG is located in <ref target="https://library.unimelb.edu.au/asc/collections/archives/child-welfare-records/collections">The University of Melbourne Archives</ref>.</p>
+    </body>
+  </text>
+</TEI>
