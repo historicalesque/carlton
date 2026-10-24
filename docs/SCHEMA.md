@@ -131,7 +131,7 @@ Jekyll publishes compact copies in `data/` and a list of the files in `data/inde
 | `street` | string | all | Street name. Spellings are kept as transcribed, because variants can matter historically. |
 | `cardinality` | string | nearly all | Side of the street: `North`, `South`, `East` or `West`. Missing or empty on about 1,100 directory records. |
 | `pages` | string (a few numbers) | directory | Page reference(s) in the directory, such as `"172"` or `"241-242"`. |
-| `lat`, `lng` | number or `null` | some | Coordinates. About 6,300 directory records have them; only these appear on the map. |
+| `lat`, `lng` | number or `null` | some | Coordinates. About 6,550 directory records have them. A record without them is drawn between its mapped neighbours on the same street and side; a street side with none in a year is left off the map. |
 | `coordConfidence` | string | records with a point | How sure we are of the point: `high`, `medium` or `low`. Missing on points added before October 2026, which are not yet rated. |
 | `coordSource` | string | records with a point | Where the point comes from, e.g. `"MMBW detail plan 1177 (c. 1895)"` or `"Mitchell, from Google Maps (24 Oct 2026)"`. |
 | `coordNote` | string | some records with a point | How the point was worked out, e.g. `"house No. 93 on the plan"` or `"same name on this street in every directory from 1880 to 1890, where it is No. 55"`. |
