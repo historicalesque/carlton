@@ -545,6 +545,8 @@
 {"entityID":"Mrs. Whittlesee","source":"Directory","year":1872,"pages":"99","listing":"57 Whittlesee, Mrs., milliner","street":"Madeline Street","type":"Place","cardinality":"West","Occupation":"milliner"},
 {"entityID":"Alexander Mason (59 Madeline Street)","source":"Directory","year":1872,"pages":"99","listing":"59 Mason, Alexander, cooper","street":"Madeline Street","type":"Place","cardinality":"West"},
 {"entityID":"Intersection Madeline street and Carlton place","source":"Directory","year":1872,"pages":"99","listing":"Intersection Madeline street and Carlton place","street":"Madeline Street","type":"Intersection","cardinality":"West"},
+{"entityID":172794,"source":"Directory","year":1872,"pages":"99","listing":"McConoghy, James","street":"Carlton Place","type":"Place","cardinality":"West"},
+{"entityID":172795,"source":"Directory","year":1872,"pages":"99","listing":"Hudson, Thomas","street":"Carlton Place","type":"Place","cardinality":"West"},
 {"entityID":"Wallace, Mrs., dressmaker (Madeline Street, West side)","source":"Directory","year":1872,"pages":"99","listing":"Wallace, Mrs., dressmaker","street":"Madeline Street","type":"Place","cardinality":"West","Occupation":"dressmaker"},
 {"entityID":172797,"source":"Directory","year":1872,"pages":"99","listing":"63 M‘Kay, Charlotte","street":"Madeline Street","type":"Place","cardinality":"West"},
 {"entityID":"John Donaghy","source":"Directory","year":1872,"pages":"99","listing":"65 Donaghy, John, school","street":"Madeline Street","type":"Place","cardinality":"West"},
