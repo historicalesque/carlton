@@ -4,7 +4,8 @@
   <teiHeader>
     <fileDesc>
       <titleStmt>
-        <title>Common Ground: Community Histories of the Campus Precinct 1850s-1950s</title>
+        <title>Carlton Common Ground: Community Histories of the Campus Precinct 1850s-1950s</title>
+        <author>Andy May</author>
         <author>Andy May</author>
         <author>Common Ground</author>
       </titleStmt>
@@ -17,21 +18,28 @@
       </sourceDesc>
     </fileDesc>
     <revisionDesc status="draft">
-      <change when="2026-10-24" type="revised">The "Find a ..." lines made into a "What you can find" section, with links.</change>
-      <change when="2026-10-14" type="created">Contributed through the contribution form by Andy May, Common Ground.</change>
+      <change when="2026-10-25" type="created">Contributed through the contribution form by Andy May, Andy May, Common Ground.</change>
     </revisionDesc>
   </teiHeader>
   <text>
     <body>
-      <p>Welcome to Common Ground. Read more <ref target="about">about the project</ref>.</p>
       <div>
-        <head>What you can find</head>
+        <head><hi rend="bold">Welcome to Carlton Common Ground</hi></head>
+        <p>Discover the lost streets of south-west Carlton. Before the University of Melbourne extended its footprint across this extended precinct, the blocks between Grattan, Swanston, Victoria and Elizabeth streets were home to working families, shops, pubs, factories, churches and schools. The Common Ground Project brings their stories back to light.</p>
+        <p>We’ve drawn on electoral rolls, city directories, rate books, maps and a range of other archives to build a searchable record of who lived and worked here.</p>
+      </div>
+      <div>
+        <head><hi rend="bold">Start exploring</hi></head>
         <list rend="bulleted">
-          <item><hi rend="bold"><ref target="search">Find a person</ref></hi> by name, among the residents, shopkeepers and voters listed in street directories and electoral rolls.</item>
-          <item><hi rend="bold"><ref target="search">Find a place</ref></hi> by street address or house name, or look up a park, square or lane.</item>
-          <item><hi rend="bold"><ref target="search">Find a business or organisation</ref></hi>, from companies and hotels to schools, churches and other institutions.</item>
-          <item><hi rend="bold"><ref target="aToZ">Find a topic</ref></hi> in the featured pages, which tell the stories of the area and the records behind them.</item>
+          <item><ref target="carlton/search"><hi rend="bold">Find a person:</hi> search residents by name</ref></item>
+          <item><ref target="carlton/search"><hi rend="bold">Find a place:</hi> search for a street address, house name, lane, park or square</ref></item>
+          <item><ref target="carlton/search"><hi rend="bold">Find a business or organisation:</hi> search for a company, hotel, school, church or institution</ref></item>
+          <item><ref target="carlton/aToZ"><hi rend="bold">Find a topic:</hi> browse featured entries on the history of the area</ref></item>
         </list>
+      </div>
+      <div>
+        <head><hi rend="bold">Add your story</hi></head>
+        <p>This history belongs to the community, and it’s still being written. Know something we’ve missed? <ref target="carlton/new">Update an entry, share a family story, or suggest a new entry.</ref></p>
       </div>
     </body>
   </text>
