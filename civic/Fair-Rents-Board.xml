@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="https://historicalesque.github.io/carlton/schema/carlton.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0" type="unknown" xml:lang="en">
+  <teiHeader>
+    <fileDesc>
+      <titleStmt>
+        <title>Fair Rents Board</title>
+        <author>Andy May</author>
+      </titleStmt>
+      <publicationStmt>
+        <publisher>Common Ground</publisher>
+        <idno type="entry">Fair-Rents-Board</idno>
+      </publicationStmt>
+      <sourceDesc>
+        <p>Contributed through the website. No sources listed.</p>
+      </sourceDesc>
+    </fileDesc>
+    <revisionDesc status="draft">
+      <change when="2026-10-25" type="created">Contributed through the contribution form by Andy May.</change>
+    </revisionDesc>
+  </teiHeader>
+  <text>
+    <body>
+      <p>PROV has a range of records relating to Fair Rents Boards which may be of relevance to CCG, and describes the process as follows:</p>
+      <p>"The Fair Rents Boards were established in 1948 under provisions of the Landlord and Tenant (Amendment) Act 1948 … to determine the "fair rent" of "prescribed premises" … Either a lessor or a lessee could make an application for the fair rent of the premises to be determined. In making such a determination the Board was to take into account not only the value of the property, level of rates and state of repair, but also the financial position of both the lessor and lessee and any likely hardship which may be caused by varying the level of rent."</p>
+      <p><ref target="https://prov.vic.gov.au/archive/VA2586">https://prov.vic.gov.au/archive/VA2586</ref></p>
+    </body>
+  </text>
+</TEI>
