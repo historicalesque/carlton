@@ -299,6 +299,36 @@ window.MapCommon = (function () {
         return String(text).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
     }
 
+    // How sure we are of a record's point (coordConfidence, docs/SCHEMA.md),
+    // as a three-dot meter and a few words. A record drawn between its
+    // mapped neighbours (_computed) has no point of its own.
+    const CONFIDENCE = {
+        high:   { dots: 3, text: 'High confidence' },
+        medium: { dots: 2, text: 'Medium confidence' },
+        low:    { dots: 1, text: 'Low confidence' },
+    };
+
+    function locationHtml(entry) {
+        if (entry._computed) {
+            return `<p class="loc-confidence loc-estimated">${meter(0)} Estimated: drawn between the mapped listings either side of it on the same street</p>`;
+        }
+        if (entry.lat == null || entry.lng == null) return '';
+        const c = CONFIDENCE[entry.coordConfidence];
+        let html = c
+            ? `<p class="loc-confidence loc-${entry.coordConfidence}">${meter(c.dots)} ${c.text}</p>`
+            : `<p class="loc-confidence loc-unrated">${meter(0)} Not yet rated</p>`;
+        const details = [];
+        if (entry.coordSource) details.push(`<strong>Source:</strong> ${escapeHtml(entry.coordSource)}`);
+        if (entry.coordNote) details.push(`<strong>How:</strong> ${escapeHtml(entry.coordNote)}`);
+        if (details.length) html += `<p class="loc-details">${details.join('<br>')}</p>`;
+        return html;
+    }
+
+    function meter(filled) {
+        const dots = [0, 1, 2].map(i => `<span class="loc-dot${i < filled ? ' on' : ''}"></span>`).join('');
+        return `<span class="loc-meter" aria-hidden="true">${dots}</span>`;
+    }
+
     // ── Details modal (markup in _includes/map-details-modal.html) ──
     let modalEls = null;
     let modalOpenedAt = 0;
@@ -313,6 +343,8 @@ window.MapCommon = (function () {
             body:    document.getElementById('modal-body'),
             link:    document.getElementById('modal-link'),
             coords:  document.getElementById('modal-coords'),
+            location:  document.getElementById('modal-location'),
+            community: document.getElementById('modal-community'),
         };
         const closeBtn = document.getElementById('close-modal-btn');
         const close = () => {
@@ -384,7 +416,9 @@ window.MapCommon = (function () {
         const linkText = name ? `Read the entry: ${escapeHtml(name)} →` : 'Start an entry';
         m.link.innerHTML = `<p><a class="modal-entry-link${name ? '' : ' quiet'}" href="civic?id=${encodeURIComponent(name || entry.entityID)}">${linkText}</a></p>`;
 
-        // 4. Coordinates
+        // 4. Location: how sure we are of the point, where it comes from,
+        // and the coordinates
+        m.location.innerHTML = locationHtml(entry);
         const lat = pos ? pos.lat : entry.lat;
         const lng = pos ? pos.lng : entry.lng;
         if (lat != null && lng != null) {
@@ -392,6 +426,7 @@ window.MapCommon = (function () {
         } else {
             m.coords.innerText = 'Unknown';
         }
+        m.community.innerHTML = `Common Ground is a community project, and we're always improving the map. Know where this was? <a href="civic?id=${encodeURIComponent(name || entry.entityID)}">Suggest a correction</a>.`;
 
         if (m.modal.style.display !== 'flex') modalReturnFocus = document.activeElement;
         m.modal.style.display = 'flex';
