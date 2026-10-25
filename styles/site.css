@@ -1432,6 +1432,21 @@ html.map3d-page, body.map3d-page {
 .modal-entry-link.quiet { font-weight: 400; color: var(--ink-faint); }
 #modal-link p { margin: 0 0 14px; }
 
+/* Details popup: how sure we are of the record's point (coordConfidence) */
+.modal-label {
+    font: 11px var(--font-ui); color: var(--ink-faint);
+    text-transform: uppercase; letter-spacing: .04em;
+}
+.loc-confidence { margin: 6px 0 4px; font: 700 13px var(--font-ui); color: var(--ink-soft); }
+.loc-unrated, .loc-estimated { font-weight: 400; color: var(--ink-faint); }
+.loc-meter { display: inline-flex; gap: 3px; margin-right: 6px; vertical-align: 1px; }
+.loc-dot { width: 8px; height: 8px; border-radius: 50%; border: 1px solid var(--sage-dark); }
+.loc-dot.on { border-color: var(--moss); background: var(--moss); }
+.loc-low .loc-dot.on { border-color: #B8862B; background: #B8862B; }
+.loc-details { margin: 0 0 8px; font: 12px/1.5 var(--font-serif); color: var(--ink-soft); }
+.modal-community { margin: 12px 0 0; font: italic 12px/1.5 var(--font-serif); color: var(--ink-faint); }
+.modal-community a { color: var(--moss); }
+
 .map-focus-ring { animation: map-focus-pulse 1.6s ease-in-out infinite; filter: drop-shadow(0 0 2px rgba(0, 0, 0, 0.8)); }
 @keyframes map-focus-pulse {
     0%, 100% { stroke-opacity: 1; }
