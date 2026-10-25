@@ -5,6 +5,7 @@
     <fileDesc>
       <titleStmt>
         <title>Street Numbering</title>
+        <author>Andy May</author>
         <author>Barbara Minchinton</author>
         <author>Barbara Minchinton</author>
       </titleStmt>
@@ -17,14 +18,19 @@
       </sourceDesc>
     </fileDesc>
     <revisionDesc status="draft">
-      <change when="2026-10-22" type="created">Contributed through the contribution form by Barbara Minchinton, Barbara Minchinton.</change>
+      <change when="2026-10-25" type="created">Contributed through the contribution form by Andy May, Barbara Minchinton, Barbara Minchinton.</change>
     </revisionDesc>
   </teiHeader>
   <text>
     <body>
       <p>If you are looking for a particular property, and you have obtained the street number from the directories or elsewhere, you need to be aware that Melbourne’s street numbers were officially changed from 1889, although unofficial use of old numbers continued in some areas.</p>
       <p>In the gold rush era Elizabeth Street was deemed the beginning of two separate series of numbers for the streets crossing it – Bourke Street West and Bourke Street East, for example. Owners could take any number for their property providing it was not already in use, but confusion arose with the proliferation of rights-of-way and the erection of arcades etc, and some owners also disliked the diminutive impression of ‘a’ or ‘b’ on their building number. When the Melbourne City Council decided to renumber the city in 1887, they adopted a system using odd numbers on one side of a street and even numbers on the other (<hi rend="italic">The Age</hi>, 27 August 1887, p.14). The physical work of renumbering buildings in the city took place throughout 1888-89, and the new numbers first appeared in the <hi rend="italic">Sands &amp; McDougall Directory</hi> for 1889 (<hi rend="italic">The Argus</hi>, 17 January 1889, p. 4).</p>
-      <p>For a more detailed history of street numbering Melbourne, see <ref target="https://www.hothamhistory.org.au/%EF%BB%BFstreet-numbers-have-a-history-of-their-own/">https://www.hothamhistory.org.au/%EF%BB%BFstreet-numbers-have-a-history-of-their-own/</ref> accessed 22 October 2026.</p>
+      <p>It seems that Bouverie Street may have been one of those renumbered. A funeral notice in <hi rend="italic">T</hi><ref target="http://nla.gov.au/nla.news-article196995283"><hi rend="italic">he Age (</hi>21 March 1889: 8)</ref> notes that the funeral of James McMahon will leave his late residence, 57 old number, 85 new, Bouverie Street, Carlton.</p>
+      <p>For a more information on the history of street numbering in Melbourne, see:</p>
+      <p><ref target="https://www.emelbourne.net.au/biogs/EM01434b.htm">Andrew May, 'Street Numbering', eMelbourne.</ref></p>
+      <p><ref target="https://www.hothamhistory.org.au/%EF%BB%BFstreet-numbers-have-a-history-of-their-own/">https://www.hothamhistory.org.au/%EF%BB%BFstreet-numbers-have-a-history-of-their-own/</ref> accessed 22 October 2026.</p>
+      <p>“By the late 1860s problems were occurring in relation to street numbers, particularly as new buildings went up. Owners could take any number for a new property as long as it was not already used, but complained that properties numbered, for example, 63a, gave the impression that their establishments were insignificant. Numbering of the new Royal Arcade also caused some confusion, as the street comprised not only new buildings, but various temporary structures occupying sites, arcade entrances, inferior buildings and rights-of-way. Further numbering problems occurred in Collins Street in the early 1870s, while in 1880 the Mutual Assurance Society in Collins Street West, allotted No. 75 in the 1880 Sands and McDougall Melbourne Directory, claimed that such a number belonged to the Bank of Australasia. This suggested, according to the Assurance Society, that their number should have been No. 79; yet that number was being used by the Imperial Company. In 1882 there were calls for attention to be paid to defective numbering, particularly in the western end of the city where some houses had the same number as their neighbours and others were given no number at all. Butchers, bakers, milkmen, postmen, messenger boys and business patrons alike were all inconvenienced by inadequate numbering. The old system was discontinued in the 1880s of dividing certain east-west streets on either side of Elizabeth Street into two numbering zones. By 1890, despite occasional problems with enumeration of new buildings, Melbourne’s street numbering system was known throughout the country as the best in the colonies, and cities such as Brisbane requested details in order to upgrade their own irregular or incomplete systems. Most city buildings carried the MCC’s regulation number, and those claiming some significance, such as the E. S. &amp; A. Bank, were allowed to substitute numbers ‘more suited to its architectural style’.”</p>
+      <p>Andrew May, <hi rend="italic">Melbourne Street Life</hi> (ASP 2017): 44.</p>
     </body>
   </text>
 </TEI>
