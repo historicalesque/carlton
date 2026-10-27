@@ -58,6 +58,7 @@ window.TEICompare = (function () {
     const body = all(root, 'body')[0];
     if (body) for (const el of body.getElementsByTagNameNS(NS, '*')) {
       if (el.localName === 'head') blocks.push(`Heading: ${el.textContent}`);
+      else if (el.localName === 'p' && el.parentNode.localName === 'quote') blocks.push(`Quote: ${el.textContent}`);
       else if (el.localName === 'p' || el.localName === 'item') blocks.push(el.textContent);
       else if (el.localName === 'row') blocks.push(`Table row: ${[...el.children].map((c) => norm(c.textContent)).join(' | ')}`);
     }

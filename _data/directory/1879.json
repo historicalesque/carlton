@@ -734,7 +734,7 @@
 {"entityID":234409,"source":"Directory","year":1879,"pages":"76","listing":"31 Feord & Curtis, butchrs","street":"Pelham Street","type":"Place","kind":"org","cardinality":"North"},
 {"entityID":234410,"source":"Directory","year":1879,"pages":"76","listing":"31 Tugwell, Mrs","street":"Pelham Street","type":"Place","kind":"person","cardinality":"North"},
 {"entityID":"Thomas Walker","source":"Directory","year":1879,"pages":"76","listing":"33 Walker, Thomas","street":"Pelham Street","type":"Place","kind":"person","cardinality":"North"},
-{"entityID":234412,"source":"Directory","year":1879,"pages":"76","listing":"Otago htl, Collins, Jer.","street":"Pelham Street","type":"Place","kind":"org","cardinality":"North"},
+{"entityID":"Otago Hotel","source":"Directory","year":1879,"pages":"76","listing":"Otago htl, Collins, Jer.","street":"Pelham Street","type":"Place","kind":"org","cardinality":"North"},
 {"entityID":234413,"source":"Directory","year":1879,"pages":"76","listing":"39 Isaby, Miss Catherine","street":"Pelham Street","type":"Place","kind":"person","cardinality":"North"},
 {"entityID":234414,"source":"Directory","year":1879,"pages":"76","listing":"41 Kelly, Matthew","street":"Pelham Street","type":"Place","kind":"person","cardinality":"North"},
 {"entityID":"Patrick Kiernan (Pelham Street)","source":"Directory","year":1879,"pages":"76","listing":"41 Kiernan, Patrick","street":"Pelham Street","type":"Place","kind":"person","cardinality":"North"},

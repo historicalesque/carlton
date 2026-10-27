@@ -45,6 +45,29 @@ window.TEIEntry = (function () {
   const trim = (v) => (has(v) ? String(v).trim() : '');
   const filled = (rows, ...keys) => (rows || []).filter((r) => keys.some((k) => has(r[k])));
 
+  /* ---------- Links to the site itself ----------
+     Contributors often paste a page's full address, e.g.
+     https://historicalesque.github.io/carlton/civic?id=Lincoln%20Square.
+     Links to this site are kept relative (civic?id=Lincoln%20Square), so
+     they open in place and keep working wherever the site is served. */
+  const SITE_ROOTS = ['https://historicalesque.github.io/carlton/',
+    document.currentScript ? document.currentScript.src.replace(/scripts\/tei\.js(\?.*)?$/, '') : ''].filter(Boolean);
+  function local(href) {
+    let t = trim(href);
+    if (/^(www\.)?historicalesque\.github\.io\//i.test(t)) t = `https://${t}`;
+    let url;
+    try { url = new URL(t); } catch (e) { return t; }
+    for (const root of SITE_ROOTS) {
+      const base = new URL(root);
+      const path = url.pathname.replace(/^\/+/, '/');
+      if (url.hostname.replace(/^www\./, '') !== base.hostname || !/^https?:$/.test(url.protocol)) continue;
+      if (path === base.pathname.replace(/\/$/, '') || path.startsWith(base.pathname)) {
+        return path.slice(base.pathname.length) + url.search + url.hash || './';
+      }
+    }
+    return t;
+  }
+
   /* ---------- Dates ----------
      People type dates loosely ("c. 1856", "March 1856", "1856-03-04").
      The ISO value goes in @when/@from/@to only when we can read one. */
@@ -103,7 +126,8 @@ window.TEIEntry = (function () {
      Paragraphs before the first heading go straight in <body>; each heading
      starts a <div> with that heading as its <head>. Bold / italic / underline
      become <hi rend>, links become <ref target>, lists become <list rend>,
-     and pasted tables stay tables. */
+     block quotes become <quote> (one <p> per line, so lines quoted one after
+     another share a <quote>), and pasted tables stay tables. */
   const REND = { STRONG: 'bold', B: 'bold', EM: 'italic', I: 'italic', U: 'underline' };
 
   function article(html, el) {
@@ -111,6 +135,7 @@ window.TEIEntry = (function () {
     const intro = [];
     const divs = [];
     let current = intro;
+    let quote = null; // the <quote> the previous block quote line went into
 
     function inline(node) {
       const out = [];
@@ -121,7 +146,7 @@ window.TEIEntry = (function () {
         } else if (child.nodeType === 1) {
           const tag = child.tagName;
           if (tag === 'BR') out.push(' ');
-          else if (tag === 'A' && has(child.getAttribute('href'))) out.push(el('ref', { target: child.getAttribute('href') }, inline(child)));
+          else if (tag === 'A' && has(child.getAttribute('href'))) out.push(el('ref', { target: local(child.getAttribute('href')) }, inline(child)));
           else if (REND[tag]) out.push(el('hi', { rend: REND[tag] }, inline(child)));
           else out.push(...inline(child));
         }
@@ -145,7 +170,15 @@ window.TEIEntry = (function () {
       }
       if (node.nodeType !== 1) return;
       const tag = node.tagName;
-      if (/^H[1-6]$/.test(tag)) {
+      if (tag !== 'BLOCKQUOTE') quote = null;
+      if (tag === 'BLOCKQUOTE') {
+        // Quill writes each quoted line as its own <blockquote>; pasted HTML may hold <p>s
+        const lines = node.querySelector('p') ? [...node.children].map(inline) : [inline(node)];
+        const paras = lines.filter((parts) => !blank(parts)).map((parts) => el('p', null, tidy(parts)));
+        if (!paras.length) return;
+        if (!quote) { quote = el('quote'); current.push(quote); }
+        paras.forEach((para) => quote.appendChild(para));
+      } else if (/^H[1-6]$/.test(tag)) {
         const head = tidy(inline(node));
         current = [];
         divs.push({ head: blank(head) ? null : head, blocks: current });
@@ -196,7 +229,7 @@ window.TEIEntry = (function () {
           el('idno', { type: 'entry' }, trim(entry.recordId) || 'unassigned')),
         el('sourceDesc', null, sources.length
           ? el('listBibl', null, sources.map((s) => el('bibl', null,
-              has(s.href) ? el('ref', { target: trim(s.href) }, trim(s.text) || trim(s.href)) : trim(s.text))))
+              has(s.href) ? el('ref', { target: local(s.href) }, trim(s.text) || trim(s.href)) : trim(s.text))))
           : el('p', null, 'Contributed through the website. No sources listed.'))),
       el('revisionDesc', { status: entry.status || 'draft' },
         el('change', { when: today, type: 'created' },
@@ -274,7 +307,7 @@ window.TEIEntry = (function () {
         active: '#subject',
         // Entries are addressed by name on the site (civic?id=…), so a
         // related entry without a link still gets one.
-        passive: trim(r.href) || new URL(`civic?id=${encodeURIComponent(trim(r.name))}`, document.baseURI).href,
+        passive: has(r.href) ? local(r.href) : `civic?id=${encodeURIComponent(trim(r.name))}`,
         ...range(r.from, r.to)
       }, el('desc', null, trim(r.name))))) : null
     ].filter(Boolean);
@@ -359,7 +392,8 @@ window.TEIEntry = (function () {
       out.push({ level: 'warn', text: 'Dates, other names and occupations are only kept for a person, business, family or place. Choose what the entry is about, or they\'ll be left out.' });
     }
 
-    const urlOk = (u) => /^https?:\/\/\S+$/i.test(trim(u));
+    // A full address, or a page on this site (civic?id=…, people)
+    const urlOk = (u) => /^https?:\/\/\S+$/i.test(local(u)) || /^[\w-]+(\/[\w-]*)*\/?([?#]\S*)?$/.test(local(u));
     filled(entry.sources, 'href').forEach((s) => {
       if (!urlOk(s.href)) out.push({ level: 'warn', text: `Source link "${trim(s.href)}" should start with http:// or https://.` });
     });
@@ -409,6 +443,10 @@ window.TEIEntry = (function () {
           case 'list': {
             const tag = c.getAttribute('rend') === 'numbered' ? 'ol' : 'ul';
             return `<${tag}>${kids(c, 'item').map((i) => `<li>${mixed(i)}</li>`).join('')}</${tag}>`;
+          }
+          case 'quote': {
+            const paras = kids(c, 'p').filter((p) => p.textContent.trim());
+            return paras.length ? `<blockquote>${paras.map((p) => `<p>${mixed(p)}</p>`).join('')}</blockquote>` : '';
           }
           case 'table':
             return `<div class="pv-table"><table><tbody>${kids(c, 'row').map((r) =>
@@ -575,7 +613,7 @@ window.TEIEntry = (function () {
       return { text: text(b), href: ref ? ref.getAttribute('target') || '' : '' };
     });
 
-    // The article as the HTML Quill edits: headings, paragraphs, lists, tables
+    // The article as the HTML Quill edits: headings, paragraphs, lists, quotes, tables
     const mixed = (node) => [...node.childNodes].map((ch) => {
       if (ch.nodeType === 3) return esc(ch.textContent);
       if (ch.nodeType !== 1) return '';
@@ -594,6 +632,8 @@ window.TEIEntry = (function () {
           const tag = ch.getAttribute('rend') === 'numbered' ? 'ol' : 'ul';
           return `<${tag}>${kids(ch, 'item').map((i) => `<li>${mixed(i)}</li>`).join('')}</${tag}>`;
         }
+        // Quill keeps one <blockquote> per line
+        case 'quote': return kids(ch, 'p').filter((p) => p.textContent.trim()).map((p) => `<blockquote>${mixed(p)}</blockquote>`).join('');
         case 'table':
           return `<table><tbody>${kids(ch, 'row').map((r) => `<tr>${kids(r, 'cell').map((cell) => `<td>${mixed(cell)}</td>`).join('')}</tr>`).join('')}</tbody></table>`;
         case 'div': return blocks(ch);
