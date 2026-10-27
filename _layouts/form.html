@@ -783,7 +783,7 @@
         href: pageOf(`Sands-McDougall-Directory-${record.year}`)
       };
     }
-    const where = String(record.Notes || '').split(/Electoral Roll,\s*/i)[1];
+    const where = String(record.Roll || '').split(/Electoral Roll,\s*/i)[1];
     const who = [`${record['Given Names'] || ''} ${record.Surname || ''}`.trim(), record.Address, record.Occupation].filter(Boolean).join(', ');
     return { text: `Electoral roll, ${record.year}${where ? `, ${where}` : ''}: ${who}`, href: pageOf('Electoral-Rolls') };
   }

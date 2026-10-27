@@ -1300,6 +1300,11 @@ html.map3d-page, body.map3d-page {
     transition: background-color 0.15s ease, color 0.15s ease;
 }
 
+.listing-note {
+    font-size: 0.85rem;
+    color: var(--ink-faint);
+}
+
 .listing-item a:hover {
     background-color: var(--sage-light);
     color: var(--moss-deep);
