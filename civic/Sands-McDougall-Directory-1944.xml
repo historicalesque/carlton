@@ -19,6 +19,7 @@
     <revisionDesc status="draft">
       <change when="2026-10-05" type="created">Page for a source, drafted from State Library Victoria records.</change>
       <change when="2026-10-10" type="revised">Added the project area and the page range.</change>
+      <change when="2026-10-27" type="revised">Added the listings inside the project area, stored as the 1945 directory.</change>
     </revisionDesc>
   </teiHeader>
   <standOff>
@@ -32,8 +33,8 @@
     <body>
       <p><hi rend="italic">Sands &amp; McDougall's directory of Victoria and Canberra, A.C.T., 1944–1945</hi>. 2,511 pages.</p>
       <p>State Library Victoria has digitised this directory, and you can <ref target="https://viewer.slv.vic.gov.au/?entity=IE13973686&amp;mode=browse">read it online</ref>.</p>
-      <p>Listings from the 1944–1945 directory are not on the site yet, and the page range of its Carlton section is still to be noted.</p>
-      <p>The project covers the area south of Grattan Street, west of Swanston Street, east of Elizabeth Street and north of Victoria Street.</p>
+      <p>The listings here come from the 1944–1945 directory's Carlton section, pp. 213–221. They are stored, mapped and searched as the 1945 directory.</p>
+      <p>The project covers the area south of Grattan Street, west of Swanston Street, east of Elizabeth Street and north of Victoria Street, and only the listings inside it are kept here.</p>
     </body>
   </text>
 </TEI>

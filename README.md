@@ -174,7 +174,7 @@ java -jar saxon.jar -s:carlton.compiled.odd -xsl:Stylesheets/odds/odd2relax.xsl 
 The records come from public-domain sources: the **Sands & McDougall Directories of Victoria** and **Victorian electoral rolls**. There is one JSON file per source and year:
 
 ```
-_data/directory/1857.json … 1940.json
+_data/directory/1857.json … 1945.json
 _data/electoral-roll/1905.json, 1919.json, 1928.json
 ```
 
@@ -191,7 +191,7 @@ Pages load the data through `scripts/data.js` (`CGData.load(...)`, `CGData.forEn
 
 | Source | Years | Records |
 |---|---|---|
-| Directory (Sands & McDougall) | 1857, 1858, 1859, 1860, 1861, 1862, 1863, 1864, 1865, 1866, 1867, 1868, 1869, 1870, 1871, 1872, 1873, 1874, 1875, 1876, 1877, 1878, 1879, 1880, 1885, 1890, 1895, 1900, 1905, 1910, 1915, 1920, 1925, 1930, 1935, 1940 | ~27,000 |
+| Directory (Sands & McDougall) | 1857, 1858, 1859, 1860, 1861, 1862, 1863, 1864, 1865, 1866, 1867, 1868, 1869, 1870, 1871, 1872, 1873, 1874, 1875, 1876, 1877, 1878, 1879, 1880, 1885, 1890, 1895, 1900, 1905, 1910, 1915, 1920, 1925, 1930, 1935, 1940, 1945 | ~27,000 |
 | Electoral roll | 1905, 1919, 1928 | ~2,100 |
 
 Typical record:
