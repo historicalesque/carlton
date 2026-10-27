@@ -1313,7 +1313,7 @@ function recordMatchesSearch(r, term){
   if(!term) return true;
   const hay = [
     r.entityID, r.source, r.year, r.street, r.type, r.cardinality, r.listing,
-    r.Surname, r['Given Names'], r.Address, r.Occupation, r.pages, r['Registration Number']
+    r.Surname, r['Given Names'], r.Address, r.Occupation, r.pages, r['Registration Number'], r.Notes
   ].filter(v => v !== undefined && v !== null).join(' ').toLowerCase();
   return hay.includes(term);
 }
@@ -1545,6 +1545,10 @@ function buildForm(rec){
     ${field('f_lng', 'Longitude', false, `<input type="text" id="f_lng" value="${rec && rec.lng !== undefined ? rec.lng : ''}">`)}
   </div>`;
 
+  html += field('f_notes', 'Note', false,
+    `<textarea id="f_notes">${escapeHtml(rec && rec.Notes !== undefined ? rec.Notes : '')}</textarea>`,
+    `<div class="hint">Optional. Anything a reader should know about this record, e.g. "Printed without a space after the comma". Shown with the record in search results and on the map.</div>`);
+
   // Directory-only
   html += `<div id="directoryFields">`;
   html += field('f_pages', 'Page(s)', false, `<input type="text" id="f_pages" value="${escapeHtml(rec && rec.pages !== undefined ? rec.pages : '')}">`);
@@ -1685,6 +1689,7 @@ document.getElementById('saveEdit').addEventListener('click', () => {
     source, year: Number(year), type, street, cardinality, listing
   };
   if(lat && lng){ base.lat = Number(lat); base.lng = Number(lng); }
+  const notes = document.getElementById('f_notes').value.trim();
 
   let rec;
   if(source === 'Directory'){
@@ -1695,6 +1700,7 @@ document.getElementById('saveEdit').addEventListener('click', () => {
     rec = reorderDirectory(rec);
     const occ = document.getElementById('f_occDir').value.trim();
     if(occ) rec.Occupation = occ;
+    if(notes) rec.Notes = notes;
   } else {
     rec = Object.assign({}, base);
     const regNum = document.getElementById('f_regNum').value.trim();
@@ -1715,16 +1721,19 @@ document.getElementById('saveEdit').addEventListener('click', () => {
       street, cardinality,
       Occupation: occ || undefined,
       Gender: gender || undefined,
+      Notes: notes || undefined,
       lat: rec.lat, lng: rec.lng
     });
   }
 
-  // Keep any fields the form doesn't show (e.g. Notes) when editing a record.
+  // Keep any fields the form doesn't show (e.g. Subdivision, Roll) when editing a record.
   if(editingUid !== null){
     const old = records.find(r => r._uid === editingUid);
     const formFields = new Set(['entityID','source','year','pages','listing','street','type','cardinality','lat','lng','Occupation',
-      'Registration Number','Surname','Given Names','Address','Street Number','Gender','_uid']);
+      'Registration Number','Surname','Given Names','Address','Street Number','Gender','Notes','_uid']);
     Object.keys(old).forEach(k => { if(!formFields.has(k) && rec[k] === undefined) rec[k] = old[k]; });
+    // Put the kept fields back in their usual place (e.g. Subdivision before lat).
+    rec = source === 'Directory' ? reorderDirectory(rec) : reorderElectoral(rec);
   }
 
   if(editingUid === null){
@@ -1740,16 +1749,16 @@ document.getElementById('saveEdit').addEventListener('click', () => {
   render();
 });
 
-// Fields in the usual order; any others (e.g. Notes) follow at the end.
+// Fields in the usual order; any others follow at the end.
 function reorderDirectory(rec){
-  const order = ['entityID','source','year','pages','listing','street','type','cardinality','lat','lng','Occupation'];
+  const order = ['entityID','source','year','pages','listing','street','type','cardinality','lat','lng','Occupation','Notes'];
   const out = {};
   order.forEach(k => { if(rec[k] !== undefined) out[k] = rec[k]; });
   Object.keys(rec).forEach(k => { if(!(k in out) && rec[k] !== undefined) out[k] = rec[k]; });
   return out;
 }
 function reorderElectoral(rec){
-  const order = ['entityID','source','type','year','listing','Registration Number','Surname','Given Names','Address','Street Number','street','cardinality','Occupation','Gender','Subdivision','lat','lng'];
+  const order = ['entityID','source','type','year','listing','Registration Number','Surname','Given Names','Address','Street Number','street','cardinality','Occupation','Gender','Subdivision','Roll','Notes','lat','lng'];
   const out = {};
   order.forEach(k => { if(rec[k] !== undefined && rec[k] !== '') out[k] = rec[k]; });
   Object.keys(rec).forEach(k => { if(!(k in out) && rec[k] !== undefined && rec[k] !== '') out[k] = rec[k]; });

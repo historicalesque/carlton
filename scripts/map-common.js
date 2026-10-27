@@ -403,6 +403,7 @@ window.MapCommon = (function () {
             if (details.length > 0) {
                 bodyHtml += `<div class="electoral-details">${details.join('<br>')}</div>`;
             }
+            if (entry.Notes) bodyHtml += `<p><strong>Note:</strong> ${escapeHtml(entry.Notes)}</p>`;
         } else if (source === 'directory') {
             if (entry.type) bodyHtml += `<p><strong>Type:</strong> ${entry.type}</p>`;
             if (entry.Notes) bodyHtml += `<p><strong>Note:</strong> ${escapeHtml(entry.Notes)}</p>`;

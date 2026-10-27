@@ -135,7 +135,9 @@ Jekyll publishes compact copies in `data/` and a list of the files in `data/inde
 | `coordConfidence` | string | records with a point | How sure we are of the point: `high`, `medium` or `low`. Missing on points added before October 2026, which are not yet rated. |
 | `coordSource` | string | records with a point | Where the point comes from, e.g. `"MMBW detail plan 1177 (c. 1895)"` or `"Mitchell, from Google Maps (24 Oct 2026)"`. |
 | `coordNote` | string | some records with a point | How the point was worked out, e.g. `"house No. 93 on the plan"` or `"same name on this street in every directory from 1880 to 1890, where it is No. 55"`. |
-| `Occupation`, `Notes` | string | electoral rolls, some directory | |
+| `Occupation` | string | electoral rolls, some directory | |
+| `Notes` | string | some | A remark about the record, e.g. `"Printed without a space after the comma"`. Shown as "Note: …" with the record. |
+| `Roll` | string | electoral rolls (1905, 1919) | The roll's heading as printed, e.g. `"Electoral Roll, Division of Melbourne, Cardigan Polling Place"`. Held in `Notes` before October 2026. |
 | `Surname`, `Given Names`, `Gender` | string | electoral rolls | |
 | `Subdivision` | string | electoral rolls | The roll's subdivision, e.g. `"Cardigan"` (every record so far). |
 | `Registration Number` | number | electoral rolls | Kept in the data and searchable in the admin data editor, but not shown at the start of a listing or matched by the public search. |
@@ -151,7 +153,7 @@ Directory example:
 Electoral-roll example:
 
 ```json
-{"entityID":1001209,"source":"Electoral roll","type":"Voter","year":1919,"listing":"Clara Larkin, 29 Barkly Place, home duties, F","Registration Number":1260,"Surname":"Larkin","Given Names":"Clara","Address":"29 Barkly Place","Street Number":"29","street":"Barkly Place","cardinality":"North","Occupation":"home duties","Gender":"F","Subdivision":"Cardigan","Notes":"…","lat":-37.8029738,"lng":144.9613147}
+{"entityID":1001209,"source":"Electoral roll","type":"Voter","year":1919,"listing":"Clara Larkin, 29 Barkly Place, home duties, F","Registration Number":1260,"Surname":"Larkin","Given Names":"Clara","Address":"29 Barkly Place","Street Number":"29","street":"Barkly Place","cardinality":"North","Occupation":"home duties","Gender":"F","Subdivision":"Cardigan","Roll":"…","lat":-37.8029738,"lng":144.9613147}
 ```
 
 ### Map points: `_data/points.csv`
@@ -184,7 +186,7 @@ Roadmap §1 asks the team to agree a cleaner schema. A suggestion to start from,
 
 | Today | Proposed |
 |---|---|
-| `Surname`, `Given Names`, `Registration Number`, `Street Number`, `Address`, `Occupation`, `Gender`, `Subdivision`, `Notes` | `surname`, `givenNames`, `registrationNumber`, `streetNumber`, `address`, `occupation`, `gender`, `subdivision`, `notes` |
+| `Surname`, `Given Names`, `Registration Number`, `Street Number`, `Address`, `Occupation`, `Gender`, `Subdivision`, `Roll`, `Notes` | `surname`, `givenNames`, `registrationNumber`, `streetNumber`, `address`, `occupation`, `gender`, `subdivision`, `roll`, `notes` |
 | `entityID` (number or string) | `id`: always the record's own number; `linkId`: the shared name for linked records, only when set |
 | `pages` (string or number) | `pages`: always a string |
 | `cardinality` | `side` |
