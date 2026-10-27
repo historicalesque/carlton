@@ -20,6 +20,7 @@
     </fileDesc>
     <revisionDesc status="draft">
       <change when="2026-10-25" type="created">Contributed through the contribution form by Andy May, Andy May, Andy May, Common Ground.</change>
+      <change when="2026-10-27" type="revised">The "Start exploring" links open searches limited to people, places, businesses or topics.</change>
     </revisionDesc>
   </teiHeader>
   <text>
@@ -32,10 +33,10 @@
       <div>
         <head><hi rend="bold">Start exploring</hi></head>
         <list rend="bulleted">
-          <item><ref target="https://historicalesque.github.io/carlton/search"><hi rend="bold">Find a person:</hi> search residents by name</ref></item>
-          <item><ref target="https://historicalesque.github.io/carlton/search"><hi rend="bold">Find a place:</hi> search for a street address, house name, lane, park or square</ref></item>
-          <item><ref target="https://historicalesque.github.io/carlton/search"><hi rend="bold">Find a business or organisation:</hi> search for a company, hotel, school, church or institution</ref></item>
-          <item><ref target="https://historicalesque.github.io/carlton/aToZ"><hi rend="bold">Find a topic:</hi> browse featured entries on the history of the area</ref></item>
+          <item><ref target="https://historicalesque.github.io/carlton/search?kind=person"><hi rend="bold">Find a person:</hi> search residents by name in the directories, electoral rolls and entries</ref></item>
+          <item><ref target="https://historicalesque.github.io/carlton/search?kind=place"><hi rend="bold">Find a place:</hi> search for a street, lane, square or building</ref></item>
+          <item><ref target="https://historicalesque.github.io/carlton/search?kind=org"><hi rend="bold">Find a business or organisation:</hi> search for a shop, hotel, factory, school, church or institution</ref></item>
+          <item><ref target="https://historicalesque.github.io/carlton/search?kind=topic"><hi rend="bold">Find a topic:</hi> browse entries on the history of the area</ref></item>
         </list>
       </div>
       <div>

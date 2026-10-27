@@ -252,6 +252,8 @@ body {
     background: var(--paper-deep); border: 1px solid var(--paper-line); padding: 12px 14px;
 }
 .search-years { border: 0; padding: 0; margin: 0; display: flex; flex-wrap: wrap; gap: 6px; }
+.search-kinds { margin: -6px 0 14px; align-items: baseline; }
+.search-kinds legend { float: left; margin: 0 6px 0 0; }
 .search-years legend, .search-street {
     font: 0.72rem var(--font-mono); letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-faint);
     margin-bottom: 6px;

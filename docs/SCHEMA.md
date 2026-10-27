@@ -124,9 +124,10 @@ Jekyll publishes compact copies in `data/` and a list of the files in `data/inde
 | Field | Type | In | Notes |
 |---|---|---|---|
 | `entityID` | number or string | all | See [below](#entityid). |
-| `source` | string | all | `"Directory"` or `"Electoral roll"`. Decides whether a record appears under Places or People. |
+| `source` | string | all | `"Directory"` or `"Electoral roll"`. Decides whether a record appears under Directories or Electoral rolls in search. |
 | `year` | number | all | Year of the directory edition or roll. |
-| `type` | string | all | What the listing is, as transcribed (`Hotel`, `Intersection`, `Place`, …). Electoral-roll records are all `"Voter"`. |
+| `type` | string | all | `Place`, `Intersection` or `right-of-way` in the directories. Electoral-roll records are all `"Voter"`. |
+| `kind` | string | directory | What the listing is about, using the entry types: `person`, `org`, `place` or `unknown`. See the README's *Data* section. Electoral-roll records have none: they are all people. |
 | `listing` | string | all | The listing as transcribed. For electoral rolls, a summary line built from the other fields. |
 | `street` | string | all | Street name. Spellings are kept as transcribed, because variants can matter historically. |
 | `cardinality` | string | nearly all | Side of the street: `North`, `South`, `East` or `West`. Missing or empty on about 1,100 directory records. |

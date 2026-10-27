@@ -501,6 +501,7 @@ layout: null
         <th data-key="year">Year<span class="arrow" id="arrow-year"></span></th>
         <th data-key="street">Street<span class="arrow" id="arrow-street"></span></th>
         <th data-key="type">Type<span class="arrow" id="arrow-type"></span></th>
+        <th data-key="kind">Kind<span class="arrow" id="arrow-kind"></span></th>
         <th data-key="cardinality">Card.<span class="arrow" id="arrow-cardinality"></span></th>
         <th data-key="_person">Listing / Name</th>
         <th data-key="_occupation">Occupation</th>
@@ -1091,6 +1092,9 @@ const SOFT_BOUNDS = { latMin:-37.815, latMax:-37.788, lngMin:144.951, lngMax:144
 
 const TYPE_OPTIONS = ["Intersection","Voter","Right-of-way","Place"];
 const CARDINALITY_OPTIONS = ["","North","South","East","West"];
+// What a directory listing is about (README: Data, `kind`). Blank = not decided yet.
+const KIND_OPTIONS = [["","(not decided)"],["person","Person"],["org","Business or organisation"],["place","Place (intersection, lane, reserve, vacant land)"],["unknown","Not sure"]];
+const KIND_LABELS = {person:"Person", org:"Business", place:"Place", unknown:"Not sure"};
 
 /* ============ STATE ============ */
 let records = [];       // working copy, each with an internal _uid
@@ -1312,7 +1316,7 @@ function suggestOccupationFor(listing){
 function recordMatchesSearch(r, term){
   if(!term) return true;
   const hay = [
-    r.entityID, r.source, r.year, r.street, r.type, r.cardinality, r.listing,
+    r.entityID, r.source, r.year, r.street, r.type, r.kind, r.cardinality, r.listing,
     r.Surname, r['Given Names'], r.Address, r.Occupation, r.pages, r['Registration Number'], r.Notes
   ].filter(v => v !== undefined && v !== null).join(' ').toLowerCase();
   return hay.includes(term);
@@ -1403,6 +1407,10 @@ function render(){
     tdType.textContent = r.type || '';
     tr.appendChild(tdType);
 
+    const tdKind = document.createElement('td');
+    tdKind.textContent = KIND_LABELS[r.kind] || '';
+    tr.appendChild(tdKind);
+
     const tdCard = document.createElement('td');
     tdCard.textContent = r.cardinality || '';
     tr.appendChild(tdCard);
@@ -1441,7 +1449,7 @@ function render(){
     tbody.appendChild(tr);
   });
 
-  Object.keys({entityID:1,source:1,year:1,street:1,type:1,cardinality:1}).forEach(k=>{
+  Object.keys({entityID:1,source:1,year:1,street:1,type:1,kind:1,cardinality:1}).forEach(k=>{
     const el = document.getElementById('arrow-' + k);
     if(!el) return;
     el.textContent = (k === sortKey) ? (sortDir === 1 ? '▲' : '▼') : '';
@@ -1552,6 +1560,9 @@ function buildForm(rec){
   // Directory-only
   html += `<div id="directoryFields">`;
   html += field('f_pages', 'Page(s)', false, `<input type="text" id="f_pages" value="${escapeHtml(rec && rec.pages !== undefined ? rec.pages : '')}">`);
+  html += field('f_kind', 'What the listing is about', false,
+    `<select id="f_kind">${KIND_OPTIONS.map(([v, label]) => `<option value="${v}" ${rec && (rec.kind||'')===v ? 'selected':''}>${label}</option>`).join('')}</select>`,
+    `<div class="hint">Used by search to show people, businesses or places. A business that names its keeper (e.g. "Pelham hotel—Mather, Mary") stays a business unless the team has decided otherwise.</div>`);
   html += `<div class="section-label">Occupation (optional — being added gradually to Directory records)</div>`;
   html += field('f_occDir', 'Occupation', false,
     `<input type="text" id="f_occDir" list="occList" value="${escapeHtml(rec && rec.source==='Directory' ? (rec.Occupation||'') : '')}" autocomplete="off">`,
@@ -1696,7 +1707,9 @@ document.getElementById('saveEdit').addEventListener('click', () => {
     rec = Object.assign({}, base);
     const pages = document.getElementById('f_pages').value.trim();
     if(pages) rec.pages = pages;
-    // reorder: entityID, source, year, pages, listing, street, type, cardinality, lat, lng, Occupation
+    const kind = document.getElementById('f_kind').value;
+    if(kind) rec.kind = kind;
+    // reorder: entityID, source, year, pages, listing, street, type, kind, cardinality, lat, lng, Occupation
     rec = reorderDirectory(rec);
     const occ = document.getElementById('f_occDir').value.trim();
     if(occ) rec.Occupation = occ;
@@ -1729,7 +1742,7 @@ document.getElementById('saveEdit').addEventListener('click', () => {
   // Keep any fields the form doesn't show (e.g. Subdivision, Roll) when editing a record.
   if(editingUid !== null){
     const old = records.find(r => r._uid === editingUid);
-    const formFields = new Set(['entityID','source','year','pages','listing','street','type','cardinality','lat','lng','Occupation',
+    const formFields = new Set(['entityID','source','year','pages','listing','street','type','kind','cardinality','lat','lng','Occupation',
       'Registration Number','Surname','Given Names','Address','Street Number','Gender','Notes','_uid']);
     Object.keys(old).forEach(k => { if(!formFields.has(k) && rec[k] === undefined) rec[k] = old[k]; });
     // Put the kept fields back in their usual place (e.g. Subdivision before lat).
@@ -1751,7 +1764,7 @@ document.getElementById('saveEdit').addEventListener('click', () => {
 
 // Fields in the usual order; any others follow at the end.
 function reorderDirectory(rec){
-  const order = ['entityID','source','year','pages','listing','street','type','cardinality','lat','lng','Occupation','Notes'];
+  const order = ['entityID','source','year','pages','listing','street','type','kind','cardinality','lat','lng','Occupation','Notes'];
   const out = {};
   order.forEach(k => { if(rec[k] !== undefined) out[k] = rec[k]; });
   Object.keys(rec).forEach(k => { if(!(k in out) && rec[k] !== undefined) out[k] = rec[k]; });
