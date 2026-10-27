@@ -204,7 +204,7 @@
 {"entityID":80631,"source":"Directory","year":1860,"pages":"89","listing":"71 Masson, Alexander, cooper","street":"Madeline Street","type":"Place","kind":"person","cardinality":"West"},
 {"entityID":"John Graham (73 Madeline Street)","source":"Directory","year":1860,"pages":"89","listing":"73 Graham, John","street":"Madeline Street","type":"Place","kind":"person","cardinality":"West"},
 {"entityID":80633,"source":"Directory","year":1860,"pages":"89","listing":"75 Lowell, William, cab proprietor","street":"Madeline Street","type":"Place","kind":"person","cardinality":"West"},
-{"entityID":80634,"source":"Directory","year":1860,"pages":"89","listing":"77 National Schools","street":"Madeline Street","type":"Place","kind":"org","cardinality":"West"},
+{"entityID":"National School (Madeline Street)","source":"Directory","year":1860,"pages":"89","listing":"77 National Schools","street":"Madeline Street","type":"Place","kind":"org","cardinality":"West"},
 {"entityID":80635,"source":"Directory","year":1860,"pages":"89","listing":"79 Vacant","street":"Madeline Street","type":"Place","kind":"place","cardinality":"West"},
 {"entityID":"J. Sheehy","source":"Directory","year":1860,"pages":"89","listing":"81 Sheehy, J., bootmaker","street":"Madeline Street","type":"Place","kind":"person","cardinality":"West","Occupation":"bootmaker"},
 {"entityID":80637,"source":"Directory","year":1860,"pages":"89","listing":"83 Goodridge, Thomas T., school","street":"Madeline Street","type":"Place","kind":"org","cardinality":"West"},

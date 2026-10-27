@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="https://historicalesque.github.io/carlton/schema/carlton.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0" type="topic" xml:lang="en">
+  <teiHeader>
+    <fileDesc>
+      <titleStmt>
+        <title>Schools</title>
+        <author>Common Ground</author>
+      </titleStmt>
+      <publicationStmt>
+        <publisher>Common Ground</publisher>
+        <idno type="entry">Schools</idno>
+      </publicationStmt>
+      <sourceDesc>
+        <listBibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directories">Sands &amp; McDougall Directories, 1857–1940</ref></bibl>
+        </listBibl>
+      </sourceDesc>
+    </fileDesc>
+    <revisionDesc status="published">
+      <change when="2026-10-27" type="created">Machine-assisted first draft by Common Ground, written from the directory records.</change>
+    </revisionDesc>
+  </teiHeader>
+  <text>
+    <body>
+      <p>The Sands &amp; McDougall directories list five schools in the project area between 1857 and 1940, from the National School in <ref target="civic?id=Madeline%20Street">Madeline Street</ref> in the 1850s to State School No. 2365 in <ref target="civic?id=Queensberry%20Street">Queensberry Street</ref> and the Carlton Free Kindergarten in <ref target="civic?id=Bouverie%20Street">Bouverie Street</ref>. Many more small schools and teachers were listed under the name of the person who ran them, usually from their own home.</p>
+      <p>The lists below are drawn only from the directories. Each school's name links to its own entry, and most of them haven't been written yet. If you know a school's story, please start its entry.</p>
+      <div>
+        <head>Schools in the directories</head>
+        <p>Years are the first and last directories that list the school; the directories are yearly to 1880 and then every five years. Where different schools are listed at the same number, they are kept apart and noted.</p>
+        <table>
+          <row><cell><hi rend="bold">School</hi></cell><cell><hi rend="bold">Listed in</hi></cell><cell><hi rend="bold">Numbers</hi></cell><cell><hi rend="bold">Years</hi></cell><cell><hi rend="bold">Notes</hi></cell></row>
+          <row><cell><ref target="civic?id=National%20School%20%28Madeline%20Street%29">National School</ref></cell><cell><ref target="civic?id=Madeline%20Street">Madeline Street</ref></cell><cell>63, 77, 65</cell><cell>1857–1868</cell><cell>West side. Listed as "National Schools" in 1860. No. 65 is later listed as John Donaghy's school (1869–1872) and W. Bailey's school (1873).</cell></row>
+          <row><cell><ref target="civic?id=State%20School%20No.%202365">State School No. 2365</ref></cell><cell><ref target="civic?id=Queensberry%20Street">Queensberry Street</ref></cell><cell></cell><cell>1885–1935</cell><cell>North side. Head teachers or caretakers are listed with it. Listed as the "Training School" in 1910 and "State school" in 1915.</cell></row>
+          <row><cell><ref target="civic?id=University%20School">University School</ref></cell><cell><ref target="civic?id=Bouverie%20Street">Bouverie Street</ref>, <ref target="civic?id=Grattan%20Street">Grattan Street</ref>, <ref target="civic?id=Alfred%20Cottages">Alfred Cottages</ref></cell><cell></cell><cell>1873–1874</cell><cell>Thomas M. (or J. M.) Wilson. Listed under all three, probably at the corner of Bouverie and Grattan streets.</cell></row>
+          <row><cell><ref target="civic?id=Carlton%20Free%20Kindergarten">Carlton Free Kindergarten</ref></cell><cell><ref target="civic?id=Bouverie%20Street">Bouverie Street</ref>, <ref target="civic?id=Banbridge%20Place">Banbridge Place</ref></cell><cell>158, 233; 233a Banbridge Place</cell><cell>1915–1940</cell><cell>Miss M. Wilson, superintendent (1915). At first at 158 Bouverie Street, the number of the <ref target="civic?id=Baptist%20mission%20hall%20%28Bouverie%20Street%29">Baptist mission hall</ref> (see <ref target="civic?id=Churches">Churches</ref>); at 233 Bouverie Street and 233a Banbridge Place by 1930. See also <ref target="civic?id=Kindergartens">Kindergartens</ref>.</cell></row>
+          <row><cell><ref target="civic?id=A.B.%20Engineering%20Schools">A.B. Engineering Schools</ref></cell><cell><ref target="civic?id=Bouverie%20Street">Bouverie Street</ref></cell><cell>131–35</cell><cell>1940</cell><cell>West side. "Engng Schools (of Aust), engnrg tchrs".</cell></row>
+        </table>
+      </div>
+      <div>
+        <head>Private schools and teachers</head>
+        <p>These schools and teachers are listed under a person's name. They are given here as the directories print them.</p>
+        <table>
+          <row><cell><hi rend="bold">Listed as</hi></cell><cell><hi rend="bold">Listed in</hi></cell><cell><hi rend="bold">Numbers</hi></cell><cell><hi rend="bold">Years</hi></cell></row>
+          <row><cell>Goodridge, Thomas T., school</cell><cell><ref target="civic?id=Madeline%20Street">Madeline Street</ref></cell><cell>67, 83</cell><cell>1857–1860</cell></row>
+          <row><cell>Combes, Mrs., school</cell><cell><ref target="civic?id=Pelham%20Street">Pelham Street</ref></cell><cell></cell><cell>1860–1861</cell></row>
+          <row><cell>Zeplin, George, professor of music</cell><cell><ref target="civic?id=Queensberry%20Street">Queensberry Street</ref></cell><cell>40, 34</cell><cell>1860–1862</cell></row>
+          <row><cell>Mira, Miss, teacher of music</cell><cell><ref target="civic?id=Leicester%20Street">Leicester Street</ref></cell><cell>55</cell><cell>1864–1865</cell></row>
+          <row><cell>James, Mrs., school</cell><cell><ref target="civic?id=Barry%20Street">Barry Street</ref></cell><cell></cell><cell>1866</cell></row>
+          <row><cell>Palmer, Mrs., ladies' school</cell><cell><ref target="civic?id=Berkley%20Street">Berkley Street</ref></cell><cell>60</cell><cell>1869</cell></row>
+          <row><cell>Morey, Miss, school</cell><cell><ref target="civic?id=Berkley%20Terrace">Berkley Terrace</ref></cell><cell>3</cell><cell>1869</cell></row>
+          <row><cell>Donaghy, John, school</cell><cell><ref target="civic?id=Madeline%20Street">Madeline Street</ref></cell><cell>65</cell><cell>1869–1872</cell></row>
+          <row><cell>Stevenson, Miss, school</cell><cell><ref target="civic?id=Madeline%20Street">Madeline Street</ref></cell><cell>117</cell><cell>1870</cell></row>
+          <row><cell>Cullimore, F. W., teacher of piano</cell><cell><ref target="civic?id=Victoria%20Street">Victoria Street</ref></cell><cell>19</cell><cell>1870–1871</cell></row>
+          <row><cell>Salter, Mrs., teacher of music</cell><cell><ref target="civic?id=Grattan%20Street">Grattan Street</ref></cell><cell></cell><cell>1871</cell></row>
+          <row><cell>Doria, William, teacher</cell><cell><ref target="civic?id=Barry%20Street">Barry Street</ref></cell><cell>3</cell><cell>1872</cell></row>
+          <row><cell>Smith, John T., teacher</cell><cell><ref target="civic?id=Berkley%20Street">Berkley Street</ref>, <ref target="civic?id=Breadalbane%20Terrace">Breadalbane Terrace</ref></cell><cell></cell><cell>1872–1876</cell></row>
+          <row><cell>Lowrey, Misses, school</cell><cell><ref target="civic?id=Leicester%20Street">Leicester Street</ref></cell><cell>110, 106</cell><cell>1872–1876</cell></row>
+          <row><cell>Bailey, W., school</cell><cell><ref target="civic?id=Madeline%20Street">Madeline Street</ref></cell><cell>65</cell><cell>1873</cell></row>
+          <row><cell>Poitou, Madame, teacher of French</cell><cell><ref target="civic?id=Barry%20Street">Barry Street</ref></cell><cell>16</cell><cell>1873</cell></row>
+          <row><cell>Delany, Miss, school</cell><cell><ref target="civic?id=Ballarat%20Street">Ballarat Street</ref></cell><cell></cell><cell>1873–1875</cell></row>
+          <row><cell>Wiedemann, T., violin teacher</cell><cell><ref target="civic?id=Devonshire%20Terrace">Devonshire Terrace</ref>, <ref target="civic?id=Grattan%20Street">Grattan Street</ref></cell><cell>4; 44, 163</cell><cell>1877–1900</cell></row>
+          <row><cell>Jourdain, Mrs, dancing academy</cell><cell><ref target="civic?id=Madeline%20Street">Madeline Street</ref></cell><cell></cell><cell>1879–1880</cell></row>
+          <row><cell>Hearnes, Arthur Edwd., teacher of music</cell><cell><ref target="civic?id=Queensberry%20Terrace">Queensberry Terrace</ref></cell><cell>1</cell><cell>1885</cell></row>
+          <row><cell>Ormond Dancing Academy</cell><cell><ref target="civic?id=Madeline%20Street">Madeline Street</ref></cell><cell>3</cell><cell>1900</cell></row>
+          <row><cell>Hayes, Miss Mary, ladies' college</cell><cell><ref target="civic?id=Leicester%20Street">Leicester Street</ref></cell><cell>216</cell><cell>1900</cell></row>
+          <row><cell>Halsall, Mrs E., music teacher</cell><cell><ref target="civic?id=Bouverie%20Street">Bouverie Street</ref></cell><cell>176</cell><cell>1940</cell></row>
+          <row><cell>Merlyn, Miss M., dancing teacher</cell><cell><ref target="civic?id=Swanston%20Street">Swanston Street</ref></cell><cell>616</cell><cell>1940</cell></row>
+        </table>
+      </div>
+      <div>
+        <head>Notes</head>
+        <list rend="bulleted">
+          <item>The University, the Training College (later the Teachers' College), University High School and the medical, law and engineering schools are listed on the north side of <ref target="civic?id=Grattan%20Street">Grattan Street</ref>, and Trinity and Ormond colleges in Sydney Road. All of them are in the University grounds, outside the project area.</item>
+          <item>St Matthew's School appears under Queensberry Street in 1857 and 1858, in the early alphabetical lists, which give no address. It isn't known whether it was in the project area.</item>
+          <item>A Baptist Sunday school is listed with the Baptist mission hall in Bouverie Street from 1915 to 1940 (see <ref target="civic?id=Churches">Churches</ref>).</item>
+        </list>
+        <p>Every listing can be browsed in <ref target="search?q=school&amp;src=directories">search</ref>.</p>
+        <p><hi rend="italic">This page is a machine-assisted first draft by Common Ground, written from the directory records. Please correct or add to it.</hi></p>
+      </div>
+    </body>
+  </text>
+</TEI>
