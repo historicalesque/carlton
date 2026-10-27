@@ -676,7 +676,7 @@
 {"entityID":173415,"source":"Directory","year":1872,"pages":"103","listing":"13 Lalor, J., sta. & fan. repos.","street":"Queensberry Street","type":"Place","kind":"person","cardinality":"North"},
 {"entityID":173416,"source":"Directory","year":1872,"pages":"103","listing":"15 Bolger, Mrs.","street":"Queensberry Street","type":"Place","kind":"person","cardinality":"North"},
 {"entityID":173417,"source":"Directory","year":1872,"pages":"103","listing":"17 Collins, Mrs.","street":"Queensberry Street","type":"Place","kind":"person","cardinality":"North"},
-{"entityID":"G. F. Zeplin","source":"Directory","year":1872,"pages":"103","listing":"19 Zeplin, G. F., draper","street":"Queensberry Street","type":"Place","kind":"person","cardinality":"North","Occupation":"draper"},
+{"entityID":"George Zeplin","source":"Directory","year":1872,"pages":"103","listing":"19 Zeplin, G. F., draper","street":"Queensberry Street","type":"Place","kind":"person","cardinality":"North","Occupation":"draper"},
 {"entityID":"Hiram Foy","source":"Directory","year":1872,"pages":"103","listing":"21 Foy, Hiram","street":"Queensberry Street","type":"Place","kind":"person","cardinality":"North"},
 {"entityID":"Miss Foy (Queensberry Street)","source":"Directory","year":1872,"pages":"103","listing":"Foy, Miss, dressmaker","street":"Queensberry Street","type":"Place","kind":"person","cardinality":"North","Occupation":"dressmaker"},
 {"entityID":"McDonald, Donald, tailor (23 Queensberry Street, North side)","source":"Directory","year":1872,"pages":"103","listing":"23 McDonald, Donald, tailor","street":"Queensberry Street","type":"Place","kind":"person","cardinality":"North","Occupation":"tailor"},

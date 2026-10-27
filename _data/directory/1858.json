@@ -170,5 +170,5 @@
 {"entityID":37256,"source":"Directory","year":1858,"pages":"191","listing":"Stiven, Thos., saddler and harnessmaker","street":"Victoria Street","type":"Place","kind":"person","cardinality":""},
 {"entityID":37257,"source":"Directory","year":1858,"pages":"191","listing":"West, William Henry, general dealer","street":"Victoria Street","type":"Place","kind":"person","cardinality":""},
 {"entityID":37258,"source":"Directory","year":1858,"pages":"191","listing":"25 Wilkinson, Charles, saddler and harness-maker","street":"Victoria Street","type":"Place","kind":"person","cardinality":""},
-{"entityID":37259,"source":"Directory","year":1858,"pages":"191","listing":"Yelland, George, haircutter, &c.","street":"Victoria Street","type":"Place","kind":"person","cardinality":""}
+{"entityID":"George Yelland","source":"Directory","year":1858,"pages":"191","listing":"Yelland, George, haircutter, &c.","street":"Victoria Street","type":"Place","kind":"person","cardinality":""}
 ]

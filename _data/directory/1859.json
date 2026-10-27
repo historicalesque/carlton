@@ -173,7 +173,7 @@
 {"entityID":42486,"source":"Directory","year":1859,"pages":"77","listing":"5 Noah's Ark boarding house, Johnson, S. S.","street":"Victoria Street","type":"Place","kind":"unknown","cardinality":"North"},
 {"entityID":"Noah's Ark stables","source":"Directory","year":1859,"pages":"77","listing":"7 Noah's Ark stables, Johnson, Samuel S.","street":"Victoria Street","type":"Place","kind":"org","cardinality":"North"},
 {"entityID":"John Mulligan (Victoria Street)","source":"Directory","year":1859,"pages":"77","listing":"Mulligan, John, shoeing forge","street":"Victoria Street","type":"Place","kind":"person","cardinality":"North"},
-{"entityID":42489,"source":"Directory","year":1859,"pages":"77","listing":"9 Yelland, George, hairdresser","street":"Victoria Street","type":"Place","kind":"person","cardinality":"North"},
+{"entityID":"George Yelland","source":"Directory","year":1859,"pages":"77","listing":"9 Yelland, George, hairdresser","street":"Victoria Street","type":"Place","kind":"person","cardinality":"North"},
 {"entityID":42490,"source":"Directory","year":1859,"pages":"77","listing":"11 Say, Wm. B., saddler and harnessmaker","street":"Victoria Street","type":"Place","kind":"person","cardinality":"North"},
 {"entityID":42491,"source":"Directory","year":1859,"pages":"77","listing":"15 Barrett, Samuel, grocer","street":"Victoria Street","type":"Place","kind":"person","cardinality":"North","Occupation":"grocer"},
 {"entityID":"Intersection Victoria street and Bouverie street","source":"Directory","year":1859,"pages":"77","listing":"Intersection Victoria street and Bouverie street","street":"Victoria Street","type":"Intersection","kind":"place","cardinality":"North","lat":-37.8064079,"lng":144.9614505},

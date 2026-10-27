@@ -513,7 +513,7 @@
 {"entityID":"H. Cue","source":"Directory","year":1865,"pages":"79","listing":"7 Cue, H., cabinetmaker","street":"Victoria Street","type":"Place","kind":"person","cardinality":"North","Occupation":"cabinetmaker"},
 {"entityID":91803,"source":"Directory","year":1865,"pages":"79","listing":"13 Sime, John","street":"Victoria Street","type":"Place","kind":"person","cardinality":"North"},
 {"entityID":"Edward Scully","source":"Directory","year":1865,"pages":"79","listing":"15 Scully, Edward","street":"Victoria Street","type":"Place","kind":"person","cardinality":"North"},
-{"entityID":"G. Yelland","source":"Directory","year":1865,"pages":"79","listing":"17 Yelland, G.","street":"Victoria Street","type":"Place","kind":"person","cardinality":"North"},
+{"entityID":"George Yelland","source":"Directory","year":1865,"pages":"79","listing":"17 Yelland, G.","street":"Victoria Street","type":"Place","kind":"person","cardinality":"North"},
 {"entityID":91806,"source":"Directory","year":1865,"pages":"79","listing":"17½ Hamilton, ——","street":"Victoria Street","type":"Place","kind":"person","cardinality":"North"},
 {"entityID":"Ann Easby (Victoria Street)","source":"Directory","year":1865,"pages":"79","listing":"21 Easby, Ann, store","street":"Victoria Street","type":"Place","kind":"person","cardinality":"North","Occupation":"store"},
 {"entityID":"Intersection Victoria street and Bouverie street","source":"Directory","year":1865,"pages":"79","listing":"Intersection Victoria street and Bouverie street","street":"Victoria Street","type":"Intersection","kind":"place","cardinality":"North","lat":-37.8064079,"lng":144.9614505},

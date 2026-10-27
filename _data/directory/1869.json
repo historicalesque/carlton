@@ -595,7 +595,7 @@
 {"entityID":"Livingstone, Daniel (15 Queensberry Street, North side)","source":"Directory","year":1869,"pages":"93","listing":"15 Livingstone, Daniel","street":"Queensberry Street","type":"Place","kind":"person","cardinality":"North"},
 {"entityID":"Francis Mitchin","source":"Directory","year":1869,"pages":"93","listing":"17 Mitchin, Francis","street":"Queensberry Street","type":"Place","kind":"person","cardinality":"North"},
 {"entityID":"Thomas Kemp","source":"Directory","year":1869,"pages":"93","listing":"19 Kemp, Thomas, news agent","street":"Queensberry Street","type":"Place","kind":"person","cardinality":"North","Occupation":"newsagent"},
-{"entityID":152633,"source":"Directory","year":1869,"pages":"93","listing":"Zeplin, G. F., musician","street":"Queensberry Street","type":"Place","kind":"person","cardinality":"North","Occupation":"musician"},
+{"entityID":"George Zeplin","source":"Directory","year":1869,"pages":"93","listing":"Zeplin, G. F., musician","street":"Queensberry Street","type":"Place","kind":"person","cardinality":"North","Occupation":"musician"},
 {"entityID":"Mrs. Zeplin","source":"Directory","year":1869,"pages":"93","listing":"Zeplin, Mrs., draper","street":"Queensberry Street","type":"Place","kind":"person","cardinality":"North","Occupation":"draper"},
 {"entityID":152635,"source":"Directory","year":1869,"pages":"93","listing":"Right-of-way","street":"Queensberry Street","type":"right-of-way","kind":"place","cardinality":"North"},
 {"entityID":"Hiram Foy","source":"Directory","year":1869,"pages":"93","listing":"21 Foy, Hiram","street":"Queensberry Street","type":"Place","kind":"person","cardinality":"North"},

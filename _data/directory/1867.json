@@ -584,7 +584,7 @@
 {"entityID":"Stephen Dark","source":"Directory","year":1867,"pages":"87","listing":"5 Dark, Stephen, bootmaker","street":"Victoria Street","type":"Place","kind":"person","cardinality":"North","Occupation":"bootmaker"},
 {"entityID":"Anthony Derrick","source":"Directory","year":1867,"pages":"87","listing":"13 Derrick, Anthony","street":"Victoria Street","type":"Place","kind":"person","cardinality":"North"},
 {"entityID":"Edward Scully","source":"Directory","year":1867,"pages":"87","listing":"15 Scully, Edward","street":"Victoria Street","type":"Place","kind":"person","cardinality":"North"},
-{"entityID":"G. Yelland","source":"Directory","year":1867,"pages":"87","listing":"17 Yelland, G.","street":"Victoria Street","type":"Place","kind":"person","cardinality":"North"},
+{"entityID":"George Yelland","source":"Directory","year":1867,"pages":"87","listing":"17 Yelland, G.","street":"Victoria Street","type":"Place","kind":"person","cardinality":"North"},
 {"entityID":"17½ Hamilton","source":"Directory","year":1867,"pages":"87","listing":"17½ Hamilton, Robert","street":"Victoria Street","type":"Place","kind":"person","cardinality":"North"},
 {"entityID":"Victoria hotel","source":"Directory","year":1867,"pages":"87","listing":"21 Victoria hotel, Kinnane, Peter","street":"Victoria Street","type":"Place","kind":"org","cardinality":"North"},
 {"entityID":"Intersection Victoria street and Bouverie street","source":"Directory","year":1867,"pages":"87","listing":"Intersection Victoria street and Bouverie street","street":"Victoria Street","type":"Intersection","kind":"place","cardinality":"North","lat":-37.8064079,"lng":144.9614505},

@@ -270,7 +270,7 @@
 {"entityID":80739,"source":"Directory","year":1860,"pages":"90","listing":"34 Gray, John","street":"Queensberry Street","type":"Place","kind":"person","cardinality":"South"},
 {"entityID":80740,"source":"Directory","year":1860,"pages":"90","listing":"36 Boraman, John, bootmaker","street":"Queensberry Street","type":"Place","kind":"person","cardinality":"South","Occupation":"bootmaker"},
 {"entityID":80741,"source":"Directory","year":1860,"pages":"90","listing":"38 Egan, Patrick","street":"Queensberry Street","type":"Place","kind":"person","cardinality":"South"},
-{"entityID":80742,"source":"Directory","year":1860,"pages":"90","listing":"40 Zeplin, George, professor of music","street":"Queensberry Street","type":"Place","kind":"person","cardinality":"South"},
+{"entityID":"George Zeplin","source":"Directory","year":1860,"pages":"90","listing":"40 Zeplin, George, professor of music","street":"Queensberry Street","type":"Place","kind":"person","cardinality":"South"},
 {"entityID":80743,"source":"Directory","year":1860,"pages":"90","listing":"42 Blackburn, John","street":"Queensberry Street","type":"Place","kind":"person","cardinality":"South"},
 {"entityID":80744,"source":"Directory","year":1860,"pages":"90","listing":"44 Jones, Richard, general dealer","street":"Queensberry Street","type":"Place","kind":"person","cardinality":"South"},
 {"entityID":80745,"source":"Directory","year":1860,"pages":"90","listing":"Right-of-way","street":"Queensberry Street","type":"right-of-way","kind":"place","cardinality":"South"},
