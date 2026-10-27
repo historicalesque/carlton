@@ -13,6 +13,7 @@
       </publicationStmt>
       <sourceDesc>
         <listBibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1869">Sands &amp; McDougall Directory, 1869, p. 72</ref></bibl>
           <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1920">Sands &amp; McDougall Directory, 1920, p. 202: 2 Bush Inn hotel</ref></bibl>
           <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1925">Sands &amp; McDougall Directory, 1925, p. 231: 2 Bush Inn hotel</ref></bibl>
         </listBibl>
@@ -21,6 +22,7 @@
     <revisionDesc status="draft">
       <change when="2026-10-06" type="created">Contributed through the contribution form by Mitchell Harrop.</change>
       <change when="2026-10-06" type="revised">Changes suggested by Mitchell Harrop: Typo.</change>
+      <change when="2026-10-27" type="edited">Links, and sections from the directory records, added by Common Ground (machine-assisted).</change>
     </revisionDesc>
   </teiHeader>
   <standOff>
@@ -30,12 +32,29 @@
         <place type="address" from="1920" to="1925">
           <placeName>2 Bouverie Street, Carlton</placeName>
         </place>
+        <place type="address" from="1905" to="1920">
+          <placeName>170 Victoria Street, Carlton</placeName>
+        </place>
       </org>
     </listOrg>
   </standOff>
   <text>
     <body>
       <p>Bush Inn hotel was a hotel!</p>
+      <div>
+        <head>In the directories</head>
+        <p>The Bush Inn is in the directories from 1869 to 1925, on the corner of <ref target="civic?id=Bouverie%20Street">Bouverie Street</ref> and <ref target="civic?id=Victoria%20Street">Victoria Street</ref>, so it is usually listed under both. It is No. 2 Bouverie Street, and No. 170 Victoria Street from 1905. See <ref target="civic?id=Hotels">Hotels</ref>.</p>
+        <p>The directories list the proprietors as Jeremiah Quinlan (1869 to 1873), William Anderson (1874), Edward Mulcahey (1875 to 1880), Aron Lacey (1885), P. Hepburn (1890), Thomas C. Hunter (1895 to 1915) and William C. Nash (1920). No proprietor is given in 1925.</p>
+      </div>
+      <div>
+        <head>Neighbours</head>
+        <p>The Savings Bank is across Bouverie Street, at No. 176 Victoria Street from 1905 and No. 178 in 1920. In 1925 the <ref target="civic?id=Carlton%20Brewery">Carlton Brewery</ref> (Carlton &amp; United Breweries) is next door in Bouverie Street.</p>
+      </div>
+      <div>
+        <head>Records</head>
+        <p>The hotel's listings are linked to this entry, and the corner can be browsed in <ref target="search?street=Bouverie%20Street">search</ref>.</p>
+        <p><hi rend="italic">These sections are a machine-assisted first draft by Common Ground, written from the directory records. Please correct or add to them.</hi></p>
+      </div>
     </body>
   </text>
 </TEI>

@@ -22,6 +22,7 @@
       <change when="2026-10-06" type="created">Contributed through the contribution form by Andy May.</change>
       <change when="2026-10-06" type="revised">Changes suggested by Andy May: Small typo.</change>
       <change when="2026-10-27" type="revised">Entry type corrected from place to business.</change>
+      <change when="2026-10-27" type="edited">Proprietors as listed in the directories added by Common Ground (machine-assisted).</change>
     </revisionDesc>
   </teiHeader>
   <standOff>
@@ -47,6 +48,7 @@
       <p>Mrs Agnes Touraine, the licensee of the hotel, said that the takings of the house were from L20 to L23 per week. She supplied from 15 to 16 meals per day. There were seven public bed-rooms, and these were always occupied. She had a number of friends in Gippsland, who made the hotel their home when in Melbourne.</p>
       <p>The Board reserved Its decision."</p>
       <p><hi rend="italic">Herald</hi>, 2 Jun 1908: 3.</p>
+      <p>The directories list Richard Lecher as the proprietor in 1857 and 1858. <hi rend="italic">Machine-assisted first draft by Common Ground, from the directory records.</hi></p>
     </body>
   </text>
 </TEI>
