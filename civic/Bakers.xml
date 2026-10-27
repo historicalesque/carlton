@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="https://historicalesque.github.io/carlton/schema/carlton.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0" type="topic" xml:lang="en">
+  <teiHeader>
+    <fileDesc>
+      <titleStmt>
+        <title>Bakers</title>
+        <author>Common Ground</author>
+      </titleStmt>
+      <publicationStmt>
+        <publisher>Common Ground</publisher>
+        <idno type="entry">Bakers</idno>
+      </publicationStmt>
+      <sourceDesc>
+        <listBibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directories">Sands &amp; McDougall Directories, 1857–1940</ref></bibl>
+        </listBibl>
+      </sourceDesc>
+    </fileDesc>
+    <revisionDesc status="published">
+      <change when="2026-10-27" type="created">Machine-assisted first draft by Common Ground, written from the directory records.</change>
+    </revisionDesc>
+  </teiHeader>
+  <text>
+    <body>
+      <p>Bakers appear in the directories from the first year, 1857, and through to 1940. Most were small bakehouses listed under the baker's own name, often with a shop in front. Several sites stayed bakeries for decades while the bakers changed. No. 159 <ref target="civic?id=Bouverie%20Street">Bouverie Street</ref> was John Scott Bogle's from 1863 (he had been at Nos 153 and 154 before), then Robert Pringle's (1867–1869), then John Shopland's (1873–1878). No. 41 <ref target="civic?id=Madeline%20Street">Madeline Street</ref> passed from James Black to Alex. Brooks and then to William and Joseph Anderson, bakers and confectioners (1874–1880), and No. 23 <ref target="civic?id=Victoria%20Street">Victoria Street</ref> from Robert Birrell to Henry Lacey (1874–1880). Peter Junner moved from 31 <ref target="civic?id=Queensberry%20Street">Queensberry Street</ref> to 85–87 <ref target="civic?id=Bouverie%20Street">Bouverie Street</ref> and was still baking at No. 117 in 1890; Robert Connor had the same number from 1905 to 1920.</p>
+      <p>The table is drawn only from the directories and lists each baker as printed. Bakers aren't given their own entries here. Numbers changed when streets were renumbered, so the same number in different decades may not be the same building. People named Baker who aren't listed as bakers are left out, as are confectioners who don't also list baking or pastry.</p>
+      <div>
+        <head>Bakers in the directories, by address</head>
+        <table>
+          <row><cell><hi rend="bold">Listed in</hi></cell><cell><hi rend="bold">No.</hi></cell><cell><hi rend="bold">Listed as</hi></cell><cell><hi rend="bold">Years</hi></cell></row>
+          <row><cell><ref target="civic?id=Ballarat%20Street">Ballarat Street</ref></cell><cell></cell><cell>Healy, Charles, baker</cell><cell>1866–1869</cell></row>
+          <row><cell></cell><cell></cell><cell>Hughes, Martin, baker</cell><cell>1871</cell></row>
+          <row><cell><ref target="civic?id=Berkley%20Terrace">Berkley Terrace</ref></cell><cell>4</cell><cell>Price, Richard, pastrycook</cell><cell>1872</cell></row>
+          <row><cell><ref target="civic?id=Bouverie%20Street">Bouverie Street</ref></cell><cell></cell><cell>Bogle, John Scott, baker</cell><cell>1857–1858</cell></row>
+          <row><cell></cell><cell></cell><cell>Healy, Charles, baker</cell><cell>1867–1868</cell></row>
+          <row><cell></cell><cell></cell><cell>Shopland, John, baker</cell><cell>1872</cell></row>
+          <row><cell></cell><cell>85 &amp; 87</cell><cell>Junner, Peter, bkr and grocer</cell><cell>1879–1880</cell></row>
+          <row><cell></cell><cell>87</cell><cell>Junner, P., baker &amp; grcr</cell><cell>1876–1878</cell></row>
+          <row><cell></cell><cell>117</cell><cell>Junner, Peter, baker</cell><cell>1890</cell></row>
+          <row><cell></cell><cell>117</cell><cell>Tobias, William J., baker</cell><cell>1900</cell></row>
+          <row><cell></cell><cell>117</cell><cell>Connor, Robt., baker</cell><cell>1905–1920</cell></row>
+          <row><cell></cell><cell>153</cell><cell>Bogle, John Scott, baker</cell><cell>1860–1862</cell></row>
+          <row><cell></cell><cell>154</cell><cell>Bogle, John Scott, baker</cell><cell>1859</cell></row>
+          <row><cell></cell><cell>158</cell><cell>Shopland, John, baker</cell><cell>1879</cell></row>
+          <row><cell></cell><cell>158</cell><cell>Bogle, James, baker</cell><cell>1880</cell></row>
+          <row><cell></cell><cell>159</cell><cell>Bogle, John Scott, baker</cell><cell>1863–1866</cell></row>
+          <row><cell></cell><cell>159</cell><cell>Pringle, Robert, baker</cell><cell>1867–1869</cell></row>
+          <row><cell></cell><cell>159</cell><cell>Shopland, John, baker</cell><cell>1873–1878</cell></row>
+          <row><cell></cell><cell>239</cell><cell>Barker, Thomas, baker</cell><cell>1890–1895</cell></row>
+          <row><cell><ref target="civic?id=Leicester%20Street">Leicester Street</ref></cell><cell></cell><cell>Bowman, Joseph, baker</cell><cell>1868</cell></row>
+          <row><cell></cell><cell>30</cell><cell>Edmonds, James, baker</cell><cell>1873–1885</cell></row>
+          <row><cell></cell><cell>50</cell><cell>Edmonds, F. W., baker</cell><cell>1890</cell></row>
+          <row><cell></cell><cell>50</cell><cell>Smith, Mrs Isabella, baker &amp; pastryck</cell><cell>1905</cell></row>
+          <row><cell></cell><cell>52</cell><cell>Condon, Michael, baker</cell><cell>1895</cell></row>
+          <row><cell></cell><cell>52</cell><cell>Sargeant's Ltd., pastrycook, factory</cell><cell>1920</cell></row>
+          <row><cell><ref target="civic?id=Madeline%20Street">Madeline Street</ref></cell><cell></cell><cell>Bance, Frederick, baker</cell><cell>1857–1858</cell></row>
+          <row><cell></cell><cell></cell><cell>Hamilton, John, baker</cell><cell>1857–1858</cell></row>
+          <row><cell></cell><cell>41</cell><cell>Black, James, baker</cell><cell>1874</cell></row>
+          <row><cell></cell><cell>41</cell><cell>Brooks, Alex., baker</cell><cell>1876–1878</cell></row>
+          <row><cell></cell><cell>41</cell><cell>Anderson, Wm., baker and confectioner</cell><cell>1879–1880</cell></row>
+          <row><cell></cell><cell>43 and 45</cell><cell>Black, James, baker</cell><cell>1867–1868</cell></row>
+          <row><cell></cell><cell>43</cell><cell>Black, James, baker</cell><cell>1869–1873</cell></row>
+          <row><cell></cell><cell>59</cell><cell>Bewley, G. J., baker</cell><cell>1890</cell></row>
+          <row><cell></cell><cell>59</cell><cell>Dawes, Walter, bkr</cell><cell>1900</cell></row>
+          <row><cell></cell><cell>59</cell><cell>Dorgan, Patk. F., bkr</cell><cell>1905–1915</cell></row>
+          <row><cell></cell><cell>69</cell><cell>Coughlan, Mrs Frances, confr &amp; pstry</cell><cell>1925</cell></row>
+          <row><cell></cell><cell>173</cell><cell>Byrne, Michael, baker</cell><cell>1895–1900</cell></row>
+          <row><cell><ref target="civic?id=Queensberry%20Street">Queensberry Street</ref></cell><cell></cell><cell>Brunton, Thomas S., baker</cell><cell>1857</cell></row>
+          <row><cell></cell><cell></cell><cell>Gray, Charles, baker, &amp;c.</cell><cell>1858</cell></row>
+          <row><cell></cell><cell>31</cell><cell>Junner, Peter, baker</cell><cell>1873–1875</cell></row>
+          <row><cell></cell><cell>31</cell><cell>Beenie, J., baker</cell><cell>1876–1877</cell></row>
+          <row><cell></cell><cell>31</cell><cell>Benn, Charles H., baker and confectioner</cell><cell>1885</cell></row>
+          <row><cell></cell><cell>172</cell><cell>Britt, David, baker</cell><cell>1895</cell></row>
+          <row><cell><ref target="civic?id=Swanston%20Street">Swanston Street</ref></cell><cell>536</cell><cell>Hancock, Fredk., bkr</cell><cell>1935–1940</cell></row>
+          <row><cell></cell><cell>575</cell><cell>Ernest, E., bkr</cell><cell>1935</cell></row>
+          <row><cell></cell><cell>585</cell><cell>Robertson, Mrs Vera, confr &amp; pstry</cell><cell>1930</cell></row>
+          <row><cell><ref target="civic?id=Victoria%20Street">Victoria Street</ref></cell><cell>23</cell><cell>Birrell, Robert, baker</cell><cell>1874–1876</cell></row>
+          <row><cell></cell><cell>23</cell><cell>Lacey, Henry, baker</cell><cell>1877–1880</cell></row>
+          <row><cell></cell><cell>157</cell><cell>Cameron, Dugald, grocer and baker</cell><cell>1857–1858</cell></row>
+          <row><cell></cell><cell>164</cell><cell>Bell, George W., baker</cell><cell>1895</cell></row>
+          <row><cell></cell><cell>164</cell><cell>Rosemann, Mrs S., baker and confr</cell><cell>1900–1905</cell></row>
+        </table>
+      </div>
+      <div>
+        <head>Sources</head>
+        <p>Every listing can be browsed in <ref target="search?q=baker&amp;src=directories">search</ref>. The directories are yearly to 1880 and then every five years, so years are the first and last directories that list each entry.</p>
+        <p><hi rend="italic">This page is a machine-assisted first draft by Common Ground, written from the directory records. Please correct or add to it.</hi></p>
+      </div>
+    </body>
+  </text>
+</TEI>

@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="https://historicalesque.github.io/carlton/schema/carlton.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0" type="topic" xml:lang="en">
+  <teiHeader>
+    <fileDesc>
+      <titleStmt>
+        <title>Blacksmiths</title>
+        <author>Common Ground</author>
+      </titleStmt>
+      <publicationStmt>
+        <publisher>Common Ground</publisher>
+        <idno type="entry">Blacksmiths</idno>
+      </publicationStmt>
+      <sourceDesc>
+        <listBibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directories">Sands &amp; McDougall Directories, 1857–1940</ref></bibl>
+        </listBibl>
+      </sourceDesc>
+    </fileDesc>
+    <revisionDesc status="published">
+      <change when="2026-10-27" type="created">Machine-assisted first draft by Common Ground, written from the directory records.</change>
+    </revisionDesc>
+  </teiHeader>
+  <text>
+    <body>
+      <p>Blacksmiths, farriers and wheelwrights served the carriers, stables and carriage trades of the area, and most of them were in <ref target="civic?id=Leicester%20Street">Leicester Street</ref>, <ref target="civic?id=Victoria%20Street">Victoria Street</ref>, <ref target="civic?id=Queensberry%20Street">Queensberry Street</ref> and <ref target="civic?id=Sydney%20Road">Sydney Road</ref>, close to the stables (see <ref target="civic?id=Stables">Stables</ref>). John Letham (also printed Lethem) is the longest listed, in <ref target="civic?id=Leicester%20Street">Leicester Street</ref> from 1867, then in <ref target="civic?id=Victoria%20Street">Victoria Street</ref> and at No. 1 <ref target="civic?id=Bouverie%20Street">Bouverie Street</ref> to 1885. Joseph Royal was a wheelwright, and later blacksmith and wheelwright, in <ref target="civic?id=Leicester%20Street">Leicester Street</ref> from 1873 to 1885; he also ran the engineering firm of <ref target="civic?id=Royal%20and%20Co">Royal and Co.</ref> (see <ref target="civic?id=Engineers-and-foundries">Engineers and foundries</ref>). John Whan was a wheelwright and blacksmith at Nos 8 and 14 <ref target="civic?id=Queensberry%20Street">Queensberry Street</ref> from 1860 to 1870. A John Whann, wheelwright, is then listed at No. 35 <ref target="civic?id=Victoria%20Street">Victoria Street</ref> (1871–1873), which was later a smithy for D. Hutcheson, then Gardener and McIndoe, then William McIndoe (1876–1880). In <ref target="civic?id=Sydney%20Road">Sydney Road</ref>, G. Sachs (or Sacks) was a wheelwright and blacksmith from 1875, W. Schuster &amp; Co. were wheelwrights from 1900 to 1930, and M. Farrell was a blacksmith at Nos 50–54 from 1900 to 1930.</p>
+      <p>The table is drawn only from the directories and lists each smith as printed. They aren't given their own entries here. People named Smith who aren't listed as smiths are left out.</p>
+      <div>
+        <head>Blacksmiths, farriers and wheelwrights in the directories, by address</head>
+        <table>
+          <row><cell><hi rend="bold">Listed in</hi></cell><cell><hi rend="bold">No.</hi></cell><cell><hi rend="bold">Listed as</hi></cell><cell><hi rend="bold">Years</hi></cell></row>
+          <row><cell><ref target="civic?id=Berkley%20Street">Berkley Street</ref></cell><cell></cell><cell>Langley, John, blksmth</cell><cell>1877</cell></row>
+          <row><cell></cell><cell></cell><cell>Drury, John, blacksmith</cell><cell>1885</cell></row>
+          <row><cell></cell><cell></cell><cell>Smith, P., blksmth</cell><cell>1905</cell></row>
+          <row><cell></cell><cell>5</cell><cell>Lloyd, J., blacksmith</cell><cell>1876</cell></row>
+          <row><cell><ref target="civic?id=Bouverie%20Street">Bouverie Street</ref></cell><cell></cell><cell>Moss, Henry, blacksmith</cell><cell>1858</cell></row>
+          <row><cell></cell><cell>1</cell><cell>Letham, John, blksmth</cell><cell>1874–1879</cell></row>
+          <row><cell></cell><cell>49</cell><cell>Riley, James, blacksmith</cell><cell>1865</cell></row>
+          <row><cell></cell><cell>72</cell><cell>Smith, James, farrier</cell><cell>1860–1861</cell></row>
+          <row><cell></cell><cell>113</cell><cell>Smith, James, farrier</cell><cell>1859</cell></row>
+          <row><cell><ref target="civic?id=Elizabeth%20Street%20North">Elizabeth Street North</ref></cell><cell>666</cell><cell>Smith, William, farrier</cell><cell>1895</cell></row>
+          <row><cell><ref target="civic?id=Leicester%20Street">Leicester Street</ref></cell><cell></cell><cell>Evans, Alfred, wheelwright</cell><cell>1857</cell></row>
+          <row><cell></cell><cell></cell><cell>Taylor, Homer, wheelwright</cell><cell>1857–1858</cell></row>
+          <row><cell></cell><cell></cell><cell>Gordon, Hugh, farrier</cell><cell>1858</cell></row>
+          <row><cell></cell><cell></cell><cell>Metherell and Hillman, farriers and carriers</cell><cell>1858</cell></row>
+          <row><cell></cell><cell></cell><cell>Latham, J., farrier</cell><cell>1864–1866</cell></row>
+          <row><cell></cell><cell></cell><cell>Letham, John, blacksmith</cell><cell>1867–1870</cell></row>
+          <row><cell></cell><cell></cell><cell>Whelan, R. T., farrier</cell><cell>1869–1871</cell></row>
+          <row><cell></cell><cell></cell><cell>Dransfield, E., blacksmith</cell><cell>1872</cell></row>
+          <row><cell></cell><cell></cell><cell>Bruen, Christian, blcksmth.</cell><cell>1873</cell></row>
+          <row><cell></cell><cell></cell><cell>Garbutt, Richd., blacksmith</cell><cell>1873</cell></row>
+          <row><cell></cell><cell></cell><cell>Royal, Joseph, wheelwright</cell><cell>1873–1885</cell></row>
+          <row><cell></cell><cell></cell><cell>Johnson, Wm., blacksmith</cell><cell>1875</cell></row>
+          <row><cell></cell><cell>9</cell><cell>Taylor, Homer, wheelwright</cell><cell>1859–1861</cell></row>
+          <row><cell></cell><cell>22</cell><cell>Press, R. A., whlwrght</cell><cell>1880–1885</cell></row>
+          <row><cell></cell><cell>33</cell><cell>Gray, William, blacksmith</cell><cell>1859–1861</cell></row>
+          <row><cell></cell><cell>43</cell><cell>Musker, Charles, wheelwright</cell><cell>1859</cell></row>
+          <row><cell></cell><cell>45</cell><cell>Hunter and Rennison, blacksmiths</cell><cell>1859–1861</cell></row>
+          <row><cell></cell><cell>62</cell><cell>Hunter, Hugh, blacksmith</cell><cell>1862–1863</cell></row>
+          <row><cell><ref target="civic?id=Pelham%20Street">Pelham Street</ref></cell><cell>29</cell><cell>Gardiner, C., blksmith</cell><cell>1879–1880</cell></row>
+          <row><cell><ref target="civic?id=Queensberry%20Street">Queensberry Street</ref></cell><cell></cell><cell>Lloyd, John, blacksmith</cell><cell>1868–1870</cell></row>
+          <row><cell></cell><cell></cell><cell>Smith, P., blksmth</cell><cell>1905</cell></row>
+          <row><cell></cell><cell></cell><cell>Bradley, S., blksmth</cell><cell>1910</cell></row>
+          <row><cell></cell><cell>4</cell><cell>Lloyd, John, farrier</cell><cell>1872–1876</cell></row>
+          <row><cell></cell><cell>4</cell><cell>Langley, John, farrier</cell><cell>1877</cell></row>
+          <row><cell></cell><cell>8</cell><cell>Whan and Co., wheelwrights</cell><cell>1860–1862</cell></row>
+          <row><cell></cell><cell>14</cell><cell>Whan, John, wheelwright</cell><cell>1863–1870</cell></row>
+          <row><cell><ref target="civic?id=Swanston%20Street">Swanston Street</ref></cell><cell>514</cell><cell>Roberts Bros, blksmths</cell><cell>1940</cell></row>
+          <row><cell><ref target="civic?id=Sydney%20Road">Sydney Road</ref></cell><cell></cell><cell>Sacks, G., wheelwright and blacksmith</cell><cell>1875–1885</cell></row>
+          <row><cell></cell><cell></cell><cell>Farrelly, Peter, blksmth</cell><cell>1885</cell></row>
+          <row><cell></cell><cell>36-42</cell><cell>Schuster, W., &amp; Co, wheelwrights</cell><cell>1930</cell></row>
+          <row><cell></cell><cell>38</cell><cell>Schuster, W., &amp; Co, wheelwrights</cell><cell>1900–1905</cell></row>
+          <row><cell></cell><cell>50</cell><cell>Farrell, M., blksmth</cell><cell>1900</cell></row>
+          <row><cell></cell><cell>54</cell><cell>Farrell, M., blksmth</cell><cell>1905–1930</cell></row>
+          <row><cell><ref target="civic?id=Victoria%20Street">Victoria Street</ref></cell><cell></cell><cell>Ratford, Frederick, smith and farrier</cell><cell>1857</cell></row>
+          <row><cell></cell><cell></cell><cell>Mulligan, John, farrier, &amp;c.</cell><cell>1858</cell></row>
+          <row><cell></cell><cell></cell><cell>Robinson, Thomas, wheelwright</cell><cell>1858</cell></row>
+          <row><cell></cell><cell></cell><cell>Smith, James, farrier</cell><cell>1858</cell></row>
+          <row><cell></cell><cell></cell><cell>Letham, John, blksmth</cell><cell>1874–1885</cell></row>
+          <row><cell></cell><cell>27</cell><cell>McIndoe, Wm, blksmth</cell><cell>1885</cell></row>
+          <row><cell></cell><cell>35</cell><cell>Whann, John, wheelwright</cell><cell>1871–1873</cell></row>
+          <row><cell></cell><cell>35</cell><cell>Hutcheson, D., blksmth</cell><cell>1876</cell></row>
+          <row><cell></cell><cell>35</cell><cell>Gardener and McIndoe, blacksmiths</cell><cell>1877</cell></row>
+          <row><cell></cell><cell>35</cell><cell>McIndoe, Wm, blksmth</cell><cell>1878–1880</cell></row>
+        </table>
+      </div>
+      <div>
+        <head>Sources</head>
+        <p>Every listing can be browsed in <ref target="search?q=blacksmith&amp;src=directories">search</ref>. The directories are yearly to 1880 and then every five years, so years are the first and last directories that list each entry.</p>
+        <p><hi rend="italic">This page is a machine-assisted first draft by Common Ground, written from the directory records. Please correct or add to it.</hi></p>
+      </div>
+    </body>
+  </text>
+</TEI>
