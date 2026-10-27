@@ -133,7 +133,7 @@ Jekyll publishes compact copies in `data/` and a list of the files in `data/inde
 | `cardinality` | string | nearly all | Side of the street: `North`, `South`, `East` or `West`. Missing or empty on about 1,100 directory records. |
 | `pages` | string (a few numbers) | directory | Page reference(s) in the directory, such as `"172"` or `"241-242"`. |
 | `lat`, `lng` | number or `null` | some | Coordinates. About 6,550 directory records have them. A record without them is drawn between its mapped neighbours on the same street and side; a street side with none in a year is left off the map. |
-| `coordConfidence` | string | records with a point | How sure we are of the point: `high`, `medium` or `low`. Missing on points added before October 2026, which are not yet rated. |
+| `coordConfidence` | string | records with a point | How sure we are of the point: `high`, `medium` or `low`, or `street` when only the street is known (the 1857 and 1858 listings that can't be traced in later years; see [below](#how-the-1857-and-1858-records-are-placed)). Missing on points added before October 2026, which are not yet rated. |
 | `coordSource` | string | records with a point | Where the point comes from, e.g. `"MMBW detail plan 1177 (c. 1895)"` or `"Mitchell, from Google Maps (24 Oct 2026)"`. |
 | `coordNote` | string | some records with a point | How the point was worked out, e.g. `"house No. 93 on the plan"` or `"same name on this street in every directory from 1880 to 1890, where it is No. 55"`. |
 | `Occupation` | string | electoral rolls, some directory | |
@@ -175,6 +175,18 @@ How the confidence is set for records placed from the 1895 MMBW plans:
 - `high`: a numbered house in 1895 read clearly on the plan; the same occupant at the same number in 1890 or 1900; a landmark named in 1890–1900; a corner drawn on the plan.
 - `medium`: a numbered house in 1890 or 1900 with a different occupant (the numbering is assumed unchanged from 1895; where the same name is on the same street in both years, 83% have the same number); a landmark in other years; the first house of a named terrace or cottage row; a plan reading marked uncertain.
 - `low`: a name carried back before 1890, when the street numbers changed, because the same name is listed on the same street in every directory back to that year; a terrace placed in another year.
+
+### How the 1857 and 1858 records are placed
+
+These two directories list each street alphabetically by surname, mostly without house numbers, so the map can't place a record between its neighbours as it does in later years. Every record has a point of its own instead, worked out in this order:
+
+- **Read off the 1895 MMBW plans** (`medium`): hotels and the flour mills, as for the later years.
+- **Linked to a landmark** (`medium`): a hotel the team has linked (same text `entityID`) to a later record that is placed from the plans; assumed on the same site.
+- **Linked by the team** (`low`): the same text `entityID` in a later year, without a plan point; placed where the map draws the earliest later record.
+- **Same name on the same street** (`low`): the same surname and given names (or matching initials) on the same street in 1859–1880, allowing a one-letter spelling difference in longer surnames; placed where the map draws the earliest of those listings, nudged onto its side of the street.
+- **Street only** (`street`): everyone else. The points are spread evenly along the street between its corners in the project area, in the directory's order, so the year shows on the map; they do not show where the listing was. Both maps draw them faded.
+
+`coordSource` names the later directory used and `coordNote` gives the later listing, its number, side and cross streets. The maps put these two years' records in street order before drawing the street line (`sortAlongStreet` in `scripts/map-common.js`). The script that made the points is kept with the project files (`directory-1857-1858-coords/`).
 
 ### `entityID`
 

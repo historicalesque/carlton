@@ -324,7 +324,7 @@
                     }
 
                     let mat;
-                    if (node._computed) {
+                    if (MapCommon.isUncertain(node)) {
                         mat = new THREE.MeshPhongMaterial({
                             color: new THREE.Color(themeColor),
                             transparent: true,

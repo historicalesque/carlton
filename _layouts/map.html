@@ -183,7 +183,7 @@ let crossYearLayer = L.layerGroup().addTo(map);
 // ═══════════════════════════════════════════════════════════
 function makeIcon(entry, color) {
     const shape     = MapCommon.markerShape(entry);
-    const uncertain = !!entry._computed;
+    const uncertain = MapCommon.isUncertain(entry);
     let html, size;
 
     // Helper to convert hex colors to an RGBA value for semi-transparent fills if needed
@@ -460,7 +460,8 @@ const CustomControl = L.Control.extend({
             Pick years to compare, lay historic or modern maps underneath, and click a dot for details.</p>
             <p>Each dot is a listing from ${sources}, placed along the side of the street where it appeared.
             Crosses mark street intersections and lanes. A glowing dot is an estimated position,
-            placed between its mapped neighbours on the same street.</p>
+            placed between its mapped neighbours on the same street, or (in 1857 and 1858) a listing
+            we can only place on its street.</p>
             <details>
                 <summary>More about this map</summary>
                 <p>Tick <strong>Years</strong> to compare listings. Each year has its own colour, and when several
