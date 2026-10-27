@@ -698,7 +698,7 @@
 {"entityID":224206,"source":"Directory","year":1878,"pages":"75","listing":"31 Williams, Mchl, gen store","street":"Pelham Street","type":"Place","cardinality":"North","Occupation":"general store"},
 {"entityID":224207,"source":"Directory","year":1878,"pages":"75","listing":"31 Ward, John","street":"Pelham Street","type":"Place","cardinality":"North"},
 {"entityID":224208,"source":"Directory","year":1878,"pages":"75","listing":"33 Middleton, John","street":"Pelham Street","type":"Place","cardinality":"North"},
-{"entityID":224209,"source":"Directory","year":1878,"pages":"75","listing":"Otago htl, Brenan, J. H.","street":"Pelham Street","type":"Place","cardinality":"North"},
+{"entityID":"Otago Hotel","source":"Directory","year":1878,"pages":"75","listing":"Otago htl, Brenan, J. H.","street":"Pelham Street","type":"Place","cardinality":"North"},
 {"entityID":224210,"source":"Directory","year":1878,"pages":"75","listing":"39 Wade, Thomas","street":"Pelham Street","type":"Place","cardinality":"North"},
 {"entityID":224211,"source":"Directory","year":1878,"pages":"75","listing":"41 Crawford, Mrs L.","street":"Pelham Street","type":"Place","cardinality":"North"},
 {"entityID":"Patrick Kiernan (Pelham Street)","source":"Directory","year":1878,"pages":"75","listing":"41 Kiernan, Patrick","street":"Pelham Street","type":"Place","cardinality":"North"},
