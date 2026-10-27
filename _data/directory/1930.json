@@ -57,7 +57,7 @@
 {"entityID":8323,"source":"Directory","type":"Place","kind":"place","year":1930,"listing":"79 Vacant","street":"Barry Street","cardinality":"West","Occupation":"","Notes":"","pages":"193"},
 {"entityID":8324,"source":"Directory","type":"Place","kind":"person","year":1930,"listing":"81 Jackson, Fredk. J.","street":"Barry Street","cardinality":"West","Occupation":"","Notes":"","pages":"193"},
 {"entityID":8325,"source":"Directory","type":"Place","kind":"person","year":1930,"listing":"83 Hall, Frank.","street":"Barry Street","cardinality":"West","Occupation":"","Notes":"","pages":"193"},
-{"entityID":8326,"source":"Directory","type":"Place","kind":"person","year":1930,"listing":"85 Chapman, Mrs B. E.","street":"Barry Street","cardinality":"West","Occupation":"","Notes":"","pages":"193"},
+{"entityID":"Mrs B. E. Chapman","source":"Directory","type":"Place","kind":"person","year":1930,"listing":"85 Chapman, Mrs B. E.","street":"Barry Street","cardinality":"West","Occupation":"","Notes":"","pages":"193"},
 {"entityID":8327,"source":"Directory","type":"Place","kind":"person","year":1930,"listing":"87 Groves, J. M., Butcher","street":"Barry Street","cardinality":"West","Occupation":"","Notes":"","pages":"193"},
 {"entityID":"Intersection Barry street and Pelham street (Barry Street, West side)","source":"Directory","type":"Intersection","kind":"place","year":1930,"listing":"Intersection Barry Street and Pelham Street","street":"Barry Street","cardinality":"West","Occupation":"","Notes":"","lat":-37.8020436,"lng":144.959532,"pages":"193"},
 {"entityID":8329,"source":"Directory","type":"Place","kind":"person","year":1930,"listing":"95 Sumpton, Miss H.","street":"Barry Street","cardinality":"West","Occupation":"","Notes":"","pages":"193"},
