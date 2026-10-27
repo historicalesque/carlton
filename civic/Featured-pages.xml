@@ -57,6 +57,8 @@
         <p><ref target="civic?id=Bouverie%20hotel">Bouverie Hotel</ref></p>
         <p><ref target="civic?id=Bouverie%20Place">Bouverie Place</ref></p>
         <p><ref target="civic?id=Bouverie%20Street">Bouverie Street</ref></p>
+        <p><ref target="civic?id=Bruche%20and%20Roberts%20stables">Bruche and Roberts stables</ref></p>
+        <p><ref target="civic?id=Buckley%20%26%20Nunn%20stables">Buckley &amp; Nunn stables</ref></p>
         <p><ref target="civic?id=Bush%20Inn%20hotel">Bush Inn Hotel</ref></p>
       </div>
       <div>
@@ -69,6 +71,10 @@
         <p>Carlton Inn, see: <ref target="civic?id=Corkman%20Hotel">Corkman Hotel</ref></p>
         <p><ref target="civic?id=Carlton%20Mission%20Church">Carlton Mission Church</ref></p>
         <p><ref target="civic?id=Carlton%20Rifle%20Company">Carlton Rifle Company</ref></p>
+        <p><ref target="civic?id=Carlton%20Stables%20%28Bouverie%20Street%29">Carlton Stables (Bouverie Street)</ref></p>
+        <p><ref target="civic?id=Carlton%20Stables%20%28Queensberry%20Street%29">Carlton Stables (Queensberry Street)</ref></p>
+        <p><ref target="civic?id=Carriers%27%20Stables%20%28Leicester%20Street%29">Carriers' Stables (Leicester Street)</ref></p>
+        <p><ref target="civic?id=Carriers%27%20Stables%20%28Victoria%20Street%29">Carriers' Stables (Victoria Street)</ref></p>
         <p><ref target="civic?id=Cavan%20hotel">Cavan Hotel</ref></p>
         <p><ref target="civic?id=Cesspits">Cesspits</ref></p>
         <p><ref target="civic?id=Charity%20Organisation%20Society">Charity Organisation Society</ref></p>
@@ -104,6 +110,7 @@
         <p><ref target="civic?id=Fair%20Rents%20Board">Fair Rents Board</ref></p>
         <p><ref target="civic?id=Family%20hotel">Family Hotel</ref></p>
         <p><ref target="civic?id=Fountains">Fountains</ref></p>
+        <p><ref target="civic?id=Friedman%27s%20stables">Friedman's stables</ref></p>
       </div>
       <div>
         <head>G</head>
@@ -153,8 +160,10 @@
         <p><ref target="civic?id=Lansdowne%20Place">Lansdowne Place</ref></p>
         <p><ref target="civic?id=Delia%20Larkin">Larkin, Delia</ref></p>
         <p><ref target="civic?id=Larrikins%20and%20Pushes">Larrikins and Pushes</ref></p>
+        <p><ref target="civic?id=Latham%20%26%20Co.%27s%20stables">Latham &amp; Co.'s stables</ref></p>
         <p><ref target="civic?id=Leicester%20hotel">Leicester Hotel</ref></p>
         <p><ref target="civic?id=Leicester%20Place">Leicester Place</ref></p>
+        <p><ref target="civic?id=Leicester%20Stables">Leicester Stables</ref></p>
         <p><ref target="civic?id=Leicester%20Street">Leicester Street</ref></p>
         <p><ref target="civic?id=Lincoln%20Cottages">Lincoln Cottages</ref></p>
         <p><ref target="civic?id=Lincoln%20Inn">Lincoln Inn</ref></p>
@@ -170,6 +179,7 @@
         <p><ref target="civic?id=Little%20Pelham%20Street">Little Pelham Street</ref></p>
         <p><ref target="civic?id=Little%20Queensberry%20Street">Little Queensberry Street</ref></p>
         <p><ref target="civic?id=Liver%20Inn">Liver Inn</ref></p>
+        <p><ref target="civic?id=Liverpool%20Stables">Liverpool Stables</ref></p>
       </div>
       <div>
         <head>M</head>
@@ -196,6 +206,7 @@
         <p><ref target="civic?id=Newmarket%20hotel">Newmarket Hotel</ref></p>
         <p><ref target="civic?id=Nicholson%20implement%20makers">Nicholson implement makers</ref></p>
         <p><ref target="civic?id=Noah%27s%20Ark%20hotel">Noah's Ark Hotel</ref></p>
+        <p><ref target="civic?id=Noah%27s%20Ark%20Stables">Noah's Ark Stables</ref></p>
         <p><ref target="civic?id=Nugget%20hotel">Nugget Hotel</ref></p>
       </div>
       <div>
@@ -208,6 +219,7 @@
         <p><ref target="civic?id=Palmerston%20hotel">Palmerston Hotel</ref></p>
         <p><ref target="civic?id=Robert%20Parker">Parker, Robert</ref></p>
         <p><ref target="civic?id=Parks%20and%20Gardens">Parks and Gardens</ref></p>
+        <p><ref target="civic?id=Paterson%2C%20Laing%20and%20Bruce%20stables">Paterson, Laing and Bruce stables</ref></p>
         <p><ref target="civic?id=Pattison%27s%20Terrace">Pattison's Terrace</ref></p>
         <p><ref target="civic?id=Payne%27s%20Royal%20hotel">Payne's Royal Hotel</ref></p>
         <p><ref target="civic?id=Peacock%20Inn">Peacock Inn</ref></p>
@@ -237,6 +249,7 @@
         <p><ref target="civic?id=Royal%20Artillery%20hotel">Royal Artillery Hotel</ref></p>
         <p><ref target="civic?id=Royal%20Artillery%20hotel%20%28Elizabeth%20Street%29">Royal Artillery Hotel (Elizabeth Street)</ref></p>
         <p><ref target="civic?id=Royal%20hotel">Royal Hotel</ref></p>
+        <p><ref target="civic?id=Royal%20Hotel%20Stables">Royal Hotel Stables</ref></p>
       </div>
       <div>
         <head>S</head>
@@ -249,6 +262,7 @@
         <p><hi rend="underline">Snowball, John</hi></p>
         <p><ref target="civic?id=Spanish%20Flu%20in%20Carlton">Spanish Flu in Carlton</ref></p>
         <p><ref target="civic?id=Squares%20in%20Carlton">Squares in Carlton</ref></p>
+        <p><ref target="civic?id=Stables">Stables</ref></p>
         <p><ref target="civic?id=Standard%20hotel">Standard Hotel</ref></p>
         <p><ref target="civic?id=State%20School%20No.%202365">State School No. 2365</ref></p>
         <p><ref target="civic?id=James%20C.%20Steel">Steel, James C.</ref></p>
@@ -259,15 +273,18 @@
         <p><ref target="civic?id=Tasmanian%20Timber%20Bending%20Works">Tasmanian Timber Bending Works</ref></p>
         <p><ref target="civic?id=Tenants">Tenants</ref></p>
         <p><ref target="civic?id=Terraces">Terraces</ref></p>
+        <p><ref target="civic?id=Toohey%27s%20Stables">Toohey's Stables</ref></p>
         <p><ref target="civic?id=Town%20Clerk%27s%20Files">Town Clerk’s Files</ref></p>
         <p><ref target="civic?id=Trees">Trees</ref></p>
       </div>
       <div>
         <head>U</head>
+        <p><ref target="civic?id=Union%20Stables">Union Stables</ref></p>
         <p><ref target="civic?id=University%20Cricket%20ground">University Cricket Ground</ref></p>
         <p><ref target="civic?id=University%20hotel">University Hotel</ref></p>
         <p><ref target="civic?id=University%20School">University School</ref></p>
         <p><ref target="civic?id=University%20Square">University Square</ref></p>
+        <p><ref target="civic?id=University%20Stables">University Stables</ref></p>
       </div>
       <div>
         <head>V</head>
