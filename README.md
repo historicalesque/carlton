@@ -8,7 +8,7 @@
 >
 > - **Read about the project:** [About Common Ground](https://historicalesque.github.io/carlton/)
 > - **Search everything:** [Search](https://historicalesque.github.io/carlton/search) finds entries, directory listings and electoral-roll records in one box.
-> - **Browse the histories:** [Featured pages A–Z](https://historicalesque.github.io/carlton/aToZ) · [Map](https://historicalesque.github.io/carlton/map) · [Electoral rolls](https://historicalesque.github.io/carlton/electoral-rolls)
+> - **Browse the histories:** [Entries A–Z](https://historicalesque.github.io/carlton/aToZ) · [Map](https://historicalesque.github.io/carlton/map) · [Electoral rolls](https://historicalesque.github.io/carlton/electoral-rolls)
 > - **Share a story or add to an entry:** open any entry on the site and use the *Contribute* form at the bottom, or [start a new entry](https://historicalesque.github.io/carlton/new).
 > - **Editorial team:** start at the [Admin page](https://historicalesque.github.io/carlton/admin/), which links to each editorial tool. To review submissions, read them on the [Submission review page](https://historicalesque.github.io/carlton/admin/review.html), then accept or reject each one in the Decision column of the team's submissions spreadsheet.
 > - **Project partners:** [Melbourne History Workshop](https://melbournehistoryworkshop.com) · [Carlton Community History Group](https://cchg.asn.au)
@@ -216,7 +216,8 @@ Typical record:
 | `source` | `"Directory"` or `"Electoral roll"`. This decides whether a record appears under Directories or Electoral rolls. |
 | `year`, `pages`, `listing`, `street`, `type`, `cardinality` | As transcribed. `cardinality` is the side of the street (North/South/East/West). |
 | `lat`, `lng` | Optional. About 6,550 directory records have coordinates so far. The map draws a record without them between its mapped neighbours on the same street and side, so only a street side with no coordinates at all in a year is left off. Adding more is ongoing community work. |
-| `Surname`, `Given Names`, `Registration Number`, `Address`, `Street Number`, `Gender`, `Subdivision`, `Occupation`, `Notes` | Electoral-roll fields (Title Case, some with spaces). `Subdivision` is the roll's subdivision of the Division of Melbourne (`"Cardigan"` for every record so far). `Registration Number` stays in the data (and the admin data editor can search it), but electoral-roll `listing`s no longer start with it, so the public search never matches it. Directory records also have `Occupation` where the listing gives a trade, spelled out in full ("grcr" → "grocer"), and some have `Notes`. Search uses `Occupation`, and the contribution form fills in an entry's occupations from it. |
+| `Surname`, `Given Names`, `Registration Number`, `Address`, `Street Number`, `Gender`, `Subdivision`, `Roll`, `Occupation` | Electoral-roll fields (Title Case, some with spaces). `Subdivision` is the roll's subdivision of the Division of Melbourne (`"Cardigan"` for every record so far). `Roll` is the roll's heading as printed (1905 and 1919; the contribution form cites it). `Registration Number` stays in the data (and the admin data editor can search it), but electoral-roll `listing`s no longer start with it, so the public search never matches it. Directory records also have `Occupation` where the listing gives a trade, spelled out in full ("grcr" → "grocer"). Search uses `Occupation`, and the contribution form fills in an entry's occupations from it. |
+| `Notes` | Optional, either source: a remark about the record, e.g. `"Printed without a space after the comma"`. Shown as "Note: …" in search results, on the map and on the Electoral rolls page; edit it in the data editor's *Note* box. |
 
 ### Editing the data
 

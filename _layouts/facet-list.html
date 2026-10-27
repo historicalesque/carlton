@@ -14,6 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const pageFacet = "{{ page.facet }}".toLowerCase().trim();
   const source = { 'electoral-rolls': 'Electoral roll' }[pageFacet]; // anything else: show all
 
+  const escapeHtml = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
   const createSlug = (str) => String(str).toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
 
   // Each data file is one source and year, so each becomes one top-level (h1)
@@ -96,7 +97,8 @@ document.addEventListener('DOMContentLoaded', () => {
         const rawId = item.entityID || item.entity_id || item.id || '';
         const encodedId = encodeURIComponent(rawId);
 
-        contentHtml += `<p class="listing-item"><a href="civic?id=${encodedId}">${item.listing}</a></p>`;
+        const note = item.Notes ? ` <span class="listing-note">Note: ${escapeHtml(item.Notes)}</span>` : '';
+        contentHtml += `<p class="listing-item"><a href="civic?id=${encodedId}">${item.listing}</a>${note}</p>`;
       }
     });
     // Close the groups still open after the last item
