@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="https://historicalesque.github.io/carlton/schema/carlton.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0" type="topic" xml:lang="en">
+  <teiHeader>
+    <fileDesc>
+      <titleStmt>
+        <title>Churches</title>
+        <author>Common Ground</author>
+      </titleStmt>
+      <publicationStmt>
+        <publisher>Common Ground</publisher>
+        <idno type="entry">Churches</idno>
+      </publicationStmt>
+      <sourceDesc>
+        <listBibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directories">Sands &amp; McDougall Directories, 1857–1940</ref></bibl>
+        </listBibl>
+      </sourceDesc>
+    </fileDesc>
+    <revisionDesc status="published">
+      <change when="2026-10-27" type="created">Machine-assisted first draft by Common Ground, written from the directory records.</change>
+    </revisionDesc>
+  </teiHeader>
+  <text>
+    <body>
+      <p>The Sands &amp; McDougall directories list six churches and mission halls in the project area between 1857 and 1940. Three of them were Baptist, and three of the six stood in one place on the east side of <ref target="civic?id=Bouverie%20Street">Bouverie Street</ref>, by the <ref target="civic?id=Church%20Street">Church Street</ref> corner, under different names. Only the Baptist mission hall in Bouverie Street is still listed in 1940, the last directory transcribed so far.</p>
+      <p>The list below is drawn only from the directories. Each name links to the church's own entry, most of which haven't been written yet. If you know a church's story, please start its entry.</p>
+      <div>
+        <head>Churches in the directories</head>
+        <p>Years are the first and last directories that list the church; the directories are yearly to 1880 and then every five years. Where different names are listed in the same place, they are kept apart here and noted against each.</p>
+        <table>
+          <row><cell><hi rend="bold">Church</hi></cell><cell><hi rend="bold">Listed in</hi></cell><cell><hi rend="bold">Numbers</hi></cell><cell><hi rend="bold">Years</hi></cell><cell><hi rend="bold">Notes</hi></cell></row>
+          <row><cell><ref target="civic?id=Baptist%20Chapel%20%28Bouverie%20Street%29">Baptist Chapel</ref></cell><cell><ref target="civic?id=Bouverie%20Street">Bouverie Street</ref></cell><cell></cell><cell>1868–1876</cell><cell>East side, just south of the Church Street corner. The Carlton Mission Church (1877–1890) and the Baptist mission hall (1895–1940) are listed in the same place.</cell></row>
+          <row><cell><ref target="civic?id=Baptist%20Chapel%20%28Leicester%20Street%29">Baptist Chapel</ref></cell><cell><ref target="civic?id=Leicester%20Street">Leicester Street</ref></cell><cell></cell><cell>1865–1868</cell><cell>East side, near the Victoria Street corner. Listed in the same year (1868) as the Bouverie Street chapel, so a different building.</cell></row>
+          <row><cell><ref target="civic?id=Baptist%20mission%20hall%20%28Bouverie%20Street%29">Baptist Mission Hall</ref></cell><cell><ref target="civic?id=Bouverie%20Street">Bouverie Street</ref></cell><cell>158</cell><cell>1895–1940</cell><cell>East side, at the Church Street corner, where the Baptist Chapel (1868–1876) and the Carlton Mission Church (1877–1890) were listed. A Baptist Sunday school is listed with it from 1915 to 1940.</cell></row>
+          <row><cell><ref target="civic?id=Carlton%20Mission%20Church">Carlton Mission Church</ref></cell><cell><ref target="civic?id=Bouverie%20Street">Bouverie Street</ref></cell><cell></cell><cell>1877–1890</cell><cell>East side, at the Church Street corner, where the Baptist Chapel was listed up to 1876 and the Baptist mission hall from 1895. W. Thompson (1877) and Scott (1878) are listed as missionaries.</cell></row>
+          <row><cell><ref target="civic?id=Independent%20Church%20and%20Mission%20Hall">Independent Church and Mission Hall</ref></cell><cell><ref target="civic?id=Queensberry%20Street">Queensberry Street</ref></cell><cell>217</cell><cell>1885–1935</cell><cell>South side, between Leicester Street and Lansdowne Place.</cell></row>
+          <row><cell><ref target="civic?id=New%20Australian%20Spiritual%20Church">New Australian Spiritual Church</ref></cell><cell><ref target="civic?id=Swanston%20Street">Swanston Street</ref></cell><cell>559a–9</cell><cell>1935</cell><cell>West side, just north of the Ballarat Street corner.</cell></row>
+        </table>
+      </div>
+      <div>
+        <head>Notes</head>
+        <list rend="bulleted">
+          <item>A Congregational Church is listed in <ref target="civic?id=Grattan%20Street">Grattan Street</ref> from 1862 to 1865. It was on the north side, near Drummond Street, outside the project area.</item>
+          <item>The Scotch Church and St Matthew's School appear under Queensberry Street in 1857 and 1858, in the early alphabetical lists, which give no address. It isn't known whether they were in the project area.</item>
+          <item>Clergy listed at their homes, such as "Rev." entries in Barry, Leicester and Grattan streets, are not included here.</item>
+        </list>
+        <p>Every listing can be browsed in <ref target="search?q=church&amp;src=directories">search</ref>.</p>
+        <p><hi rend="italic">This page is a machine-assisted first draft by Common Ground, written from the directory records. Please correct or add to it.</hi></p>
+      </div>
+    </body>
+  </text>
+</TEI>

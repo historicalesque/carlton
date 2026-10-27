@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="https://historicalesque.github.io/carlton/schema/carlton.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0" type="person" xml:lang="en">
+  <teiHeader>
+    <fileDesc>
+      <titleStmt>
+        <title>Thomas Hunter</title>
+        <author>Common Ground</author>
+      </titleStmt>
+      <publicationStmt>
+        <publisher>Common Ground</publisher>
+        <idno type="entry">Thomas-Hunter</idno>
+      </publicationStmt>
+      <sourceDesc>
+        <listBibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1895">Sands &amp; McDougall Directory, 1895, p. 164</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1900">Sands &amp; McDougall Directory, 1900, p. 198</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1905">Sands &amp; McDougall Directory, 1905, p. 205</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1910">Sands &amp; McDougall Directory, 1910, p. 212</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1915">Sands &amp; McDougall Directory, 1915, p. 204</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Electoral-Rolls">Electoral rolls, 1905</ref></bibl>
+        </listBibl>
+      </sourceDesc>
+    </fileDesc>
+    <revisionDesc status="published">
+      <change when="2026-10-27" type="created">Machine-assisted first draft by Common Ground, from the directory and electoral-roll records.</change>
+    </revisionDesc>
+  </teiHeader>
+  <standOff>
+    <listPerson>
+      <person xml:id="subject">
+        <persName type="main">Thomas Hunter</persName>
+      </person>
+    </listPerson>
+  </standOff>
+  <text>
+    <body>
+      <p>Thomas C. Hunter is listed as the proprietor of the <ref target="civic?id=Bush%20Inn%20hotel">Bush Inn</ref> on the corner of Bouverie and Victoria streets in the directories from 1895 to 1915 (as T. C. Hunter in 1895).</p>
+      <p>In 1900 the directory also lists Thomas C. Hunter, hotel broker, at 152 Victoria Street, a few doors from the hotel. He is on the 1905 electoral roll at 170 Victoria Street, the Bush Inn's number, a victualler.</p>
+      <p>See also <ref target="civic?id=Bush%20Inn%20hotel">Bush Inn</ref> and <ref target="civic?id=Hotels">Hotels</ref>.</p>
+      <p><hi rend="italic">This entry is a machine-assisted first draft by Common Ground, written from the directory and electoral-roll records. Only records that are clearly the same person, at the hotel's address and in a hotel trade, are linked to it. Please correct or add to it.</hi></p>
+    </body>
+  </text>
+</TEI>
