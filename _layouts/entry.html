@@ -75,7 +75,7 @@ function slugifyId(text) {
     // Adjust text based on whether the article was loaded or missing
     const heading = isExisting ? "Contribute to this Entry" : "Contribute Information";
     const bodyText = isExisting 
-      ? `Have additional information for record <strong class="record-name">${articleId}</strong>? Fill out the form below to help improve this article!`
+      ? `Have additional information for record <strong class="record-name">${articleId}</strong>? Fill out the form below to help improve this entry!`
       : `No published entry was found for record <strong class="record-name">${articleId}</strong> yet. You can submit new details using the form below to help create it!`;
 
     const formHtml = `

@@ -8,7 +8,7 @@
 >
 > - **Read about the project:** [About Common Ground](https://historicalesque.github.io/carlton/)
 > - **Search everything:** [Search](https://historicalesque.github.io/carlton/search) finds entries, directory listings and electoral-roll records in one box.
-> - **Browse the histories:** [Featured pages A–Z](https://historicalesque.github.io/carlton/aToZ) · [Map](https://historicalesque.github.io/carlton/map) · [Electoral rolls](https://historicalesque.github.io/carlton/electoral-rolls)
+> - **Browse the histories:** [Entries A–Z](https://historicalesque.github.io/carlton/aToZ) · [Map](https://historicalesque.github.io/carlton/map) · [Electoral rolls](https://historicalesque.github.io/carlton/electoral-rolls)
 > - **Share a story or add to an entry:** open any entry on the site and use the *Contribute* form at the bottom, or [start a new entry](https://historicalesque.github.io/carlton/new).
 > - **Editorial team:** start at the [Admin page](https://historicalesque.github.io/carlton/admin/), which links to each editorial tool. To review submissions, read them on the [Submission review page](https://historicalesque.github.io/carlton/admin/review.html), then accept or reject each one in the Decision column of the team's submissions spreadsheet.
 > - **Project partners:** [Melbourne History Workshop](https://melbournehistoryworkshop.com) · [Carlton Community History Group](https://cchg.asn.au)
