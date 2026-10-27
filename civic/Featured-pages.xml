@@ -5,6 +5,7 @@
     <fileDesc>
       <titleStmt>
         <title>Entries</title>
+        <author>Mitchell Harrop</author>
         <author>Andy May</author>
         <author>Andy May</author>
         <author>Andy May</author>
@@ -21,17 +22,9 @@
       </sourceDesc>
     </fileDesc>
     <revisionDesc status="draft">
-      <change when="2026-10-23" type="created">Contributed through the contribution form by Andy May, Andy May, Andy May, Mitchell Harrop, Barbara Minchinton, Common Ground.</change>
-      <change when="2026-10-27" type="revised">Renamed from Feature Pages to Entries.</change>
+      <change when="2026-10-27" type="created">Contributed through the contribution form by Mitchell Harrop, Andy May, Andy May, Andy May, Mitchell Harrop, Barbara Minchinton, Common Ground.</change>
     </revisionDesc>
   </teiHeader>
-  <standOff>
-    <listPerson>
-      <person xml:id="subject">
-        <persName type="main">Entries</persName>
-      </person>
-    </listPerson>
-  </standOff>
   <text>
     <body>
       <p>Select a letter below to jump directly to that section.</p>
@@ -155,7 +148,7 @@
       </div>
       <div>
         <head>O</head>
-        <p><ref target="civic?id=O">O</ref></p>
+        <p><ref target="civic?id=Otago-Hotel">Otago Hotel</ref></p>
       </div>
       <div>
         <head>P</head>
