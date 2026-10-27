@@ -24,6 +24,7 @@
     </fileDesc>
     <revisionDesc status="draft">
       <change when="2026-10-27" type="created">Contributed through the contribution form by Mitchell Harrop.</change>
+      <change when="2026-10-27" type="edited">Proprietors as listed in the directories added by Common Ground (machine-assisted).</change>
     </revisionDesc>
   </teiHeader>
   <standOff>
@@ -39,6 +40,7 @@
   <text>
     <body>
       <p>Otago Hotel was located on Pelham Street.</p>
+      <p>The directories list the proprietors as Ellen Hogan (1875 and 1876), George Daly (1877), J. H. Brenan (1878), Jer. Collins (1879) and Miss Rosa McManus (1880). <hi rend="italic">Machine-assisted first draft by Common Ground, from the directory records.</hi></p>
     </body>
   </text>
 </TEI>
