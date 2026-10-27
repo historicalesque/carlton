@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="https://historicalesque.github.io/carlton/schema/carlton.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0" type="topic" xml:lang="en">
+  <teiHeader>
+    <fileDesc>
+      <titleStmt>
+        <title>Stables</title>
+        <author>Common Ground</author>
+      </titleStmt>
+      <publicationStmt>
+        <publisher>Common Ground</publisher>
+        <idno type="entry">Stables</idno>
+      </publicationStmt>
+      <sourceDesc>
+        <listBibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directories">Sands &amp; McDougall Directories, 1857–1940</ref></bibl>
+        </listBibl>
+      </sourceDesc>
+    </fileDesc>
+    <revisionDesc status="published">
+      <change when="2026-10-27" type="created">Machine-assisted first draft by Common Ground, written from the directory records.</change>
+    </revisionDesc>
+  </teiHeader>
+  <text>
+    <body>
+      <p>The directories show many kinds of stables in the project area: livery stables that hired out horses and vehicles, bait stables where carriers rested their teams, hotel stables, and the stables of large firms. The Sands &amp; McDougall directories list sixteen named stables between 1857 and 1925, most of them in <ref target="civic?id=Leicester%20Street">Leicester Street</ref>, <ref target="civic?id=Queensberry%20Street">Queensberry Street</ref> and <ref target="civic?id=Victoria%20Street">Victoria Street</ref> in the 1850s and 1860s, and many more under their keepers' names.</p>
+      <p>The lists below are drawn only from the directories. Each named stable links to its own entry, and most of them haven't been written yet. If you know a stable's story, please start its entry.</p>
+      <div>
+        <head>Named stables in the directories</head>
+        <p>Years are the first and last directories that list the stables; the directories are yearly to 1880 and then every five years. Stables with the same name in different streets are kept apart and noted against each.</p>
+        <table>
+          <row><cell><hi rend="bold">Stables</hi></cell><cell><hi rend="bold">Listed in</hi></cell><cell><hi rend="bold">Numbers</hi></cell><cell><hi rend="bold">Years</hi></cell><cell><hi rend="bold">Notes</hi></cell></row>
+          <row><cell><ref target="civic?id=Union%20Stables">Union Stables</ref></cell><cell><ref target="civic?id=Bouverie%20Street">Bouverie Street</ref></cell><cell>12</cell><cell>1857–1862</cell><cell>Alexander A. Grant, then William B. Bradley (1859–1860), then Cole Brothers (1861–1862). Listed only as "Stables" at No. 12 in 1863.</cell></row>
+          <row><cell><ref target="civic?id=Carlton%20Stables%20%28Bouverie%20Street%29">Carlton Stables (Bouverie Street)</ref></cell><cell><ref target="civic?id=Bouverie%20Street">Bouverie Street</ref></cell><cell>52, 81</cell><cell>1858–1860</cell><cell>Dodd &amp; Graham's Carlton Livery Stables in 1858, then Thomas Graham. Thomas Graham also ran the Carlton Stables in Queensberry Street in the same years; it isn't known whether these were one business.</cell></row>
+          <row><cell><ref target="civic?id=Carlton%20Stables%20%28Queensberry%20Street%29">Carlton Stables (Queensberry Street)</ref></cell><cell><ref target="civic?id=Queensberry%20Street">Queensberry Street</ref></cell><cell>3, 13</cell><cell>1858–1873</cell><cell>Graham and Dodd in 1858, then Thomas Graham, with Joseph Story in 1862. Listed as Thomas Graham's livery stables at No. 3 from 1869 to 1873. See also the Carlton Stables in Bouverie Street.</cell></row>
+          <row><cell><ref target="civic?id=University%20Stables">University Stables</ref></cell><cell><ref target="civic?id=Leicester%20Street">Leicester Street</ref></cell><cell></cell><cell>1858–1864</cell><cell>William Rae in 1858.</cell></row>
+          <row><cell><ref target="civic?id=Liverpool%20Stables">Liverpool Stables</ref></cell><cell><ref target="civic?id=Leicester%20Street">Leicester Street</ref></cell><cell>47, 66, 64</cell><cell>1859–1864</cell><cell>William Rae.</cell></row>
+          <row><cell><ref target="civic?id=Leicester%20Stables">Leicester Stables</ref></cell><cell><ref target="civic?id=Leicester%20Street">Leicester Street</ref>, <ref target="civic?id=Queensberry%20Street">Queensberry Street</ref></cell><cell>4 Queensberry</cell><cell>1859–1868</cell><cell>William Gray, then J. Curten from 1863. On the corner, so listed under both streets.</cell></row>
+          <row><cell><ref target="civic?id=Noah%27s%20Ark%20Stables">Noah's Ark Stables</ref></cell><cell><ref target="civic?id=Leicester%20Street">Leicester Street</ref>, <ref target="civic?id=Victoria%20Street">Victoria Street</ref></cell><cell>7 Victoria</cell><cell>1859–1861</cell><cell>Samuel S. Johnson, then John Cunningham (1861). See the <ref target="civic?id=Noah%27s%20Ark%20hotel">Noah's Ark Hotel</ref>.</cell></row>
+          <row><cell><ref target="civic?id=Royal%20Hotel%20Stables">Royal Hotel Stables</ref></cell><cell><ref target="civic?id=Victoria%20Street">Victoria Street</ref></cell><cell></cell><cell>1859–1868</cell><cell>Adams and Willis (1859), then Robertson, Simpson and Co. (1860–1861). See the <ref target="civic?id=Royal%20hotel">Royal Hotel</ref>.</cell></row>
+          <row><cell><ref target="civic?id=Carriers%27%20Stables%20%28Leicester%20Street%29">Carriers' Stables (Leicester Street)</ref></cell><cell><ref target="civic?id=Leicester%20Street">Leicester Street</ref></cell><cell>21</cell><cell>1859–1861</cell><cell>George Woodward (1860), then John Curten (1861). Not the Carriers' Stables in Victoria Street.</cell></row>
+          <row><cell><ref target="civic?id=Carriers%27%20Stables%20%28Victoria%20Street%29">Carriers' Stables (Victoria Street)</ref></cell><cell><ref target="civic?id=Victoria%20Street">Victoria Street</ref></cell><cell></cell><cell>1862–1863</cell><cell>W. Stephens (1863). Not the Carriers' Stables in Leicester Street.</cell></row>
+          <row><cell><ref target="civic?id=Toohey%27s%20Stables">Toohey's Stables</ref></cell><cell><ref target="civic?id=Grattan%20Street">Grattan Street</ref></cell><cell></cell><cell>1860–1862</cell><cell></cell></row>
+          <row><cell><ref target="civic?id=Latham%20%26%20Co.%27s%20stables">Latham &amp; Co.'s stables</ref></cell><cell><ref target="civic?id=Ballarat%20Street">Ballarat Street</ref></cell><cell></cell><cell>1872–1890</cell><cell>Later in the same place, the <ref target="civic?id=Carlton%20Brewery">Carlton Brewery</ref>'s stables (1895–1935).</cell></row>
+          <row><cell><ref target="civic?id=Paterson%2C%20Laing%20and%20Bruce%20stables">Paterson, Laing and Bruce stables</ref></cell><cell><ref target="civic?id=Lincoln%20Square%20North">Lincoln Square North</ref></cell><cell></cell><cell>1910–1920</cell><cell></cell></row>
+          <row><cell><ref target="civic?id=Friedman%27s%20stables">Friedman's stables</ref></cell><cell><ref target="civic?id=Carlton%20Place">Carlton Place</ref></cell><cell></cell><cell>1910–1920</cell><cell></cell></row>
+          <row><cell><ref target="civic?id=Bruche%20and%20Roberts%20stables">Bruche and Roberts stables</ref></cell><cell><ref target="civic?id=Sydney%20Road">Sydney Road</ref></cell><cell>12</cell><cell>1910–1915</cell><cell>J. Roberts, stables, at No. 12 in 1920.</cell></row>
+          <row><cell><ref target="civic?id=Buckley%20%26%20Nunn%20stables">Buckley &amp; Nunn stables</ref></cell><cell><ref target="civic?id=Leicester%20Street">Leicester Street</ref></cell><cell>58</cell><cell>1915–1925</cell><cell>With Robert Reid &amp; Co. in 1915; "stables &amp; garage" from 1920. William I. Barns, livery stables, at No. 58 in 1910.</cell></row>
+        </table>
+      </div>
+      <div>
+        <head>Stable keepers</head>
+        <p>These stables are listed under their keepers' names. They are given here as the directories print them.</p>
+        <table>
+          <row><cell><hi rend="bold">Listed as</hi></cell><cell><hi rend="bold">Listed in</hi></cell><cell><hi rend="bold">Numbers</hi></cell><cell><hi rend="bold">Years</hi></cell></row>
+          <row><cell>Garden and Co., livery stable keepers</cell><cell><ref target="civic?id=Victoria%20Street">Victoria Street</ref></cell><cell></cell><cell>1857–1858</cell></row>
+          <row><cell>Johnson, Samuel, livery stable keeper</cell><cell><ref target="civic?id=Victoria%20Street">Victoria Street</ref></cell><cell></cell><cell>1857–1858</cell></row>
+          <row><cell>Kennedy and Gray, livery and stable keepers</cell><cell><ref target="civic?id=Victoria%20Street">Victoria Street</ref></cell><cell></cell><cell>1857</cell></row>
+          <row><cell>Carroll, James, stable keeper</cell><cell><ref target="civic?id=Leicester%20Street">Leicester Street</ref></cell><cell></cell><cell>1857</cell></row>
+          <row><cell>Woodward, F. R. G., stable keeper</cell><cell><ref target="civic?id=Leicester%20Street">Leicester Street</ref></cell><cell>28</cell><cell>1857–1858</cell></row>
+          <row><cell>Hunter, Thomas, stable keeper</cell><cell><ref target="civic?id=Madeline%20Street">Madeline Street</ref></cell><cell></cell><cell>1857</cell></row>
+          <row><cell>Bradley, William B., stable keeper and corn dealer</cell><cell><ref target="civic?id=Victoria%20Street">Victoria Street</ref></cell><cell></cell><cell>1858</cell></row>
+          <row><cell>Newington, Stephen, livery and bait stables</cell><cell><ref target="civic?id=Leicester%20Street">Leicester Street</ref></cell><cell>27</cell><cell>1859–1860</cell></row>
+          <row><cell>Blackburn, John, livery and bait stables</cell><cell><ref target="civic?id=Leicester%20Street">Leicester Street</ref></cell><cell>27</cell><cell>1861–1866</cell></row>
+          <row><cell>Waugh, J. and R., corn dealers, and stables</cell><cell><ref target="civic?id=Queensberry%20Street">Queensberry Street</ref></cell><cell>3</cell><cell>1864</cell></row>
+          <row><cell>Montgomery, John, livery stables</cell><cell><ref target="civic?id=Victoria%20Street">Victoria Street</ref></cell><cell></cell><cell>1869</cell></row>
+          <row><cell>Silk, Frank, livery stables</cell><cell><ref target="civic?id=Victoria%20Street">Victoria Street</ref></cell><cell></cell><cell>1870–1871</cell></row>
+          <row><cell>Burrows (or Burrowes), John, livery stables</cell><cell><ref target="civic?id=Victoria%20Street">Victoria Street</ref></cell><cell>37</cell><cell>1872–1878</cell></row>
+          <row><cell>Beeston, Robert, stables</cell><cell><ref target="civic?id=Victoria%20Street">Victoria Street</ref></cell><cell>37</cell><cell>1879</cell></row>
+          <row><cell>Wilson, R., livery stables</cell><cell><ref target="civic?id=Victoria%20Street">Victoria Street</ref></cell><cell>37</cell><cell>1880</cell></row>
+          <row><cell>Reilly and Gaynor's stables</cell><cell><ref target="civic?id=Queensberry%20Street">Queensberry Street</ref></cell><cell></cell><cell>1879</cell></row>
+          <row><cell>Mitchell &amp; Newell, stables</cell><cell><ref target="civic?id=Queensberry%20Street">Queensberry Street</ref></cell><cell></cell><cell>1885</cell></row>
+          <row><cell>Farrow, James G., livery stables</cell><cell><ref target="civic?id=Berkley%20Street">Berkley Street</ref>, <ref target="civic?id=Elizabeth%20Street%20North">Elizabeth Street North</ref></cell><cell>548 Elizabeth Street North (1895)</cell><cell>1885–1895</cell></row>
+          <row><cell>Lord and Strong, stables</cell><cell><ref target="civic?id=Queensberry%20Street">Queensberry Street</ref>, <ref target="civic?id=Berkley%20Street">Berkley Street</ref></cell><cell></cell><cell>1890</cell></row>
+          <row><cell>Prosser Bros., livery stables</cell><cell><ref target="civic?id=Berkley%20Street">Berkley Street</ref></cell><cell>13</cell><cell>1900</cell></row>
+          <row><cell>Barns, William I., livery stables</cell><cell><ref target="civic?id=Leicester%20Street">Leicester Street</ref></cell><cell>58</cell><cell>1910</cell></row>
+          <row><cell>Smith, Percy, stables</cell><cell><ref target="civic?id=Queensberry%20Street">Queensberry Street</ref></cell><cell></cell><cell>1910–1915</cell></row>
+        </table>
+      </div>
+      <div>
+        <head>Notes</head>
+        <list rend="bulleted">
+          <item>Thomas Graham ran both the Carlton Stables in Queensberry Street and the Carlton Stables in Bouverie Street in 1858 to 1860. They are kept apart here because it isn't known whether they were one business.</item>
+          <item>Hotels often had their own stables, such as the <ref target="civic?id=Corkman%20Hotel">Carlton Inn</ref> (1890–1905), the <ref target="civic?id=Emu%20Hotel">Emu Hotel</ref> (1915), the <ref target="civic?id=Leicester%20hotel">Leicester Hotel</ref> (1867–1871) and the <ref target="civic?id=City%20hotel">City Hotel</ref> (1859–1861). These listings are linked to the hotels (see <ref target="civic?id=Hotels">Hotels</ref>).</item>
+          <item>The <ref target="civic?id=Carlton%20Brewery">Carlton Brewery</ref>'s stables in Ballarat Street and Ballarat Lane (1895–1935) and Swanston Street (1940) are linked to the brewery.</item>
+          <item>Unnamed "Stables" are listed in Berkley, Leicester and Queensberry streets in the 1860s.</item>
+        </list>
+        <p>Every listing can be browsed in <ref target="search?q=stables&amp;src=directories">search</ref>.</p>
+        <p><hi rend="italic">This page is a machine-assisted first draft by Common Ground, written from the directory records. Please correct or add to it.</hi></p>
+      </div>
+    </body>
+  </text>
+</TEI>

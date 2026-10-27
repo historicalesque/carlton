@@ -17,7 +17,7 @@
 {"entityID":36616,"source":"Directory","year":1857,"pages":"161","listing":"27 Foy, Francis","street":"Bouverie Street","type":"Place","kind":"person","cardinality":""},
 {"entityID":"Mrs. Fullerton (Bouverie Street)","source":"Directory","year":1857,"pages":"161","listing":"Fullerton, Mrs., general store","street":"Bouverie Street","type":"Place","kind":"person","cardinality":"","Occupation":"general store"},
 {"entityID":36618,"source":"Directory","year":1857,"pages":"161","listing":"Graham, George, general store","street":"Bouverie Street","type":"Place","kind":"person","cardinality":"","Occupation":"general store"},
-{"entityID":"Alexander A. Grant (Bouverie Street)","source":"Directory","year":1857,"pages":"161","listing":"Grant, Alexander A., Union stables","street":"Bouverie Street","type":"Place","kind":"org","cardinality":""},
+{"entityID":"Union Stables","source":"Directory","year":1857,"pages":"161","listing":"Grant, Alexander A., Union stables","street":"Bouverie Street","type":"Place","kind":"org","cardinality":""},
 {"entityID":36620,"source":"Directory","year":1857,"pages":"161","listing":"Hanniver, John, general store","street":"Bouverie Street","type":"Place","kind":"person","cardinality":"","Occupation":"general store"},
 {"entityID":36621,"source":"Directory","year":1857,"pages":"161","listing":"Hellewell, Mrs.","street":"Bouverie Street","type":"Place","kind":"person","cardinality":""},
 {"entityID":36622,"source":"Directory","year":1857,"pages":"161","listing":"Hepburn, James, saddler","street":"Bouverie Street","type":"Place","kind":"person","cardinality":"","Occupation":"saddler"},

@@ -6,7 +6,7 @@
 {"entityID":240005,"source":"Directory","year":1885,"pages":"86","listing":"Right-of-way","street":"Ballarat Street","type":"right-of-way","kind":"place","cardinality":"North"},
 {"entityID":240006,"source":"Directory","year":1885,"pages":"86","listing":"Callorn, Alexander","street":"Ballarat Street","type":"Place","kind":"person","cardinality":"North"},
 {"entityID":240007,"source":"Directory","year":1885,"pages":"86","listing":"Burwood, Robert","street":"Ballarat Street","type":"Place","kind":"person","cardinality":"North"},
-{"entityID":"Latham & Co's stables","source":"Directory","year":1885,"pages":"86","listing":"Latham & Co's stables","street":"Ballarat Street","type":"Place","kind":"org","cardinality":"North"},
+{"entityID":"Latham & Co.'s stables","source":"Directory","year":1885,"pages":"86","listing":"Latham & Co's stables","street":"Ballarat Street","type":"Place","kind":"org","cardinality":"North"},
 {"entityID":240009,"source":"Directory","year":1885,"pages":"86","listing":"Right-of-way","street":"Ballarat Street","type":"right-of-way","kind":"place","cardinality":"North"},
 {"entityID":240010,"source":"Directory","year":1885,"pages":"86","listing":"McDonald, Margaret","street":"Ballarat Street","type":"Place","kind":"person","cardinality":"North"},
 {"entityID":240011,"source":"Directory","year":1885,"pages":"86","listing":"Cusack, James","street":"Ballarat Street","type":"Place","kind":"person","cardinality":"North"},

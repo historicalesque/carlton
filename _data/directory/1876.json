@@ -4,7 +4,7 @@
 {"entityID":"Harry Sheppard","source":"Directory","year":1876,"pages":"61","listing":"3 Sheppard, Harry","street":"Ballarat Street","type":"Place","kind":"person","cardinality":"North"},
 {"entityID":"William Prendergast (5 Ballarat Street)","source":"Directory","year":1876,"pages":"61","listing":"5 Prendergast, William","street":"Ballarat Street","type":"Place","kind":"person","cardinality":"North","lat":-37.805282,"lng":144.962006,"coordConfidence":"low","coordSource":"MMBW detail plans 1179 & 1180 (c. 1895)","coordNote":"same name on this street in every directory from 1876 to 1890, where it is No. 32"},
 {"entityID":200044,"source":"Directory","year":1876,"pages":"61","listing":"King, Wm, boot mnfctr","street":"Ballarat Street","type":"Place","kind":"person","cardinality":"North"},
-{"entityID":"Latham & Co's stables","source":"Directory","year":1876,"pages":"61","listing":"Latham & Co's stables","street":"Ballarat Street","type":"Place","kind":"org","cardinality":"North"},
+{"entityID":"Latham & Co.'s stables","source":"Directory","year":1876,"pages":"61","listing":"Latham & Co's stables","street":"Ballarat Street","type":"Place","kind":"org","cardinality":"North"},
 {"entityID":200046,"source":"Directory","year":1876,"pages":"61","listing":"Garrick, Thomas","street":"Ballarat Street","type":"Place","kind":"person","cardinality":"North"},
 {"entityID":"F. McMahon","source":"Directory","year":1876,"pages":"61","listing":"15 McMahon, F.","street":"Ballarat Street","type":"Place","kind":"person","cardinality":"North"},
 {"entityID":200048,"source":"Directory","year":1876,"pages":"61","listing":"17 Hunter, Mrs P. A.","street":"Ballarat Street","type":"Place","kind":"person","cardinality":"North"},
