@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="https://historicalesque.github.io/carlton/schema/carlton.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0" type="topic" xml:lang="en">
+  <teiHeader>
+    <fileDesc>
+      <titleStmt>
+        <title>Hotels</title>
+        <author>Common Ground</author>
+      </titleStmt>
+      <publicationStmt>
+        <publisher>Common Ground</publisher>
+        <idno type="entry">Hotels</idno>
+      </publicationStmt>
+      <sourceDesc>
+        <listBibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directories">Sands &amp; McDougall Directories, 1857–1940</ref></bibl>
+        </listBibl>
+      </sourceDesc>
+    </fileDesc>
+    <revisionDesc status="published">
+      <change when="2026-10-27" type="created">Machine-assisted first draft by Common Ground, written from the directory records.</change>
+    </revisionDesc>
+  </teiHeader>
+  <text>
+    <body>
+      <p>The Sands &amp; McDougall directories list 56 hotels and inns in the project area between 1857 and 1940. Many of them are listed for only a few years. By 1940, the last directory transcribed so far, only 3 were still listed: Carlton Inn (Corkman Hotel), Prince Alfred Hotel and Queensberry Hotel.</p>
+      <p>The list below is drawn only from the directories. Each name links to the hotel's own entry, and most of them haven't been written yet. If you know a hotel's story, please start its entry.</p>
+      <div>
+        <head>Hotels in the directories</head>
+        <p>Years are the first and last directories that list the hotel; the directories are yearly to 1880 and then every five years. Corner hotels are often listed under both streets. Street numbers changed when Melbourne's streets were renumbered in the late 1880s, so one hotel can have several numbers.</p>
+        <table>
+          <row><cell><hi rend="bold">Hotel</hi></cell><cell><hi rend="bold">Listed in</hi></cell><cell><hi rend="bold">Numbers</hi></cell><cell><hi rend="bold">Years</hi></cell><cell><hi rend="bold">Notes</hi></cell></row>
+          <row><cell><ref target="civic?id=Berkley%20Arms%20hotel">Berkley Arms Hotel</ref></cell><cell>Berkley Street</cell><cell></cell><cell>1872–1905</cell><cell>Also spelt "Berkeley Arms" (1872–1885).</cell></row>
+          <row><cell><ref target="civic?id=Bouverie%20hotel">Bouverie Hotel</ref></cell><cell>Bouverie Street</cell><cell>30, 47</cell><cell>1857–1875</cell><cell></cell></row>
+          <row><cell><ref target="civic?id=Bush%20Inn%20hotel">Bush Inn Hotel</ref></cell><cell>Victoria Street, Bouverie Street</cell><cell>2, 170</cell><cell>1869–1925</cell><cell>On the corner of Bouverie and Victoria streets, so listed under both.</cell></row>
+          <row><cell><ref target="civic?id=Corkman%20Hotel">Carlton Inn (Corkman Hotel)</ref></cell><cell>Leicester Street, Pelham Street</cell><cell>51, 160-2, 160</cell><cell>1857–1940</cell><cell>Listed as the Carlton Hotel in 1857 and the Carlton Inn after that; today the Corkman Hotel. Listed under both Leicester and Pelham streets.</cell></row>
+          <row><cell><ref target="civic?id=Cavan%20hotel">Cavan Hotel</ref></cell><cell>Queensberry Street</cell><cell>24, 44, 50</cell><cell>1857–1866</cell><cell>Transcribed as "Gavan Hotel" from 1857 to 1861, probably a misreading.</cell></row>
+          <row><cell><ref target="civic?id=City%20hotel">City Hotel</ref></cell><cell>Madeline Street</cell><cell>11</cell><cell>1857–1863</cell><cell></cell></row>
+          <row><cell><ref target="civic?id=Commercial%20hotel">Commercial Hotel</ref></cell><cell>Queensberry Street, Bouverie Street</cell><cell>205</cell><cell>1877–1905</cell><cell>Listed under both Bouverie and Queensberry streets.</cell></row>
+          <row><cell><ref target="civic?id=Conroy%27s%20hotel">Conroy's Hotel</ref></cell><cell>Madeline Street</cell><cell></cell><cell>1863–1865</cell><cell></cell></row>
+          <row><cell><ref target="civic?id=Emu%20Hotel">Emu Hotel</ref></cell><cell>Bouverie Street, Pelham Street</cell><cell>13, 64, 117, 173</cell><cell>1859–1925</cell><cell>Listed under both Bouverie and Pelham streets.</cell></row>
+          <row><cell><ref target="civic?id=Euterpe%20hotel">Euterpe Hotel</ref></cell><cell>Pelham Street</cell><cell></cell><cell>1872–1874</cell><cell></cell></row>
+          <row><cell><ref target="civic?id=Exmouth%20Arms%20hotel">Exmouth Arms</ref></cell><cell>Leicester Street, Victoria Street</cell><cell>1</cell><cell>1868–1873</cell><cell>At No. 1, listed under both Leicester and Victoria streets.</cell></row>
+          <row><cell><ref target="civic?id=Family%20hotel">Family Hotel</ref></cell><cell>Sydney Road</cell><cell></cell><cell>1879–1880</cell><cell></cell></row>
+          <row><cell><ref target="civic?id=Golden%20Age%20hotel">Golden Age Hotel</ref></cell><cell>Queensberry Street</cell><cell>188</cell><cell>1900–1905</cell><cell>At No. 188, the same number as the National Hotel in 1895.</cell></row>
+          <row><cell><ref target="civic?id=Grattan%20hotel">Grattan Hotel</ref></cell><cell>Madeline Street</cell><cell>123</cell><cell>1868–1873</cell><cell></cell></row>
+          <row><cell><ref target="civic?id=Harp%20of%20Erin%20hotel">Harp of Erin Hotel</ref></cell><cell>Madeline Street</cell><cell>71, 74, 75, 87, 107</cell><cell>1858–1915</cell><cell></cell></row>
+          <row><cell><ref target="civic?id=Harvest%20Home%20hotel">Harvest Home Hotel</ref></cell><cell>Sydney Road</cell><cell>44-46, 44</cell><cell>1885–1930</cell><cell></cell></row>
+          <row><cell><ref target="civic?id=Hope%20hotel">Hope Hotel</ref></cell><cell>Queensberry Street</cell><cell>36</cell><cell>1869–1870</cell><cell>At No. 36, also listed as the Monteagle Hotel, the Rising Sun Hotel and the Liver Inn in other years.</cell></row>
+          <row><cell><ref target="civic?id=Hughes%27%20hotel">Hughes' Hotel</ref></cell><cell>Ballarat Street</cell><cell></cell><cell>1870–1872</cell><cell></cell></row>
+          <row><cell><ref target="civic?id=Junction%20hotel%20%28Elizabeth%20Street%29">Junction Hotel (Elizabeth Street)</ref></cell><cell>Elizabeth Street North</cell><cell>714</cell><cell>1895</cell><cell></cell></row>
+          <row><cell><ref target="civic?id=Junction%20hotel%20%28Pelham%20Street%29">Junction Hotel (Pelham Street)</ref></cell><cell>Pelham Street</cell><cell></cell><cell>1866–1925</cell><cell></cell></row>
+          <row><cell><ref target="civic?id=King%27s%20Arms%20hotel">King's Arms Hotel</ref></cell><cell>Madeline Street</cell><cell></cell><cell>1857–1858</cell><cell></cell></row>
+          <row><cell><ref target="civic?id=Leicester%20hotel">Leicester Hotel</ref></cell><cell>Leicester Street</cell><cell>31, 32, 36, 56</cell><cell>1857–1915</cell><cell></cell></row>
+          <row><cell><ref target="civic?id=Lincoln%20Inn">Lincoln Inn</ref></cell><cell>Queensberry Street</cell><cell></cell><cell>1857–1858</cell><cell></cell></row>
+          <row><cell><ref target="civic?id=Liver%20Inn">Liver Inn</ref></cell><cell>Queensberry Street</cell><cell>36</cell><cell>1874–1876</cell><cell>At No. 36, also listed as the Monteagle Hotel, the Hope Hotel and the Rising Sun Hotel in other years.</cell></row>
+          <row><cell><ref target="civic?id=Madeline%20hotel">Madeline Hotel</ref></cell><cell>Madeline Street</cell><cell>47</cell><cell>1866–1867</cell><cell></cell></row>
+          <row><cell><ref target="civic?id=Manchester%20Arms%20hotel">Manchester Arms Hotel</ref></cell><cell>Elizabeth Street North</cell><cell>650</cell><cell>1895</cell><cell></cell></row>
+          <row><cell><ref target="civic?id=The%20Mills%20hotel">The Mills Hotel</ref></cell><cell>Queensberry Street, Leicester Street</cell><cell>259</cell><cell>1869–1915</cell><cell>Listed under both Leicester and Queensberry streets.</cell></row>
+          <row><cell><ref target="civic?id=Monteagle%20hotel">Monteagle Hotel</ref></cell><cell>Queensberry Street</cell><cell>36</cell><cell>1866–1868</cell><cell>At No. 36, also listed as the Hope Hotel, the Rising Sun Hotel and the Liver Inn in other years.</cell></row>
+          <row><cell><ref target="civic?id=National%20hotel">National Hotel</ref></cell><cell>Queensberry Street</cell><cell>11, 15, 188</cell><cell>1866–1895</cell><cell>In 1895 at No. 188, which is the Golden Age Hotel's number from 1900.</cell></row>
+          <row><cell><ref target="civic?id=New%20Haymarket%20hotel">New Haymarket Hotel</ref></cell><cell>Sydney Road</cell><cell>26</cell><cell>1875–1915</cell><cell>Also spelt "New Hay Market" and listed once as the New Haymarket Inn.</cell></row>
+          <row><cell><ref target="civic?id=New%20Market%20hotel">New Market Hotel</ref></cell><cell>Sydney Road</cell><cell></cell><cell>1875</cell><cell></cell></row>
+          <row><cell><ref target="civic?id=Newmarket%20hotel">Newmarket Hotel</ref></cell><cell>Leicester Street</cell><cell>2</cell><cell>1870–1878</cell><cell></cell></row>
+          <row><cell><ref target="civic?id=Noah%27s%20Ark%20hotel">Noah's Ark Hotel</ref></cell><cell>Leicester Street, Victoria Street</cell><cell>20</cell><cell>1857–1871</cell><cell>Listed in Victoria Street in 1857 and 1858, and at 20 Leicester Street from 1866 to 1871. Noah's Ark stables and a boarding house are listed in both streets from 1859 to 1861.</cell></row>
+          <row><cell><ref target="civic?id=Nugget%20hotel">Nugget Hotel</ref></cell><cell>Bouverie Street</cell><cell>39, 41, 63</cell><cell>1865–1905</cell><cell></cell></row>
+          <row><cell><ref target="civic?id=Otago%20Hotel">Otago Hotel</ref></cell><cell>Pelham Street</cell><cell></cell><cell>1875–1880</cell><cell></cell></row>
+          <row><cell><ref target="civic?id=Palmerston%20hotel">Palmerston Hotel</ref></cell><cell>Bouverie Street</cell><cell>97, 127, 135</cell><cell>1867–1905</cell><cell></cell></row>
+          <row><cell><ref target="civic?id=Payne%27s%20Royal%20hotel">Payne's Royal Hotel</ref></cell><cell>Madeline Street, Victoria Street</cell><cell></cell><cell>1875</cell><cell>Listed under both Madeline and Victoria streets in 1875.</cell></row>
+          <row><cell><ref target="civic?id=Peacock%20Inn">Peacock Inn</ref></cell><cell>Berkley Street</cell><cell></cell><cell>1871</cell><cell></cell></row>
+          <row><cell><ref target="civic?id=Pelham%20Hotel">Pelham Hotel</ref></cell><cell>Pelham Street, Barry Street</cell><cell>194</cell><cell>1874–1915</cell><cell>On the corner of Pelham and Barry streets, so listed under both from 1874 to 1878. See also Mary Mather.</cell></row>
+          <row><cell><ref target="civic?id=Perseverance%20hotel">Perseverance Hotel</ref></cell><cell>Barry Street</cell><cell>41</cell><cell>1900</cell><cell>At No. 41 in 1900, the number of the Sir Redmond Barry Hotel in 1895 and 1905.</cell></row>
+          <row><cell><ref target="civic?id=Prince%20Alfred%20hotel">Prince Alfred Hotel</ref></cell><cell>Grattan Street, Bouverie Street</cell><cell>191-5, 191</cell><cell>1876–1940</cell><cell>Listed under both Grattan and Bouverie streets.</cell></row>
+          <row><cell><ref target="civic?id=Prince%20of%20Wales%20hotel">Prince of Wales Hotel</ref></cell><cell>Bouverie Street</cell><cell>217, 219</cell><cell>1870–1905</cell><cell></cell></row>
+          <row><cell><ref target="civic?id=Queensberry%20hotel">Queensberry Hotel</ref></cell><cell>Madeline Street, Queensberry Street, Swanston Street</cell><cell>28, 53, 58, 59, 77-79, 79, 593-597</cell><cell>1857–1940</cell><cell>Listed under both Queensberry and Madeline (later Swanston) streets.</cell></row>
+          <row><cell><ref target="civic?id=Reserve%20hotel">Reserve Hotel</ref></cell><cell>Pelham Street</cell><cell>148</cell><cell>1905</cell><cell>At No. 148, the Standard Hotel's number up to 1900.</cell></row>
+          <row><cell><ref target="civic?id=Rising%20Sun%20hotel">Rising Sun Hotel</ref></cell><cell>Queensberry Street</cell><cell>36, 183</cell><cell>1871–1905</cell><cell>At No. 36, which was also the Monteagle Hotel, the Hope Hotel and the Liver Inn in other years.</cell></row>
+          <row><cell><ref target="civic?id=Royal%20Artillery%20hotel">Royal Artillery Hotel</ref></cell><cell>Queensberry Street</cell><cell>1</cell><cell>1860–1935</cell><cell></cell></row>
+          <row><cell><ref target="civic?id=Royal%20Artillery%20hotel%20%28Elizabeth%20Street%29">Royal Artillery Hotel (Elizabeth Street)</ref></cell><cell>Elizabeth Street North</cell><cell>614</cell><cell>1895</cell><cell></cell></row>
+          <row><cell><ref target="civic?id=Royal%20hotel">Royal Hotel</ref></cell><cell>Victoria Street, Madeline Street</cell><cell>1, 33, 142</cell><cell>1857–1920</cell><cell></cell></row>
+          <row><cell><ref target="civic?id=Seven%20Stars%20hotel">Seven Stars Hotel</ref></cell><cell>Madeline Street</cell><cell></cell><cell>1857–1858</cell><cell></cell></row>
+          <row><cell><ref target="civic?id=Sir%20Redmond%20Barry%20hotel">Sir Redmond Barry Hotel</ref></cell><cell>Barry Street</cell><cell>41</cell><cell>1867–1905</cell><cell>At No. 41, which is listed as the Perseverance Hotel in 1900.</cell></row>
+          <row><cell><ref target="civic?id=Standard%20hotel">Standard Hotel</ref></cell><cell>Pelham Street</cell><cell>148-146, 148</cell><cell>1885–1900</cell><cell>At No. 148, the Reserve Hotel's number in 1905.</cell></row>
+          <row><cell><ref target="civic?id=University%20hotel">University Hotel</ref></cell><cell>Grattan Street</cell><cell></cell><cell>1862–1865</cell><cell></cell></row>
+          <row><cell><ref target="civic?id=Victoria%20hotel">Victoria Hotel</ref></cell><cell>Bouverie Street, Victoria Street</cell><cell>1, 21, 49, 73, 75</cell><cell>1867–1920</cell><cell>Listed under both Bouverie and Victoria streets. At 75 Bouverie Street, the Victorian Temperance Hotel's number in 1925.</cell></row>
+          <row><cell><ref target="civic?id=Victorian%20Horse%20Market%20hotel">Victorian Horse Market Hotel</ref></cell><cell>Sydney Road</cell><cell>64</cell><cell>1875–1930</cell><cell>Also spelt "Victoria Horse Market".</cell></row>
+          <row><cell><ref target="civic?id=Victorian%20Temperance%20hotel">Victorian Temperance Hotel</ref></cell><cell>Bouverie Street</cell><cell>75</cell><cell>1925</cell><cell>At No. 75, a number the Victoria Hotel also had.</cell></row>
+          <row><cell><ref target="civic?id=Wicklow%20hotel">Wicklow Hotel</ref></cell><cell>Bouverie Street</cell><cell></cell><cell>1866</cell><cell></cell></row>
+        </table>
+      </div>
+      <div>
+        <head>Notes</head>
+        <p>Where two names share a street number they are kept as separate hotels here, with a note on each. They may be one building under a new name, or a new hotel on the same site.</p>
+        <p>The 1857 and 1858 directories list a Canada Hotel in Madeline Street, and the 1935 and 1940 directories list a Canada Hotel at 600 Swanston Street (Madeline Street was renamed Swanston Street in 1925). It isn't yet known whether these are the same hotel, so it is left out of the list above.</p>
+        <p>A few listings name a hotel under a terrace or row of cottages beside it rather than the street, such as the Carlton Inn under Pattison's Terrace in 1874. These are counted with the hotel.</p>
+      </div>
+      <div>
+        <head>Records</head>
+        <p>Every directory listing that mentions a hotel can be found in <ref target="search?q=hotel&amp;src=directories">search</ref>.</p>
+        <p><hi rend="italic">This entry is a first draft, written with machine assistance from the project's directory records. If you know more, please add to it using the form below.</hi></p>
+      </div>
+    </body>
+  </text>
+</TEI>

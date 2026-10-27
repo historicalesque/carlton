@@ -45,7 +45,7 @@
   </standOff>
   <text>
     <body>
-      <p>Barry Street runs north from the corner of Queensberry and Leicester streets to Grattan Street, along the west side of University Square.</p>
+      <p>Barry Street runs north from the corner of Queensberry and Leicester streets to Grattan Street, along the west side of <ref target="civic?id=University%20Square">University Square</ref>.</p>
       <p>It first appears in the Sands &amp; McDougall directories in 1862, and is listed in every directory after that up to 1940, the last one transcribed so far.</p>
       <div>
         <head>Along the street</head>
@@ -53,20 +53,20 @@
         <list rend="bulleted">
           <item>Queensberry Street</item>
           <item>Leicester Street (listed from 1900, where the two streets meet at Queensberry Street)</item>
-          <item>Wellesley Cottages (1879 to 1900)</item>
+          <item><ref target="civic?id=Wellesley%20Cottages">Wellesley Cottages</ref> (1879 to 1900)</item>
           <item>Pelham Street</item>
           <item>Grattan Street</item>
         </list>
-        <p>On the west side the order is Queensberry Street, Agra Place (1878 to 1905), Pelham Street, then a run of small terraces and lanes, Everton Cottages (1879 to 1885), Vernon Place (1879 to 1895) and Eliza Terrace (1869 to 1905), before Grattan Street. Rights-of-way are noted on the west side from 1895.</p>
+        <p>On the west side the order is Queensberry Street, <ref target="civic?id=Agra%20Place">Agra Place</ref> (1878 to 1905), Pelham Street, then a run of small terraces and lanes, Everton Cottages (1879 to 1885), Vernon Place (1879 to 1895) and <ref target="civic?id=Eliza%20Terrace">Eliza Terrace</ref> (1869 to 1905), before Grattan Street. Rights-of-way are noted on the west side from 1895.</p>
       </div>
       <div>
         <head>Businesses and landmarks</head>
         <list rend="bulleted">
-          <item>Royal and Co., engineers, at No. 2 on the east side from 1862 into the 1880s. The firm is also listed in Leicester Street from 1862, later as axle makers.</item>
-          <item>The Sir Redmond Barry Hotel, No. 41 on the west side beside Agra Place, from 1867 to 1905. In 1900 the same number is listed as the <ref target="civic?id=Perseverance%20hotel">Perseverance Hotel</ref>.</item>
+          <item><ref target="civic?id=Royal%20and%20Co">Royal and Co</ref>, engineers, at No. 2 on the east side from 1862 into the 1880s. The firm is also listed in Leicester Street from 1862, later as axle makers.</item>
+          <item>The <ref target="civic?id=Sir%20Redmond%20Barry%20hotel">Sir Redmond Barry Hotel</ref>, No. 41 on the west side beside Agra Place, from 1867 to 1905. In 1900 the same number is listed as the <ref target="civic?id=Perseverance%20hotel">Perseverance Hotel</ref>.</item>
           <item>The <ref target="civic?id=Pelham%20Hotel">Pelham Hotel</ref> of <ref target="civic?id=Mary%20Mather%20%28Pelham%20Hotel%29">Mary Mather</ref>, on the corner of Pelham Street, listed under Barry Street as well as Pelham Street from 1874 to 1878.</item>
           <item>Lerwill and Son, chair makers, No. 47 (1900), and a private hospital kept by Miss Eva Collinson at No. 121 (1905).</item>
-          <item>University Square, listed as a reserve on the east side from 1895, with the Victorian Lawn Tennis Court and the Victoria Bowling Green from 1905 to 1920.</item>
+          <item><ref target="civic?id=University%20Square">University Square</ref>, listed as a reserve on the east side from 1895, with the Victorian Lawn Tennis Court and the Victoria Bowling Green from 1905 to 1920.</item>
           <item>A straw hat factory at Nos 65 to 67, first under C. P. Jensen (1915) and later Rupert V. Kirsch (1930); Donnellan and Co., boot manufacturers, at the same address in 1925.</item>
           <item>The telephone exchange on the east side, 1925 to 1935, and Fred Price Pty Ltd, motor engineers, at Nos 40 to 42 (1935).</item>
         </list>
