@@ -79,7 +79,7 @@ All optional; the form only writes the parts the contributor filled in.
 
 ### `text/body`: the article
 
-Paragraphs (`p`); each heading starts a new `div` with a `head`. Inline styles are `hi[@rend="italic|bold|underline"]`, links are `ref[@target]`, lists are `list[@rend="bulleted|numbered"]/item`, and tables are `table/row/cell`.
+Paragraphs (`p`); each heading starts a new `div` with a `head`. Inline styles are `hi[@rend="italic|bold|underline"]`, links are `ref[@target]`, lists are `list[@rend="bulleted|numbered"]/item`, block quotes are `quote/p` (lines quoted one after another share one `quote`), and tables are `table/row/cell`.
 
 ### Dates
 

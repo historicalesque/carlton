@@ -193,6 +193,7 @@
     .ql-snow .ql-picker-options { background: var(--paper); }
     .ql-snow .ql-tooltip { background: var(--paper); border-color: var(--sage-dark); color: var(--ink-soft); box-shadow: none; }
     .ql-snow .ql-tooltip a, .ql-editor a { color: var(--moss); }
+    .ql-snow .ql-editor blockquote { border-left-color: var(--moss); font-family: var(--font-serif); }
     #editor-container { height: 440px; }
     .ql-table-embed table { border-collapse: collapse; width: 100%; }
     .ql-table-embed td, .ql-table-embed th { border: 1px solid var(--paper-line); padding: 6px 8px; }
@@ -1091,11 +1092,12 @@
         [{ 'header': [1, 2, 3, false] }],
         ['bold', 'italic', 'underline'],
         [{ 'list': 'ordered' }, { 'list': 'bullet' }],
+        ['blockquote'],
         ['link'],
         ['clean']
       ]
     },
-    formats: ['header', 'bold', 'italic', 'underline', 'list', 'link', 'tableHTML'],
+    formats: ['header', 'bold', 'italic', 'underline', 'list', 'blockquote', 'link', 'tableHTML'],
     placeholder: 'Type or paste the entry content here...',
     theme: 'snow'
   });
