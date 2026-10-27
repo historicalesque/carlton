@@ -1395,7 +1395,7 @@ html.map3d-page, body.map3d-page {
     text-transform: uppercase; letter-spacing: .04em;
 }
 .loc-confidence { margin: 6px 0 4px; font: 700 13px var(--font-ui); color: var(--ink-soft); }
-.loc-unrated, .loc-estimated { font-weight: 400; color: var(--ink-faint); }
+.loc-unrated, .loc-estimated, .loc-street { font-weight: 400; color: var(--ink-faint); }
 .loc-meter { display: inline-flex; gap: 3px; margin-right: 6px; vertical-align: 1px; }
 .loc-dot { width: 8px; height: 8px; border-radius: 50%; border: 1px solid var(--sage-dark); }
 .loc-dot.on { border-color: var(--moss); background: var(--moss); }

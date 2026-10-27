@@ -130,7 +130,25 @@ window.MapCommon = (function () {
             }
             rawChains[key].push({ ...e });
         });
+        chains.forEach(({ layer, street, side, year }) => {
+            if (ALPHABETICAL_YEARS.includes(year)) sortAlongStreet(rawChains[chainKey(layer, street, side)]);
+        });
         return { chains, rawChains };
+    }
+
+    // The 1857 and 1858 directories list each street alphabetically by
+    // surname, not in street order, and every record has its own point
+    // (docs/SCHEMA.md), so their chains are put in order along the street
+    // before the street line is drawn through them.
+    const ALPHABETICAL_YEARS = [1857, 1858];
+
+    function sortAlongStreet(entries) {
+        const placed = entries.filter(e => e.lat != null && e.lng != null);
+        if (placed.length < entries.length || placed.length < 2) return;
+        const span = k => Math.max(...placed.map(e => e[k])) - Math.min(...placed.map(e => e[k]));
+        // A degree of longitude is about 0.79 of a degree of latitude here
+        const k = span('lng') * 0.79 > span('lat') ? 'lng' : 'lat';
+        entries.sort((a, b) => a[k] - b[k]);
     }
 
     // Cross-year links are records whose entityID is a string (a deliberate
@@ -306,12 +324,19 @@ window.MapCommon = (function () {
 
     // How sure we are of a record's point (coordConfidence, docs/SCHEMA.md),
     // as a three-dot meter and a few words. A record drawn between its
-    // mapped neighbours (_computed) has no point of its own.
+    // mapped neighbours (_computed) has no point of its own, and a 'street'
+    // point only says which street it was on.
     const CONFIDENCE = {
         high:   { dots: 3, text: 'High confidence' },
         medium: { dots: 2, text: 'Medium confidence' },
         low:    { dots: 1, text: 'Low confidence' },
+        street: { dots: 0, text: 'Street only: the spot on the street is not known' },
     };
+
+    // Drawn faded on the maps: an estimate between neighbours, or a street-only point
+    function isUncertain(entry) {
+        return !!entry._computed || entry.coordConfidence === 'street';
+    }
 
     function locationHtml(entry) {
         if (entry._computed) {
@@ -445,7 +470,7 @@ window.MapCommon = (function () {
         getBoundsFromFiles, loadByYear,
         chainKey, buildChains, buildCrossYearIndex,
         bezier, sideSign, applyOffset, computeChain,
-        markerShape,
+        markerShape, isUncertain,
         entryFor, escapeHtml,
         initDetailsModal, openDetailsModal,
     };
