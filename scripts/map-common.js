@@ -214,9 +214,11 @@ window.MapCommon = (function () {
             const tailCount = n - lastAi - 1;
             if (tailCount > 0) {
                 const A = { lat:r[lastAi].lat, lng:r[lastAi].lng };
-                // Street direction: from second-to-last anchor to last, or infer from side
-                // N/S sides run east-west → default forward direction is east (+lng)
-                // E/W sides run north-south → default forward direction is north (-lat, i.e. decreasing lat)
+                // Street direction: from second-to-last anchor to last, or infer from side.
+                // N/S sides run east-west → default forward direction is east (+lng).
+                // E/W sides run north-south → default to south (decreasing lat; Carlton
+                // is in the southern hemisphere), which suits a lane listed from the
+                // street it leaves, e.g. Little Grattan Street south of Grattan Street.
                 let dLng = 0, dLat = 0;
                 if (anchors.length >= 2) {
                     const prev = anchors[anchors.length - 2];
@@ -227,7 +229,7 @@ window.MapCommon = (function () {
                     dLng = (rawLng/len) * 0.00014;
                 } else {
                     // fallback defaults based on street orientation
-                    if (side === 'East' || side === 'West') { dLat = -0.00014; } // north-south street → project northward
+                    if (side === 'East' || side === 'West') { dLat = -0.00014; } // north-south street → project southward
                     else                                    { dLng =  0.00014; } // east-west street  → project eastward
                 }
                 const ghost = { lat: A.lat + dLat*(tailCount+1), lng: A.lng + dLng*(tailCount+1) };
@@ -253,13 +255,16 @@ window.MapCommon = (function () {
                     dLat = -(rawLat/len) * 0.00014;
                     dLng = -(rawLng/len) * 0.00014;
                 } else {
-                    if (side === 'East' || side === 'West') { dLat =  0.00014; } // project southward (back)
+                    // North-south street → project southward too: the anchor is usually where
+                    // the listing meets a cross street to its north (e.g. Barry Street's
+                    // listings up to Grattan Street), so the street runs on south of it
+                    if (side === 'East' || side === 'West') { dLat = -0.00014; }
                     else                                    { dLng = -0.00014; } // project westward (back)
                 }
                 const ghost = { lat: A.lat + dLat*(firstAi+1), lng: A.lng + dLng*(firstAi+1) };
                 const ctrl  = applyOffset((ghost.lat+A.lat)/2, (ghost.lng+A.lng)/2, arcOffset, side);
                 for (let k = 0; k < firstAi; k++) {
-                    const t = (firstAi - k) / (firstAi + 1);
+                    const t = (k + 1) / (firstAi + 1); // first listing furthest from the anchor
                     place(k, bezier(ghost, ctrl, A, t), t);
                 }
             }
