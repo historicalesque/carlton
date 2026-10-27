@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="https://historicalesque.github.io/carlton/schema/carlton.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0" type="org" xml:lang="en">
+  <teiHeader>
+    <fileDesc>
+      <titleStmt>
+        <title>Otago Hotel</title>
+        <author>Mitchell Harrop</author>
+      </titleStmt>
+      <publicationStmt>
+        <publisher>Common Ground</publisher>
+        <idno type="entry">Otago-Hotel</idno>
+      </publicationStmt>
+      <sourceDesc>
+        <listBibl>
+          <bibl><ref target="civic?id=Sands-McDougall-Directory-1875">Sands &amp; McDougall Directory, 1875, p. 108: Otago htl., Hogan, Ellen</ref></bibl>
+          <bibl><ref target="civic?id=Sands-McDougall-Directory-1876">Sands &amp; McDougall Directory, 1876, p. 74: Otago htl, Hogan, Ellen</ref></bibl>
+          <bibl><ref target="civic?id=Sands-McDougall-Directory-1877">Sands &amp; McDougall Directory, 1877, p. 74: Otago htl, Daly, George</ref></bibl>
+          <bibl><ref target="civic?id=Sands-McDougall-Directory-1878">Sands &amp; McDougall Directory, 1878, p. 75: Otago htl, Brenan, J. H.</ref></bibl>
+          <bibl><ref target="civic?id=Sands-McDougall-Directory-1879">Sands &amp; McDougall Directory, 1879, p. 76: Otago htl, Collins, Jer.</ref></bibl>
+          <bibl><ref target="civic?id=Sands-McDougall-Directory-1880">Sands &amp; McDougall Directory, 1880, p. 78: Otago hotel, McManus, Miss Rosa</ref></bibl>
+        </listBibl>
+      </sourceDesc>
+    </fileDesc>
+    <revisionDesc status="draft">
+      <change when="2026-10-27" type="created">Contributed through the contribution form by Mitchell Harrop.</change>
+    </revisionDesc>
+  </teiHeader>
+  <standOff>
+    <listOrg>
+      <org xml:id="subject">
+        <orgName type="main">Otago Hotel</orgName>
+        <place type="address" when="1875">
+          <placeName>Pelham Street, Carlton</placeName>
+        </place>
+      </org>
+    </listOrg>
+  </standOff>
+  <text>
+    <body>
+      <p>Otago Hotel was located on Pelham Street.</p>
+    </body>
+  </text>
+</TEI>
