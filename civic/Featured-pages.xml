@@ -5,8 +5,8 @@
     <fileDesc>
       <titleStmt>
         <title>Entries</title>
-        <author>Mitchell Harrop</author>
         <author>Andy May</author>
+        <author>Mitchell Harrop</author>
         <author>Barbara Minchinton</author>
         <author>Common Ground</author>
       </titleStmt>
@@ -19,7 +19,7 @@
       </sourceDesc>
     </fileDesc>
     <revisionDesc status="draft">
-      <change when="2026-10-27" type="created">Contributed through the contribution form by Mitchell Harrop, Andy May, Barbara Minchinton, Common Ground.</change>
+      <change when="2026-10-28" type="created">Contributed through the contribution form by Andy May, Mitchell Harrop, Barbara Minchinton, Common Ground.</change>
     </revisionDesc>
   </teiHeader>
   <text>
@@ -55,6 +55,7 @@
         <p><ref target="civic?id=Berkeley%20Street">Berkeley Street</ref></p>
         <p><ref target="civic?id=Berkley%20Place">Berkley Place</ref></p>
         <p><ref target="civic?id=Berkley%20Street">Berkley Street</ref></p>
+        <p><ref target="https://github.com/historicalesque/carlton/pull/169">Bills of Sale</ref></p>
         <p><ref target="civic?id=Blacksmiths">Blacksmiths</ref></p>
         <p><ref target="civic?id=Boarding%20Houses">Boarding Houses</ref></p>
         <p><ref target="civic?id=Robert%20Bodington">Bodington, Robert</ref></p>
