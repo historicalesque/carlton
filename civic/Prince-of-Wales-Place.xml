@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="https://historicalesque.github.io/carlton/schema/carlton.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0" type="place" xml:lang="en">
+  <teiHeader>
+    <fileDesc>
+      <titleStmt>
+        <title>Prince of Wales Place</title>
+        <author>Common Ground</author>
+      </titleStmt>
+      <publicationStmt>
+        <publisher>Common Ground</publisher>
+        <idno type="entry">Prince-of-Wales-Place</idno>
+      </publicationStmt>
+      <sourceDesc>
+        <listBibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1890">Sands &amp; McDougall Directory, 1890, p. 121</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1940">Sands &amp; McDougall Directory, 1940, p. 221</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Electoral-Rolls">Electoral rolls, 1928</ref></bibl>
+        </listBibl>
+      </sourceDesc>
+    </fileDesc>
+    <revisionDesc status="published">
+      <change when="2026-10-27" type="created">Machine-assisted first draft by Common Ground, written from the directory and electoral-roll records.</change>
+    </revisionDesc>
+  </teiHeader>
+  <standOff>
+    <listPlace>
+      <place xml:id="subject">
+        <placeName type="main">Prince of Wales Place</placeName>
+      </place>
+    </listPlace>
+    <listEvent type="chronology">
+      <event when="1890">
+        <label>First listed in the directories (1890)</label>
+      </event>
+      <event when="1940">
+        <label>Still listed in 1940, the last directory transcribed so far</label>
+      </event>
+    </listEvent>
+    <listRelation>
+      <relation type="place" name="part-of" active="#subject" passive="https://historicalesque.github.io/carlton/civic?id=Bouverie-Street">
+        <desc>Bouverie Street</desc>
+      </relation>
+    </listRelation>
+  </standOff>
+  <text>
+    <body>
+      <p>Prince of Wales Place is a lane off the west side of <ref target="civic?id=Bouverie%20Street">Bouverie Street</ref>, beside the Prince of Wales Hotel. In 1890 the directory lists it between No. 215 and the hotel at No. 217.</p>
+      <p>It is first listed in the directories in 1890, and in every directory after that up to 1940, the last one transcribed so far. It had at most nine listings, all of them houses.</p>
+      <div>
+        <head>Along the street</head>
+        <p>The directories give its corner with Bouverie Street as its only crossing (1900, 1905 and 1940). <ref target="civic?id=Banbridge%20Place">Banbridge Place</ref> is the next lane north on the same side of Bouverie Street.</p>
+      </div>
+      <div>
+        <head>Records</head>
+        <p>Every directory and electoral-roll listing for Prince of Wales Place can be browsed in <ref target="search?street=Prince%20of%20Wales%20Place">search</ref>. Each directory year links to its own page from <ref target="civic?id=Sands-McDougall-Directories">Sands &amp; McDougall Directories</ref>.</p>
+        <p><hi rend="italic">This entry is a first draft, written with machine assistance from the project's directory and electoral-roll records. If you know more about Prince of Wales Place, please add to it using the form below.</hi></p>
+      </div>
+    </body>
+  </text>
+</TEI>

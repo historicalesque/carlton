@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="https://historicalesque.github.io/carlton/schema/carlton.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0" type="place" xml:lang="en">
+  <teiHeader>
+    <fileDesc>
+      <titleStmt>
+        <title>Leicester Street</title>
+        <author>Common Ground</author>
+      </titleStmt>
+      <publicationStmt>
+        <publisher>Common Ground</publisher>
+        <idno type="entry">Leicester-Street</idno>
+      </publicationStmt>
+      <sourceDesc>
+        <listBibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1857">Sands &amp; McDougall Directory, 1857, p. 163</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1940">Sands &amp; McDougall Directory, 1940, pp. 218-219</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Electoral-Rolls">Electoral rolls, 1905, 1919, 1928</ref></bibl>
+        </listBibl>
+      </sourceDesc>
+    </fileDesc>
+    <revisionDesc status="published">
+      <change when="2026-10-27" type="created">Machine-assisted first draft by Common Ground, written from the directory and electoral-roll records.</change>
+    </revisionDesc>
+  </teiHeader>
+  <standOff>
+    <listPlace>
+      <place xml:id="subject">
+        <placeName type="main">Leicester Street</placeName>
+      </place>
+    </listPlace>
+    <listEvent type="chronology">
+      <event when="1857">
+        <label>First listed in the directories (1857)</label>
+      </event>
+      <event when="1940">
+        <label>Still listed in 1940, the last directory transcribed so far</label>
+      </event>
+    </listEvent>
+    <listRelation>
+      <relation type="org" name="Adjoins" active="#subject" passive="https://historicalesque.github.io/carlton/civic?id=Corkman-Hotel">
+        <desc>Corkman Hotel</desc>
+      </relation>
+    </listRelation>
+  </standOff>
+  <text>
+    <body>
+      <p>Leicester Street runs north from Victoria Street to Grattan Street, passing the east side of University Square.</p>
+      <p>It is in the first directory in the project's records, 1857, and in every directory after that up to 1940, the last one transcribed so far. The 1857 and 1858 directories list its residents alphabetically, so the order along the street can only be followed from 1859.</p>
+      <div>
+        <head>Along the street</head>
+        <p>From 1859 the directories list Leicester Street from south to north. On the east side the crossings and turnings are:</p>
+        <list rend="bulleted">
+          <item>Victoria Street</item>
+          <item>Alma Street (1859 to 1879)</item>
+          <item>Victoria Cottages (1877 to 1895)</item>
+          <item>Queensberry Street</item>
+          <item>Pattison's Terrace (1870 to 1895)</item>
+          <item><ref target="civic?id=Leicester%20Place">Leicester Place</ref> (from 1870)</item>
+          <item>Pelham Street</item>
+          <item><ref target="civic?id=Little%20Pelham%20Street">Little Pelham Street</ref> (from 1869)</item>
+          <item>Cumberland Terrace, Lancaster Terrace, Clifton Terrace, Cree Terrace, Summerhill Terrace and Gladstone Terrace, at various times between 1874 and 1915</item>
+          <item>Grattan Street (from 1863; the directories from 1859 to 1862 end the street at University Street)</item>
+        </list>
+        <p>On the west side the order is Victoria Street, Berkley Street, the corner of Queensberry and <ref target="civic?id=Barry%20Street">Barry</ref> streets, Pelham Street, then University Square, listed as the Ornamental Reserve from 1873 to 1879 and as a bowling green from 1885, and Grattan Street. Before Berkley Street first appears in 1863, the 1862 directory lists corners with "Elizabeth street (extension)", which stays until 1868, and "Barkly street".</p>
+      </div>
+      <div>
+        <head>Businesses and landmarks</head>
+        <p>Leicester Street was one of the busiest business streets in the area, with mills, foundries, stables and hotels from the 1850s and factories and garages by the 1920s. Some of them:</p>
+        <list rend="bulleted">
+          <item>Hotels: the Leicester Hotel (1857 to 1915), the Carlton Inn (listed as the Carlton Hotel in 1857, and still there in 1940; today the <ref target="civic?id=Corkman%20Hotel">Corkman Hotel</ref>), the Noah's Ark Hotel (1866 to 1871), The Mills Hotel on the west side (1869 to 1915) and the Newmarket Hotel at No. 2 on the west side (1870 to 1879).</item>
+          <item>Flour mills: Dight's steam flour mills (1857 to 1868, run by D. and R. Gibson from 1865 and listed under the Gibsons until 1885), Ramsden's Carlton Flour Mills (1857 to 1877), and James Gillespie and Co.'s flour mills at No. 84 (1890 to 1910).</item>
+          <item>The Carlton Foundry, under Joseph Manchester (1859), Alexander K. Smith (1860 to 1870, and then as a civil and consulting engineer until 1880; see <ref target="civic?id=The%20Engineers%20of%20University%20Square">The Victorian Engineers of University Square</ref>) and Mephan Ferguson (1885 to 1890).</item>
+          <item>Livery, bait and carriers' stables in the 1850s and 1860s, among them Noah's Ark, Leicester, Liverpool and University stables; later Buckley and Nunn Ltd's stables and garage (1915 to 1940).</item>
+          <item>Alexander Mair and Co., timber and iron merchants, near the Victoria Street end (1862 to 1925), and Royal and Co., engineers and later axle makers (1862 to 1940).</item>
+          <item>From the 1910s: the Tasmanian Timber Bending Works (1910 to 1940), Sargeant's Ltd, pastrycooks (1910 to 1930), Hopkins Bros and Odlum, belting manufacturers (1915 to 1935), the Modern Printing Co. (1920 to 1940), the Suregrip Horse Shoe Co. (1925 to 1940), Beechams Pills Ltd (1930) and the Melbourne Tobacco Co. (1940).</item>
+        </list>
+      </div>
+      <div>
+        <head>Records</head>
+        <p>Every directory and electoral-roll listing for Leicester Street can be browsed in <ref target="search?street=Leicester%20Street">search</ref>. Each directory year links to its own page from <ref target="civic?id=Sands-McDougall-Directories">Sands &amp; McDougall Directories</ref>.</p>
+        <p><hi rend="italic">This entry is a first draft, written with machine assistance from the project's directory and electoral-roll records. If you know more about Leicester Street, please add to it using the form below.</hi></p>
+      </div>
+    </body>
+  </text>
+</TEI>

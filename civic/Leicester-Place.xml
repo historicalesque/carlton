@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="https://historicalesque.github.io/carlton/schema/carlton.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0" type="place" xml:lang="en">
+  <teiHeader>
+    <fileDesc>
+      <titleStmt>
+        <title>Leicester Place</title>
+        <author>Common Ground</author>
+      </titleStmt>
+      <publicationStmt>
+        <publisher>Common Ground</publisher>
+        <idno type="entry">Leicester-Place</idno>
+      </publicationStmt>
+      <sourceDesc>
+        <listBibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1873">Sands &amp; McDougall Directory, 1873, p. 100</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1940">Sands &amp; McDougall Directory, 1940, p. 218</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Electoral-Rolls">Electoral rolls, 1905, 1919, 1928</ref></bibl>
+        </listBibl>
+      </sourceDesc>
+    </fileDesc>
+    <revisionDesc status="published">
+      <change when="2026-10-27" type="created">Machine-assisted first draft by Common Ground, written from the directory and electoral-roll records.</change>
+    </revisionDesc>
+  </teiHeader>
+  <standOff>
+    <listPlace>
+      <place xml:id="subject">
+        <placeName type="main">Leicester Place</placeName>
+      </place>
+    </listPlace>
+    <listEvent type="chronology">
+      <event when="1873">
+        <label>First listed in the directories (1873)</label>
+      </event>
+      <event when="1940">
+        <label>Still listed in 1940, the last directory transcribed so far</label>
+      </event>
+    </listEvent>
+    <listRelation>
+      <relation type="place" name="part-of" active="#subject" passive="https://historicalesque.github.io/carlton/civic?id=Leicester-Street">
+        <desc>Leicester Street</desc>
+      </relation>
+      <relation type="org" name="Adjoins" active="#subject" passive="https://historicalesque.github.io/carlton/civic?id=Corkman-Hotel">
+        <desc>Corkman Hotel</desc>
+      </relation>
+    </listRelation>
+  </standOff>
+  <text>
+    <body>
+      <p>Leicester Place is a lane off the east side of <ref target="civic?id=Leicester%20Street">Leicester Street</ref>, between Queensberry and Pelham streets, beside the Carlton Inn (today the <ref target="civic?id=Corkman%20Hotel">Corkman Hotel</ref>).</p>
+      <p>It is first listed in the directories in 1873. It is missing from the 1874 to 1878 directories, and then listed in every directory from 1879 to 1940, the last one transcribed so far.</p>
+      <div>
+        <head>Along the street</head>
+        <p>In the Leicester Street listings the turn into Leicester Place comes just before the Carlton Inn and its stables. From 1900 the directory gives its corner with Leicester Street as its only crossing.</p>
+      </div>
+      <div>
+        <head>Businesses and landmarks</head>
+        <list rend="bulleted">
+          <item>The Carlton Inn stables, listed in Leicester Place in 1890.</item>
+          <item>Eurekon Manufacturers at No. 46 (1920).</item>
+          <item>The Hi-Rev Bearing and Engineering Co., motor bearing manufacturers, and a garage of the Economic Cash Buying Co. Pty Ltd (1940).</item>
+        </list>
+        <p>In 1930 and 1935 one house is listed only as "Greeks".</p>
+      </div>
+      <div>
+        <head>Records</head>
+        <p>Every directory and electoral-roll listing for Leicester Place can be browsed in <ref target="search?street=Leicester%20Place">search</ref>. Each directory year links to its own page from <ref target="civic?id=Sands-McDougall-Directories">Sands &amp; McDougall Directories</ref>.</p>
+        <p><hi rend="italic">This entry is a first draft, written with machine assistance from the project's directory and electoral-roll records. If you know more about Leicester Place, please add to it using the form below.</hi></p>
+      </div>
+    </body>
+  </text>
+</TEI>
