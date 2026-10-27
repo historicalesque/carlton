@@ -322,17 +322,12 @@ a.result-title { text-decoration: underline; text-decoration-color: var(--sage-d
 
 /* 6. PAGE LAYOUT & TYPOGRAPHY -------------------------------------------- */
 .layout-container {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) 320px;
-    gap: 40px;
     padding: 40px;
 }
 
 @media (max-width: 768px) {
     .layout-container {
-        grid-template-columns: minmax(0, 1fr);
         padding: 20px;
-        gap: 30px;
     }
 }
 
@@ -629,51 +624,6 @@ a.result-title { text-decoration: underline; text-decoration-color: var(--sage-d
 
 @media (max-width: 480px) {
     .contribution-container { padding: 16px; }
-}
-
-.sidebar-menu {
-    background-color: var(--paper-deep);
-    border: 1px solid var(--sage);
-    border-radius: 6px;
-    padding: 24px;
-    align-self: start;
-}
-
-.sidebar-menu h2 {
-    font-family: var(--font-serif);
-    color: var(--ink);
-    font-size: 1.3rem;
-    margin-bottom: 15px;
-    padding-bottom: 8px;
-    border-bottom: 2px solid var(--moss);
-    font-weight: normal;
-}
-
-.theme-list {
-    list-style: none;
-}
-
-.theme-list li {
-    border-bottom: 1px solid var(--paper-line);
-}
-
-.theme-list li:last-child {
-    border-bottom: none;
-}
-
-.theme-list a {
-    display: block;
-    color: var(--ink-soft);
-    text-decoration: none;
-    padding: 8px 4px;
-    font-size: 0.95rem;
-    transition: all 0.2s ease;
-}
-
-.theme-list a:hover {
-    color: var(--moss-deep);
-    padding-left: 8px;
-    background-color: var(--sage-light);
 }
 
 /* 7. FOOTER ---------------------------------------------------------- */

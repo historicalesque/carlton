@@ -97,7 +97,7 @@ With `preview=true`, `id` can be a full URL, such as a raw file on a pull-reques
 | Path | What it is |
 |---|---|
 | `_config.yml` | Jekyll config. Sets the theme and per-page defaults (layout, `EACCPFpath`, `facet`, whether the contribution form shows). |
-| `_layouts/default.html` | Site shell: header, navigation, sidebar and footer. Does **not** load any data; layouts that need it load it through `scripts/data.js`. |
+| `_layouts/default.html` | Site shell: header, navigation and footer. Does **not** load any data; layouts that need it load it through `scripts/data.js`. |
 | `_layouts/search.html`, `scripts/search.js` | Search page (see [Search, facets and maps](#search-facets-and-maps)). |
 | `_layouts/entry.html` | Fetches and renders one entry (TEI, or EAC-CPF for any older file), and adds the contribution form. |
 | `_layouts/form.html` | Contribution form (Quill 1.3.6). Builds the entry as TEI, with optional extra sections and a *Show all fields* switch. Not connected yet: it previews the entry and downloads the XML. |
