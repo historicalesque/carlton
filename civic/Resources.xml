@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="https://historicalesque.github.io/carlton/schema/carlton.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0" type="topic" xml:lang="en">
+  <teiHeader>
+    <fileDesc>
+      <titleStmt>
+        <title>Resources</title>
+        <author>Common Ground</author>
+      </titleStmt>
+      <publicationStmt>
+        <publisher>Common Ground</publisher>
+        <idno type="entry">Resources</idno>
+      </publicationStmt>
+      <sourceDesc>
+        <p>Contributed through the website. No sources listed.</p>
+      </sourceDesc>
+    </fileDesc>
+    <revisionDesc status="published">
+      <change when="2026-10-27" type="created">Created as a site page by Common Ground, from the links in the former Resources sidebar.</change>
+    </revisionDesc>
+  </teiHeader>
+  <text>
+    <body>
+      <p>The records and sources used to research the people and places of Common Ground.</p>
+      <list rend="bulleted">
+        <item><ref target="civic?id=Bills%20of%20Sale">Bills of Sale</ref></item>
+        <item><ref target="civic?id=Charity%20Organisation%20Society">Charity Organisation Society</ref></item>
+        <item><ref target="civic?id=Electoral%20Rolls">Electoral Rolls</ref></item>
+        <item><ref target="civic?id=Fair%20Rents%20Board">Fair Rents Board</ref></item>
+        <item><ref target="civic?id=Heritage%20Surveys">Heritage Surveys</ref></item>
+        <item><ref target="civic?id=MMBW">Melbourne and Metropolitan Board of Works maps</ref></item>
+        <item><ref target="civic?id=Prest%20Social%20Survey">Prest Social Survey</ref></item>
+        <item><ref target="civic?id=Rate%20Books">Rate Books</ref></item>
+        <item><ref target="civic?id=Sands%20%26%20McDougall%20Directories">Sands &amp; McDougall Directories</ref></item>
+        <item><ref target="civic?id=Street%20Numbering">Street Numbering</ref></item>
+        <item><ref target="civic?id=Town%20Clerk%27s%20Files">Town Clerk’s Files</ref></item>
+        <item><ref target="civic?id=Victorian%20Police%20Gazette">Victorian Police Gazette</ref></item>
+      </list>
+    </body>
+  </text>
+</TEI>
