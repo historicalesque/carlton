@@ -615,7 +615,7 @@
 {"entityID":113599,"source":"Directory","year":1875,"pages":"108","listing":"31 Holmes, Peter","street":"Pelham Street","type":"Place","cardinality":"North"},
 {"entityID":113600,"source":"Directory","year":1875,"pages":"108","listing":"Jordan, Richard G.","street":"Pelham Street","type":"Place","cardinality":"North"},
 {"entityID":"Mrs. Carraway","source":"Directory","year":1875,"pages":"108","listing":"Carraway, Mrs.","street":"Pelham Street","type":"Place","cardinality":"North"},
-{"entityID":113602,"source":"Directory","year":1875,"pages":"108","listing":"Otago htl., Hogan, Ellen","street":"Pelham Street","type":"Place","cardinality":"North"},
+{"entityID":"Otago Hotel","source":"Directory","year":1875,"pages":"108","listing":"Otago htl., Hogan, Ellen","street":"Pelham Street","type":"Place","cardinality":"North"},
 {"entityID":113603,"source":"Directory","year":1875,"pages":"108","listing":"Buck, William","street":"Pelham Street","type":"Place","cardinality":"North"},
 {"entityID":113604,"source":"Directory","year":1875,"pages":"108","listing":"41 Pitt, Mrs. grocer","street":"Pelham Street","type":"Place","cardinality":"North"},
 {"entityID":"Intersection Pelham street and Bouverie street (Pelham Street, North side)","source":"Directory","year":1875,"pages":"108","listing":"Intersection Pelham street and Bouverie street","street":"Pelham Street","type":"Intersection","cardinality":"North","lat":-37.80231709407864,"lng":144.96214946400573},
