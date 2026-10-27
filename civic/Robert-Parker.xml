@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="https://historicalesque.github.io/carlton/schema/carlton.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0" type="person" xml:lang="en">
+  <teiHeader>
+    <fileDesc>
+      <titleStmt>
+        <title>Robert Parker</title>
+        <author>Common Ground</author>
+      </titleStmt>
+      <publicationStmt>
+        <publisher>Common Ground</publisher>
+        <idno type="entry">Robert-Parker</idno>
+      </publicationStmt>
+      <sourceDesc>
+        <listBibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1905">Sands &amp; McDougall Directory, 1905, p. 179</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1905">Sands &amp; McDougall Directory, 1905, p. 200</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Electoral-Rolls">Electoral rolls, 1905</ref></bibl>
+        </listBibl>
+      </sourceDesc>
+    </fileDesc>
+    <revisionDesc status="published">
+      <change when="2026-10-27" type="created">Machine-assisted first draft by Common Ground, from the directory and electoral-roll records.</change>
+    </revisionDesc>
+  </teiHeader>
+  <standOff>
+    <listPerson>
+      <person xml:id="subject">
+        <persName type="main">Robert Parker</persName>
+      </person>
+    </listPerson>
+  </standOff>
+  <text>
+    <body>
+      <p>Robert F. Parker is listed as the proprietor of the <ref target="civic?id=Commercial%20hotel">Commercial Hotel</ref> on the corner of Bouverie and Queensberry streets in the 1905 directory.</p>
+      <p>He is on the 1905 electoral roll as Robert Frederick Parker, 89 Bouverie Street, a victualler. The directory lists the hotel between Nos 87 and 93 Bouverie Street.</p>
+      <p>See also <ref target="civic?id=Commercial%20hotel">Commercial Hotel</ref> and <ref target="civic?id=Hotels">Hotels</ref>.</p>
+      <p><hi rend="italic">This entry is a machine-assisted first draft by Common Ground, written from the directory and electoral-roll records. Only records that are clearly the same person, at the hotel's address and in a hotel trade, are linked to it. Please correct or add to it.</hi></p>
+    </body>
+  </text>
+</TEI>

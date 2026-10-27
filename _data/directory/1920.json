@@ -782,7 +782,7 @@
 {"entityID":241447,"source":"Directory","year":1920,"pages":"215","listing":"12 Roberts, J., stables","street":"Sydney Road","type":"Place","kind":"org","cardinality":"East"},
 {"entityID":241448,"source":"Directory","year":1920,"pages":"215","listing":"Fitzsimmons, F. J., crtkr","street":"Sydney Road","type":"Place","kind":"person","cardinality":"East"},
 {"entityID":241449,"source":"Directory","year":1920,"pages":"215","listing":"24 Choong, Wm.","street":"Sydney Road","type":"Place","kind":"person","cardinality":"East"},
-{"entityID":241450,"source":"Directory","year":1920,"pages":"215","listing":"26 Welshe, Patk. J.","street":"Sydney Road","type":"Place","kind":"person","cardinality":"East"},
+{"entityID":"Patrick Welshe","source":"Directory","year":1920,"pages":"215","listing":"26 Welshe, Patk. J.","street":"Sydney Road","type":"Place","kind":"person","cardinality":"East"},
 {"entityID":241451,"source":"Directory","year":1920,"pages":"215","listing":"28 Tasker, E. H., confr","street":"Sydney Road","type":"Place","kind":"person","cardinality":"East"},
 {"entityID":241452,"source":"Directory","year":1920,"pages":"215","listing":"30 Kwong, Geo., lndry","street":"Sydney Road","type":"Place","kind":"org","cardinality":"East"},
 {"entityID":241453,"source":"Directory","year":1920,"pages":"215","listing":"Right-of-way","street":"Sydney Road","type":"right-of-way","kind":"place","cardinality":"East"},
