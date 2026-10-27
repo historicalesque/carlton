@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="https://historicalesque.github.io/carlton/schema/carlton.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0" type="org" xml:lang="en">
+  <teiHeader>
+    <fileDesc>
+      <titleStmt>
+        <title>Alexander Mair and Co</title>
+        <author>Common Ground</author>
+      </titleStmt>
+      <publicationStmt>
+        <publisher>Common Ground</publisher>
+        <idno type="entry">Alexander-Mair-and-Co</idno>
+      </publicationStmt>
+      <sourceDesc>
+        <listBibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1862">Sands &amp; McDougall Directory, 1862, p. 86</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1863">Sands &amp; McDougall Directory, 1863, p. 67</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1864">Sands &amp; McDougall Directory, 1864, p. 72</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1865">Sands &amp; McDougall Directory, 1865, p. 71</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1866">Sands &amp; McDougall Directory, 1866, p. 74</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1867">Sands &amp; McDougall Directory, 1867, p. 77</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1868">Sands &amp; McDougall Directory, 1868, p. 88</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1869">Sands &amp; McDougall Directory, 1869, p. 84</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1870">Sands &amp; McDougall Directory, 1870, p. 88</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1871">Sands &amp; McDougall Directory, 1871, p. 92</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1872">Sands &amp; McDougall Directory, 1872, p. 107</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1872">Sands &amp; McDougall Directory, 1872, p. 95</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1873">Sands &amp; McDougall Directory, 1873, p. 113</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1873">Sands &amp; McDougall Directory, 1873, p. 99</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1874">Sands &amp; McDougall Directory, 1874, p. 111</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1874">Sands &amp; McDougall Directory, 1874, p. 98</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1875">Sands &amp; McDougall Directory, 1875, p. 100</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1875">Sands &amp; McDougall Directory, 1875, p. 113</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1876">Sands &amp; McDougall Directory, 1876, p. 69</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1876">Sands &amp; McDougall Directory, 1876, p. 77</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1877">Sands &amp; McDougall Directory, 1877, p. 69</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1877">Sands &amp; McDougall Directory, 1877, p. 78</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1878">Sands &amp; McDougall Directory, 1878, p. 70</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1878">Sands &amp; McDougall Directory, 1878, p. 79</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1879">Sands &amp; McDougall Directory, 1879, p. 70</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1879">Sands &amp; McDougall Directory, 1879, p. 80</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1880">Sands &amp; McDougall Directory, 1880, p. 72</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1880">Sands &amp; McDougall Directory, 1880, p. 82</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1885">Sands &amp; McDougall Directory, 1885, p. 110</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1885">Sands &amp; McDougall Directory, 1885, p. 97</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1890">Sands &amp; McDougall Directory, 1890, p. 131</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1890">Sands &amp; McDougall Directory, 1890, p. 145</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1895">Sands &amp; McDougall Directory, 1895, p. 150</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1895">Sands &amp; McDougall Directory, 1895, p. 164</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1900">Sands &amp; McDougall Directory, 1900, p. 184</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1900">Sands &amp; McDougall Directory, 1900, p. 198</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1905">Sands &amp; McDougall Directory, 1905, p. 190</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1905">Sands &amp; McDougall Directory, 1905, p. 205</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1910">Sands &amp; McDougall Directory, 1910, p. 199</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1910">Sands &amp; McDougall Directory, 1910, p. 212</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1915">Sands &amp; McDougall Directory, 1915, p. 196</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1915">Sands &amp; McDougall Directory, 1915, p. 204</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1920">Sands &amp; McDougall Directory, 1920, p. 208</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1920">Sands &amp; McDougall Directory, 1920, p. 216</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1925">Sands &amp; McDougall Directory, 1925, p. 237</ref></bibl>
+        </listBibl>
+      </sourceDesc>
+    </fileDesc>
+    <revisionDesc status="published">
+      <change when="2026-10-27" type="created">Machine-assisted first draft by Common Ground, from the directory records.</change>
+    </revisionDesc>
+  </teiHeader>
+  <standOff>
+    <listOrg>
+      <org xml:id="subject">
+        <orgName type="main">Alexander Mair and Co</orgName>
+      </org>
+    </listOrg>
+  </standOff>
+  <text>
+    <body>
+      <p>Alexander Mair, timber yard, is listed at 10 <ref target="civic?id=Leicester%20Street">Leicester Street</ref> from 1862. From 1867 the business is Alexander Mair and Co., and from 1870 timber and iron merchants. The yard ran through to <ref target="civic?id=Victoria%20Street">Victoria Street</ref>, and the directories list it under both streets from 1872: at 10, later 8, then 1 and 2 Leicester Street, and at 5, then 1, then 218 Victoria Street.</p>
+      <p>It is listed in every directory to 1925, the last year under Leicester Street, and in 1890 as coach builders' ironmongers.</p>
+      <p><hi rend="italic">This entry is a machine-assisted first draft by Common Ground, written from the directory records. Please correct or add to it.</hi></p>
+    </body>
+  </text>
+</TEI>

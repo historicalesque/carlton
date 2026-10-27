@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="https://historicalesque.github.io/carlton/schema/carlton.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0" type="person" xml:lang="en">
+  <teiHeader>
+    <fileDesc>
+      <titleStmt>
+        <title>Jeffrey Hawkins</title>
+        <author>Common Ground</author>
+      </titleStmt>
+      <publicationStmt>
+        <publisher>Common Ground</publisher>
+        <idno type="entry">Jeffrey-Hawkins</idno>
+      </publicationStmt>
+      <sourceDesc>
+        <listBibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1858">Sands &amp; McDougall Directory, 1858, p. 190</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1859">Sands &amp; McDougall Directory, 1859, p. 76</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1860">Sands &amp; McDougall Directory, 1860, p. 90</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1861">Sands &amp; McDougall Directory, 1861, p. 90</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1862">Sands &amp; McDougall Directory, 1862, p. 90</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1863">Sands &amp; McDougall Directory, 1863, p. 72</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1864">Sands &amp; McDougall Directory, 1864, p. 78</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1865">Sands &amp; McDougall Directory, 1865, p. 78</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1866">Sands &amp; McDougall Directory, 1866, p. 82</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1867">Sands &amp; McDougall Directory, 1867, p. 84</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1868">Sands &amp; McDougall Directory, 1868, p. 96</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1869">Sands &amp; McDougall Directory, 1869, p. 94</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1870">Sands &amp; McDougall Directory, 1870, p. 98</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1871">Sands &amp; McDougall Directory, 1871, p. 103</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1872">Sands &amp; McDougall Directory, 1872, p. 103</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1873">Sands &amp; McDougall Directory, 1873, p. 109</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1874">Sands &amp; McDougall Directory, 1874, p. 107</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1875">Sands &amp; McDougall Directory, 1875, p. 109</ref></bibl>
+        </listBibl>
+      </sourceDesc>
+    </fileDesc>
+    <revisionDesc status="published">
+      <change when="2026-10-27" type="created">Machine-assisted first draft by Common Ground, from the directory records.</change>
+    </revisionDesc>
+  </teiHeader>
+  <standOff>
+    <listPerson>
+      <person xml:id="subject">
+        <persName type="main">Jeffrey Hawkins</persName>
+      </person>
+    </listPerson>
+  </standOff>
+  <text>
+    <body>
+      <p>Jeffrey (or Jeffery) Hawkins, photographer, is listed in <ref target="civic?id=Queensberry%20Street">Queensberry Street</ref> in the Sands &amp; McDougall directories from 1858 to 1875. He is at No. 12 in 1859 and 1860, and No. 20 from 1861. From 1864 to 1868 the listing takes in Nos 20 and 22, then Nos 20, 22 and 24.</p>
+      <p><hi rend="italic">This entry is a machine-assisted first draft by Common Ground, written from the directory records. Please correct or add to it.</hi></p>
+    </body>
+  </text>
+</TEI>
