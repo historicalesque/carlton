@@ -744,7 +744,7 @@
 {"entityID":114570,"source":"Directory","year":1875,"pages":"113","listing":"Hart, ——, wood carver","street":"Victoria Street","type":"Place","kind":"person","cardinality":"North"},
 {"entityID":"Letham, John, blacksmith (Victoria Street, North side)","source":"Directory","year":1875,"pages":"113","listing":"Letham, John, blacksmith","street":"Victoria Street","type":"Place","kind":"person","cardinality":"North","Occupation":"blacksmith"},
 {"entityID":"Intersection Victoria street and Bouverie street","source":"Directory","year":1875,"pages":"113","listing":"Intersection Victoria street and Bouverie street","street":"Victoria Street","type":"Intersection","kind":"place","cardinality":"North","lat":-37.8064079,"lng":144.9614505},
-{"entityID":114573,"source":"Directory","year":1875,"pages":"113","listing":"Mulcahey, Edward","street":"Victoria Street","type":"Place","kind":"person","cardinality":"North"},
+{"entityID":"Edward Mulcahey","source":"Directory","year":1875,"pages":"113","listing":"Mulcahey, Edward","street":"Victoria Street","type":"Place","kind":"person","cardinality":"North"},
 {"entityID":"Robert Birrell","source":"Directory","year":1875,"pages":"113","listing":"23 Birrell, Robert, baker","street":"Victoria Street","type":"Place","kind":"person","cardinality":"North","Occupation":"baker"},
 {"entityID":"Andrew Black","source":"Directory","year":1875,"pages":"114","listing":"25 Black, Andrew","street":"Victoria Street","type":"Place","kind":"person","cardinality":"North"},
 {"entityID":"John F. Molyneux (27 Victoria Street)","source":"Directory","year":1875,"pages":"114","listing":"27 Molyneux, John F.","street":"Victoria Street","type":"Place","kind":"person","cardinality":"North"},

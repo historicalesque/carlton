@@ -743,7 +743,7 @@
 {"entityID":241890,"source":"Directory","year":1925,"pages":"244","listing":"12 Davies, D. C., engnr","street":"Sydney Road","type":"Place","kind":"person","cardinality":"East"},
 {"entityID":241891,"source":"Directory","year":1925,"pages":"244","listing":"12 Bodinnar, N. V., mtr engnr","street":"Sydney Road","type":"Place","kind":"person","cardinality":"East"},
 {"entityID":241892,"source":"Directory","year":1925,"pages":"244","listing":"24 Matthews, Wm.","street":"Sydney Road","type":"Place","kind":"person","cardinality":"East"},
-{"entityID":241893,"source":"Directory","year":1925,"pages":"244","listing":"26 Welshe, Patk. J.","street":"Sydney Road","type":"Place","kind":"person","cardinality":"East"},
+{"entityID":"Patrick Welshe","source":"Directory","year":1925,"pages":"244","listing":"26 Welshe, Patk. J.","street":"Sydney Road","type":"Place","kind":"person","cardinality":"East"},
 {"entityID":241894,"source":"Directory","year":1925,"pages":"244","listing":"28 Stevens, C. T., cnfr","street":"Sydney Road","type":"Place","kind":"person","cardinality":"East"},
 {"entityID":241895,"source":"Directory","year":1925,"pages":"244","listing":"30 Kwong, Geo., lndry","street":"Sydney Road","type":"Place","kind":"org","cardinality":"East"},
 {"entityID":241896,"source":"Directory","year":1925,"pages":"244","listing":"Right-of-way","street":"Sydney Road","type":"right-of-way","kind":"place","cardinality":"East"},

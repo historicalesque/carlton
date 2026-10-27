@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="https://historicalesque.github.io/carlton/schema/carlton.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0" type="person" xml:lang="en">
+  <teiHeader>
+    <fileDesc>
+      <titleStmt>
+        <title>Ellen Copsey</title>
+        <author>Common Ground</author>
+      </titleStmt>
+      <publicationStmt>
+        <publisher>Common Ground</publisher>
+        <idno type="entry">Ellen-Copsey</idno>
+      </publicationStmt>
+      <sourceDesc>
+        <listBibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1925">Sands &amp; McDougall Directory, 1925, p. 237</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1930">Sands &amp; McDougall Directory, 1930, p. 197</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1935">Sands &amp; McDougall Directory, 1935, p. 196</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1940">Sands &amp; McDougall Directory, 1940, p. 218</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Electoral-Rolls">Electoral rolls, 1928</ref></bibl>
+        </listBibl>
+      </sourceDesc>
+    </fileDesc>
+    <revisionDesc status="published">
+      <change when="2026-10-27" type="created">Machine-assisted first draft by Common Ground, from the directory and electoral-roll records.</change>
+    </revisionDesc>
+  </teiHeader>
+  <standOff>
+    <listPerson>
+      <person xml:id="subject">
+        <persName type="main">Ellen Copsey</persName>
+      </person>
+    </listPerson>
+  </standOff>
+  <text>
+    <body>
+      <p>Mrs Ellen Copsey is listed as the proprietor of the <ref target="civic?id=Corkman%20Hotel">Carlton Inn</ref> at 160 Leicester Street in the directories from 1925 to 1940.</p>
+      <p>She is on the 1928 electoral roll at 160 Leicester Street, a hotelkeeper.</p>
+      <p>See also <ref target="civic?id=Corkman%20Hotel">Carlton Inn</ref> and <ref target="civic?id=Hotels">Hotels</ref>.</p>
+      <p><hi rend="italic">This entry is a machine-assisted first draft by Common Ground, written from the directory and electoral-roll records. Only records that are clearly the same person, at the hotel's address and in a hotel trade, are linked to it. Please correct or add to it.</hi></p>
+    </body>
+  </text>
+</TEI>

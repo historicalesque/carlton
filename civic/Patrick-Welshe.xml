@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="https://historicalesque.github.io/carlton/schema/carlton.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0" type="person" xml:lang="en">
+  <teiHeader>
+    <fileDesc>
+      <titleStmt>
+        <title>Patrick Welshe</title>
+        <author>Common Ground</author>
+      </titleStmt>
+      <publicationStmt>
+        <publisher>Common Ground</publisher>
+        <idno type="entry">Patrick-Welshe</idno>
+      </publicationStmt>
+      <sourceDesc>
+        <listBibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1910">Sands &amp; McDougall Directory, 1910, p. 212</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1915">Sands &amp; McDougall Directory, 1915, p. 203</ref></bibl>
+        </listBibl>
+      </sourceDesc>
+    </fileDesc>
+    <revisionDesc status="published">
+      <change when="2026-10-27" type="created">Machine-assisted first draft by Common Ground, from the directory and electoral-roll records.</change>
+    </revisionDesc>
+  </teiHeader>
+  <standOff>
+    <listPerson>
+      <person xml:id="subject">
+        <persName type="main">Patrick Welshe</persName>
+      </person>
+    </listPerson>
+  </standOff>
+  <text>
+    <body>
+      <p>Patrick J. Welshe is listed as the proprietor of the <ref target="civic?id=New%20Haymarket%20hotel">New Haymarket Hotel</ref> at 26 Sydney Road in the directories in 1910 and 1915.</p>
+      <p>The directories still list him at 26 Sydney Road in 1920 and 1925, after the hotel itself is no longer listed.</p>
+      <p>See also <ref target="civic?id=New%20Haymarket%20hotel">New Haymarket Hotel</ref> and <ref target="civic?id=Hotels">Hotels</ref>.</p>
+      <p><hi rend="italic">This entry is a machine-assisted first draft by Common Ground, written from the directory and electoral-roll records. Only records that are clearly the same person, at the hotel's address and in a hotel trade, are linked to it. Please correct or add to it.</hi></p>
+    </body>
+  </text>
+</TEI>
