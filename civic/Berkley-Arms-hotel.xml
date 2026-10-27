@@ -12,11 +12,15 @@
         <idno type="entry">Berkley-Arms-hotel</idno>
       </publicationStmt>
       <sourceDesc>
-        <p>Contributed through the website. No sources listed.</p>
+        <listBibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1872">Sands &amp; McDougall Directory, 1872, p. 84</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1905">Sands &amp; McDougall Directory, 1905, p. 179</ref></bibl>
+        </listBibl>
       </sourceDesc>
     </fileDesc>
     <revisionDesc status="draft">
       <change when="2026-10-06" type="created">Contributed through the contribution form by Mitchell Harrop.</change>
+      <change when="2026-10-27" type="edited">Links, and sections from the directory records, added by Common Ground (machine-assisted).</change>
     </revisionDesc>
   </teiHeader>
   <standOff>
@@ -29,6 +33,20 @@
   <text>
     <body>
       <p>Berkley Arms hotel was a hotel.</p>
+      <div>
+        <head>In the directories</head>
+        <p>The Berkley Arms is in the directories from 1872 to 1905, in <ref target="civic?id=Berkley%20Street">Berkley Street</ref> just north of <ref target="civic?id=Queensberry%20Street">Queensberry Street</ref>, between Trinity Cottages (later Caroline Cottages) and the Queensberry Street corner. It has no street number; its neighbours are Nos 95 and 101. It is spelt "Berkeley Arms" up to 1878 and in 1885, and "Berkley Arms" in the other years. See <ref target="civic?id=Hotels">Hotels</ref>.</p>
+        <p>Its licensees as listed are E. O'Hare (1872 to 1873), Philip Davis (1874), M. A. Pearce (1875), William Lyons (1876), Daniel Carroll (1877 to 1880), William R. Hull (1885), Patrick Barry (1890), Joseph Alberd (1895), Wm. Lissaman (1900) and Miss M. White (1905).</p>
+      </div>
+      <div>
+        <head>Neighbours</head>
+        <p>Swan and Co., engineers and millwrights, are near it in 1880, Cochrane &amp; Scott, ironfounders, in 1890, and the Commonwealth Coach Factory and the Art Furniture Co. in 1905.</p>
+      </div>
+      <div>
+        <head>Records</head>
+        <p>The hotel's listings are linked to this entry, and the rest of the street can be browsed in <ref target="search?street=Berkley%20Street">search</ref>.</p>
+        <p><hi rend="italic">These sections are a machine-assisted first draft by Common Ground, written from the directory records. Please correct or add to them.</hi></p>
+      </div>
     </body>
   </text>
 </TEI>
