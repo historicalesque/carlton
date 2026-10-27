@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="https://historicalesque.github.io/carlton/schema/carlton.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0" type="place" xml:lang="en">
+  <teiHeader>
+    <fileDesc>
+      <titleStmt>
+        <title>Bouverie Place</title>
+        <author>Common Ground</author>
+      </titleStmt>
+      <publicationStmt>
+        <publisher>Common Ground</publisher>
+        <idno type="entry">Bouverie-Place</idno>
+      </publicationStmt>
+      <sourceDesc>
+        <listBibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1879">Sands &amp; McDougall Directory, 1879, p. 62</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1915">Sands &amp; McDougall Directory, 1915, p. 190</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Electoral-Rolls">Electoral rolls, 1905</ref></bibl>
+        </listBibl>
+      </sourceDesc>
+    </fileDesc>
+    <revisionDesc status="published">
+      <change when="2026-10-27" type="created">Machine-assisted first draft by Common Ground, written from the directory and electoral-roll records.</change>
+    </revisionDesc>
+  </teiHeader>
+  <standOff>
+    <listPlace>
+      <place xml:id="subject">
+        <placeName type="main">Bouverie Place</placeName>
+      </place>
+    </listPlace>
+    <listEvent type="chronology">
+      <event when="1879">
+        <label>First listed in the directories (1879)</label>
+      </event>
+      <event when="1915">
+        <label>Last listed in the directories transcribed so far (1915)</label>
+      </event>
+    </listEvent>
+    <listRelation>
+      <relation type="place" name="part-of" active="#subject" passive="https://historicalesque.github.io/carlton/civic?id=Bouverie-Street">
+        <desc>Bouverie Street</desc>
+      </relation>
+    </listRelation>
+  </standOff>
+  <text>
+    <body>
+      <p>Bouverie Place is a lane off the west side of <ref target="civic?id=Bouverie%20Street">Bouverie Street</ref>, near its south end. In 1879 the directory lists the turn into Bouverie Place just before Alma Street.</p>
+      <p>It is first listed in the directories in 1879 and last in 1915. It had at most five listings, all of them houses.</p>
+      <div>
+        <head>Along the street</head>
+        <p>In the Bouverie Street listings the turn comes between Nos 11 and 13 in 1879, and between Nos 19 and 21 in 1900.</p>
+      </div>
+      <div>
+        <head>Records</head>
+        <p>Every directory and electoral-roll listing for Bouverie Place can be browsed in <ref target="search?street=Bouverie%20Place">search</ref>. Each directory year links to its own page from <ref target="civic?id=Sands-McDougall-Directories">Sands &amp; McDougall Directories</ref>.</p>
+        <p><hi rend="italic">This entry is a first draft, written with machine assistance from the project's directory and electoral-roll records. If you know more about Bouverie Place, please add to it using the form below.</hi></p>
+      </div>
+    </body>
+  </text>
+</TEI>

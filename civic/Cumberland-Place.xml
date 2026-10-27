@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="https://historicalesque.github.io/carlton/schema/carlton.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0" type="place" xml:lang="en">
+  <teiHeader>
+    <fileDesc>
+      <titleStmt>
+        <title>Cumberland Place</title>
+        <author>Common Ground</author>
+      </titleStmt>
+      <publicationStmt>
+        <publisher>Common Ground</publisher>
+        <idno type="entry">Cumberland-Place</idno>
+      </publicationStmt>
+      <sourceDesc>
+        <listBibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1873">Sands &amp; McDougall Directory, 1873, p. 100</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1940">Sands &amp; McDougall Directory, 1940, p. 216</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Electoral-Rolls">Electoral rolls, 1905, 1919, 1928</ref></bibl>
+        </listBibl>
+      </sourceDesc>
+    </fileDesc>
+    <revisionDesc status="published">
+      <change when="2026-10-27" type="created">Machine-assisted first draft by Common Ground, written from the directory and electoral-roll records.</change>
+    </revisionDesc>
+  </teiHeader>
+  <standOff>
+    <listPlace>
+      <place xml:id="subject">
+        <placeName type="main">Cumberland Place</placeName>
+      </place>
+    </listPlace>
+    <listEvent type="chronology">
+      <event when="1873">
+        <label>First listed in the directories (1873)</label>
+      </event>
+      <event when="1940">
+        <label>Still listed in 1940, the last directory transcribed so far</label>
+      </event>
+    </listEvent>
+    <listRelation>
+      <relation type="place" name="Adjoins" active="#subject" passive="https://historicalesque.github.io/carlton/civic?id=Bouverie-Street">
+        <desc>Bouverie Street</desc>
+      </relation>
+      <relation type="place" name="Adjoins" active="#subject" passive="https://historicalesque.github.io/carlton/civic?id=Lincoln-Square">
+        <desc>Lincoln Square</desc>
+      </relation>
+    </listRelation>
+  </standOff>
+  <text>
+    <body>
+      <p>Cumberland Place is a short street between the east side of <ref target="civic?id=Bouverie%20Street">Bouverie Street</ref> and the south side of <ref target="civic?id=Lincoln%20Square">Lincoln Square</ref>.</p>
+      <p>It is first listed in the directories in 1873. It is missing from the 1874 to 1878 directories, and then listed in every directory up to 1940, the last one transcribed so far. It had the most listings, around twenty-five, in the 1890s and 1900s.</p>
+      <div>
+        <head>Along the street</head>
+        <p>Its two ends are Bouverie Street and the street on the south side of the square, which the directories call <ref target="civic?id=Lincoln%20Place">Lincoln Place</ref> up to 1895, <ref target="civic?id=Lincoln%20Place%20South">Lincoln Place South</ref> in 1900 and 1905, and <ref target="civic?id=Lincoln%20Square%20South">Lincoln Square South</ref> from 1910.</p>
+      </div>
+      <div>
+        <head>Businesses and landmarks</head>
+        <list rend="bulleted">
+          <item>A depot of the Albion Motor Car Co. of Australasia Ltd (1925).</item>
+          <item>The Triumph Battery Co., battery manufacturers (1930 to 1940).</item>
+        </list>
+        <p>In 1920 one house, No. 28, is listed only as "Chinese".</p>
+      </div>
+      <div>
+        <head>Records</head>
+        <p>Every directory and electoral-roll listing for Cumberland Place can be browsed in <ref target="search?street=Cumberland%20Place">search</ref>. Each directory year links to its own page from <ref target="civic?id=Sands-McDougall-Directories">Sands &amp; McDougall Directories</ref>.</p>
+        <p><hi rend="italic">This entry is a first draft, written with machine assistance from the project's directory and electoral-roll records. If you know more about Cumberland Place, please add to it using the form below.</hi></p>
+      </div>
+    </body>
+  </text>
+</TEI>

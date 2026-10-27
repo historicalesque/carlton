@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="https://historicalesque.github.io/carlton/schema/carlton.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0" type="place" xml:lang="en">
+  <teiHeader>
+    <fileDesc>
+      <titleStmt>
+        <title>Lansdowne Place</title>
+        <author>Common Ground</author>
+      </titleStmt>
+      <publicationStmt>
+        <publisher>Common Ground</publisher>
+        <idno type="entry">Lansdowne-Place</idno>
+      </publicationStmt>
+      <sourceDesc>
+        <listBibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1860">Sands &amp; McDougall Directory, 1860, p. 90</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1940">Sands &amp; McDougall Directory, 1940, p. 218</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Electoral-Rolls">Electoral rolls, 1905, 1919</ref></bibl>
+        </listBibl>
+      </sourceDesc>
+    </fileDesc>
+    <revisionDesc status="published">
+      <change when="2026-10-27" type="created">Machine-assisted first draft by Common Ground, written from the directory and electoral-roll records.</change>
+    </revisionDesc>
+  </teiHeader>
+  <standOff>
+    <listPlace>
+      <place xml:id="subject">
+        <placeName type="main">Lansdowne Place</placeName>
+      </place>
+    </listPlace>
+    <listEvent type="chronology">
+      <event when="1860">
+        <label>First listed in the directories (1860)</label>
+      </event>
+      <event when="1940">
+        <label>Still listed in 1940, the last directory transcribed so far</label>
+      </event>
+    </listEvent>
+    <listRelation>
+      <relation type="place" name="part-of" active="#subject" passive="https://historicalesque.github.io/carlton/civic?id=Queensberry-Street">
+        <desc>Queensberry Street</desc>
+      </relation>
+    </listRelation>
+  </standOff>
+  <text>
+    <body>
+      <p>Lansdowne Place is a lane off the south side of <ref target="civic?id=Queensberry%20Street">Queensberry Street</ref>. In 1860 the directory lists its entrance between Nos 10 and 12 Queensberry Street.</p>
+      <p>It is first listed in 1860. It is missing from the directories for 1862 to 1868, 1873, 1879 and 1880, and otherwise listed in every directory up to 1940, the last one transcribed so far. It never has more than about two dozen listings.</p>
+      <div>
+        <head>Along the street</head>
+        <p>From 1877 the directories give its corner with Queensberry Street as its only crossing.</p>
+        <p>The 1940 directory also lists a "Landsdowne Place" off Cardigan Street, with two houses. It may be a different lane.</p>
+      </div>
+      <div>
+        <head>Businesses and landmarks</head>
+        <list rend="bulleted">
+          <item>The Melbourne City Council's electricity supply depot, listed from 1925 to 1940.</item>
+        </list>
+      </div>
+      <div>
+        <head>Records</head>
+        <p>Every directory and electoral-roll listing for Lansdowne Place can be browsed in <ref target="search?street=Lansdowne%20Place">search</ref>. Each directory year links to its own page from <ref target="civic?id=Sands-McDougall-Directories">Sands &amp; McDougall Directories</ref>.</p>
+        <p><hi rend="italic">This entry is a first draft, written with machine assistance from the project's directory and electoral-roll records. If you know more about Lansdowne Place, please add to it using the form below.</hi></p>
+      </div>
+    </body>
+  </text>
+</TEI>

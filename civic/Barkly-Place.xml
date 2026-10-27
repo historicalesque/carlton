@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="https://historicalesque.github.io/carlton/schema/carlton.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0" type="place" xml:lang="en">
+  <teiHeader>
+    <fileDesc>
+      <titleStmt>
+        <title>Barkly Place</title>
+        <author>Common Ground</author>
+      </titleStmt>
+      <publicationStmt>
+        <publisher>Common Ground</publisher>
+        <idno type="entry">Barkly-Place</idno>
+      </publicationStmt>
+      <sourceDesc>
+        <listBibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1878">Sands &amp; McDougall Directory, 1878, p. 62</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1935">Sands &amp; McDougall Directory, 1935, p. 191</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Electoral-Rolls">Electoral rolls, 1905, 1919</ref></bibl>
+        </listBibl>
+      </sourceDesc>
+    </fileDesc>
+    <revisionDesc status="published">
+      <change when="2026-10-27" type="created">Machine-assisted first draft by Common Ground, written from the directory and electoral-roll records.</change>
+    </revisionDesc>
+  </teiHeader>
+  <standOff>
+    <listPlace>
+      <place xml:id="subject">
+        <placeName type="main">Barkly Place</placeName>
+      </place>
+    </listPlace>
+    <listEvent type="chronology">
+      <event when="1878">
+        <label>First listed in the directories (1878)</label>
+      </event>
+      <event when="1935">
+        <label>Last listed in the directories transcribed so far (1935)</label>
+      </event>
+    </listEvent>
+    <listRelation>
+      <relation type="place" name="part-of" active="#subject" passive="https://historicalesque.github.io/carlton/civic?id=Bouverie-Street">
+        <desc>Bouverie Street</desc>
+      </relation>
+    </listRelation>
+  </standOff>
+  <text>
+    <body>
+      <p>Barkly Place is a lane off the west side of <ref target="civic?id=Bouverie%20Street">Bouverie Street</ref>, beside the Palmerston Hotel. In 1878 the directory lists the turn into Barkly Place between the hotel at No. 97 and McLean's foundry.</p>
+      <p>It is first listed in the directories in 1878 and last in 1935. It had between four and thirteen listings in each directory.</p>
+      <div>
+        <head>Along the street</head>
+        <p>From 1910 the directories give its corner with Bouverie Street as its only crossing.</p>
+      </div>
+      <div>
+        <head>Businesses and landmarks</head>
+        <list rend="bulleted">
+          <item>M. Walker's ice cream factory at No. 16 (1920).</item>
+          <item>Florant and Co., leadlight and later skylight manufacturers, at No. 39 (1920 to 1935).</item>
+        </list>
+      </div>
+      <div>
+        <head>Records</head>
+        <p>Every directory and electoral-roll listing for Barkly Place can be browsed in <ref target="search?street=Barkly%20Place">search</ref>. Each directory year links to its own page from <ref target="civic?id=Sands-McDougall-Directories">Sands &amp; McDougall Directories</ref>.</p>
+        <p><hi rend="italic">This entry is a first draft, written with machine assistance from the project's directory and electoral-roll records. If you know more about Barkly Place, please add to it using the form below.</hi></p>
+      </div>
+    </body>
+  </text>
+</TEI>
