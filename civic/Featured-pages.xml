@@ -34,12 +34,15 @@
       <div>
         <head>A</head>
         <p><ref target="civic?id=A.B.%20Engineering%20Schools">A.B. Engineering Schools</ref></p>
+        <p><ref target="civic?id=Agenora%20Engine%20Works">Agenora Engine Works</ref></p>
         <p><ref target="civic?id=Agra%20Place">Agra Place</ref></p>
         <p><ref target="civic?id=Alexander%20Mair%20and%20Co">Alexander Mair and Co.</ref></p>
         <p><ref target="civic?id=Architecture">Architecture</ref></p>
+        <p><ref target="civic?id=Atlas%20Co.%20of%20Engineers">Atlas Co. of Engineers</ref></p>
       </div>
       <div>
         <head>B</head>
+        <p><ref target="civic?id=Bakers">Bakers</ref></p>
         <p><ref target="civic?id=Ballarat%20Road">Ballarat Road</ref></p>
         <p><ref target="civic?id=Banbridge%20Place">Banbridge Place</ref></p>
         <p><ref target="civic?id=Baptist%20Chapel%20%28Bouverie%20Street%29">Baptist Chapel (Bouverie Street)</ref></p>
@@ -52,11 +55,14 @@
         <p><ref target="civic?id=Berkeley%20Street">Berkeley Street</ref></p>
         <p><ref target="civic?id=Berkley%20Place">Berkley Place</ref></p>
         <p><ref target="civic?id=Berkley%20Street">Berkley Street</ref></p>
+        <p><ref target="civic?id=Blacksmiths">Blacksmiths</ref></p>
         <p><ref target="civic?id=Boarding%20Houses">Boarding Houses</ref></p>
         <p><ref target="civic?id=Robert%20Bodington">Bodington, Robert</ref></p>
         <p><ref target="civic?id=Bouverie%20hotel">Bouverie Hotel</ref></p>
         <p><ref target="civic?id=Bouverie%20Place">Bouverie Place</ref></p>
         <p><ref target="civic?id=Bouverie%20Street">Bouverie Street</ref></p>
+        <p><ref target="civic?id=Breweries-and-cordial-makers">Breweries and cordial makers</ref></p>
+        <p><ref target="civic?id=Brewery%20stables">Brewery stables</ref></p>
         <p><ref target="civic?id=Bruche%20and%20Roberts%20stables">Bruche and Roberts stables</ref></p>
         <p><ref target="civic?id=Buckley%20%26%20Nunn%20stables">Buckley &amp; Nunn stables</ref></p>
         <p><ref target="civic?id=Bush%20Inn%20hotel">Bush Inn Hotel</ref></p>
@@ -64,7 +70,22 @@
       <div>
         <head>C</head>
         <p><ref target="civic?id=Captain%20William%20Ratcliffe">Captain William Ratcliffe</ref></p>
+        <p><ref target="civic?id=Carlton%20%26%20United%20Breweries%20stables">Carlton &amp; United Breweries stables</ref></p>
+        <p><ref target="civic?id=Carlton%20%26%20United%20Breweries">Carlton &amp; United Breweries</ref></p>
+        <p><ref target="civic?id=Carlton%20%26%20West%20End%20Breweries%20stables">Carlton &amp; West End Breweries stables</ref></p>
+        <p><ref target="civic?id=Carlton%20%26%20West%20End%20Breweries">Carlton &amp; West End Breweries</ref></p>
+        <p><ref target="civic?id=Carlton%20%26%20West%20End%20Brewery%20Co">Carlton &amp; West End Brewery Co</ref></p>
         <p><ref target="civic?id=Carlton%20Brewery">Carlton Brewery</ref></p>
+        <p><ref target="civic?id=Carlton%20Brewery%20%2814%20Bouverie%20Street%29">Carlton Brewery (14 Bouverie Street)</ref></p>
+        <p><ref target="civic?id=Carlton%20Brewery%20%2824%20Bouverie%20Street%29">Carlton Brewery (24 Bouverie Street)</ref></p>
+        <p><ref target="civic?id=Carlton%20Brewery%20%28482%E2%80%93496%20Swanston%20Street%29">Carlton Brewery (482–496 Swanston Street)</ref></p>
+        <p><ref target="civic?id=Carlton%20Brewery%20%28Ballarat%20Street%29">Carlton Brewery (Ballarat Street)</ref></p>
+        <p><ref target="civic?id=Carlton%20Brewery%20%28Bouverie%20Street%2C%20East%20side%29">Carlton Brewery (Bouverie Street, East side)</ref></p>
+        <p><ref target="civic?id=Carlton%20Brewery%20%28office%29">Carlton Brewery (office)</ref></p>
+        <p><ref target="civic?id=Carlton%20Brewery%20%28Swanston%20Street%29">Carlton Brewery (Swanston Street)</ref></p>
+        <p><ref target="civic?id=Carlton%20Brewery%20Ltd">Carlton Brewery Ltd</ref></p>
+        <p><ref target="civic?id=Carlton%20Brewery%20storeyard">Carlton Brewery storeyard</ref></p>
+        <p><ref target="civic?id=Carlton%20Brwry">Carlton Brwry</ref></p>
         <p><ref target="civic?id=Carlton%20Flour%20Mills">Carlton Flour Mills</ref></p>
         <p><ref target="civic?id=Carlton%20Foundry">Carlton Foundry</ref></p>
         <p><ref target="civic?id=Carlton%20Free%20Kindergarten">Carlton Free Kindergarten</ref></p>
@@ -102,6 +123,7 @@
         <p><ref target="civic?id=Eliza%20Terrace">Eliza Terrace</ref></p>
         <p><ref target="civic?id=Emu%20Hotel">Emu Hotel</ref></p>
         <p><ref target="civic?id=Engineering">Engineering Firms</ref></p>
+        <p><ref target="civic?id=Engineers-and-foundries">Engineers and foundries</ref></p>
         <p><ref target="civic?id=Euterpe%20hotel">Euterpe Hotel</ref></p>
         <p><ref target="civic?id=Exmouth%20Arms%20hotel">Exmouth Arms</ref></p>
       </div>
@@ -144,6 +166,7 @@
       </div>
       <div>
         <head>J</head>
+        <p><ref target="civic?id=Jenning%27s%20Foundry">Jenning's Foundry</ref></p>
         <p><ref target="civic?id=Jewish%20Residents%20and%20Landowners">Jewish Residents and Landowners</ref></p>
         <p>John Fullerton, see: <ref target="civic?id=Inspector%20of%20Nuisances">Inspector of Nuisances</ref></p>
         <p><ref target="civic?id=Junction%20hotel%20%28Elizabeth%20Street%29">Junction Hotel (Elizabeth Street)</ref></p>
@@ -188,7 +211,9 @@
         <p><ref target="civic?id=Malvina%20Place">Malvina Place</ref></p>
         <p><ref target="civic?id=Manchester%20Arms%20hotel">Manchester Arms Hotel</ref></p>
         <p><ref target="civic?id=Mary%20Mather%20%28Pelham%20Hotel%29">Mary Mather (Pelham Hotel)</ref></p>
+        <p><ref target="civic?id=McLean%27s%20foundry">McLean's foundry</ref></p>
         <p><ref target="civic?id=MMBW">Melbourne and Metropolitan Board of Works maps</ref></p>
+        <p><ref target="civic?id=Melbourne%20Brewing%20and%20Malting%20Co.">Melbourne Brewing and Malting Co.</ref></p>
         <p><ref target="civic?id=The%20Mills%20hotel">The Mills Hotel</ref></p>
         <p><ref target="civic?id=Monteagle%20hotel">Monteagle Hotel</ref></p>
         <p><ref target="civic?id=Edward%20Mulcahey">Mulcahey, Edward</ref></p>
@@ -245,6 +270,7 @@
         <p><ref target="civic?id=Rate%20Books">Rate Books</ref></p>
         <p><ref target="civic?id=Reserve%20hotel">Reserve Hotel</ref></p>
         <p><ref target="civic?id=Rising%20Sun%20hotel">Rising Sun Hotel</ref></p>
+        <p><ref target="civic?id=Rose%20Iron%20Works">Rose Iron Works</ref></p>
         <p><ref target="civic?id=Royal%20and%20Co">Royal and Co.</ref></p>
         <p><ref target="civic?id=Royal%20Artillery%20hotel">Royal Artillery Hotel</ref></p>
         <p><ref target="civic?id=Royal%20Artillery%20hotel%20%28Elizabeth%20Street%29">Royal Artillery Hotel (Elizabeth Street)</ref></p>
@@ -288,6 +314,8 @@
       </div>
       <div>
         <head>V</head>
+        <p><ref target="civic?id=Victoria%20Brewery%20Pty%20Ltd">Victoria Brewery Pty Ltd</ref></p>
+        <p><ref target="civic?id=Victoria%20Foundry">Victoria Foundry</ref></p>
         <p><ref target="civic?id=Victoria%20hotel">Victoria Hotel</ref></p>
         <p><ref target="civic?id=Victorian%20Horse%20Market%20hotel">Victorian Horse Market Hotel</ref></p>
         <p><ref target="civic?id=Victorian%20Police%20Gazette">Victorian Police Gazette</ref></p>

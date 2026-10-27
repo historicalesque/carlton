@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="https://historicalesque.github.io/carlton/schema/carlton.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0" type="topic" xml:lang="en">
+  <teiHeader>
+    <fileDesc>
+      <titleStmt>
+        <title>Engineers and foundries</title>
+        <author>Common Ground</author>
+      </titleStmt>
+      <publicationStmt>
+        <publisher>Common Ground</publisher>
+        <idno type="entry">Engineers-and-foundries</idno>
+      </publicationStmt>
+      <sourceDesc>
+        <listBibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directories">Sands &amp; McDougall Directories, 1857–1940</ref></bibl>
+        </listBibl>
+      </sourceDesc>
+    </fileDesc>
+    <revisionDesc status="published">
+      <change when="2026-10-27" type="created">Machine-assisted first draft by Common Ground, written from the directory records.</change>
+    </revisionDesc>
+  </teiHeader>
+  <text>
+    <body>
+      <p>Engineers, ironfounders, millwrights and brassfounders worked in the project area from the late 1850s. In the nineteenth century the largest were the foundries: the <ref target="civic?id=Carlton%20Foundry">Carlton Foundry</ref> in <ref target="civic?id=Leicester%20Street">Leicester Street</ref>, the <ref target="civic?id=Victoria%20Foundry">Victoria Foundry</ref> in <ref target="civic?id=Victoria%20Street">Victoria Street</ref> and <ref target="civic?id=Jenning%27s%20Foundry">Jenning's Foundry</ref> in <ref target="civic?id=Berkley%20Street">Berkley Street</ref>, and later the <ref target="civic?id=Atlas%20Co.%20of%20Engineers">Atlas Co. of Engineers</ref> in <ref target="civic?id=Bouverie%20Street">Bouverie Street</ref>. <ref target="civic?id=Robert%20Bodington">Robert Bodington</ref>, millwright and later milling engineer, is listed in <ref target="civic?id=Queensberry%20Street">Queensberry Street</ref> for eighty years, from 1860 to 1940, and the <ref target="civic?id=Nicholson%20implement%20makers">Nicholson implement makers</ref> made agricultural implements in <ref target="civic?id=Bouverie%20Street">Bouverie Street</ref> and <ref target="civic?id=Leicester%20Street">Leicester Street</ref> from 1859. In the twentieth century the directories list electrical, textile and fire protection engineers, and from the 1920s many motor engineers.</p>
+      <p>The lists below are drawn only from the directories. Named works link to their own entries, and most of those haven't been written yet. Firms and engineers listed under their own names are given as the directories print them. <ref target="civic?id=Engineering">Engineering Firms</ref> and <ref target="civic?id=The%20Engineers%20of%20University%20Square">The Engineers of University Square</ref> say more about some of them.</p>
+      <div>
+        <head>Named works</head>
+        <table>
+          <row><cell><hi rend="bold">Works</hi></cell><cell><hi rend="bold">Listed in</hi></cell><cell><hi rend="bold">Numbers</hi></cell><cell><hi rend="bold">Years</hi></cell><cell><hi rend="bold">Notes</hi></cell></row>
+          <row><cell><ref target="civic?id=Carlton%20Foundry">Carlton Foundry</ref></cell><cell><ref target="civic?id=Leicester%20Street">Leicester Street</ref></cell><cell>41, 56, 54–56; 114–128 (1890)</cell><cell>1859–1890</cell><cell>Joseph Manchester (1859), then A. K. Smith, listed from 1871 as civil and consulting engineer and foundry, to 1880. Mephan Ferguson from 1885. See <ref target="civic?id=The%20Engineers%20of%20University%20Square">The Engineers of University Square</ref>, which says Ferguson bought the foundry from Smith's estate.</cell></row>
+          <row><cell><ref target="civic?id=Victoria%20Foundry">Victoria Foundry</ref></cell><cell><ref target="civic?id=Victoria%20Street">Victoria Street</ref></cell><cell>7; 188–206 (1890), 188 (1900)</cell><cell>1873–1900</cell><cell>Phillips &amp; McWalter (1873), then Phillips, McWalter &amp; Chambers (1874–1890), then McWalter &amp; Mangels (1900). Niven, Phillips and McWalter's foundry was at No. 7 in 1870–1872 (<ref target="civic?id=Phillips%20Niven">Phillips Niven</ref>); it isn't known whether this was the same business. John Payne &amp; Sons, ironfounders, were at 188–208 Victoria Street from 1900 to 1920.</cell></row>
+          <row><cell><ref target="civic?id=Jenning%27s%20Foundry">Jenning's Foundry</ref></cell><cell><ref target="civic?id=Berkley%20Street">Berkley Street</ref></cell><cell></cell><cell>1875–1885</cell><cell>Also printed Jennings's Foundry. William Rutherford, architectural carver, is listed at the foundry in 1877, and T. Jennings, engineer, in Berkley Street in 1890.</cell></row>
+          <row><cell><ref target="civic?id=Rose%20Iron%20Works">Rose Iron Works</ref></cell><cell><ref target="civic?id=Leicester%20Street">Leicester Street</ref></cell><cell>60</cell><cell>1876</cell><cell>J. Chambers.</cell></row>
+          <row><cell><ref target="civic?id=McLean%27s%20foundry">McLean's foundry</ref></cell><cell><ref target="civic?id=Bouverie%20Street">Bouverie Street</ref></cell><cell></cell><cell>1878</cell><cell></cell></row>
+          <row><cell><ref target="civic?id=Agenora%20Engine%20Works">Agenora Engine Works</ref></cell><cell><ref target="civic?id=Berkley%20Street">Berkley Street</ref></cell><cell></cell><cell>1885</cell><cell>Grindrod &amp; Carter, engineers.</cell></row>
+          <row><cell><ref target="civic?id=Atlas%20Co.%20of%20Engineers">Atlas Co. of Engineers</ref></cell><cell><ref target="civic?id=Bouverie%20Street">Bouverie Street</ref></cell><cell>108–114, then 108</cell><cell>1890–1910</cell><cell>Scott &amp; Young. N. Nelsen, caretaker, in 1905. See <ref target="civic?id=Engineering">Engineering Firms</ref>.</cell></row>
+        </table>
+      </div>
+      <div>
+        <head>Engineers and founders listed under their own names</head>
+        <table>
+          <row><cell><hi rend="bold">Listed as</hi></cell><cell><hi rend="bold">Listed in</hi></cell><cell><hi rend="bold">Numbers</hi></cell><cell><hi rend="bold">Years</hi></cell><cell><hi rend="bold">Notes</hi></cell></row>
+          <row><cell>Griffiths, Wm. and Co., millwrights and engineers</cell><cell><ref target="civic?id=Queensberry%20Street">Queensberry Street</ref></cell><cell>6</cell><cell>1859</cell><cell></cell></row>
+          <row><cell>Ramsay, Alexander &amp; Co., millwrights and engineers</cell><cell><ref target="civic?id=Queensberry%20Street">Queensberry Street</ref></cell><cell>8</cell><cell>1859</cell><cell></cell></row>
+          <row><cell>Bodington, Robert, millwright and engineer, later milling engineer</cell><cell><ref target="civic?id=Queensberry%20Street">Queensberry Street</ref></cell><cell>6, 4, 241</cell><cell>1860–1940</cell><cell><ref target="civic?id=Robert%20Bodington">Robert Bodington</ref></cell></row>
+          <row><cell>Smith, C. K., engineer</cell><cell><ref target="civic?id=Bouverie%20Street">Bouverie Street</ref></cell><cell>84, 152</cell><cell>1861–1862</cell><cell></cell></row>
+          <row><cell>Royal and Co., engineers; later Royal, Joseph, engineer</cell><cell><ref target="civic?id=Barry%20Street">Barry Street</ref>, <ref target="civic?id=Leicester%20Street">Leicester Street</ref></cell><cell>2 Barry</cell><cell>1862–1885</cell><cell><ref target="civic?id=Royal%20and%20Co">Royal and Co.</ref></cell></row>
+          <row><cell>Royal, Joseph, &amp; Co., axle makers</cell><cell><ref target="civic?id=Leicester%20Street">Leicester Street</ref></cell><cell>109, 105</cell><cell>1890–1910</cell><cell><ref target="civic?id=Royal%20and%20Co">Royal and Co.</ref></cell></row>
+          <row><cell>Gilchrist, James and John, brassfounders and pattern makers</cell><cell><ref target="civic?id=Bouverie%20Street">Bouverie Street</ref></cell><cell>161</cell><cell>1865–1875</cell><cell><ref target="civic?id=James%20and%20John%20Gilchrist">James and John Gilchrist</ref></cell></row>
+          <row><cell>Foxcroft, John, engineer and machinist</cell><cell><ref target="civic?id=Pelham%20Street">Pelham Street</ref>, <ref target="civic?id=Berkley%20Street">Berkley Street</ref></cell><cell></cell><cell>1866–1868</cell><cell></cell></row>
+          <row><cell>Hall, Hugh, engineer</cell><cell><ref target="civic?id=Barry%20Street">Barry Street</ref></cell><cell></cell><cell>1868–1869</cell><cell></cell></row>
+          <row><cell>Waugh, John, working millwright</cell><cell><ref target="civic?id=Berkley%20Street">Berkley Street</ref></cell><cell>32</cell><cell>1870</cell><cell></cell></row>
+          <row><cell>Orme, Rd. P., engineer</cell><cell><ref target="civic?id=Berkley%20Street">Berkley Street</ref></cell><cell>56</cell><cell>1872</cell><cell></cell></row>
+          <row><cell>Munyard, John, engineer</cell><cell><ref target="civic?id=Bouverie%20Street">Bouverie Street</ref></cell><cell>81, 88</cell><cell>1872–1879</cell><cell></cell></row>
+          <row><cell>Corbett, David, engineer</cell><cell><ref target="civic?id=Bouverie%20Street">Bouverie Street</ref></cell><cell>19, 19 &amp; 21</cell><cell>1872–1880</cell><cell></cell></row>
+          <row><cell>Kelly, James, engineer</cell><cell><ref target="civic?id=Berkley%20Street">Berkley Street</ref></cell><cell></cell><cell>1872–1873</cell><cell></cell></row>
+          <row><cell>Niven, Duncan, iron foundry</cell><cell><ref target="civic?id=Berkley%20Street">Berkley Street</ref></cell><cell></cell><cell>1873–1874</cell><cell><ref target="civic?id=Duncan%20Niven">Duncan Niven</ref></cell></row>
+          <row><cell>Kelly, John, engineer</cell><cell><ref target="civic?id=Domville%20Terrace">Domville Terrace</ref>, <ref target="civic?id=Berkley%20Street">Berkley Street</ref></cell><cell>3 Domville Terrace; 211</cell><cell>1874–1900</cell><cell></cell></row>
+          <row><cell>Brown, William, &amp; Co., engineers</cell><cell><ref target="civic?id=Berkley%20Street">Berkley Street</ref></cell><cell></cell><cell>1873–1880</cell><cell></cell></row>
+          <row><cell>Swan &amp; Co., engineers and millwrights</cell><cell><ref target="civic?id=Berkley%20Street">Berkley Street</ref></cell><cell></cell><cell>1876–1880</cell><cell></cell></row>
+          <row><cell>Nicholson, J., implement maker; later Nicholson &amp; Morrow, agricultural engineers</cell><cell><ref target="civic?id=Bouverie%20Street">Bouverie Street</ref>, <ref target="civic?id=Leicester%20Street">Leicester Street</ref></cell><cell>16, 21, 22, 23, 25, 39</cell><cell>1859–1915</cell><cell><ref target="civic?id=Nicholson%20implement%20makers">Nicholson implement makers</ref></cell></row>
+          <row><cell>O'Brien, Thos., engineer</cell><cell><ref target="civic?id=Everton%20Cottages">Everton Cottages</ref></cell><cell>2</cell><cell>1879</cell><cell></cell></row>
+          <row><cell>Whalley, Joseph, engineer</cell><cell><ref target="civic?id=Pelham%20Street">Pelham Street</ref></cell><cell>5</cell><cell>1879</cell><cell></cell></row>
+          <row><cell>Cochrane &amp; Scott, ironfounders</cell><cell><ref target="civic?id=Berkley%20Street">Berkley Street</ref></cell><cell>73</cell><cell>1890–1910</cell><cell>Also at 624 Elizabeth Street North in 1895. George C. Scott, ironfounder, at No. 73 in 1905.</cell></row>
+          <row><cell>Flood, Fredk., engineer</cell><cell><ref target="civic?id=Elizabeth%20Street%20North">Elizabeth Street North</ref></cell><cell>546</cell><cell>1895</cell><cell></cell></row>
+          <row><cell>Dargie, C., engineer and costume stand maker</cell><cell><ref target="civic?id=Madeline%20Street">Madeline Street</ref></cell><cell>49</cell><cell>1900</cell><cell></cell></row>
+          <row><cell>Payne, John, &amp; Sons, ironfounders</cell><cell><ref target="civic?id=Victoria%20Street">Victoria Street</ref>, <ref target="civic?id=Bouverie%20Street">Bouverie Street</ref></cell><cell>208, 198, 188, 188–208 Victoria; 11 Bouverie (1910)</cell><cell>1900–1920</cell><cell></cell></row>
+          <row><cell>Stamp &amp; Powell, engineers; then Powell, W. J., Pty Ltd, engineers</cell><cell><ref target="civic?id=Berkley%20Street">Berkley Street</ref></cell><cell>41–47, then 41–51</cell><cell>1910–1935</cell><cell>John W. Stamp, engineer, in Grattan Street in 1915.</cell></row>
+          <row><cell>Reynolds &amp; McKay, brassfounders</cell><cell><ref target="civic?id=Queensberry%20Street">Queensberry Street</ref></cell><cell>271, 275</cell><cell>1915–1920</cell><cell></cell></row>
+          <row><cell>Richardson, A. T., engineer (store room)</cell><cell><ref target="civic?id=Queensberry%20Street">Queensberry Street</ref></cell><cell>281</cell><cell>1915</cell><cell></cell></row>
+          <row><cell>Anquetil, B., engineer</cell><cell><ref target="civic?id=Berkley%20Street">Berkley Street</ref></cell><cell>116–120</cell><cell>1925–1940</cell><cell></cell></row>
+          <row><cell>Kent Engineering Co. Pty Ltd (workshop)</cell><cell><ref target="civic?id=Bouverie%20Street">Bouverie Street</ref></cell><cell>60, then 66–68</cell><cell>1925–1940</cell><cell></cell></row>
+          <row><cell>Davies, D. C., engineer</cell><cell><ref target="civic?id=Sydney%20Road">Sydney Road</ref></cell><cell>12</cell><cell>1925</cell><cell></cell></row>
+          <row><cell>Murdoch, A., electrical engineer</cell><cell><ref target="civic?id=Berkley%20Street">Berkley Street</ref></cell><cell>117</cell><cell>1925</cell><cell></cell></row>
+          <row><cell>Wagner Bros, general engineers</cell><cell><ref target="civic?id=Berkley%20Street">Berkley Street</ref></cell><cell>229</cell><cell>1930</cell><cell></cell></row>
+          <row><cell>O'Shannessy, T. F., battery engineer</cell><cell><ref target="civic?id=Queensberry%20Street">Queensberry Street</ref></cell><cell>189–193</cell><cell>1930–1940</cell><cell></cell></row>
+          <row><cell>McNeil, D., engineer</cell><cell><ref target="civic?id=Leicester%20Street">Leicester Street</ref></cell><cell>121</cell><cell>1935–1940</cell><cell></cell></row>
+          <row><cell>Orton &amp; Burns, mechanical engineers</cell><cell><ref target="civic?id=Swanston%20Street">Swanston Street</ref></cell><cell>546–548</cell><cell>1935–1940</cell><cell></cell></row>
+          <row><cell>Anderson, K. A., electrical engineer</cell><cell><ref target="civic?id=Leicester%20Place">Leicester Place</ref></cell><cell></cell><cell>1935</cell><cell></cell></row>
+          <row><cell>A.B. Engineering Schools (of Australia), engineering teachers</cell><cell><ref target="civic?id=Bouverie%20Street">Bouverie Street</ref></cell><cell>131–135</cell><cell>1940</cell><cell><ref target="civic?id=A.B.%20Engineering%20Schools">A.B. Engineering Schools</ref></cell></row>
+          <row><cell>Automatic Fire Sprinklers Pty Ltd, fire protection engineers</cell><cell><ref target="civic?id=Berkley%20Street">Berkley Street</ref></cell><cell>179–185</cell><cell>1940</cell><cell></cell></row>
+          <row><cell>Hull, D. M. &amp; Co., repetition engineers</cell><cell><ref target="civic?id=Berkley%20Street">Berkley Street</ref></cell><cell></cell><cell>1940</cell><cell></cell></row>
+          <row><cell>Harvey &amp; Morris, engineers</cell><cell><ref target="civic?id=Bouverie%20Street">Bouverie Street</ref></cell><cell>139–143</cell><cell>1940</cell><cell></cell></row>
+          <row><cell>Huppert, C., &amp; Co. Pty Ltd, textile engineers</cell><cell><ref target="civic?id=Bouverie%20Street">Bouverie Street</ref></cell><cell>193</cell><cell>1940</cell><cell></cell></row>
+          <row><cell>Ramp, T., textile engineer</cell><cell><ref target="civic?id=Swanston%20Street">Swanston Street</ref></cell><cell>466</cell><cell>1940</cell><cell></cell></row>
+          <row><cell>National Fittings Pty Ltd, engineers</cell><cell><ref target="civic?id=Queensberry%20Street">Queensberry Street</ref></cell><cell>195</cell><cell>1940</cell><cell></cell></row>
+          <row><cell>Ross Robbins Pty Ltd, brassfounders</cell><cell><ref target="civic?id=Swanston%20Street">Swanston Street</ref></cell><cell>516</cell><cell>1940</cell><cell>Also at 98 Victoria Street.</cell></row>
+        </table>
+      </div>
+      <div>
+        <head>Motor engineers</head>
+        <p>Motor engineers appear from 1925 and are listed here by street, with numbers and years.</p>
+        <list rend="bulleted">
+          <item><ref target="civic?id=Bouverie%20Street">Bouverie Street</ref>: H. H. Schmidt (65–67, 1925–1930), Jas. O. Davies (163, 1930) and Baker &amp; Shaw (163, 1940).</item>
+          <item><ref target="civic?id=Berkley%20Street">Berkley Street</ref>: Dunlop &amp; Wilson (25–27, 1925), then F. W. Davey &amp; Co. (25–27, 1935–1940), and L. Bloom (122–128, 1940).</item>
+          <item><ref target="civic?id=Sydney%20Road">Sydney Road</ref>: N. V. Bodinnar (12, 1925).</item>
+          <item><ref target="civic?id=Pelham%20Street">Pelham Street</ref>: National Motor Reconditioning Pty Ltd (156, 1930–1935).</item>
+          <item><ref target="civic?id=Queensberry%20Street">Queensberry Street</ref>: Replacement Parts Pty Ltd (264–270, 1930), Lea-Wright Motors Pty Ltd (181–187, 1935) and Marshall &amp; Brede (183–185, 1940).</item>
+          <item><ref target="civic?id=Barkly%20Place">Barkly Place</ref>: J. Turner (16, 1935).</item>
+          <item><ref target="civic?id=Swanston%20Street">Swanston Street</ref>: Coxhill &amp; Hewitt (520–524), Perrier &amp; Hankin (636–640) and Latrobe Motors Pty Ltd (642–644), all 1935.</item>
+          <item><ref target="civic?id=Leicester%20Street">Leicester Street</ref>: Bussing Diesel Vehicles Pty Ltd (6, 1940).</item>
+        </list>
+      </div>
+      <div>
+        <head>Notes</head>
+        <list rend="bulleted">
+          <item>The Victoria Foundry and Niven, Phillips and McWalter's foundry are both listed at No. 7 <ref target="civic?id=Victoria%20Street">Victoria Street</ref>, but under different names, so they are kept apart. In 1900 the Victoria Foundry (No. 188) and John Payne &amp; Sons (No. 208) are listed in the same year.</item>
+          <item>Joseph Royal is also listed as a wheelwright and blacksmith in <ref target="civic?id=Leicester%20Street">Leicester Street</ref> (see <ref target="civic?id=Blacksmiths">Blacksmiths</ref>).</item>
+          <item>University engineering staff and the engineering school in the University grounds are left out (see <ref target="civic?id=Schools">Schools</ref>).</item>
+        </list>
+      </div>
+      <div>
+        <head>Sources</head>
+        <p>Every listing can be browsed in <ref target="search?q=engineer&amp;src=directories">search</ref>. The directories are yearly to 1880 and then every five years, so years are the first and last directories that list each entry.</p>
+        <p><hi rend="italic">This page is a machine-assisted first draft by Common Ground, written from the directory records. Please correct or add to it.</hi></p>
+      </div>
+    </body>
+  </text>
+</TEI>
