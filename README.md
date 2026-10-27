@@ -10,7 +10,7 @@
 > - **Search everything:** [Search](https://historicalesque.github.io/carlton/search) finds entries, directory listings and electoral-roll records in one box.
 > - **Browse the histories:** [Entries A–Z](https://historicalesque.github.io/carlton/aToZ) · [Map](https://historicalesque.github.io/carlton/map) · [Electoral rolls](https://historicalesque.github.io/carlton/electoral-rolls)
 > - **Share a story or add to an entry:** open any entry on the site and use the *Contribute* form at the bottom, or [start a new entry](https://historicalesque.github.io/carlton/new).
-> - **Editorial team:** start at the [Admin page](https://historicalesque.github.io/carlton/admin/), which links to each editorial tool. To review submissions, read them on the [Submission review page](https://historicalesque.github.io/carlton/admin/review.html), then accept or reject each one in the Decision column of the team's submissions spreadsheet.
+> - **Editorial team:** start at the [Admin page](https://historicalesque.github.io/carlton/admin/), which links to each editorial tool. To review submissions, open each one from its row in the team's submissions spreadsheet (the *Open* link goes to the submission review page), then accept or reject it in the Decision column.
 > - **Project partners:** [Melbourne History Workshop](https://melbournehistoryworkshop.com) · [Carlton Community History Group](https://cchg.asn.au)
 
 ---
@@ -62,8 +62,8 @@ Nothing is published until a pull request is merged into `main`. GitHub Pages re
                  apps-script/Code.gs web app ─▶ 1. copy to Google Sheet (team shared Drive, backup)
                                             ──▶ 2. new branch + civic/<slug>.xml + pull request
                                                          │
- Anyone ────▶ admin/ ▶ review.html ── lists open PRs touching civic/, previews them,
-                                       before/after table for new versions of entries
+ Sheet row ─▶ admin/review.html?pr=N ── previews that one submission, before/after
+                                       table for new versions of entries
  Editor ─────▶ Google Sheet: Decision column (Accept / Reject)
                                                          │  straight away (apps-script/Code.gs)
                                                          ▼
@@ -229,8 +229,8 @@ Use `admin/carlton-data-editor.html`. It loads the live data and lets you search
 
 ### Reviewing a public submission (editorial team)
 
-1. Open **`admin/review.html`** (or the [Admin page](https://historicalesque.github.io/carlton/admin/), then *Review submissions*). It lists open pull requests that add or change files in `civic/`. Anyone can read it; no sign-in is needed.
-2. Pick a submission to see a preview of the entry as it would appear on the site. If someone has suggested changes, the page lists every version and shows what each one changes. Anyone can press **Suggest changes** to fix a submission in the contribution form; that makes a new version, which becomes the one the editors decide on (earlier versions stay listed). If it is a new version of an entry that's already on the site, a **What changes** table shows the current entry next to the new version. Anything the new version leaves out is marked, because accepting replaces the whole entry.
+1. In the team's submissions spreadsheet, click the **Open** link in a submission's row. It opens **`admin/review.html?pr=<number>`** for that one submission (the page no longer lists every open submission, which used up GitHub's request limit; opened without a number it just says to use the spreadsheet). Anyone with the link can read it; no sign-in is needed.
+2. The page shows a preview of the entry as it would appear on the site. If someone has suggested changes, the page lists every version and shows what each one changes. Anyone can press **Suggest changes** to fix a submission in the contribution form; that makes a new version, which becomes the one the editors decide on (earlier versions stay listed). If it is a new version of an entry that's already on the site, a **What changes** table shows the current entry next to the new version. Anything the new version leaves out is marked, because accepting replaces the whole entry.
 3. Decide in the team's submissions spreadsheet (the Sheet the Apps Script is attached to). Each submission is a row with a link back to the review page. In the **Decision** column, pick:
    - **Accept** to publish it. The script merges the pull request straight away and the Status column says "Published".
    - **Reject** to turn it down. The script closes the pull request. The *Reason* column is optional and stays in the Sheet.
@@ -268,7 +268,7 @@ See [Editing the data](#editing-the-data) above. This is separate from entry sub
 ## Known issues and gotchas
 
 - **Field names are inconsistent** (`year` vs `Given Names` vs `Occupation`), and `entityID` mixes numbers and strings (strings are deliberate links made by a person; see the [field reference](#data-directories-and-electoral-rolls)).
-- **Review page rate limit (unlikely, but confusing if it happens):** `admin/review.html` calls the GitHub API without signing in, which GitHub caps at 60 requests per hour per IP address. Listing submissions uses one request plus one per open pull request. A small editorial team won't normally reach this, but a large backlog of submissions, or several people on one shared network (e.g. a university or library), could. **Symptoms:** the review page shows an error, an empty list, or submissions that won't load, even though they're visible on GitHub. **Fix:** wait up to an hour, or review directly on GitHub in the meantime.
+- **Review page rate limit (unlikely, but confusing if it happens):** `admin/review.html` calls the GitHub API without signing in, which GitHub caps at 60 requests per hour per IP address. Opening a submission uses three requests (fewer when it's been opened before in that browser). The page doesn't list every open submission, so the number of submissions waiting doesn't matter, but several people on one shared network (e.g. a university or library) could still reach the limit. **Symptoms:** the review page shows an error, or submissions that won't load, even though they're visible on GitHub. **Fix:** wait up to an hour, or review directly on GitHub in the meantime.
 
 ---
 

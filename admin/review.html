@@ -54,14 +54,6 @@
   }
   .error { border-color: var(--del-text); color: var(--del-text); border-style: solid; background: var(--del-bg); }
 
-  .pr-row {
-    display: flex; justify-content: space-between; align-items: center; gap: 20px;
-    padding: 18px 0; border-bottom: 1px solid var(--line);
-  }
-  .pr-row:first-child { padding-top: 0; }
-  .pr-row .title { font-family: var(--serif); font-size: 1.1rem; margin: 0 0 4px; }
-  .pr-row .meta { font-size: 0.85rem; color: var(--ink-soft); }
-
   .back-link { display: inline-block; margin-bottom: 20px; font-size: 0.9rem; }
 
   .file-block { border: 1px solid var(--line); border-radius: 6px; margin-bottom: 20px; overflow: hidden; }
@@ -152,7 +144,7 @@
 
 <header>
   <h1>Submission review</h1>
-  <p>Entries sent in through the contribution form. Anyone can read them here; the editors accept or reject each one. <a href="./">Admin</a> &middot; <a href="../">Back to the site</a></p>
+  <p>An entry sent in through the contribution form. The editors accept or reject it in the team's submissions spreadsheet. <a href="./">Admin</a> &middot; <a href="../">Back to the site</a></p>
 </header>
 
 <main id="app"></main>
@@ -163,7 +155,7 @@
 const CONFIG = {
   REPO_OWNER: "historicalesque",
   REPO_NAME: "carlton",
-  XML_PATH_PREFIX: "civic/",   // only PRs touching files under this path are shown
+  XML_PATH_PREFIX: "civic/",   // only files under this path are shown
   BASE_BRANCH: "main",         // what is on the site now, for the before/after table
 };
 /* ===================================================================== */
@@ -254,50 +246,17 @@ async function render() {
   try {
     if (prNumber && params.has("suggest")) await renderSuggest(Number(prNumber), params.get("v"));
     else if (prNumber) await renderPrDetail(Number(prNumber), params.get("v"), params.has("sent"));
-    else await renderPrList();
+    else renderNoSubmission();
   } catch (e) {
     $app.innerHTML = `<div class="error">${escapeHtml(e.message)}</div>`;
   }
 }
 
-async function renderPrList() {
-  $app.innerHTML = `<p class="spinner-text">Loading submissions&hellip;</p>`;
-  const prs = await ghApi(`/repos/${CONFIG.REPO_OWNER}/${CONFIG.REPO_NAME}/pulls?state=open&per_page=50`);
-
-  const withXmlFiles = [];
-  for (const pr of prs) {
-    const files = await prFiles(pr);
-    const xmlFiles = files.filter((f) => f.filename.startsWith(CONFIG.XML_PATH_PREFIX) && f.filename.endsWith(".xml"));
-    if (xmlFiles.length) withXmlFiles.push({ pr, xmlFiles });
-  }
-
-  if (!withXmlFiles.length) {
-    $app.innerHTML = `<div class="empty">Nothing waiting right now. New submissions will show up here. Refresh to check again.</div>
-      <button style="margin-top:16px;" onclick="render()">Refresh</button>`;
-    return;
-  }
-
-  $app.innerHTML = `
-    <div style="margin-bottom:16px;"><button onclick="render()">Refresh</button></div>
-    ${withXmlFiles.map(({ pr, xmlFiles }) => `
-      <div class="pr-row">
-        <div>
-          <p class="title">${escapeHtml(entryTitle(pr))}${badge(xmlFiles)}</p>
-          <p class="meta">${sentLine(pr)}</p>
-        </div>
-        <button data-pr="${pr.number}">Review</button>
-      </div>
-    `).join("")}
-  `;
-
-  $app.querySelectorAll("button[data-pr]").forEach((btn) => {
-    btn.onclick = () => {
-      const u = new URL(window.location.href);
-      u.searchParams.set("pr", btn.dataset.pr);
-      history.pushState({}, "", u);
-      render();
-    };
-  });
+// Without a submission number there's nothing to show. Submissions are opened
+// from their row in the team's submissions spreadsheet, so the page never lists
+// them all (that took a GitHub request per open pull request).
+function renderNoSubmission() {
+  $app.innerHTML = `<div class="empty">To read a submission, open it from its row in the team's submissions spreadsheet (the <strong>Open</strong> link).</div>`;
 }
 
 function go(params) {
@@ -341,7 +300,6 @@ async function renderPrDetail(prNumber, version, sent) {
     <p class="versions">Showing version ${shown.n} of ${versions.length} (${escapeHtml(shown.label)})${shown.n === versions.length ? ", the latest" : ""}. Other versions: ${otherVersions}</p>` : "";
 
   $app.innerHTML = `
-    <a class="back-link ghost btn" href="javascript:void(0)" id="back">&larr; All submissions</a>
     <h2 style="font-family: var(--serif); font-weight: 500; margin-bottom: 4px;">${escapeHtml(entryTitle(pr))}${badge(xmlFiles)}</h2>
     <p class="meta" style="color: var(--ink-soft); margin-top: 0;">${sentLine(pr)}</p>
     ${versionLine}
@@ -358,7 +316,6 @@ async function renderPrDetail(prNumber, version, sent) {
       <p>The editors decide in the team's submissions spreadsheet: find this entry's row and pick <strong>Accept</strong> or <strong>Reject</strong> in the <strong>Decision</strong> column. Suggested changes update that same row (they're listed in its <strong>Suggested changes</strong> column), and Accept publishes the latest version. It happens straight away, and the entry appears on the site a minute or two after that.</p>
     </section>` : ""}
   `;
-  document.getElementById("back").onclick = () => go({});
   $app.querySelectorAll("a[data-v]").forEach((a) => {
     a.onclick = (e) => { e.preventDefault(); go({ pr: prNumber, v: a.dataset.v }); };
   });
