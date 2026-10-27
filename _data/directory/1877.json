@@ -653,7 +653,7 @@
 {"entityID":"John Denmark","source":"Directory","year":1877,"pages":"74","listing":"31 Denmark, John, grocer","street":"Pelham Street","type":"Place","cardinality":"North","Occupation":"grocer"},
 {"entityID":213879,"source":"Directory","year":1877,"pages":"74","listing":"Welsh, Michael","street":"Pelham Street","type":"Place","cardinality":"North"},
 {"entityID":"Mrs Carraway","source":"Directory","year":1877,"pages":"74","listing":"33 Carraway, Mrs","street":"Pelham Street","type":"Place","cardinality":"North"},
-{"entityID":213881,"source":"Directory","year":1877,"pages":"74","listing":"Otago htl, Daly, George","street":"Pelham Street","type":"Place","cardinality":"North"},
+{"entityID":"Otago Hotel","source":"Directory","year":1877,"pages":"74","listing":"Otago htl, Daly, George","street":"Pelham Street","type":"Place","cardinality":"North"},
 {"entityID":"William Buck","source":"Directory","year":1877,"pages":"74","listing":"39 Buck, William","street":"Pelham Street","type":"Place","cardinality":"North"},
 {"entityID":213883,"source":"Directory","year":1877,"pages":"74","listing":"41 Norrish, John L.","street":"Pelham Street","type":"Place","cardinality":"North"},
 {"entityID":"Mrs Pitt (Pelham Street)","source":"Directory","year":1877,"pages":"74","listing":"41 Pitt, Mrs, grocer","street":"Pelham Street","type":"Place","cardinality":"North","Occupation":"grocer","Notes":"Uncertain reading: looks like a misprint for 43 (41 repeated)"},
