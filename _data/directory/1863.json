@@ -343,7 +343,7 @@
 {"entityID":"J. Layton","source":"Directory","year":1863,"pages":"70","listing":"Layton, J., greengrocer","street":"Madeline Street","type":"Place","kind":"person","cardinality":"West","Occupation":"greengrocer"},
 {"entityID":61188,"source":"Directory","year":1863,"pages":"70","listing":"Munro, G.","street":"Madeline Street","type":"Place","kind":"person","cardinality":"West"},
 {"entityID":61189,"source":"Directory","year":1863,"pages":"70","listing":"63 McKay, J.","street":"Madeline Street","type":"Place","kind":"person","cardinality":"West"},
-{"entityID":"National School (65 Madeline Street)","source":"Directory","year":1863,"pages":"70","listing":"65 National School","street":"Madeline Street","type":"Place","kind":"org","cardinality":"West"},
+{"entityID":"National School (Madeline Street)","source":"Directory","year":1863,"pages":"70","listing":"65 National School","street":"Madeline Street","type":"Place","kind":"org","cardinality":"West"},
 {"entityID":"W. J. Dennis","source":"Directory","year":1863,"pages":"71","listing":"69 Dennis, W. J.","street":"Madeline Street","type":"Place","kind":"person","cardinality":"West"},
 {"entityID":"D. Murphy","source":"Directory","year":1863,"pages":"71","listing":"71 Murphy, D., bootmaker","street":"Madeline Street","type":"Place","kind":"person","cardinality":"West","Occupation":"bootmaker"},
 {"entityID":61193,"source":"Directory","year":1863,"pages":"71","listing":"73 O'Donovan, J., grocer","street":"Madeline Street","type":"Place","kind":"person","cardinality":"West","Occupation":"grocer"},

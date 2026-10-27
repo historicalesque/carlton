@@ -33,6 +33,7 @@
       </div>
       <div>
         <head>A</head>
+        <p><ref target="civic?id=A.B.%20Engineering%20Schools">A.B. Engineering Schools</ref></p>
         <p><ref target="civic?id=Agra%20Place">Agra Place</ref></p>
         <p><ref target="civic?id=Alexander%20Mair%20and%20Co">Alexander Mair and Co.</ref></p>
         <p><ref target="civic?id=Architecture">Architecture</ref></p>
@@ -184,6 +185,7 @@
         <head>N</head>
         <p><ref target="civic?id=William%20Nash">Nash, William</ref></p>
         <p><ref target="civic?id=National%20hotel">National Hotel</ref></p>
+        <p><ref target="civic?id=National%20School%20%28Madeline%20Street%29">National School (Madeline Street)</ref></p>
         <p><ref target="civic?id=New%20Australian%20Spiritual%20Church">New Australian Spiritual Church</ref></p>
         <p><ref target="civic?id=New%20Haymarket%20hotel">New Haymarket Hotel</ref></p>
         <p><ref target="civic?id=New%20Market%20hotel">New Market Hotel</ref></p>
@@ -234,6 +236,7 @@
       <div>
         <head>S</head>
         <p><ref target="civic?id=Sands%20%26%20McDougall%20Directories">Sands &amp; McDougall Directories</ref></p>
+        <p><ref target="civic?id=Schools">Schools</ref></p>
         <p><ref target="civic?id=Seven%20Stars%20hotel">Seven Stars Hotel</ref></p>
         <p><ref target="civic?id=Sex%20Work%20%28male%29">Sex Work (male)</ref></p>
         <p><ref target="civic?id=Sir%20Redmond%20Barry%20hotel">Sir Redmond Barry Hotel</ref></p>
@@ -241,6 +244,7 @@
         <p><ref target="civic?id=Spanish%20Flu%20in%20Carlton">Spanish Flu in Carlton</ref></p>
         <p><ref target="civic?id=Squares%20in%20Carlton">Squares in Carlton</ref></p>
         <p><ref target="civic?id=Standard%20hotel">Standard Hotel</ref></p>
+        <p><ref target="civic?id=State%20School%20No.%202365">State School No. 2365</ref></p>
         <p><ref target="civic?id=Street%20Numbering">Street Numbering</ref></p>
       </div>
       <div>
@@ -255,6 +259,7 @@
         <head>U</head>
         <p><ref target="civic?id=University%20Cricket%20ground">University Cricket Ground</ref></p>
         <p><ref target="civic?id=University%20hotel">University Hotel</ref></p>
+        <p><ref target="civic?id=University%20School">University School</ref></p>
         <p><ref target="civic?id=University%20Square">University Square</ref></p>
       </div>
       <div>
