@@ -567,7 +567,7 @@
 {"entityID":142210,"source":"Directory","year":1866,"pages":"84","listing":"Vacant land","street":"Victoria Street","type":"Place","kind":"place","cardinality":"North"},
 {"entityID":"Anthony Derrick","source":"Directory","year":1866,"pages":"84","listing":"13 Derrick, Anthony","street":"Victoria Street","type":"Place","kind":"person","cardinality":"North"},
 {"entityID":"Edward Scully","source":"Directory","year":1866,"pages":"84","listing":"15 Scully, Edward","street":"Victoria Street","type":"Place","kind":"person","cardinality":"North"},
-{"entityID":"G. Yelland","source":"Directory","year":1866,"pages":"84","listing":"17 Yelland, G.","street":"Victoria Street","type":"Place","kind":"person","cardinality":"North"},
+{"entityID":"George Yelland","source":"Directory","year":1866,"pages":"84","listing":"17 Yelland, G.","street":"Victoria Street","type":"Place","kind":"person","cardinality":"North"},
 {"entityID":"17½ Hamilton","source":"Directory","year":1866,"pages":"84","listing":"17½ Hamilton, Robert","street":"Victoria Street","type":"Place","kind":"person","cardinality":"North"},
 {"entityID":"Ann Easby (Victoria Street)","source":"Directory","year":1866,"pages":"84","listing":"21 Easby, Ann, store","street":"Victoria Street","type":"Place","kind":"person","cardinality":"North","Occupation":"store"},
 {"entityID":"Intersection Victoria street and Bouverie street","source":"Directory","year":1866,"pages":"84","listing":"Intersection Victoria street and Bouverie street","street":"Victoria Street","type":"Intersection","kind":"place","cardinality":"North","lat":-37.8064079,"lng":144.9614505},

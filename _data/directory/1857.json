@@ -226,5 +226,5 @@
 {"entityID":36982,"source":"Directory","year":1857,"pages":"166","listing":"Wadham, Thomas, coach maker","street":"Victoria Street","type":"Place","kind":"person","cardinality":""},
 {"entityID":36983,"source":"Directory","year":1857,"pages":"166","listing":"25 Wilkinson, George, saddler and harness maker","street":"Victoria Street","type":"Place","kind":"person","cardinality":""},
 {"entityID":36984,"source":"Directory","year":1857,"pages":"166","listing":"Wotman, George, coach trimmer","street":"Victoria Street","type":"Place","kind":"person","cardinality":""},
-{"entityID":36985,"source":"Directory","year":1857,"pages":"166","listing":"Yelland, George, hair cutter, &c.","street":"Victoria Street","type":"Place","kind":"person","cardinality":""}
+{"entityID":"George Yelland","source":"Directory","year":1857,"pages":"166","listing":"Yelland, George, hair cutter, &c.","street":"Victoria Street","type":"Place","kind":"person","cardinality":""}
 ]

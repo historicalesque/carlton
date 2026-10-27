@@ -397,7 +397,7 @@
 {"entityID":38634,"source":"Directory","year":1862,"pages":"92","listing":"Carriers' stables","street":"Victoria Street","type":"Place","kind":"org","cardinality":"North"},
 {"entityID":38635,"source":"Directory","year":1862,"pages":"92","listing":"15 Say, William B., saddler and harness maker","street":"Victoria Street","type":"Place","kind":"person","cardinality":"North"},
 {"entityID":38636,"source":"Directory","year":1862,"pages":"92","listing":"Say and Co., milliners and straw bonnet makers","street":"Victoria Street","type":"Place","kind":"org","cardinality":"North"},
-{"entityID":38637,"source":"Directory","year":1862,"pages":"92","listing":"17 Yelland, George, hairdresser","street":"Victoria Street","type":"Place","kind":"person","cardinality":"North"},
+{"entityID":"George Yelland","source":"Directory","year":1862,"pages":"92","listing":"17 Yelland, George, hairdresser","street":"Victoria Street","type":"Place","kind":"person","cardinality":"North"},
 {"entityID":"Francis Henderson","source":"Directory","year":1862,"pages":"92","listing":"Henderson, Francis, whipmaker","street":"Victoria Street","type":"Place","kind":"person","cardinality":"North"},
 {"entityID":"Intersection Victoria street and Bouverie street","source":"Directory","year":1862,"pages":"92","listing":"Intersection Victoria street and Bouverie street","street":"Victoria Street","type":"Intersection","kind":"place","cardinality":"North","lat":-37.8064079,"lng":144.9614505},
 {"entityID":"Thomas Deely (17 Victoria Street)","source":"Directory","year":1862,"pages":"92","listing":"17 Deely, Thomas, grocer","street":"Victoria Street","type":"Place","kind":"person","cardinality":"North","Occupation":"grocer","Notes":"House number printed out of sequence"},
