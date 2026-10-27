@@ -1448,6 +1448,8 @@ html.map3d-page, body.map3d-page {
 .pv-entry p, .pv-entry ul, .pv-entry ol { margin-bottom: 10px; }
 .pv-entry ul, .pv-entry ol { padding-left: 22px; }
 .pv-entry a { color: var(--moss); }
+.pv-entry blockquote { margin: 0 0 10px; padding: 2px 0 2px 18px; border-left: 3px solid var(--moss); font-family: var(--font-serif); }
+.pv-entry blockquote p:last-child { margin-bottom: 0; }
 .pv-type { font-size: 11px; text-transform: uppercase; letter-spacing: .12em; color: var(--moss); margin-bottom: 2px !important; }
 .pv-life { color: var(--ink-faint); }
 .pv-dates { color: var(--ink-faint); font-size: 0.92em; }
@@ -1476,6 +1478,7 @@ html.map3d-page, body.map3d-page {
 .site-page .pv-entry h2 { font-size: 1.5rem; margin: 28px 0 10px; }
 .site-page .pv-entry p { margin-bottom: 20px; }
 .site-page .pv-entry ul, .site-page .pv-entry ol { margin-bottom: 20px; }
+.site-page .pv-entry blockquote { margin-bottom: 20px; }
 .site-page .pv-entry li { margin-bottom: 6px; }
 .site-page .az-top { font-size: 0.9rem; font-style: italic; }
 .main-content .site-page ul.az-index { padding-left: 0; }

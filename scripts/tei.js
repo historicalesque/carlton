@@ -126,7 +126,8 @@ window.TEIEntry = (function () {
      Paragraphs before the first heading go straight in <body>; each heading
      starts a <div> with that heading as its <head>. Bold / italic / underline
      become <hi rend>, links become <ref target>, lists become <list rend>,
-     and pasted tables stay tables. */
+     block quotes become <quote> (one <p> per line, so lines quoted one after
+     another share a <quote>), and pasted tables stay tables. */
   const REND = { STRONG: 'bold', B: 'bold', EM: 'italic', I: 'italic', U: 'underline' };
 
   function article(html, el) {
@@ -134,6 +135,7 @@ window.TEIEntry = (function () {
     const intro = [];
     const divs = [];
     let current = intro;
+    let quote = null; // the <quote> the previous block quote line went into
 
     function inline(node) {
       const out = [];
@@ -168,7 +170,15 @@ window.TEIEntry = (function () {
       }
       if (node.nodeType !== 1) return;
       const tag = node.tagName;
-      if (/^H[1-6]$/.test(tag)) {
+      if (tag !== 'BLOCKQUOTE') quote = null;
+      if (tag === 'BLOCKQUOTE') {
+        // Quill writes each quoted line as its own <blockquote>; pasted HTML may hold <p>s
+        const lines = node.querySelector('p') ? [...node.children].map(inline) : [inline(node)];
+        const paras = lines.filter((parts) => !blank(parts)).map((parts) => el('p', null, tidy(parts)));
+        if (!paras.length) return;
+        if (!quote) { quote = el('quote'); current.push(quote); }
+        paras.forEach((para) => quote.appendChild(para));
+      } else if (/^H[1-6]$/.test(tag)) {
         const head = tidy(inline(node));
         current = [];
         divs.push({ head: blank(head) ? null : head, blocks: current });
@@ -434,6 +444,10 @@ window.TEIEntry = (function () {
             const tag = c.getAttribute('rend') === 'numbered' ? 'ol' : 'ul';
             return `<${tag}>${kids(c, 'item').map((i) => `<li>${mixed(i)}</li>`).join('')}</${tag}>`;
           }
+          case 'quote': {
+            const paras = kids(c, 'p').filter((p) => p.textContent.trim());
+            return paras.length ? `<blockquote>${paras.map((p) => `<p>${mixed(p)}</p>`).join('')}</blockquote>` : '';
+          }
           case 'table':
             return `<div class="pv-table"><table><tbody>${kids(c, 'row').map((r) =>
               `<tr>${kids(r, 'cell').map((cell) => `<td>${mixed(cell)}</td>`).join('')}</tr>`).join('')}</tbody></table></div>`;
@@ -599,7 +613,7 @@ window.TEIEntry = (function () {
       return { text: text(b), href: ref ? ref.getAttribute('target') || '' : '' };
     });
 
-    // The article as the HTML Quill edits: headings, paragraphs, lists, tables
+    // The article as the HTML Quill edits: headings, paragraphs, lists, quotes, tables
     const mixed = (node) => [...node.childNodes].map((ch) => {
       if (ch.nodeType === 3) return esc(ch.textContent);
       if (ch.nodeType !== 1) return '';
@@ -618,6 +632,8 @@ window.TEIEntry = (function () {
           const tag = ch.getAttribute('rend') === 'numbered' ? 'ol' : 'ul';
           return `<${tag}>${kids(ch, 'item').map((i) => `<li>${mixed(i)}</li>`).join('')}</${tag}>`;
         }
+        // Quill keeps one <blockquote> per line
+        case 'quote': return kids(ch, 'p').filter((p) => p.textContent.trim()).map((p) => `<blockquote>${mixed(p)}</blockquote>`).join('');
         case 'table':
           return `<table><tbody>${kids(ch, 'row').map((r) => `<tr>${kids(r, 'cell').map((cell) => `<td>${mixed(cell)}</td>`).join('')}</tr>`).join('')}</tbody></table>`;
         case 'div': return blocks(ch);
