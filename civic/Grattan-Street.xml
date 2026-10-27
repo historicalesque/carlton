@@ -13,11 +13,16 @@
         <idno type="entry">Grattan-Street</idno>
       </publicationStmt>
       <sourceDesc>
-        <p>Contributed through the website. No sources listed.</p>
+        <listBibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1860">Sands &amp; McDougall Directory, 1860, pp. 85-86</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1940">Sands &amp; McDougall Directory, 1940, p. 218</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Electoral-Rolls">Electoral rolls, 1928</ref></bibl>
+        </listBibl>
       </sourceDesc>
     </fileDesc>
     <revisionDesc status="draft">
       <change when="2026-10-23" type="created">Contributed through the contribution form by Mitchell Harrop, Chloe Tobin.</change>
+      <change when="2026-10-27" type="edited">Links, and sections from the directory records, added by Common Ground (machine-assisted).</change>
     </revisionDesc>
   </teiHeader>
   <standOff>
@@ -29,10 +34,31 @@
   </standOff>
   <text>
     <body>
-      <p>Grattan street intersects from west to east with Elizabeth Street, Berkley Street, Barry Street, Leicester Street, Malvina Place, Bouverie Street, Little Grattan Street, and Swanston Street.</p>
-      <p>Notably the Prince Alfred hotel stands on the corner of Bouverie Street and Grattan Street,</p>
+      <p>Grattan street intersects from west to east with Elizabeth Street, <ref target="civic?id=Berkley%20Street">Berkley Street</ref>, <ref target="civic?id=Barry%20Street">Barry Street</ref>, <ref target="civic?id=Leicester%20Street">Leicester Street</ref>, <ref target="civic?id=Malvina%20Place">Malvina Place</ref>, <ref target="civic?id=Bouverie%20Street">Bouverie Street</ref>, <ref target="civic?id=Little%20Grattan%20Street">Little Grattan Street</ref>, and Swanston Street (until 1925, <ref target="civic?id=Madeline%20Street">Madeline Street</ref>).</p>
+      <p>Notably the <ref target="civic?id=Prince%20Alfred%20hotel">Prince Alfred hotel</ref> stands on the corner of Bouverie Street and Grattan Street,</p>
       <p>opposite the grounds of the University of Melbourne.</p>
-      <p>University Square is also nestled South of Grattan street, North of Pelham Street, East of Barry Street and West of Leicester Street and has undergone many urban changes.</p>
+      <p><ref target="civic?id=University%20Square">University Square</ref> is also nestled South of Grattan street, North of <ref target="civic?id=Pelham%20Street">Pelham Street</ref>, East of Barry Street and West of Leicester Street and has undergone many urban changes.</p>
+      <div>
+        <head>In the directories</head>
+        <p>Grattan Street is in the Sands &amp; McDougall directories from 1860 and in every directory after that up to 1940, the last one transcribed so far. The project covers its south side; the directories also list the north side, which is the University.</p>
+        <p>The names of its corners change over the years. At the west end the directories give "Elizabeth street (extension)" from 1860 to 1872, Elizabeth Street from 1873 to 1905, Sydney Road from 1900 and Royal Parade on the north side from 1935. At the east end they give Madeline Street up to 1925 and Swanston Street from 1930. From 1862 to 1865 the north side also runs on to Lygon, Drummond and Rathdown streets.</p>
+        <p>Smaller turnings on the south side include Malvina Terrace (1871 to 1885), Alfred Cottages (1873 to 1905) and Eton Terrace (1876 to 1885), and the Ornamental Reserve, as University Square was listed from 1873 to 1875.</p>
+      </div>
+      <div>
+        <head>Businesses and landmarks</head>
+        <list rend="bulleted">
+          <item>The University, on the north side throughout, listed with its chancellor, professors, staff and later its schools and Wilson Hall.</item>
+          <item>Toohey's Stables (1860 to 1862), the <ref target="civic?id=University%20hotel">University Hotel</ref> (1862 to 1865) and a Congregational Church (1862 to 1865).</item>
+          <item>The <ref target="civic?id=Prince%20Alfred%20hotel">Prince Alfred Hotel</ref>, from 1877 to 1940, at No. 191 (later Nos 191 to 195) on the corner of Bouverie Street (see <ref target="civic?id=Hotels">Hotels</ref>).</item>
+          <item>On University Square, the Victoria Bowling Club and Croquet Lawn from 1879, later the Victoria Bowling Green, still listed in 1940, and the Victorian Lawn Tennis Court from 1925 to 1940.</item>
+          <item>The Training College of the Education Department on the north side, 1900 to 1925, listed as the Teachers' College in 1935 and 1940, and University High School in 1895.</item>
+          <item>Orloff Bros, wood yard, at No. 181 (1935), and apartments at Nos 205 to 207 and 215 to 217 (1935 and 1940).</item>
+        </list>
+      </div>
+      <div>
+        <head>Records</head>
+        <p>Every directory and electoral-roll listing for Grattan Street can be browsed in <ref target="search?street=Grattan%20Street">search</ref>.</p>
+      </div>
     </body>
   </text>
 </TEI>
