@@ -45,6 +45,29 @@ window.TEIEntry = (function () {
   const trim = (v) => (has(v) ? String(v).trim() : '');
   const filled = (rows, ...keys) => (rows || []).filter((r) => keys.some((k) => has(r[k])));
 
+  /* ---------- Links to the site itself ----------
+     Contributors often paste a page's full address, e.g.
+     https://historicalesque.github.io/carlton/civic?id=Lincoln%20Square.
+     Links to this site are kept relative (civic?id=Lincoln%20Square), so
+     they open in place and keep working wherever the site is served. */
+  const SITE_ROOTS = ['https://historicalesque.github.io/carlton/',
+    document.currentScript ? document.currentScript.src.replace(/scripts\/tei\.js(\?.*)?$/, '') : ''].filter(Boolean);
+  function local(href) {
+    let t = trim(href);
+    if (/^(www\.)?historicalesque\.github\.io\//i.test(t)) t = `https://${t}`;
+    let url;
+    try { url = new URL(t); } catch (e) { return t; }
+    for (const root of SITE_ROOTS) {
+      const base = new URL(root);
+      const path = url.pathname.replace(/^\/+/, '/');
+      if (url.hostname.replace(/^www\./, '') !== base.hostname || !/^https?:$/.test(url.protocol)) continue;
+      if (path === base.pathname.replace(/\/$/, '') || path.startsWith(base.pathname)) {
+        return path.slice(base.pathname.length) + url.search + url.hash || './';
+      }
+    }
+    return t;
+  }
+
   /* ---------- Dates ----------
      People type dates loosely ("c. 1856", "March 1856", "1856-03-04").
      The ISO value goes in @when/@from/@to only when we can read one. */
@@ -121,7 +144,7 @@ window.TEIEntry = (function () {
         } else if (child.nodeType === 1) {
           const tag = child.tagName;
           if (tag === 'BR') out.push(' ');
-          else if (tag === 'A' && has(child.getAttribute('href'))) out.push(el('ref', { target: child.getAttribute('href') }, inline(child)));
+          else if (tag === 'A' && has(child.getAttribute('href'))) out.push(el('ref', { target: local(child.getAttribute('href')) }, inline(child)));
           else if (REND[tag]) out.push(el('hi', { rend: REND[tag] }, inline(child)));
           else out.push(...inline(child));
         }
@@ -196,7 +219,7 @@ window.TEIEntry = (function () {
           el('idno', { type: 'entry' }, trim(entry.recordId) || 'unassigned')),
         el('sourceDesc', null, sources.length
           ? el('listBibl', null, sources.map((s) => el('bibl', null,
-              has(s.href) ? el('ref', { target: trim(s.href) }, trim(s.text) || trim(s.href)) : trim(s.text))))
+              has(s.href) ? el('ref', { target: local(s.href) }, trim(s.text) || trim(s.href)) : trim(s.text))))
           : el('p', null, 'Contributed through the website. No sources listed.'))),
       el('revisionDesc', { status: entry.status || 'draft' },
         el('change', { when: today, type: 'created' },
@@ -274,7 +297,7 @@ window.TEIEntry = (function () {
         active: '#subject',
         // Entries are addressed by name on the site (civic?id=…), so a
         // related entry without a link still gets one.
-        passive: trim(r.href) || new URL(`civic?id=${encodeURIComponent(trim(r.name))}`, document.baseURI).href,
+        passive: has(r.href) ? local(r.href) : `civic?id=${encodeURIComponent(trim(r.name))}`,
         ...range(r.from, r.to)
       }, el('desc', null, trim(r.name))))) : null
     ].filter(Boolean);
@@ -359,7 +382,8 @@ window.TEIEntry = (function () {
       out.push({ level: 'warn', text: 'Dates, other names and occupations are only kept for a person, business, family or place. Choose what the entry is about, or they\'ll be left out.' });
     }
 
-    const urlOk = (u) => /^https?:\/\/\S+$/i.test(trim(u));
+    // A full address, or a page on this site (civic?id=…, people)
+    const urlOk = (u) => /^https?:\/\/\S+$/i.test(local(u)) || /^[\w-]+(\/[\w-]*)*\/?([?#]\S*)?$/.test(local(u));
     filled(entry.sources, 'href').forEach((s) => {
       if (!urlOk(s.href)) out.push({ level: 'warn', text: `Source link "${trim(s.href)}" should start with http:// or https://.` });
     });
