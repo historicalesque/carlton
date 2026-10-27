@@ -12,6 +12,15 @@ layout: default
     <button type="submit">Search</button>
   </form>
 
+  <fieldset class="search-years search-kinds" id="kindChips">
+    <legend>Looking for</legend>
+    <label class="chip"><input type="radio" name="kind" value="" checked><span>Anything</span></label>
+    <label class="chip"><input type="radio" name="kind" value="person"><span>People</span></label>
+    <label class="chip"><input type="radio" name="kind" value="org"><span>Businesses and organisations</span></label>
+    <label class="chip"><input type="radio" name="kind" value="place"><span>Places</span></label>
+    <label class="chip"><input type="radio" name="kind" value="topic"><span>Topics</span></label>
+  </fieldset>
+
   <div class="search-filters" id="searchFilters">
     <div class="search-tabs" role="group" aria-label="Show">
       <button type="button" data-src="all" aria-pressed="true">All</button>

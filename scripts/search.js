@@ -6,7 +6,7 @@
 (function () {
   const $ = (id) => document.getElementById(id);
   const input = $('searchInput'), form = $('searchForm'), status = $('searchStatus');
-  const resultsEl = $('searchResults'), yearChips = $('yearChips'), streetSelect = $('streetSelect');
+  const resultsEl = $('searchResults'), yearChips = $('yearChips'), streetSelect = $('streetSelect'), kindChips = $('kindChips');
   const PER_SECTION = 8;
 
   // Historical spellings and directory abbreviations, folded to one form so
@@ -23,7 +23,15 @@
   };
 
   const SOURCES = { 'Directory': 'directories', 'Electoral roll': 'rolls' };
-  const state = { q: '', src: 'all', year: '', street: '' };
+  const state = { q: '', src: 'all', year: '', street: '', kind: '' };
+
+  // "Looking for": the entry types (schema/carlton.odd). An entry counts by its
+  // <TEI type>, families with people; a directory record by its `kind`
+  // (README: Data); electoral-roll records are all people.
+  const KINDS = { person: 'people', org: 'businesses and organisations', place: 'places', topic: 'topics' };
+  const PLACEHOLDERS = { person: 'A name', org: 'A business, hotel, school or church', place: 'A street, lane or square', topic: 'A topic' };
+  const entryKind = (e) => (e.kind === 'family' ? 'person' : e.kind);
+  const recordKind = (r) => (r.source === 'Electoral roll' ? 'person' : r.kind);
   let index, groups = {}, entries = {}, records = [], recordGroup = [], loading = true;
 
   const escapeHtml = (s) => String(s ?? '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
@@ -34,6 +42,7 @@
     const p = new URLSearchParams(location.search);
     state.q = p.get('q') || ''; state.src = p.get('src') || 'all';
     state.year = p.get('year') || ''; state.street = p.get('street') || '';
+    state.kind = KINDS[p.get('kind')] ? p.get('kind') : '';
   }
   function writeUrl() {
     const p = new URLSearchParams();
@@ -41,6 +50,7 @@
     if (state.src !== 'all') p.set('src', state.src);
     if (state.year) p.set('year', state.year);
     if (state.street) p.set('street', state.street);
+    if (state.kind) p.set('kind', state.kind);
     history.replaceState(null, '', location.pathname + (p.toString() ? '?' + p : ''));
   }
 
@@ -50,12 +60,13 @@
     const parsed = await Promise.all(files.map(async (name) => {
       try {
         const xml = new DOMParser().parseFromString(await (await fetch(`civic/${name}.xml`)).text(), 'application/xml');
-        let title, text, occupations = [];
+        let title, text, kind = '', occupations = [];
         if (xml.documentElement.localName === 'TEI') {
           // TEI entries (schema/carlton.odd): the title, the article's text,
           // and the subject's occupations, a business's activities or a
           // place's uses
           title = xml.getElementsByTagName('title')[0]?.textContent.trim();
+          kind = xml.documentElement.getAttribute('type') || '';
           text = (xml.getElementsByTagName('body')[0]?.textContent || '').replace(/\s+/g, ' ').trim();
           const subject = [...xml.getElementsByTagName('*')].find((e) => e.getAttribute('xml:id') === 'subject');
           if (subject) {
@@ -71,7 +82,7 @@
           text = new DOMParser().parseFromString(html, 'text/html').body.textContent.replace(/\s+/g, ' ').trim();
         }
         title = title || name.replace(/-/g, ' ');
-        return { name, title, text, occupations: [...new Set(occupations)] };
+        return { name, title, text, kind, occupations: [...new Set(occupations)] };
       } catch (e) { return null; }
     }));
     parsed.filter(Boolean).forEach((e) => { entries[e.name] = e; });
@@ -129,8 +140,14 @@
       const seen = {};
       index.search(q).forEach((hit) => {
         const n = hit.id.split(':');
-        if (n[0] === 'e') { sections.entries.push({ entry: entries[n.slice(1).join(':')], terms: hit.terms, score: hit.score }); return; }
+        if (n[0] === 'e') {
+          const entry = entries[n.slice(1).join(':')];
+          if (state.kind && entryKind(entry) !== state.kind) return;
+          sections.entries.push({ entry, terms: hit.terms, score: hit.score });
+          return;
+        }
         const r = records[+n[1]];
+        if (state.kind && recordKind(r) !== state.kind) return;
         if (state.year && String(r.year) !== state.year) return;
         if (state.street && r.street !== state.street) return;
         const g = recordGroup[+n[1]];
@@ -138,6 +155,10 @@
         seen[g.key] = { group: g, hits: new Set([r]), terms: hit.terms, score: hit.score };
         sections[g.kind].push(seen[g.key]);
       });
+    } else if (state.kind === 'topic') {
+      // Topics can be browsed without a search: every topic entry, A to Z.
+      sections.entries = Object.values(entries).filter((e) => entryKind(e) === 'topic')
+        .sort((a, b) => a.title.localeCompare(b.title)).map((entry) => ({ entry, terms: [] }));
     }
     render(q, sections);
   }
@@ -200,6 +221,8 @@
     </li>`;
   }
 
+  // People are most listings, so only the other kinds are labelled.
+  const RECORD_KIND_LABELS = { org: 'business or organisation', place: 'place', unknown: 'kind not yet decided' };
   function recordCard({ group, hits, terms }) {
     const recs = group.records;
     const shown = [...hits].sort((a, b) => b.year - a.year)[0];
@@ -215,7 +238,7 @@
     return `<li class="result result-record">
       <div class="result-head">
         <a class="result-title" href="${href}">${highlight(shown.listing, terms)}</a>
-        <span class="result-where">${escapeHtml(shown.street)}${shown.cardinality ? ', ' + escapeHtml(shown.cardinality.toLowerCase()) + ' side' : ''}</span>
+        <span class="result-where">${escapeHtml(shown.street)}${shown.cardinality ? ', ' + escapeHtml(shown.cardinality.toLowerCase()) + ' side' : ''}${RECORD_KIND_LABELS[shown.kind] ? ` · ${RECORD_KIND_LABELS[shown.kind]}` : ''}</span>
       </div>
       ${occupationShown(shown) ? `<p class="result-occupation">${occupationLink(shown.Occupation, terms)}</p>` : ''}
       ${shown.Notes ? `<p class="result-note">Note: ${escapeHtml(shown.Notes)}</p>` : ''}
@@ -230,14 +253,17 @@
   function render(q, sections) {
     Object.keys(sections).forEach((k) => {
       const n = sections[k].length;
-      document.querySelector(`[data-count="${k}"]`).textContent = q ? n.toLocaleString() : '';
+      document.querySelector(`[data-count="${k}"]`).textContent = q || state.kind === 'topic' ? n.toLocaleString() : '';
     });
+    kindChips.querySelectorAll('input').forEach((c) => { c.checked = c.value === state.kind; });
+    input.placeholder = PLACEHOLDERS[state.kind] || 'A name, business, trade or street';
     document.querySelectorAll('.search-tabs [data-src]').forEach((b) => b.setAttribute('aria-pressed', b.dataset.src === state.src));
     const active = [state.year, state.street].filter(Boolean).length;
     $('filterBadge').textContent = active ? `(${active})` : '';
 
-    if (!q) {
-      status.textContent = '';
+    const among = state.kind ? ` among ${KINDS[state.kind]}` : '';
+    if (!q && state.kind !== 'topic') {
+      status.textContent = state.kind ? `Search ${KINDS[state.kind]} by name, street or trade.` : '';
       resultsEl.innerHTML = '';
       return;
     }
@@ -251,12 +277,14 @@
     }
     if (!total) {
       // Read out by screen readers; the message below says the same on screen
-      status.innerHTML = `<span class="visually-hidden">No results for “${escapeHtml(q)}”.</span>`;
-      resultsEl.innerHTML = `<div class="search-empty"><p>Nothing found for “${escapeHtml(q)}”${state.year || state.street ? ' with these filters' : ''}.</p>
+      status.innerHTML = `<span class="visually-hidden">No results for “${escapeHtml(q)}”${among}.</span>`;
+      resultsEl.innerHTML = `<div class="search-empty"><p>Nothing found for “${escapeHtml(q)}”${among}${state.year || state.street ? ' with these filters' : ''}.</p>
         <p>Know something about it? <a href="civic?id=${encodeURIComponent(q)}">Start an entry for “${escapeHtml(q)}”</a>.</p></div>`;
       return;
     }
-    status.textContent = `${total.toLocaleString()} results for “${q}”${loading ? ' so far' : ''}`;
+    status.textContent = q
+      ? `${total.toLocaleString()} results for “${q}”${among}${loading ? ' so far' : ''}`
+      : `${total.toLocaleString()} topics`;
     resultsEl.innerHTML = keys.filter((k) => sections[k].length).map((k) => {
       const list = sections[k];
       const limit = state.src === 'all' ? PER_SECTION : list.length;
@@ -289,6 +317,7 @@
       if (h) { h.tabIndex = -1; h.focus({ preventScroll: true }); }
     }
   });
+  kindChips.addEventListener('change', (e) => { state.kind = e.target.value; update(); });
   yearChips.addEventListener('change', (e) => { state.year = e.target.value; update(); });
   streetSelect.addEventListener('change', () => { state.street = streetSelect.value; update(); });
 
