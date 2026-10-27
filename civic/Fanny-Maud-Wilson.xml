@@ -6,7 +6,6 @@
       <titleStmt>
         <title>Wilson, Fanny Maud</title>
         <author>Andy May</author>
-        <author>Andy May</author>
       </titleStmt>
       <publicationStmt>
         <publisher>Common Ground</publisher>
@@ -17,7 +16,8 @@
       </sourceDesc>
     </fileDesc>
     <revisionDesc status="draft">
-      <change when="2026-10-23" type="created">Contributed through the contribution form by Andy May, Andy May.</change>
+      <change when="2026-10-23" type="created">Contributed through the contribution form by Andy May.</change>
+      <change when="2026-10-27" type="revised">Merged with a duplicate entry, Wilson-Fanny-Maud, which had the same text.</change>
     </revisionDesc>
   </teiHeader>
   <standOff>

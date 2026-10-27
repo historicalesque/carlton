@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?xml-model href="https://historicalesque.github.io/carlton/schema/carlton.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
-<TEI xmlns="http://www.tei-c.org/ns/1.0" type="place" xml:lang="en">
+<TEI xmlns="http://www.tei-c.org/ns/1.0" type="org" xml:lang="en">
   <teiHeader>
     <fileDesc>
       <titleStmt>
@@ -21,19 +21,18 @@
     <revisionDesc status="draft">
       <change when="2026-10-06" type="created">Contributed through the contribution form by Andy May.</change>
       <change when="2026-10-06" type="revised">Changes suggested by Andy May: Small typo.</change>
+      <change when="2026-10-27" type="revised">Entry type corrected from place to business.</change>
     </revisionDesc>
   </teiHeader>
   <standOff>
-    <listPlace>
-      <place xml:id="subject">
-        <placeName type="main">Seven Stars hotel</placeName>
-        <location type="address" from="1900" to="1905">
-          <address>
-            <addrLine>20 Madeline Street, Carlton</addrLine>
-          </address>
-        </location>
-      </place>
-    </listPlace>
+    <listOrg>
+      <org xml:id="subject">
+        <orgName type="main">Seven Stars hotel</orgName>
+        <place type="address" from="1900" to="1905">
+          <placeName>20 Madeline Street, Carlton</placeName>
+        </place>
+      </org>
+    </listOrg>
   </standOff>
   <text>
     <body>

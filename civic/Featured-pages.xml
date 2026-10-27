@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?xml-model href="https://historicalesque.github.io/carlton/schema/carlton.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
-<TEI xmlns="http://www.tei-c.org/ns/1.0" type="person" xml:lang="en">
+<TEI xmlns="http://www.tei-c.org/ns/1.0" type="topic" xml:lang="en">
   <teiHeader>
     <fileDesc>
       <titleStmt>
@@ -22,15 +22,9 @@
     </fileDesc>
     <revisionDesc status="draft">
       <change when="2026-10-23" type="created">Contributed through the contribution form by Andy May, Andy May, Andy May, Mitchell Harrop, Barbara Minchinton, Common Ground.</change>
+      <change when="2026-10-27" type="revised">Entry type corrected from person to topic.</change>
     </revisionDesc>
   </teiHeader>
-  <standOff>
-    <listPerson>
-      <person xml:id="subject">
-        <persName type="main">Feature Pages</persName>
-      </person>
-    </listPerson>
-  </standOff>
   <text>
     <body>
       <p>Select a letter below to jump directly to that section.</p>
