@@ -798,7 +798,7 @@
 {"entityID":10137,"source":"Directory","year":1880,"pages":"78","listing":"29 Gardiner, C., blacksmith","street":"Pelham Street","type":"Place","cardinality":"North","Occupation":"blacksmith"},
 {"entityID":10138,"source":"Directory","year":1880,"pages":"78","listing":"31 Londergan, Wm., btchr","street":"Pelham Street","type":"Place","cardinality":"North","Occupation":"butcher"},
 {"entityID":"Thomas Walker","source":"Directory","year":1880,"pages":"78","listing":"33 Walker, Thomas","street":"Pelham Street","type":"Place","cardinality":"North"},
-{"entityID":10140,"source":"Directory","year":1880,"pages":"78","listing":"Otago hotel, McManus, Miss Rosa","street":"Pelham Street","type":"Place","cardinality":"North"},
+{"entityID":"Otago Hotel","source":"Directory","year":1880,"pages":"78","listing":"Otago hotel, McManus, Miss Rosa","street":"Pelham Street","type":"Place","cardinality":"North"},
 {"entityID":10141,"source":"Directory","year":1880,"pages":"78","listing":"39 Wright, Mrs Lucy","street":"Pelham Street","type":"Place","cardinality":"North"},
 {"entityID":10142,"source":"Directory","year":1880,"pages":"78","listing":"41 Henry, William","street":"Pelham Street","type":"Place","cardinality":"North"},
 {"entityID":"Receiving Box (P.O.) (Pelham Street)","source":"Directory","year":1880,"pages":"78","listing":"Receiving Box (P.O.)","street":"Pelham Street","type":"Place","cardinality":"North"},
