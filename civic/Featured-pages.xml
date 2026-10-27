@@ -41,6 +41,9 @@
         <head>B</head>
         <p><ref target="civic?id=Ballarat%20Road">Ballarat Road</ref></p>
         <p><ref target="civic?id=Banbridge%20Place">Banbridge Place</ref></p>
+        <p><ref target="civic?id=Baptist%20Chapel%20%28Bouverie%20Street%29">Baptist Chapel (Bouverie Street)</ref></p>
+        <p><ref target="civic?id=Baptist%20Chapel%20%28Leicester%20Street%29">Baptist Chapel (Leicester Street)</ref></p>
+        <p><ref target="civic?id=Baptist%20mission%20hall%20%28Bouverie%20Street%29">Baptist Mission Hall (Bouverie Street)</ref></p>
         <p><ref target="civic?id=Barkly%20Place">Barkly Place</ref></p>
         <p><ref target="civic?id=Barkly%20Street">Barkly Street</ref></p>
         <p><ref target="civic?id=Barry%20Street">Barry Street</ref></p>
@@ -62,6 +65,7 @@
         <p><ref target="civic?id=Carlton%20Foundry">Carlton Foundry</ref></p>
         <p><ref target="civic?id=Carlton%20Free%20Kindergarten">Carlton Free Kindergarten</ref></p>
         <p>Carlton Inn, see: <ref target="civic?id=Corkman%20Hotel">Corkman Hotel</ref></p>
+        <p><ref target="civic?id=Carlton%20Mission%20Church">Carlton Mission Church</ref></p>
         <p><ref target="civic?id=Carlton%20Rifle%20Company">Carlton Rifle Company</ref></p>
         <p><ref target="civic?id=Cavan%20hotel">Cavan Hotel</ref></p>
         <p><ref target="civic?id=Cesspits">Cesspits</ref></p>
@@ -119,6 +123,7 @@
       </div>
       <div>
         <head>I</head>
+        <p><ref target="civic?id=Independent%20Church%20and%20Mission%20Hall">Independent Church and Mission Hall</ref></p>
         <p><ref target="civic?id=Indigenous%20History">Indigenous History</ref></p>
         <p><ref target="civic?id=Inspector%20of%20Nuisances">Inspector of Nuisances</ref></p>
         <p><ref target="civic?id=Italians">Italians</ref></p>
@@ -175,6 +180,7 @@
         <head>N</head>
         <p><ref target="civic?id=N">N</ref></p>
         <p><ref target="civic?id=National%20hotel">National Hotel</ref></p>
+        <p><ref target="civic?id=New%20Australian%20Spiritual%20Church">New Australian Spiritual Church</ref></p>
         <p><ref target="civic?id=New%20Haymarket%20hotel">New Haymarket Hotel</ref></p>
         <p><ref target="civic?id=New%20Market%20hotel">New Market Hotel</ref></p>
         <p><ref target="civic?id=Newmarket%20hotel">Newmarket Hotel</ref></p>
