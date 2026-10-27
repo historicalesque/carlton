@@ -33,6 +33,8 @@
       </div>
       <div>
         <head>A</head>
+        <p><ref target="civic?id=Agra%20Place">Agra Place</ref></p>
+        <p><ref target="civic?id=Alexander%20Mair%20and%20Co">Alexander Mair and Co.</ref></p>
         <p><ref target="civic?id=Architecture">Architecture</ref></p>
       </div>
       <div>
@@ -56,6 +58,9 @@
         <head>C</head>
         <p><ref target="civic?id=Captain%20William%20Ratcliffe">Captain William Ratcliffe</ref></p>
         <p><ref target="civic?id=Carlton%20Brewery">Carlton Brewery</ref></p>
+        <p><ref target="civic?id=Carlton%20Flour%20Mills">Carlton Flour Mills</ref></p>
+        <p><ref target="civic?id=Carlton%20Foundry">Carlton Foundry</ref></p>
+        <p><ref target="civic?id=Carlton%20Free%20Kindergarten">Carlton Free Kindergarten</ref></p>
         <p>Carlton Inn, see: <ref target="civic?id=Corkman%20Hotel">Corkman Hotel</ref></p>
         <p><ref target="civic?id=Carlton%20Rifle%20Company">Carlton Rifle Company</ref></p>
         <p><ref target="civic?id=Cavan%20hotel">Cavan Hotel</ref></p>
@@ -74,12 +79,14 @@
       <div>
         <head>D</head>
         <p><ref target="civic?id=Demographics">Demographics</ref></p>
+        <p><ref target="civic?id=Dight%27s%20Flour%20Mills">Dight's Flour Mills</ref></p>
         <p><ref target="civic?id=Directories">Directories</ref></p>
       </div>
       <div>
         <head>E</head>
         <p><ref target="civic?id=Early%20Purchasers%20and%20Developers%20of%20Land">Early Purchasers and Developers of Land</ref></p>
         <p><ref target="civic?id=Electoral%20Rolls">Electoral Rolls</ref></p>
+        <p><ref target="civic?id=Eliza%20Terrace">Eliza Terrace</ref></p>
         <p><ref target="civic?id=Emu%20Hotel">Emu Hotel</ref></p>
         <p><ref target="civic?id=Engineering">Engineering Firms</ref></p>
         <p><ref target="civic?id=Euterpe%20hotel">Euterpe Hotel</ref></p>
@@ -106,6 +113,7 @@
         <p><ref target="civic?id=Heritage">Heritage</ref></p>
         <p><ref target="civic?id=Heritage%20Surveys">Heritage Surveys</ref></p>
         <p><ref target="civic?id=Hope%20hotel">Hope Hotel</ref></p>
+        <p><ref target="civic?id=Hopkins%20Bros%20and%20Odlum">Hopkins Bros and Odlum</ref></p>
         <p><ref target="civic?id=Hotels">Hotels</ref></p>
         <p><ref target="civic?id=Hughes%27%20hotel">Hughes' Hotel</ref></p>
       </div>
@@ -181,6 +189,7 @@
         <head>P</head>
         <p><ref target="civic?id=Palmerston%20hotel">Palmerston Hotel</ref></p>
         <p><ref target="civic?id=Parks%20and%20Gardens">Parks and Gardens</ref></p>
+        <p><ref target="civic?id=Pattison%27s%20Terrace">Pattison's Terrace</ref></p>
         <p><ref target="civic?id=Payne%27s%20Royal%20hotel">Payne's Royal Hotel</ref></p>
         <p><ref target="civic?id=Peacock%20Inn">Peacock Inn</ref></p>
         <p><ref target="civic?id=Pelham%20Place">Pelham Place</ref></p>
@@ -205,6 +214,7 @@
         <p><ref target="civic?id=Rate%20Books">Rate Books</ref></p>
         <p><ref target="civic?id=Reserve%20hotel">Reserve Hotel</ref></p>
         <p><ref target="civic?id=Rising%20Sun%20hotel">Rising Sun Hotel</ref></p>
+        <p><ref target="civic?id=Royal%20and%20Co">Royal and Co.</ref></p>
         <p><ref target="civic?id=Royal%20Artillery%20hotel">Royal Artillery Hotel</ref></p>
         <p><ref target="civic?id=Royal%20Artillery%20hotel%20%28Elizabeth%20Street%29">Royal Artillery Hotel (Elizabeth Street)</ref></p>
         <p><ref target="civic?id=Royal%20hotel">Royal Hotel</ref></p>
@@ -223,6 +233,7 @@
       </div>
       <div>
         <head>T</head>
+        <p><ref target="civic?id=Tasmanian%20Timber%20Bending%20Works">Tasmanian Timber Bending Works</ref></p>
         <p><ref target="civic?id=Tenants">Tenants</ref></p>
         <p><ref target="civic?id=Terraces">Terraces</ref></p>
         <p><ref target="civic?id=Town%20Clerk%27s%20Files">Town Clerk’s Files</ref></p>
@@ -232,6 +243,7 @@
         <head>U</head>
         <p><ref target="civic?id=University%20Cricket%20ground">University Cricket Ground</ref></p>
         <p><ref target="civic?id=University%20hotel">University Hotel</ref></p>
+        <p><ref target="civic?id=University%20Square">University Square</ref></p>
       </div>
       <div>
         <head>V</head>
@@ -244,6 +256,7 @@
       <div>
         <head>W</head>
         <p><ref target="civic?id=Wanda%20Renata%20Pasquali">Wanda Renata Pasquali</ref></p>
+        <p><ref target="civic?id=Wellesley%20Cottages">Wellesley Cottages</ref></p>
         <p><ref target="civic?id=Wicklow%20hotel">Wicklow Hotel</ref></p>
         <p>William Ratcliffe, see: <ref target="civic?id=Captain%20William%20Ratcliffe">Captain William Ratcliffe</ref></p>
       </div>
