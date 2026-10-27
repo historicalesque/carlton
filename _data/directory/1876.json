@@ -650,7 +650,7 @@
 {"entityID":"John Denmark","source":"Directory","year":1876,"pages":"74","listing":"31 Denmark, John, grocer","street":"Pelham Street","type":"Place","cardinality":"North","Occupation":"grocer"},
 {"entityID":203777,"source":"Directory","year":1876,"pages":"74","listing":"Nix, Ann","street":"Pelham Street","type":"Place","cardinality":"North"},
 {"entityID":"Mrs Carraway","source":"Directory","year":1876,"pages":"74","listing":"33 Carraway, Mrs","street":"Pelham Street","type":"Place","cardinality":"North"},
-{"entityID":203779,"source":"Directory","year":1876,"pages":"74","listing":"Otago htl, Hogan, Ellen","street":"Pelham Street","type":"Place","cardinality":"North"},
+{"entityID":"Otago Hotel","source":"Directory","year":1876,"pages":"74","listing":"Otago htl, Hogan, Ellen","street":"Pelham Street","type":"Place","cardinality":"North"},
 {"entityID":"William Buck","source":"Directory","year":1876,"pages":"74","listing":"39 Buck, William","street":"Pelham Street","type":"Place","cardinality":"North"},
 {"entityID":203781,"source":"Directory","year":1876,"pages":"74","listing":"41 Nixon, Samuel","street":"Pelham Street","type":"Place","cardinality":"North"},
 {"entityID":"Mrs Pitt (Pelham Street)","source":"Directory","year":1876,"pages":"74","listing":"41 Pitt, Mrs, grocer","street":"Pelham Street","type":"Place","cardinality":"North","Occupation":"grocer","Notes":"Uncertain reading: 41 repeated; may be a misprint for 43"},
