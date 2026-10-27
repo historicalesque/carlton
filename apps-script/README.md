@@ -6,7 +6,7 @@
 - adds a row to the **TEI submissions** tab of the Sheet it's attached to;
 - opens a pull request on `historicalesque/carlton`.
 
-Anyone can read submissions on the review page (`admin/review.html`), and suggest changes to one there. A suggestion becomes a new version of the same pull request, and updates that submission's row on the **TEI submissions** tab. Editors accept or reject in the Sheet (see *Deciding* below).
+Each row links to that submission on the review page (`admin/review.html?pr=<number>`). Anyone with the link can read it and suggest changes there. A suggestion becomes a new version of the same pull request, and updates that submission's row on the **TEI submissions** tab. Editors accept or reject in the Sheet (see *Deciding* below).
 
 - **New entry**: the pull request adds `civic/<id>.xml`.
 - **Entry that already exists**: the pull request replaces `civic/<id>.xml` with the new version. Its description warns that merging replaces the current entry, so the editor checks *Files changed* first.
