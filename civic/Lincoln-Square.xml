@@ -7,7 +7,6 @@
         <title>Lincoln Square</title>
         <author>Andy May</author>
         <author>Johnny Bell</author>
-        <author>Andy May</author>
       </titleStmt>
       <publicationStmt>
         <publisher>Common Ground</publisher>
@@ -18,7 +17,7 @@
       </sourceDesc>
     </fileDesc>
     <revisionDesc status="draft">
-      <change when="2026-10-23" type="created">Contributed through the contribution form by Andy May, Johnny Bell, Andy May.</change>
+      <change when="2026-10-23" type="created">Contributed through the contribution form by Andy May, Johnny Bell.</change>
     </revisionDesc>
   </teiHeader>
   <standOff>

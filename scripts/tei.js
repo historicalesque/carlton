@@ -44,6 +44,17 @@ window.TEIEntry = (function () {
   const has = (v) => v !== undefined && v !== null && String(v).trim() !== '';
   const trim = (v) => (has(v) ? String(v).trim() : '');
   const filled = (rows, ...keys) => (rows || []).filter((r) => keys.some((k) => has(r[k])));
+  // Each author once, first spelling kept. Editing an entry carries its
+  // authors over, so someone who edits their own entry is listed again.
+  const uniqueNames = (names) => {
+    const seen = new Set();
+    return (names || []).map((n) => trim(n).replace(/\s+/g, ' ')).filter((n) => {
+      const key = n.toLowerCase();
+      if (!n || seen.has(key)) return false;
+      seen.add(key);
+      return true;
+    });
+  };
 
   /* ---------- Links to the site itself ----------
      Contributors often paste a page's full address, e.g.
@@ -214,7 +225,7 @@ window.TEIEntry = (function () {
     root.setAttribute('type', kind);
     root.setAttributeNS(XML_NS, 'xml:lang', 'en');
     const today = entry.date || new Date().toISOString().slice(0, 10);
-    const authors = (entry.authors || []).map(trim).filter(Boolean);
+    const authors = uniqueNames(entry.authors);
     const title = trim(entry.title) || 'Untitled';
 
     // teiHeader
@@ -565,7 +576,7 @@ window.TEIEntry = (function () {
       kind,
       surname: text(kids(main, 'surname')[0]),
       forenames: text(kids(main, 'forename')[0]),
-      authors: kids(titleStmt, 'author').map(text),
+      authors: uniqueNames(kids(titleStmt, 'author').map(text)),
       dates: { from: '', to: '', approximate: false },
       otherNames: names.filter((n) => n.getAttribute('type') === 'alternative').map((n) => ({ name: text(n), ...years(n) })),
       places: [], occupations: [], legalStatuses: [], chronology: [], relations: [], sources: [],
