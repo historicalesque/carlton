@@ -34,13 +34,18 @@
       <div>
         <head>A</head>
         <p><ref target="civic?id=A.B.%20Engineering%20Schools">A.B. Engineering Schools</ref></p>
+        <p><ref target="civic?id=Abraham%20Bernard">Abraham Bernard</ref></p>
         <p><ref target="civic?id=Agenora%20Engine%20Works">Agenora Engine Works</ref></p>
         <p><ref target="civic?id=Agra%20Place">Agra Place</ref></p>
         <p><ref target="civic?id=Alcorn%20grocers">Alcorn grocers</ref></p>
+        <p><ref target="civic?id=Alexander%20James%20Barbour">Alexander James Barbour</ref></p>
         <p><ref target="civic?id=Alexander%20Mair%20and%20Co">Alexander Mair and Co.</ref></p>
-        <p><ref target="civic?id=John%20Calder%20Alexander">Alexander, John Calder</ref></p>
-        <p><ref target="civic?id=John%20Anderson">Anderson, John</ref></p>
+        <p>Alexander, John Calder, see: <ref target="civic?id=John%20Calder%20Alexander">John Calder Alexander</ref></p>
+        <p>Anderson, John, see: <ref target="civic?id=John%20Anderson">John Anderson</ref></p>
+        <p><ref target="civic?id=Ann%20Paton">Ann Paton</ref></p>
+        <p><ref target="civic?id=Anna%20Helene%20Kopmann">Anna Helene Kopmann</ref></p>
         <p><ref target="civic?id=Architecture">Architecture</ref></p>
+        <p><ref target="civic?id=Arthur%20Allen%20Gaskins">Arthur Allen Gaskins</ref></p>
         <p><ref target="civic?id=Edmund%20Ashley">Ashley, Edmund</ref></p>
         <p><ref target="civic?id=Atlas%20Co.%20of%20Engineers">Atlas Co. of Engineers</ref></p>
       </div>
@@ -52,7 +57,7 @@
         <p><ref target="civic?id=Baptist%20Chapel%20%28Bouverie%20Street%29">Baptist Chapel (Bouverie Street)</ref></p>
         <p><ref target="civic?id=Baptist%20Chapel%20%28Leicester%20Street%29">Baptist Chapel (Leicester Street)</ref></p>
         <p><ref target="civic?id=Baptist%20mission%20hall%20%28Bouverie%20Street%29">Baptist Mission Hall (Bouverie Street)</ref></p>
-        <p><ref target="civic?id=Alexander%20James%20Barbour">Barbour, Alexander James</ref></p>
+        <p>Barbour, Alexander James, see: <ref target="civic?id=Alexander%20James%20Barbour">Alexander James Barbour</ref></p>
         <p><ref target="civic?id=Barkly%20Place">Barkly Place</ref></p>
         <p><ref target="civic?id=Barkly%20Street">Barkly Street</ref></p>
         <p><ref target="civic?id=Barry%20Street">Barry Street</ref></p>
@@ -60,7 +65,7 @@
         <p><ref target="civic?id=Berkeley%20Street">Berkeley Street</ref></p>
         <p><ref target="civic?id=Berkley%20Place">Berkley Place</ref></p>
         <p><ref target="civic?id=Berkley%20Street">Berkley Street</ref></p>
-        <p><ref target="civic?id=Abraham%20Bernard">Bernard, Abraham</ref></p>
+        <p>Bernard, Abraham, see: <ref target="civic?id=Abraham%20Bernard">Abraham Bernard</ref></p>
         <p><ref target="https://github.com/historicalesque/carlton/pull/169">Bills of Sale</ref></p>
         <p><ref target="civic?id=Blacksmiths">Blacksmiths</ref></p>
         <p><ref target="civic?id=Thomas%20S.%20Blake">Blake, Thomas S.</ref></p>
@@ -78,6 +83,7 @@
       <div>
         <head>C</head>
         <p><ref target="civic?id=Captain%20William%20Ratcliffe">Captain William Ratcliffe</ref></p>
+        <p><ref target="civic?id=Carl%20Fischer">Carl Fischer</ref></p>
         <p><ref target="civic?id=Carlton%20%26%20United%20Breweries%20stables">Carlton &amp; United Breweries stables</ref></p>
         <p><ref target="civic?id=Carlton%20%26%20United%20Breweries">Carlton &amp; United Breweries</ref></p>
         <p><ref target="civic?id=Carlton%20%26%20West%20End%20Breweries%20stables">Carlton &amp; West End Breweries stables</ref></p>
@@ -104,7 +110,7 @@
         <p><ref target="civic?id=Carlton%20Stables%20%28Queensberry%20Street%29">Carlton Stables (Queensberry Street)</ref></p>
         <p><ref target="civic?id=Carriers%27%20Stables%20%28Leicester%20Street%29">Carriers' Stables (Leicester Street)</ref></p>
         <p><ref target="civic?id=Carriers%27%20Stables%20%28Victoria%20Street%29">Carriers' Stables (Victoria Street)</ref></p>
-        <p><ref target="civic?id=James%20Carter">Carter, James</ref></p>
+        <p>Carter, James, see: <ref target="civic?id=James%20Carter">James Carter</ref></p>
         <p><ref target="civic?id=Cavan%20hotel">Cavan Hotel</ref></p>
         <p><ref target="civic?id=Cesspits">Cesspits</ref></p>
         <p><ref target="civic?id=Charity%20Organisation%20Society">Charity Organisation Society</ref></p>
@@ -115,26 +121,28 @@
         <p><ref target="civic?id=City%20hotel">City Hotel</ref></p>
         <p><ref target="civic?id=Clapperton%20drapers">Clapperton drapers</ref></p>
         <p><ref target="civic?id=Commercial%20hotel">Commercial Hotel</ref></p>
-        <p><ref target="civic?id=Robert%20Austin%20Connor">Connor, Robert Austin</ref></p>
+        <p>Connor, Robert Austin, see: <ref target="civic?id=Robert%20Austin%20Connor">Robert Austin Connor</ref></p>
         <p><ref target="civic?id=Conroy%27s%20hotel">Conroy's Hotel</ref></p>
         <p><ref target="civic?id=Ellen%20Copsey">Copsey, Ellen</ref></p>
         <p><ref target="civic?id=Corkman%20Hotel">Corkman Hotel</ref></p>
         <p><ref target="civic?id=James%20Coupar">Coupar, James</ref></p>
-        <p><ref target="civic?id=Lazarus%20Cruchek">Cruchek, Lazarus</ref></p>
+        <p>Cruchek, Lazarus, see: <ref target="civic?id=Lazarus%20Cruchek">Lazarus Cruchek</ref></p>
         <p><ref target="civic?id=Cumberland%20Place">Cumberland Place</ref></p>
       </div>
       <div>
         <head>D</head>
         <p><ref target="civic?id=Demographics">Demographics</ref></p>
+        <p><ref target="civic?id=Dianes%20Lucas">Dianes Lucas</ref></p>
         <p><ref target="civic?id=Dight%27s%20Flour%20Mills">Dight's Flour Mills</ref></p>
         <p><ref target="civic?id=Directories">Directories</ref></p>
-        <p><ref target="civic?id=Patrick%20F.%20Dorgan">Dorgan, Patrick F.</ref></p>
+        <p>Dorgan, Patrick F., see: <ref target="civic?id=Patrick%20F.%20Dorgan">Patrick F. Dorgan</ref></p>
       </div>
       <div>
         <head>E</head>
         <p><ref target="civic?id=Early%20Purchasers%20and%20Developers%20of%20Land">Early Purchasers and Developers of Land</ref></p>
         <p><ref target="civic?id=Electoral%20Rolls">Electoral Rolls</ref></p>
         <p><ref target="civic?id=Eliza%20Terrace">Eliza Terrace</ref></p>
+        <p><ref target="civic?id=Elizabeth%20Facey">Elizabeth Facey</ref></p>
         <p><ref target="civic?id=Emu%20Hotel">Emu Hotel</ref></p>
         <p><ref target="civic?id=Engineering">Engineering Firms</ref></p>
         <p><ref target="civic?id=Engineers-and-foundries">Engineers and foundries</ref></p>
@@ -143,17 +151,19 @@
       </div>
       <div>
         <head>F</head>
-        <p><ref target="civic?id=Elizabeth%20Facey">Facey, Elizabeth</ref></p>
+        <p>Facey, Elizabeth, see: <ref target="civic?id=Elizabeth%20Facey">Elizabeth Facey</ref></p>
         <p><ref target="civic?id=Fair%20Rents%20Board">Fair Rents Board</ref></p>
         <p><ref target="civic?id=Family%20hotel">Family Hotel</ref></p>
-        <p><ref target="civic?id=Carl%20Fischer">Fischer, Carl</ref></p>
+        <p>Fischer, Carl, see: <ref target="civic?id=Carl%20Fischer">Carl Fischer</ref></p>
         <p><ref target="civic?id=Fountains">Fountains</ref></p>
+        <p><ref target="civic?id=Francis%20Edmond%20Striezel">Francis Edmond Striezel</ref></p>
+        <p><ref target="civic?id=Francis%20Soppett%20Wilson">Francis Soppett Wilson</ref></p>
         <p><ref target="civic?id=Friedman%27s%20stables">Friedman's stables</ref></p>
       </div>
       <div>
         <head>G</head>
         <p><ref target="civic?id=Garbutt%20chain%20makers">Garbutt chain makers</ref></p>
-        <p><ref target="civic?id=Arthur%20Allen%20Gaskins">Gaskins, Arthur Allen</ref></p>
+        <p>Gaskins, Arthur Allen, see: <ref target="civic?id=Arthur%20Allen%20Gaskins">Arthur Allen Gaskins</ref></p>
         <p><ref target="civic?id=Golden%20Age%20hotel">Golden Age Hotel</ref></p>
         <p><ref target="civic?id=Grant%20implement%20makers">Grant implement makers</ref></p>
         <p><ref target="civic?id=Grattan%20hotel">Grattan Hotel</ref></p>
@@ -168,7 +178,7 @@
         <p><ref target="civic?id=Jeffrey%20Hawkins">Hawkins, Jeffrey</ref></p>
         <p><ref target="civic?id=Heritage">Heritage</ref></p>
         <p><ref target="civic?id=Heritage%20Surveys">Heritage Surveys</ref></p>
-        <p><ref target="civic?id=Robert%20William%20Hewat">Hewat, Robert William</ref></p>
+        <p>Hewat, Robert William, see: <ref target="civic?id=Robert%20William%20Hewat">Robert William Hewat</ref></p>
         <p><ref target="civic?id=Hogan-Ellen">Hogan, Ellen</ref></p>
         <p><ref target="civic?id=Hope%20hotel">Hope Hotel</ref></p>
         <p><ref target="civic?id=Hopkins%20Bros%20and%20Odlum">Hopkins Bros and Odlum</ref></p>
@@ -187,19 +197,24 @@
       </div>
       <div>
         <head>J</head>
+        <p><ref target="civic?id=James%20Carter">James Carter</ref></p>
+        <p><ref target="civic?id=James%20O%27Maley%20Kean">James O'Maley Kean</ref></p>
+        <p><ref target="civic?id=Jarvis%20R.%20Shackleton">Jarvis R. Shackleton</ref></p>
         <p><ref target="civic?id=Jenning%27s%20Foundry">Jenning's Foundry</ref></p>
         <p><ref target="civic?id=Jewish%20Residents%20and%20Landowners">Jewish Residents and Landowners</ref></p>
+        <p><ref target="civic?id=John%20Anderson">John Anderson</ref></p>
+        <p><ref target="civic?id=John%20Calder%20Alexander">John Calder Alexander</ref></p>
         <p>John Fullerton, see: <ref target="civic?id=Inspector%20of%20Nuisances">Inspector of Nuisances</ref></p>
         <p><ref target="civic?id=Junction%20hotel%20%28Elizabeth%20Street%29">Junction Hotel (Elizabeth Street)</ref></p>
         <p><ref target="civic?id=Junction%20hotel%20%28Pelham%20Street%29">Junction Hotel (Pelham Street)</ref></p>
       </div>
       <div>
         <head>K</head>
-        <p><ref target="civic?id=James%20O%27Maley%20Kean">Kean, James O'Maley</ref></p>
-        <p><ref target="civic?id=William%20Edward%20Kemp">Kemp, William Edward</ref></p>
+        <p>Kean, James O'Maley, see: <ref target="civic?id=James%20O%27Maley%20Kean">James O'Maley Kean</ref></p>
+        <p>Kemp, William Edward, see: <ref target="civic?id=William%20Edward%20Kemp">William Edward Kemp</ref></p>
         <p><ref target="civic?id=Kindergartens">Kindergartens</ref></p>
         <p><ref target="civic?id=King%27s%20Arms%20hotel">King's Arms Hotel</ref></p>
-        <p><ref target="civic?id=Anna%20Helene%20Kopmann">Kopmann, Anna Helene</ref></p>
+        <p>Kopmann, Anna Helene, see: <ref target="civic?id=Anna%20Helene%20Kopmann">Anna Helene Kopmann</ref></p>
       </div>
       <div>
         <head>L</head>
@@ -208,6 +223,7 @@
         <p><ref target="civic?id=Delia%20Larkin">Larkin, Delia</ref></p>
         <p><ref target="civic?id=Larrikins%20and%20Pushes">Larrikins and Pushes</ref></p>
         <p><ref target="civic?id=Latham%20%26%20Co.%27s%20stables">Latham &amp; Co.'s stables</ref></p>
+        <p><ref target="civic?id=Lazarus%20Cruchek">Lazarus Cruchek</ref></p>
         <p><ref target="civic?id=Leicester%20hotel">Leicester Hotel</ref></p>
         <p><ref target="civic?id=Leicester%20Place">Leicester Place</ref></p>
         <p><ref target="civic?id=Leicester%20Stables">Leicester Stables</ref></p>
@@ -227,18 +243,18 @@
         <p><ref target="civic?id=Little%20Queensberry%20Street">Little Queensberry Street</ref></p>
         <p><ref target="civic?id=Liver%20Inn">Liver Inn</ref></p>
         <p><ref target="civic?id=Liverpool%20Stables">Liverpool Stables</ref></p>
-        <p><ref target="civic?id=Dianes%20Lucas">Lucas, Dianes</ref></p>
+        <p>Lucas, Dianes, see: <ref target="civic?id=Dianes%20Lucas">Dianes Lucas</ref></p>
       </div>
       <div>
         <head>M</head>
-        <p><ref target="civic?id=Reuben%20Mace">Mace, Reuben</ref></p>
+        <p>Mace, Reuben, see: <ref target="civic?id=Reuben%20Mace">Reuben Mace</ref></p>
         <p><ref target="civic?id=Madeline%20hotel">Madeline Hotel</ref></p>
         <p><ref target="civic?id=Madeline%20Street">Madeline Street</ref></p>
         <p><ref target="civic?id=Malvina%20Place">Malvina Place</ref></p>
         <p><ref target="civic?id=Manchester%20Arms%20hotel">Manchester Arms Hotel</ref></p>
         <p><ref target="civic?id=Mary%20Mather%20%28Pelham%20Hotel%29">Mary Mather (Pelham Hotel)</ref></p>
         <p><ref target="civic?id=McLean%27s%20foundry">McLean's foundry</ref></p>
-        <p><ref target="civic?id=Richard%20G.%20McMullen">McMullen, Richard G.</ref></p>
+        <p>McMullen, Richard G., see: <ref target="civic?id=Richard%20G.%20McMullen">Richard G. McMullen</ref></p>
         <p><ref target="civic?id=MMBW">Melbourne and Metropolitan Board of Works maps</ref></p>
         <p><ref target="civic?id=Melbourne%20Brewing%20and%20Malting%20Co.">Melbourne Brewing and Malting Co.</ref></p>
         <p><ref target="civic?id=David%20Middleton">Middleton, David</ref></p>
@@ -257,7 +273,7 @@
         <p><ref target="civic?id=New%20Haymarket%20hotel">New Haymarket Hotel</ref></p>
         <p><ref target="civic?id=New%20Market%20hotel">New Market Hotel</ref></p>
         <p><ref target="civic?id=Newmarket%20hotel">Newmarket Hotel</ref></p>
-        <p><ref target="civic?id=Phillip%20H.%20Newton">Newton, Phillip H.</ref></p>
+        <p>Newton, Phillip H., see: <ref target="civic?id=Phillip%20H.%20Newton">Phillip H. Newton</ref></p>
         <p><ref target="civic?id=Nicholson%20implement%20makers">Nicholson implement makers</ref></p>
         <p><ref target="civic?id=Noah%27s%20Ark%20hotel">Noah's Ark Hotel</ref></p>
         <p><ref target="civic?id=Noah%27s%20Ark%20Stables">Noah's Ark Stables</ref></p>
@@ -268,6 +284,7 @@
         <head>O</head>
         <p><ref target="civic?id=Ellen%20O%27Sullivan">O'Sullivan, Ellen</ref></p>
         <p><ref target="civic?id=Otago-Hotel">Otago Hotel</ref></p>
+        <p><ref target="civic?id=Otto%20Andrew%20Pfortner">Otto Andrew Pfortner</ref></p>
       </div>
       <div>
         <head>P</head>
@@ -275,8 +292,9 @@
         <p><ref target="civic?id=Robert%20Parker">Parker, Robert</ref></p>
         <p><ref target="civic?id=Parks%20and%20Gardens">Parks and Gardens</ref></p>
         <p><ref target="civic?id=Paterson%2C%20Laing%20and%20Bruce%20stables">Paterson, Laing and Bruce stables</ref></p>
-        <p><ref target="civic?id=Ann%20Paton">Paton, Ann</ref></p>
+        <p>Paton, Ann, see: <ref target="civic?id=Ann%20Paton">Ann Paton</ref></p>
         <p><ref target="civic?id=Walter%20Paton">Paton, Walter</ref></p>
+        <p><ref target="civic?id=Patrick%20F.%20Dorgan">Patrick F. Dorgan</ref></p>
         <p><ref target="civic?id=Pattison%27s%20Terrace">Pattison's Terrace</ref></p>
         <p><ref target="civic?id=Payne%27s%20Royal%20hotel">Payne's Royal Hotel</ref></p>
         <p><ref target="civic?id=Peacock%20Inn">Peacock Inn</ref></p>
@@ -284,7 +302,8 @@
         <p><ref target="civic?id=Pelham%20Hotel">Pelham Hotel</ref></p>
         <p><ref target="civic?id=Pelham%20Street">Pelham Street</ref></p>
         <p><ref target="civic?id=Perseverance%20hotel">Perseverance Hotel</ref></p>
-        <p><ref target="civic?id=Otto%20Andrew%20Pfortner">Pfortner, Otto Andrew</ref></p>
+        <p>Pfortner, Otto Andrew, see: <ref target="civic?id=Otto%20Andrew%20Pfortner">Otto Andrew Pfortner</ref></p>
+        <p><ref target="civic?id=Phillip%20H.%20Newton">Phillip H. Newton</ref></p>
         <p><ref target="civic?id=Playgrounds">Playgrounds</ref></p>
         <p><ref target="civic?id=Prest%20Social%20Survey">Prest Social Survey</ref></p>
         <p><ref target="civic?id=Prince%20Alfred%20hotel">Prince Alfred Hotel</ref></p>
@@ -303,7 +322,12 @@
         <p><ref target="civic?id=Rae%27s%20dairy">Rae's dairy</ref></p>
         <p><ref target="civic?id=Rate%20Books">Rate Books</ref></p>
         <p><ref target="civic?id=Reserve%20hotel">Reserve Hotel</ref></p>
+        <p><ref target="civic?id=Reuben%20Mace">Reuben Mace</ref></p>
+        <p><ref target="civic?id=Richard%20G.%20McMullen">Richard G. McMullen</ref></p>
+        <p><ref target="civic?id=Richard%20Thomas%20Ward">Richard Thomas Ward</ref></p>
         <p><ref target="civic?id=Rising%20Sun%20hotel">Rising Sun Hotel</ref></p>
+        <p><ref target="civic?id=Robert%20Austin%20Connor">Robert Austin Connor</ref></p>
+        <p><ref target="civic?id=Robert%20William%20Hewat">Robert William Hewat</ref></p>
         <p><ref target="civic?id=Rose%20Iron%20Works">Rose Iron Works</ref></p>
         <p><ref target="civic?id=Royal%20and%20Co">Royal and Co.</ref></p>
         <p><ref target="civic?id=Royal%20Artillery%20hotel">Royal Artillery Hotel</ref></p>
@@ -319,7 +343,7 @@
         <p><ref target="civic?id=W.%20Schuster%20and%20Co">Schuster, W., and Co.</ref></p>
         <p><ref target="civic?id=Seven%20Stars%20hotel">Seven Stars Hotel</ref></p>
         <p><ref target="civic?id=Sex%20Work%20%28male%29">Sex Work (male)</ref></p>
-        <p><ref target="civic?id=Jarvis%20R.%20Shackleton">Shackleton, Jarvis R.</ref></p>
+        <p>Shackleton, Jarvis R., see: <ref target="civic?id=Jarvis%20R.%20Shackleton">Jarvis R. Shackleton</ref></p>
         <p><ref target="civic?id=Sir%20Redmond%20Barry%20hotel">Sir Redmond Barry Hotel</ref></p>
         <p><hi rend="underline">Snowball, John</hi></p>
         <p><ref target="civic?id=Spanish%20Flu%20in%20Carlton">Spanish Flu in Carlton</ref></p>
@@ -329,7 +353,7 @@
         <p><ref target="civic?id=State%20School%20No.%202365">State School No. 2365</ref></p>
         <p><ref target="civic?id=James%20C.%20Steel">Steel, James C.</ref></p>
         <p><ref target="civic?id=Street%20Numbering">Street Numbering</ref></p>
-        <p><ref target="civic?id=Francis%20Edmond%20Striezel">Striezel, Francis Edmond</ref></p>
+        <p>Striezel, Francis Edmond, see: <ref target="civic?id=Francis%20Edmond%20Striezel">Francis Edmond Striezel</ref></p>
         <p><ref target="civic?id=Swanston%20Street">Swanston Street</ref></p>
       </div>
       <div>
@@ -364,12 +388,13 @@
       <div>
         <head>W</head>
         <p><ref target="civic?id=Wanda%20Renata%20Pasquali">Wanda Renata Pasquali</ref></p>
-        <p><ref target="civic?id=Richard%20Thomas%20Ward">Ward, Richard Thomas</ref></p>
+        <p>Ward, Richard Thomas, see: <ref target="civic?id=Richard%20Thomas%20Ward">Richard Thomas Ward</ref></p>
         <p><ref target="civic?id=Wellesley%20Cottages">Wellesley Cottages</ref></p>
         <p><ref target="civic?id=Patrick%20Welshe">Welshe, Patrick</ref></p>
         <p><ref target="civic?id=Wicklow%20hotel">Wicklow Hotel</ref></p>
+        <p><ref target="civic?id=William%20Edward%20Kemp">William Edward Kemp</ref></p>
         <p>William Ratcliffe, see: <ref target="civic?id=Captain%20William%20Ratcliffe">Captain William Ratcliffe</ref></p>
-        <p><ref target="civic?id=Francis%20Soppett%20Wilson">Wilson, Francis Soppett</ref></p>
+        <p>Wilson, Francis Soppett, see: <ref target="civic?id=Francis%20Soppett%20Wilson">Francis Soppett Wilson</ref></p>
       </div>
       <div>
         <head>X</head>
