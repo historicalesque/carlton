@@ -5,7 +5,10 @@
     <fileDesc>
       <titleStmt>
         <title>Carlton Flour Mills</title>
-        <author>Common Ground</author>
+        <respStmt key="computer-assisted-draft">
+          <resp>Computer-assisted first draft</resp>
+          <name>Common Ground</name>
+        </respStmt>
       </titleStmt>
       <publicationStmt>
         <publisher>Common Ground</publisher>
@@ -32,6 +35,7 @@
     </fileDesc>
     <revisionDesc status="published">
       <change when="2026-10-27" type="created">Machine-assisted first draft by Common Ground, from the directory records.</change>
+      <change when="2026-10-28" type="revised">Credits tidied: the computer-assisted first draft is credited in the byline.</change>
     </revisionDesc>
   </teiHeader>
   <standOff>
@@ -44,7 +48,6 @@
   <text>
     <body>
       <p>The Carlton Flour Mill is listed in <ref target="civic?id=Leicester%20Street">Leicester Street</ref> in the Sands &amp; McDougall directories from 1857 to 1870. In 1857 it is listed under Ramsden and Aitken, and from 1858 under Samuel Ramsden. It is at No. 39 from 1859 to 1861 and No. 52 from 1862 to 1870.</p>
-      <p><hi rend="italic">This entry is a machine-assisted first draft by Common Ground, written from the directory records. Please correct or add to it.</hi></p>
     </body>
   </text>
 </TEI>

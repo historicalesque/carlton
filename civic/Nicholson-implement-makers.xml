@@ -5,7 +5,10 @@
     <fileDesc>
       <titleStmt>
         <title>Nicholson implement makers</title>
-        <author>Common Ground</author>
+        <respStmt key="computer-assisted-draft">
+          <resp>Computer-assisted first draft</resp>
+          <name>Common Ground</name>
+        </respStmt>
       </titleStmt>
       <publicationStmt>
         <publisher>Common Ground</publisher>
@@ -52,6 +55,7 @@
     </fileDesc>
     <revisionDesc status="published">
       <change when="2026-10-27" type="created">Machine-assisted first draft by Common Ground, from the directory records.</change>
+      <change when="2026-10-28" type="revised">Credits tidied: the computer-assisted first draft is credited in the byline.</change>
     </revisionDesc>
   </teiHeader>
   <standOff>
@@ -65,7 +69,6 @@
     <body>
       <p>The Nicholson family made farm implements in <ref target="civic?id=Bouverie%20Street">Bouverie Street</ref> for over fifty years. Joseph Nicholson, machinist, is listed there in 1857 and 1858, and as an agricultural implement manufacturer at No. 16 in 1859. As J. or Joseph Nicholson, implement maker, he is at No. 21 from 1863 to 1872, then at Nos 22 and 25 to 1878.</p>
       <p>Mrs Nicholson, implement maker, is listed at No. 25 in 1879 and 1880, and William H. Nicholson, agricultural implement maker, at No. 23 in 1885. From 1890 the business is at No. 39: Joseph Nicholson and Co. (1890), Nicholson &amp; Co. (1895), and Nicholson &amp; Morrow, agricultural engineers (1900 to 1910).</p>
-      <p><hi rend="italic">This entry is a machine-assisted first draft by Common Ground, written from the directory records. Please correct or add to it.</hi></p>
     </body>
   </text>
 </TEI>

@@ -7,6 +7,10 @@
         <title>Otago Hotel</title>
         <author>Andy May</author>
         <author>Mitchell Harrop</author>
+        <respStmt key="computer-assisted-draft">
+          <resp>Computer-assisted first draft</resp>
+          <name>Common Ground</name>
+        </respStmt>
       </titleStmt>
       <publicationStmt>
         <publisher>Common Ground</publisher>
@@ -25,6 +29,7 @@
     </fileDesc>
     <revisionDesc status="draft">
       <change when="2026-10-28" type="created">Contributed through the contribution form by Andy May, Mitchell Harrop.</change>
+      <change when="2026-10-28" type="revised">Credits tidied: the computer-assisted first draft is credited in the byline.</change>
     </revisionDesc>
   </teiHeader>
   <standOff>
@@ -39,12 +44,10 @@
   </standOff>
   <text>
     <body>
-      <div>
-        <head>Summary</head>
+      <div type="summary">
         <p>The Otago Hotel was located on Pelham Street. There was a hotel of the same name in Flinders Street West. It appears the Otago Hotel in Carlton was renamed the Standard Hotel in the mid 1880s [<ref target="http://nla.gov.au/nla.news-article191195867"><hi rend="italic">Age</hi>, 10 July 1885: 7</ref>].</p>
       </div>
-      <div>
-        <head>Details</head>
+      <div type="detail">
         <p>The directories list the proprietors as <ref target="civic?id=Hogan-Ellen">Ellen Hogan</ref><ref target="https://github.com/historicalesque/carlton/pull/188"> </ref>(1875 and 1876), George Daly (1877), J. H. Brenan (1878), Jer. Collins (1879) and Miss Rosa McManus (1880).</p>
         <p>Ellen Hogan died at the hotel on 18 May 1876 [<ref target="http://nla.gov.au/nla.news-article202160910"><hi rend="italic">Age</hi>, 19 May 1876: 2]</ref>, and the next publican George Dalley didn't last much longer, dying there on 17 October the same year [Australasian, 21 Oct 1876: 25]. After Dalley's death, the following notice <ref target="http://nla.gov.au/nla.news-article5907444">appeared in the <hi rend="italic">Argus</hi></ref>:</p>
         <quote>
@@ -55,11 +58,6 @@
         <quote>
           <p>I, PHILLIPA SEYMORE DE LA FONTAINE, of Carlton, the holder of a Transferred Publican's License, do hereby give notice that I desire to obtain, and will at the next Licensing Meeting, to be holden at Melbourne, on the thirteenth day of December, APPLY for a Certificate authorising the Issue of a PUBLICAN'S LICENSE, for a house situate at Pelham street, Carlton, known as the Otago Hotel, containing six room, exclusive of those required for the use of the family.</p>
         </quote>
-      </div>
-      <div>
-        <head>Contributors</head>
-        <p><hi rend="italic">Machine-assisted first draft by Common Ground, from the directory records.</hi></p>
-        <p><hi rend="italic">Andy May</hi></p>
       </div>
     </body>
   </text>

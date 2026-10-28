@@ -5,7 +5,10 @@
     <fileDesc>
       <titleStmt>
         <title>Jeffrey Hawkins</title>
-        <author>Common Ground</author>
+        <respStmt key="computer-assisted-draft">
+          <resp>Computer-assisted first draft</resp>
+          <name>Common Ground</name>
+        </respStmt>
       </titleStmt>
       <publicationStmt>
         <publisher>Common Ground</publisher>
@@ -36,6 +39,7 @@
     </fileDesc>
     <revisionDesc status="published">
       <change when="2026-10-27" type="created">Machine-assisted first draft by Common Ground, from the directory records.</change>
+      <change when="2026-10-28" type="revised">Credits tidied: the computer-assisted first draft is credited in the byline.</change>
     </revisionDesc>
   </teiHeader>
   <standOff>
@@ -48,7 +52,6 @@
   <text>
     <body>
       <p>Jeffrey (or Jeffery) Hawkins, photographer, is listed in <ref target="civic?id=Queensberry%20Street">Queensberry Street</ref> in the Sands &amp; McDougall directories from 1858 to 1875. He is at No. 12 in 1859 and 1860, and No. 20 from 1861. From 1864 to 1868 the listing takes in Nos 20 and 22, then Nos 20, 22 and 24.</p>
-      <p><hi rend="italic">This entry is a machine-assisted first draft by Common Ground, written from the directory records. Please correct or add to it.</hi></p>
     </body>
   </text>
 </TEI>

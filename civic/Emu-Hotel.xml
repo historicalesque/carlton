@@ -6,6 +6,10 @@
       <titleStmt>
         <title>Emu Hotel</title>
         <author>Barbara Minchinton</author>
+        <respStmt key="computer-assisted-draft">
+          <resp>Computer-assisted first draft</resp>
+          <name>Common Ground</name>
+        </respStmt>
       </titleStmt>
       <publicationStmt>
         <publisher>Common Ground</publisher>
@@ -19,6 +23,7 @@
       <change when="2026-09-11" type="created">Public contribution via custom rich-text submission form by Barbara Minchinton.</change>
       <change when="2026-10-05" type="converted">Converted from EAC-CPF to TEI.</change>
       <change when="2026-10-27" type="edited">Proprietors as listed in the directories added by Common Ground (machine-assisted).</change>
+      <change when="2026-10-28" type="revised">Credits tidied: the computer-assisted first draft is credited in the byline.</change>
     </revisionDesc>
   </teiHeader>
   <standOff>
@@ -31,7 +36,7 @@
   <text>
     <body>
       <p>See also John Snowball</p>
-      <p>The directories list the proprietors as John Snowball (1859), John Hill (1860), Henry Lewis (1861), John Astle (1862 to 1865, with Abraham Davis under Pelham Street in 1862), Jabez Wheeler (1866), John Keeffe or Keefe (1867 to 1871, with William Keefe under Bouverie Street in 1871), Arthur Keefe (1872 and 1873), James Watson (1874), W. J. Allester or Allister (1875), D. O'Keefe (1876), Peter Madden (1877), T. McDonnell (1878), Wm. Gawne (1879 and 1880), Denis McCarthy (1885), W. Parkinson (1890), R. Jose (1895), David A. Youl (1900), J. P. Ryan (1905 to 1915) and Mrs E. A. Crotty (1925). No proprietor is given in 1920. <hi rend="italic">Machine-assisted first draft by Common Ground, from the directory records.</hi></p>
+      <p>The directories list the proprietors as John Snowball (1859), John Hill (1860), Henry Lewis (1861), John Astle (1862 to 1865, with Abraham Davis under Pelham Street in 1862), Jabez Wheeler (1866), John Keeffe or Keefe (1867 to 1871, with William Keefe under Bouverie Street in 1871), Arthur Keefe (1872 and 1873), James Watson (1874), W. J. Allester or Allister (1875), D. O'Keefe (1876), Peter Madden (1877), T. McDonnell (1878), Wm. Gawne (1879 and 1880), Denis McCarthy (1885), W. Parkinson (1890), R. Jose (1895), David A. Youl (1900), J. P. Ryan (1905 to 1915) and Mrs E. A. Crotty (1925). No proprietor is given in 1920.</p>
     </body>
   </text>
 </TEI>

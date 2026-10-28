@@ -6,6 +6,10 @@
       <titleStmt>
         <title>Berkley Arms hotel</title>
         <author>Mitchell Harrop</author>
+        <respStmt key="computer-assisted-draft">
+          <resp>Computer-assisted first draft</resp>
+          <name>Common Ground</name>
+        </respStmt>
       </titleStmt>
       <publicationStmt>
         <publisher>Common Ground</publisher>
@@ -21,6 +25,7 @@
     <revisionDesc status="draft">
       <change when="2026-10-06" type="created">Contributed through the contribution form by Mitchell Harrop.</change>
       <change when="2026-10-27" type="edited">Links, and sections from the directory records, added by Common Ground (machine-assisted).</change>
+      <change when="2026-10-28" type="revised">Credits tidied: the computer-assisted first draft is credited in the byline.</change>
     </revisionDesc>
   </teiHeader>
   <standOff>
@@ -45,7 +50,6 @@
       <div>
         <head>Records</head>
         <p>The hotel's listings are linked to this entry, and the rest of the street can be browsed in <ref target="search?street=Berkley%20Street">search</ref>.</p>
-        <p><hi rend="italic">These sections are a machine-assisted first draft by Common Ground, written from the directory records. Please correct or add to them.</hi></p>
       </div>
     </body>
   </text>

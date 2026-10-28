@@ -5,8 +5,12 @@
     <fileDesc>
       <titleStmt>
         <title>Corkman Hotel</title>
-        <author>Andrew May</author>
-        <author>Chloe T</author>
+        <author>Andy May</author>
+        <author>Chloe Tobin</author>
+        <respStmt key="computer-assisted-draft">
+          <resp>Computer-assisted first draft</resp>
+          <name>Common Ground</name>
+        </respStmt>
       </titleStmt>
       <publicationStmt>
         <publisher>Common Ground</publisher>
@@ -27,6 +31,7 @@
     <revisionDesc status="draft">
       <change when="2026-10-08" type="created">Contributed through the contribution form by Andrew May, Chloe T.</change>
       <change when="2026-10-27" type="edited">Proprietors as listed in the directories added by Common Ground (machine-assisted).</change>
+      <change when="2026-10-28" type="revised">Credits tidied: the computer-assisted first draft is credited in the byline.</change>
     </revisionDesc>
   </teiHeader>
   <standOff>
@@ -144,7 +149,7 @@
       </div>
       <div>
         <head>Proprietors in the directories</head>
-        <p>The directories list the proprietors as George Edmonds (1857 to 1860), John Cozens (1861 to 1880), Robert F. Holmes (1885), William Strickland (1890), Wm. Man (1895), <ref target="civic?id=Charles%20Volkel">Charles A. Volkel</ref> (1900 and 1905), Michael Delaney (1910), <ref target="civic?id=Delia%20Larkin">Mrs Delia Larkin</ref> (1915 and 1920) and <ref target="civic?id=Ellen%20Copsey">Mrs Ellen Copsey</ref> (1925 to 1940). The directories are yearly to 1880 and every five years after that. <hi rend="italic">Machine-assisted first draft by Common Ground, from the directory records.</hi></p>
+        <p>The directories list the proprietors as George Edmonds (1857 to 1860), John Cozens (1861 to 1880), Robert F. Holmes (1885), William Strickland (1890), Wm. Man (1895), <ref target="civic?id=Charles%20Volkel">Charles A. Volkel</ref> (1900 and 1905), Michael Delaney (1910), <ref target="civic?id=Delia%20Larkin">Mrs Delia Larkin</ref> (1915 and 1920) and <ref target="civic?id=Ellen%20Copsey">Mrs Ellen Copsey</ref> (1925 to 1940). The directories are yearly to 1880 and every five years after that.</p>
       </div>
     </body>
   </text>

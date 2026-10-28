@@ -5,7 +5,10 @@
     <fileDesc>
       <titleStmt>
         <title>James C. Steel</title>
-        <author>Common Ground</author>
+        <respStmt key="computer-assisted-draft">
+          <resp>Computer-assisted first draft</resp>
+          <name>Common Ground</name>
+        </respStmt>
       </titleStmt>
       <publicationStmt>
         <publisher>Common Ground</publisher>
@@ -35,6 +38,7 @@
     </fileDesc>
     <revisionDesc status="published">
       <change when="2026-10-27" type="created">Machine-assisted first draft by Common Ground, from the directory records.</change>
+      <change when="2026-10-28" type="revised">Credits tidied: the computer-assisted first draft is credited in the byline.</change>
     </revisionDesc>
   </teiHeader>
   <standOff>
@@ -47,7 +51,6 @@
   <text>
     <body>
       <p>James C. Steel, hide merchant, is listed at 34 <ref target="civic?id=Leicester%20Street">Leicester Street</ref> in the Sands &amp; McDougall directories from 1864 to 1880. From 1873 he is listed as a hide merchant and tanner, and in 1879 and 1880 at Nos 34 and 36.</p>
-      <p><hi rend="italic">This entry is a machine-assisted first draft by Common Ground, written from the directory records. Please correct or add to it.</hi></p>
     </body>
   </text>
 </TEI>

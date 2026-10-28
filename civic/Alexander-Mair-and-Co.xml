@@ -5,7 +5,10 @@
     <fileDesc>
       <titleStmt>
         <title>Alexander Mair and Co</title>
-        <author>Common Ground</author>
+        <respStmt key="computer-assisted-draft">
+          <resp>Computer-assisted first draft</resp>
+          <name>Common Ground</name>
+        </respStmt>
       </titleStmt>
       <publicationStmt>
         <publisher>Common Ground</publisher>
@@ -63,6 +66,7 @@
     </fileDesc>
     <revisionDesc status="published">
       <change when="2026-10-27" type="created">Machine-assisted first draft by Common Ground, from the directory records.</change>
+      <change when="2026-10-28" type="revised">Credits tidied: the computer-assisted first draft is credited in the byline.</change>
     </revisionDesc>
   </teiHeader>
   <standOff>
@@ -76,7 +80,6 @@
     <body>
       <p>Alexander Mair, timber yard, is listed at 10 <ref target="civic?id=Leicester%20Street">Leicester Street</ref> from 1862. From 1867 the business is Alexander Mair and Co., and from 1870 timber and iron merchants. The yard ran through to <ref target="civic?id=Victoria%20Street">Victoria Street</ref>, and the directories list it under both streets from 1872: at 10, later 8, then 1 and 2 Leicester Street, and at 5, then 1, then 218 Victoria Street.</p>
       <p>It is listed in every directory to 1925, the last year under Leicester Street, and in 1890 as coach builders' ironmongers.</p>
-      <p><hi rend="italic">This entry is a machine-assisted first draft by Common Ground, written from the directory records. Please correct or add to it.</hi></p>
     </body>
   </text>
 </TEI>
