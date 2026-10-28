@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="https://historicalesque.github.io/carlton/schema/carlton.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0" type="org" xml:lang="en">
+  <teiHeader>
+    <fileDesc>
+      <titleStmt>
+        <title>Nugget hotel</title>
+        <respStmt key="computer-assisted-draft">
+          <resp>Computer-assisted first draft</resp>
+          <name>Common Ground</name>
+        </respStmt>
+      </titleStmt>
+      <publicationStmt>
+        <publisher>Common Ground</publisher>
+        <idno type="entry">Nugget-hotel</idno>
+      </publicationStmt>
+      <sourceDesc>
+        <listBibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1865">Sands &amp; McDougall Directory, 1865, p. 65</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1866">Sands &amp; McDougall Directory, 1866, p. 67</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1867">Sands &amp; McDougall Directory, 1867, p. 68</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1868">Sands &amp; McDougall Directory, 1868, p. 78</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1869">Sands &amp; McDougall Directory, 1869, p. 73</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1870">Sands &amp; McDougall Directory, 1870, p. 77</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1871">Sands &amp; McDougall Directory, 1871, p. 80</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1872">Sands &amp; McDougall Directory, 1872, p. 85</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1873">Sands &amp; McDougall Directory, 1873, p. 89</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1874">Sands &amp; McDougall Directory, 1874, p. 88</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1875">Sands &amp; McDougall Directory, 1875, p. 90</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1876">Sands &amp; McDougall Directory, 1876, p. 62</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1877">Sands &amp; McDougall Directory, 1877, p. 62</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1878">Sands &amp; McDougall Directory, 1878, p. 62</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1879">Sands &amp; McDougall Directory, 1879, p. 62</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1880">Sands &amp; McDougall Directory, 1880, p. 64</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1885">Sands &amp; McDougall Directory, 1885, p. 88</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1890">Sands &amp; McDougall Directory, 1890, p. 121</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1895">Sands &amp; McDougall Directory, 1895, p. 139</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1900">Sands &amp; McDougall Directory, 1900, p. 173</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1905">Sands &amp; McDougall Directory, 1905, p. 179</ref></bibl>
+        </listBibl>
+      </sourceDesc>
+    </fileDesc>
+    <revisionDesc status="published">
+      <change when="2026-10-28" type="created">Computer-assisted first draft by Common Ground, from the directory records.</change>
+    </revisionDesc>
+  </teiHeader>
+  <standOff>
+    <listOrg>
+      <org xml:id="subject">
+        <orgName type="main">Nugget hotel</orgName>
+      </org>
+    </listOrg>
+  </standOff>
+  <text>
+    <body>
+      <div>
+        <head>In the directories</head>
+        <p>The Nugget Hotel is in the directories in <ref target="civic?id=Bouverie%20Street">Bouverie Street</ref> from 1865 to 1905. It is No. 39 from 1865 to 1877, No. 41 from 1878 to 1885, Nos 63 and 65 in 1890 and No. 63 from 1895.</p>
+        <p>The directories list the proprietors as William Hamey (1865 and 1866), Thomas Sheehan (1867), William Holmes (1868 to 1885), Chris. Gee (1890), Henry Stephens (1895), Thomas Holmes (1900) and P. J. Vonbaer (1905). A Thomas Holmes is also listed at No. 33 Bouverie Street in 1876 and 1880.</p>
+      </div>
+      <div>
+        <head>Neighbours</head>
+        <p>The <ref target="civic?id=Bouverie%20hotel">Bouverie hotel</ref> is a few doors away at No. 47 in 1865 and 1866. No. 37, next door, is a grocer's from 1865 to 1871 (J. Jones, then Richard H. Jones, then Ann Jones), then a store or general dealer's: James Hannigan (1872), Hugh McKernon (1873), John Hyams (1874 and 1875) and A. H. Isaacs (1877 to 1879). William Morley, tailor, is on the other side from 1876 to 1878.</p>
+      </div>
+      <div>
+        <head>See also</head>
+        <list rend="bulleted">
+          <item><ref target="civic?id=Hotels">Hotels</ref></item>
+          <item><ref target="civic?id=Bouverie%20hotel">Bouverie hotel</ref></item>
+          <item><ref target="civic?id=Bouverie%20Street">Bouverie Street</ref></item>
+        </list>
+      </div>
+    </body>
+  </text>
+</TEI>

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="https://historicalesque.github.io/carlton/schema/carlton.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0" type="place" xml:lang="en">
+  <teiHeader>
+    <fileDesc>
+      <titleStmt>
+        <title>Agra Place</title>
+        <respStmt key="computer-assisted-draft">
+          <resp>Computer-assisted first draft</resp>
+          <name>Common Ground</name>
+        </respStmt>
+      </titleStmt>
+      <publicationStmt>
+        <publisher>Common Ground</publisher>
+        <idno type="entry">Agra-Place</idno>
+      </publicationStmt>
+      <sourceDesc>
+        <listBibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1878">Sands &amp; McDougall Directory, 1878, p. 61</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1879">Sands &amp; McDougall Directory, 1879, p. 62</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1880">Sands &amp; McDougall Directory, 1880, p. 63</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1885">Sands &amp; McDougall Directory, 1885, p. 87</ref></bibl>
+        </listBibl>
+      </sourceDesc>
+    </fileDesc>
+    <revisionDesc status="published">
+      <change when="2026-10-28" type="created">Computer-assisted first draft by Common Ground, from the directory records.</change>
+    </revisionDesc>
+  </teiHeader>
+  <standOff>
+    <listPlace>
+      <place xml:id="subject">
+        <placeName type="main">Agra Place</placeName>
+      </place>
+    </listPlace>
+  </standOff>
+  <text>
+    <body>
+      <div>
+        <head>In the directories</head>
+        <p>Agra Place is off the west side of <ref target="civic?id=Barry%20Street">Barry Street</ref>, between Queensberry Street and Pelham Street. It is listed as its own street in the directories from 1878 to 1885, with three houses numbered 1, 3 and 5, and as a corner in the Barry Street listings from 1878 to 1905.</p>
+      </div>
+      <div>
+        <head>Neighbours</head>
+        <p>The <ref target="civic?id=Sir%20Redmond%20Barry%20hotel">Sir Redmond Barry hotel</ref> is beside Agra Place in Barry Street. In the Agra Place listings, the three houses are followed by John Snowden, carpenter, who is listed next to the hotel from 1867 to 1885.</p>
+      </div>
+      <div>
+        <head>See also</head>
+        <list rend="bulleted">
+          <item><ref target="civic?id=Barry%20Street">Barry Street</ref></item>
+          <item><ref target="civic?id=Sir%20Redmond%20Barry%20hotel">Sir Redmond Barry hotel</ref></item>
+          <item><ref target="civic?id=Eliza%20Terrace">Eliza Terrace</ref></item>
+          <item><ref target="civic?id=Pattison%27s%20Terrace">Pattison's Terrace</ref></item>
+        </list>
+      </div>
+    </body>
+  </text>
+</TEI>

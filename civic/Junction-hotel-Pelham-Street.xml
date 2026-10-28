@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="https://historicalesque.github.io/carlton/schema/carlton.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0" type="org" xml:lang="en">
+  <teiHeader>
+    <fileDesc>
+      <titleStmt>
+        <title>Junction hotel (Pelham Street)</title>
+        <respStmt key="computer-assisted-draft">
+          <resp>Computer-assisted first draft</resp>
+          <name>Common Ground</name>
+        </respStmt>
+      </titleStmt>
+      <publicationStmt>
+        <publisher>Common Ground</publisher>
+        <idno type="entry">Junction-hotel-Pelham-Street</idno>
+      </publicationStmt>
+      <sourceDesc>
+        <listBibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1866">Sands &amp; McDougall Directory, 1866, p. 80</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1867">Sands &amp; McDougall Directory, 1867, p. 82</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1868">Sands &amp; McDougall Directory, 1868, p. 94</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1869">Sands &amp; McDougall Directory, 1869, p. 92</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1870">Sands &amp; McDougall Directory, 1870, p. 96</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1871">Sands &amp; McDougall Directory, 1871, p. 101</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1872">Sands &amp; McDougall Directory, 1872, p. 102</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1873">Sands &amp; McDougall Directory, 1873, p. 107</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1874">Sands &amp; McDougall Directory, 1874, p. 105</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1875">Sands &amp; McDougall Directory, 1875, p. 108</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1876">Sands &amp; McDougall Directory, 1876, p. 73</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1877">Sands &amp; McDougall Directory, 1877, p. 74</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1878">Sands &amp; McDougall Directory, 1878, p. 75</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1879">Sands &amp; McDougall Directory, 1879, p. 76</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1880">Sands &amp; McDougall Directory, 1880, p. 78</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1885">Sands &amp; McDougall Directory, 1885, p. 104</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1890">Sands &amp; McDougall Directory, 1890, p. 139</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1895">Sands &amp; McDougall Directory, 1895, p. 157</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1900">Sands &amp; McDougall Directory, 1900, p. 192</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1905">Sands &amp; McDougall Directory, 1905, p. 198</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1910">Sands &amp; McDougall Directory, 1910, p. 206</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1915">Sands &amp; McDougall Directory, 1915, p. 201</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1920">Sands &amp; McDougall Directory, 1920, p. 213</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1925">Sands &amp; McDougall Directory, 1925, p. 241-242</ref></bibl>
+        </listBibl>
+      </sourceDesc>
+    </fileDesc>
+    <revisionDesc status="published">
+      <change when="2026-10-28" type="created">Computer-assisted first draft by Common Ground, from the directory records.</change>
+    </revisionDesc>
+  </teiHeader>
+  <standOff>
+    <listOrg>
+      <org xml:id="subject">
+        <orgName type="main">Junction hotel (Pelham Street)</orgName>
+      </org>
+    </listOrg>
+  </standOff>
+  <text>
+    <body>
+      <div>
+        <head>In the directories</head>
+        <p>The Junction Hotel is in the directories in <ref target="civic?id=Pelham%20Street">Pelham Street</ref> from 1866 to 1925. It is the first listing after the Elizabeth Street corner (Elizabeth Street extension in 1866, later Elizabeth Street North). In 1895 it is also listed in <ref target="civic?id=Elizabeth%20Street%20North">Elizabeth Street North</ref> at No. 714, under the same proprietor (<ref target="civic?id=Junction%20hotel%20%28Elizabeth%20Street%29">Junction hotel, Elizabeth Street</ref>).</p>
+        <p>The directories list the proprietors as Mrs M. A. Clark (1866), Wm. B. Lawrence (1867 to 1871), Jas. Pratt (1872 to 1880), P. Maher (1885), Thomas Donovan (1890), Mrs Annie L. Donovan (1895), Miss Bridget Kelly (1900), Hugh Crosbie (1905) and Mrs A. Crosbie (1910 to 1920). No proprietor is given in 1925.</p>
+      </div>
+      <div>
+        <head>Neighbours</head>
+        <p>John Pratt is listed next door at No. 1 Pelham Street from 1873 to 1878, while Jas. Pratt is the proprietor. Mrs Worrall, dressmaker, is next door in 1880. In 1920 Hugh Crosbie is listed beside the hotel.</p>
+      </div>
+      <div>
+        <head>See also</head>
+        <list rend="bulleted">
+          <item><ref target="civic?id=Hotels">Hotels</ref></item>
+          <item><ref target="civic?id=Pelham%20Street">Pelham Street</ref></item>
+          <item><ref target="civic?id=Elizabeth%20Street%20North">Elizabeth Street North</ref></item>
+        </list>
+      </div>
+    </body>
+  </text>
+</TEI>

@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="https://historicalesque.github.io/carlton/schema/carlton.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0" type="org" xml:lang="en">
+  <teiHeader>
+    <fileDesc>
+      <titleStmt>
+        <title>Harp of Erin hotel</title>
+        <respStmt key="computer-assisted-draft">
+          <resp>Computer-assisted first draft</resp>
+          <name>Common Ground</name>
+        </respStmt>
+      </titleStmt>
+      <publicationStmt>
+        <publisher>Common Ground</publisher>
+        <idno type="entry">Harp-of-Erin-hotel</idno>
+      </publicationStmt>
+      <sourceDesc>
+        <listBibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1858">Sands &amp; McDougall Directory, 1858, p. 189</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1859">Sands &amp; McDougall Directory, 1859, p. 75</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1860">Sands &amp; McDougall Directory, 1860, p. 89</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1861">Sands &amp; McDougall Directory, 1861, p. 89</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1862">Sands &amp; McDougall Directory, 1862, p. 89</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1863">Sands &amp; McDougall Directory, 1863, p. 71</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1864">Sands &amp; McDougall Directory, 1864, p. 76</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1865">Sands &amp; McDougall Directory, 1865, p. 75</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1866">Sands &amp; McDougall Directory, 1866, p. 79</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1867">Sands &amp; McDougall Directory, 1867, p. 81</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1868">Sands &amp; McDougall Directory, 1868, p. 92</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1869">Sands &amp; McDougall Directory, 1869, p. 89</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1870">Sands &amp; McDougall Directory, 1870, p. 93</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1871">Sands &amp; McDougall Directory, 1871, p. 98</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1872">Sands &amp; McDougall Directory, 1872, p. 99</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1873">Sands &amp; McDougall Directory, 1873, p. 105</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1874">Sands &amp; McDougall Directory, 1874, p. 103</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1875">Sands &amp; McDougall Directory, 1875, p. 105</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1876">Sands &amp; McDougall Directory, 1876, p. 72</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1877">Sands &amp; McDougall Directory, 1877, p. 72</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1878">Sands &amp; McDougall Directory, 1878, p. 73</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1879">Sands &amp; McDougall Directory, 1879, p. 74</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1880">Sands &amp; McDougall Directory, 1880, p. 75</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1885">Sands &amp; McDougall Directory, 1885, p. 101</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1890">Sands &amp; McDougall Directory, 1890, p. 135</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1895">Sands &amp; McDougall Directory, 1895, p. 154</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1900">Sands &amp; McDougall Directory, 1900, p. 189</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1905">Sands &amp; McDougall Directory, 1905, p. 195</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1910">Sands &amp; McDougall Directory, 1910, p. 203</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1915">Sands &amp; McDougall Directory, 1915, p. 199</ref></bibl>
+        </listBibl>
+      </sourceDesc>
+    </fileDesc>
+    <revisionDesc status="published">
+      <change when="2026-10-28" type="created">Computer-assisted first draft by Common Ground, from the directory records.</change>
+    </revisionDesc>
+  </teiHeader>
+  <standOff>
+    <listOrg>
+      <org xml:id="subject">
+        <orgName type="main">Harp of Erin hotel</orgName>
+      </org>
+    </listOrg>
+  </standOff>
+  <text>
+    <body>
+      <div>
+        <head>In the directories</head>
+        <p>The Harp of Erin Hotel is in the directories in <ref target="civic?id=Madeline%20Street">Madeline Street</ref> from 1858 to 1915. It is No. 71 in 1859, No. 87 in 1860 and 1861, and No. 75 from 1862 to 1885 (No. 74 in 1876 and 1877). After the street was renumbered it is Nos 107 and 109 in 1890 and No. 107 from 1895. A Harp of Erin Lane is listed in Madeline Street in 1895.</p>
+        <p>The directories list the proprietors as John Hassett (1858 and 1859), James Bultitude (1860 to 1863), J. J. O'Callaghan (1864), James Kelly (1865), Patrick Shehan (1866 and 1867), M. Dempsey (1868 and 1869), Michael Lacy (1870), William Kane (1871), P. Ryan (1872), O. Lee (1873 and 1874), J. Barry (1875), Robert S. Lynch (1876 to 1878), James F. Tresnan (1879 and 1880), Timothy Harrington (1885), John E. Cox (1890), Alex. J. McCarthy (1895), Thomas Taylor (1900), Harry Welch (1905), Mrs M. Sinclair (1910) and Chris. Fitzpatrick (1915).</p>
+        <p>Three of these surnames are also listed at the <ref target="civic?id=Queensberry%20hotel">Queensberry hotel</ref>, further along Madeline Street: Ann Bultitude (1868 to 1870), Oriel Lee (1866) and Mrs E. Fitzpatrick (1915 to 1930). The directories don't say whether they were related.</p>
+      </div>
+      <div>
+        <head>Neighbours</head>
+        <p>For most of the hotel's first thirty years the shop next door was a grocer's. James Parker, grocer, is at No. 73 in 1859, No. 91 in 1860 and 1861 and at No. 79 from 1862 to 1867, and Waddel McBride, grocer, at No. 79 in 1868. At No. 73 the directories list Louis Schmidt, grocer (1870), James Lockwood, grocer (1871), Antonio Philippe's store (1872 to 1875), Archibald McDougall, grocer (1877 and 1878) and Mrs O'Leary, grocer (1879 and 1880).</p>
+      </div>
+      <div>
+        <head>See also</head>
+        <list rend="bulleted">
+          <item><ref target="civic?id=Hotels">Hotels</ref></item>
+          <item><ref target="civic?id=Queensberry%20hotel">Queensberry hotel</ref></item>
+          <item><ref target="civic?id=Madeline%20Street">Madeline Street</ref></item>
+        </list>
+      </div>
+    </body>
+  </text>
+</TEI>

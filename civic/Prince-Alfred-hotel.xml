@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="https://historicalesque.github.io/carlton/schema/carlton.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0" type="org" xml:lang="en">
+  <teiHeader>
+    <fileDesc>
+      <titleStmt>
+        <title>Prince Alfred hotel</title>
+        <respStmt key="computer-assisted-draft">
+          <resp>Computer-assisted first draft</resp>
+          <name>Common Ground</name>
+        </respStmt>
+      </titleStmt>
+      <publicationStmt>
+        <publisher>Common Ground</publisher>
+        <idno type="entry">Prince-Alfred-hotel</idno>
+      </publicationStmt>
+      <sourceDesc>
+        <listBibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1876">Sands &amp; McDougall Directory, 1876, pp. 63, 68</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1877">Sands &amp; McDougall Directory, 1877, pp. 63, 68</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1878">Sands &amp; McDougall Directory, 1878, pp. 63, 69</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1879">Sands &amp; McDougall Directory, 1879, pp. 63, 70</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1880">Sands &amp; McDougall Directory, 1880, p. 71</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1885">Sands &amp; McDougall Directory, 1885, p. 96</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1890">Sands &amp; McDougall Directory, 1890, p. 130</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1895">Sands &amp; McDougall Directory, 1895, p. 149</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1900">Sands &amp; McDougall Directory, 1900, p. 182-183</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1905">Sands &amp; McDougall Directory, 1905, p. 189</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1910">Sands &amp; McDougall Directory, 1910, p. 197</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1915">Sands &amp; McDougall Directory, 1915, p. 195</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1920">Sands &amp; McDougall Directory, 1920, p. 207</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1925">Sands &amp; McDougall Directory, 1925, p. 236</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1930">Sands &amp; McDougall Directory, 1930, p. 196</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1935">Sands &amp; McDougall Directory, 1935, p. 195</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1940">Sands &amp; McDougall Directory, 1940, p. 218</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1945">Sands &amp; McDougall Directory, 1945, p. 216</ref></bibl>
+        </listBibl>
+      </sourceDesc>
+    </fileDesc>
+    <revisionDesc status="published">
+      <change when="2026-10-28" type="created">Computer-assisted first draft by Common Ground, from the directory records.</change>
+    </revisionDesc>
+  </teiHeader>
+  <standOff>
+    <listOrg>
+      <org xml:id="subject">
+        <orgName type="main">Prince Alfred hotel</orgName>
+      </org>
+    </listOrg>
+  </standOff>
+  <text>
+    <body>
+      <div>
+        <head>In the directories</head>
+        <p>The Prince Alfred Hotel is in the directories from 1876 to 1945, on the corner of <ref target="civic?id=Grattan%20Street">Grattan Street</ref> and <ref target="civic?id=Bouverie%20Street">Bouverie Street</ref>. In 1876 it is listed under Bouverie Street and Alfred Cottages, in 1877 under Devonshire Terrace and Grattan Street, and in 1878 and 1879 under Bouverie and Grattan streets. From 1880 it is listed only in Grattan Street, at No. 191 from 1900 and Nos 191–195 from 1930.</p>
+        <p>The directories list the proprietors as John O'Rourke (1876), J. Gordon (1877 and 1878), Mrs Mary A. Silk (1879 and 1880), John Gardner (1885), Mrs Amy Rowles (1890), Mrs Alice Burnell (1895), Mrs Lily Burnell (1900), Mrs A. M. Rogers (1905), Mrs M. Fitzgibbon (1910), James Courtney (1915), Mrs Alice Campbell (1920), Wm. King (1925), Mrs Ada L. Kelly, licensee (1930), Mrs E. Gray (1935) and J. W. Long (1940). No proprietor is given in 1945, when Mrs E. M. Long is listed at the same number.</p>
+      </div>
+      <div>
+        <head>Neighbours</head>
+        <p>T. Wiedemann, violin teacher, is at No. 4 Devonshire Terrace in 1877. Alfred Cottages, where the hotel is listed in 1876, is also where the <ref target="civic?id=University%20School">University School</ref> is listed in 1873 and 1874. Geo. R. Blay is next door at No. 199 Grattan Street in 1930 and 1935.</p>
+      </div>
+      <div>
+        <head>See also</head>
+        <list rend="bulleted">
+          <item><ref target="civic?id=Hotels">Hotels</ref></item>
+          <item><ref target="civic?id=Schools">Schools</ref></item>
+          <item><ref target="civic?id=Grattan%20Street">Grattan Street</ref></item>
+          <item><ref target="civic?id=Bouverie%20Street">Bouverie Street</ref></item>
+        </list>
+      </div>
+    </body>
+  </text>
+</TEI>
