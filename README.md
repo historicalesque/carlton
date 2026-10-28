@@ -100,7 +100,7 @@ With `preview=true`, `id` can be a full URL, such as a raw file on a pull-reques
 | `_layouts/default.html` | Site shell: header, navigation and footer. Does **not** load any data; layouts that need it load it through `scripts/data.js`. |
 | `_layouts/search.html`, `scripts/search.js` | Search page (see [Search, facets and maps](#search-facets-and-maps)). |
 | `_layouts/entry.html` | Fetches and renders one entry (TEI, or EAC-CPF for any older file), and adds the contribution form. |
-| `_layouts/form.html` | Contribution form (Quill 1.3.6). Builds the entry as TEI, with optional extra sections and a *Show all fields* switch. Not connected yet: it previews the entry and downloads the XML. |
+| `_layouts/form.html` | Contribution form (Quill 1.3.6). Builds the entry as TEI. Part A is always shown: title, type, and three boxes (summary, "Tell us everything!", and references, one per line). Part B, behind the *Add more detail* switch, holds the byline credits, linked records, directory and roll citations, sources with links, and the structured fields. Part C, before Send, holds the author credit and the licence tick box that Send waits for. |
 | `_layouts/new.html` | "Start a new entry" box that redirects to `civic?id=…`. |
 | `_layouts/facet-list.html` | Electoral rolls listings. |
 | `_layouts/map.html`, `_layouts/map3d.html` | 2D Leaflet map and 3D three.js map. |
