@@ -95,11 +95,7 @@
     .linked-note { font-size: 13px; color: var(--ink-faint); }
 
     /* --- Finding other records the entry is about --- */
-    .record-finder { margin: -12px 0 24px; font-size: 14px; }
-    /* Nothing above it (e.g. site pages): don't pull it up out of the frame */
-    #details-container:empty + .record-finder { margin-top: 0; }
-    .record-finder summary { cursor: pointer; color: var(--moss-deep); }
-    .record-finder .finder-body { padding: 10px 0 0; }
+    .record-finder { font-size: 14px; }
     .finder-status { font-size: 13px; color: var(--ink-faint); margin: 6px 0; }
     .finder-results { list-style: none; padding: 0; margin: 0; }
     .finder-results li { display: flex; gap: 10px; align-items: baseline; justify-content: space-between; padding: 6px 0; border-bottom: 1px dashed var(--paper-line); }
@@ -131,7 +127,7 @@
       margin-left: 6px;
       vertical-align: middle;
     }
-    input[type="text"], input[type="url"], select {
+    input[type="text"], input[type="url"], select, textarea {
       width: 100%;
       font-family: var(--font-mono);
       font-size: 15px;
@@ -142,8 +138,9 @@
       border-radius: 0;
     }
     select { font-family: var(--font-ui); }
-    input::placeholder { color: var(--ink-faint); }
-    input:focus, select:focus { outline: 2px solid var(--moss); outline-offset: 1px; }
+    textarea { font-family: var(--font-ui); line-height: 1.5; resize: vertical; display: block; }
+    input::placeholder, textarea::placeholder { color: var(--ink-faint); }
+    input:focus, select:focus, textarea:focus { outline: 2px solid var(--moss); outline-offset: 1px; }
     .hint { font-size: 13px; color: var(--ink-faint); margin: -2px 0 8px; }
 
     /* "What is this entry about?" as one-tap chips */
@@ -194,7 +191,7 @@
     .ql-snow .ql-tooltip { background: var(--paper); border-color: var(--sage-dark); color: var(--ink-soft); box-shadow: none; }
     .ql-snow .ql-tooltip a, .ql-editor a { color: var(--moss); }
     .ql-snow .ql-editor blockquote { border-left-color: var(--moss); font-family: var(--font-serif); }
-    #editor-container { height: 440px; }
+    #editor-container { height: 300px; }
     .ql-table-embed table { border-collapse: collapse; width: 100%; }
     .ql-table-embed td, .ql-table-embed th { border: 1px solid var(--paper-line); padding: 6px 8px; }
 
@@ -215,7 +212,10 @@
     }
     .more-head p { font-size: 14px; margin-top: 4px; max-width: 46ch; }
 
-    /* "Show all fields" switch */
+    /* "Add more detail" switch: shows or hides all of Part B */
+    .more-switch { margin: 26px 0 0; }
+    #partB { display: none; }
+    .show-all #partB { display: block; }
     .switch { display: flex; align-items: center; gap: 8px; cursor: pointer; text-transform: none; letter-spacing: normal; font-size: 14px; color: var(--ink); margin: 0; }
     .switch input { position: absolute; opacity: 0; width: 1px; height: 1px; }
     .switch .track {
@@ -262,11 +262,16 @@
       .section-body { padding-left: 0; }
     }
 
-    .advanced-only { display: none !important; }
-    .show-all .advanced-only { display: block !important; }
-    .show-all .row.advanced-only { display: grid !important; }
     .person-only:not(.is-person) { display: none !important; }
-    .advanced-badge { font-size: 10px; text-transform: uppercase; letter-spacing: .1em; color: var(--paper); background: var(--sage-dark); padding: 1px 5px; }
+
+    /* Part C: credit and licence */
+    .part-c { margin: 26px 0 18px; padding-top: 18px; border-top: 1px solid var(--paper-line); }
+    .part-c [data-list="authors"] { margin-top: 10px; }
+    .licence-line { align-items: flex-start; line-height: 1.45; }
+    .licence-line input { flex: none; margin-top: 2px; }
+    .licence-line a, .send-note a, .form-intro a { color: var(--moss); }
+    .send-note { font-size: 13px; color: var(--ink-faint); margin-top: 10px; }
+    .byline-hint { margin-top: 8px; }
 
     /* Repeatable rows */
     .row {
@@ -351,22 +356,10 @@
   <p class="test-note"><strong>Not connected yet.</strong> This new form doesn't send anything: use <em>Preview</em> to see how the entry would look and its XML.</p>
 {%- endunless %}
 
-  <div id="details-container"></div>
-  <!-- Other records this entry is about (not when suggesting changes) -->
-  <details class="record-finder" id="recordFinder" hidden>
-    <summary>Is this entry about other records too?</summary>
-    <div class="finder-body">
-      <p class="hint">For example, the same shop or person in other years. Records you add are linked to this entry when the editors accept it.</p>
-      <label for="recordSearch">Search the directories and electoral rolls</label>
-      <input type="text" id="recordSearch" placeholder="e.g. 34 Barry Street, or Spiers" autocomplete="off">
-      <p class="finder-status" id="finderStatus" aria-live="polite"></p>
-      <ul class="finder-results" id="finderResults"></ul>
-    </div>
-  </details>
-
   <h2 id="formHeading">Suggest entry contents</h2>
-  <p class="form-intro" id="formIntro"><i>Instructions go here. Links to editorial guidance, etc. </i></p>
+  <p class="form-intro" id="formIntro">Write what you know, in your own words. A paragraph is plenty. Please say where each fact comes from: a directory year, a newspaper on Trove, a rate book, or “family memory”. The editorial collective reads every suggestion before deciding whether, and how, it appears on the site. <a href="about#contribute" target="_blank" rel="noopener">How to contribute</a></p>
   <div class="review-warning" id="reviewWarning" hidden></div>
+  <div id="prefillNotes"></div>
 
   <form id="contributionForm" novalidate>
     <!-- Only when suggesting changes to a submission (?review=…) -->
@@ -377,14 +370,10 @@
       </div>
     </div>
 
-    <div class="field-group">
-      <label for="authorName" id="authorLabel">Your name</label>
-      <input type="text" id="authorName" name="authorName" placeholder="e.g. Dr. John Smith" autocomplete="name" required>
-    </div>
-
+    <!-- Part A: always shown, short enough for a single fact -->
     <div class="field-group">
       <label for="articleTitle">Entry title</label>
-      <input type="text" id="articleTitle" name="articleTitle" placeholder="e.g. Princes Bridge" required>
+      <input type="text" id="articleTitle" name="articleTitle" placeholder="e.g. Ellen Hogan" required>
     </div>
 
     <fieldset class="field-group">
@@ -399,24 +388,71 @@
       </div>
     </fieldset>
 
+    <p class="hint">Fill in at least one of these three boxes.</p>
     <div class="field-group">
-      <label id="articleLabel">Entry text</label>
+      <label for="summary">In a sentence or two, who or what was this?</label>
+      <textarea id="summary" rows="3" placeholder="e.g. Ellen Hogan was publican of the Otago Hotel in Pelham Street in the mid 1870s."></textarea>
+    </div>
+
+    <div class="field-group">
+      <label id="articleLabel">Tell us everything!</label>
       <div id="editor-container" aria-labelledby="articleLabel"></div>
     </div>
 
-    <!-- Everything in this box is optional -->
-    <section class="more" aria-labelledby="moreHeading">
+    <div class="field-group">
+      <label for="references">Where did you find this?</label>
+      <p class="hint">One per line. A link at the end of a line is kept as a link.</p>
+      <textarea id="references" rows="4" placeholder="e.g. Argus, 7 December 1859, p. 3"></textarea>
+    </div>
+
+    <!-- Part B: everything else, behind one switch -->
+    <label class="switch more-switch">
+      <input type="checkbox" id="showAll" role="switch" aria-controls="partB">
+      <span class="track" aria-hidden="true"></span>
+      <span>Add more detail<small>Byline, linked records, sources with links, dates, addresses and more. For the project team and keen researchers.</small></span>
+    </label>
+
+    <section class="more" id="partB" aria-labelledby="moreHeading">
       <div class="more-head">
         <div>
-          <h3 id="moreHeading">Add more detail <span class="optional-tag">Optional</span></h3>
-          <p>Everything in this box is optional. You can send your entry without it. Fill in only what you know.</p>
+          <h3 id="moreHeading">More detail <span class="optional-tag">Optional</span></h3>
+          <p>Everything here is optional. Fill in only what you know.</p>
         </div>
-        <label class="switch">
-          <input type="checkbox" id="showAll" role="switch">
-          <span class="track" aria-hidden="true"></span>
-          <span>Show all fields<small>For editors and keen researchers</small></span>
-        </label>
       </div>
+
+      <details class="section" data-section="byline" data-nocount>
+        <summary><span class="sum-title">Byline</span><span class="sum-hint">How the entry is credited under its title</span></summary>
+        <div class="section-body">
+          <label class="check-line"><input type="checkbox" id="creditCommunity"> Includes suggestions from the broader Carlton community</label>
+          <label class="check-line"><input type="checkbox" id="creditDraft"> Based on a computer-assisted first draft</label>
+          <p class="hint byline-hint">Filled in from the current entry. You can untick either, for example after a full redraft; the editorial collective decides whether to accept the change.</p>
+        </div>
+      </details>
+
+      <!-- Other records this entry is about (not when suggesting changes) -->
+      <details class="section" data-section="records" id="recordsSection" data-nocount hidden>
+        <summary><span class="sum-title">Is this entry about other records too?</span><span class="sum-hint">Directory and electoral-roll records</span></summary>
+        <div class="section-body">
+          <div id="records-container"></div>
+          <div class="record-finder" id="recordFinder">
+            <p class="hint">For example, the same shop or person in other years. Records you add are linked to this entry when the editors accept it.</p>
+            <label for="recordSearch">Search the directories and electoral rolls</label>
+            <input type="text" id="recordSearch" placeholder="e.g. 34 Barry Street, or Spiers" autocomplete="off">
+            <p class="finder-status" id="finderStatus" aria-live="polite"></p>
+            <ul class="finder-results" id="finderResults"></ul>
+          </div>
+        </div>
+      </details>
+
+      <details class="section" data-section="recordSources">
+        <summary><span class="sum-title">In the directories and electoral rolls</span><span class="sum-hint">Citations filled in from the linked records</span><span class="sum-count"></span></summary>
+        <div class="section-body"><div class="rows" data-list="recordSources"></div></div>
+      </details>
+
+      <details class="section" data-section="sources">
+        <summary><span class="sum-title">Sources</span><span class="sum-hint">The same list as “Where did you find this?”, with links</span><span class="sum-count"></span></summary>
+        <div class="section-body"><div class="rows" data-list="sources"></div></div>
+      </details>
 
       <details class="section" data-section="dates">
         <summary><span class="sum-title">Dates</span><span class="sum-hint" data-hint="dates"></span><span class="sum-count"></span></summary>
@@ -433,8 +469,8 @@
       <details class="section" data-section="names">
         <summary><span class="sum-title">Other names</span><span class="sum-hint">Earlier or later names, e.g. Carlton Inn, later the Corkman Hotel</span><span class="sum-count"></span></summary>
         <div class="section-body">
-          <div class="row advanced-only person-only" id="nameParts">
-            <p class="hint wide">Name parts for people <span class="advanced-badge">All fields</span></p>
+          <div class="row person-only" id="nameParts">
+            <p class="hint wide">Name parts for people</p>
             <div class="field-group"><label for="surname">Surname</label><input type="text" id="surname" placeholder="e.g. Cozens"></div>
             <div class="field-group"><label for="forenames">Forenames</label><input type="text" id="forenames" placeholder="e.g. John"></div>
           </div>
@@ -445,7 +481,7 @@
       <details class="section" data-section="places">
         <summary><span class="sum-title">Addresses</span><span class="sum-hint">Where they lived or worked, with years</span><span class="sum-count"></span></summary>
         <div class="section-body">
-          <p class="hint">Tip: the directory records at the top of the form have a <em>Use this address</em> button.</p>
+          <p class="hint">Tip: the linked records above have a <em>Use this address</em> button.</p>
           <div class="rows" data-list="places"></div>
         </div>
       </details>
@@ -455,49 +491,50 @@
         <div class="section-body"><div class="rows" data-list="occupations"></div></div>
       </details>
 
-      <details class="section" data-section="sources">
-        <summary><span class="sum-title">Sources you used</span><span class="sum-hint">Newspapers, directories, books, archives</span><span class="sum-count"></span></summary>
-        <div class="section-body"><div class="rows" data-list="sources"></div></div>
-      </details>
-
-      <details class="section" data-section="authors">
-        <summary><span class="sum-title">More authors</span><span class="sum-hint">If others wrote this with you</span><span class="sum-count"></span></summary>
-        <div class="section-body"><div class="rows" data-list="authors"></div></div>
-      </details>
-
-      <!-- Only with "Show all fields" -->
-      <details class="section advanced-only" data-section="legal">
-        <summary><span class="sum-title">Legal status</span><span class="sum-hint">e.g. a publican's licence</span><span class="advanced-badge">All fields</span><span class="sum-count"></span></summary>
+      <details class="section" data-section="legal">
+        <summary><span class="sum-title">Legal status</span><span class="sum-hint">e.g. a publican's licence</span><span class="sum-count"></span></summary>
         <div class="section-body"><div class="rows" data-list="legalStatuses"></div></div>
       </details>
 
-      <details class="section advanced-only" data-section="chronology">
-        <summary><span class="sum-title">Chronology</span><span class="sum-hint">Dated events, one per row</span><span class="advanced-badge">All fields</span><span class="sum-count"></span></summary>
+      <details class="section" data-section="chronology">
+        <summary><span class="sum-title">Chronology</span><span class="sum-hint">Dated events, one per row</span><span class="sum-count"></span></summary>
         <div class="section-body"><div class="rows" data-list="chronology"></div></div>
       </details>
 
-      <details class="section advanced-only" data-section="relations">
-        <summary><span class="sum-title">Related entries</span><span class="sum-hint">People, businesses and families connected to this one</span><span class="advanced-badge">All fields</span><span class="sum-count"></span></summary>
+      <details class="section" data-section="relations">
+        <summary><span class="sum-title">Related entries</span><span class="sum-hint">People, businesses and families connected to this one</span><span class="sum-count"></span></summary>
         <div class="section-body">
           <p class="hint">Start typing to pick an entry already on the site; its link fills in.</p>
           <div class="rows" data-list="relations"></div>
         </div>
       </details>
 
-      <details class="section advanced-only" data-section="note">
-        <summary><span class="sum-title">Note for the record</span><span class="sum-hint">What this contribution adds or changes</span><span class="advanced-badge">All fields</span><span class="sum-count"></span></summary>
+      <details class="section" data-section="note">
+        <summary><span class="sum-title">Note for the record</span><span class="sum-hint">What this contribution adds or changes</span><span class="sum-count"></span></summary>
         <div class="section-body">
           <div class="field-group"><label for="note">Note</label><input type="text" id="note" placeholder="e.g. Resubmitted from the old form with dates and addresses added"></div>
         </div>
       </details>
     </section>
 
+    <!-- Part C: credit and consent, just before Send -->
+    <div class="part-c">
+      <div class="field-group">
+        <label for="authorName" id="authorLabel">Credit as author (project team) <span class="optional-tag">Optional</span></label>
+        <p class="hint">A name here is credited in the byline.</p>
+        <input type="text" id="authorName" name="authorName" placeholder="e.g. Andy May" autocomplete="name">
+        <div class="rows" data-list="authors"></div>
+      </div>
+
+      <label class="check-line licence-line" id="licenceLine"><input type="checkbox" id="licenceOk" required> <span>I agree that what I’ve written may be published under a CC BY-NC 4.0 licence and credited to “the broader Carlton community”. <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">Read more</a></span></label>
+    </div>
+
     <!-- Honeypot: hidden from people, often filled in by bots -->
     <div class="hp" aria-hidden="true"><label for="website">Website</label><input type="text" id="website" name="website" tabindex="-1" autocomplete="off"></div>
 
     <div class="actions">
 {%- if connected %}
-      <button type="button" class="primary" id="sendBtn">Send to the editors</button>
+      <button type="button" class="primary" id="sendBtn" disabled>Send to the editors</button>
       <button type="button" class="secondary" id="previewBtn">Preview</button>
 {%- else %}
       <button type="button" class="primary" id="previewBtn">Preview</button>
@@ -506,6 +543,7 @@
       <span class="note">Nothing is sent until the form is connected.</span>
 {%- endunless %}
     </div>
+    <p class="send-note" id="sendNote">Suggestions are semi-public once sent (we have a large project team). Please don’t include anything private, and <a href="about#contact" target="_blank" rel="noopener">contact us via email</a> instead.</p>
     <p id="sendStatus" class="send-status" role="status" hidden></p>
   </form>
 
@@ -575,16 +613,19 @@
     places: { add: 'Add another address', fields: [
       { k: 'address', label: 'Address', ph: 'e.g. 160 Leicester Street, Carlton', wide: true },
       ...YEARS,
-      { k: 'role', label: 'Role', ph: 'e.g. Licensed premises', list: 'place-roles', advanced: true },
-      { k: 'lat', label: 'Latitude', ph: 'e.g. -37.8041', advanced: true },
-      { k: 'lng', label: 'Longitude', ph: 'e.g. 144.9602', advanced: true }] },
+      { k: 'role', label: 'Role', ph: 'e.g. Licensed premises', list: 'place-roles' },
+      { k: 'lat', label: 'Latitude', ph: 'e.g. -37.8041' },
+      { k: 'lng', label: 'Longitude', ph: 'e.g. 144.9602' }] },
     occupations: { add: 'Add another', fields: [
       { k: 'term', label: 'Occupation', ph: 'e.g. Publican', list: 'occupation-terms', wide: true }, ...YEARS] },
+    recordSources: { add: 'Add another citation', fields: [
+      { k: 'text', label: 'Citation', ph: 'e.g. Sands & McDougall Directory, 1875: 12 Hogan, Mrs E., Otago Hotel', wide: true },
+      { k: 'href', label: 'Link', ph: 'e.g. https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1875', type: 'url', wide: true }] },
     sources: { add: 'Add another source', fields: [
       { k: 'text', label: 'Source', ph: 'e.g. Argus, 7 December 1859, p. 3', wide: true },
       { k: 'href', label: 'Link (if online)', ph: 'e.g. https://trove.nla.gov.au/…', type: 'url', wide: true }] },
     authors: { add: 'Add another author', fields: [
-      { k: 'name', label: 'Author name', ph: 'e.g. Felice Rocca', wide: true }] },
+      { k: 'name', label: 'Also credited', ph: 'e.g. Felice Rocca', wide: true }] },
     legalStatuses: { add: 'Add another', fields: [
       { k: 'term', label: 'Legal status', ph: "e.g. Publican's licence", wide: true }, ...YEARS] },
     chronology: { add: 'Add another event', fields: [
@@ -608,7 +649,7 @@
     cfg.fields.forEach((f) => {
       const id = `f${++uid}`;
       const wrap = document.createElement('div');
-      wrap.className = `field-group${f.wide ? ' wide' : ''}${f.advanced ? ' advanced-only' : ''}`;
+      wrap.className = `field-group${f.wide ? ' wide' : ''}`;
       const label = document.createElement('label');
       label.htmlFor = id;
       label.textContent = f.label;
@@ -636,6 +677,7 @@
     remove.addEventListener('click', () => {
       if (box.querySelectorAll('.row').length > 1) row.remove();
       else row.querySelectorAll('input').forEach((i) => { i.value = ''; });
+      if (listName === 'sources') referencesFromRows();
       changed();
     });
     row.append(remove);
@@ -683,22 +725,63 @@
     applyKindLabels(); changed();
   });
 
-  /* ---------- "Show all fields" ---------- */
-  function setShowAll(on) {
+  /* ---------- "Add more detail": shows or hides all of Part B ---------- */
+  // Remembered in this browser, so the project team only switches it on once
+  const MORE_KEY = 'cg-form-more-detail';
+  function setShowAll(on, remember) {
     form.classList.toggle('show-all', on);
     $('showAll').checked = on;
-    // Opening everything shows editors the whole record at once; switching
-    // back closes only the sections that are still empty.
-    form.querySelectorAll('details.section').forEach((d) => {
-      if (on) d.open = true;
-      else if (!d.querySelector('.sum-count').textContent) d.open = false;
-    });
+    if (remember) try { localStorage.setItem(MORE_KEY, on ? '1' : ''); } catch (e) { /* not kept */ }
   }
-  $('showAll').addEventListener('change', (e) => setShowAll(e.target.checked));
+  $('showAll').addEventListener('change', (e) => setShowAll(e.target.checked, true));
+  try { if (localStorage.getItem(MORE_KEY)) setShowAll(true); } catch (e) { /* off */ }
+
+  /* ---------- "Where did you find this?" and the Sources rows ----------
+     One list shown two ways: a line per source in Part A, a row with its
+     link in Part B. A link at the end of a line becomes the row's link. */
+  function rowsFromReferences() {
+    const rows = $('references').value.split('\n').map((line) => line.trim()).filter(Boolean).map((line) => {
+      const m = line.match(/^(.*?)[\s,;:–-]*(https?:\/\/\S+)$/);
+      return m ? { text: m[1].trim(), href: m[2] } : { text: line, href: '' };
+    });
+    form.querySelectorAll('[data-list="sources"] .row').forEach((r) => r.remove());
+    rows.forEach((v) => addRow('sources', v));
+    if (!rows.length) addRow('sources');
+  }
+  function referencesFromRows() {
+    $('references').value = readList('sources')
+      .map((r) => [r.text.trim(), r.href.trim()].filter(Boolean).filter((v, i, a) => a.indexOf(v) === i).join(' '))
+      .filter(Boolean).join('\n');
+  }
+  form.addEventListener('input', (e) => {
+    if (e.target === $('references')) rowsFromReferences();
+    else if (e.target.closest('[data-list="sources"]')) referencesFromRows();
+  });
+
+  /* ---------- Byline credits ---------- */
+  // The community credit is ticked for anyone sending without a name, and
+  // kept for an entry that already has it, until the box is changed by hand
+  let entryCredits = { community: false, computerDraft: false };
+  let communityTouched = false;
+  function followCommunity() {
+    if (!communityTouched) $('creditCommunity').checked = entryCredits.community || !$('authorName').value.trim();
+  }
+  $('creditCommunity').addEventListener('change', () => { communityTouched = true; });
+  $('authorName').addEventListener('input', followCommunity);
+  function setCredits(credits, fixed) {
+    entryCredits = { community: !!(credits && credits.community), computerDraft: !!(credits && credits.computerDraft) };
+    $('creditDraft').checked = entryCredits.computerDraft;
+    if (fixed) { communityTouched = true; $('creditCommunity').checked = entryCredits.community; } else followCommunity();
+  }
+  followCommunity();
+
+  /* ---------- Licence: Send waits for the tick ---------- */
+  const sendReady = () => { if ($('sendBtn') && $('sendBtn').textContent !== 'Sent') $('sendBtn').disabled = !REVIEW && !$('licenceOk').checked; };
+  $('licenceOk').addEventListener('change', sendReady);
 
   /* ---------- Section markers ("Prefilled", "Added") ---------- */
   function updateCounts() {
-    form.querySelectorAll('details.section').forEach((d) => {
+    form.querySelectorAll('details.section:not([data-nocount])').forEach((d) => {
       let n = 0;
       const rows = d.querySelectorAll('.rows .row');
       if (rows.length) {
@@ -713,7 +796,7 @@
   // Sections with something in them once the form has been filled in for the
   // reader say "Prefilled"; ones they fill in themselves say "Added"
   function markPrefilled() {
-    form.querySelectorAll('details.section').forEach((d) => {
+    form.querySelectorAll('details.section:not([data-nocount])').forEach((d) => {
       if (d.querySelector('.sum-count').textContent) d.dataset.prefilled = 'true';
     });
     updateCounts();
@@ -732,6 +815,8 @@
 
   // An entry that's already on the site: ?entry=<file name>, from entry.html
   const ENTRY = /^[\w-]+$/.test(urlParams.get('entry') || '') ? urlParams.get('entry') : '';
+  // Its title is its address on the site, so only a new entry's can change
+  if (ENTRY && !REVIEW) $('articleTitle').readOnly = true;
 
   if (targetId && !REVIEW) {
     const records = window.CGData ? CGData.forEntity(targetId).catch(() => []) : Promise.resolve([]);
@@ -799,7 +884,7 @@
   // What the records say, in the form's own shape
   function fromRecords(records) {
     records = records.filter((r) => !STREET_TYPES.includes(String(r.type).toLowerCase())).sort((a, b) => a.year - b.year);
-    const found = { places: [], sources: [], occupations: [], voter: null };
+    const found = { places: [], recordSources: [], occupations: [], voter: null };
     if (!records.length) return null;
 
     // One address row per address, covering every year it's listed
@@ -814,7 +899,7 @@
       places.set(key, p);
     });
     found.places = [...places.values()].map((p) => ({ ...p, from: String(p.from), to: p.to === p.from ? String(p.from) : String(p.to) }));
-    found.sources = records.map(sourceOf);
+    found.recordSources = records.map(sourceOf);
 
     // One occupation row per trade, from the directories and electoral
     // rolls alike, covering every year it's listed. "None given" on the
@@ -839,14 +924,14 @@
     const note = document.createElement('p');
     note.className = 'prefill-note';
     note.textContent = text;
-    $('details-container').append(note);
+    $('prefillNotes').append(note);
   }
 
   function prefill(records) {
     const found = fromRecords(records);
     if (!found) return;
     setRows('places', found.places);
-    setRows('sources', found.sources);
+    setRows('recordSources', found.recordSources);
     const v = found.voter;
     if (v) {
       form.querySelector('input[name="kind"][value="person"]').checked = true;
@@ -883,7 +968,7 @@
     if (found) {
       entry.places = addMissing(entry.places, found.places, (p) => [sameKey(p.address)].filter(Boolean));
       entry.occupations = addMissing(entry.occupations, found.occupations, (o) => [sameKey(o.term)].filter(Boolean));
-      entry.sources = addMissing(entry.sources, found.sources, (s) => [sameKey(s.text), s.href && yearOf(s.text) ? `${linkKey(s.href)} ${yearOf(s.text)}` : '']
+      entry.recordSources = addMissing(entry.recordSources, found.recordSources, (s) => [sameKey(s.text), s.href && yearOf(s.text) ? `${linkKey(s.href)} ${yearOf(s.text)}` : '']
         .filter(Boolean));
       const v = found.voter;
       if (v) {
@@ -893,9 +978,10 @@
       }
     }
     fillForm(entry);
-    // The article's authors stay on as co-authors; "Your name" is for whoever is adding to it
+    // The entry's authors stay on as co-authors; the first name box is for whoever is adding to it
     $('authorName').value = '';
     fillRows('authors', entry.authors.map((name) => ({ name })));
+    setCredits(entry.credits);
     reviewOriginal = xml;
     checkRoundTrip();
     // Filled from the entry alone needs no note: the reader sees it's filled in
@@ -963,11 +1049,11 @@
   }
 
   function recordsBox() {
-    let container = $('details-container').querySelector('.entity-container');
+    let container = $('records-container').querySelector('.entity-container');
     if (!container) {
       container = document.createElement('div');
       container.className = 'entity-container';
-      $('details-container').prepend(container);
+      $('records-container').prepend(container);
     }
     return container;
   }
@@ -1036,23 +1122,23 @@
     });
   }
 
-  // Adds the record's card above the form, and a source for it
+  // Adds the record's card with the others, and a citation for it
   function addRecord(record, li) {
     recordsBox().append(recordCard(record));
-    const sources = [...form.querySelectorAll('[data-list="sources"] .row')];
-    const empty = sources.find((r) => ![...r.querySelectorAll('input')].some((i) => i.value.trim()));
+    const citations = [...form.querySelectorAll('[data-list="recordSources"] .row')];
+    const empty = citations.find((r) => ![...r.querySelectorAll('input')].some((i) => i.value.trim()));
     if (empty) empty.remove();
-    addRow('sources', sourceOf(record));
-    form.querySelector('details[data-section="sources"]').open = true;
+    addRow('recordSources', sourceOf(record));
+    form.querySelector('details[data-section="recordSources"]').open = true;
     li.remove();
-    $('finderStatus').textContent = `Added the ${recordLabel(record)} record, and a source for it.`;
+    $('finderStatus').textContent = `Added the ${recordLabel(record)} record, and a citation for it.`;
     changed();
   }
 
   if (!REVIEW && window.CGData) {
-    $('recordFinder').hidden = false;
+    $('recordsSection').hidden = false;
     let timer;
-    $('recordFinder').addEventListener('toggle', () => { if ($('recordFinder').open) loadAllRecords(); });
+    $('recordsSection').addEventListener('toggle', () => { if ($('recordsSection').open) loadAllRecords(); });
     $('recordSearch').addEventListener('input', () => { clearTimeout(timer); timer = setTimeout(findRecords, 200); });
   }
 
@@ -1098,7 +1184,7 @@
       ]
     },
     formats: ['header', 'bold', 'italic', 'underline', 'list', 'blockquote', 'link', 'tableHTML'],
-    placeholder: 'Type or paste the entry content here...',
+    placeholder: 'Write as much or as little as you know, in your own words.',
     theme: 'snow'
   });
   quill.clipboard.addMatcher('table', (node) => {
@@ -1113,9 +1199,10 @@
       recordId: title.replace(/[^\w\s-]/g, '').trim().replace(/\s+/g, '-'),
       title,
       kind: kindOf(),
-      surname: form.classList.contains('show-all') ? $('surname').value : '',
-      forenames: form.classList.contains('show-all') ? $('forenames').value : '',
+      surname: $('surname').value,
+      forenames: $('forenames').value,
       authors: [$('authorName').value, ...readList('authors').map((a) => a.name)],
+      credits: { community: $('creditCommunity').checked, computerDraft: $('creditDraft').checked },
       dates: { from: $('dateFrom').value, to: $('dateTo').value, approximate: $('dateApprox').checked },
       otherNames: readList('otherNames'),
       places: readList('places'),
@@ -1124,6 +1211,8 @@
       chronology: readList('chronology'),
       relations: readList('relations'),
       sources: readList('sources'),
+      recordSources: readList('recordSources'),
+      summary: $('summary').value,
       articleHtml: quill.getText().trim() ? quill.root.innerHTML : '',
       note: $('note').value
     };
@@ -1170,6 +1259,8 @@
     $('sendStatus').hidden = false;
   }
   if (ENDPOINT) $('sendBtn').addEventListener('click', async () => {
+    // No suggestion is sent without the licence agreement
+    if (!REVIEW && !$('licenceOk').checked) { sendReady(); return; }
     const xml = showPreview();
     if (TEIEntry.check(collect()).some((c) => c.level === 'error')) {
       sendStatus('Please fix the problems listed in the preview below, then send again.', 'error');
@@ -1200,7 +1291,7 @@
       });
       const result = await res.json();
       if (result.status !== 'success') throw new Error(result.message || 'The submission was not accepted.');
-      sendStatus('Thank you! Your entry has been sent to the editorial team, who will review it before it appears on the site.', 'ok');
+      sendStatus('Thank you! The editorial collective reads every suggestion, though we can’t use them all and it may take us a while.', 'ok');
       $('sendBtn').textContent = 'Sent';
     } catch (err) {
       $('sendBtn').disabled = false;
@@ -1235,7 +1326,10 @@
     form.querySelectorAll(`[data-list="${listName}"] .row`).forEach((r) => r.remove());
     values.forEach((v) => addRow(listName, v));
     if (!values.length) addRow(listName);
-    else form.querySelector(`[data-list="${listName}"]`).closest('details').open = true;
+    else {
+      const section = form.querySelector(`[data-list="${listName}"]`).closest('details');
+      if (section) section.open = true;
+    }
   }
 
   function fillForm(entry) {
@@ -1250,10 +1344,10 @@
     $('dateTo').value = entry.dates.to;
     $('dateApprox').checked = entry.dates.approximate;
     if (entry.dates.from || entry.dates.to) form.querySelector('details[data-section="dates"]').open = true;
-    ['otherNames', 'places', 'occupations', 'sources', 'legalStatuses', 'chronology', 'relations'].forEach((n) => fillRows(n, entry[n]));
-    // Fields only shown with "Show all fields"
-    if (entry.surname || entry.forenames || entry.legalStatuses.length || entry.chronology.length || entry.relations.length
-      || entry.places.some((p) => p.role || p.lat)) setShowAll(true);
+    ['otherNames', 'places', 'occupations', 'sources', 'recordSources', 'legalStatuses', 'chronology', 'relations'].forEach((n) => fillRows(n, entry[n]));
+    referencesFromRows();
+    $('summary').value = entry.summary || '';
+    setCredits(entry.credits, !!REVIEW);
     // Not dangerouslyPasteHTML: it also puts the cursor in the editor, which
     // focuses it and scrolls the entry page down to this form on load.
     quill.setContents(quill.clipboard.convert(entry.articleHtml || ''));
@@ -1274,8 +1368,10 @@
   function lostParts(a, b) {
     const A = TEICompare.facts(a); const B = TEICompare.facts(b);
     const rows = [];
+    // An older entry's "Summary" and "Details" headings become the summary and detail boxes
+    const moved = (item) => /^Heading: (Summary|Details?)$/i.test(item);
     A.forEach((f, i) => f.items.forEach((item) => {
-      if (!B[i].items.includes(item)) rows.push(`${f.field}: ${item.length > 80 ? item.slice(0, 80) + '…' : item}`.replace(/[<&]/g, (ch) => (ch === '<' ? '&lt;' : '&amp;')));
+      if (!B[i].items.includes(item) && !moved(item)) rows.push(`${f.field}: ${item.length > 80 ? item.slice(0, 80) + '…' : item}`.replace(/[<&]/g, (ch) => (ch === '<' ? '&lt;' : '&amp;')));
     }));
     return { rows };
   }
@@ -1323,7 +1419,12 @@
     $('formHeading').textContent = 'Suggest changes';
     $('formIntro').textContent = 'Change anything below, then send it. Your version becomes the one the editors decide on.';
     $('reviewer').hidden = false;
-    $('authorLabel').textContent = 'Author';
+    $('authorLabel').textContent = 'Authors';
+    // Editors see everything; the licence was agreed when it was first sent
+    $('licenceLine').hidden = true;
+    $('sendNote').hidden = true;
+    setShowAll(true);
+    sendReady();
     form.classList.add('review-mode');
     fetch(`https://raw.githubusercontent.com/historicalesque/carlton/${REVIEW.version}/${REVIEW.file}`)
       .then((r) => { if (!r.ok) throw new Error(`could not load the submission (${r.status})`); return r.text(); })

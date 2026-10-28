@@ -51,8 +51,13 @@ window.TEICompare = (function () {
     add('Legal status', all(subject, 'state').filter((s) => s.getAttribute('type') === 'legal').map((s) => s.textContent + years(s)));
     add('Chronology', all(root, 'event').map((e) => e.textContent + years(e)));
     add('Related entries', all(root, 'relation').map((r) => `${r.textContent} (${(r.getAttribute('name') || 'related').replace(/-/g, ' ')})`));
-    add('Sources', all(all(root, 'sourceDesc')[0], 'bibl').map((b) => b.textContent));
+    // References in <back> and directory and roll citations in sourceDesc,
+    // together, so moving an older entry's sources into <back> isn't a change
+    add('Sources', [...all(all(root, 'sourceDesc')[0], 'bibl'), ...all(all(root, 'back')[0], 'bibl')].map((b) => b.textContent));
     add('Authors', all(titleStmt, 'author').map((a) => a.textContent));
+    const credited = (key) => all(titleStmt, 'respStmt').some((r) => r.getAttribute('key') === key);
+    add('Byline credits', [credited('community') ? 'The broader Carlton community' : '',
+      credited('computer-assisted-draft') ? 'Computer-assisted first draft' : '']);
 
     const blocks = [];
     const body = all(root, 'body')[0];

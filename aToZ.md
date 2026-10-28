@@ -1,6 +1,6 @@
 ---
 layout: entry
-title: "Carlton A to Z"
+title: "Entries"
 EACCPFpath: "civic"
 entry_id: "Featured-pages"
 ---

@@ -5,7 +5,10 @@
     <fileDesc>
       <titleStmt>
         <title>Charles Nettleton</title>
-        <author>Common Ground</author>
+        <respStmt key="computer-assisted-draft">
+          <resp>Computer-assisted first draft</resp>
+          <name>Common Ground</name>
+        </respStmt>
       </titleStmt>
       <publicationStmt>
         <publisher>Common Ground</publisher>
@@ -42,6 +45,7 @@
     </fileDesc>
     <revisionDesc status="published">
       <change when="2026-10-27" type="created">Machine-assisted first draft by Common Ground, from the directory records.</change>
+      <change when="2026-10-28" type="revised">Credits tidied: the computer-assisted first draft is credited in the byline.</change>
     </revisionDesc>
   </teiHeader>
   <standOff>
@@ -55,7 +59,6 @@
     <body>
       <p>Charles Nettleton, photographer, is listed in <ref target="civic?id=Madeline%20Street">Madeline Street</ref> in the Sands &amp; McDougall directories from 1865 to 1885, mostly at No. 19 (Nos 19 and 21 in 1879 and 1880). From 1867 to 1874 he is also listed under <ref target="civic?id=Victoria%20Street">Victoria Street</ref>, so his studio was probably near the corner.</p>
       <p>In 1895 the directories list Chas. Nettleton, photographer, at 225 <ref target="civic?id=Berkley%20Street">Berkley Street</ref>.</p>
-      <p><hi rend="italic">This entry is a machine-assisted first draft by Common Ground, written from the directory records. Please correct or add to it.</hi></p>
     </body>
   </text>
 </TEI>

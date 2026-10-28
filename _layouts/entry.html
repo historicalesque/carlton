@@ -73,10 +73,10 @@ function slugifyId(text) {
     const googleFormUrl = `form.html?id=${encodedId}${isExisting ? `&entry=${encodeURIComponent(slugifyId(articleId))}` : '&new'}`;
 
     // Adjust text based on whether the article was loaded or missing
-    const heading = isExisting ? "Contribute to this Entry" : "Contribute Information";
-    const bodyText = isExisting 
-      ? `Have additional information for record <strong class="record-name">${articleId}</strong>? Fill out the form below to help improve this entry!`
-      : `No published entry was found for record <strong class="record-name">${articleId}</strong> yet. You can submit new details using the form below to help create it!`;
+    const heading = isExisting ? "Know more about this?" : "There's no entry for this yet";
+    const bodyText = isExisting
+      ? `Suggest additions or corrections below.`
+      : `This is record <strong class="record-name">${articleId}</strong>. Know something about it? Suggest an entry below.`;
 
     const formHtml = `
       <div class="contribution-container">
@@ -105,7 +105,7 @@ function slugifyId(text) {
     const box = document.createElement('details');
     box.className = 'page-suggest';
     box.innerHTML = `<summary>Suggest an edit to this page</summary>
-      <p>Suggested changes to this page are reviewed by the editorial team.</p>`;
+      <p>Suggested changes to this page are reviewed by the editorial collective.</p>`;
     box.addEventListener('toggle', () => {
       if (!box.open || box.querySelector('iframe')) return;
       const frame = document.createElement('iframe');
@@ -200,7 +200,7 @@ function slugifyId(text) {
         entryContainer.innerHTML = TEIEntry.render(text);
         const title = entryContainer.querySelector('h1')?.textContent;
         if (title && !CONFIG.entryId) document.title = `Common Ground - ${title}`;
-        // Authors aren't shown on the page for now, only in its metadata
+        // The byline is part of the rendered entry; authors also go in the page's metadata
         for (const author of xml.getElementsByTagNameNS(TEIEntry.NS, 'author')) {
           const meta = document.createElement('meta');
           meta.name = 'author';
@@ -210,6 +210,10 @@ function slugifyId(text) {
         showContributionForm(fileId, true);
         if (!isSitePage) addMapLink(fileId);
         document.dispatchEvent(new CustomEvent('entry-rendered'));
+        // The page loads before its text, so follow a link like about#contribute
+        // once the section it names exists
+        const target = location.hash && document.getElementById(decodeURIComponent(location.hash.slice(1)));
+        if (target) target.scrollIntoView();
       } else {
       
         // The EAC-CPF namespace used in your document

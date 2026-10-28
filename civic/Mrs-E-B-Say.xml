@@ -5,7 +5,10 @@
     <fileDesc>
       <titleStmt>
         <title>Mrs E. B. Say</title>
-        <author>Common Ground</author>
+        <respStmt key="computer-assisted-draft">
+          <resp>Computer-assisted first draft</resp>
+          <name>Common Ground</name>
+        </respStmt>
       </titleStmt>
       <publicationStmt>
         <publisher>Common Ground</publisher>
@@ -31,6 +34,7 @@
     </fileDesc>
     <revisionDesc status="published">
       <change when="2026-10-27" type="created">Machine-assisted first draft by Common Ground, from the directory records.</change>
+      <change when="2026-10-28" type="revised">Credits tidied: the computer-assisted first draft is credited in the byline.</change>
     </revisionDesc>
   </teiHeader>
   <standOff>
@@ -44,7 +48,6 @@
     <body>
       <p>Mrs Say, straw hat manufacturer, is listed in <ref target="civic?id=Madeline%20Street">Madeline Street</ref> in the Sands &amp; McDougall directories from 1872 to 1878. From 1879 she is listed as a milliner in the same street, at No. 13 from 1890, and as Mrs E. B. Say in 1895 and 1900.</p>
       <p>A Mrs Say, milliner, is listed in <ref target="civic?id=Victoria%20Street">Victoria Street</ref> in 1860 and 1861, next to William B. Say, saddler. Those listings are not linked to this entry, as it isn't clear she is the same person.</p>
-      <p><hi rend="italic">This entry is a machine-assisted first draft by Common Ground, written from the directory records. Please correct or add to it.</hi></p>
     </body>
   </text>
 </TEI>

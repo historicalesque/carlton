@@ -7,7 +7,7 @@ Thank you for helping. There are two kinds of contribution, and most people want
 You don't need GitHub for this. Use the website:
 
 - Open any entry on [the site](https://historicalesque.github.io/carlton/) and use the *Contribute* form at the bottom, or [start a new entry](https://historicalesque.github.io/carlton/new).
-- The editorial team reviews every submission before it appears on the site.
+- The editorial collective reads every submission before deciding whether, and how, it appears on the site.
 
 The rest of this page is for people changing the site itself: its pages, code, entries or data files.
 

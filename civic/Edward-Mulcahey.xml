@@ -5,7 +5,10 @@
     <fileDesc>
       <titleStmt>
         <title>Edward Mulcahey</title>
-        <author>Common Ground</author>
+        <respStmt key="computer-assisted-draft">
+          <resp>Computer-assisted first draft</resp>
+          <name>Common Ground</name>
+        </respStmt>
       </titleStmt>
       <publicationStmt>
         <publisher>Common Ground</publisher>
@@ -28,6 +31,7 @@
     </fileDesc>
     <revisionDesc status="published">
       <change when="2026-10-27" type="created">Machine-assisted first draft by Common Ground, from the directory and electoral-roll records.</change>
+      <change when="2026-10-28" type="revised">Credits tidied: the computer-assisted first draft is credited in the byline.</change>
     </revisionDesc>
   </teiHeader>
   <standOff>
@@ -42,7 +46,7 @@
       <p>Edward Mulcahey (also spelt Mulcahy) is listed as the proprietor of the <ref target="civic?id=Bush%20Inn%20hotel">Bush Inn</ref> on the corner of Bouverie and Victoria streets in the directories from 1875 to 1880.</p>
       <p>In 1875 the Victoria Street listings give "Mulcahey, Edward" at the Bouverie Street corner, where the Bush Inn is listed in the other years.</p>
       <p>See also <ref target="civic?id=Bush%20Inn%20hotel">Bush Inn</ref> and <ref target="civic?id=Hotels">Hotels</ref>.</p>
-      <p><hi rend="italic">This entry is a machine-assisted first draft by Common Ground, written from the directory and electoral-roll records. Only records that are clearly the same person, at the hotel's address and in a hotel trade, are linked to it. Please correct or add to it.</hi></p>
+      <p><hi rend="italic">Only records that are clearly the same person, at the hotel's address and in a hotel trade, are linked to this entry.</hi></p>
     </body>
   </text>
 </TEI>

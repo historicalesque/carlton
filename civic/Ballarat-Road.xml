@@ -6,6 +6,10 @@
       <titleStmt>
         <title>Ballarat Road, Carlton</title>
         <author>Mitchell Harrop</author>
+        <respStmt key="computer-assisted-draft">
+          <resp>Computer-assisted first draft</resp>
+          <name>Common Ground</name>
+        </respStmt>
       </titleStmt>
       <publicationStmt>
         <publisher>Common Ground</publisher>
@@ -23,6 +27,7 @@
       <change when="2026-07-12" type="created">Public contribution via website submission by Mitchell Harrop.</change>
       <change when="2026-10-05" type="converted">Converted from EAC-CPF to TEI.</change>
       <change when="2026-10-27" type="edited">Links, and sections from the directory records, added by Common Ground (machine-assisted).</change>
+      <change when="2026-10-28" type="revised">Credits tidied: the computer-assisted first draft is credited in the byline.</change>
     </revisionDesc>
   </teiHeader>
   <standOff>
@@ -56,7 +61,6 @@
       <div>
         <head>Records</head>
         <p>Every directory and electoral-roll listing for Ballarat Street can be browsed in <ref target="search?street=Ballarat%20Street">search</ref>.</p>
-        <p><hi rend="italic">These sections are a machine-assisted first draft by Common Ground, written from the directory records. Please correct or add to them.</hi></p>
       </div>
     </body>
   </text>

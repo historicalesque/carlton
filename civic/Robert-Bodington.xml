@@ -5,7 +5,10 @@
     <fileDesc>
       <titleStmt>
         <title>Robert Bodington</title>
-        <author>Common Ground</author>
+        <respStmt key="computer-assisted-draft">
+          <resp>Computer-assisted first draft</resp>
+          <name>Common Ground</name>
+        </respStmt>
       </titleStmt>
       <publicationStmt>
         <publisher>Common Ground</publisher>
@@ -47,6 +50,7 @@
     </fileDesc>
     <revisionDesc status="published">
       <change when="2026-10-27" type="created">Machine-assisted first draft by Common Ground, from the directory records.</change>
+      <change when="2026-10-28" type="revised">Credits tidied: the computer-assisted first draft is credited in the byline.</change>
     </revisionDesc>
   </teiHeader>
   <standOff>
@@ -60,7 +64,6 @@
     <body>
       <p>Robert Bodington, millwright and engineer, is listed in <ref target="civic?id=Queensberry%20Street">Queensberry Street</ref> in the Sands &amp; McDougall directories from 1860 to 1930, a run of seventy years. He is at No. 6 from 1860 to 1862 and No. 4 from 1863 to 1885, and after the street was renumbered at No. 241 from 1900 to 1930. From 1910 he is listed as a milling engineer.</p>
       <p>The directories also list a Robert Bodington in Barry Street from 1869. Those listings give no trade and are not linked to this entry.</p>
-      <p><hi rend="italic">This entry is a machine-assisted first draft by Common Ground, written from the directory records. Please correct or add to it.</hi></p>
     </body>
   </text>
 </TEI>

@@ -25,9 +25,12 @@ Every file in `civic/` is a [TEI P5](https://tei-c.org/guidelines/p5/) document 
 <?xml-model href="https://historicalesque.github.io/carlton/schema/carlton.rng" type="application/xml"
             schematypens="http://relaxng.org/ns/structure/1.0"?>
 <TEI xmlns="http://www.tei-c.org/ns/1.0" type="org" xml:lang="en">
-  <teiHeader>      <!-- title, authors, sources, history of edits -->
+  <teiHeader>      <!-- title, authors and credits, directory and roll citations, history of edits -->
   <standOff>       <!-- structured facts about the subject; optional -->
-  <text><body>     <!-- the article -->
+  <text>
+    <body>         <!-- div type="summary", then div type="detail" -->
+    <back>         <!-- div type="bibliography": the references -->
+  </text>
 </TEI>
 ```
 
@@ -49,10 +52,12 @@ Required. One of:
 | Element | Content |
 |---|---|
 | `fileDesc/titleStmt/title` | The entry's name, as shown on the page. |
-| `fileDesc/titleStmt/author` | One per author. Entry pages show no byline at the moment; the names go into the page's `<meta name="author">`. |
+| `fileDesc/titleStmt/author` | One per named author, shown first in the byline under the entry's title and in the page's `<meta name="author">`. The form's *Credit as author (project team)* field fills it. |
+| `fileDesc/titleStmt/respStmt[@key="community"]` | `<resp>Suggestions from</resp><name>the broader Carlton community</name>`: the entry includes suggestions sent through the form. Adds "the broader Carlton community" to the byline. |
+| `fileDesc/titleStmt/respStmt[@key="computer-assisted-draft"]` | `<resp>Computer-assisted first draft</resp><name>Common Ground</name>`: the entry began as a computer-assisted draft from the directory and electoral-roll records. Adds "Built on a computer-assisted first draft." to the byline. |
 | `fileDesc/publicationStmt/publisher` | Always `Common Ground`. |
 | `fileDesc/publicationStmt/idno[@type="entry"]` | The slug (see above). |
-| `fileDesc/sourceDesc/listBibl/bibl` | One per source the authors used, usually with a `ref/@target` link. A directory listing links to that year's page (`civic?id=Sands-McDougall-Directory-1905`) and an electoral-roll record to `civic?id=Electoral-Rolls`. With no sources, `sourceDesc` holds a single `p` saying so. |
+| `fileDesc/sourceDesc/listBibl/bibl` | The directory and electoral-roll citations, filled in by the form from the linked records. A directory listing links to that year's page (`civic?id=Sands-McDougall-Directory-1905`) and an electoral-roll record to `civic?id=Electoral-Rolls`. Entry pages list them under *In the directories and electoral rolls*. With none, `sourceDesc` holds a single `p`. Older entries keep all their sources here; any that don't link to a directory or roll page are shown as references. |
 | `revisionDesc/@status` | `draft` for submissions, `published` once accepted. |
 | `revisionDesc/change` | One per contribution or edit, with `@when` (ISO date) and `@type` (`created`, `converted`, …). The text says who and what. |
 
@@ -77,9 +82,20 @@ All optional; the form only writes the parts the contributor filled in.
 
 **Links to other entries**: `listRelation/relation`, with `@active="#subject"`, `@passive` the other entry's URL (`…/civic?id=…`), `@type` the other entry's type, `@name` the relationship as one word (`Supplier`, `Family-member`, `part-of`), and the other entry's name in `desc`.
 
-### `text/body`: the article
+### `text/body`: summary and detail
 
-Paragraphs (`p`); each heading starts a new `div` with a `head`. Inline styles are `hi[@rend="italic|bold|underline"]`, links are `ref[@target]`, lists are `list[@rend="bulleted|numbered"]/item`, block quotes are `quote/p` (lines quoted one after another share one `quote`), and tables are `table/row/cell`.
+- `div[@type="summary"]`: "In a sentence or two, who or what was this?", as paragraphs. Shown as the entry's opening lines.
+- `div[@type="detail"]`: "Tell us everything!", the article.
+
+Sections are marked by their type, not their heading, so headings can be reworded. Older entries have paragraphs and untyped `div`s straight in `body`; they display as before, and move to the new structure when someone next edits them through the form. Site pages may give a `div` an `xml:id` (About's `<div xml:id="contribute">`), which becomes a section other pages can link to as `about#contribute`.
+
+### `text/back`: references
+
+`div[@type="bibliography"]/listBibl/bibl`, one per reference from "Where did you find this?" and the form's Sources rows, with a `ref/@target` where there's a link. Shown under *References*.
+
+### Article markup
+
+In the detail, paragraphs (`p`); each heading starts a new `div` with a `head`. Inline styles are `hi[@rend="italic|bold|underline"]`, links are `ref[@target]`, lists are `list[@rend="bulleted|numbered"]/item`, block quotes are `quote/p` (lines quoted one after another share one `quote`), and tables are `table/row/cell`.
 
 ### Dates
 
@@ -89,7 +105,7 @@ ISO values in `@when`, `@from` and `@to`; a year (`1856`) or year and month (`18
 
 - `civic/Corkman-Hotel.xml`: an `org` with a long article, headings and a table.
 - `civic/Sands-McDougall-Directory-1905.xml`: a `topic` source page with a source and a `part-of` relation.
-- Run any entry through the form's *Show all fields* switch and *Preview* (*Show the TEI XML*) to see every optional part filled in.
+- Open any entry's form, switch on *Add more detail* and use *Preview* (*Show the TEI XML*) to see every optional part filled in.
 
 ### Checking an entry
 

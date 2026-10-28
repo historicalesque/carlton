@@ -10,17 +10,25 @@
    The entry format is documented in schema/carlton.odd, and files can be
    checked against schema/carlton.rng. In short:
      <TEI type="person|org|family|place|topic|unknown">
-       <teiHeader>  title, authors, sources (listBibl), one <change> per edit
+       <teiHeader>  title, authors and credits (respStmt key="community" /
+                    "computer-assisted-draft"), directory and electoral-roll
+                    citations (sourceDesc/listBibl), one <change> per edit
        <standOff>   the subject (person / personGrp / org / place, xml:id
                     "subject"), the chronology (listEvent) and links to other
                     entries (listRelation)
-       <text>       the article: paragraphs, then one <div> per heading
+       <text>       <body>: <div type="summary">, then <div type="detail">
+                    holding the article (paragraphs, then one <div> per
+                    heading); <back>: <div type="bibliography"> holding the
+                    references (listBibl)
+                    Older entries have untyped paragraphs and divs in <body>
+                    and every source in sourceDesc; they still render.
 
    entry = {
      recordId, title,
      kind: 'person' | 'org' | 'family' | 'place' | 'topic' | '',
      surname, forenames,                     // people only, optional
      authors: ['Name', ...], date: 'YYYY-MM-DD',
+     credits: { community, computerDraft },  // byline flags, true/false
      dates: { from, to, approximate },
      otherNames:     [{ name, from, to }],
      places:         [{ address, role, from, to, lat, lng }],
@@ -28,8 +36,10 @@
      legalStatuses:  [{ term, from, to }],
      chronology:     [{ date, event, place }],
      relations:      [{ name, targetType, relationType, href, from, to }],
-     sources:        [{ text, href }],
-     articleHtml, note,
+     sources:        [{ text, href }],      // references, in <back>
+     recordSources:  [{ text, href }],      // directory and roll citations
+     summary,                                // plain text, blank line between paragraphs
+     articleHtml, note,                      // the detail
      changes:        [{ when, type, text }],  // later edits, optional
      status          // revisionDesc/@status, "draft" unless given
    }
@@ -55,6 +65,11 @@ window.TEIEntry = (function () {
       return true;
     });
   };
+
+  // Directory and electoral-roll citations link to these pages
+  // (civic?id=Sands-McDougall-Directory-1875, civic?id=Electoral-Rolls)
+  const RECORD_PAGE = /Sands-McDougall-Directory-|Electoral-Rolls/;
+  const COMMUNITY = 'the broader Carlton community';
 
   /* ---------- Links to the site itself ----------
      Contributors often paste a page's full address, e.g.
@@ -229,19 +244,26 @@ window.TEIEntry = (function () {
     const title = trim(entry.title) || 'Untitled';
 
     // teiHeader
+    const bibl = (s) => el('bibl', null,
+      has(s.href) ? el('ref', { target: local(s.href) }, trim(s.text) || trim(s.href)) : trim(s.text));
     const sources = filled(entry.sources, 'text', 'href');
+    const citations = filled(entry.recordSources, 'text', 'href');
+    const credits = entry.credits || {};
     root.appendChild(el('teiHeader', null,
       el('fileDesc', null,
         el('titleStmt', null,
           el('title', null, title),
-          authors.map((a) => el('author', null, a))),
+          authors.map((a) => el('author', null, a)),
+          credits.community ? el('respStmt', { key: 'community' },
+            el('resp', null, 'Suggestions from'), el('name', null, COMMUNITY)) : null,
+          credits.computerDraft ? el('respStmt', { key: 'computer-assisted-draft' },
+            el('resp', null, 'Computer-assisted first draft'), el('name', null, PUBLISHER)) : null),
         el('publicationStmt', null,
           el('publisher', null, PUBLISHER),
           el('idno', { type: 'entry' }, trim(entry.recordId) || 'unassigned')),
-        el('sourceDesc', null, sources.length
-          ? el('listBibl', null, sources.map((s) => el('bibl', null,
-              has(s.href) ? el('ref', { target: local(s.href) }, trim(s.text) || trim(s.href)) : trim(s.text))))
-          : el('p', null, 'Contributed through the website. No sources listed.'))),
+        el('sourceDesc', null, citations.length
+          ? el('listBibl', null, citations.map(bibl))
+          : el('p', null, 'Contributed through the website.'))),
       el('revisionDesc', { status: entry.status || 'draft' },
         el('change', { when: today, type: 'created' },
           `${trim(entry.note) || 'Contributed through the contribution form'}${authors.length ? ` by ${authors.join(', ')}` : ''}.`),
@@ -324,9 +346,16 @@ window.TEIEntry = (function () {
     ].filter(Boolean);
     if (standOff.length) root.appendChild(el('standOff', null, standOff));
 
-    // text
-    const body = article(entry.articleHtml, el);
-    root.appendChild(el('text', null, el('body', null, body.length ? body : el('p', null, ''))));
+    // text: summary and detail in <body>, references in <back>
+    const summary = trim(entry.summary).split(/\n\s*\n/).map((t) => t.replace(/\s+/g, ' ').trim()).filter(Boolean);
+    const detail = article(entry.articleHtml, el);
+    const body = [
+      summary.length ? el('div', { type: 'summary' }, summary.map((t) => el('p', null, t))) : null,
+      detail.length ? el('div', { type: 'detail' }, detail) : null
+    ].filter(Boolean);
+    root.appendChild(el('text', null,
+      el('body', null, body.length ? body : el('p', null, '')),
+      sources.length ? el('back', null, el('div', { type: 'bibliography' }, el('listBibl', null, sources.map(bibl)))) : null));
 
     return '<?xml version="1.0" encoding="UTF-8"?>\n'
       + '<?xml-model href="https://historicalesque.github.io/carlton/schema/carlton.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>\n'
@@ -355,10 +384,10 @@ window.TEIEntry = (function () {
   function check(entry) {
     const out = [];
     const need = (v, msg) => { if (!has(v)) out.push({ level: 'error', text: msg }); };
-    need(entry.authors && entry.authors[0], 'Add your name.');
     need(entry.title, 'Add a title.');
-    if (!trim(new DOMParser().parseFromString(entry.articleHtml || '', 'text/html').body.textContent)) {
-      out.push({ level: 'error', text: 'Write some article text.' });
+    if (!has(entry.summary) && !filled(entry.sources, 'text', 'href').length
+        && !trim(new DOMParser().parseFromString(entry.articleHtml || '', 'text/html').body.textContent)) {
+      out.push({ level: 'error', text: 'Write something in at least one of the boxes.' });
     }
 
     const dateCheck = (label, from, to) => {
@@ -462,7 +491,12 @@ window.TEIEntry = (function () {
           case 'table':
             return `<div class="pv-table"><table><tbody>${kids(c, 'row').map((r) =>
               `<tr>${kids(r, 'cell').map((cell) => `<td>${mixed(cell)}</td>`).join('')}</tr>`).join('')}</tbody></table></div>`;
-          case 'div': return blocks(c);
+          case 'div': {
+            // <div xml:id="contribute"> becomes a section that about#contribute can link to
+            const id = c.getAttribute('xml:id');
+            if (c.getAttribute('type') === 'summary') return `<div class="pv-summary">${blocks(c)}</div>`;
+            return id ? `<section id="${esc(id)}">${blocks(c)}</section>` : blocks(c);
+          }
           default: return '';
         }
       }).join('');
@@ -527,18 +561,36 @@ window.TEIEntry = (function () {
       const d = dates(r);
       return `<li>${link(r.getAttribute('passive'), esc(name))}${rt && rt !== 'related' ? ` <span class="pv-dates">${esc(rt)}</span>` : ''}${d ? ` <span class="pv-dates">(${esc(d)})</span>` : ''}</li>`;
     }).join('');
-    const sources = all(one(xml, 'sourceDesc'), 'bibl').map((b) => `<li>${mixed(b)}</li>`).join('');
+    // References: hand-written ones in <back>, plus any an older entry kept
+    // in sourceDesc. Directory and roll citations get their own heading.
+    const headerBibls = all(one(xml, 'sourceDesc'), 'bibl');
+    const isCitation = (b) => RECORD_PAGE.test((one(b, 'ref') || b).getAttribute('target') || '');
+    const items = (bibls) => bibls.map((b) => `<li>${mixed(b)}</li>`).join('');
+    const sources = items([...all(one(xml, 'back'), 'bibl'), ...headerBibls.filter((b) => !isCitation(b))]);
+    const citations = items(headerBibls.filter(isCitation));
+
+    // Byline: "By Andy May and the broader Carlton community. Built on a
+    // computer-assisted first draft." Each part only where it applies.
+    const titleStmt = one(xml, 'titleStmt');
+    const credited = (key) => kids(titleStmt, 'respStmt').some((r) => r.getAttribute('key') === key);
+    const by = [...kids(titleStmt, 'author').map(text).filter(Boolean), ...(credited('community') ? [COMMUNITY] : [])];
+    const byline = [
+      by.length ? `By ${by.length > 1 ? `${by.slice(0, -1).join(', ')} and ${by[by.length - 1]}` : by[0]}.` : '',
+      credited('computer-assisted-draft') ? 'Built on a computer-assisted first draft.' : ''
+    ].filter(Boolean).join(' ');
 
     return `
       <article class="pv-entry">
         <p class="pv-type">${esc(typeLabel)}</p>
         <h1>${esc(title)}</h1>
+        ${byline ? `<p class="pv-byline">${esc(byline)}</p>` : ''}
         ${life ? `<p class="pv-life">${esc(life)}</p>` : ''}
         ${facts.length ? `<dl class="pv-facts">${facts.map(([k, v]) => `<dt>${esc(k)}</dt><dd>${v}</dd>`).join('')}</dl>` : ''}
         <div class="pv-body">${body && body.textContent.trim() ? blocks(body) : '<p><em>No article text yet.</em></p>'}</div>
         ${chronHtml}
         ${relations ? `<h2>Related</h2><ul>${relations}</ul>` : ''}
         ${sources ? `<h2>References</h2><ul>${sources}</ul>` : ''}
+        ${citations ? `<h2>In the directories and electoral rolls</h2><ul class="pv-citations">${citations}</ul>` : ''}
       </article>`;
   }
 
@@ -579,7 +631,12 @@ window.TEIEntry = (function () {
       authors: uniqueNames(kids(titleStmt, 'author').map(text)),
       dates: { from: '', to: '', approximate: false },
       otherNames: names.filter((n) => n.getAttribute('type') === 'alternative').map((n) => ({ name: text(n), ...years(n) })),
-      places: [], occupations: [], legalStatuses: [], chronology: [], relations: [], sources: [],
+      places: [], occupations: [], legalStatuses: [], chronology: [], relations: [], sources: [], recordSources: [],
+      credits: {
+        community: kids(titleStmt, 'respStmt').some((r) => r.getAttribute('key') === 'community'),
+        computerDraft: kids(titleStmt, 'respStmt').some((r) => r.getAttribute('key') === 'computer-assisted-draft')
+      },
+      summary: '',
       articleHtml: '',
       note: ''
     };
@@ -619,10 +676,15 @@ window.TEIEntry = (function () {
       ...years(r),
       href: r.getAttribute('passive') || ''
     }));
-    entry.sources = all(one(xml, 'sourceDesc'), 'bibl').map((b) => {
+    // Older entries keep every source in sourceDesc: the directory and roll
+    // citations stay there, and the rest become references
+    const source = (b) => {
       const ref = one(b, 'ref');
       return { text: text(b), href: ref ? ref.getAttribute('target') || '' : '' };
-    });
+    };
+    const headerSources = all(one(xml, 'sourceDesc'), 'bibl').map(source);
+    entry.recordSources = headerSources.filter((s) => RECORD_PAGE.test(s.href));
+    entry.sources = [...all(one(xml, 'back'), 'bibl').map(source), ...headerSources.filter((s) => !RECORD_PAGE.test(s.href))];
 
     // The article as the HTML Quill edits: headings, paragraphs, lists, quotes, tables
     const mixed = (node) => [...node.childNodes].map((ch) => {
@@ -651,8 +713,19 @@ window.TEIEntry = (function () {
         default: return '';
       }
     }).join('');
+    // The summary is plain text; everything else in <body> is the detail.
+    // Older entries may have untyped "Summary" and "Details" sections instead.
     const body = one(xml, 'body');
-    entry.articleHtml = body ? blocks(body) : '';
+    const headOf = (d) => text(kids(d, 'head')[0]).toLowerCase();
+    const paras = (d) => kids(d, 'p').map(text).filter(Boolean).join('\n\n');
+    const detail = [];
+    for (const ch of body ? [...body.children] : []) {
+      const type = ch.localName === 'div' ? ch.getAttribute('type') || headOf(ch) : '';
+      if ((type === 'summary') && !entry.summary) entry.summary = paras(ch);
+      else if (type === 'detail' || type === 'details') detail.push(...kids(ch, 'head').length && !ch.getAttribute('type') ? [...ch.children].filter((c) => c.localName !== 'head') : [...ch.children]);
+      else detail.push(ch);
+    }
+    entry.articleHtml = detail.map((ch) => blocks({ children: [ch] })).join('');
     return entry;
   }
 
