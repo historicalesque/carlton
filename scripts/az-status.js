@@ -9,7 +9,10 @@
      aToZ.md), so this needs no network requests.
    - New: the entry's "created" maintenanceEvent date is within the last
      NEW_FOR_DAYS days (TEI: the "created" <change>). Read from each
-     existing entry's XML. */
+     existing entry's XML.
+   - 🤖: the entry is only a computer-assisted first draft so far, with
+     no named author and no community credit (TEI: titleStmt has
+     respStmt key="computer-assisted-draft" and nothing else). */
 
 (function () {
     const NEW_FOR_DAYS = 14;
@@ -72,6 +75,13 @@
             return earliest;
         }
 
+        function computerOnly(xml) {
+            const stmt = xml.getElementsByTagName('titleStmt')[0];
+            if (!stmt) return false;
+            const keys = [...stmt.getElementsByTagName('respStmt')].map(function (r) { return r.getAttribute('key'); });
+            return keys.includes('computer-assisted-draft') && !keys.includes('community') && !stmt.getElementsByTagName('author').length;
+        }
+
         const cutoff = Date.now() - NEW_FOR_DAYS * 24 * 60 * 60 * 1000;
         const toCheck = new Map(); // slug -> links to that entry
 
@@ -94,6 +104,10 @@
                 .then(function (res) { return res.ok ? res.text() : Promise.reject(); })
                 .then(function (text) {
                     const xml = new DOMParser().parseFromString(text, 'application/xml');
+                    if (computerOnly(xml)) links.forEach(function (link) {
+                        addBadge(link, 'robot', '🤖', ' (computer-assisted first draft)',
+                            'Computer-assisted first draft: no one has added to it yet', false);
+                    });
                     const created = createdDate(xml);
                     if (!created || created.getTime() < cutoff) return;
                     const added = created.toLocaleDateString('en-AU', { day: 'numeric', month: 'long', year: 'numeric' });
@@ -152,7 +166,8 @@
         const legend = document.createElement('p');
         legend.className = 'az-legend';
         legend.innerHTML = '<span class="az-badge az-badge-new">✦ New</span> added in the last two weeks &nbsp; ' +
-            '<span class="az-badge az-badge-missing">' + PENCIL + '</span> not yet written, select it to write the page';
+            '<span class="az-badge az-badge-missing">' + PENCIL + '</span> not yet written, select it to write the page &nbsp; ' +
+            '<span class="az-badge az-badge-robot">🤖</span> computer-assisted first draft, no one has added to it yet';
         all[0].before(legend, index);
         if (help) {
             help.id = help.id || 'can-you-help';

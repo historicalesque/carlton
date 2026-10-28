@@ -70,6 +70,7 @@ window.TEIEntry = (function () {
   // (civic?id=Sands-McDougall-Directory-1875, civic?id=Electoral-Rolls)
   const RECORD_PAGE = /Sands-McDougall-Directory-|Electoral-Rolls/;
   const COMMUNITY = 'the broader Carlton community';
+  const ROBOT = 'Computer-assisted first draft: no one has added to it yet';
 
   /* ---------- Links to the site itself ----------
      Contributors often paste a page's full address, e.g.
@@ -574,6 +575,8 @@ window.TEIEntry = (function () {
     const titleStmt = one(xml, 'titleStmt');
     const credited = (key) => kids(titleStmt, 'respStmt').some((r) => r.getAttribute('key') === key);
     const by = [...kids(titleStmt, 'author').map(text).filter(Boolean), ...(credited('community') ? [COMMUNITY] : [])];
+    // Only a computer-assisted draft so far: no named author, no community credit
+    const robot = !by.length && credited('computer-assisted-draft');
     const byline = [
       by.length ? `By ${by.length > 1 ? `${by.slice(0, -1).join(', ')} and ${by[by.length - 1]}` : by[0]}.` : '',
       credited('computer-assisted-draft') ? 'Built on a computer-assisted first draft.' : ''
@@ -582,7 +585,7 @@ window.TEIEntry = (function () {
     return `
       <article class="pv-entry">
         <p class="pv-type">${esc(typeLabel)}</p>
-        <h1>${esc(title)}</h1>
+        <h1>${esc(title)}${robot ? ` <span class="pv-robot" role="img" aria-label="${ROBOT}" title="${ROBOT}">🤖</span>` : ''}</h1>
         ${byline ? `<p class="pv-byline">${esc(byline)}</p>` : ''}
         ${life ? `<p class="pv-life">${esc(life)}</p>` : ''}
         ${facts.length ? `<dl class="pv-facts">${facts.map(([k, v]) => `<dt>${esc(k)}</dt><dd>${v}</dd>`).join('')}</dl>` : ''}
