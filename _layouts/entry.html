@@ -200,7 +200,7 @@ function slugifyId(text) {
         entryContainer.innerHTML = TEIEntry.render(text);
         const title = entryContainer.querySelector('h1')?.textContent;
         if (title && !CONFIG.entryId) document.title = `Common Ground - ${title}`;
-        // Authors aren't shown on the page for now, only in its metadata
+        // The byline is part of the rendered entry; authors also go in the page's metadata
         for (const author of xml.getElementsByTagNameNS(TEIEntry.NS, 'author')) {
           const meta = document.createElement('meta');
           meta.name = 'author';
