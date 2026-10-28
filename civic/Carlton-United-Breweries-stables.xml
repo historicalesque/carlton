@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="https://historicalesque.github.io/carlton/schema/carlton.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0" type="org" xml:lang="en">
+  <teiHeader>
+    <fileDesc>
+      <titleStmt>
+        <title>Carlton &amp; United Breweries stables</title>
+        <respStmt key="community">
+          <resp>Suggestions from</resp>
+          <name>the broader Carlton community</name>
+        </respStmt>
+      </titleStmt>
+      <publicationStmt>
+        <publisher>Common Ground</publisher>
+        <idno type="entry">Carlton-United-Breweries-stables</idno>
+      </publicationStmt>
+      <sourceDesc>
+        <listBibl>
+          <bibl><ref target="civic?id=Sands-McDougall-Directory-1910">Sands &amp; McDougall Directory, 1910, p. 187: Carlton &amp; United Breweries Pty Ltd, stbls</ref></bibl>
+        </listBibl>
+      </sourceDesc>
+    </fileDesc>
+    <revisionDesc status="draft">
+      <change when="2026-10-29" type="created">Contributed through the contribution form.</change>
+    </revisionDesc>
+  </teiHeader>
+  <standOff>
+    <listOrg>
+      <org xml:id="subject">
+        <orgName type="main">Carlton &amp; United Breweries stables</orgName>
+        <state type="activity" when="1910">
+          <label>Stables</label>
+        </state>
+        <place type="address" when="1910">
+          <placeName>Ballarat Street, Carlton</placeName>
+          <location>
+            <geo>-37.805640 144.961768</geo>
+          </location>
+        </place>
+      </org>
+    </listOrg>
+  </standOff>
+  <text>
+    <body>
+      <div type="detail">
+        <p>Carlton &amp; United Breweries had stables.</p>
+      </div>
+    </body>
+  </text>
+</TEI>
