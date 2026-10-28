@@ -24,6 +24,7 @@
     </fileDesc>
     <revisionDesc status="published">
       <change when="2026-10-28" type="created">Computer-assisted first draft by Common Ground, from the directory and electoral-roll records.</change>
+      <change when="2026-10-28" type="revised">Sentences that tied the text to the website (search, the form, record links) taken out.</change>
     </revisionDesc>
   </teiHeader>
   <standOff>
@@ -41,7 +42,7 @@
       </div>
       <div>
         <head>On the electoral roll</head>
-        <p>Reuben Mace, grocer, is on the 1919 <ref target="civic?id=Electoral-Rolls">electoral roll</ref> at 190 Queensberry Street. A Reuben Mace, ventriloquist, is on the 1928 roll at 171 Grattan Street. That record is not linked to this entry.</p>
+        <p>Reuben Mace, grocer, is on the 1919 <ref target="civic?id=Electoral-Rolls">electoral roll</ref> at 190 Queensberry Street. A Reuben Mace, ventriloquist, is on the 1928 roll at 171 Grattan Street. It isn't clear he is the same man.</p>
       </div>
       <div>
         <head>Neighbours</head>

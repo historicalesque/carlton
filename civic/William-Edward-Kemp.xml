@@ -25,6 +25,7 @@
     </fileDesc>
     <revisionDesc status="published">
       <change when="2026-10-28" type="created">Computer-assisted first draft by Common Ground, from the directory and electoral-roll records.</change>
+      <change when="2026-10-28" type="revised">Sentences that tied the text to the website (search, the form, record links) taken out.</change>
     </revisionDesc>
   </teiHeader>
   <standOff>
@@ -39,7 +40,7 @@
       <div>
         <head>In the directories</head>
         <p>W. E. Kemp, grocer, is listed in <ref target="civic?id=Barry%20Street">Barry Street</ref> from 1930 to 1940. He is at No. 77 in 1930 and No. 87 in 1935, the last listing before the Pelham Street corner. In 1940 the number is printed as 65, but the listing is in the same place, after Mrs B. E. Chapman at No. 85, so it is probably still No. 87.</p>
-        <p>Francis A. Kemp, butcher, is listed in Barry Street from 1870 to 1895, and a Matthew William Kemp is on the 1928 roll at 153 Barry Street. Those records are not linked to this entry.</p>
+        <p>Francis A. Kemp, butcher, is listed in Barry Street from 1870 to 1895, and a Matthew William Kemp is on the 1928 roll at 153 Barry Street.</p>
       </div>
       <div>
         <head>On the electoral roll</head>

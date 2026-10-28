@@ -23,6 +23,7 @@
     <revisionDesc status="published">
       <change when="2026-10-27" type="created">Machine-assisted first draft by Common Ground, written from the directory records.</change>
       <change when="2026-10-28" type="revised">Credits tidied: the computer-assisted first draft is credited in the byline.</change>
+      <change when="2026-10-28" type="revised">Sentences that tied the text to the website (search, the form, record links) taken out.</change>
     </revisionDesc>
   </teiHeader>
   <text>
@@ -97,11 +98,6 @@
         <p>Where two names share a street number they are kept as separate hotels here, with a note on each. They may be one building under a new name, or a new hotel on the same site.</p>
         <p>The 1857 and 1858 directories list a Canada Hotel in Madeline Street, and the 1935 and 1940 directories list a Canada Hotel at 600 Swanston Street (Madeline Street was renamed Swanston Street in 1925). It isn't yet known whether these are the same hotel, so it is left out of the list above.</p>
         <p>A few listings name a hotel under a terrace or row of cottages beside it rather than the street, such as the Carlton Inn under Pattison's Terrace in 1874. These are counted with the hotel.</p>
-      </div>
-      <div>
-        <head>Records</head>
-        <p>Every directory listing that mentions a hotel can be found in <ref target="search?q=hotel&amp;src=directories">search</ref>.</p>
-        <p><hi rend="italic">This entry is a first draft, written with machine assistance from the project's directory records. If you know more, please add to it using the form below.</hi></p>
       </div>
     </body>
   </text>

@@ -25,6 +25,7 @@
     <revisionDesc status="published">
       <change when="2026-10-27" type="created">Machine-assisted first draft by Common Ground, written from the directory and electoral-roll records.</change>
       <change when="2026-10-28" type="revised">Credits tidied: the computer-assisted first draft is credited in the byline.</change>
+      <change when="2026-10-28" type="revised">Sentences that tied the text to the website (search, the form, record links) taken out.</change>
     </revisionDesc>
   </teiHeader>
   <standOff>
@@ -60,11 +61,6 @@
         <list rend="bulleted">
           <item>The <ref target="civic?id=Carlton%20Free%20Kindergarten">Carlton Free Kindergarten</ref>, at No. 233a in 1930 and 1935 (see <ref target="civic?id=Kindergartens">Kindergartens</ref>).</item>
         </list>
-      </div>
-      <div>
-        <head>Records</head>
-        <p>Every directory and electoral-roll listing for Banbridge Place can be browsed in <ref target="search?street=Banbridge%20Place">search</ref>. Each directory year links to its own page from <ref target="civic?id=Sands-McDougall-Directories">Sands &amp; McDougall Directories</ref>.</p>
-        <p><hi rend="italic">This entry is a first draft, written with machine assistance from the project's directory and electoral-roll records. If you know more about Banbridge Place, please add to it using the form below.</hi></p>
       </div>
     </body>
   </text>

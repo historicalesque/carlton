@@ -23,6 +23,7 @@
     <revisionDesc status="published">
       <change when="2026-10-27" type="created">Machine-assisted first draft by Common Ground, written from the directory records.</change>
       <change when="2026-10-28" type="revised">Credits tidied: the computer-assisted first draft is credited in the byline.</change>
+      <change when="2026-10-28" type="revised">Sentences that tied the text to the website (search, the form, record links) taken out.</change>
     </revisionDesc>
   </teiHeader>
   <text>
@@ -85,11 +86,10 @@
         <head>Notes</head>
         <list rend="bulleted">
           <item>Thomas Graham ran both the Carlton Stables in Queensberry Street and the Carlton Stables in Bouverie Street in 1858 to 1860. They are kept apart here because it isn't known whether they were one business.</item>
-          <item>Hotels often had their own stables, such as the <ref target="civic?id=Corkman%20Hotel">Carlton Inn</ref> (1890–1905), the <ref target="civic?id=Emu%20Hotel">Emu Hotel</ref> (1915), the <ref target="civic?id=Leicester%20hotel">Leicester Hotel</ref> (1867–1871) and the <ref target="civic?id=City%20hotel">City Hotel</ref> (1859–1861). These listings are linked to the hotels (see <ref target="civic?id=Hotels">Hotels</ref>).</item>
+          <item>Hotels often had their own stables, such as the <ref target="civic?id=Corkman%20Hotel">Carlton Inn</ref> (1890–1905), the <ref target="civic?id=Emu%20Hotel">Emu Hotel</ref> (1915), the <ref target="civic?id=Leicester%20hotel">Leicester Hotel</ref> (1867–1871) and the <ref target="civic?id=City%20hotel">City Hotel</ref> (1859–1861). See <ref target="civic?id=Hotels">Hotels</ref>.</item>
           <item>The brewery's stables are listed in Ballarat Street and Ballarat Lane as the <ref target="civic?id=Carlton%20%26%20West%20End%20Breweries%20stables">Carlton &amp; West End Breweries stables</ref> (1895–1905), the <ref target="civic?id=Carlton%20%26%20United%20Breweries%20stables">Carlton &amp; United Breweries stables</ref> (1910) and the <ref target="civic?id=Brewery%20stables">Brewery stables</ref> at Nos 10–12 (1925–1935), and in Swanston Street as part of the <ref target="civic?id=Carlton%20Brewery%20%28482%E2%80%93496%20Swanston%20Street%29">Carlton Brewery (482–496 Swanston Street)</ref> (1940). See <ref target="civic?id=Breweries-and-cordial-makers">Breweries and cordial makers</ref>.</item>
           <item>Unnamed "Stables" are listed in Berkley, Leicester and Queensberry streets in the 1860s.</item>
         </list>
-        <p>Every listing can be browsed in <ref target="search?q=stables&amp;src=directories">search</ref>.</p>
       </div>
     </body>
   </text>

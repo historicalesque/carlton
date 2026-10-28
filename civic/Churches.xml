@@ -23,6 +23,7 @@
     <revisionDesc status="published">
       <change when="2026-10-27" type="created">Machine-assisted first draft by Common Ground, written from the directory records.</change>
       <change when="2026-10-28" type="revised">Credits tidied: the computer-assisted first draft is credited in the byline.</change>
+      <change when="2026-10-28" type="revised">Sentences that tied the text to the website (search, the form, record links) taken out.</change>
     </revisionDesc>
   </teiHeader>
   <text>
@@ -49,7 +50,6 @@
           <item>The Scotch Church and St Matthew's School appear under Queensberry Street in 1857 and 1858, in the early alphabetical lists, which give no address. It isn't known whether they were in the project area.</item>
           <item>Clergy listed at their homes, such as "Rev." entries in Barry, Leicester and Grattan streets, are not included here.</item>
         </list>
-        <p>Every listing can be browsed in <ref target="search?q=church&amp;src=directories">search</ref>.</p>
       </div>
     </body>
   </text>

@@ -32,6 +32,7 @@
     <revisionDesc status="published">
       <change when="2026-10-27" type="created">Machine-assisted first draft by Common Ground, from the directory records.</change>
       <change when="2026-10-28" type="revised">Credits tidied: the computer-assisted first draft is credited in the byline.</change>
+      <change when="2026-10-28" type="revised">Sentences that tied the text to the website (search, the form, record links) taken out.</change>
     </revisionDesc>
   </teiHeader>
   <standOff>
@@ -45,7 +46,7 @@
     <body>
       <p>George Yelland, hair cutter and later hairdresser, is listed in <ref target="civic?id=Victoria%20Street">Victoria Street</ref> in every Sands &amp; McDougall directory from 1857 to 1868 except 1863 and 1864.</p>
       <p>His number changes as the street is numbered: no number in 1857 and 1858, No. 9 in 1859, No. 11 in 1860 and 1861, and No. 17 from 1862 to 1868. From 1865 he is listed as "Yelland, G." without a trade.</p>
-      <p>A "Yelland, G." is listed at 64 Bouverie Street in 1863, and a Wm. G. Yelland at 1 Lincoln Cottages in 1910. These are not linked to this entry, as it isn't clear they are the same person.</p>
+      <p>A "Yelland, G." is listed at 64 Bouverie Street in 1863, and a Wm. G. Yelland at 1 Lincoln Cottages in 1910. It isn't clear they are the same person.</p>
     </body>
   </text>
 </TEI>

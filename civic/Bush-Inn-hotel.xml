@@ -28,6 +28,7 @@
       <change when="2026-10-06" type="revised">Changes suggested by Mitchell Harrop: Typo.</change>
       <change when="2026-10-27" type="edited">Links, and sections from the directory records, added by Common Ground (machine-assisted).</change>
       <change when="2026-10-28" type="revised">Credits tidied: the computer-assisted first draft is credited in the byline.</change>
+      <change when="2026-10-28" type="revised">Sentences that tied the text to the website (search, the form, record links) taken out.</change>
     </revisionDesc>
   </teiHeader>
   <standOff>
@@ -54,10 +55,6 @@
       <div>
         <head>Neighbours</head>
         <p>The Savings Bank is across Bouverie Street, at No. 176 Victoria Street from 1905 and No. 178 in 1920. In 1925 the <ref target="civic?id=Carlton%20Brewery">Carlton Brewery</ref> (Carlton &amp; United Breweries) is next door in Bouverie Street.</p>
-      </div>
-      <div>
-        <head>Records</head>
-        <p>The hotel's listings are linked to this entry, and the corner can be browsed in <ref target="search?street=Bouverie%20Street">search</ref>.</p>
       </div>
     </body>
   </text>

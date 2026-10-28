@@ -31,6 +31,7 @@
     </fileDesc>
     <revisionDesc status="published">
       <change when="2026-10-28" type="created">Computer-assisted first draft by Common Ground, from the directory and electoral-roll records.</change>
+      <change when="2026-10-28" type="revised">Sentences that tied the text to the website (search, the form, record links) taken out.</change>
     </revisionDesc>
   </teiHeader>
   <standOff>
@@ -45,7 +46,7 @@
       <div>
         <head>In the directories</head>
         <p>Philip or Phillip H. Newton is listed in <ref target="civic?id=Queensberry%20Street">Queensberry Street</ref> from 1878 to 1910, at No. 16 to 1885 and at No. 215 from 1890, after the street was renumbered. He is listed as an asphalter from 1900.</p>
-        <p>Mrs Mary Newton is listed at No. 215 in 1915 and 1920, and Mrs A. J. Newton at No. 193 in 1900. Those listings are not linked to this entry.</p>
+        <p>Mrs Mary Newton is listed at No. 215 in 1915 and 1920, and Mrs A. J. Newton at No. 193 in 1900.</p>
       </div>
       <div>
         <head>On the electoral roll</head>

@@ -23,6 +23,7 @@
     <revisionDesc status="published">
       <change when="2026-10-27" type="created">Machine-assisted first draft by Common Ground, written from the directory records.</change>
       <change when="2026-10-28" type="revised">Credits tidied: the computer-assisted first draft is credited in the byline.</change>
+      <change when="2026-10-28" type="revised">Sentences that tied the text to the website (search, the form, record links) taken out.</change>
     </revisionDesc>
   </teiHeader>
   <text>
@@ -88,7 +89,7 @@
       </div>
       <div>
         <head>Sources</head>
-        <p>Every listing can be browsed in <ref target="search?q=baker&amp;src=directories">search</ref>. The directories are yearly to 1880 and then every five years, so years are the first and last directories that list each entry.</p>
+        <p>The directories are yearly to 1880 and then every five years, so years are the first and last directories that list each entry.</p>
       </div>
     </body>
   </text>

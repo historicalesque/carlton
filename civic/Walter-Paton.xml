@@ -37,6 +37,7 @@
     <revisionDesc status="published">
       <change when="2026-10-28" type="created">Computer-assisted first draft by Common Ground, from the directory records.</change>
       <change when="2026-10-28" type="edited">Linked to the new Ann Paton entry by Common Ground (computer-assisted).</change>
+      <change when="2026-10-28" type="revised">Sentences that tied the text to the website (search, the form, record links) taken out.</change>
     </revisionDesc>
   </teiHeader>
   <standOff>
@@ -51,7 +52,7 @@
       <div>
         <head>In the directories</head>
         <p>Walter Paton, cabinetmaker, is listed in <ref target="civic?id=Bouverie%20Street">Bouverie Street</ref> from 1873 to 1915. He is at No. 71 from 1873 to 1875, No. 73 from 1876 to 1885, and No. 103 from 1890, after the street was renumbered.</p>
-        <p>In 1895 a Walter Paton with no trade is also listed at No. 101, and from 1900 to 1915 Mrs A. Paton, grocer, is at No. 101. Those listings are not linked to this entry. Mrs Paton has her own entry, <ref target="civic?id=Ann%20Paton">Ann Paton</ref>.</p>
+        <p>In 1895 a Walter Paton with no trade is also listed at No. 101, and from 1900 to 1915 Mrs A. Paton, grocer, is at No. 101. It isn't clear the 1895 listing is the same man. Mrs Paton has her own entry, <ref target="civic?id=Ann%20Paton">Ann Paton</ref>.</p>
       </div>
       <div>
         <head>Neighbours</head>

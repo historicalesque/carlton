@@ -28,6 +28,7 @@
     </fileDesc>
     <revisionDesc status="published">
       <change when="2026-10-28" type="created">Computer-assisted first draft by Common Ground, from the directory and electoral-roll records.</change>
+      <change when="2026-10-28" type="revised">Sentences that tied the text to the website (search, the form, record links) taken out.</change>
     </revisionDesc>
   </teiHeader>
   <standOff>
@@ -42,7 +43,7 @@
       <div>
         <head>In the directories</head>
         <p>James Carter is listed in <ref target="civic?id=Bouverie%20Street">Bouverie Street</ref> from 1880 to 1905, at No. 7 in 1880 and 1885 and at No. 13 from 1890, after the street was renumbered. He is a dealer from 1895.</p>
-        <p>Other Carters are listed in Bouverie Street earlier: Mrs Carter at No. 59 in 1867 and 1868, and Charles J. Carter at No. 105 from 1877 to 1879. Those listings are not linked to this entry.</p>
+        <p>Other Carters are listed in Bouverie Street earlier: Mrs Carter at No. 59 in 1867 and 1868, and Charles J. Carter at No. 105 from 1877 to 1879.</p>
       </div>
       <div>
         <head>On the electoral roll</head>

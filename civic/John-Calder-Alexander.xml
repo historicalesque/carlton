@@ -25,6 +25,7 @@
     </fileDesc>
     <revisionDesc status="published">
       <change when="2026-10-28" type="created">Computer-assisted first draft by Common Ground, from the directory and electoral-roll records.</change>
+      <change when="2026-10-28" type="revised">Sentences that tied the text to the website (search, the form, record links) taken out.</change>
     </revisionDesc>
   </teiHeader>
   <standOff>
@@ -39,7 +40,7 @@
       <div>
         <head>In the directories</head>
         <p>J. C. Alexander, plumber, is listed at No. 7 <ref target="civic?id=Madeline%20Street">Madeline Street</ref> in 1900. In 1905 and 1910 he is a sanitary plumber at No. 67.</p>
-        <p>A Mrs C. Alexander is listed at No. 181 in 1915. That listing is not linked to this entry.</p>
+        <p>A Mrs C. Alexander is listed at No. 181 in 1915.</p>
       </div>
       <div>
         <head>On the electoral roll</head>
