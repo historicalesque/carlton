@@ -43,6 +43,7 @@
     </fileDesc>
     <revisionDesc status="published">
       <change when="2026-10-28" type="created">Computer-assisted first draft by Common Ground, from the directory records.</change>
+      <change when="2026-10-28" type="revised">Sentences that tied the text to the website (search, the form, record links) taken out.</change>
     </revisionDesc>
   </teiHeader>
   <standOff>
@@ -56,7 +57,7 @@
     <body>
       <div>
         <head>In the directories</head>
-        <p>Thomas S. Blake, grocer, is listed in <ref target="civic?id=Pelham%20Street">Pelham Street</ref> from 1867 to 1910. He is at No. 11 from 1869 to 1885, and at No. 226 from 1890, after the street was renumbered. A T. S. Blake with no trade is listed in Pelham Street in 1865 and 1866, and those listings are linked here too.</p>
+        <p>Thomas S. Blake, grocer, is listed in <ref target="civic?id=Pelham%20Street">Pelham Street</ref> from 1867 to 1910. He is at No. 11 from 1869 to 1885, and at No. 226 from 1890, after the street was renumbered. A T. S. Blake with no trade is listed in Pelham Street in 1865 and 1866, probably the same man.</p>
       </div>
       <div>
         <head>Neighbours</head>

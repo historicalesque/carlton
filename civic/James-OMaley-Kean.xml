@@ -23,6 +23,7 @@
     </fileDesc>
     <revisionDesc status="published">
       <change when="2026-10-28" type="created">Computer-assisted first draft by Common Ground, from the directory and electoral-roll records.</change>
+      <change when="2026-10-28" type="revised">Sentences that tied the text to the website (search, the form, record links) taken out.</change>
     </revisionDesc>
   </teiHeader>
   <standOff>
@@ -37,7 +38,7 @@
       <div>
         <head>In the directories</head>
         <p>Jas. Kean, bootmaker, is listed at No. 185 <ref target="civic?id=Queensberry%20Street">Queensberry Street</ref> in 1915.</p>
-        <p>James Kean, bootmaker, is also listed at No. 86 <ref target="civic?id=Bouverie%20Street">Bouverie Street</ref> in 1910. That may be the same man, but the listing is not linked to this entry.</p>
+        <p>James Kean, bootmaker, is also listed at No. 86 <ref target="civic?id=Bouverie%20Street">Bouverie Street</ref> in 1910. That may be the same man.</p>
       </div>
       <div>
         <head>On the electoral roll</head>

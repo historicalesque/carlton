@@ -25,6 +25,7 @@
     </fileDesc>
     <revisionDesc status="draft">
       <change when="2026-10-29" type="created">Contributed through the contribution form by Mitchell Harrop.</change>
+      <change when="2026-10-28" type="revised">Sentences that tied the text to the website (search, the form, record links) taken out.</change>
     </revisionDesc>
   </teiHeader>
   <standOff>
@@ -57,10 +58,6 @@
             <item>The Home for Friendless and Fallen at No. 19 (1880).</item>
             <item>The <ref target="civic?id=Carlton%20Brewery">Carlton Brewery</ref> from 1885, listed as the Carlton &amp; West End Brewery from 1890 and Carlton &amp; United Breweries from 1910. Its stables at Nos 10 to 12 are the only listing left on the street from 1920 to 1935.</item>
           </list>
-        </div>
-        <div>
-          <head>Records</head>
-          <p>Every directory and electoral-roll listing for Ballarat Street can be browsed in <ref target="search?street=Ballarat%20Street">search</ref>.</p>
         </div>
       </div>
     </body>

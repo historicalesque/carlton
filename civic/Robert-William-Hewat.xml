@@ -28,6 +28,7 @@
     </fileDesc>
     <revisionDesc status="published">
       <change when="2026-10-28" type="created">Computer-assisted first draft by Common Ground, from the directory and electoral-roll records.</change>
+      <change when="2026-10-28" type="revised">Sentences that tied the text to the website (search, the form, record links) taken out.</change>
     </revisionDesc>
   </teiHeader>
   <standOff>
@@ -42,7 +43,7 @@
       <div>
         <head>In the directories</head>
         <p>R. or Robt. W. Hewat, hairdresser, is listed in <ref target="civic?id=Bouverie%20Street">Bouverie Street</ref> from 1915 to 1940. He is at No. 193, next to the fire station, in 1915 and 1920, and at No. 166, on the <ref target="civic?id=Church%20Street">Church Street</ref> corner, from 1925. No trade is given in 1940.</p>
-        <p>A Robert Hewat is listed at No. 93 <ref target="civic?id=Madeline%20Street">Madeline Street</ref> in 1910. That listing is not linked to this entry.</p>
+        <p>A Robert Hewat is listed at No. 93 <ref target="civic?id=Madeline%20Street">Madeline Street</ref> in 1910. It isn't clear he is the same man.</p>
       </div>
       <div>
         <head>On the electoral roll</head>

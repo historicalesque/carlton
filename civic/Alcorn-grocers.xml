@@ -39,6 +39,7 @@
     </fileDesc>
     <revisionDesc status="published">
       <change when="2026-10-28" type="created">Computer-assisted first draft by Common Ground, from the directory records.</change>
+      <change when="2026-10-28" type="revised">Sentences that tied the text to the website (search, the form, record links) taken out.</change>
     </revisionDesc>
   </teiHeader>
   <standOff>
@@ -53,7 +54,7 @@
       <div>
         <head>In the directories</head>
         <p>The Alcorn family kept a grocery in <ref target="civic?id=Bouverie%20Street">Bouverie Street</ref> from 1863 to 1880. It is always the first listing after the Lincoln Square corner, and from 1868 it is No. 94. The directories list F. Alcorn, grocer (1863 and 1864), Thomas Alcorn, grocer (1865), Elizabeth Alcorn, grocer (1866 and 1867), and Thomas Alcorn again from 1868: grocer, then grocer and wood yard (1869), then grocer, draper and wood yard (1870 to 1876). From 1877 to 1880 it is Fergus Alcorn, grocer.</p>
-        <p>Elizabeth Alcorn, grocer, is also listed in <ref target="civic?id=Pelham%20Street">Pelham Street</ref> from 1866 to 1868. A Thomas Alcorn with no trade is listed at No. 146 Bouverie Street in 1860 and 1861, and a T. Alcorn in Pelham Street from 1863 to 1865. Those listings are not linked to this entry.</p>
+        <p>Elizabeth Alcorn, grocer, is also listed in <ref target="civic?id=Pelham%20Street">Pelham Street</ref> from 1866 to 1868. A Thomas Alcorn with no trade is listed at No. 146 Bouverie Street in 1860 and 1861, and a T. Alcorn in Pelham Street from 1863 to 1865.</p>
       </div>
       <div>
         <head>Neighbours</head>

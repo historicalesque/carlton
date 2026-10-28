@@ -41,6 +41,7 @@
     </fileDesc>
     <revisionDesc status="published">
       <change when="2026-10-28" type="created">Computer-assisted first draft by Common Ground, from the directory records.</change>
+      <change when="2026-10-28" type="revised">Sentences that tied the text to the website (search, the form, record links) taken out.</change>
     </revisionDesc>
   </teiHeader>
   <standOff>
@@ -54,7 +55,7 @@
     <body>
       <div>
         <head>In the directories</head>
-        <p>John Hudspeth, painter, is listed in <ref target="civic?id=Leicester%20Street">Leicester Street</ref> from 1864 to 1890. He is at No. 73 for most of that time (No. 75 from 1866 to 1868), and at No. 137 in 1890, after the street was renumbered. In 1862 a Hudspeth with no first name or trade is listed at No. 73, and that listing is linked here too.</p>
+        <p>John Hudspeth, painter, is listed in <ref target="civic?id=Leicester%20Street">Leicester Street</ref> from 1864 to 1890. He is at No. 73 for most of that time (No. 75 from 1866 to 1868), and at No. 137 in 1890, after the street was renumbered. In 1862 a Hudspeth with no first name or trade is listed at No. 73, probably the same man.</p>
       </div>
       <div>
         <head>Neighbours</head>

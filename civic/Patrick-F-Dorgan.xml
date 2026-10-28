@@ -24,6 +24,7 @@
     </fileDesc>
     <revisionDesc status="published">
       <change when="2026-10-28" type="created">Computer-assisted first draft by Common Ground, from the directory and electoral-roll records.</change>
+      <change when="2026-10-28" type="revised">Sentences that tied the text to the website (search, the form, record links) taken out.</change>
     </revisionDesc>
   </teiHeader>
   <standOff>
@@ -37,7 +38,7 @@
     <body>
       <div>
         <head>In the directories</head>
-        <p>Patk. F. Dorgan, baker, is listed at No. 59 <ref target="civic?id=Madeline%20Street">Madeline Street</ref> in 1905 and 1910. In 1915 Daniel Dorgan, baker, is at the same number. That listing is not linked to this entry.</p>
+        <p>Patk. F. Dorgan, baker, is listed at No. 59 <ref target="civic?id=Madeline%20Street">Madeline Street</ref> in 1905 and 1910. In 1915 Daniel Dorgan, baker, is at the same number.</p>
       </div>
       <div>
         <head>On the electoral roll</head>

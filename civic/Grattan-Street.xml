@@ -28,6 +28,7 @@
       <change when="2026-10-23" type="created">Contributed through the contribution form by Mitchell Harrop, Chloe Tobin.</change>
       <change when="2026-10-27" type="edited">Links, and sections from the directory records, added by Common Ground (machine-assisted).</change>
       <change when="2026-10-28" type="revised">Credits tidied: the computer-assisted first draft is credited in the byline.</change>
+      <change when="2026-10-28" type="revised">Sentences that tied the text to the website (search, the form, record links) taken out.</change>
     </revisionDesc>
   </teiHeader>
   <standOff>
@@ -59,10 +60,6 @@
           <item>The Training College of the Education Department on the north side, 1900 to 1925, listed as the Teachers' College in 1935 and 1940, and University High School in 1895.</item>
           <item>Orloff Bros, wood yard, at No. 181 (1935), and apartments at Nos 205 to 207 and 215 to 217 (1935 and 1940).</item>
         </list>
-      </div>
-      <div>
-        <head>Records</head>
-        <p>Every directory and electoral-roll listing for Grattan Street can be browsed in <ref target="search?street=Grattan%20Street">search</ref>.</p>
       </div>
     </body>
   </text>

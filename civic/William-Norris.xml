@@ -34,6 +34,7 @@
     <revisionDesc status="published">
       <change when="2026-10-28" type="created">Computer-assisted first draft by Common Ground, from the directory records.</change>
       <change when="2026-10-28" type="edited">Electoral-roll records linked, and a section on them added, by Common Ground (computer-assisted).</change>
+      <change when="2026-10-28" type="revised">Sentences that tied the text to the website (search, the form, record links) taken out.</change>
     </revisionDesc>
   </teiHeader>
   <standOff>
@@ -51,7 +52,7 @@
       </div>
       <div>
         <head>On the electoral roll</head>
-        <p>William Norris, grocer, is on the 1905 <ref target="civic?id=Electoral-Rolls">electoral roll</ref> at 45 Madeline Street. Maurice Norris and William Norris junior, clerks, and Patrick Norris, independent means, are at the same address. In 1919 Maurice Patrick Norris and William Norris junior, clerks, Mary Norris, dressmaker, and Annisticia Norris, typiste, are still at No. 45, and in 1920 the directory lists Mrs E. Norris, grocer, there. Those records are not linked to this entry.</p>
+        <p>William Norris, grocer, is on the 1905 <ref target="civic?id=Electoral-Rolls">electoral roll</ref> at 45 Madeline Street. Maurice Norris and William Norris junior, clerks, and Patrick Norris, independent means, are at the same address. In 1919 Maurice Patrick Norris and William Norris junior, clerks, Mary Norris, dressmaker, and Annisticia Norris, typiste, are still at No. 45, and in 1920 the directory lists Mrs E. Norris, grocer, there.</p>
       </div>
       <div>
         <head>Neighbours</head>
