@@ -7,4 +7,4 @@ title: "Suggest a new entry"
 
 Know a person, building, business or street in Carlton that deserves its own entry? Type its name below and select **Create**. If there's no page for it yet, you'll see a contribution form where you can write what you know, add sources and send it in.
 
-Every suggestion is read by the editorial team before it appears on the site.
+The editorial collective reads every suggestion before deciding whether, and how, it appears on the site. [How to contribute](about#contribute)

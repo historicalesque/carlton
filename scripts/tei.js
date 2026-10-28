@@ -462,7 +462,11 @@ window.TEIEntry = (function () {
           case 'table':
             return `<div class="pv-table"><table><tbody>${kids(c, 'row').map((r) =>
               `<tr>${kids(r, 'cell').map((cell) => `<td>${mixed(cell)}</td>`).join('')}</tr>`).join('')}</tbody></table></div>`;
-          case 'div': return blocks(c);
+          case 'div': {
+            // <div xml:id="contribute"> becomes a section that about#contribute can link to
+            const id = c.getAttribute('xml:id');
+            return id ? `<section id="${esc(id)}">${blocks(c)}</section>` : blocks(c);
+          }
           default: return '';
         }
       }).join('');
