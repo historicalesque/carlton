@@ -54,7 +54,7 @@ const CELL_LIMIT = 49000;
 // Which version of this script is running. Opening the web app's address
 // (contribution_endpoint in _config.yml) shows it, so it's easy to check
 // that the form talks to the latest deployment.
-const SCRIPT_VERSION = '2026-10-10: suggested changes update the submission\'s row';
+const SCRIPT_VERSION = '2026-10-28: a name is optional';
 
 function doGet() {
   return ContentService.createTextOutput(`Common Ground submissions: send entries with POST.\nVersion ${SCRIPT_VERSION}`);
@@ -92,8 +92,10 @@ function receive_(e) {
   const titleEl = header && header.getChild('fileDesc', tei) && header.getChild('fileDesc', tei).getChild('titleStmt', tei);
   const title = titleEl && titleEl.getChild('title', tei) ? titleEl.getChild('title', tei).getText().trim() : '';
   if (!title) throw userError_('Add a title.');
-  const authors = titleEl.getChildren('author', tei).map((a) => a.getText().trim()).filter(String);
-  if (!authors.length) throw userError_('Add your name.');
+  // A name is optional: a suggestion sent without one is credited to the
+  // broader Carlton community (and the licence box has to be ticked to send)
+  const named = titleEl.getChildren('author', tei).map((a) => a.getText().trim()).filter(String);
+  const authors = named.length ? named : ['the broader Carlton community'];
   if (data.action === 'review') return receiveReview_(data, title);
 
   // The file name follows the site's rule for ?id= (see slugifyId in
