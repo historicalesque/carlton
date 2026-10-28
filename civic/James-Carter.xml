@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="https://historicalesque.github.io/carlton/schema/carlton.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0" type="person" xml:lang="en">
+  <teiHeader>
+    <fileDesc>
+      <titleStmt>
+        <title>James Carter</title>
+        <respStmt key="computer-assisted-draft">
+          <resp>Computer-assisted first draft</resp>
+          <name>Common Ground</name>
+        </respStmt>
+      </titleStmt>
+      <publicationStmt>
+        <publisher>Common Ground</publisher>
+        <idno type="entry">James-Carter</idno>
+      </publicationStmt>
+      <sourceDesc>
+        <listBibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1880">Sands &amp; McDougall Directory, 1880, p. 63</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1885">Sands &amp; McDougall Directory, 1885, p. 88</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1890">Sands &amp; McDougall Directory, 1890, p. 121</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1895">Sands &amp; McDougall Directory, 1895, p. 139</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1900">Sands &amp; McDougall Directory, 1900, p. 173</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1905">Sands &amp; McDougall Directory, 1905, p. 179</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Electoral-Rolls">Electoral rolls, 1905</ref></bibl>
+        </listBibl>
+      </sourceDesc>
+    </fileDesc>
+    <revisionDesc status="published">
+      <change when="2026-10-28" type="created">Computer-assisted first draft by Common Ground, from the directory and electoral-roll records.</change>
+    </revisionDesc>
+  </teiHeader>
+  <standOff>
+    <listPerson>
+      <person xml:id="subject">
+        <persName type="main">James Carter</persName>
+      </person>
+    </listPerson>
+  </standOff>
+  <text>
+    <body>
+      <div>
+        <head>In the directories</head>
+        <p>James Carter is listed in <ref target="civic?id=Bouverie%20Street">Bouverie Street</ref> from 1880 to 1905, at No. 7 in 1880 and 1885 and at No. 13 from 1890, after the street was renumbered. He is a dealer from 1895.</p>
+        <p>Other Carters are listed in Bouverie Street earlier: Mrs Carter at No. 59 in 1867 and 1868, and Charles J. Carter at No. 105 from 1877 to 1879. Those listings are not linked to this entry.</p>
+      </div>
+      <div>
+        <head>On the electoral roll</head>
+        <p>James Carter, dealer, is on the 1905 <ref target="civic?id=Electoral-Rolls">electoral roll</ref> at 13 Bouverie Street.</p>
+      </div>
+      <div>
+        <head>Neighbours</head>
+        <p>J. or John Keane, bootmaker, is his neighbour from 1880 to 1895, at Nos 3 and 5 and then Nos 7 and 9, which is how the move from No. 7 to No. 13 can be followed through the renumbering. Thomas Macnamara, musician, is on the other side in 1880, and Wm. King, bootmaker, in 1885. Later neighbours are G. Wielsch (1900) and Robt. Zoll (1905), cabinetmakers, at No. 7, and T. Carroll, hairdresser (1900), and Mrs E. Allison, grocer (1905), at No. 17.</p>
+      </div>
+      <div>
+        <head>See also</head>
+        <list rend="bulleted">
+          <item><ref target="civic?id=Bouverie%20Street">Bouverie Street</ref></item>
+        </list>
+      </div>
+    </body>
+  </text>
+</TEI>

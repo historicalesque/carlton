@@ -27,11 +27,13 @@
           <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1905">Sands &amp; McDougall Directory, 1905, p. 195</ref></bibl>
           <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1910">Sands &amp; McDougall Directory, 1910, p. 203</ref></bibl>
           <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1915">Sands &amp; McDougall Directory, 1915, p. 199</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Electoral-Rolls">Electoral rolls, 1905</ref></bibl>
         </listBibl>
       </sourceDesc>
     </fileDesc>
     <revisionDesc status="published">
       <change when="2026-10-28" type="created">Computer-assisted first draft by Common Ground, from the directory records.</change>
+      <change when="2026-10-28" type="edited">Electoral-roll records linked, and a section on them added, by Common Ground (computer-assisted).</change>
     </revisionDesc>
   </teiHeader>
   <standOff>
@@ -48,14 +50,19 @@
         <p>W. or William Norris, grocer, is listed in <ref target="civic?id=Madeline%20Street">Madeline Street</ref> from 1877 to 1915. He is at No. 57 from 1877 to 1879, No. 51 in 1880, Nos 35 and 37 in 1885, Nos 45 and 47 in 1890, and No. 45 from 1895. From 1885 he is the first listing after the Ballarat Street corner, where the <ref target="civic?id=Clapperton%20drapers">Clapperton drapers</ref> had been to 1880, at the same numbers, 35 and 37.</p>
       </div>
       <div>
+        <head>On the electoral roll</head>
+        <p>William Norris, grocer, is on the 1905 <ref target="civic?id=Electoral-Rolls">electoral roll</ref> at 45 Madeline Street. Maurice Norris and William Norris junior, clerks, and Patrick Norris, independent means, are at the same address. In 1919 Maurice Patrick Norris and William Norris junior, clerks, Mary Norris, dressmaker, and Annisticia Norris, typiste, are still at No. 45, and in 1920 the directory lists Mrs E. Norris, grocer, there. Those records are not linked to this entry.</p>
+      </div>
+      <div>
         <head>Neighbours</head>
-        <p>Michael Aarons, general dealer, is next door at No. 55 from 1877 to 1879, and Lewis Corben, pawnbroker, at No. 49 in 1880. R. Prittie, bootmaker, is at Nos 31 and 33 in 1885. R. G. McMullen, labour agent, is at No. 47 in 1900 and 1905, and Mrs E. Shapir, milliner, in 1910.</p>
+        <p>Michael Aarons, general dealer, is next door at No. 55 from 1877 to 1879, and Lewis Corben, pawnbroker, at No. 49 in 1880. R. Prittie, bootmaker, is at Nos 31 and 33 in 1885. <ref target="civic?id=Richard%20G.%20McMullen">Richard G. McMullen</ref>, labour agent, is at No. 47 in 1900 and 1905, and Mrs E. Shapir, milliner, in 1910.</p>
       </div>
       <div>
         <head>See also</head>
         <list rend="bulleted">
           <item><ref target="civic?id=Madeline%20Street">Madeline Street</ref></item>
           <item><ref target="civic?id=Clapperton%20drapers">Clapperton drapers</ref></item>
+          <item><ref target="civic?id=Richard%20G.%20McMullen">Richard G. McMullen</ref></item>
         </list>
       </div>
     </body>

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="https://historicalesque.github.io/carlton/schema/carlton.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0" type="person" xml:lang="en">
+  <teiHeader>
+    <fileDesc>
+      <titleStmt>
+        <title>Francis Soppett Wilson</title>
+        <respStmt key="computer-assisted-draft">
+          <resp>Computer-assisted first draft</resp>
+          <name>Common Ground</name>
+        </respStmt>
+      </titleStmt>
+      <publicationStmt>
+        <publisher>Common Ground</publisher>
+        <idno type="entry">Francis-Soppett-Wilson</idno>
+      </publicationStmt>
+      <sourceDesc>
+        <listBibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1915">Sands &amp; McDougall Directory, 1915, p. 190</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1920">Sands &amp; McDougall Directory, 1920, p. 202</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1925">Sands &amp; McDougall Directory, 1925, p. 231</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1930">Sands &amp; McDougall Directory, 1930, p. 193</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Electoral-Rolls">Electoral rolls, 1928</ref></bibl>
+        </listBibl>
+      </sourceDesc>
+    </fileDesc>
+    <revisionDesc status="published">
+      <change when="2026-10-28" type="created">Computer-assisted first draft by Common Ground, from the directory and electoral-roll records.</change>
+    </revisionDesc>
+  </teiHeader>
+  <standOff>
+    <listPerson>
+      <person xml:id="subject">
+        <persName type="main">Francis Soppett Wilson</persName>
+      </person>
+    </listPerson>
+  </standOff>
+  <text>
+    <body>
+      <div>
+        <head>In the directories</head>
+        <p>Francis Wilson, grocer, is listed at No. 144 <ref target="civic?id=Bouverie%20Street">Bouverie Street</ref> from 1915 to 1930. It is the first listing after the Lincoln Square corner.</p>
+      </div>
+      <div>
+        <head>On the electoral roll</head>
+        <p>Francis Soppett Wilson, grocer, is on the 1928 <ref target="civic?id=Electoral-Rolls">electoral roll</ref> at 144 Bouverie Street, with Olive Wilson, home duties.</p>
+      </div>
+      <div>
+        <head>Neighbours</head>
+        <p>Harris Levi is at No. 154 in 1915, and Henry Wm. Watson from 1920. The corner shop is a grocery before and after him: Michael Delaney (1890 and 1895), William Pretty (1900), M. O'Kelly (1905 and 1910), M. Jackson (1935 and 1940) and Mrs A. Augustimus (1945). In the 1860s and 1870s the first listing after the corner was the <ref target="civic?id=Alcorn%20grocers">Alcorn grocers</ref>.</p>
+      </div>
+      <div>
+        <head>See also</head>
+        <list rend="bulleted">
+          <item><ref target="civic?id=Bouverie%20Street">Bouverie Street</ref></item>
+          <item><ref target="civic?id=Alcorn%20grocers">Alcorn grocers</ref></item>
+        </list>
+      </div>
+    </body>
+  </text>
+</TEI>

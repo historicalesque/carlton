@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="https://historicalesque.github.io/carlton/schema/carlton.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0" type="person" xml:lang="en">
+  <teiHeader>
+    <fileDesc>
+      <titleStmt>
+        <title>Richard Thomas Ward</title>
+        <respStmt key="computer-assisted-draft">
+          <resp>Computer-assisted first draft</resp>
+          <name>Common Ground</name>
+        </respStmt>
+      </titleStmt>
+      <publicationStmt>
+        <publisher>Common Ground</publisher>
+        <idno type="entry">Richard-Thomas-Ward</idno>
+      </publicationStmt>
+      <sourceDesc>
+        <listBibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1920">Sands &amp; McDougall Directory, 1920, p. 211</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Electoral-Rolls">Electoral rolls, 1919</ref></bibl>
+        </listBibl>
+      </sourceDesc>
+    </fileDesc>
+    <revisionDesc status="published">
+      <change when="2026-10-28" type="created">Computer-assisted first draft by Common Ground, from the directory and electoral-roll records.</change>
+    </revisionDesc>
+  </teiHeader>
+  <standOff>
+    <listPerson>
+      <person xml:id="subject">
+        <persName type="main">Richard Thomas Ward</persName>
+      </person>
+    </listPerson>
+  </standOff>
+  <text>
+    <body>
+      <div>
+        <head>In the directories</head>
+        <p>R. Ward, bootmaker, is listed at No. 49 <ref target="civic?id=Madeline%20Street">Madeline Street</ref> in 1920.</p>
+      </div>
+      <div>
+        <head>On the electoral roll</head>
+        <p>Richard Thomas Ward, bootmaker, is on the 1919 <ref target="civic?id=Electoral-Rolls">electoral roll</ref> at 49 Madeline Street.</p>
+      </div>
+      <div>
+        <head>Neighbours</head>
+        <p>William Roberts is at No. 47 and B. Singer, whiteworker, at No. 51. In 1905 No. 49 had been the shop of <ref target="civic?id=Carl%20Fischer">Carl Fischer</ref>, hairdresser and tobacconist.</p>
+      </div>
+      <div>
+        <head>See also</head>
+        <list rend="bulleted">
+          <item><ref target="civic?id=Madeline%20Street">Madeline Street</ref></item>
+          <item><ref target="civic?id=Carl%20Fischer">Carl Fischer</ref></item>
+        </list>
+      </div>
+    </body>
+  </text>
+</TEI>

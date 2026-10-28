@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="https://historicalesque.github.io/carlton/schema/carlton.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0" type="person" xml:lang="en">
+  <teiHeader>
+    <fileDesc>
+      <titleStmt>
+        <title>William Edward Kemp</title>
+        <respStmt key="computer-assisted-draft">
+          <resp>Computer-assisted first draft</resp>
+          <name>Common Ground</name>
+        </respStmt>
+      </titleStmt>
+      <publicationStmt>
+        <publisher>Common Ground</publisher>
+        <idno type="entry">William-Edward-Kemp</idno>
+      </publicationStmt>
+      <sourceDesc>
+        <listBibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1930">Sands &amp; McDougall Directory, 1930, p. 193</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1935">Sands &amp; McDougall Directory, 1935, p. 192</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1940">Sands &amp; McDougall Directory, 1940, p. 214</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Electoral-Rolls">Electoral rolls, 1928</ref></bibl>
+        </listBibl>
+      </sourceDesc>
+    </fileDesc>
+    <revisionDesc status="published">
+      <change when="2026-10-28" type="created">Computer-assisted first draft by Common Ground, from the directory and electoral-roll records.</change>
+    </revisionDesc>
+  </teiHeader>
+  <standOff>
+    <listPerson>
+      <person xml:id="subject">
+        <persName type="main">William Edward Kemp</persName>
+      </person>
+    </listPerson>
+  </standOff>
+  <text>
+    <body>
+      <div>
+        <head>In the directories</head>
+        <p>W. E. Kemp, grocer, is listed in <ref target="civic?id=Barry%20Street">Barry Street</ref> from 1930 to 1940. He is at No. 77 in 1930 and No. 87 in 1935, the last listing before the Pelham Street corner. In 1940 the number is printed as 65, but the listing is in the same place, after Mrs B. E. Chapman at No. 85, so it is probably still No. 87.</p>
+        <p>Francis A. Kemp, butcher, is listed in Barry Street from 1870 to 1895, and a Matthew William Kemp is on the 1928 roll at 153 Barry Street. Those records are not linked to this entry.</p>
+      </div>
+      <div>
+        <head>On the electoral roll</head>
+        <p>William Edward Kemp, grocer, is on the 1928 <ref target="civic?id=Electoral-Rolls">electoral roll</ref> at 77 Barry Street.</p>
+      </div>
+      <div>
+        <head>Neighbours</head>
+        <p>At No. 77 in 1930, Joseph W. Miller is at No. 75, and No. 79 is vacant. No. 77 had been <ref target="civic?id=Arthur%20Allen%20Gaskins">Arthur Allen Gaskins</ref>'s general store in 1910 and 1915. Mrs B. E. Chapman is his neighbour at No. 85 in 1935 and 1940.</p>
+      </div>
+      <div>
+        <head>See also</head>
+        <list rend="bulleted">
+          <item><ref target="civic?id=Barry%20Street">Barry Street</ref></item>
+          <item><ref target="civic?id=Arthur%20Allen%20Gaskins">Arthur Allen Gaskins</ref></item>
+        </list>
+      </div>
+    </body>
+  </text>
+</TEI>

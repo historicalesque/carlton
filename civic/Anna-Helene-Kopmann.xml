@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="https://historicalesque.github.io/carlton/schema/carlton.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0" type="person" xml:lang="en">
+  <teiHeader>
+    <fileDesc>
+      <titleStmt>
+        <title>Anna Helene Kopmann</title>
+        <respStmt key="computer-assisted-draft">
+          <resp>Computer-assisted first draft</resp>
+          <name>Common Ground</name>
+        </respStmt>
+      </titleStmt>
+      <publicationStmt>
+        <publisher>Common Ground</publisher>
+        <idno type="entry">Anna-Helene-Kopmann</idno>
+      </publicationStmt>
+      <sourceDesc>
+        <listBibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1910">Sands &amp; McDougall Directory, 1910, p. 203</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1915">Sands &amp; McDougall Directory, 1915, p. 199</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1920">Sands &amp; McDougall Directory, 1920, p. 211</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1925">Sands &amp; McDougall Directory, 1925, p. 240</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1935">Sands &amp; McDougall Directory, 1935, p. 200</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Electoral-Rolls">Electoral rolls, 1919</ref></bibl>
+        </listBibl>
+      </sourceDesc>
+    </fileDesc>
+    <revisionDesc status="published">
+      <change when="2026-10-28" type="created">Computer-assisted first draft by Common Ground, from the directory and electoral-roll records.</change>
+    </revisionDesc>
+  </teiHeader>
+  <standOff>
+    <listPerson>
+      <person xml:id="subject">
+        <persName type="main">Anna Helene Kopmann</persName>
+      </person>
+    </listPerson>
+  </standOff>
+  <text>
+    <body>
+      <div>
+        <head>In the directories</head>
+        <p>Mrs A. H. Kopmann, cigar manufacturer, is listed at No. 75 <ref target="civic?id=Madeline%20Street">Madeline Street</ref> from 1910 to 1925. In 1935 Mrs A. H. Kopmann, tobacconist, is at No. 615 <ref target="civic?id=Swanston%20Street">Swanston Street</ref>.</p>
+      </div>
+      <div>
+        <head>On the electoral roll</head>
+        <p>Anna Helene Kopmann, cigar manufacturer, is on the 1919 <ref target="civic?id=Electoral-Rolls">electoral roll</ref> at 75 Madeline Street.</p>
+      </div>
+      <div>
+        <head>Neighbours</head>
+        <p>Solomon Cohen, tailor, is next door at No. 77 from 1910 to 1920, and in 1925 it is the <ref target="civic?id=Queensberry%20hotel">Queensberry hotel</ref>, at Nos 77 to 79. <ref target="civic?id=Lazarus%20Cruchek">Lazarus Cruchek</ref>, furniture dealer, is two doors away at No. 71.</p>
+      </div>
+      <div>
+        <head>See also</head>
+        <list rend="bulleted">
+          <item><ref target="civic?id=Madeline%20Street">Madeline Street</ref></item>
+          <item><ref target="civic?id=Lazarus%20Cruchek">Lazarus Cruchek</ref></item>
+          <item><ref target="civic?id=Queensberry%20hotel">Queensberry hotel</ref></item>
+        </list>
+      </div>
+    </body>
+  </text>
+</TEI>

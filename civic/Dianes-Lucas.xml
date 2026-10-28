@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="https://historicalesque.github.io/carlton/schema/carlton.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0" type="person" xml:lang="en">
+  <teiHeader>
+    <fileDesc>
+      <titleStmt>
+        <title>Dianes Lucas</title>
+        <respStmt key="computer-assisted-draft">
+          <resp>Computer-assisted first draft</resp>
+          <name>Common Ground</name>
+        </respStmt>
+      </titleStmt>
+      <publicationStmt>
+        <publisher>Common Ground</publisher>
+        <idno type="entry">Dianes-Lucas</idno>
+      </publicationStmt>
+      <sourceDesc>
+        <listBibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1920">Sands &amp; McDougall Directory, 1920, p. 213</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1925">Sands &amp; McDougall Directory, 1925, p. 241-242</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1930">Sands &amp; McDougall Directory, 1930, p. 199</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1935">Sands &amp; McDougall Directory, 1935, p. 198</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1940">Sands &amp; McDougall Directory, 1940, p. 221</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1945">Sands &amp; McDougall Directory, 1945, p. 219</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Electoral-Rolls">Electoral rolls, 1928</ref></bibl>
+        </listBibl>
+      </sourceDesc>
+    </fileDesc>
+    <revisionDesc status="published">
+      <change when="2026-10-28" type="created">Computer-assisted first draft by Common Ground, from the directory and electoral-roll records.</change>
+    </revisionDesc>
+  </teiHeader>
+  <standOff>
+    <listPerson>
+      <person xml:id="subject">
+        <persName type="main">Dianes Lucas</persName>
+      </person>
+    </listPerson>
+  </standOff>
+  <text>
+    <body>
+      <div>
+        <head>In the directories</head>
+        <p>D. Lucas, fruiterer and confectioner, is listed at No. 222 <ref target="civic?id=Pelham%20Street">Pelham Street</ref> from 1920 to 1945. It is the first listing after the Berkley Street corner.</p>
+      </div>
+      <div>
+        <head>On the electoral roll</head>
+        <p>Dianes Lucas, fruiterer, is on the 1928 <ref target="civic?id=Electoral-Rolls">electoral roll</ref> at 222 Pelham Street. Gerald Lucas, engineer, and Nicholas Lucas, hairdresser, are at the same address.</p>
+      </div>
+      <div>
+        <head>Neighbours</head>
+        <p>Peter Black is next door at No. 226 from 1920 to 1930, and Mrs Z. Black in 1935 and 1940. In 1945 it is Mrs Maria Raftopoulos. No. 226 had been <ref target="civic?id=Thomas%20S.%20Blake">Thomas S. Blake</ref>'s grocery from 1890 to 1910.</p>
+      </div>
+      <div>
+        <head>See also</head>
+        <list rend="bulleted">
+          <item><ref target="civic?id=Pelham%20Street">Pelham Street</ref></item>
+          <item><ref target="civic?id=Thomas%20S.%20Blake">Thomas S. Blake</ref></item>
+        </list>
+      </div>
+    </body>
+  </text>
+</TEI>

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="https://historicalesque.github.io/carlton/schema/carlton.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0" type="person" xml:lang="en">
+  <teiHeader>
+    <fileDesc>
+      <titleStmt>
+        <title>John Calder Alexander</title>
+        <respStmt key="computer-assisted-draft">
+          <resp>Computer-assisted first draft</resp>
+          <name>Common Ground</name>
+        </respStmt>
+      </titleStmt>
+      <publicationStmt>
+        <publisher>Common Ground</publisher>
+        <idno type="entry">John-Calder-Alexander</idno>
+      </publicationStmt>
+      <sourceDesc>
+        <listBibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1900">Sands &amp; McDougall Directory, 1900, p. 188</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1905">Sands &amp; McDougall Directory, 1905, p. 195</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1910">Sands &amp; McDougall Directory, 1910, p. 203</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Electoral-Rolls">Electoral rolls, 1905</ref></bibl>
+        </listBibl>
+      </sourceDesc>
+    </fileDesc>
+    <revisionDesc status="published">
+      <change when="2026-10-28" type="created">Computer-assisted first draft by Common Ground, from the directory and electoral-roll records.</change>
+    </revisionDesc>
+  </teiHeader>
+  <standOff>
+    <listPerson>
+      <person xml:id="subject">
+        <persName type="main">John Calder Alexander</persName>
+      </person>
+    </listPerson>
+  </standOff>
+  <text>
+    <body>
+      <div>
+        <head>In the directories</head>
+        <p>J. C. Alexander, plumber, is listed at No. 7 <ref target="civic?id=Madeline%20Street">Madeline Street</ref> in 1900. In 1905 and 1910 he is a sanitary plumber at No. 67.</p>
+        <p>A Mrs C. Alexander is listed at No. 181 in 1915. That listing is not linked to this entry.</p>
+      </div>
+      <div>
+        <head>On the electoral roll</head>
+        <p>John Calder Alexander, sanitary plumber, is on the 1905 <ref target="civic?id=Electoral-Rolls">electoral roll</ref> at 67 Madeline Street.</p>
+      </div>
+      <div>
+        <head>Neighbours</head>
+        <p>At No. 67, Mrs M. Dynon, grocer, is at No. 65 in 1905, and A. Heale's oyster saloon in 1910. <ref target="civic?id=Lazarus%20Cruchek">Lazarus Cruchek</ref>, furniture dealer, is two doors along at No. 71.</p>
+      </div>
+      <div>
+        <head>See also</head>
+        <list rend="bulleted">
+          <item><ref target="civic?id=Madeline%20Street">Madeline Street</ref></item>
+          <item><ref target="civic?id=Lazarus%20Cruchek">Lazarus Cruchek</ref></item>
+        </list>
+      </div>
+    </body>
+  </text>
+</TEI>

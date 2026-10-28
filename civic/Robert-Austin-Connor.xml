@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="https://historicalesque.github.io/carlton/schema/carlton.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0" type="person" xml:lang="en">
+  <teiHeader>
+    <fileDesc>
+      <titleStmt>
+        <title>Robert Austin Connor</title>
+        <respStmt key="computer-assisted-draft">
+          <resp>Computer-assisted first draft</resp>
+          <name>Common Ground</name>
+        </respStmt>
+      </titleStmt>
+      <publicationStmt>
+        <publisher>Common Ground</publisher>
+        <idno type="entry">Robert-Austin-Connor</idno>
+      </publicationStmt>
+      <sourceDesc>
+        <listBibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1905">Sands &amp; McDougall Directory, 1905, p. 179</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1910">Sands &amp; McDougall Directory, 1910, p. 187</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1915">Sands &amp; McDougall Directory, 1915, p. 190</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1920">Sands &amp; McDougall Directory, 1920, p. 202</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Electoral-Rolls">Electoral rolls, 1905, 1919</ref></bibl>
+        </listBibl>
+      </sourceDesc>
+    </fileDesc>
+    <revisionDesc status="published">
+      <change when="2026-10-28" type="created">Computer-assisted first draft by Common Ground, from the directory and electoral-roll records.</change>
+    </revisionDesc>
+  </teiHeader>
+  <standOff>
+    <listPerson>
+      <person xml:id="subject">
+        <persName type="main">Robert Austin Connor</persName>
+      </person>
+    </listPerson>
+  </standOff>
+  <text>
+    <body>
+      <div>
+        <head>In the directories</head>
+        <p>Robt. Connor, baker, is listed at No. 117 <ref target="civic?id=Bouverie%20Street">Bouverie Street</ref> from 1905 to 1920.</p>
+      </div>
+      <div>
+        <head>On the electoral rolls</head>
+        <p>Robert Connor, baker, is on the 1905 <ref target="civic?id=Electoral-Rolls">electoral roll</ref> at 117 Bouverie Street, with Susan Connor, home duties. In 1919 the roll gives his full name, Robert Austin Connor, baker, at the same address, with Susan Connor and Elizabeth May Connor.</p>
+      </div>
+      <div>
+        <head>Neighbours</head>
+        <p>Mrs S. Anderson is at No. 121 in 1905 and 1910. In 1915 and 1920 M. N. Ballard's furniture factory takes up Nos 121 to 129.</p>
+      </div>
+      <div>
+        <head>See also</head>
+        <list rend="bulleted">
+          <item><ref target="civic?id=Bouverie%20Street">Bouverie Street</ref></item>
+          <item><ref target="civic?id=Bakers">Bakers</ref></item>
+        </list>
+      </div>
+    </body>
+  </text>
+</TEI>

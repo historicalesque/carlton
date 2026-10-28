@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="https://historicalesque.github.io/carlton/schema/carlton.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0" type="person" xml:lang="en">
+  <teiHeader>
+    <fileDesc>
+      <titleStmt>
+        <title>Alexander James Barbour</title>
+        <respStmt key="computer-assisted-draft">
+          <resp>Computer-assisted first draft</resp>
+          <name>Common Ground</name>
+        </respStmt>
+      </titleStmt>
+      <publicationStmt>
+        <publisher>Common Ground</publisher>
+        <idno type="entry">Alexander-James-Barbour</idno>
+      </publicationStmt>
+      <sourceDesc>
+        <listBibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1925">Sands &amp; McDougall Directory, 1925, p. 231</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1930">Sands &amp; McDougall Directory, 1930, p. 193</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Electoral-Rolls">Electoral rolls, 1928</ref></bibl>
+        </listBibl>
+      </sourceDesc>
+    </fileDesc>
+    <revisionDesc status="published">
+      <change when="2026-10-28" type="created">Computer-assisted first draft by Common Ground, from the directory and electoral-roll records.</change>
+    </revisionDesc>
+  </teiHeader>
+  <standOff>
+    <listPerson>
+      <person xml:id="subject">
+        <persName type="main">Alexander James Barbour</persName>
+      </person>
+    </listPerson>
+  </standOff>
+  <text>
+    <body>
+      <div>
+        <head>In the directories</head>
+        <p>Alex. J. Barbour is listed at No. 193 <ref target="civic?id=Bouverie%20Street">Bouverie Street</ref> in 1925 and 1930, as a stone mason in 1930. It is the first listing after the <ref target="civic?id=Little%20Pelham%20Street">Little Pelham Street</ref> corner.</p>
+      </div>
+      <div>
+        <head>On the electoral roll</head>
+        <p>Alexander James Barbour, mason, is on the 1928 <ref target="civic?id=Electoral-Rolls">electoral roll</ref> at 193 Bouverie Street.</p>
+      </div>
+      <div>
+        <head>Neighbours</head>
+        <p>The fire station is next door. Before him, the hairdresser <ref target="civic?id=Robert%20William%20Hewat">Robert William Hewat</ref> was at No. 193 in 1915 and 1920.</p>
+      </div>
+      <div>
+        <head>See also</head>
+        <list rend="bulleted">
+          <item><ref target="civic?id=Bouverie%20Street">Bouverie Street</ref></item>
+          <item><ref target="civic?id=Robert%20William%20Hewat">Robert William Hewat</ref></item>
+        </list>
+      </div>
+    </body>
+  </text>
+</TEI>

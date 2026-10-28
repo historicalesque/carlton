@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="https://historicalesque.github.io/carlton/schema/carlton.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0" type="person" xml:lang="en">
+  <teiHeader>
+    <fileDesc>
+      <titleStmt>
+        <title>Ann Paton</title>
+        <respStmt key="computer-assisted-draft">
+          <resp>Computer-assisted first draft</resp>
+          <name>Common Ground</name>
+        </respStmt>
+      </titleStmt>
+      <publicationStmt>
+        <publisher>Common Ground</publisher>
+        <idno type="entry">Ann-Paton</idno>
+      </publicationStmt>
+      <sourceDesc>
+        <listBibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1900">Sands &amp; McDougall Directory, 1900, p. 173</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1905">Sands &amp; McDougall Directory, 1905, p. 179</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1910">Sands &amp; McDougall Directory, 1910, p. 187</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1915">Sands &amp; McDougall Directory, 1915, p. 190</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1920">Sands &amp; McDougall Directory, 1920, p. 202</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Electoral-Rolls">Electoral rolls, 1905, 1919</ref></bibl>
+        </listBibl>
+      </sourceDesc>
+    </fileDesc>
+    <revisionDesc status="published">
+      <change when="2026-10-28" type="created">Computer-assisted first draft by Common Ground, from the directory and electoral-roll records.</change>
+    </revisionDesc>
+  </teiHeader>
+  <standOff>
+    <listPerson>
+      <person xml:id="subject">
+        <persName type="main">Ann Paton</persName>
+      </person>
+    </listPerson>
+  </standOff>
+  <text>
+    <body>
+      <div>
+        <head>In the directories</head>
+        <p>Mrs A. Paton, grocer, is listed at No. 101 <ref target="civic?id=Bouverie%20Street">Bouverie Street</ref> from 1900 to 1920 (Nos 101 to 103 in 1920).</p>
+      </div>
+      <div>
+        <head>On the electoral rolls</head>
+        <p>Ann Paton, grocer, is on the 1905 <ref target="civic?id=Electoral-Rolls">electoral roll</ref> at 101 Bouverie Street, and as a storekeeper in 1919. The household in 1905 also has Euphemia Paton and Walter Paton, grocers, John Paton, cabinetmaker, and Catherine Scott Paton, tailoress. Catherine is still there in 1919.</p>
+      </div>
+      <div>
+        <head>Neighbours</head>
+        <p>The cabinetmaker <ref target="civic?id=Walter%20Paton">Walter Paton</ref> is next door at No. 103 from 1890 to 1915, and in 1920 the grocery takes in No. 103 as well. Wm. J. Pollock, cabinetmaker, is at No. 99 in 1905, and William Rose in 1910 and 1915.</p>
+      </div>
+      <div>
+        <head>See also</head>
+        <list rend="bulleted">
+          <item><ref target="civic?id=Bouverie%20Street">Bouverie Street</ref></item>
+          <item><ref target="civic?id=Walter%20Paton">Walter Paton</ref></item>
+        </list>
+      </div>
+    </body>
+  </text>
+</TEI>

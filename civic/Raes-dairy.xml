@@ -24,11 +24,13 @@
           <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1930">Sands &amp; McDougall Directory, 1930, p. 199</ref></bibl>
           <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1935">Sands &amp; McDougall Directory, 1935, p. 198</ref></bibl>
           <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1940">Sands &amp; McDougall Directory, 1940, p. 221</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Electoral-Rolls">Electoral rolls, 1905, 1919</ref></bibl>
         </listBibl>
       </sourceDesc>
     </fileDesc>
     <revisionDesc status="published">
       <change when="2026-10-28" type="created">Computer-assisted first draft by Common Ground, from the directory records.</change>
+      <change when="2026-10-28" type="edited">Electoral-roll records linked, and a section on them added, by Common Ground (computer-assisted).</change>
     </revisionDesc>
   </teiHeader>
   <standOff>
@@ -43,6 +45,11 @@
       <div>
         <head>In the directories</head>
         <p>The Rae family ran a dairy at No. 163 <ref target="civic?id=Pelham%20Street">Pelham Street</ref> from 1905 to 1940. It is listed beside the Leicester Street corner. The directories list Mrs A. Rae (1905), Wm. Rae (1910 to 1925) and Mrs Nellie Rae (1930 to 1940).</p>
+      </div>
+      <div>
+        <head>On the electoral rolls</head>
+        <p>William Arthur Rae is on the 1905 <ref target="civic?id=Electoral-Rolls">electoral roll</ref> at 163 Pelham Street as a milkman, and on the 1919 roll as a dairyman. His roll records are linked to this entry. In 1905 James John Rae and John James Rae, milkmen, are at the same address. In 1919 James John Rae, dairyman, is next door at No. 159, and in 1928 he is the dairyman at No. 163. Those records are not linked to this entry.</p>
+        <p>Before the dairy, a William Rae is listed at No. 2 Pelham Street, beside the Carlton Inn, from 1871 to 1885, and at No. 163 in 1890 and 1895, after the street was renumbered. Mrs Agnes Rae is at No. 163 in 1900. Those listings are not linked to this entry.</p>
       </div>
       <div>
         <head>Neighbours</head>

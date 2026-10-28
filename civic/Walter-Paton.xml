@@ -36,6 +36,7 @@
     </fileDesc>
     <revisionDesc status="published">
       <change when="2026-10-28" type="created">Computer-assisted first draft by Common Ground, from the directory records.</change>
+      <change when="2026-10-28" type="edited">Linked to the new Ann Paton entry by Common Ground (computer-assisted).</change>
     </revisionDesc>
   </teiHeader>
   <standOff>
@@ -50,16 +51,17 @@
       <div>
         <head>In the directories</head>
         <p>Walter Paton, cabinetmaker, is listed in <ref target="civic?id=Bouverie%20Street">Bouverie Street</ref> from 1873 to 1915. He is at No. 71 from 1873 to 1875, No. 73 from 1876 to 1885, and No. 103 from 1890, after the street was renumbered.</p>
-        <p>In 1895 a Walter Paton with no trade is also listed at No. 101, and from 1900 to 1915 Mrs A. Paton, grocer, is at No. 101. Those listings are not linked to this entry.</p>
+        <p>In 1895 a Walter Paton with no trade is also listed at No. 101, and from 1900 to 1915 Mrs A. Paton, grocer, is at No. 101. Those listings are not linked to this entry. Mrs Paton has her own entry, <ref target="civic?id=Ann%20Paton">Ann Paton</ref>.</p>
       </div>
       <div>
         <head>Neighbours</head>
-        <p>The shop next door is a grocer's or general store for most of his time: Mrs Champion, grocer (1873), George Fleming, grocer (1874 and 1875), Henry Wheatley, grocer (1877), and Mrs Caroline Freeman's general store (1878 to 1890), followed by Mrs A. Paton's grocery from 1900.</p>
+        <p>The shop next door is a grocer's or general store for most of his time: Mrs Champion, grocer (1873), George Fleming, grocer (1874 and 1875), Henry Wheatley, grocer (1877), and Mrs Caroline Freeman's general store (1878 to 1890), followed by <ref target="civic?id=Ann%20Paton">Mrs A. Paton</ref>'s grocery from 1900.</p>
       </div>
       <div>
         <head>See also</head>
         <list rend="bulleted">
           <item><ref target="civic?id=Bouverie%20Street">Bouverie Street</ref></item>
+          <item><ref target="civic?id=Ann%20Paton">Ann Paton</ref></item>
         </list>
       </div>
     </body>

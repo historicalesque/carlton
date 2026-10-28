@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="https://historicalesque.github.io/carlton/schema/carlton.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0" type="person" xml:lang="en">
+  <teiHeader>
+    <fileDesc>
+      <titleStmt>
+        <title>Lazarus Cruchek</title>
+        <respStmt key="computer-assisted-draft">
+          <resp>Computer-assisted first draft</resp>
+          <name>Common Ground</name>
+        </respStmt>
+      </titleStmt>
+      <publicationStmt>
+        <publisher>Common Ground</publisher>
+        <idno type="entry">Lazarus-Cruchek</idno>
+      </publicationStmt>
+      <sourceDesc>
+        <listBibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1900">Sands &amp; McDougall Directory, 1900, p. 188-189</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1905">Sands &amp; McDougall Directory, 1905, p. 195</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1910">Sands &amp; McDougall Directory, 1910, p. 203</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1915">Sands &amp; McDougall Directory, 1915, p. 199</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1920">Sands &amp; McDougall Directory, 1920, p. 211</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Electoral-Rolls">Electoral rolls, 1905, 1919</ref></bibl>
+        </listBibl>
+      </sourceDesc>
+    </fileDesc>
+    <revisionDesc status="published">
+      <change when="2026-10-28" type="created">Computer-assisted first draft by Common Ground, from the directory and electoral-roll records.</change>
+    </revisionDesc>
+  </teiHeader>
+  <standOff>
+    <listPerson>
+      <person xml:id="subject">
+        <persName type="main">Lazarus Cruchek</persName>
+      </person>
+    </listPerson>
+  </standOff>
+  <text>
+    <body>
+      <div>
+        <head>In the directories</head>
+        <p>Lazarus Cruchek, furniture dealer, is listed at No. 71 <ref target="civic?id=Madeline%20Street">Madeline Street</ref> from 1900 to 1920. No trade is given in 1920.</p>
+      </div>
+      <div>
+        <head>On the electoral rolls</head>
+        <p>Lazarus Cruchek, dealer, is on the 1905 and 1919 <ref target="civic?id=Electoral-Rolls">electoral rolls</ref> at 71 Madeline Street. In 1905 the household also has David Cruchek, tailor, Samuel Cruchek, farrier, and Dora Cruchek, home duties. In 1919 Samuel is a furrier, which may be the same trade misread in one of the rolls.</p>
+      </div>
+      <div>
+        <head>Neighbours</head>
+        <p>Mrs A. Nicholl, underclothing manufacturer, is at No. 73 from 1900 to 1910, followed by William Chong (1915) and C. Wing Shing's laundry (1920). Mrs Matilda Elliott's ham and beef shop is at No. 69 in 1915. <ref target="civic?id=Anna%20Helene%20Kopmann">Anna Helene Kopmann</ref>, cigar manufacturer, is two doors along at No. 75 from 1910.</p>
+      </div>
+      <div>
+        <head>See also</head>
+        <list rend="bulleted">
+          <item><ref target="civic?id=Madeline%20Street">Madeline Street</ref></item>
+          <item><ref target="civic?id=Anna%20Helene%20Kopmann">Anna Helene Kopmann</ref></item>
+          <item><ref target="civic?id=Abraham%20Bernard">Abraham Bernard</ref></item>
+        </list>
+      </div>
+    </body>
+  </text>
+</TEI>
