@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="https://historicalesque.github.io/carlton/schema/carlton.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0" type="place" xml:lang="en">
+  <teiHeader>
+    <fileDesc>
+      <titleStmt>
+        <title>Pattison's Terrace</title>
+        <respStmt key="computer-assisted-draft">
+          <resp>Computer-assisted first draft</resp>
+          <name>Common Ground</name>
+        </respStmt>
+      </titleStmt>
+      <publicationStmt>
+        <publisher>Common Ground</publisher>
+        <idno type="entry">Pattisons-Terrace</idno>
+      </publicationStmt>
+      <sourceDesc>
+        <listBibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1874">Sands &amp; McDougall Directory, 1874, p. 98</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1875">Sands &amp; McDougall Directory, 1875, pp. 100, 101</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1876">Sands &amp; McDougall Directory, 1876, p. 69</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1877">Sands &amp; McDougall Directory, 1877, p. 69</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1878">Sands &amp; McDougall Directory, 1878, p. 70</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1879">Sands &amp; McDougall Directory, 1879, p. 71</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1880">Sands &amp; McDougall Directory, 1880, p. 72</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1885">Sands &amp; McDougall Directory, 1885, p. 97</ref></bibl>
+        </listBibl>
+      </sourceDesc>
+    </fileDesc>
+    <revisionDesc status="published">
+      <change when="2026-10-28" type="created">Computer-assisted first draft by Common Ground, from the directory records.</change>
+    </revisionDesc>
+  </teiHeader>
+  <standOff>
+    <listPlace>
+      <place xml:id="subject">
+        <placeName type="main">Pattison's Terrace</placeName>
+      </place>
+    </listPlace>
+  </standOff>
+  <text>
+    <body>
+      <div>
+        <head>In the directories</head>
+        <p>Pattison's Terrace (also printed Pattison Terrace) is a row of houses in <ref target="civic?id=Leicester%20Street">Leicester Street</ref>, near the <ref target="civic?id=Pelham%20Street">Pelham Street</ref> corner. It is listed as a corner in the Leicester Street listings from 1870 to 1895, and as its own street from 1874 to 1885, with five houses numbered 1 to 5. In 1877 the directory lists a music teacher at No. 1, and in 1879 a bootmaker at No. 4.</p>
+      </div>
+      <div>
+        <head>Neighbours</head>
+        <p>In 1874 the terrace's listing runs on past a right-of-way to the <ref target="civic?id=Corkman%20Hotel">Carlton Inn</ref> at the Pelham Street corner, under John Cozens, and the inn follows the terrace again in 1877 and 1878.</p>
+      </div>
+      <div>
+        <head>See also</head>
+        <list rend="bulleted">
+          <item><ref target="civic?id=Leicester%20Street">Leicester Street</ref></item>
+          <item><ref target="civic?id=Corkman%20Hotel">Carlton Inn</ref></item>
+          <item><ref target="civic?id=Eliza%20Terrace">Eliza Terrace</ref></item>
+          <item><ref target="civic?id=Agra%20Place">Agra Place</ref></item>
+        </list>
+      </div>
+    </body>
+  </text>
+</TEI>
