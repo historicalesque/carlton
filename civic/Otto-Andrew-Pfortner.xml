@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="https://historicalesque.github.io/carlton/schema/carlton.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0" type="person" xml:lang="en">
+  <teiHeader>
+    <fileDesc>
+      <titleStmt>
+        <title>Otto Andrew Pfortner</title>
+        <respStmt key="computer-assisted-draft">
+          <resp>Computer-assisted first draft</resp>
+          <name>Common Ground</name>
+        </respStmt>
+      </titleStmt>
+      <publicationStmt>
+        <publisher>Common Ground</publisher>
+        <idno type="entry">Otto-Andrew-Pfortner</idno>
+      </publicationStmt>
+      <sourceDesc>
+        <listBibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1905">Sands &amp; McDougall Directory, 1905, p. 205</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Electoral-Rolls">Electoral rolls, 1905</ref></bibl>
+        </listBibl>
+      </sourceDesc>
+    </fileDesc>
+    <revisionDesc status="published">
+      <change when="2026-10-28" type="created">Computer-assisted first draft by Common Ground, from the directory and electoral-roll records.</change>
+    </revisionDesc>
+  </teiHeader>
+  <standOff>
+    <listPerson>
+      <person xml:id="subject">
+        <persName type="main">Otto Andrew Pfortner</persName>
+      </person>
+    </listPerson>
+  </standOff>
+  <text>
+    <body>
+      <div>
+        <head>In the directories</head>
+        <p>Otto Pfortner, hairdresser, is listed at No. 168 <ref target="civic?id=Victoria%20Street">Victoria Street</ref> in 1905.</p>
+      </div>
+      <div>
+        <head>On the electoral roll</head>
+        <p>Otto Andrew Pfortner, hairdresser, is on the 1905 <ref target="civic?id=Electoral-Rolls">electoral roll</ref> at 168 Victoria Street.</p>
+      </div>
+      <div>
+        <head>Neighbours</head>
+        <p>The <ref target="civic?id=Bush%20Inn%20hotel">Bush Inn hotel</ref> is next door at No. 170, on the Bouverie Street corner. Mrs S. Rosemann, caterer, is at No. 166.</p>
+      </div>
+      <div>
+        <head>See also</head>
+        <list rend="bulleted">
+          <item><ref target="civic?id=Victoria%20Street">Victoria Street</ref></item>
+          <item><ref target="civic?id=Bush%20Inn%20hotel">Bush Inn hotel</ref></item>
+        </list>
+      </div>
+    </body>
+  </text>
+</TEI>

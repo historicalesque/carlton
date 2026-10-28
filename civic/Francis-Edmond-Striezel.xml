@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="https://historicalesque.github.io/carlton/schema/carlton.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0" type="person" xml:lang="en">
+  <teiHeader>
+    <fileDesc>
+      <titleStmt>
+        <title>Francis Edmond Striezel</title>
+        <respStmt key="computer-assisted-draft">
+          <resp>Computer-assisted first draft</resp>
+          <name>Common Ground</name>
+        </respStmt>
+      </titleStmt>
+      <publicationStmt>
+        <publisher>Common Ground</publisher>
+        <idno type="entry">Francis-Edmond-Striezel</idno>
+      </publicationStmt>
+      <sourceDesc>
+        <listBibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1900">Sands &amp; McDougall Directory, 1900, p. 188</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1905">Sands &amp; McDougall Directory, 1905, p. 195</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1910">Sands &amp; McDougall Directory, 1910, p. 203</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Electoral-Rolls">Electoral rolls, 1905</ref></bibl>
+        </listBibl>
+      </sourceDesc>
+    </fileDesc>
+    <revisionDesc status="published">
+      <change when="2026-10-28" type="created">Computer-assisted first draft by Common Ground, from the directory and electoral-roll records.</change>
+    </revisionDesc>
+  </teiHeader>
+  <standOff>
+    <listPerson>
+      <person xml:id="subject">
+        <persName type="main">Francis Edmond Striezel</persName>
+      </person>
+    </listPerson>
+  </standOff>
+  <text>
+    <body>
+      <div>
+        <head>In the directories</head>
+        <p>Francis E. Striezel, art carver, is listed at No. 29 <ref target="civic?id=Madeline%20Street">Madeline Street</ref> in 1900. In 1905 and 1910 F. E. Striezel is at No. 51, a pattern carver, then an art and pattern carver.</p>
+      </div>
+      <div>
+        <head>On the electoral roll</head>
+        <p>Francis Edmond Striezel, art carver, is on the 1905 <ref target="civic?id=Electoral-Rolls">electoral roll</ref> at 51 Madeline Street, with Clara Natalia Striezel, home duties.</p>
+      </div>
+      <div>
+        <head>Neighbours</head>
+        <p>In 1900 G. Williamson, tailor, is at No. 27 and Fredk. J. Steabben, confectioner, at No. 31. At No. 51 his neighbours are <ref target="civic?id=Carl%20Fischer">Carl Fischer</ref>, hairdresser and tobacconist, and John Morgan, fishmonger, in 1905, and A. Kenrick, hairdresser, in 1910.</p>
+      </div>
+      <div>
+        <head>See also</head>
+        <list rend="bulleted">
+          <item><ref target="civic?id=Madeline%20Street">Madeline Street</ref></item>
+          <item><ref target="civic?id=Carl%20Fischer">Carl Fischer</ref></item>
+        </list>
+      </div>
+    </body>
+  </text>
+</TEI>

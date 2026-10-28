@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="https://historicalesque.github.io/carlton/schema/carlton.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0" type="person" xml:lang="en">
+  <teiHeader>
+    <fileDesc>
+      <titleStmt>
+        <title>Reuben Mace</title>
+        <respStmt key="computer-assisted-draft">
+          <resp>Computer-assisted first draft</resp>
+          <name>Common Ground</name>
+        </respStmt>
+      </titleStmt>
+      <publicationStmt>
+        <publisher>Common Ground</publisher>
+        <idno type="entry">Reuben-Mace</idno>
+      </publicationStmt>
+      <sourceDesc>
+        <listBibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1915">Sands &amp; McDougall Directory, 1915, p. 202</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1920">Sands &amp; McDougall Directory, 1920, p. 214</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Electoral-Rolls">Electoral rolls, 1919</ref></bibl>
+        </listBibl>
+      </sourceDesc>
+    </fileDesc>
+    <revisionDesc status="published">
+      <change when="2026-10-28" type="created">Computer-assisted first draft by Common Ground, from the directory and electoral-roll records.</change>
+    </revisionDesc>
+  </teiHeader>
+  <standOff>
+    <listPerson>
+      <person xml:id="subject">
+        <persName type="main">Reuben Mace</persName>
+      </person>
+    </listPerson>
+  </standOff>
+  <text>
+    <body>
+      <div>
+        <head>In the directories</head>
+        <p>Reuben Mace, grocer, is listed at No. 190 <ref target="civic?id=Queensberry%20Street">Queensberry Street</ref> in 1915 and 1920.</p>
+      </div>
+      <div>
+        <head>On the electoral roll</head>
+        <p>Reuben Mace, grocer, is on the 1919 <ref target="civic?id=Electoral-Rolls">electoral roll</ref> at 190 Queensberry Street. A Reuben Mace, ventriloquist, is on the 1928 roll at 171 Grattan Street. That record is not linked to this entry.</p>
+      </div>
+      <div>
+        <head>Neighbours</head>
+        <p>Mrs Mary J. Hayton is at No. 188 and Mrs Nellie Lee at No. 192 in 1915, and Cornelius Mulligan and Abraham Bartick in 1920. <ref target="civic?id=Elizabeth%20Facey">Elizabeth Facey</ref>, confectioner, is three doors along at No. 184.</p>
+      </div>
+      <div>
+        <head>See also</head>
+        <list rend="bulleted">
+          <item><ref target="civic?id=Queensberry%20Street">Queensberry Street</ref></item>
+          <item><ref target="civic?id=Elizabeth%20Facey">Elizabeth Facey</ref></item>
+        </list>
+      </div>
+    </body>
+  </text>
+</TEI>

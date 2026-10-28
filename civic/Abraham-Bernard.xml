@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="https://historicalesque.github.io/carlton/schema/carlton.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0" type="person" xml:lang="en">
+  <teiHeader>
+    <fileDesc>
+      <titleStmt>
+        <title>Abraham Bernard</title>
+        <respStmt key="computer-assisted-draft">
+          <resp>Computer-assisted first draft</resp>
+          <name>Common Ground</name>
+        </respStmt>
+      </titleStmt>
+      <publicationStmt>
+        <publisher>Common Ground</publisher>
+        <idno type="entry">Abraham-Bernard</idno>
+      </publicationStmt>
+      <sourceDesc>
+        <listBibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1905">Sands &amp; McDougall Directory, 1905, p. 195</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1910">Sands &amp; McDougall Directory, 1910, p. 203</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1915">Sands &amp; McDougall Directory, 1915, p. 199</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1920">Sands &amp; McDougall Directory, 1920, p. 211</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1925">Sands &amp; McDougall Directory, 1925, p. 240</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Electoral-Rolls">Electoral rolls, 1905, 1919</ref></bibl>
+        </listBibl>
+      </sourceDesc>
+    </fileDesc>
+    <revisionDesc status="published">
+      <change when="2026-10-28" type="created">Computer-assisted first draft by Common Ground, from the directory and electoral-roll records.</change>
+    </revisionDesc>
+  </teiHeader>
+  <standOff>
+    <listPerson>
+      <person xml:id="subject">
+        <persName type="main">Abraham Bernard</persName>
+      </person>
+    </listPerson>
+  </standOff>
+  <text>
+    <body>
+      <div>
+        <head>In the directories</head>
+        <p>Abraham or A. Bernard is listed at No. 85 <ref target="civic?id=Madeline%20Street">Madeline Street</ref> from 1905 to 1925. He is a grocer from 1910 to 1920, and a confectioner and fruiterer in 1925. In 1915 he also has a wood yard next door at No. 87.</p>
+      </div>
+      <div>
+        <head>On the electoral rolls</head>
+        <p>Abraham Bernard, storekeeper, is on the 1905 and 1919 <ref target="civic?id=Electoral-Rolls">electoral rolls</ref> at 85 Madeline Street, with Zeprah Bernard, home duties.</p>
+      </div>
+      <div>
+        <head>Neighbours</head>
+        <p>M. M. Friedman, draper, is at No. 83 in 1905 and 1910, and Frank West's general store at No. 87 in 1905. Miss Hilda Mackay, costumier, is at No. 87 in 1920 and 1925, and L. T. Larsen, grocer, at No. 81 in 1925.</p>
+      </div>
+      <div>
+        <head>See also</head>
+        <list rend="bulleted">
+          <item><ref target="civic?id=Madeline%20Street">Madeline Street</ref></item>
+          <item><ref target="civic?id=Lazarus%20Cruchek">Lazarus Cruchek</ref></item>
+          <item><ref target="civic?id=Anna%20Helene%20Kopmann">Anna Helene Kopmann</ref></item>
+        </list>
+      </div>
+    </body>
+  </text>
+</TEI>

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="https://historicalesque.github.io/carlton/schema/carlton.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0" type="person" xml:lang="en">
+  <teiHeader>
+    <fileDesc>
+      <titleStmt>
+        <title>Patrick F. Dorgan</title>
+        <respStmt key="computer-assisted-draft">
+          <resp>Computer-assisted first draft</resp>
+          <name>Common Ground</name>
+        </respStmt>
+      </titleStmt>
+      <publicationStmt>
+        <publisher>Common Ground</publisher>
+        <idno type="entry">Patrick-F-Dorgan</idno>
+      </publicationStmt>
+      <sourceDesc>
+        <listBibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1905">Sands &amp; McDougall Directory, 1905, p. 195</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1910">Sands &amp; McDougall Directory, 1910, p. 203</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Electoral-Rolls">Electoral rolls, 1905</ref></bibl>
+        </listBibl>
+      </sourceDesc>
+    </fileDesc>
+    <revisionDesc status="published">
+      <change when="2026-10-28" type="created">Computer-assisted first draft by Common Ground, from the directory and electoral-roll records.</change>
+    </revisionDesc>
+  </teiHeader>
+  <standOff>
+    <listPerson>
+      <person xml:id="subject">
+        <persName type="main">Patrick F. Dorgan</persName>
+      </person>
+    </listPerson>
+  </standOff>
+  <text>
+    <body>
+      <div>
+        <head>In the directories</head>
+        <p>Patk. F. Dorgan, baker, is listed at No. 59 <ref target="civic?id=Madeline%20Street">Madeline Street</ref> in 1905 and 1910. In 1915 Daniel Dorgan, baker, is at the same number. That listing is not linked to this entry.</p>
+      </div>
+      <div>
+        <head>On the electoral roll</head>
+        <p>Patrick Dorgan, baker, is on the 1905 <ref target="civic?id=Electoral-Rolls">electoral roll</ref> at 59 Madeline Street.</p>
+      </div>
+      <div>
+        <head>Neighbours</head>
+        <p><ref target="civic?id=John%20Anderson">John Anderson</ref>, boarding-house keeper, is next door at No. 57 in 1905, and John Hamilton in 1910. Mrs Leah Cohen is at No. 61 in 1905.</p>
+      </div>
+      <div>
+        <head>See also</head>
+        <list rend="bulleted">
+          <item><ref target="civic?id=Madeline%20Street">Madeline Street</ref></item>
+          <item><ref target="civic?id=Bakers">Bakers</ref></item>
+          <item><ref target="civic?id=John%20Anderson">John Anderson</ref></item>
+        </list>
+      </div>
+    </body>
+  </text>
+</TEI>

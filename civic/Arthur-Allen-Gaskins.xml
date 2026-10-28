@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="https://historicalesque.github.io/carlton/schema/carlton.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0" type="person" xml:lang="en">
+  <teiHeader>
+    <fileDesc>
+      <titleStmt>
+        <title>Arthur Allen Gaskins</title>
+        <respStmt key="computer-assisted-draft">
+          <resp>Computer-assisted first draft</resp>
+          <name>Common Ground</name>
+        </respStmt>
+      </titleStmt>
+      <publicationStmt>
+        <publisher>Common Ground</publisher>
+        <idno type="entry">Arthur-Allen-Gaskins</idno>
+      </publicationStmt>
+      <sourceDesc>
+        <listBibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1910">Sands &amp; McDougall Directory, 1910, p. 187</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1915">Sands &amp; McDougall Directory, 1915, p. 189</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Electoral-Rolls">Electoral rolls, 1919</ref></bibl>
+        </listBibl>
+      </sourceDesc>
+    </fileDesc>
+    <revisionDesc status="published">
+      <change when="2026-10-28" type="created">Computer-assisted first draft by Common Ground, from the directory and electoral-roll records.</change>
+    </revisionDesc>
+  </teiHeader>
+  <standOff>
+    <listPerson>
+      <person xml:id="subject">
+        <persName type="main">Arthur Allen Gaskins</persName>
+      </person>
+    </listPerson>
+  </standOff>
+  <text>
+    <body>
+      <div>
+        <head>In the directories</head>
+        <p>A. A. Gaskins is listed at No. 77 <ref target="civic?id=Barry%20Street">Barry Street</ref> in 1910 and 1915, with a general store in 1915.</p>
+      </div>
+      <div>
+        <head>On the electoral roll</head>
+        <p>Arthur Allen Gaskins, storekeeper, is on the 1919 <ref target="civic?id=Electoral-Rolls">electoral roll</ref> at 77 Barry Street.</p>
+      </div>
+      <div>
+        <head>Neighbours</head>
+        <p>Joseph W. Miller is at No. 75 and Mrs Ada Baker at No. 79. No. 77 is still a shop later: <ref target="civic?id=William%20Edward%20Kemp">William Edward Kemp</ref>, grocer, is there in 1930.</p>
+      </div>
+      <div>
+        <head>See also</head>
+        <list rend="bulleted">
+          <item><ref target="civic?id=Barry%20Street">Barry Street</ref></item>
+          <item><ref target="civic?id=William%20Edward%20Kemp">William Edward Kemp</ref></item>
+        </list>
+      </div>
+    </body>
+  </text>
+</TEI>

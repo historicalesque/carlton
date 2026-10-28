@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="https://historicalesque.github.io/carlton/schema/carlton.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0" type="person" xml:lang="en">
+  <teiHeader>
+    <fileDesc>
+      <titleStmt>
+        <title>Robert William Hewat</title>
+        <respStmt key="computer-assisted-draft">
+          <resp>Computer-assisted first draft</resp>
+          <name>Common Ground</name>
+        </respStmt>
+      </titleStmt>
+      <publicationStmt>
+        <publisher>Common Ground</publisher>
+        <idno type="entry">Robert-William-Hewat</idno>
+      </publicationStmt>
+      <sourceDesc>
+        <listBibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1915">Sands &amp; McDougall Directory, 1915, p. 190</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1920">Sands &amp; McDougall Directory, 1920, p. 202</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1925">Sands &amp; McDougall Directory, 1925, p. 231</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1930">Sands &amp; McDougall Directory, 1930, p. 193</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1935">Sands &amp; McDougall Directory, 1935, p. 192</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1940">Sands &amp; McDougall Directory, 1940, p. 215</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Electoral-Rolls">Electoral rolls, 1928</ref></bibl>
+        </listBibl>
+      </sourceDesc>
+    </fileDesc>
+    <revisionDesc status="published">
+      <change when="2026-10-28" type="created">Computer-assisted first draft by Common Ground, from the directory and electoral-roll records.</change>
+    </revisionDesc>
+  </teiHeader>
+  <standOff>
+    <listPerson>
+      <person xml:id="subject">
+        <persName type="main">Robert William Hewat</persName>
+      </person>
+    </listPerson>
+  </standOff>
+  <text>
+    <body>
+      <div>
+        <head>In the directories</head>
+        <p>R. or Robt. W. Hewat, hairdresser, is listed in <ref target="civic?id=Bouverie%20Street">Bouverie Street</ref> from 1915 to 1940. He is at No. 193, next to the fire station, in 1915 and 1920, and at No. 166, on the <ref target="civic?id=Church%20Street">Church Street</ref> corner, from 1925. No trade is given in 1940.</p>
+        <p>A Robert Hewat is listed at No. 93 <ref target="civic?id=Madeline%20Street">Madeline Street</ref> in 1910. That listing is not linked to this entry.</p>
+      </div>
+      <div>
+        <head>On the electoral roll</head>
+        <p>Robert William Hewat, hairdresser, is on the 1928 <ref target="civic?id=Electoral-Rolls">electoral roll</ref> at 166 Bouverie Street, with Rose Hewat, home duties.</p>
+      </div>
+      <div>
+        <head>Neighbours</head>
+        <p>After he moved, No. 193 was taken by <ref target="civic?id=Alexander%20James%20Barbour">Alexander James Barbour</ref>, stone mason. At No. 166 his neighbours at No. 168 are Wm. Wing (1925), Mrs Ellen Davis (1930), Mrs Florence E. Yates (1935) and Mrs Alice Bennett (1940).</p>
+      </div>
+      <div>
+        <head>See also</head>
+        <list rend="bulleted">
+          <item><ref target="civic?id=Bouverie%20Street">Bouverie Street</ref></item>
+          <item><ref target="civic?id=Alexander%20James%20Barbour">Alexander James Barbour</ref></item>
+        </list>
+      </div>
+    </body>
+  </text>
+</TEI>

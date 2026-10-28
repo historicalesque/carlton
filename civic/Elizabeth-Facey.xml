@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="https://historicalesque.github.io/carlton/schema/carlton.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0" type="person" xml:lang="en">
+  <teiHeader>
+    <fileDesc>
+      <titleStmt>
+        <title>Elizabeth Facey</title>
+        <respStmt key="computer-assisted-draft">
+          <resp>Computer-assisted first draft</resp>
+          <name>Common Ground</name>
+        </respStmt>
+      </titleStmt>
+      <publicationStmt>
+        <publisher>Common Ground</publisher>
+        <idno type="entry">Elizabeth-Facey</idno>
+      </publicationStmt>
+      <sourceDesc>
+        <listBibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1915">Sands &amp; McDougall Directory, 1915, p. 202</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1920">Sands &amp; McDougall Directory, 1920, p. 214</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Electoral-Rolls">Electoral rolls, 1919</ref></bibl>
+        </listBibl>
+      </sourceDesc>
+    </fileDesc>
+    <revisionDesc status="published">
+      <change when="2026-10-28" type="created">Computer-assisted first draft by Common Ground, from the directory and electoral-roll records.</change>
+    </revisionDesc>
+  </teiHeader>
+  <standOff>
+    <listPerson>
+      <person xml:id="subject">
+        <persName type="main">Elizabeth Facey</persName>
+      </person>
+    </listPerson>
+  </standOff>
+  <text>
+    <body>
+      <div>
+        <head>In the directories</head>
+        <p>Miss E. Facey, confectioner, is listed at No. 184 <ref target="civic?id=Queensberry%20Street">Queensberry Street</ref> in 1915 and 1920. It is on the Brompton Row corner.</p>
+      </div>
+      <div>
+        <head>On the electoral roll</head>
+        <p>Elizabeth Facey, confectioner, is on the 1919 <ref target="civic?id=Electoral-Rolls">electoral roll</ref> at 184 Queensberry Street.</p>
+      </div>
+      <div>
+        <head>Neighbours</head>
+        <p>H. Gardner, greengrocer, is at No. 186 in 1915. After her, No. 184 is still a confectioner's: T. Carroll, hairdresser and confectioner, is there in 1925 and 1930.</p>
+      </div>
+      <div>
+        <head>See also</head>
+        <list rend="bulleted">
+          <item><ref target="civic?id=Queensberry%20Street">Queensberry Street</ref></item>
+          <item><ref target="civic?id=Reuben%20Mace">Reuben Mace</ref></item>
+        </list>
+      </div>
+    </body>
+  </text>
+</TEI>
