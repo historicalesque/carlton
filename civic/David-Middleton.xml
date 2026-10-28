@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="https://historicalesque.github.io/carlton/schema/carlton.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0" type="person" xml:lang="en">
+  <teiHeader>
+    <fileDesc>
+      <titleStmt>
+        <title>David Middleton</title>
+        <respStmt key="computer-assisted-draft">
+          <resp>Computer-assisted first draft</resp>
+          <name>Common Ground</name>
+        </respStmt>
+      </titleStmt>
+      <publicationStmt>
+        <publisher>Common Ground</publisher>
+        <idno type="entry">David-Middleton</idno>
+      </publicationStmt>
+      <sourceDesc>
+        <listBibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1857">Sands &amp; McDougall Directory, 1857, p. 165</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1858">Sands &amp; McDougall Directory, 1858, p. 187</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1859">Sands &amp; McDougall Directory, 1859, p. 70</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1860">Sands &amp; McDougall Directory, 1860, p. 80</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1861">Sands &amp; McDougall Directory, 1861, p. 92</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1862">Sands &amp; McDougall Directory, 1862, p. 92</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1864">Sands &amp; McDougall Directory, 1864, p. 80</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1865">Sands &amp; McDougall Directory, 1865, p. 79</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1866">Sands &amp; McDougall Directory, 1866, p. 84</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1867">Sands &amp; McDougall Directory, 1867, p. 87</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1868">Sands &amp; McDougall Directory, 1868, p. 99</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1869">Sands &amp; McDougall Directory, 1869, p. 97</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1870">Sands &amp; McDougall Directory, 1870, p. 102</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1872">Sands &amp; McDougall Directory, 1872, p. 85</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1873">Sands &amp; McDougall Directory, 1873, p. 89</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1874">Sands &amp; McDougall Directory, 1874, p. 88</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1876">Sands &amp; McDougall Directory, 1876, p. 74</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1877">Sands &amp; McDougall Directory, 1877, p. 75</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1878">Sands &amp; McDougall Directory, 1878, p. 70</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1879">Sands &amp; McDougall Directory, 1879, p. 71</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1880">Sands &amp; McDougall Directory, 1880, p. 72</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1885">Sands &amp; McDougall Directory, 1885, p. 87</ref></bibl>
+        </listBibl>
+      </sourceDesc>
+    </fileDesc>
+    <revisionDesc status="published">
+      <change when="2026-10-28" type="created">Computer-assisted first draft by Common Ground, from the directory records.</change>
+    </revisionDesc>
+  </teiHeader>
+  <standOff>
+    <listPerson>
+      <person xml:id="subject">
+        <persName type="main">David Middleton</persName>
+      </person>
+    </listPerson>
+  </standOff>
+  <text>
+    <body>
+      <div>
+        <head>In the directories</head>
+        <p>David Middleton, saddler and harness maker, is in the directories from 1857 to 1885, in five streets. He is in <ref target="civic?id=Queensberry%20Street">Queensberry Street</ref> in 1857, in <ref target="civic?id=Bouverie%20Street">Bouverie Street</ref> at No. 7 and then No. 10 from 1858 to 1860, and in <ref target="civic?id=Victoria%20Street">Victoria Street</ref> from 1861 to 1870, at No. 33 from 1864. He is back in Bouverie Street at No. 15, then No. 17, from 1872 to 1874, at No. 42, then No. 40 Queensberry Street in 1876 and 1877, at No. 58 <ref target="civic?id=Leicester%20Street">Leicester Street</ref> from 1878 to 1880, and at No. 19 <ref target="civic?id=Barry%20Street">Barry Street</ref> in 1885.</p>
+      </div>
+      <div>
+        <head>Neighbours</head>
+        <p>In 1859 and 1860 he is next to the <ref target="civic?id=Union%20Stables">Union Stables</ref> in Bouverie Street. In Victoria Street he is next to the <ref target="civic?id=Royal%20hotel">Royal hotel</ref> and the <ref target="civic?id=Royal%20Hotel%20Stables">Royal Hotel Stables</ref> in 1861 and 1862, with J. or James Kay, bootmaker, next door at No. 35 from 1864 to 1869. Back in Bouverie Street, David Corbett, engineer, is at No. 19 from 1872 to 1874. In Queensberry Street in 1876 and 1877 his neighbours are Jno. Holden's wood yard and the <ref target="civic?id=Rising%20Sun%20hotel">Rising Sun Inn</ref>.</p>
+      </div>
+      <div>
+        <head>See also</head>
+        <list rend="bulleted">
+          <item><ref target="civic?id=Stables">Stables</ref></item>
+          <item><ref target="civic?id=Bouverie%20Street">Bouverie Street</ref></item>
+          <item><ref target="civic?id=Victoria%20Street">Victoria Street</ref></item>
+        </list>
+      </div>
+    </body>
+  </text>
+</TEI>

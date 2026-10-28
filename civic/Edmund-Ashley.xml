@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="https://historicalesque.github.io/carlton/schema/carlton.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0" type="person" xml:lang="en">
+  <teiHeader>
+    <fileDesc>
+      <titleStmt>
+        <title>Edmund Ashley</title>
+        <respStmt key="computer-assisted-draft">
+          <resp>Computer-assisted first draft</resp>
+          <name>Common Ground</name>
+        </respStmt>
+      </titleStmt>
+      <publicationStmt>
+        <publisher>Common Ground</publisher>
+        <idno type="entry">Edmund-Ashley</idno>
+      </publicationStmt>
+      <sourceDesc>
+        <listBibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1878">Sands &amp; McDougall Directory, 1878, pp. 73, 79</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1879">Sands &amp; McDougall Directory, 1879, pp. 74, 80</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1880">Sands &amp; McDougall Directory, 1880, p. 82</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1885">Sands &amp; McDougall Directory, 1885, p. 110</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1890">Sands &amp; McDougall Directory, 1890, pp. 135, 145</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1895">Sands &amp; McDougall Directory, 1895, pp. 154, 164</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1900">Sands &amp; McDougall Directory, 1900, pp. 188, 198</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1905">Sands &amp; McDougall Directory, 1905, pp. 195, 205</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1910">Sands &amp; McDougall Directory, 1910, p. 212</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1915">Sands &amp; McDougall Directory, 1915, pp. 199, 204</ref></bibl>
+        </listBibl>
+      </sourceDesc>
+    </fileDesc>
+    <revisionDesc status="published">
+      <change when="2026-10-28" type="created">Computer-assisted first draft by Common Ground, from the directory records.</change>
+    </revisionDesc>
+  </teiHeader>
+  <standOff>
+    <listPerson>
+      <person xml:id="subject">
+        <persName type="main">Edmund Ashley</persName>
+      </person>
+    </listPerson>
+  </standOff>
+  <text>
+    <body>
+      <div>
+        <head>In the directories</head>
+        <p>Edmund Ashley, coach builders' ironmonger, is listed from 1878 to 1915 at the corner of <ref target="civic?id=Victoria%20Street">Victoria Street</ref> and <ref target="civic?id=Madeline%20Street">Madeline Street</ref>. In Victoria Street he is the last listing before the Madeline Street corner, at No. 138 from 1890. In Madeline Street he is No. 1 (listed there in 1878 and 1879 and from 1890 to 1915). The listings call him a coach builders' ironmonger (1878 to 1885 and 1905 to 1915), a coach furniture importer (1890), an ironmonger or coachbuilder (1895), and a coachbuilders' materials importer (1900 and 1905).</p>
+      </div>
+      <div>
+        <head>Neighbours</head>
+        <p>He is next door to the <ref target="civic?id=Royal%20hotel">Royal hotel</ref> throughout. In Madeline Street, J. Rogers's dispensary is at No. 3 in 1878, Henry Jourdain, professor of dancing, is listed next door from 1879 to 1895, and the Ormond Dancing Academy is at No. 3 in 1900. A J. H. Ashley is listed beside him in 1915.</p>
+      </div>
+      <div>
+        <head>See also</head>
+        <list rend="bulleted">
+          <item><ref target="civic?id=Royal%20hotel">Royal hotel</ref></item>
+          <item><ref target="civic?id=Victoria%20Street">Victoria Street</ref></item>
+          <item><ref target="civic?id=Madeline%20Street">Madeline Street</ref></item>
+        </list>
+      </div>
+    </body>
+  </text>
+</TEI>

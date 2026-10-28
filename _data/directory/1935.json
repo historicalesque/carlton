@@ -510,7 +510,7 @@
 {"entityID":"Joseph Reilly (155 Pelham Street, South side)","source":"Directory","year":1935,"pages":"198","listing":"155 Reilly, Joseph","street":"Pelham Street","type":"Place","kind":"person","cardinality":"South"},
 {"entityID":11380,"source":"Directory","year":1935,"pages":"198","listing":"157 Toce, R.","street":"Pelham Street","type":"Place","kind":"person","cardinality":"South"},
 {"entityID":"Mrs Rosannah Lewis","source":"Directory","year":1935,"pages":"198","listing":"159 Lewis, Mrs Rosannah","street":"Pelham Street","type":"Place","kind":"person","cardinality":"South"},
-{"entityID":"Mrs Nellie Rae","source":"Directory","year":1935,"pages":"198","listing":"163 Rae, Mrs Nellie, dairy","street":"Pelham Street","type":"Place","kind":"person","cardinality":"South","Occupation":"dairy"},
+{"entityID":"Rae's dairy","source":"Directory","year":1935,"pages":"198","listing":"163 Rae, Mrs Nellie, dairy","street":"Pelham Street","type":"Place","kind":"person","cardinality":"South","Occupation":"dairy"},
 {"entityID":"Intersection Pelham street and Leicester street (Pelham Street, South side)","source":"Directory","year":1935,"pages":"198","listing":"Intersection Pelham street and Leicester street","street":"Pelham Street","type":"Intersection","kind":"place","cardinality":"South","lat":-37.802147185654846,"lng":144.96067467814555},
 {"entityID":11384,"source":"Directory","year":1935,"pages":"198","listing":"179 Fitzpatrick, Mrs H.","street":"Pelham Street","type":"Place","kind":"person","cardinality":"South"},
 {"entityID":11385,"source":"Directory","year":1935,"pages":"198","listing":"181 Fleming, Thos.","street":"Pelham Street","type":"Place","kind":"person","cardinality":"South"},
