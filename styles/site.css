@@ -510,6 +510,14 @@ a.result-title { text-decoration: underline; text-decoration-color: var(--sage-d
     border: 1px solid var(--moss);
 }
 
+.az-badge-robot {
+    padding: 0 2px;
+    font-family: inherit;
+    font-size: 0.95rem;
+    cursor: help;
+    background: transparent;
+}
+
 .az-badge-missing {
     padding: 2px 4px;
     line-height: 0;
@@ -1454,6 +1462,7 @@ html.map3d-page, body.map3d-page {
 .pv-entry blockquote p:last-child { margin-bottom: 0; }
 .pv-type { font-size: 11px; text-transform: uppercase; letter-spacing: .12em; color: var(--moss); margin-bottom: 2px !important; }
 .pv-life { color: var(--ink-faint); }
+.pv-robot, .result-robot { font-size: 0.8em; cursor: help; }
 .pv-byline { color: var(--ink-faint); font-size: 14px; font-style: italic; }
 .pv-summary p { font-family: var(--font-serif); font-size: 1.08rem; color: var(--ink); }
 .pv-citations { font-size: 14px; }

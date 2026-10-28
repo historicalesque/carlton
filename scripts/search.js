@@ -60,13 +60,16 @@
     const parsed = await Promise.all(files.map(async (name) => {
       try {
         const xml = new DOMParser().parseFromString(await (await fetch(`civic/${name}.xml`)).text(), 'application/xml');
-        let title, text, kind = '', occupations = [];
+        let title, text, kind = '', occupations = [], robot = false;
         if (xml.documentElement.localName === 'TEI') {
           // TEI entries (schema/carlton.odd): the title, the article's text,
           // and the subject's occupations, a business's activities or a
           // place's uses
           title = xml.getElementsByTagName('title')[0]?.textContent.trim();
           kind = xml.documentElement.getAttribute('type') || '';
+          // Only a computer-assisted first draft so far: no named author, no community credit
+          const credits = [...xml.getElementsByTagName('respStmt')].map((r) => r.getAttribute('key'));
+          robot = credits.includes('computer-assisted-draft') && !credits.includes('community') && !xml.getElementsByTagName('author').length;
           text = (xml.getElementsByTagName('body')[0]?.textContent || '').replace(/\s+/g, ' ').trim();
           const subject = [...xml.getElementsByTagName('*')].find((e) => e.getAttribute('xml:id') === 'subject');
           if (subject) {
@@ -82,7 +85,7 @@
           text = new DOMParser().parseFromString(html, 'text/html').body.textContent.replace(/\s+/g, ' ').trim();
         }
         title = title || name.replace(/-/g, ' ');
-        return { name, title, text, kind, occupations: [...new Set(occupations)] };
+        return { name, title, text, kind, robot, occupations: [...new Set(occupations)] };
       } catch (e) { return null; }
     }));
     parsed.filter(Boolean).forEach((e) => { entries[e.name] = e; });
@@ -214,7 +217,7 @@
     const linked = groups['g:' + entry.title];
     const years = linked ? [...new Set(linked.records.map((r) => r.year))] : [];
     return `<li class="result result-entry">
-      <a class="result-title" href="civic?id=${encodeURIComponent(entry.title)}">${highlight(entry.title, terms)}</a>
+      <a class="result-title" href="civic?id=${encodeURIComponent(entry.title)}">${highlight(entry.title, terms)}</a>${entry.robot ? ' <span class="result-robot" role="img" aria-label="Computer-assisted first draft" title="Computer-assisted first draft: no one has added to it yet">🤖</span>' : ''}
       ${entry.occupations.length ? `<p class="result-occupation">${entry.occupations.map((o) => occupationLink(o, terms)).join(' · ')}</p>` : ''}
       <p class="result-snippet">${snippet(entry.text, terms)}</p>
       ${years.length ? `<p class="result-meta">Also in the directories: ${years.join(' · ')}</p>` : ''}

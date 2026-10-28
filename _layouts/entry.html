@@ -198,7 +198,7 @@ function slugifyId(text) {
       // rendered by scripts/tei.js; older entries are EAC-CPF, read below.
       if (xml.documentElement && xml.documentElement.namespaceURI === TEIEntry.NS) {
         entryContainer.innerHTML = TEIEntry.render(text);
-        const title = entryContainer.querySelector('h1')?.textContent;
+        const title = entryContainer.querySelector('h1')?.firstChild?.textContent.trim();
         if (title && !CONFIG.entryId) document.title = `Common Ground - ${title}`;
         // The byline is part of the rendered entry; authors also go in the page's metadata
         for (const author of xml.getElementsByTagNameNS(TEIEntry.NS, 'author')) {
