@@ -5,6 +5,7 @@
     <fileDesc>
       <titleStmt>
         <title>Otago Hotel</title>
+        <author>Andy May</author>
         <author>Mitchell Harrop</author>
       </titleStmt>
       <publicationStmt>
@@ -23,8 +24,7 @@
       </sourceDesc>
     </fileDesc>
     <revisionDesc status="draft">
-      <change when="2026-10-27" type="created">Contributed through the contribution form by Mitchell Harrop.</change>
-      <change when="2026-10-27" type="edited">Proprietors as listed in the directories added by Common Ground (machine-assisted).</change>
+      <change when="2026-10-28" type="created">Contributed through the contribution form by Andy May, Mitchell Harrop.</change>
     </revisionDesc>
   </teiHeader>
   <standOff>
@@ -39,8 +39,28 @@
   </standOff>
   <text>
     <body>
-      <p>Otago Hotel was located on Pelham Street.</p>
-      <p>The directories list the proprietors as Ellen Hogan (1875 and 1876), George Daly (1877), J. H. Brenan (1878), Jer. Collins (1879) and Miss Rosa McManus (1880). <hi rend="italic">Machine-assisted first draft by Common Ground, from the directory records.</hi></p>
+      <div>
+        <head>Summary</head>
+        <p>The Otago Hotel was located on Pelham Street. There was a hotel of the same name in Flinders Street West. It appears the Otago Hotel in Carlton was renamed the Standard Hotel in the mid 1880s [<ref target="http://nla.gov.au/nla.news-article191195867"><hi rend="italic">Age</hi>, 10 July 1885: 7</ref>].</p>
+      </div>
+      <div>
+        <head>Details</head>
+        <p>The directories list the proprietors as Ellen Hogan (1875 and 1876), George Daly (1877), J. H. Brenan (1878), Jer. Collins (1879) and Miss Rosa McManus (1880).</p>
+        <p>Ellen Hogan died at the hotel on 18 May 1876 [<ref target="http://nla.gov.au/nla.news-article202160910"><hi rend="italic">Age</hi>, 19 May 1876: 2]</ref>, and the next publican George Dalley didn't last much longer, dying there on 17 October the same year [Australasian, 21 Oct 1876: 25]. After Dalley's death, the following notice <ref target="http://nla.gov.au/nla.news-article5907444">appeared in the <hi rend="italic">Argus</hi></ref>:</p>
+        <quote>
+          <p>FOR OR SALE, cheap, in consequence of the death of late proprietor, the LEASE, having two years and nine months to run, with goodwill and licence, of OTAGO HOTEL, Pelham street, Carlton, doing a good cash trade, and containing eight rooms. Apply on premises.</p>
+        </quote>
+        <p>In 1879, the publican (or a resident) at the hotel lost their white poodle named "Blong" and notified anyone who had detained the dog that it "Will come home if let loose" [<ref target="http://nla.gov.au/nla.news-article199366971"><hi rend="italic">Age</hi>, 4 Aug 1879: 1</ref>].</p>
+        <p>In November 1881, the delightfully named Phillipa Seymore de la Fontaine advertised as follows [<ref target="http://nla.gov.au/nla.news-article241320304"><hi rend="italic">Herald</hi>, 24 November 1881: 4</ref>]:</p>
+        <quote>
+          <p>I, PHILLIPA SEYMORE DE LA FONTAINE, of Carlton, the holder of a Transferred Publican's License, do hereby give notice that I desire to obtain, and will at the next Licensing Meeting, to be holden at Melbourne, on the thirteenth day of December, APPLY for a Certificate authorising the Issue of a PUBLICAN'S LICENSE, for a house situate at Pelham street, Carlton, known as the Otago Hotel, containing six room, exclusive of those required for the use of the family.</p>
+        </quote>
+      </div>
+      <div>
+        <head>Contributors</head>
+        <p><hi rend="italic">Machine-assisted first draft by Common Ground, from the directory records.</hi></p>
+        <p><hi rend="italic">Andy May</hi></p>
+      </div>
     </body>
   </text>
 </TEI>
