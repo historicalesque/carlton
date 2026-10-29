@@ -6,17 +6,21 @@
       <titleStmt>
         <title>Hogan, Ellen</title>
         <author>Andy May</author>
+        <respStmt key="community">
+          <resp>Suggestions from</resp>
+          <name>the broader Carlton community</name>
+        </respStmt>
       </titleStmt>
       <publicationStmt>
         <publisher>Common Ground</publisher>
         <idno type="entry">Hogan-Ellen</idno>
       </publicationStmt>
       <sourceDesc>
-        <p>Contributed through the website. No sources listed.</p>
+        <p>Contributed through the website.</p>
       </sourceDesc>
     </fileDesc>
     <revisionDesc status="draft">
-      <change when="2026-10-28" type="created">Contributed through the contribution form by Andy May.</change>
+      <change when="2026-10-30" type="created">Contributed through the contribution form by Andy May.</change>
     </revisionDesc>
   </teiHeader>
   <standOff>
@@ -28,37 +32,29 @@
   </standOff>
   <text>
     <body>
-      <div>
-        <head>Summary</head>
+      <div type="summary">
         <p>Ellen HOGAN was one time publican of the Otago Hotel in Pelham Street in the mid 1870s.</p>
       </div>
-      <div>
-        <head>Details</head>
+      <div type="detail">
         <p>Ellen was born c. 1831 in Kilkenny, Ireland, the daughter of farmer James O’Keefe and Ann Whelan. She arrived in Victoria around 1862, the year she married James Hogan. On their wedding certificate she is listed as a domestic, he a farm labourer from Williamstown. [3979/1862]</p>
         <p>James Hogan was also born in Kilkenny, around 1823, son of farmer Michael Hogan and Margaret Quinn, and had been in Victoria since about 1856.</p>
         <p>James Hogan was erstwhile proprietor of the Robert Burns Hotel at the corner of Easy and Smith streets, Collingwood, and the couple had 4 children there, only one of whom survived infancy:</p>
         <quote>
           <p>Michael James b. c. 1863, died 27 October 1892</p>
-        </quote>
-        <quote>
           <p>Mary Ann born Collingwood in 1864 [21145/1864]</p>
           <p>Mary Ann died Collingwood aged 8 months 15 Feb 1865 [3575/1865]</p>
-        </quote>
-        <quote>
           <p>James born Collingwood in 1866 [7419/1866]</p>
           <p>James died aged 10 days in Collingwood on 30 March 1866 [4598/1866]</p>
-        </quote>
-        <quote>
           <p>Mary Ann born Collingwood in 1867 [14062/1867]</p>
           <p>Mary Ann Catherine died Collingwood aged 5 months on 18 May 1867 [7980/1867]</p>
         </quote>
         <p>Having suffered the loss of three of her four children, Ellen lost her husband James from phthisis (tuberculosis) in 1868 when he was only 45 [756/1868].</p>
-        <p>Ellen herself died aged 45 of “colonial fever” at the Otago Hotel in Pelham Street [4647/1876].</p>
+        <p>Ellen herself died aged 45 of “colonial fever” (typhoid) at the Otago Hotel in Pelham Street [4647/1876].</p>
         <p>A <ref target="https://www.findagrave.com/memorial/129651598/james-hogan">headstone in the Melbourne General Cemetery</ref> memorialises the couple and their children.</p>
-      </div>
-      <div>
-        <head>Contributors</head>
-        <p>Andy May</p>
+        <div>
+          <head>Contributors</head>
+          <p>Andy May</p>
+        </div>
       </div>
     </body>
   </text>
