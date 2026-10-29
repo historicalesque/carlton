@@ -270,6 +270,8 @@
     .licence-line { align-items: flex-start; line-height: 1.45; }
     .licence-line input { flex: none; margin-top: 2px; }
     .licence-line a, .send-note a, .form-intro a { color: var(--moss); }
+    .licence-summary { font-size: 13px; color: var(--ink-faint); margin: 6px 0 0 24px; }
+    .licence-summary a { color: var(--moss); }
     .send-note { font-size: 13px; color: var(--ink-faint); margin-top: 10px; }
     .byline-hint { margin-top: 8px; }
 
@@ -527,6 +529,7 @@
       </div>
 
       <label class="check-line licence-line" id="licenceLine"><input type="checkbox" id="licenceOk" required> <span>I agree that what I’ve written may be published under a CC BY-NC 4.0 licence and credited to “the broader Carlton community”. <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">Read more</a></span></label>
+      <p class="licence-summary" id="licenceSummary">In short: anyone, including us, may share, copy and build on what you’ve written, as long as they credit “the broader Carlton community” and don’t use it to make money. Once you’ve sent it, this permission can’t be withdrawn, though you can still <a href="about#takedown" target="_blank" rel="noopener">ask us to take something down</a>.</p>
     </div>
 
     <!-- Honeypot: hidden from people, often filled in by bots -->
@@ -1424,6 +1427,7 @@
     $('authorLabel').textContent = 'Authors';
     // Editors see everything; the licence was agreed when it was first sent
     $('licenceLine').hidden = true;
+    $('licenceSummary').hidden = true;
     $('sendNote').hidden = true;
     setShowAll(true);
     sendReady();
