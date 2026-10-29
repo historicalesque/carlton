@@ -6,8 +6,8 @@
       <titleStmt>
         <title>Bush Inn hotel</title>
         <author>Mitchell Harrop</author>
-        <respStmt key="computer-assisted-draft">
-          <resp>Computer-assisted first draft</resp>
+        <respStmt key="computer-assisted-additions">
+          <resp>Computer-assisted additions</resp>
           <name>Common Ground</name>
         </respStmt>
       </titleStmt>
@@ -29,6 +29,7 @@
       <change when="2026-10-27" type="edited">Links, and sections from the directory records, added by Common Ground (machine-assisted).</change>
       <change when="2026-10-28" type="revised">Credits tidied: the computer-assisted first draft is credited in the byline.</change>
       <change when="2026-10-28" type="revised">Sentences that tied the text to the website (search, the form, record links) taken out.</change>
+      <change when="2026-10-29" type="revised">Credits corrected: the entry was started by people, so the computer-assisted sections are credited as additions, not a first draft.</change>
     </revisionDesc>
   </teiHeader>
   <standOff>
