@@ -7,45 +7,55 @@
         <title>Melbourne and Metropolitan Board of Works plans</title>
         <author>Andy May</author>
         <author>Mitchell Harrop</author>
+        <respStmt key="community">
+          <resp>Suggestions from</resp>
+          <name>the broader Carlton community</name>
+        </respStmt>
       </titleStmt>
       <publicationStmt>
         <publisher>Common Ground</publisher>
         <idno type="entry">MMBW</idno>
       </publicationStmt>
       <sourceDesc>
-        <p>Contributed through the website. No sources listed.</p>
+        <p>Contributed through the website.</p>
       </sourceDesc>
     </fileDesc>
     <revisionDesc status="draft">
-      <change when="2026-10-25" type="created">Contributed through the contribution form by Andy May, Mitchell Harrop.</change>
+      <change when="2026-10-30" type="created">Contributed through the contribution form by Andy May, Mitchell Harrop.</change>
     </revisionDesc>
   </teiHeader>
   <text>
     <body>
-      <p><ref target="https://www.emelbourne.net.au/biogs/EM00924b.htm">The Melbourne and Metropolitan Board of Works (MMBW)</ref> was formed in 1891 to construct a sewerage system for Melbourne. As it rolled out much-needed sewerage infrastructure, it produced block plans at a scale of 40 feet to 1 inch (1:480). Each of these plans covers roughly a few city blocks and shows streets, lanes, rights-of-way, parks and squares, along with house (wood or stone/brick) and property information including a host of details such as telegraph posts, down pipes, valve covers, gas lamps, fountains, P.O. pillars, orderly bins, kitchen sinks, closets, fire plugs, stables, gardens, kerbs, storm water channels, and fences.A key to reading the plans is on the <ref target="https://guides.slv.vic.gov.au/MMBWplans/legend">SLV website</ref>.</p>
-      <p><ref target="https://historicalesque.github.io/carlton/map">The Carlton Common Ground MAP</ref> includes relevant MMBW plans of the area. You can turn these base plans on/off and use the sliders to fade between them. Higher resolution versions in SLV are linked via the right-hand menu on the <ref target="https://historicalesque.github.io/carlton/map">MAP page</ref>.</p>
-      <p>The maps used in the project are as follows:</p>
-      <p>●     Melbourne and Metropolitan Board of Works, City of Melbourne, Detail Plan No. 1172 (1897)</p>
-      <p>○     <ref target="https://handle.slv.vic.gov.au/10381/120530">https://handle.slv.vic.gov.au/10381/120530</ref></p>
-      <p>○     <ref target="https://mapwarper.net/maps/111455#Preview_Rectified_Map_tab">https://mapwarper.net/maps/111455#Preview_Rectified_Map_tab</ref></p>
-      <p>●     Melbourne and Metropolitan Board of Works, City of Melbourne, Detail Plan No. 1173 (1897)</p>
-      <p>○     <ref target="https://handle.slv.vic.gov.au/10381/120591">https://handle.slv.vic.gov.au/10381/120591</ref></p>
-      <p>○     <ref target="https://mapwarper.net/maps/111456#Preview_Rectified_Map_tab">https://mapwarper.net/maps/111456#Preview_Rectified_Map_tab</ref></p>
-      <p>●     Melbourne and Metropolitan Board of Works, City of Melbourne, Detail Plan No. 1174 (1896)</p>
-      <p>○     <ref target="https://handle.slv.vic.gov.au/10381/120573">https://handle.slv.vic.gov.au/10381/120573</ref></p>
-      <p>○     <ref target="https://mapwarper.net/maps/111458#Preview_Rectified_Map_tab">https://mapwarper.net/maps/111458#Preview_Rectified_Map_tab</ref></p>
-      <p>●     Melbourne and Metropolitan Board of Works, City of Melbourne, Detail Plans No. 1175 &amp; 1176 (1896)</p>
-      <p>○     <ref target="https://handle.slv.vic.gov.au/10381/120585">https://handle.slv.vic.gov.au/10381/120585</ref></p>
-      <p>○     <ref target="https://mapwarper.net/maps/111459#Preview_Rectified_Map_tab">https://mapwarper.net/maps/111459#Preview_Rectified_Map_tab</ref></p>
-      <p>●     Melbourne and Metropolitan Board of Works, City of Melbourne, Detail Plan No. 1177 (1896)</p>
-      <p>○     <ref target="https://handle.slv.vic.gov.au/10381/120582">https://handle.slv.vic.gov.au/10381/120582</ref></p>
-      <p>○     <ref target="https://mapwarper.net/maps/111460#Preview_Rectified_Map_tab">https://mapwarper.net/maps/111460#Preview_Rectified_Map_tab</ref></p>
-      <p>●     Melbourne and Metropolitan Board of Works, City of Melbourne, Detail Plan No. 1178 (1896)</p>
-      <p>○     <ref target="https://handle.slv.vic.gov.au/10381/120516">https://handle.slv.vic.gov.au/10381/120516</ref></p>
-      <p>○     <ref target="https://mapwarper.net/maps/111526#Preview_Rectified_Map_tab">https://mapwarper.net/maps/111526#Preview_Rectified_Map_tab</ref></p>
-      <p>●     Melbourne and Metropolitan Board of Works, City of Melbourne, Detail Plans No. 1179 &amp; 1180 (1896)</p>
-      <p>○     <ref target="https://handle.slv.vic.gov.au/10381/120584">https://handle.slv.vic.gov.au/10381/120584</ref></p>
-      <p>○     <ref target="https://mapwarper.net/maps/111529#Preview_Rectified_Map_tab">https://mapwarper.net/maps/111529#Preview_Rectified_Map_tab</ref></p>
+      <div type="detail">
+        <p><ref target="https://www.emelbourne.net.au/biogs/EM00924b.htm">The Melbourne and Metropolitan Board of Works (MMBW)</ref> was formed in 1891 to construct a sewerage system for Melbourne. As it rolled out much-needed sewerage infrastructure, it produced block plans at a scale of 40 feet to 1 inch (1:480). Each of these plans covers roughly a few city blocks and shows streets, lanes, rights-of-way, parks and squares, along with house (wood or stone/brick) and property information including a host of details such as telegraph posts, down pipes, valve covers, gas lamps, fountains, P.O. pillars, orderly bins, kitchen sinks, closets, fire plugs, stables, gardens, kerbs, storm water channels, and fences.A key to reading the plans is on the <ref target="https://guides.slv.vic.gov.au/MMBWplans/legend">SLV website</ref>.</p>
+        <p>The MMBW maps were not simply exercises in planning — they represented a major shift in the way the city was experienced as a healthier and more sanitary environment:</p>
+        <quote>
+          <p>Melbourne's infant mortality rate would exceed that of London until the 1890s. 'Colonial fever' was soon a scourge but it would not be reliably diagnosed as typhoid until the 1870s. With overflowing cesspits, polluted rivers and creeks, open sewers in the city streets and casual use of pans, Smelbourne had a pervasive odour of human excrement. The growing typhoid death toll and the acceptance of germ theory by the 1890s finally impelled the sewering of Melbourne after 1897. [<ref target="https://www.emelbourne.net.au/biogs/EM00473b.htm">Janet McCalman, "Deseases and Epidemics", eMelbourne</ref>]</p>
+        </quote>
+        <p><ref target="map">The Carlton Common Ground MAP</ref> includes relevant MMBW plans of the area. You can turn these base plans on/off and use the sliders to fade between them. Higher resolution versions in SLV are linked via the right-hand menu on the <ref target="map">MAP page</ref>.</p>
+        <p>The maps used in the project are as follows:</p>
+        <p>● Melbourne and Metropolitan Board of Works, City of Melbourne, Detail Plan No. 1172 (1897)</p>
+        <p>○ <ref target="https://handle.slv.vic.gov.au/10381/120530">https://handle.slv.vic.gov.au/10381/120530</ref></p>
+        <p>○ <ref target="https://mapwarper.net/maps/111455#Preview_Rectified_Map_tab">https://mapwarper.net/maps/111455#Preview_Rectified_Map_tab</ref></p>
+        <p>● Melbourne and Metropolitan Board of Works, City of Melbourne, Detail Plan No. 1173 (1897)</p>
+        <p>○ <ref target="https://handle.slv.vic.gov.au/10381/120591">https://handle.slv.vic.gov.au/10381/120591</ref></p>
+        <p>○ <ref target="https://mapwarper.net/maps/111456#Preview_Rectified_Map_tab">https://mapwarper.net/maps/111456#Preview_Rectified_Map_tab</ref></p>
+        <p>● Melbourne and Metropolitan Board of Works, City of Melbourne, Detail Plan No. 1174 (1896)</p>
+        <p>○ <ref target="https://handle.slv.vic.gov.au/10381/120573">https://handle.slv.vic.gov.au/10381/120573</ref></p>
+        <p>○ <ref target="https://mapwarper.net/maps/111458#Preview_Rectified_Map_tab">https://mapwarper.net/maps/111458#Preview_Rectified_Map_tab</ref></p>
+        <p>● Melbourne and Metropolitan Board of Works, City of Melbourne, Detail Plans No. 1175 &amp; 1176 (1896)</p>
+        <p>○ <ref target="https://handle.slv.vic.gov.au/10381/120585">https://handle.slv.vic.gov.au/10381/120585</ref></p>
+        <p>○ <ref target="https://mapwarper.net/maps/111459#Preview_Rectified_Map_tab">https://mapwarper.net/maps/111459#Preview_Rectified_Map_tab</ref></p>
+        <p>● Melbourne and Metropolitan Board of Works, City of Melbourne, Detail Plan No. 1177 (1896)</p>
+        <p>○ <ref target="https://handle.slv.vic.gov.au/10381/120582">https://handle.slv.vic.gov.au/10381/120582</ref></p>
+        <p>○ <ref target="https://mapwarper.net/maps/111460#Preview_Rectified_Map_tab">https://mapwarper.net/maps/111460#Preview_Rectified_Map_tab</ref></p>
+        <p>● Melbourne and Metropolitan Board of Works, City of Melbourne, Detail Plan No. 1178 (1896)</p>
+        <p>○ <ref target="https://handle.slv.vic.gov.au/10381/120516">https://handle.slv.vic.gov.au/10381/120516</ref></p>
+        <p>○ <ref target="https://mapwarper.net/maps/111526#Preview_Rectified_Map_tab">https://mapwarper.net/maps/111526#Preview_Rectified_Map_tab</ref></p>
+        <p>● Melbourne and Metropolitan Board of Works, City of Melbourne, Detail Plans No. 1179 &amp; 1180 (1896)</p>
+        <p>○ <ref target="https://handle.slv.vic.gov.au/10381/120584">https://handle.slv.vic.gov.au/10381/120584</ref></p>
+        <p>○ <ref target="https://mapwarper.net/maps/111529#Preview_Rectified_Map_tab">https://mapwarper.net/maps/111529#Preview_Rectified_Map_tab</ref></p>
+      </div>
     </body>
   </text>
 </TEI>
