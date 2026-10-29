@@ -11,7 +11,8 @@
    checked against schema/carlton.rng. In short:
      <TEI type="person|org|family|place|topic|unknown">
        <teiHeader>  title, authors and credits (respStmt key="community" /
-                    "computer-assisted-draft"), directory and electoral-roll
+                    "computer-assisted-draft" / "computer-assisted-additions"),
+                    directory and electoral-roll
                     citations (sourceDesc/listBibl), one <change> per edit
        <standOff>   the subject (person / personGrp / org / place, xml:id
                     "subject"), the chronology (listEvent) and links to other
@@ -28,7 +29,7 @@
      kind: 'person' | 'org' | 'family' | 'place' | 'topic' | '',
      surname, forenames,                     // people only, optional
      authors: ['Name', ...], date: 'YYYY-MM-DD',
-     credits: { community, computerDraft },  // byline flags, true/false
+     credits: { community, computerDraft, computerAdditions },  // byline flags, true/false
      dates: { from, to, approximate },
      otherNames:     [{ name, from, to }],
      places:         [{ address, role, from, to, lat, lng }],
@@ -258,7 +259,9 @@ window.TEIEntry = (function () {
           credits.community ? el('respStmt', { key: 'community' },
             el('resp', null, 'Suggestions from'), el('name', null, COMMUNITY)) : null,
           credits.computerDraft ? el('respStmt', { key: 'computer-assisted-draft' },
-            el('resp', null, 'Computer-assisted first draft'), el('name', null, PUBLISHER)) : null),
+            el('resp', null, 'Computer-assisted first draft'), el('name', null, PUBLISHER)) : null,
+          credits.computerAdditions ? el('respStmt', { key: 'computer-assisted-additions' },
+            el('resp', null, 'Computer-assisted additions'), el('name', null, PUBLISHER)) : null),
         el('publicationStmt', null,
           el('publisher', null, PUBLISHER),
           el('idno', { type: 'entry' }, trim(entry.recordId) || 'unassigned')),
@@ -579,7 +582,8 @@ window.TEIEntry = (function () {
     const robot = !by.length && credited('computer-assisted-draft');
     const byline = [
       by.length ? `By ${by.length > 1 ? `${by.slice(0, -1).join(', ')} and ${by[by.length - 1]}` : by[0]}.` : '',
-      credited('computer-assisted-draft') ? 'Built on a computer-assisted first draft.' : ''
+      credited('computer-assisted-draft') ? 'Built on a computer-assisted first draft.' : '',
+      credited('computer-assisted-additions') ? 'With computer-assisted additions.' : ''
     ].filter(Boolean).join(' ');
 
     return `
@@ -637,7 +641,8 @@ window.TEIEntry = (function () {
       places: [], occupations: [], legalStatuses: [], chronology: [], relations: [], sources: [], recordSources: [],
       credits: {
         community: kids(titleStmt, 'respStmt').some((r) => r.getAttribute('key') === 'community'),
-        computerDraft: kids(titleStmt, 'respStmt').some((r) => r.getAttribute('key') === 'computer-assisted-draft')
+        computerDraft: kids(titleStmt, 'respStmt').some((r) => r.getAttribute('key') === 'computer-assisted-draft'),
+        computerAdditions: kids(titleStmt, 'respStmt').some((r) => r.getAttribute('key') === 'computer-assisted-additions')
       },
       summary: '',
       articleHtml: '',

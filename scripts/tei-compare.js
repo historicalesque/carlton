@@ -57,7 +57,8 @@ window.TEICompare = (function () {
     add('Authors', all(titleStmt, 'author').map((a) => a.textContent));
     const credited = (key) => all(titleStmt, 'respStmt').some((r) => r.getAttribute('key') === key);
     add('Byline credits', [credited('community') ? 'The broader Carlton community' : '',
-      credited('computer-assisted-draft') ? 'Computer-assisted first draft' : '']);
+      credited('computer-assisted-draft') ? 'Computer-assisted first draft' : '',
+      credited('computer-assisted-additions') ? 'Computer-assisted additions' : '']);
 
     const blocks = [];
     const body = all(root, 'body')[0];

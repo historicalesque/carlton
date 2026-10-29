@@ -6,10 +6,6 @@
       <titleStmt>
         <title>Seven Stars hotel</title>
         <author>Andy May</author>
-        <respStmt key="computer-assisted-draft">
-          <resp>Computer-assisted first draft</resp>
-          <name>Common Ground</name>
-        </respStmt>
       </titleStmt>
       <publicationStmt>
         <publisher>Common Ground</publisher>
@@ -28,6 +24,7 @@
       <change when="2026-10-27" type="revised">Entry type corrected from place to business.</change>
       <change when="2026-10-27" type="edited">Proprietors as listed in the directories added by Common Ground (machine-assisted).</change>
       <change when="2026-10-28" type="revised">Credits tidied: the computer-assisted first draft is credited in the byline.</change>
+      <change when="2026-10-29" type="revised">Credits corrected: the entry was started by people, and the computer-assisted additions were minor, so they are no longer credited in the byline.</change>
     </revisionDesc>
   </teiHeader>
   <standOff>

@@ -425,6 +425,7 @@
         <div class="section-body">
           <label class="check-line"><input type="checkbox" id="creditCommunity"> Includes suggestions from the broader Carlton community</label>
           <label class="check-line"><input type="checkbox" id="creditDraft"> Based on a computer-assisted first draft</label>
+          <label class="check-line"><input type="checkbox" id="creditAdditions"> Includes computer-assisted additions</label>
           <p class="hint byline-hint">Filled in from the current entry. You can untick either, for example after a full redraft; the editorial collective decides whether to accept the change.</p>
         </div>
       </details>
@@ -760,7 +761,7 @@
   /* ---------- Byline credits ---------- */
   // The community credit is ticked for anyone sending without a name, and
   // kept for an entry that already has it, until the box is changed by hand
-  let entryCredits = { community: false, computerDraft: false };
+  let entryCredits = { community: false, computerDraft: false, computerAdditions: false };
   let communityTouched = false;
   function followCommunity() {
     if (!communityTouched) $('creditCommunity').checked = entryCredits.community || !$('authorName').value.trim();
@@ -768,8 +769,10 @@
   $('creditCommunity').addEventListener('change', () => { communityTouched = true; });
   $('authorName').addEventListener('input', followCommunity);
   function setCredits(credits, fixed) {
-    entryCredits = { community: !!(credits && credits.community), computerDraft: !!(credits && credits.computerDraft) };
+    entryCredits = { community: !!(credits && credits.community), computerDraft: !!(credits && credits.computerDraft),
+      computerAdditions: !!(credits && credits.computerAdditions) };
     $('creditDraft').checked = entryCredits.computerDraft;
+    $('creditAdditions').checked = entryCredits.computerAdditions;
     if (fixed) { communityTouched = true; $('creditCommunity').checked = entryCredits.community; } else followCommunity();
   }
   followCommunity();
@@ -1201,7 +1204,7 @@
       surname: $('surname').value,
       forenames: $('forenames').value,
       authors: [$('authorName').value, ...readList('authors').map((a) => a.name)],
-      credits: { community: $('creditCommunity').checked, computerDraft: $('creditDraft').checked },
+      credits: { community: $('creditCommunity').checked, computerDraft: $('creditDraft').checked, computerAdditions: $('creditAdditions').checked },
       dates: { from: $('dateFrom').value, to: $('dateTo').value, approximate: $('dateApprox').checked },
       otherNames: readList('otherNames'),
       places: readList('places'),
