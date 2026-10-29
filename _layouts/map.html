@@ -149,6 +149,14 @@ const layerGroups  = {}; // layer → L.LayerGroup (holds markers + polylines fo
 
 LAYERS.forEach(layer => { layerGroups[layer] = L.layerGroup(); });
 
+// The details popup for record idx of a chain, with buttons to the
+// listings either side of it
+function openDetailsAt(key, idx) {
+    const chain = rawChains[key];
+    MapCommon.openDetailsModal(chain[idx], currentPos[`${key}-${idx}`],
+        MapCommon.chainNeighbours(chain, idx, i => openDetailsAt(key, i)));
+}
+
 // Creates the polylines and markers for some chains (positions set later)
 function createChainLayers(chains) {
 chains.forEach(({ layer, street, side }) => {
@@ -163,7 +171,7 @@ chains.forEach(({ layer, street, side }) => {
     rawChains[key].forEach((entry, idx) => {
         const mk = L.marker([0,0], { icon: makeIcon(entry, LAYER_COLORS[layer]) });
         mk.bindTooltip(entry.listing, { direction:'top', offset:[0,-4] });
-        const openDetails = () => MapCommon.openDetailsModal(entry, currentPos[`${key}-${idx}`]);
+        const openDetails = () => openDetailsAt(key, idx);
         mk.on('click', openDetails);
         // Enter or Space on a focused marker opens the details too
         mk.on('keypress', (e) => {
