@@ -151,6 +151,16 @@ window.MapCommon = (function () {
         entries.sort((a, b) => a[k] - b[k]);
     }
 
+    // Next door: the listings either side of record idx in its chain (same
+    // year, street and side, in the order the map draws them). Only for the
+    // directories, which list each street house by house; the rolls are in
+    // name order. open(i) shows record i of the chain; null at either end.
+    function chainNeighbours(chain, idx, open) {
+        if (!chain || chain[idx].source !== 'Directory') return null;
+        const at = i => (i >= 0 && i < chain.length ? { entry: chain[i], open: () => open(i) } : null);
+        return { prev: at(idx - 1), next: at(idx + 1) };
+    }
+
     // Cross-year links are records whose entityID is a string (a deliberate
     // link made by a person). Returns { entityID → [{ layer, year, street, side, idx }] }
     // with each group sorted oldest first.
@@ -372,6 +382,7 @@ window.MapCommon = (function () {
             meta:    document.getElementById('modal-meta'),
             body:    document.getElementById('modal-body'),
             link:    document.getElementById('modal-link'),
+            neighbours: document.getElementById('modal-neighbours'),
             coords:  document.getElementById('modal-coords'),
             location:  document.getElementById('modal-location'),
             community: document.getElementById('modal-community'),
@@ -404,7 +415,8 @@ window.MapCommon = (function () {
     }
 
     // pos: { lat, lng } where the entry is drawn (falls back to the entry's own lat/lng)
-    function openDetailsModal(entry, pos) {
+    // neighbours: { prev, next } from chainNeighbours, for the next-door buttons
+    function openDetailsModal(entry, pos, neighbours) {
         if (!modalEls) initDetailsModal();
         const m = modalEls;
         m.heading.innerText = entry.listing;
@@ -440,6 +452,32 @@ window.MapCommon = (function () {
         }
         m.body.innerHTML = bodyHtml;
 
+        // 2a. Next door: buttons that show the listing either side instead
+        m.neighbours.innerHTML = '';
+        if (neighbours) {
+            ['prev', 'next'].forEach(dir => {
+                const n = neighbours[dir];
+                const label = dir === 'prev' ? 'Previous' : 'Next';
+                const el = document.createElement(n ? 'button' : 'span');
+                el.className = `modal-neighbour modal-neighbour-${dir}`;
+                if (n) {
+                    el.type = 'button';
+                    el.dataset.dir = dir;
+                    el.innerHTML = `<span class="modal-neighbour-label">${dir === 'prev' ? '← ' : ''}${label}${dir === 'next' ? ' →' : ''}</span> ${escapeHtml(n.entry.listing)}`;
+                    el.onclick = () => {
+                        n.open();
+                        // Keep focus on the next-door buttons: the same one, or
+                        // the other at the end of the side
+                        const again = m.neighbours.querySelector(`[data-dir="${dir}"]`) || m.neighbours.querySelector('button');
+                        if (again) again.focus();
+                    };
+                } else {
+                    el.innerHTML = `<span class="modal-neighbour-label">${dir === 'prev' ? 'First' : 'Last'} on this side</span>`;
+                }
+                m.neighbours.append(el);
+            });
+        }
+
         // 3. Link to the entry page: "Read the entry" when one is published
         // for this record's entityID, otherwise "Start an entry" (the same
         // page shows the contribution form), as on the search page.
@@ -468,7 +506,7 @@ window.MapCommon = (function () {
     return {
         layerOf, getLayers, layerYear, layerLabel, getLayerColors,
         getBoundsFromFiles, loadByYear,
-        chainKey, buildChains, buildCrossYearIndex,
+        chainKey, buildChains, buildCrossYearIndex, chainNeighbours,
         bezier, sideSign, applyOffset, computeChain,
         markerShape, isUncertain,
         entryFor, escapeHtml,

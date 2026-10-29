@@ -1438,6 +1438,39 @@ html.map3d-page, body.map3d-page {
 }
 .map-focus-close:hover { color: var(--ink); }
 
+/* Next door: the listings either side of a directory listing on the same
+   street and side, in the details popup and on entry pages */
+.modal-neighbours { display: flex; gap: 8px; margin: 0 0 14px; }
+.modal-neighbour {
+    flex: 1 1 0; min-width: 0; text-align: left;
+    padding: 6px 8px; border: 1px solid var(--sage); border-radius: 3px;
+    background: var(--paper-deep); color: var(--ink-soft);
+    font: 12px/1.4 var(--font-serif); overflow-wrap: anywhere;
+}
+.modal-neighbour-next { text-align: right; }
+button.modal-neighbour { cursor: pointer; }
+button.modal-neighbour:hover { border-color: var(--moss); color: var(--ink); }
+span.modal-neighbour { background: none; border-style: dashed; color: var(--ink-faint); }
+.modal-neighbour-label {
+    display: block; font: 11px var(--font-ui); color: var(--moss);
+    text-transform: uppercase; letter-spacing: .04em;
+}
+span.modal-neighbour .modal-neighbour-label { color: var(--ink-faint); }
+
+.neighbours { margin: 20px 0; color: var(--ink-soft); font-size: 14px; }
+.neighbours summary { cursor: pointer; font: 1.15rem var(--font-serif); color: var(--ink); }
+.neighbours .nb-count { font-size: 0.8em; color: var(--ink-faint); }
+.neighbours .nb-intro { margin: 6px 0 10px; color: var(--ink-faint); font-style: italic; }
+.nb-list { list-style: none; padding: 0; margin: 0; }
+.nb-list > li { margin: 0 0 12px; }
+.nb-where { margin: 0 0 4px; font: 12px var(--font-ui); color: var(--ink-faint); }
+.nb-year { font-weight: 700; color: var(--ink); margin-right: 4px; }
+.nb-run { list-style: none; margin: 0; padding: 0 0 0 10px; border-left: 2px solid var(--paper-line); font-family: var(--font-serif); }
+.nb-run li { margin: 0; padding: 1px 0; }
+.nb-run a { color: var(--moss); }
+.nb-this { color: var(--ink); font-weight: 700; }
+.nb-end { color: var(--ink-faint); font-style: italic; }
+
 .entry-map-link { margin: 0 0 16px; font: 0.9rem var(--font-mono); }
 .entry-map-link a { font-weight: 700; color: var(--moss); }
 .entry-map-link .entry-map-years { color: var(--ink-faint); }

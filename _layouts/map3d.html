@@ -344,7 +344,7 @@
 
                     const mesh = new THREE.Mesh(geom, mat);
                     mesh.position.copy(nodePosVector);
-                    mesh.userData = { ...node, layer, crossYearId: typeof node.entityID === 'string' ? node.entityID : null };
+                    mesh.userData = { ...node, layer, chainKey: key, chainIdx: idx, crossYearId: typeof node.entityID === 'string' ? node.entityID : null };
 
                     // Saved against the parent group so links can query their live absolute
                     // positions (the mesh's own position, so a refit moves the links too)
@@ -695,7 +695,16 @@
         function openDetailsFor(obj) {
             const d = obj.userData;
             if (d.isCrossYearLine) return;
-            MapCommon.openDetailsModal(d, { lat: d.lat, lng: d.lng });
+            openDetailsAt(d.chainKey, d.chainIdx);
+        }
+
+        // With buttons to the listings either side, drawn or not
+        function openDetailsAt(key, idx) {
+            const chain = rawChains[key];
+            const node = placedNodes.find(n => n.userData.chainKey === key && n.userData.chainIdx === idx);
+            const pos = node ? { lat: node.userData.lat, lng: node.userData.lng } : null;
+            MapCommon.openDetailsModal(node ? node.userData : chain[idx], pos,
+                MapCommon.chainNeighbours(chain, idx, i => openDetailsAt(key, i)));
         }
 
         window.addEventListener('mousemove', (event) => {

@@ -8,6 +8,8 @@ layout: default
 </div>
 
 <script src="scripts/data.js?v={{ site.time | date: '%s' }}"></script>
+<!-- Street order for "Next door in the directories", as on the maps -->
+<script src="scripts/map-common.js?v={{ site.time | date: '%s' }}"></script>
 <!-- Renders entries written in TEI (schema/carlton.odd) -->
 <script src="scripts/tei.js?v={{ site.time | date: '%s' }}"></script>
 <script type="module">
@@ -95,7 +97,10 @@ function slugifyId(text) {
       entryContainer.innerHTML = formHtml;
     }
 
-    if (recordId) nameRecord(recordId);
+    if (recordId) {
+      nameRecord(recordId);
+      addNeighbours(recordId, isExisting);
+    }
   }
 
   // Site pages: a small "Suggest an edit" link at the foot of the page, for
@@ -145,6 +150,54 @@ function slugifyId(text) {
       el.textContent = name;
       if (when) el.insertAdjacentText('afterend', when);
     });
+  }
+
+  // "Next door in the directories": for each directory listing with this
+  // entityID, the listings either side of it on the same street and side.
+  // They come from the records' order, grouped as the maps group them
+  // (MapCommon.buildChains), so nothing is stored about neighbours.
+  // Each neighbour links to its own page: its entry, if it has one.
+  async function addNeighbours(recordId, isExisting) {
+    if (!window.CGData || !window.MapCommon) return;
+    let rows;
+    try {
+      const own = (await CGData.forEntity(recordId)).filter((r) => r.source === 'Directory');
+      if (!own.length) return;
+      const years = [...new Set(own.map((r) => r.year))];
+      const { chains, rawChains } = MapCommon.buildChains(await CGData.load({ source: 'Directory', years }));
+      rows = [];
+      chains.forEach(({ layer, year, street, side }) => {
+        const chain = rawChains[MapCommon.chainKey(layer, street, side)];
+        // == on purpose: "123" in the address matches the number 123
+        chain.forEach((r, i) => { if (r.entityID == recordId) rows.push({ year, street, side, r, prev: chain[i - 1], next: chain[i + 1] }); });
+      });
+      rows.sort((a, b) => a.year - b.year);
+    } catch (err) {
+      return; // nothing to show if the data can't be loaded
+    }
+    if (!rows.length) return;
+    const esc = MapCommon.escapeHtml;
+    const link = (r) => `<a href="civic?id=${encodeURIComponent(r.entityID)}">${esc(r.listing)}</a>`;
+    const items = rows.map(({ year, street, side, r, prev, next }) => `
+      <li>
+        <p class="nb-where"><span class="nb-year">${year}</span> ${esc(street)}${side ? `, ${esc(side.toLowerCase())} side` : ''}${r.pages ? `, p. ${esc(r.pages)}` : ''}</p>
+        <ol class="nb-run">
+          <li class="nb-prev">${prev ? link(prev) : '<span class="nb-end">First on this side</span>'}</li>
+          <li class="nb-this" aria-current="true">${esc(r.listing)}</li>
+          <li class="nb-next">${next ? link(next) : '<span class="nb-end">Last on this side</span>'}</li>
+        </ol>
+      </li>`).join('');
+    const box = document.createElement('details');
+    box.className = 'neighbours';
+    box.open = rows.length <= 3;
+    box.innerHTML = `<summary>Next door in the directories <span class="nb-count">(${rows.length} ${rows.length === 1 ? 'listing' : 'listings'})</span></summary>
+      <p class="nb-intro">The listings printed either side of this one, on the same street and side.</p>
+      <ul class="nb-list">${items}</ul>`;
+    // On an entry, after the article; on a record with no entry, before the form
+    const form = entryContainer.querySelector('.contribution-container');
+    if (!form) entryContainer.append(box);
+    else if (isExisting) form.before(box);
+    else (form.querySelector('iframe') || form).before(box);
   }
 
   // "See on the map": links to map?entity=<id> when the map draws at least
