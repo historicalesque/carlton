@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="https://historicalesque.github.io/carlton/schema/carlton.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0" type="place" xml:lang="en">
+  <teiHeader>
+    <fileDesc>
+      <titleStmt>
+        <title>Alma Place</title>
+        <respStmt key="computer-assisted-draft">
+          <resp>Computer-assisted first draft</resp>
+          <name>Carlton Common Ground</name>
+        </respStmt>
+      </titleStmt>
+      <publicationStmt>
+        <publisher>Carlton Common Ground</publisher>
+        <idno type="entry">Alma-Place</idno>
+      </publicationStmt>
+      <sourceDesc>
+        <listBibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=MMBW">MMBW detail plans 1179 &amp; 1180 (c. 1895)</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Mahlstedt%20Fire%20Survey%20Plans">Mahlstedt fire survey plan, sheet 19A (1923–28)</ref></bibl>
+          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands%20%26%20McDougall%20Directories">Sands &amp; McDougall Directories, 1870–1915</ref></bibl>
+        </listBibl>
+      </sourceDesc>
+    </fileDesc>
+    <revisionDesc status="draft">
+      <change when="2026-10-30" type="created">Computer-assisted first draft by Carlton Common Ground (AI-assisted, Claude), from the directory records, the MMBW plans and the Mahlstedt fire survey plans.</change>
+    </revisionDesc>
+  </teiHeader>
+  <standOff>
+    <listPlace>
+      <place xml:id="subject">
+        <placeName type="main">Alma Place</placeName>
+        <placeName type="alternative">Alma Street</placeName>
+      </place>
+    </listPlace>
+  </standOff>
+  <text>
+    <body>
+      <p>Alma Place is a short street running east from Leicester Street to <ref target="civic?id=Bouverie%20Street">Bouverie Street</ref>, between Queensberry and Victoria Streets. The early directories call it Alma Street. It was probably named after the Battle of the Alma (1854) in the Crimean War.</p>
+      <p>The directories list a handful of residents from 1870. They are numbered from 1895, when there are eight listings at Nos. 10 to 23. Mrs Mary Willens is at No. 11 from 1890 to 1910. By 1915 the only entry is "Vacant", and the street drops out of the directories after that.</p>
+      <div>
+        <head>Where the corners were</head>
+        <p>On the MMBW plans of about 1895, Alma Place runs the full width of the block, from Leicester Street to Bouverie Street. By the time of the <ref target="civic?id=Mahlstedt%20Fire%20Survey%20Plans">Mahlstedt fire survey plans</ref> (1923–28) it had been cut short. It runs west from Bouverie Street only as far as a right-of-way about 50 m short of Leicester Street. Beyond that are the Modern Printing Co.'s works and Walter Whitbourn's motor show rooms, which front Leicester Street. On the Mahlstedt plan, Melbourne City Council's garage and the Modern Printing Co. face each other across what was left of the street.</p>
+        <p>The two plans also differ a little on where Alma Place meets Bouverie Street. The point the map uses for the corner is about 7 m south of where the Mahlstedt plan puts it. The MMBW plans put it about 8 m further east, on the far side of Bouverie Street. Some of this may be because the plans are fitted to today's map differently.</p>
+      </div>
+    </body>
+  </text>
+</TEI>

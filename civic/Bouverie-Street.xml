@@ -18,6 +18,7 @@
     <revisionDesc status="published">
       <change when="2026-07-21" type="created">Public contribution via website submission by Andy May.</change>
       <change when="2026-10-05" type="converted">Converted from EAC-CPF to TEI.</change>
+      <change when="2026-10-30" type="revised">Added the renumbering near Alma Place, from the Mahlstedt fire survey plans (AI-assisted, Claude).</change>
     </revisionDesc>
   </teiHeader>
   <standOff>
@@ -41,6 +42,7 @@
                   selling point of view … If the name were altered, a better class of tenants would be induced to live there, being so close to the University 
                   and city. It should be a splendid residential street and the increased value of the properties would greatly benefit the city revenue".</p>
       <p>The archival reference for this is VPRS 3181/870, 1901 File 715. The original should be checked and digitised.</p>
+      <p>A later change shows up on the <ref target="civic?id=Mahlstedt%20Fire%20Survey%20Plans">Mahlstedt fire survey plans</ref> of 1923 to 1928. On the west side near Alma Place, Nos. 21 and 25 are 16 to 31 m from where the MMBW plans of about 1895 put them: by the 1920s Nos. 21 to 25 are on the Melbourne City Council garage, north of Alma Place, where in 1895 they were south of it. Records for these numbers may refer to different houses before and after the change.</p>
     </body>
   </text>
 </TEI>
