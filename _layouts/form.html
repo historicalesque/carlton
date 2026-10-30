@@ -494,7 +494,8 @@
         <div class="section-body"><div class="rows" data-list="occupations"></div></div>
       </details>
 
-      <details class="section" data-section="legal">
+      <!-- No longer offered; shown only for an entry that already has one, so editing it keeps it -->
+      <details class="section" data-section="legal" hidden>
         <summary><span class="sum-title">Legal status</span><span class="sum-hint">e.g. a publican's licence</span><span class="sum-count"></span></summary>
         <div class="section-body"><div class="rows" data-list="legalStatuses"></div></div>
       </details>
@@ -1350,6 +1351,7 @@
     $('dateApprox').checked = entry.dates.approximate;
     if (entry.dates.from || entry.dates.to) form.querySelector('details[data-section="dates"]').open = true;
     ['otherNames', 'places', 'occupations', 'sources', 'recordSources', 'legalStatuses', 'chronology', 'relations'].forEach((n) => fillRows(n, entry[n]));
+    form.querySelector('details[data-section="legal"]').hidden = !entry.legalStatuses.some((r) => r.term);
     referencesFromRows();
     $('summary').value = entry.summary || '';
     setCredits(entry.credits, !!REVIEW);
