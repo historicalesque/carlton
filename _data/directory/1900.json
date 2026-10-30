@@ -1,6 +1,6 @@
 [
 {"entityID":241480,"source":"Directory","year":1900,"pages":"171","listing":"Intersection Alma place and Bouverie street","street":"Alma Place","type":"Intersection","kind":"place","cardinality":"","lat":-37.80570640578179,"lng":144.96146152744723},
-{"entityID":241481,"source":"Directory","year":1900,"pages":"171","listing":"21 Woods, Thomas","street":"Alma Place","type":"Place","kind":"person","cardinality":""},
+{"entityID":241481,"source":"Directory","year":1900,"pages":"171","listing":"21 Woods, Thomas","street":"Alma Place","type":"Place","kind":"person","cardinality":"","lat":-37.805687,"lng":144.961398,"coordConfidence":"low","coordSource":"Worked out from the neighbouring mapped listing","coordNote":"One house (about 6 m) west of 'Intersection Alma place and Bouverie street', the only mapped listing on the Alma Place in 1900, so the street is drawn the right way. Direction: No. 11 is mapped in 1895 in that direction."},
 {"entityID":241482,"source":"Directory","year":1900,"pages":"171","listing":"11 Willens, Mrs Mary","street":"Alma Place","type":"Place","kind":"person","cardinality":""},
 {"entityID":241483,"source":"Directory","year":1900,"pages":"171","listing":"10 Patience, David","street":"Alma Place","type":"Place","kind":"person","cardinality":""},
 {"entityID":241484,"source":"Directory","type":"Intersection","kind":"place","year":1900,"listing":"Intersection Bouverie street and Ballarat Street","street":"Ballarat Street","cardinality":"North","lat":-37.8052858,"lng":144.9617041,"pages":"172"},
