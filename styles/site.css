@@ -707,7 +707,7 @@ a.result-title { text-decoration: underline; text-decoration-color: var(--sage-d
 }
 
 .footer-crest { flex: none; line-height: 0; }
-.footer-crest img { display: block; width: 80px; height: auto; }
+.footer-crest img { display: block; width: 96px; height: auto; }
 
 @media (max-width: 600px) {
     .footer-funding { flex-direction: column; text-align: center; }
