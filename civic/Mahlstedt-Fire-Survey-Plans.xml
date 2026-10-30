@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="https://historicalesque.github.io/carlton/schema/carlton.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0" type="topic" xml:lang="en">
+  <teiHeader>
+    <fileDesc>
+      <titleStmt>
+        <title>Mahlstedt fire survey plans</title>
+        <respStmt key="computer-assisted-draft">
+          <resp>Computer-assisted first draft</resp>
+          <name>Carlton Common Ground</name>
+        </respStmt>
+      </titleStmt>
+      <publicationStmt>
+        <publisher>Carlton Common Ground</publisher>
+        <idno type="entry">Mahlstedt-Fire-Survey-Plans</idno>
+      </publicationStmt>
+      <sourceDesc>
+        <listBibl>
+          <bibl><ref target="https://handle.slv.vic.gov.au/10381/127374">City of Melbourne plans. Section 2. Version 1, compiled by the Insurance Planning Association; G. Mahlstedt and Son, civil engineers and surveyors, 1923–1928. State Library Victoria.</ref></bibl>
+          <bibl>Index to City of Melbourne: detail, fire, survey, compiled by Mahlstedt's (Vic.) Pty. Ltd., reprint 1948. State Library Victoria.</bibl>
+        </listBibl>
+      </sourceDesc>
+    </fileDesc>
+    <revisionDesc status="draft">
+      <change when="2026-10-30" type="created">Computer-assisted first draft by Carlton Common Ground, written from sheets 18A, 19A, 21A and 22A of the 1923–1928 plans and the 1948 index.</change>
+    </revisionDesc>
+  </teiHeader>
+  <text>
+    <body>
+      <div type="summary">
+        <p>The Mahlstedt plans are fire insurance plans of Melbourne. They draw every building, block by block, with its street number, the number of storeys, what it was built of and, for many, the business that occupied it. Four sheets of the City of Melbourne plans, dated 1928, cover Carlton between Elizabeth and Swanston Streets, from Pelham Street down to Victoria Street.</p>
+      </div>
+      <div type="detail">
+        <div>
+          <head>What they are</head>
+        <p>Fire insurance plans were drawn so that insurers could judge the fire risk of a building, and of the buildings around it, without sending someone to look. In Melbourne they were made by the Mahlstedt firm of surveyors. The sheets described here carry the stamp of G. Mahlstedt &amp; Son, civil engineers and surveyors, Stalbridge Chambers, 443 Little Collins Street. State Library Victoria catalogues the set as <hi rend="italic">City of Melbourne plans. Section 2. Version 1</hi>, compiled by the Insurance Planning Association with G. Mahlstedt and Son, and dates it 1923–1928. The 1948 index to the series names the firm as Mahlstedt's (Vic.) Pty. Ltd., consulting fire engineers and surveyors, established 1884.</p>
+        <p>The four Carlton sheets are each stamped with a date in November or December 1928, so they show Carlton as it stood at the end of the 1920s.</p>
+        </div>
+        <div>
+          <head>The sheets that cover Carlton</head>
+        <p>The 1948 index shows the whole City of Melbourne series on one page, with each sheet's block outlined and numbered. Sheets in the central city have a plain number; those north of it, including Carlton, North Melbourne and the Victoria Market, have a number with an A. Four of them fall in Carlton:</p>
+        <table>
+          <row><cell><hi rend="bold">Sheet</hi></cell><cell><hi rend="bold">Area</hi></cell><cell><hi rend="bold">Some of the businesses and buildings named</hi></cell></row>
+          <row><cell>22A</cell><cell>Pelham Street to Queensberry Street, from the east side of <ref target="civic?id=Elizabeth%20Street">Elizabeth Street</ref> across Berkley and <ref target="civic?id=Barry%20Street">Barry Streets</ref> to the west side of <ref target="civic?id=Leicester%20Street">Leicester Street</ref></cell><cell>The Myer Emporium Ltd despatch garage and factory (see <ref target="civic?id=Myer%20Despatch%20Buildings">Myer Despatch Buildings</ref>); the P.M.G. Carlton Automatic Exchange; A. T. Richardson &amp; Sons, engineers; the Manchester Arms Hotel; the <ref target="civic?id=Royal%20Artillery%20hotel">Royal Artillery Hotel</ref>; E.P. Printing &amp; Publishing Co.; Walhalla Plating Works; Royal Axle Works; motor garages and engineers along Elizabeth Street</cell></row>
+          <row><cell>21A</cell><cell>Pelham Street to Queensberry Street, from the east side of Leicester Street to the west side of Swanston Street, with <ref target="civic?id=Lincoln%20Square">Lincoln Square</ref> left blank</cell><cell>The <ref target="civic?id=Carlton%20Inn">Carlton Inn Hotel</ref>; Hopkins Bros. &amp; Odlum Pty Ltd, importers; Tasmanian Timber Bending Works; Eliza Tinsley Pty Ltd; the State School; an M.M.T.B. sub-station; A. H. Bown &amp; Sons, millinery; Allan &amp; Co., piano store; Chas. Steel &amp; Co., printers</cell></row>
+          <row><cell>19A</cell><cell>Queensberry Street to Victoria Street, from the east side of Elizabeth Street to the west side of <ref target="civic?id=Bouverie%20Street">Bouverie Street</ref></cell><cell>John Payne &amp; Sons, iron foundry; Edmund Ashley Pty Ltd, coach builders and ironmongers; the Modern Printing Co. Pty Ltd; Walter Whitbourn Pty Ltd, motor show rooms; Sargents Ltd, pastrycooks; Melbourne City Council garage, stores and store yard; Robert Bodington, millwright and engineer</cell></row>
+          <row><cell>18A</cell><cell>Queensberry Street to Victoria Street, from the east side of Bouverie Street across Swanston Street to the west side of Cardigan Street</cell><cell>Carlton and United Breweries Ltd, with each brewery building numbered (see <ref target="civic?id=Carlton%20Brewery">Carlton Brewery</ref> and <ref target="civic?id=Carlton%20United%20Breweries%20stables">Carlton United Breweries stables</ref>); the <ref target="civic?id=Queensberry%20hotel">Queensberry Hotel</ref>; E. Campbell &amp; Sons, iron store; Associated Daimler garage and store; N. Lingren, furniture manufacturer; Kent Engineering Co. Pty Ltd</cell></row>
+        </table>
+        <p>None of the four sheets shows anything north of Pelham Street. The east side of Swanston Street on sheet 18A is outside the area covered here, but is on the same sheet.</p>
+        </div>
+        <div>
+          <head>What the plans show</head>
+        <list rend="bulleted">
+          <item>The outline of each building and outbuilding, with its street number, and the lanes and rights-of-way (marked R.O.W.) behind them. Named lanes include Leicester Place, Barkly Place, Cumberland Place, Lincoln Place, Carlton Place, Lansdowne Place, Alma Place, Storey Place, Cornell Place and Essex Place.</item>
+          <item>A number in a circle on each building, which on fire insurance plans gives the number of storeys.</item>
+          <item>Notes on how larger buildings were built: roofs (galvanised iron, slate, saw-tooth), floors (wood, concrete, asphalt, earth), columns and beams (wood, steel, reinforced concrete), whether floors were fireproof, and whether the building was sprinklered.</item>
+          <item>The names of businesses and their use, such as foundry, store yard, garage or stables, and lots marked Vacant.</item>
+          <item>The water mains under each street, with their size in inches, and small circles along the street lines that appear to be fire plugs.</item>
+          <item>Heavy black lines between some buildings, which appear to mark solid dividing walls.</item>
+        </list>
+        <p>The plans name businesses rather than householders, so cottages are shown only by their number and size. To find who lived in a house, use the <ref target="civic?id=Sands%20%26%20McDougall%20Directories">Sands &amp; McDougall Directories</ref> or the <ref target="civic?id=Electoral%20Rolls">Electoral Rolls</ref> for the same years.</p>
+        </div>
+        <div>
+          <head>The 1948 index</head>
+        <p>The index is a key to the series rather than a plan of buildings. Alongside each block it prints the range of street numbers on each side, which can help work out which block a number belongs to in the 1940s. It is marked "Reprint 1948", so the index was reprinted then; it does not mean the sheets themselves were redrawn in 1948.</p>
+        </div>
+        <div>
+          <head>Where to see them</head>
+        <p>State Library Victoria holds the plans and has digitised the 1923–1928 Section 2 set: <ref target="https://handle.slv.vic.gov.au/10381/127374">City of Melbourne plans. Section 2</ref>. The index is catalogued separately as <hi rend="italic">Index to city of Melbourne: detail, fire, survey</hi>, compiled by Mahlstedt's (Vic.) Pty. Ltd., 1948.</p>
+        </div>
+      </div>
+    </body>
+  </text>
+</TEI>

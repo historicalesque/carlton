@@ -17,6 +17,7 @@
     </fileDesc>
     <revisionDesc status="published">
       <change when="2026-10-27" type="created">Created as a site page by Carlton Common Ground, from the links in the former Resources sidebar.</change>
+      <change when="2026-10-30" type="revised">Added the Mahlstedt fire survey plans.</change>
     </revisionDesc>
   </teiHeader>
   <text>
@@ -28,6 +29,7 @@
         <item><ref target="civic?id=Electoral%20Rolls">Electoral Rolls</ref></item>
         <item><ref target="civic?id=Fair%20Rents%20Board">Fair Rents Board</ref></item>
         <item><ref target="civic?id=Heritage%20Surveys">Heritage Surveys</ref></item>
+        <item><ref target="civic?id=Mahlstedt%20Fire%20Survey%20Plans">Mahlstedt fire survey plans</ref> (<ref target="https://handle.slv.vic.gov.au/10381/127374">City of Melbourne plans, Section 2, 1923–1928, State Library Victoria</ref>)</item>
         <item><ref target="civic?id=MMBW">Melbourne and Metropolitan Board of Works maps</ref></item>
         <item><ref target="civic?id=Prest%20Social%20Survey">Prest Social Survey</ref></item>
         <item><ref target="civic?id=Rate%20Books">Rate Books</ref></item>
