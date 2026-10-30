@@ -695,6 +695,24 @@ a.result-title { text-decoration: underline; text-decoration-color: var(--sage-d
 .footer-attribution a { color: var(--paper); }
 .footer-attribution a:hover { color: var(--moss-bright); }
 
+/* The University crest beside the funding acknowledgement; stacks on phones */
+.footer-funding {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    color: var(--sage-dark);
+    font-size: 0.85rem;
+    text-align: left;
+}
+
+.footer-crest { flex: none; line-height: 0; }
+.footer-crest img { display: block; width: 80px; height: auto; }
+
+@media (max-width: 600px) {
+    .footer-funding { flex-direction: column; text-align: center; }
+}
+
 /* 8. MAP PAGE CHROME (map.html) --------------------------------------
    The Leaflet canvas stays full-bleed and dark; only the control
    panel, tooltips, and modal are retinted to the shared palette. */
