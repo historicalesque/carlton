@@ -52,6 +52,7 @@
       <change when="2026-10-27" type="created">Machine-assisted first draft by Carlton Common Ground, from the directory records.</change>
       <change when="2026-10-28" type="revised">Credits tidied: the computer-assisted first draft is credited in the byline.</change>
       <change when="2026-10-28" type="revised">Sentences that tied the text to the website (search, the form, record links) taken out.</change>
+      <change when="2026-10-30" type="revised">Added the works on the Mahlstedt fire survey plans and the listings after 1930 (AI-assisted, Claude).</change>
     </revisionDesc>
   </teiHeader>
   <standOff>
@@ -63,8 +64,9 @@
   </standOff>
   <text>
     <body>
-      <p>Robert Bodington, millwright and engineer, is listed in <ref target="civic?id=Queensberry%20Street">Queensberry Street</ref> in the Sands &amp; McDougall directories from 1860 to 1930, a run of seventy years. He is at No. 6 from 1860 to 1862 and No. 4 from 1863 to 1885, and after the street was renumbered at No. 241 from 1900 to 1930. From 1910 he is listed as a milling engineer.</p>
+      <p>Robert Bodington, millwright and engineer, is listed in <ref target="civic?id=Queensberry%20Street">Queensberry Street</ref> in the Sands &amp; McDougall directories from 1860, and the firm under his name until 1945 (see below). He is at No. 6 from 1860 to 1862 and No. 4 from 1863 to 1885, and after the street was renumbered at No. 241 from 1900 to 1930. From 1910 he is listed as a milling engineer.</p>
       <p>The directories also list a Robert Bodington in Barry Street from 1869. Those listings give no trade, and it isn't clear he is the same man.</p>
+      <p>The <ref target="civic?id=Mahlstedt%20Fire%20Survey%20Plans">Mahlstedt fire survey plans</ref>, drawn between 1923 and 1928, show "Robert Bodington, millwright &amp; engineer" at the corner of Queensberry and <ref target="civic?id=Leicester%20Street">Leicester</ref> Streets, No. 241. They mark the works' machinery, wood-working, store and general engineering workshops. The directories carry on after 1930, listing Robert Bodington Pty Ltd, makers of roller flour milling machinery, at No. 241 in 1935, 1940 and 1945, with storage at Nos. 84 to 98 Leicester Street in 1945. So the firm traded under his name for at least eighty-five years, from 1860 to 1945. The change to a proprietary company suggests a business carried on after him, or by a son of the same name, rather than one man working for all that time.</p>
     </body>
   </text>
 </TEI>
