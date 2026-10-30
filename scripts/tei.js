@@ -6,6 +6,8 @@
                               with no year in it. Nothing here blocks sending.
      TEIEntry.render(xml)   → HTML preview of an entry, read back from the XML
                               so it shows exactly what was built.
+     TEIEntry.isKept(xml)   → true when the entry is kept as its author wrote
+                              it, so no one else can suggest changes.
 
    The entry format is documented in schema/carlton.odd, and files can be
    checked against schema/carlton.rng. In short:
@@ -13,7 +15,10 @@
        <teiHeader>  title, authors and credits (respStmt key="community" /
                     "computer-assisted-draft" / "computer-assisted-additions"),
                     directory and electoral-roll
-                    citations (sourceDesc/listBibl), one <change> per edit
+                    citations (sourceDesc/listBibl), the licence
+                    (publicationStmt/availability, status="restricted" when
+                    the entry is kept as its author wrote it), one <change>
+                    per edit
        <standOff>   the subject (person / personGrp / org / place, xml:id
                     "subject"), the chronology (listEvent) and links to other
                     entries (listRelation)
@@ -30,6 +35,7 @@
      surname, forenames,                     // people only, optional
      authors: ['Name', ...], date: 'YYYY-MM-DD',
      credits: { community, computerDraft, computerAdditions },  // byline flags, true/false
+     kept,                                   // true: kept as written, no suggested changes
      dates: { from, to, approximate },
      otherNames:     [{ name, from, to }],
      places:         [{ address, role, from, to, lat, lng }],
@@ -71,6 +77,8 @@ window.TEIEntry = (function () {
   // (civic?id=Sands-McDougall-Directory-1875, civic?id=Electoral-Rolls)
   const RECORD_PAGE = /Sands-McDougall-Directory-|Electoral-Rolls/;
   const COMMUNITY = 'the broader Carlton community';
+  const LICENCE = { name: 'CC BY-NC 4.0', url: 'https://creativecommons.org/licenses/by-nc/4.0/' };
+  const KEPT = 'Kept as the author wrote it: not open for suggested changes.';
   const ROBOT = 'Computer-assisted first draft: no one has added to it yet';
 
   /* ---------- Links to the site itself ----------
@@ -264,7 +272,12 @@ window.TEIEntry = (function () {
             el('resp', null, 'Computer-assisted additions'), el('name', null, PUBLISHER)) : null),
         el('publicationStmt', null,
           el('publisher', null, PUBLISHER),
-          el('idno', { type: 'entry' }, trim(entry.recordId) || 'unassigned')),
+          el('idno', { type: 'entry' }, trim(entry.recordId) || 'unassigned'),
+          // "restricted" marks an entry kept as its author wrote it: entry
+          // pages show no contribution form for it (see _layouts/entry.html)
+          el('availability', entry.kept ? { status: 'restricted' } : null,
+            el('licence', { target: LICENCE.url }, LICENCE.name),
+            entry.kept ? el('p', null, KEPT) : null)),
         el('sourceDesc', null, citations.length
           ? el('listBibl', null, citations.map(bibl))
           : el('p', null, 'Contributed through the website.'))),
@@ -602,6 +615,16 @@ window.TEIEntry = (function () {
   }
 
 
+  /* ---------- Kept as written ----------
+     An entry its author asked to keep as they wrote it has
+     publicationStmt/availability[@status="restricted"]. Takes the XML as
+     text or as a parsed document. */
+  function isKept(xml) {
+    const doc = typeof xml === 'string' ? new DOMParser().parseFromString(xml, 'application/xml') : xml;
+    return [...doc.getElementsByTagNameNS(NS, 'availability')]
+      .some((a) => a.parentNode.localName === 'publicationStmt' && a.getAttribute('status') === 'restricted');
+  }
+
   /* ---------- Read an entry back into the form's fields ----------
      The reverse of build(), for "Suggest changes" on the review page:
      parse(xml) gives the object collect() would give for that entry. */
@@ -644,6 +667,7 @@ window.TEIEntry = (function () {
         computerDraft: kids(titleStmt, 'respStmt').some((r) => r.getAttribute('key') === 'computer-assisted-draft'),
         computerAdditions: kids(titleStmt, 'respStmt').some((r) => r.getAttribute('key') === 'computer-assisted-additions')
       },
+      kept: isKept(xml),
       summary: '',
       articleHtml: '',
       note: ''
@@ -737,5 +761,5 @@ window.TEIEntry = (function () {
     return entry;
   }
 
-  return { NS, build, check, render, parse, parseDate };
+  return { NS, build, check, render, parse, parseDate, isKept };
 })();

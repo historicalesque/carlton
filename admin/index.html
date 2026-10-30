@@ -54,6 +54,9 @@
   .tool .title a::after { content: " \2192"; font-family: var(--sans); }
   .tool .title a:hover { text-decoration-color: var(--slate); text-decoration-thickness: 2px; }
   .tool .desc { margin: 0; font-size: 0.9rem; color: var(--ink-soft); max-width: 60ch; }
+  .tool form { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 10px; }
+  .tool form input { flex: 1 1 260px; font: inherit; font-size: 0.9rem; padding: 6px 10px; border: 1px solid var(--line); border-radius: 3px; background: #fff; color: var(--ink); }
+  .tool form button { font: inherit; font-size: 0.9rem; padding: 6px 14px; border: 1px solid var(--slate); border-radius: 3px; background: var(--slate); color: #fff; cursor: pointer; }
 
   @media (max-width: 640px) {
     header { padding: 24px 16px 16px; }
@@ -78,11 +81,32 @@
     </div>
 
     <div class="tool">
+      <p class="title">Change a kept entry</p>
+      <p class="desc">An entry kept as its author wrote it has no contribution form, so no one else can suggest changes. To change it, or to open it up again by unticking <strong>Keep this entry as I wrote it</strong>, open it in the form here. What you send goes to the submissions spreadsheet like any other suggestion.</p>
+      <form id="keptForm">
+        <input type="text" id="keptEntry" aria-label="Entry name or link" placeholder="Entry name or link, e.g. Mary Mather (Pelham Hotel)" required>
+        <button type="submit">Open in the form</button>
+      </form>
+    </div>
+
+    <div class="tool">
       <p class="title"><a href="carlton-data-editor.html">Edit directory and map data</a></p>
       <p class="desc">Street directory and electoral roll records behind search, the maps and the People and Places pages. Take care: a mistake here affects every page of the site.</p>
     </div>
   </section>
 </main>
+
+<script>
+  // The entry's file name follows slugifyId in scripts/map-common.js. A
+  // pasted link (civic?id=…) works too.
+  document.getElementById('keptForm').addEventListener('submit', (e) => {
+    e.preventDefault();
+    let name = document.getElementById('keptEntry').value.trim();
+    try { name = new URL(name, location.href).searchParams.get('id') || name; } catch (err) { /* a plain name */ }
+    const slug = name.replace(/\s+/g, '-').replace(/[^a-zA-Z0-9_\-]/g, '').replace(/--+/g, '-');
+    if (slug) location.href = `../form.html?id=${encodeURIComponent(slug)}&entry=${encodeURIComponent(slug)}`;
+  });
+</script>
 
 </body>
 </html>

@@ -20,6 +20,7 @@
       <change when="2026-10-09" type="revised">Introductory text moved here from the Home page.</change>
       <change when="2026-10-25" type="revised">Added a note on how sure we are of places on the map.</change>
       <change when="2026-10-28" type="revised">Became one page with linked sections: how to contribute, credit and licence, editorial policy, historical language, copyright and takedown, and contact. Acknowledgements moved here from its own page.</change>
+      <change when="2026-10-30" type="revised">Added credit by name and entries kept as written to Credit and licence, and a Privacy section.</change>
     </revisionDesc>
   </teiHeader>
   <text>
@@ -56,7 +57,8 @@
       </div>
       <div xml:id="licence">
         <head>Credit and licence</head>
-        <p><hi rend="bold">Your suggested contributions.</hi> When you send us something, you agree that what you’ve written may be published under a <ref target="https://creativecommons.org/licenses/by-nc/4.0/">Creative Commons Attribution-NonCommercial 4.0 International licence (CC BY-NC 4.0)</ref> and credited to “the broader Carlton community”. Please send only your own writing. Quotes from books and other sources keep their own rights, so please say where they come from. If you’d like to be more involved, for example writing a long fully credited entry, please <ref target="#contact">get in touch</ref>.</p>
+        <p><hi rend="bold">Your suggested contributions.</hi> When you send us something, you choose how it’s credited: to “the broader Carlton community” (the usual choice), or to you by name. Either way, you agree that what you’ve written may be published under a <ref target="https://creativecommons.org/licenses/by-nc/4.0/">Creative Commons Attribution-NonCommercial 4.0 International licence (CC BY-NC 4.0)</ref> with that credit. Please send only your own writing. Quotes from books and other sources keep their own rights, so please say where they come from.</p>
+        <p><hi rend="bold">Entries kept as written.</hi> If you’re credited by name, for example for a personal memory or a longer article, you can ask us to keep your entry as you wrote it. Other people then can’t suggest changes to it. The editors may still fix small errors, and will check with you before changing anything else.</p>
         <p><hi rend="bold">Licence.</hi> Written content and transcribed data on this site are licensed under CC BY-NC 4.0, unless a page says otherwise. The site’s source code is available under the <ref target="https://github.com/historicalesque/carlton/blob/main/LICENSE">MIT Licence</ref>. Images and maps from other institutions keep their own terms.</p>
         <p><hi rend="bold">Image credits.</hi> Website banner: historic survey plan of Carlton, from the collection of <ref target="https://handle.slv.vic.gov.au/10381/92019">State Library Victoria</ref>.</p>
       </div>
@@ -89,6 +91,11 @@
         <head>Copyright and takedown</head>
         <p>We do our best to respect copyright and privacy, but in a community-built collection we can’t always tell who holds the rights to something, or whether it is private. We’d like to hear from rights holders so that our information is accurate.</p>
         <p>If you believe material on this site infringes your rights, breaches copyright or privacy law, is defamatory, or is culturally sensitive, please <ref target="#contact">contact us</ref> with the page, the material, and why you’d like it changed or removed. We follow the National and State Libraries Australia position statement on takedown requests, which balances freedom of expression and access to information against these concerns, and we will act as we judge appropriate.</p>
+      </div>
+      <div xml:id="privacy">
+        <head>Privacy</head>
+        <p>If you choose to be credited by name, your name appears on your entry. The contact details you give us go only to the editorial team, so we can ask you about your entry. They are never published or added to the entry, and we don’t use them for anything else.</p>
+        <p>We handle personal information in line with the <ref target="https://about.unimelb.edu.au/strategy/governance/compliance-obligations/privacy">University of Melbourne’s privacy policy</ref>. To ask what we hold about you, or to have it removed, please <ref target="#contact">contact us</ref>.</p>
       </div>
       <div xml:id="acknowledgements">
         <head>Acknowledgements</head>

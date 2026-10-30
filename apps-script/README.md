@@ -10,6 +10,8 @@ Each row links to that submission on the review page (`admin/review.html?pr=<num
 
 - **New entry**: the pull request adds `civic/<id>.xml`.
 - **Entry that already exists**: the pull request replaces `civic/<id>.xml` with the new version. Its description warns that merging replaces the current entry, so the editor checks *Files changed* first.
+- **Credit by name**: a contributor who chooses to be credited by name can leave a way to contact them (email or phone). The form sends it beside the TEI, never in it, and it goes only in the row's **Contact (private)** column. The pull request and the entry are public, so it must never be copied there.
+- **Kept as written**: a contributor credited by name can ask for their entry to be kept as they wrote it (`availability status="restricted"` in the TEI). The row's **Kind** then ends in "(kept as written)". Once published, the entry shows no contribution form; editors change it from the admin page (*Change a kept entry*).
 - **Records**: the form sends the numbers of the directory and electoral-roll records the entry is about, and they go in the row's **Records** column. A brand new entry whose title gives the file name of an entry that already exists is refused, so it can't replace that entry by accident.
 
 The copy in the repo is the master copy. After changing it, paste it into the script editor again and deploy a new version (step 5).
@@ -71,7 +73,7 @@ Nothing secret goes in this repo. The Sheet's address and the GitHub token stay 
    The trigger runs as you, so editors never see a permissions screen. Running `setUp` again is safe.
 8. **Share the Sheet** (as *Editor*) with each person who should accept or reject submissions.
 
-After editing `Code.gs` later: *Deploy → Manage deployments →* the pencil icon *→ Version: New version → Deploy*. The URL stays the same. If the new version adds columns, tabs or triggers, run `setUp` again. (The version that links records adds the Records column by itself, the next time a submission arrives; running `setUp` adds it straight away.) (The version that records suggested changes on the submission's row adds a *Suggested changes* column; run `setUp` once after updating to it.)
+After editing `Code.gs` later: *Deploy → Manage deployments →* the pencil icon *→ Version: New version → Deploy*. The URL stays the same. If the new version adds columns, tabs or triggers, run `setUp` again. (The version that links records adds the Records column by itself, the next time a submission arrives; running `setUp` adds it straight away.) (The version that records suggested changes on the submission's row adds a *Suggested changes* column; run `setUp` once after updating to it.) (The version for credit by name adds a *Contact (private)* column; run `setUp` once after updating to it.)
 
 **Check the form uses the new version.** The form sends to the deployment whose address is `contribution_endpoint` in `_config.yml`. Open that address in a browser: it shows `Version …`, which should match `SCRIPT_VERSION` at the top of `Code.gs`. If it doesn't (or shows no version), that deployment is still on old code: *Deploy → Manage deployments*, pick the deployment with that address (not a new one), pencil, *Version: New version*, *Deploy*. *Deploy → New deployment* makes a new address that the form doesn't use.
 

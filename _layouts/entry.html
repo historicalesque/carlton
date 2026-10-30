@@ -56,10 +56,11 @@ function slugifyId(text) {
   }
 
   // Helper function to inject the Google Form
-  function showContributionForm(recordId, isExisting = false) {
+  // kept: the authors' names when the entry is kept as they wrote it
+  function showContributionForm(recordId, isExisting = false, kept = null) {
     if (isPreview) return;
     if (isSitePage) {
-      if (isExisting) showPageSuggest(recordId);
+      if (isExisting && !kept) showPageSuggest(recordId);
       return;
     }
     // If the override config is active, exit early without displaying the form
@@ -80,7 +81,13 @@ function slugifyId(text) {
       ? `Suggest additions or corrections below.`
       : `This is record <strong class="record-name">${articleId}</strong>. Know something about it? Suggest an entry below.`;
 
-    const formHtml = `
+    const esc = (s) => s.replace(/[&<>"]/g, (ch) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' })[ch]);
+    const names = kept && kept.length > 1 ? `${kept.slice(0, -1).join(', ')} and ${kept[kept.length - 1]}` : kept && kept[0];
+    const formHtml = kept ? `
+      <div class="contribution-container kept-note">
+        <p><strong>This entry is kept as ${names ? esc(names) : 'its author'} wrote it.</strong> It isn’t open for suggested changes. If you know something more, or spot an error, please <a href="about#contact">contact us</a>, or <a href="new">suggest a new entry</a> of your own.</p>
+      </div>
+    ` : `
       <div class="contribution-container">
         <h2>${heading}</h2>
         <p>${bodyText}</p>
@@ -260,7 +267,10 @@ function slugifyId(text) {
           meta.content = author.textContent.trim();
           document.head.append(meta);
         }
-        showContributionForm(fileId, true);
+        // An entry kept as its author wrote it takes no suggested changes
+        const kept = TEIEntry.isKept(xml)
+          ? [...xml.getElementsByTagNameNS(TEIEntry.NS, 'author')].map((a) => a.textContent.trim()).filter(Boolean) : null;
+        showContributionForm(fileId, true, kept);
         if (!isSitePage) addMapLink(fileId);
         document.dispatchEvent(new CustomEvent('entry-rendered'));
         // The page loads before its text, so follow a link like about#contribute

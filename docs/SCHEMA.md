@@ -52,12 +52,14 @@ Required. One of:
 | Element | Content |
 |---|---|
 | `fileDesc/titleStmt/title` | The entry's name, as shown on the page. |
-| `fileDesc/titleStmt/author` | One per named author, shown first in the byline under the entry's title and in the page's `<meta name="author">`. The form's *Credit as author (project team)* field fills it. |
+| `fileDesc/titleStmt/author` | One per named author, shown first in the byline under the entry's title and in the page's `<meta name="author">`. Filled by the form's name fields when the contributor chooses *Credit me by name*. Anonymous contributions have none, and get the community credit below. |
 | `fileDesc/titleStmt/respStmt[@key="community"]` | `<resp>Suggestions from</resp><name>the broader Carlton community</name>`: the entry includes suggestions sent through the form. Adds "the broader Carlton community" to the byline. |
 | `fileDesc/titleStmt/respStmt[@key="computer-assisted-draft"]` | `<resp>Computer-assisted first draft</resp><name>Carlton Common Ground</name>`: the entry began as a computer-assisted draft from the directory and electoral-roll records. Adds "Built on a computer-assisted first draft." to the byline. |
 | `fileDesc/titleStmt/respStmt[@key="computer-assisted-additions"]` | `<resp>Computer-assisted additions</resp><name>Carlton Common Ground</name>`: the entry was started by people, and substantial sections were later added from the directory and electoral-roll records with computer assistance. Adds "With computer-assisted additions." to the byline. |
 | `fileDesc/publicationStmt/publisher` | Always `Carlton Common Ground`. |
 | `fileDesc/publicationStmt/idno[@type="entry"]` | The slug (see above). |
+| `fileDesc/publicationStmt/availability/licence` | `<licence target="https://creativecommons.org/licenses/by-nc/4.0/">CC BY-NC 4.0</licence>`: the licence the contributor agreed to. Older entries have none and are under the same licence (see the About page). |
+| `fileDesc/publicationStmt/availability[@status="restricted"]` | The entry is kept as its author wrote it, with `<p>Kept as the author wrote it: not open for suggested changes.</p>`. Entry pages show a short note instead of the contribution form. Contributors credited by name can ask for this; editors turn it off by unticking *Keep this entry as I wrote it* (admin page, *Change a kept entry*). Without `status`, anyone can suggest changes. |
 | `fileDesc/sourceDesc/listBibl/bibl` | The directory and electoral-roll citations, filled in by the form from the linked records. A directory listing links to that year's page (`civic?id=Sands-McDougall-Directory-1905`) and an electoral-roll record to `civic?id=Electoral-Rolls`. Entry pages list them under *In the directories and electoral rolls*. With none, `sourceDesc` holds a single `p`. Older entries keep all their sources here; any that don't link to a directory or roll page are shown as references. |
 | `revisionDesc/@status` | `draft` for submissions, `published` once accepted. |
 | `revisionDesc/change` | One per contribution or edit, with `@when` (ISO date) and `@type` (`created`, `converted`, …). The text says who and what. |

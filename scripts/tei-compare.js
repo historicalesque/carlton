@@ -59,6 +59,8 @@ window.TEICompare = (function () {
     add('Byline credits', [credited('community') ? 'The broader Carlton community' : '',
       credited('computer-assisted-draft') ? 'Computer-assisted first draft' : '',
       credited('computer-assisted-additions') ? 'Computer-assisted additions' : '']);
+    const kept = all(root, 'availability').some((a) => a.getAttribute('status') === 'restricted');
+    add('Kept as written', kept ? ['Not open for suggested changes'] : []);
 
     const blocks = [];
     const body = all(root, 'body')[0];

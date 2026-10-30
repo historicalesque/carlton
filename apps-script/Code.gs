@@ -42,8 +42,10 @@ const SETTINGS = {
 // The submissions tab's columns, in order. The Sheet is read by header name,
 // so setUp() can add missing columns to a Sheet made by an older version.
 // "Suggested changes" lists the changes made to a submission since it was
-// sent, one line each: who, when and what.
-const COLUMNS = ['Received', 'Kind', 'Title', 'Type', 'Authors', 'Suggested changes', 'Records', 'Review', 'Decision',
+// sent, one line each: who, when and what. "Contact (private)" is how a
+// contributor credited by name can be reached; it never goes into the entry
+// or the pull request, which are public.
+const COLUMNS = ['Received', 'Kind', 'Title', 'Type', 'Authors', 'Contact (private)', 'Suggested changes', 'Records', 'Review', 'Decision',
   'Reason (editors only)', 'Status', 'File', 'Pull request', 'Version', 'TEI'];
 // Shown in Status while a decision is being carried out
 const PENDING = { Accept: 'Publishing…', Reject: 'Rejecting…' };
@@ -54,7 +56,7 @@ const CELL_LIMIT = 49000;
 // Which version of this script is running. Opening the web app's address
 // (contribution_endpoint in _config.yml) shows it, so it's easy to check
 // that the form talks to the latest deployment.
-const SCRIPT_VERSION = '2026-10-28: a name is optional';
+const SCRIPT_VERSION = '2026-10-30: credit by name, contact details, kept entries';
 
 function doGet() {
   return ContentService.createTextOutput(`Carlton Common Ground submissions: send entries with POST.\nVersion ${SCRIPT_VERSION}`);
@@ -122,10 +124,12 @@ function receive_(e) {
     const pr = openPullRequest_(slug, title, authors, xml, { mustBeNew: data.newEntry === true, records });
     saveRow_('submissions', {
       'Received': new Date(),
-      'Kind': pr.isNew ? 'New entry' : 'New version',
+      // A contributor can ask for their entry to be kept as they wrote it
+      'Kind': (pr.isNew ? 'New entry' : 'New version') + (isKept_(header) ? ' (kept as written)' : ''),
       'Title': title,
       'Type': root.getAttribute('type') ? root.getAttribute('type').getValue() : '',
       'Authors': authors.join(', '),
+      'Contact (private)': typeof data.contact === 'string' ? data.contact.trim().slice(0, 300) : '',
       'Records': records.join(', '),
       'Review': reviewLink_(pr.number),
       'Status': 'Waiting',
@@ -303,6 +307,15 @@ function rowsFor_(sheet, cols, number) {
   if (last < 2) return [];
   return sheet.getRange(2, cols['Pull request'], last - 1, 1).getValues()
     .map((r, i) => (prNumber_(r[0]) === number ? i + 2 : 0)).filter(Boolean);
+}
+
+// publicationStmt/availability[@status="restricted"]: kept as written (see scripts/tei.js)
+function isKept_(header) {
+  const tei = XmlService.getNamespace(TEI_NS);
+  const pub = header.getChild('fileDesc', tei).getChild('publicationStmt', tei);
+  const availability = pub && pub.getChild('availability', tei);
+  const status = availability && availability.getAttribute('status');
+  return !!status && status.getValue() === 'restricted';
 }
 
 function reviewLink_(number, version) {
