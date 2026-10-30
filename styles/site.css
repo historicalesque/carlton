@@ -969,6 +969,38 @@ html.map3d-page, body.map3d-page {
     margin-bottom: 6px;
     letter-spacing: 0.5px;
 }
+/* The title doubles as the button that folds the year panel away */
+.year-panel-toggle {
+    display: flex; align-items: center; gap: 6px;
+    background: none; border: none; padding: 0;
+    font-family: inherit; cursor: pointer; text-align: left;
+}
+.year-panel-toggle::after { content: "▾"; font-size: 12px; }
+.year-panel-toggle[aria-expanded="false"]::after { content: "▸"; }
+.year-panel-toggle[aria-expanded="false"] { margin-bottom: 0; }
+.year-panel-toggle:hover { color: var(--moss-bright); }
+#year-count { text-transform: none; letter-spacing: 0; }
+.year-panel-body {
+    display: flex; flex-direction: column; gap: 8px;
+    min-height: 0;
+}
+.year-panel-body[hidden] { display: none; }
+.year-range, .year-quick {
+    display: flex; align-items: center; gap: 6px;
+    font-size: 12px; color: var(--sage);
+    flex-shrink: 0;
+}
+.year-range select {
+    background: var(--ink); color: var(--sage-light);
+    border: 1px solid var(--ink-soft); border-radius: 3px;
+    font: inherit; padding: 2px 4px;
+}
+.year-btn {
+    background: var(--ink); color: var(--moss-bright);
+    border: 1px solid var(--moss-bright); border-radius: 3px;
+    font: inherit; font-size: 12px; padding: 3px 8px; cursor: pointer;
+}
+.year-btn:hover { background: var(--moss-bright); color: var(--ink-deepest); }
 .checkbox-group {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
