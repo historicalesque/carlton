@@ -7,11 +7,11 @@
         <title>The Mills hotel</title>
         <respStmt key="computer-assisted-draft">
           <resp>Computer-assisted first draft</resp>
-          <name>Common Ground</name>
+          <name>Carlton Common Ground</name>
         </respStmt>
       </titleStmt>
       <publicationStmt>
-        <publisher>Common Ground</publisher>
+        <publisher>Carlton Common Ground</publisher>
         <idno type="entry">The-Mills-hotel</idno>
       </publicationStmt>
       <sourceDesc>
@@ -39,7 +39,7 @@
       </sourceDesc>
     </fileDesc>
     <revisionDesc status="published">
-      <change when="2026-10-28" type="created">Computer-assisted first draft by Common Ground, from the directory records.</change>
+      <change when="2026-10-28" type="created">Computer-assisted first draft by Carlton Common Ground, from the directory records.</change>
     </revisionDesc>
   </teiHeader>
   <standOff>

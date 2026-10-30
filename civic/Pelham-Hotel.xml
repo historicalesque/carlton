@@ -8,11 +8,11 @@
         <author>Mitchell Harrop</author>
         <respStmt key="computer-assisted-additions">
           <resp>Computer-assisted additions</resp>
-          <name>Common Ground</name>
+          <name>Carlton Common Ground</name>
         </respStmt>
       </titleStmt>
       <publicationStmt>
-        <publisher>Common Ground</publisher>
+        <publisher>Carlton Common Ground</publisher>
         <idno type="entry">Pelham-Hotel</idno>
       </publicationStmt>
       <sourceDesc>
@@ -22,7 +22,7 @@
     <revisionDesc status="published">
       <change when="2026-09-10" type="created">Public contribution via custom rich-text submission form by Mitchell Harrop.</change>
       <change when="2026-10-05" type="converted">Converted from EAC-CPF to TEI.</change>
-      <change when="2026-10-27" type="edited">Proprietors as listed in the directories added by Common Ground (machine-assisted).</change>
+      <change when="2026-10-27" type="edited">Proprietors as listed in the directories added by Carlton Common Ground (machine-assisted).</change>
       <change when="2026-10-28" type="revised">Credits tidied: the computer-assisted first draft is credited in the byline.</change>
       <change when="2026-10-29" type="revised">Credits corrected: the entry was started by people, so the computer-assisted sections are credited as additions, not a first draft.</change>
     </revisionDesc>

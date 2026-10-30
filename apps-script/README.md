@@ -56,7 +56,7 @@ Nothing secret goes in this repo. The Sheet's address and the GitHub token stay 
 1. **The Sheet.** Open the team's existing submissions spreadsheet. The script adds a **TEI submissions** tab the first time something arrives, and every submission after that is a new row on that tab.
 2. **The script.** In the spreadsheet: *Extensions → Apps Script*. Replace everything in `Code.gs` with this folder's `Code.gs`, then save.
 3. **The GitHub token.** On GitHub, go to *Settings → Developer settings → Personal access tokens → Tokens (classic) → Generate new token (classic)*:
-   - Note: `Common Ground form`
+   - Note: `Carlton Common Ground form`
    - Expiration: **No expiration**
    - Scope: tick **public_repo** only
 

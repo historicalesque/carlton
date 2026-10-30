@@ -5,10 +5,10 @@
     <fileDesc>
       <titleStmt>
         <title>Resources</title>
-        <author>Common Ground</author>
+        <author>Carlton Common Ground</author>
       </titleStmt>
       <publicationStmt>
-        <publisher>Common Ground</publisher>
+        <publisher>Carlton Common Ground</publisher>
         <idno type="entry">Resources</idno>
       </publicationStmt>
       <sourceDesc>
@@ -16,12 +16,12 @@
       </sourceDesc>
     </fileDesc>
     <revisionDesc status="published">
-      <change when="2026-10-27" type="created">Created as a site page by Common Ground, from the links in the former Resources sidebar.</change>
+      <change when="2026-10-27" type="created">Created as a site page by Carlton Common Ground, from the links in the former Resources sidebar.</change>
     </revisionDesc>
   </teiHeader>
   <text>
     <body>
-      <p>The records and sources used to research the people and places of Common Ground.</p>
+      <p>The records and sources used to research the people and places of Carlton Common Ground.</p>
       <list rend="bulleted">
         <item><ref target="civic?id=Bills%20of%20Sale">Bills of Sale</ref></item>
         <item><ref target="civic?id=Charity%20Organisation%20Society">Charity Organisation Society</ref></item>

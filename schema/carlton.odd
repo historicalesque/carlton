@@ -4,10 +4,10 @@
   <teiHeader>
     <fileDesc>
       <titleStmt>
-        <title>Common Ground entries: TEI customisation</title>
+        <title>Carlton Common Ground entries: TEI customisation</title>
       </titleStmt>
       <publicationStmt>
-        <publisher>Common Ground (historicalesque/carlton)</publisher>
+        <publisher>Carlton Common Ground (historicalesque/carlton)</publisher>
         <p>Source of the schema in <ref target="carlton.rng">schema/carlton.rng</ref>. Edit this file, then regenerate the schema as described in the README.</p>
       </publicationStmt>
       <sourceDesc>
@@ -17,7 +17,7 @@
   </teiHeader>
   <text>
     <body>
-      <head>Common Ground entries</head>
+      <head>Carlton Common Ground entries</head>
 
       <div xml:id="intro">
         <head>What an entry is</head>

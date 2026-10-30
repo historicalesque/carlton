@@ -1,4 +1,4 @@
-# Common Ground: Community Histories of the Campus Precinct, 1850s–1950s
+# Carlton Common Ground: Community Histories of the Campus Precinct, 1850s–1950s
 
 **Live site:** https://historicalesque.github.io/carlton/
 
@@ -6,7 +6,7 @@
 >
 > This page is the technical documentation for the people who build and maintain the site.
 >
-> - **Read about the project:** [About Common Ground](https://historicalesque.github.io/carlton/)
+> - **Read about the project:** [About Carlton Common Ground](https://historicalesque.github.io/carlton/)
 > - **Search everything:** [Search](https://historicalesque.github.io/carlton/search) finds entries, directory listings and electoral-roll records in one box.
 > - **Browse the histories:** [Entries A–Z](https://historicalesque.github.io/carlton/aToZ) · [Map](https://historicalesque.github.io/carlton/map) · [Electoral rolls](https://historicalesque.github.io/carlton/electoral-rolls)
 > - **Share a story or add to an entry:** open any entry on the site and use the *Contribute* form at the bottom, or [start a new entry](https://historicalesque.github.io/carlton/new).
@@ -35,7 +35,7 @@
 
 ## Overview
 
-Common Ground is a static website hosted on **GitHub Pages** and built with **Jekyll**, using the `jekyll-theme-cayman` theme with a custom layout. It has no server or database of its own:
+Carlton Common Ground is a static website hosted on **GitHub Pages** and built with **Jekyll**, using the `jekyll-theme-cayman` theme with a custom layout. It has no server or database of its own:
 
 - **Encyclopedia entries** are XML files in `civic/`. The browser fetches them and renders them on the fly. Entries are [TEI](https://tei-c.org/guidelines/p5/) and entry pages render them.
 - **Historical directory data** (Sands & McDougall directories and electoral rolls) is one JSON file per source and year in `_data/`. Jekyll publishes compact copies in `data/` plus an index, and each page loads only the files it needs through `scripts/data.js`.
