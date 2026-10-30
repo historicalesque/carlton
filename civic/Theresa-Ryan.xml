@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="https://historicalesque.github.io/carlton/schema/carlton.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0" type="person" xml:lang="en">
+  <teiHeader>
+    <fileDesc>
+      <titleStmt>
+        <title>Theresa Ryan</title>
+        <author>Barbara Minchinton</author>
+      </titleStmt>
+      <publicationStmt>
+        <publisher>Carlton Common Ground</publisher>
+        <idno type="entry">Theresa-Ryan</idno>
+        <availability>
+          <licence target="https://creativecommons.org/licenses/by-nc/4.0/">CC BY-NC 4.0</licence>
+        </availability>
+      </publicationStmt>
+      <sourceDesc>
+        <p>Contributed through the website.</p>
+      </sourceDesc>
+    </fileDesc>
+    <revisionDesc status="draft">
+      <change when="2026-10-31" type="created">Contributed through the contribution form by Barbara Minchinton.</change>
+    </revisionDesc>
+  </teiHeader>
+  <standOff>
+    <listPerson>
+      <person xml:id="subject">
+        <persName type="main">Theresa Ryan</persName>
+      </person>
+    </listPerson>
+  </standOff>
+  <text>
+    <body>
+      <div type="summary">
+        <p>When Theresa Ryan's husband died in 1870 she had 9 children and a vast property portfolio to manage.</p>
+      </div>
+      <div type="detail">
+        <p>When John Ryan, gentleman, born in Tipperary, died in Carlton in 1870 he owned twenty houses and shops on Queensberry, Madeline and Cardigan Streets, and a leasehold comprising fifteen houses and shops in Madeline Place. He left behind a large family, and bequeathed at least one piece of freehold property to each of them except his wife and eldest daughter. He left the leasehold and its income to his wife, Theresa Ryan, along with the work of managing his estate – it was she who dealt with the forced closure of seven cesspits in the rented houses after her husband died, at the same time managing nine children. She had given birth to fourteen babies since her marriage to John in 1846, mostly born in Bathurst, NSW, before coming to Melbourne late in the 1850s, but five of them died as infants. At the time of John’s death Theresa and the remaining children were all living in a five-roomed brick house in Queensberry Street (<hi rend="italic">The Herald,</hi> 8 June 1870, p. 2).</p>
+        <p>The eldest boy, Philip, shared a bed with one of his younger brothers (<hi rend="italic">The Herald,</hi> 8 June 1870, p. 2). Philip was 22 and suffering from tuberculosis. He died the following year, but not before abusing and attacking his mother over his inheritance. Another brother died in 1873, others in 1877, 1878, and 1880, suggesting that the tuberculosis had spread. Theresa herself died in 1875, leaving her estate in the hands of her then eldest son, Michael Ryan, but by the time he died three years later he had burned through his inheritance, leaving an estate in debt for over five hundred pounds.</p>
+        <p>John Ryan’s daughters struggled too. The eldest married Thomas Lyons (a blacksmith) in St Patrick’s Cathedral the year after her father died, but few of her children reached adulthood and the marriage did not last. The property his second daughter inherited from her father passed into the hands of her second husband; her first husband had died leaving her with four young children, and she died in 1899 after giving birth to her sixth child.</p>
+        <p>It is not clear where the money for John Ryan’s extensive property portfolio came from, but his land holdings in Carlton were substantial and dated from the early 1850s; very little of it provided a benefit to his grandchildren.</p>
+        <p><hi rend="bold">Births Deaths and Marriages:</hi></p>
+        <p>John Ryan Victoria Death age 66 1778/1870</p>
+        <p>John Ryan married Teresa Banyon Kelso, near Bathurst NSW, 3937/1846 V18463937 162B</p>
+        <p>Philip Joseph Ryan Victoria Death age 23 8748/1871</p>
+        <p>Andrew John Ryan Victoria Death age 18 1630/1873</p>
+        <p>John William Ryan Victoria Death age 17 11259/1877</p>
+        <p>Michael Bernard Ryan Victoria Death age 26 6011/1878</p>
+        <p>Thomas Joseph Ryan Victoria Death age 18 years 10 months 3592/1880</p>
+        <p>Francis Edmund Ryan Victoria Death age 44 5997/1903</p>
+        <p>Theresa Ryan Victoria Death age 46 14031/1875</p>
+        <p>Teresa Mary Ryan Victoria Marriage 2965/1871, WA Death 101787/1927</p>
+        <p>Elizabeth Anne Dowling Victoria Marriage 4271/1876, 2839/1892, Death 939/1899</p>
+        <p><hi rend="bold">Probate and Administration:</hi></p>
+        <p>John Ryan Will PROV VPRS 7591/P1, 8/126</p>
+        <p>John Ryan PROV VPRS 28/P0, 8/126</p>
+        <p>John Ryan PROV VPRS 28/P1, 8/126</p>
+        <p>Inventory of Assets:</p>
+        <p>4 houses in Queensberry and Madeline Street</p>
+        <p>2 houses in Cardigan Street</p>
+        <p>3 properties = 4 shops and dwelling house in rear in Madeline Street</p>
+        <p>4 properties in Madeline &amp; Ballarat street = 1 shop and 1 dwelling house</p>
+        <p>2 houses Queensberry Place off Queensberry St</p>
+        <p>2 houses 2 shops and a dwelling house at rear in Madeline St</p>
+        <p>Leasehold property in Madeline St &amp; Madeline Place = 15 houses &amp; shops</p>
+        <p>Michael Bernard Ryan Will PROV VPRS 7591/P2, 17/966</p>
+        <p>Michael Bernard Ryan PROV VPRS 28/P0, 17/966</p>
+        <p>Michael Bernard Ryan PROV VPRS 28/P2, 17/966</p>
+        <p>Theresa Ryan PROV VPRS 28/P0, 14/373</p>
+        <p>Theresa Ryan PROV VPRS 28/P2, 14/373</p>
+        <p>Teresa Mary Lyons The State Records Office of Western Australia; Western Australia, Australia; Grants of Probate Records, 1832-1947, S2059 Item 10 1928/40</p>
+        <p>Thomas Joseph Lyons Victoria Death 6548/1903</p>
+        <p>Elizabeth A Dowling PROV VPRS 28/P0, 71/934</p>
+        <p>Elizabeth A Dowling PROV VPRS 28/P2, 71/934</p>
+        <p><hi rend="bold">Cesspit closures:</hi></p>
+        <p>PROV VPRS 3103/P0 unit 12 May 1870 (2 houses), July 1870, August 1870, unit 14 May 1871</p>
+        <p><hi rend="bold">Other:</hi></p>
+        <p>Thomas Joseph Lyons Inquest PROV VPRS 24/P0, 1903/530</p>
+      </div>
+    </body>
+  </text>
+</TEI>
