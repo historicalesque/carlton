@@ -42,7 +42,7 @@ Required. One of:
 |---|---|---|
 | `person` | A person. | `listPerson/person` |
 | `org` | A business or organisation: a hotel, brewery, school, society. | `listOrg/org` |
-| `family` | A family. | `listPerson/personGrp[@role="family"]` |
+| `family` | A family. No longer offered by the form; a family is entered as a person. Kept so older files still display. | `listPerson/personGrp[@role="family"]` |
 | `place` | A street, building, block or area. | `listPlace/place` |
 | `topic` | A topic, such as cesspits or street numbering, and source pages such as a directory year. | none |
 | `unknown` | The contributor didn't say. Editors change it before accepting. | none |

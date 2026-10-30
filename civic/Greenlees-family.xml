@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?xml-model href="https://historicalesque.github.io/carlton/schema/carlton.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
-<TEI xmlns="http://www.tei-c.org/ns/1.0" type="family" xml:lang="en">
+<TEI xmlns="http://www.tei-c.org/ns/1.0" type="person" xml:lang="en">
   <teiHeader>
     <fileDesc>
       <titleStmt>
@@ -19,16 +19,17 @@
     </fileDesc>
     <revisionDesc status="draft">
       <change when="2026-10-14" type="created">Contributed through the contribution form by Andy May.</change>
+      <change when="2026-10-30" type="revised">Entry type changed from family to person, as the form no longer offers Family.</change>
     </revisionDesc>
   </teiHeader>
   <standOff>
     <listPerson>
-      <personGrp xml:id="subject" role="family">
-        <name type="main">Greenlees family</name>
+      <person xml:id="subject">
+        <persName type="main">Greenlees family</persName>
         <residence when="1895">
           <placeName>63 Madeline Street, Carlton</placeName>
         </residence>
-      </personGrp>
+      </person>
     </listPerson>
   </standOff>
   <text>
