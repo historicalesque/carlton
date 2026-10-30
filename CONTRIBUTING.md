@@ -1,4 +1,4 @@
-# Contributing to Common Ground
+# Contributing to Carlton Common Ground
 
 Thank you for helping. There are two kinds of contribution, and most people want the first.
 

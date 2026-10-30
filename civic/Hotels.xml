@@ -7,11 +7,11 @@
         <title>Hotels</title>
         <respStmt key="computer-assisted-draft">
           <resp>Computer-assisted first draft</resp>
-          <name>Common Ground</name>
+          <name>Carlton Common Ground</name>
         </respStmt>
       </titleStmt>
       <publicationStmt>
-        <publisher>Common Ground</publisher>
+        <publisher>Carlton Common Ground</publisher>
         <idno type="entry">Hotels</idno>
       </publicationStmt>
       <sourceDesc>
@@ -21,7 +21,7 @@
       </sourceDesc>
     </fileDesc>
     <revisionDesc status="published">
-      <change when="2026-10-27" type="created">Machine-assisted first draft by Common Ground, written from the directory records.</change>
+      <change when="2026-10-27" type="created">Machine-assisted first draft by Carlton Common Ground, written from the directory records.</change>
       <change when="2026-10-28" type="revised">Credits tidied: the computer-assisted first draft is credited in the byline.</change>
       <change when="2026-10-28" type="revised">Sentences that tied the text to the website (search, the form, record links) taken out.</change>
     </revisionDesc>

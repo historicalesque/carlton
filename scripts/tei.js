@@ -48,7 +48,7 @@
 window.TEIEntry = (function () {
   const NS = 'http://www.tei-c.org/ns/1.0';
   const XML_NS = 'http://www.w3.org/XML/1998/namespace';
-  const PUBLISHER = 'Common Ground';
+  const PUBLISHER = 'Carlton Common Ground';
   // Rough centre of Carlton, for the "is this coordinate nearby?" check
   const CARLTON = { lat: -37.800, lng: 144.967 };
 

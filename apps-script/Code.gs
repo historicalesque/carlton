@@ -1,5 +1,5 @@
 /**
- * Common Ground: receives entries from the contribution form
+ * Carlton Common Ground: receives entries from the contribution form
  * (_layouts/form.html) and turns each one into a pull request.
  *
  * The form builds the entry as TEI in the browser and POSTs
@@ -57,7 +57,7 @@ const CELL_LIMIT = 49000;
 const SCRIPT_VERSION = '2026-10-28: a name is optional';
 
 function doGet() {
-  return ContentService.createTextOutput(`Common Ground submissions: send entries with POST.\nVersion ${SCRIPT_VERSION}`);
+  return ContentService.createTextOutput(`Carlton Common Ground submissions: send entries with POST.\nVersion ${SCRIPT_VERSION}`);
 }
 
 function doPost(e) {

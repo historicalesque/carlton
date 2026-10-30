@@ -4,11 +4,11 @@
   <teiHeader>
     <fileDesc>
       <titleStmt>
-        <title>About Common Ground</title>
-        <author>Common Ground</author>
+        <title>About Carlton Common Ground</title>
+        <author>Carlton Common Ground</author>
       </titleStmt>
       <publicationStmt>
-        <publisher>Common Ground</publisher>
+        <publisher>Carlton Common Ground</publisher>
         <idno type="entry">About</idno>
       </publicationStmt>
       <sourceDesc>
@@ -16,7 +16,7 @@
       </sourceDesc>
     </fileDesc>
     <revisionDesc status="published">
-      <change when="2026-10-09" type="created">Moved here from the site page about.md by Common Ground.</change>
+      <change when="2026-10-09" type="created">Moved here from the site page about.md by Carlton Common Ground.</change>
       <change when="2026-10-09" type="revised">Introductory text moved here from the Home page.</change>
       <change when="2026-10-25" type="revised">Added a note on how sure we are of places on the map.</change>
       <change when="2026-10-28" type="revised">Became one page with linked sections: how to contribute, credit and licence, editorial policy, historical language, copyright and takedown, and contact. Acknowledgements moved here from its own page.</change>
@@ -24,17 +24,17 @@
   </teiHeader>
   <text>
     <body>
-      <p><hi rend="bold">On this page:</hi> <ref target="#project">About Common Ground</ref> · <ref target="#map-accuracy">How accurate is the map?</ref> · <ref target="#contribute">How to contribute</ref> · <ref target="#licence">Credit and licence</ref> · <ref target="#editorial-policy">Editorial policy</ref> · <ref target="#historical-language">Historical language</ref> · <ref target="#takedown">Copyright and takedown</ref> · <ref target="#acknowledgements">Acknowledgements</ref> · <ref target="#contact">Contact us</ref></p>
+      <p><hi rend="bold">On this page:</hi> <ref target="#project">About Carlton Common Ground</ref> · <ref target="#map-accuracy">How accurate is the map?</ref> · <ref target="#contribute">How to contribute</ref> · <ref target="#licence">Credit and licence</ref> · <ref target="#editorial-policy">Editorial policy</ref> · <ref target="#historical-language">Historical language</ref> · <ref target="#takedown">Copyright and takedown</ref> · <ref target="#acknowledgements">Acknowledgements</ref> · <ref target="#contact">Contact us</ref></p>
       <div xml:id="project">
         <p>Through a process of community co-design, the Melbourne History Workshop (melbournehistoryworkshop.com) and Carlton Community History Group (cchg.asn.au) have created this website to empower residents, students and community stakeholders to upskill, research, digitise, and map the rich histories of vanished working-class quarters now engrossed as part of The University of Melbourne’s expanded estate.</p>
-        <p><hi rend="italic">Common Ground</hi> is a collaborative effort to recover histories of vanished communities whose stories remain absent in the material traces of the campus.</p>
+        <p><hi rend="italic">Carlton Common Ground</hi> is a collaborative effort to recover histories of vanished communities whose stories remain absent in the material traces of the campus.</p>
         <p>The project covers the area south of Grattan Street, west of Swanston Street, east of Elizabeth Street and north of Victoria Street, from the 1850s to the 1950s.</p>
-        <p><hi rend="italic">Common Ground</hi> focuses on historical methodology and digital skills with a learn-by-doing approach to co-create an annotatable web interface that transforms missing histories into accessible heritage.</p>
+        <p><hi rend="italic">Carlton Common Ground</hi> focuses on historical methodology and digital skills with a learn-by-doing approach to co-create an annotatable web interface that transforms missing histories into accessible heritage.</p>
         <p>This website is not intended to stand as the definitive history of Carlton. It is an ongoing collaboration, and we encourage you to do your own research into Carlton’s history and to <ref target="#contribute">share what you find</ref>.</p>
       </div>
       <div xml:id="map-accuracy">
         <head>How accurate is the map?</head>
-        <p>Common Ground is a community project, and the map is always being improved. Most places are worked out from the Melbourne and Metropolitan Board of Works plans of the 1890s, or from where the same listing appears in other years, so some are only best guesses. Open any place on the map to see how sure we are of it (high, medium or low confidence) and where it comes from. The 1857 and 1858 directories list each street alphabetically rather than house by house, so their listings that can't be traced in later years are marked <hi rend="italic">street only</hi>: they are spread along the right street, but not at the right spot.</p>
+        <p>Carlton Common Ground is a community project, and the map is always being improved. Most places are worked out from the Melbourne and Metropolitan Board of Works plans of the 1890s, or from where the same listing appears in other years, so some are only best guesses. Open any place on the map to see how sure we are of it (high, medium or low confidence) and where it comes from. The 1857 and 1858 directories list each street alphabetically rather than house by house, so their listings that can't be traced in later years are marked <hi rend="italic">street only</hi>: they are spread along the right street, but not at the right spot.</p>
         <p>If you know a place was somewhere else, please tell us: open its entry and use the form at the bottom. The editorial collective reads every suggestion.</p>
       </div>
       <div xml:id="contribute">
@@ -63,7 +63,7 @@
       <div xml:id="editorial-policy">
         <head>Editorial policy</head>
         <p>We aim to provide accurate and engaging information about the history of Carlton, through both community and academic contributions. This policy sets out how we look after what is contributed.</p>
-        <p><hi rend="bold">The editorial collective.</hi> Every potential contribution is read by the <hi rend="italic">Common Ground</hi> editorial collective: historians, researchers and community members from the University of Melbourne, the Carlton Community History Group and other local institutions. The collective decides what is published, in part or in whole, following the principles below and the policies of our host institutions.</p>
+        <p><hi rend="bold">The editorial collective.</hi> Every potential contribution is read by the <hi rend="italic">Carlton Common Ground</hi> editorial collective: historians, researchers and community members from the University of Melbourne, the Carlton Community History Group and other local institutions. The collective decides what is published, in part or in whole, following the principles below and the policies of our host institutions.</p>
         <p><hi rend="bold">How suggestions are reviewed.</hi> The editors consider each suggestion for accuracy, relevance to the project, and quality. They may fact-check it, edit it for clarity, combine it with suggestions from other people, or keep it for a future version of the site. Not every suggestion will appear on the site. Our research priorities change and grow over time, and the editors are often volunteers, so it may be some time before a suggestion is fully considered.</p>
         <p><hi rend="bold">What we can’t accept.</hi> We can’t accept material that:</p>
         <list rend="bulleted">
@@ -92,7 +92,7 @@
       </div>
       <div xml:id="acknowledgements">
         <head>Acknowledgements</head>
-        <p><hi rend="italic">Common Ground</hi> is the work of many hands. We are grateful to everyone who has shared their knowledge, time and collections with the project.</p>
+        <p><hi rend="italic">Carlton Common Ground</hi> is the work of many hands. We are grateful to everyone who has shared their knowledge, time and collections with the project.</p>
         <p><hi rend="bold">Acknowledgement of Country.</hi> We acknowledge the Wurundjeri Woi-wurrung people of the Kulin Nation, the Traditional Owners of the land on which Carlton and The University of Melbourne stand, and pay our respects to their Elders past and present.</p>
         <p><hi rend="bold">Project partners and funding.</hi></p>
         <list rend="bulleted">
@@ -101,7 +101,7 @@
           <item>The University of Melbourne Civic and Community Impact Fund, which funded the project</item>
         </list>
         <p><hi rend="bold">People.</hi> Thanks to the residents, students, volunteers and community members who have researched, transcribed, written and checked the entries on this site.</p>
-        <p><hi rend="bold">Core project team.</hi> These people have given a great deal of their time to <hi rend="italic">Common Ground</hi>. Many others have contributed as well, and we’re grateful to every one of them: Jeff Atkinson, Jacobin Bosman, Nicole Davis, Patrick Gigacz, Mitchell Harrop, Andy May, Barbara Minchinton, Susan Reidy, Mary Sheehan, Sue Silberberg and Chloe Tobin.</p>
+        <p><hi rend="bold">Core project team.</hi> These people have given a great deal of their time to <hi rend="italic">Carlton Common Ground</hi>. Many others have contributed as well, and we’re grateful to every one of them: Jeff Atkinson, Jacobin Bosman, Nicole Davis, Patrick Gigacz, Mitchell Harrop, Andy May, Barbara Minchinton, Susan Reidy, Mary Sheehan, Sue Silberberg and Chloe Tobin.</p>
         <p><hi rend="bold">Collections and data.</hi></p>
         <list rend="bulleted">
           <item><ref target="https://www.slv.vic.gov.au/">State Library Victoria</ref>, for the digitised Sands &amp; McDougall directories, the Melbourne and Metropolitan Board of Works detail plans and the historic survey plan used in the website banner</item>
@@ -114,7 +114,7 @@
       </div>
       <div xml:id="contact">
         <head>Contact us</head>
-        <p>Email the <hi rend="italic">Common Ground</hi> editorial collective at <hi rend="bold">&lt;&lt;something&gt;&gt;@unimelb.edu.au</hi>.</p>
+        <p>Email the <hi rend="italic">Carlton Common Ground</hi> editorial collective at <hi rend="bold">&lt;&lt;something&gt;&gt;@unimelb.edu.au</hi>.</p>
         <p>Please write to us with questions about the project or these guidelines, with anything sensitive that shouldn’t go through the public form, or with a privacy concern or takedown request. To add to or correct a particular entry, please use the form at the bottom of that entry.</p>
         <p>The editors are largely volunteers, so it may be a while before we reply.</p>
       </div>

@@ -495,7 +495,7 @@ window.MapCommon = (function () {
         } else {
             m.coords.innerText = 'Unknown';
         }
-        m.community.innerHTML = `Common Ground is a community project, and we're always improving the map. Know where this was? <a href="civic?id=${encodeURIComponent(name || entry.entityID)}">Suggest a correction</a>.`;
+        m.community.innerHTML = `Carlton Common Ground is a community project, and we're always improving the map. Know where this was? <a href="civic?id=${encodeURIComponent(name || entry.entityID)}">Suggest a correction</a>.`;
 
         if (m.modal.style.display !== 'flex') modalReturnFocus = document.activeElement;
         m.modal.style.display = 'flex';

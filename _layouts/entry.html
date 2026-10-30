@@ -51,7 +51,7 @@ function slugifyId(text) {
   const entryContainer = document.getElementById('encyclopedia-entry');
   if (isSitePage) {
     entryContainer.classList.add('site-page');
-    // Opened as civic?id=…: the "Common Ground" line above entries isn't wanted
+    // Opened as civic?id=…: the "Carlton Common Ground" line above entries isn't wanted
     if (!CONFIG.entryId) entryContainer.parentElement.querySelectorAll(':scope > h2').forEach((h) => h.remove());
   }
 
@@ -252,7 +252,7 @@ function slugifyId(text) {
       if (xml.documentElement && xml.documentElement.namespaceURI === TEIEntry.NS) {
         entryContainer.innerHTML = TEIEntry.render(text);
         const title = entryContainer.querySelector('h1')?.firstChild?.textContent.trim();
-        if (title && !CONFIG.entryId) document.title = `Common Ground - ${title}`;
+        if (title && !CONFIG.entryId) document.title = `Carlton Common Ground - ${title}`;
         // The byline is part of the rendered entry; authors also go in the page's metadata
         for (const author of xml.getElementsByTagNameNS(TEIEntry.NS, 'author')) {
           const meta = document.createElement('meta');
@@ -278,7 +278,7 @@ function slugifyId(text) {
         const fullName = givenName ? `${givenName} ${familyName}` : familyName;
 
         if (fullName) {
-          document.title = `Common Ground - ${fullName}`;
+          document.title = `Carlton Common Ground - ${fullName}`;
         }  
 
         const fromDate = xml.getElementsByTagNameNS(ns, "fromDate")[0]?.textContent || "";

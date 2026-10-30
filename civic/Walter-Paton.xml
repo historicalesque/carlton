@@ -7,11 +7,11 @@
         <title>Walter Paton</title>
         <respStmt key="computer-assisted-draft">
           <resp>Computer-assisted first draft</resp>
-          <name>Common Ground</name>
+          <name>Carlton Common Ground</name>
         </respStmt>
       </titleStmt>
       <publicationStmt>
-        <publisher>Common Ground</publisher>
+        <publisher>Carlton Common Ground</publisher>
         <idno type="entry">Walter-Paton</idno>
       </publicationStmt>
       <sourceDesc>
@@ -35,8 +35,8 @@
       </sourceDesc>
     </fileDesc>
     <revisionDesc status="published">
-      <change when="2026-10-28" type="created">Computer-assisted first draft by Common Ground, from the directory records.</change>
-      <change when="2026-10-28" type="edited">Linked to the new Ann Paton entry by Common Ground (computer-assisted).</change>
+      <change when="2026-10-28" type="created">Computer-assisted first draft by Carlton Common Ground, from the directory records.</change>
+      <change when="2026-10-28" type="edited">Linked to the new Ann Paton entry by Carlton Common Ground (computer-assisted).</change>
       <change when="2026-10-28" type="revised">Sentences that tied the text to the website (search, the form, record links) taken out.</change>
     </revisionDesc>
   </teiHeader>
