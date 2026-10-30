@@ -129,7 +129,7 @@ The Sands & McDougall directory and electoral-roll records. One file per source 
 
 ```
 _data/directory/1857.json … 1940.json        (36 files, 26,785 records)
-_data/electoral-roll/1905.json, 1919.json, 1928.json    (3 files, 2,076 records)
+_data/electoral-roll/1905.json, 1919.json, 1928.json    (3 files, 3,235 records)
 ```
 
 Directory records cover only the project area: south of Grattan Street, west of Swanston Street, east of Elizabeth Street and north of Victoria Street.
@@ -155,9 +155,9 @@ Jekyll publishes compact copies in `data/` and a list of the files in `data/inde
 | `coordNote` | string | some records with a point | How the point was worked out, e.g. `"house No. 93 on the plan"` or `"same name on this street in every directory from 1880 to 1890, where it is No. 55"`. |
 | `Occupation` | string | electoral rolls, some directory | |
 | `Notes` | string | some | A remark about the record, e.g. `"Printed without a space after the comma"`. Shown as "Note: …" with the record. |
-| `Roll` | string | electoral rolls (1905, 1919) | The roll's heading as printed, e.g. `"Electoral Roll, Division of Melbourne, Cardigan Polling Place"`. Held in `Notes` before October 2026. |
+| `Roll` | string | electoral rolls (1905, 1919) | The roll's heading as printed, e.g. `"Electoral Roll, Division of Melbourne, Cardigan Polling Place"` or `"Electoral Roll, Division of North Melbourne, Carlton South Polling Station"`. Held in `Notes` before October 2026. |
 | `Surname`, `Given Names`, `Gender` | string | electoral rolls | |
-| `Subdivision` | string | electoral rolls | The roll's subdivision, e.g. `"Cardigan"` (every record so far). |
+| `Subdivision` | string | electoral rolls | The roll's subdivision, `"Cardigan"`, or `"Carlton South"` for the 1905 voters west of Cardigan (Barry, Berkeley, Leicester, Grattan, Elizabeth and Sydney Road, the University and the Training College). |
 | `Registration Number` | number | electoral rolls | Kept in the data and searchable in the admin data editor, but not shown at the start of a listing or matched by the public search. |
 | `Address` | string | electoral rolls | As printed, e.g. `"29 Barkly Place"`. |
 | `Street Number` | string or number | electoral rolls | |
