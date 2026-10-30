@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="https://historicalesque.github.io/carlton/schema/carlton.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0" type="person" xml:lang="en">
+  <teiHeader>
+    <fileDesc>
+      <titleStmt>
+        <title>John Snowball</title>
+        <author>Barbara Minchinton</author>
+      </titleStmt>
+      <publicationStmt>
+        <publisher>Carlton Common Ground</publisher>
+        <idno type="entry">John-Snowball</idno>
+        <availability>
+          <licence target="https://creativecommons.org/licenses/by-nc/4.0/">CC BY-NC 4.0</licence>
+        </availability>
+      </publicationStmt>
+      <sourceDesc>
+        <p>Contributed through the website.</p>
+      </sourceDesc>
+    </fileDesc>
+    <revisionDesc status="draft">
+      <change when="2026-10-31" type="created">Contributed through the contribution form by Barbara Minchinton.</change>
+    </revisionDesc>
+  </teiHeader>
+  <standOff>
+    <listPerson>
+      <person xml:id="subject">
+        <persName type="main">John Snowball</persName>
+      </person>
+    </listPerson>
+  </standOff>
+  <text>
+    <body>
+      <div type="summary">
+        <p>John Snowball was a property owner who lived and raised his family in the area. He owned the Emu Hotel.</p>
+      </div>
+      <div type="detail">
+        <p><hi rend="bold">John Snowball</hi> was a mason from a family of masons, born at Durham in England in 1816. He married Catherine Iley in London in 1852 and they emigrated soon afterwards, along with John’s younger brother William and his wife Jane. They arrived in Melbourne on <hi rend="italic">Admiral</hi> in November 1852, to meet up with a third brother, Joshua and his wife, who were already doing well out of Melbourne’s need for builders during the gold rush (<hi rend="italic">The Argus</hi> 30 July 1852 p.3).</p>
+        <p>John and Catherine Snowball had numerous children but only four – all boys – reached adulthood (William b.1854 d.Vic 6843/1902, Joshua b.Vic 17960/1859 d. Albany WA 1934, John Cuthbert b. Vic 3573/1862 d.1940 2744/1940, and Joseph Robinson b. Vic 13245/1867 d.1917 ). As masons and builders the Snowball brothers’ skills were suited to the times in Melbourne, but William returned to England after a few years. He was at home in Durham with his father and older sister at the time of the 1861 census. William’s ‘rank profession or occupation’ is listed as ‘builder’, while his father’s is ‘Master Builder employs 5 men and 2 boys’, but his sister Jane crossed out ‘housekeeper’ and left a blank line.</p>
+        <p>Back in Melbourne John’s brother Joshua became a shipping and commission agent alongside his business as a timber merchant (eg <hi rend="italic">The Argus</hi> 10 Sept 1860 p.7). He was elected Mayor of Prahran (<hi rend="italic">The Age</hi> 10 April 1863 p.7; <hi rend="italic">The Argus</hi> 14 Sept 1865 p.4) and President of the Fawkner Park Cricket Club (<hi rend="italic">The Telegraph, St Kilda, Prahran and South Yarra Guardian</hi> 7 Oct 1865 p.2), before becoming MLA for St Kilda in opposition to the protectionist government (<hi rend="italic">The Argus</hi> 30 Jan 1866 p.8). John Snowball, however, remained a builder, and he was joined by his youngest brother Joseph and family in 1868 (<hi rend="italic">The Argus</hi> 4 Feb 1868 p.1). Joseph was quick to set up his own timber yard and commission business (<hi rend="italic">The Age</hi> 1 July 1868 p.3 and 2 July 1868 p.4), and then developed an import trade bringing building stone and coal from Tasmania (<hi rend="italic">The Tasmanian Times</hi> 29 June 1869 p.3). He also established a factory making fuses on South Wharf (<hi rend="italic">The Argus</hi> 14 May 1874 p.6).</p>
+        <p>John Snowball, too, was a commission agent at times (<hi rend="italic">The Argus</hi> 7 Mar 1857 p.4; <hi rend="italic">The Age</hi> 3 May 1862 p.4; <hi rend="italic">The Argus</hi> 7 March 1876 p.1), but he was more likely to be found in the newspapers seeking to employ people and buy materials rather than sell them (<hi rend="italic">The Argus</hi> 8 April 1853 p.2; 5 August 1856 p.1). He was primarily interested in property and moved his family into a house he built in Brighton in the 1860s (Phebe b. 1865 13694/1865 and Joseph Robinson b. 13245/1867 in Brighton), before moving back to Carlton and building Durham Terrace in 1875 (MCC Smith Ward Rates no 315 1875 ‘erecting’). His house in Brighton was a brick, ‘beautifully-situated’ nine roomed house between Arthur-seat road and North Brighton station, where the ‘garden and paddocks, four acres, descend from the top of the highest hill in Brighton parish’ (<hi rend="italic">The Argus</hi> 13 Feb 1875 p.12), but he sold it and constructed a terrace in Carlton containing the Emu Hotel on one side of his family home (Durham House) and five three-roomed cottages on the other, rented or leased to others (MCC Smith Ward Rates no 317 to 323 1876). From that time on he and his family lived in a ‘brick house 9 rooms Kitchen &amp; Bath Balcony &amp; Verandah’ in Pelham Street, and John Snowball, Durham Terrace, became a regular contributor to newspaper columns.</p>
+        <p>Like his brother Joshua, John Snowball had strong political views (<hi rend="italic">The Age</hi> 28 March 1877 p.3; 7 Feb 1878 p.4; 12 June 1878 p.3). His political interests lay mostly with money (eg trade protection and income tax), and he could be strident in his contributions to public debate (<hi rend="italic">The Age</hi> 20 April 1877 p.3; 10 July 1877 p.3). He never sought public office, but his inclination was towards the liberal cause of the working man and away from the conservatives and their ‘grasping and monopolising spirit’ (<hi rend="italic">The Age</hi> 7 Feb 1878 p.4). Despite his outbursts in the newspapers his major occupation and interest seemed to be in his role as a builder and a landlord.</p>
+        <p>Soon after the licence of the Emu Hotel was transferred to a publican (see Emu Hotel), John and Catherine’s only daughter Phebe died, age 14 (<hi rend="italic">The Argus</hi> 8 March 1880 p.8). John’s brother Joshua’s wife died the following year age 59 (Sarah Snowball Vic 8929/1881), and John’s wife Catherine died in 1887 age 57 (Vic 876/1887). The following year Joshua became insolvent (<hi rend="italic">The Argus</hi> 2 Nov 1888 p.7), although he quickly came to an arrangement to pay his creditors seven shillings in the pound (<hi rend="italic">The Herald</hi> 15 March 1889 p.3). When Joshua died in 1893 at the beginning of the great depression his estate was valued at £50. By contrast, when John Snowball died at Durham House in 1896 (Vic 938/1896), even after all the bank crashes of the 1890s his estate was still worth about £9500. For John’s family, though, his disposition of his affairs was a disaster.</p>
+        <p>In 1895 John Snowball’s third son, John Cuthbert Snowball, had gone through the insolvency court in Gippsland. He was described as a farmer’s labourer (<hi rend="italic">Warragul Guardian</hi> 1 March 1895 p.2). He and his brother Joshua had been working together on 196 acres owned by their father at Narracan near Drouin (<hi rend="italic">Warragul Guardian and Buln Buln and Narracan Shire Advocate</hi> (Warragul) 10 January 1888 p.4; PROV VPRS 28/P2 59/941). At about the same time, their younger brother Joseph Robinson Snowball had leased and then bought <hi rend="italic">The McIvor Times and Rodney Advertiser</hi> in Heathcote (<hi rend="italic">The McIvor Times and Rodney Advertiser</hi> 14 June 1894 p. 2, 28 June 1894), but it was not proving financially viable. So when John Snowball died in January 1896 these three sons might have expected some financial help from their father, administered by their eldest brother, William Snowball, as executor. William Snowball was a doctor who was schooled at Melbourne Grammar, studied medicine first at the University of Melbourne and then in London for two years learning about the diseases of children. William had his own private practice, but apart from leaving £100 to each of his brother and sister in England, John left his entire estate – including the farm in Gippsland – to William. He was the eldest son.</p>
+        <p>In February, a month after John’s death, his second son, Joshua Snowball, left Melbourne on the <hi rend="italic">Innamincka</hi>, taking his family to Western Australia (Mr 29, Mrs 34, child with 7 and infant to Fremantle Feb 1896). Also in February, his youngest son, Joseph Robinson Snowball, became insolvent and he, too, took his family to Western Australia before the end of the year (<hi rend="italic">The McIvor Times and Rodney Advertiser</hi> (Heathcote) 13 Feb 1896 p.3). John Cuthbert stayed in Gippsland and went into partnership with his brother on the farm, but William owned all the assets (William Snowball PROV VPRS 28/P2 83/646).</p>
+        <p>By the time Dr William Snowball died, age 48, on his farm ‘Nahoo’ at Narracan in Gippsland, he had sold all of his father’s properties in Carlton, and bought and rented houses in Drummond and Lygon Streets instead.</p>
+        <p><hi rend="bold">Research data for John Snowball, builder:</hi></p>
+        <p>1816	born Frosterley, Durham F: William (mason)	M: Phoebe ‘Chapman’ nee Robinson</p>
+        <p><hi rend="bold">Siblings:</hi></p>
+        <p>1804	Elizabeth [Chapman] d.1887 Gateshead</p>
+        <p>1813	Isabella d.1818</p>
+        <p>1815 	Jane same age in 1841 and 1851 census</p>
+        <p>1816	John d.1896 Carlton 938/1896</p>
+        <p>1819 	William d.11 March 1896 Weardale, Durham</p>
+        <p>1821 	Joshua – m. Sarah Isabella Reoch [she died 1881 age 59] d.1893 Elsternwick Vic 9807/1893</p>
+        <p>1823	Joseph Robinson d.1894 Surrey Hills Victoria age 71 15157/1894</p>
+        <p><hi rend="bold">Marriage and Children:</hi></p>
+        <p>1852	John Snowball married Catherine Iley Saint John the Baptist, Shoreditch London (<hi rend="italic">England, Marriages, 1538–1973</hi>. Salt Lake City, Utah: FamilySearch, 2013)</p>
+        <p>1852	John 36 arrived Melbourne on <hi rend="italic">Admiral</hi> with wife Catherine 25, brother William 33 and his wife Jane 28 :</p>
+        <p>https://prov.vic.gov.au/archive/33FE03C7-F96C-11E9-AE98-C7AC77C28B87?image=346</p>
+        <p>1854 	William [father John ‘Builder’] [not in Vic BDMs or Born at Sea records] d.1902 Narracan age 48 6843/1902 [medical doctor]</p>
+        <p>m. Mary Sophia Burton in Sydney d. Narracan age 48 1904 9990/1904</p>
+        <p>John Hearn b. 1886 Carlton 24658/1886 – died WW1</p>
+        <p>Cuthbert William b. 1890 Brighton 991/1890 m. Dorothy Brace McNeil Robertson of Narracan 1915 – children: Wm Eric John 1919</p>
+        <p>Eric Charles b. 1892 Carlton 30638/1892 – died WW1</p>
+        <p>Keith Thomas b. 1895 Carlton 1845/1895 – WW1 – d.18127/1943 Mornington age 48</p>
+        <p>Catherine Mary b.1898 Carlton 1576/1898 – never married d.1939</p>
+        <p>1857	John ‘Hey’ [‘Iley?] died age 1  Melbourne 566/1857</p>
+        <p>1858	John Iley d. age 1 1859 5644/1859</p>
+        <p>1859 	Joshua b. Bouverie St North Melbourne  17960/1859, d. 1934  WA</p>
+        <p>m. Jessie Josephine Dorothy Fraser 1892 5538/1892 d.Perth 22 May 1899 (<hi rend="italic">The West Australian</hi>, 23/5/1899 p.4)</p>
+        <p>Alex Fraser b.1893 Carlton</p>
+        <p>William Henry Aeneas b. 1895 Carlton North 19318/1895</p>
+        <p>1862	John Cuthbert b.Carlton d.1940 Cheltenham age 78 2744/1940</p>
+        <p>m. Eleanor Eckersall 1887 3315/1887</p>
+        <p>James b. 1888 Carlton North</p>
+        <p>John Iley b. Carlton North 1890 30880/1890</p>
+        <p>Phebe b. 1893 30079/1893</p>
+        <p>Eleanor Viola b. Carlton North 1898</p>
+        <p>1863	Jane b.Melbourne Vic 21733/1863 d. Melbourne 384/1865 age 1</p>
+        <p>1865	Phebe b. Brighton 13694/1865 d. Vic 587/1880 age 14</p>
+        <p>1867 	Joseph Robinson Snowball b. Brighton 13245/1867 d. Vic 1917 8536/1917</p>
+        <p>m. Mary Ann Bennett 1894 4119/1894</p>
+        <p>1887	Catherine Snowball (John’s wife) died Carlton age 57 876/1887</p>
+        <p>1896	4 January John Snowball died Durham House, Pelham St 938/1896</p>
+        <p><hi rend="bold">Joshua Snowball (brother of John):</hi></p>
+        <p>1851	(brother) Joshua and wife Sarah Isabella [Reoch] already in Melbourne since about 1850 (‘foreman for two years’ July 1852):</p>
+        <p><ref target="https://trove.nla.gov.au/newspaper/article/4786516?searchTerm=snowball">https://trove.nla.gov.au/newspaper/article/4786516?searchTerm=snowball</ref></p>
+        <p>Children:</p>
+        <p>1851	William Reoch Snowball born Vic 27036/1851 d. 1916 W Melb 11495/1916</p>
+        <p>1855	Helen 	Vic 9862/1855</p>
+        <p>1859	Unnamed male [John Alex? d.Elsternwick age 57 1915] Vic 12326/1859</p>
+        <p>1861	Sarah Helen Vic 12784/1861</p>
+        <p><hi rend="bold">Joseph Snowball (brother of John and Joshua):</hi></p>
+        <p>1868	brother Joseph 43, wife Sarah 46 children Sarah J 11, Mary 2 Oswald 7 Phebe 4 arrived in Melbourne on <hi rend="italic">Eurynome</hi> <hi rend="italic">The Argus</hi> 4 Feb 1868 p.1</p>
+        <p><hi rend="bold">Census data</hi></p>
+        <p>1841 <hi rend="italic">Census Returns of England and Wales, 1841</hi>. Kew, Surrey, England: The National Archives of the UK (TNA): Public Record Office (PRO), 1841, Class: <hi rend="italic">HO107</hi>; Piece: <hi rend="italic">308</hi>; Book: <hi rend="italic">18</hi>; Civil Parish: <hi rend="italic">Wolsingham</hi>; County: <hi rend="italic">Durham</hi>; Enumeration District: <hi rend="italic">5</hi>; Folio: <hi rend="italic">55</hi>; Page: <hi rend="italic">13</hi>; Line: <hi rend="italic">1</hi>; GSU roll: <hi rend="italic">241352: </hi>John Snowball and brother William and their father William all masons</p>
+        <p>1851 <hi rend="italic">Census Returns of England and Wales, 1851</hi>. Kew, Surrey, England: The National Archives of the UK (TNA): Public Record Office (PRO), 1851, Class: <hi rend="italic">HO107</hi>; Piece: <hi rend="italic">2388</hi>; Folio: <hi rend="italic">392</hi>; Page: <hi rend="italic">39</hi>; GSU roll: <hi rend="italic">87066</hi></p>
+        <p>1861 <hi rend="italic">Census Returns of England and Wales, 1861</hi>. Kew, Surrey, England: The National Archives of the UK (TNA): Public Record Office (PRO), 1861, Class: <hi rend="italic">Rg 9</hi>; Piece: <hi rend="italic">3727</hi>; Folio: <hi rend="italic">34</hi>; Page: <hi rend="italic">22</hi>; GSU roll: <hi rend="italic">543178: </hi>William Snowball, son 42, at Wolsingham with father William 71, sister Jane Snowball, 46, and one servant age 16.</p>
+      </div>
+    </body>
+  </text>
+</TEI>
