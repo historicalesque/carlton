@@ -27,8 +27,10 @@
           <val>topic</val> (such as cesspits or street numbering).</p>
         <p>An entry has three parts:</p>
         <list>
-          <item><gi>teiHeader</gi>: the title, the authors, the sources the authors used (<gi>sourceDesc</gi>/<gi>listBibl</gi>),
-            and one <gi>change</gi> in <gi>revisionDesc</gi> for each contribution or edit.</item>
+          <item><gi>teiHeader</gi>: the title, the authors, the licence (<gi>publicationStmt</gi>/<gi>availability</gi>/<gi>licence</gi>),
+            the sources the authors used (<gi>sourceDesc</gi>/<gi>listBibl</gi>), and one <gi>change</gi> in
+            <gi>revisionDesc</gi> for each contribution or edit. An entry kept as its author wrote it, which no one
+            else can suggest changes to, has <att>status</att> <val>restricted</val> on <gi>availability</gi>.</item>
           <item><gi>standOff</gi>: the structured facts about the subject. A person goes in <gi>listPerson</gi>/<gi>person</gi>,
             a family in <gi>listPerson</gi>/<gi>personGrp</gi>, a business in <gi>listOrg</gi>/<gi>org</gi> and a place in
             <gi>listPlace</gi>/<gi>place</gi>, with <att>xml:id</att> <val>subject</val>. Topics have no subject record.

@@ -632,6 +632,18 @@ a.result-title { text-decoration: underline; text-decoration-color: var(--sage-d
     background: transparent;
 }
 
+.contribution-container.kept-note {
+    padding: 14px 18px;
+    border: 0;
+    border-left: 3px solid var(--moss);
+    border-radius: 0;
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+.contribution-container.kept-note p { margin: 0; }
+.contribution-container.kept-note strong { color: var(--ink); }
+.contribution-container.kept-note a { color: var(--moss); }
+
 @media (max-width: 480px) {
     .contribution-container { padding: 16px; }
 }

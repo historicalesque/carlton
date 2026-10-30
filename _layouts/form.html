@@ -267,10 +267,29 @@
     /* Part C: credit and licence */
     .part-c { margin: 26px 0 18px; padding-top: 18px; border-top: 1px solid var(--paper-line); }
     .part-c [data-list="authors"] { margin-top: 10px; }
+    .credit-choice { margin: 0; }
+    .credit-opt { border: 1px solid var(--paper-line); background: var(--paper); padding: 12px 14px; margin-top: 10px; }
+    .credit-opt.on { border-color: var(--moss); background: var(--paper-deep); }
+    .radio-line { display: flex; gap: 10px; align-items: flex-start; font-size: 15px; font-weight: 600; color: var(--ink); text-transform: none; letter-spacing: normal; margin: 0; cursor: pointer; }
+    .radio-line input { flex: none; width: 16px; height: 16px; margin-top: 3px; accent-color: var(--moss); }
+    .radio-line small, .keep-line small { display: block; font-weight: normal; font-size: 13px; color: var(--ink-faint); margin-top: 2px; }
+    .radio-line .optional-tag { margin-left: 4px; vertical-align: 2px; }
+    .credit-body { margin: 12px 0 0 26px; }
+    .credit-body .field-group { margin-bottom: 12px; }
+    .keep-line { margin-top: 14px; }
+    .contact-hint { margin-top: 6px; }
+    .contact-hint a { color: var(--moss); }
+    .private-tag { display: inline-block; font-size: 10px; font-weight: normal; text-transform: uppercase; letter-spacing: 0.1em; color: var(--moss); border: 1px solid var(--moss); padding: 0 5px; margin-left: 4px; vertical-align: 1px; }
+    /* Suggesting changes to a submission: just the names and the keep switch */
+    .review-mode #creditLegend, .review-mode #optCommunity, .review-mode #namedLine, .review-mode #contactGroup { display: none; }
+    .review-mode #optNamed { border: 0; background: none; padding: 0; margin: 0; }
+    .review-mode .credit-body { margin: 0; }
+    @media (max-width: 480px) { .credit-body { margin-left: 0; } }
     .licence-line { align-items: flex-start; line-height: 1.45; }
     .licence-line input { flex: none; margin-top: 2px; }
     .licence-line a, .send-note a, .form-intro a { color: var(--moss); }
     .licence-summary { font-size: 13px; color: var(--ink-faint); margin: 6px 0 0 24px; }
+    .credit-body > .licence-summary:last-child { margin-bottom: 0; }
     .licence-summary a { color: var(--moss); }
     .send-note { font-size: 13px; color: var(--ink-faint); margin-top: 10px; }
     .byline-hint { margin-top: 8px; }
@@ -297,6 +316,7 @@
     }
     .check-line { display: flex; gap: 8px; align-items: center; font-size: 14px; color: var(--ink); text-transform: none; letter-spacing: normal; margin-top: 4px; }
     .check-line input { width: 16px; height: 16px; accent-color: var(--moss); }
+    .check-line[hidden] { display: none; }
 
     /* Buttons */
     button.primary, button.secondary, button.small {
@@ -520,16 +540,40 @@
       </details>
     </section>
 
-    <!-- Part C: credit and consent, just before Send -->
+    <!-- Part C: credit and consent, just before Send. Anonymous (credited to
+         the broader Carlton community) is the default; credit by name asks for
+         a name and a way to contact them, and lets them keep the entry as written. -->
     <div class="part-c">
-      <div class="field-group">
-        <label for="authorName" id="authorLabel">Credit as author (project team) <span class="optional-tag">Optional</span></label>
-        <input type="text" id="authorName" name="authorName" placeholder="e.g. Andy May" autocomplete="name">
-        <div class="rows" data-list="authors"></div>
-      </div>
+      <fieldset class="credit-choice" id="creditChoice">
+        <legend class="label" id="creditLegend">How should we credit this?</legend>
 
-      <label class="check-line licence-line" id="licenceLine"><input type="checkbox" id="licenceOk" required> <span>I agree that what I’ve written may be published under a CC BY-NC 4.0 licence and credited to “the broader Carlton community”. <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">Read more</a></span></label>
-      <p class="licence-summary" id="licenceSummary">In short: anyone, including us, may share, copy and build on what you’ve written, as long as they credit “the broader Carlton community” and don’t use it to make money. Once you’ve sent it, this permission can’t be withdrawn, though you can still <a href="about#takedown" target="_blank" rel="noopener">ask us to take something down</a>.</p>
+        <div class="credit-opt" id="optCommunity">
+          <label class="radio-line"><input type="radio" name="credit" value="community" id="creditByCommunity" checked> <span>Anonymous: credit “the broader Carlton community” <span class="optional-tag">Default</span><small>The usual choice for a correction, a fact or a short addition.</small></span></label>
+          <div class="credit-body">
+            <label class="check-line licence-line" id="licenceLine"><input type="checkbox" id="licenceOk"> <span>I agree that what I’ve written may be published under a CC BY-NC 4.0 licence and credited to “the broader Carlton community”. <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">Read more</a></span></label>
+            <p class="licence-summary" id="licenceSummary">In short: anyone, including us, may share, copy and build on what you’ve written, as long as they credit “the broader Carlton community” and don’t use it to make money. Once you’ve sent it, this permission can’t be withdrawn, though you can still <a href="about#takedown" target="_blank" rel="noopener">ask us to take something down</a>.</p>
+          </div>
+        </div>
+
+        <div class="credit-opt" id="optNamed">
+          <label class="radio-line" id="namedLine"><input type="radio" name="credit" value="named" id="creditByName"> <span>Credit me by name<small>For a longer piece, a personal memory, or an article by the project team.</small></span></label>
+          <div class="credit-body" id="namedBody">
+            <div class="field-group">
+              <label for="authorName" id="authorLabel">Your name, as it should appear</label>
+              <input type="text" id="authorName" name="authorName" placeholder="e.g. Andy May" autocomplete="name">
+              <div class="rows" data-list="authors"></div>
+            </div>
+            <div class="field-group" id="contactGroup">
+              <label for="contactDetails">How can we contact you? <span class="private-tag">Not published</span></label>
+              <input type="text" id="contactDetails" name="contactDetails" placeholder="Email or phone" autocomplete="email">
+              <p class="hint contact-hint">Only the editors see this, in case we have a question about your entry. It isn’t added to the entry. <a href="about#privacy" target="_blank" rel="noopener">How we handle your details</a></p>
+            </div>
+            <label class="check-line licence-line" id="licenceNamedLine"><input type="checkbox" id="licenceNamed"> <span>I agree that what I’ve written may be published under a CC BY-NC 4.0 licence and credited to me by the name above. <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">Read more</a></span></label>
+            <p class="licence-summary" id="licenceNamedSummary">In short: anyone, including us, may share, copy and build on what you’ve written, as long as they credit you by name and don’t use it to make money. Once you’ve sent it, this permission can’t be withdrawn, though you can still <a href="about#takedown" target="_blank" rel="noopener">ask us to take something down</a>.</p>
+            <label class="check-line licence-line keep-line" id="keepLine" hidden><input type="checkbox" id="keepEntry"> <span>Keep this entry as I wrote it<small>Other people won’t be able to suggest changes to it. The editors may still fix small errors, and will check with you before anything else changes.</small></span></label>
+          </div>
+        </div>
+      </fieldset>
     </div>
 
     <!-- Honeypot: hidden from people, often filled in by bots -->
@@ -761,16 +805,41 @@
     else if (e.target.closest('[data-list="sources"]')) referencesFromRows();
   });
 
+  /* ---------- Credit: anonymous (the community) or by name ---------- */
+  // Editors suggesting changes to a submission always see the names
+  const byName = () => !!REVIEW || $('creditByName').checked;
+  // The authors an existing entry already has, kept whichever is chosen
+  let entryAuthors = [];
+  function showCredit() {
+    [['optCommunity', !byName()], ['optNamed', byName()]].forEach(([id, on]) => {
+      $(id).classList.toggle('on', on);
+      $(id).querySelector('.credit-body').hidden = !on;
+    });
+    followCommunity();
+    sendReady();
+  }
+  form.querySelectorAll('input[name="credit"]').forEach((r) => r.addEventListener('change', showCredit));
+
   /* ---------- Byline credits ---------- */
-  // The community credit is ticked for anyone sending without a name, and
+  // The community credit is ticked for anyone sending anonymously, and
   // kept for an entry that already has it, until the box is changed by hand
   let entryCredits = { community: false, computerDraft: false, computerAdditions: false };
   let communityTouched = false;
   function followCommunity() {
-    if (!communityTouched) $('creditCommunity').checked = entryCredits.community || !$('authorName').value.trim();
+    if (!communityTouched) $('creditCommunity').checked = entryCredits.community || !byName() || !$('authorName').value.trim();
   }
   $('creditCommunity').addEventListener('change', () => { communityTouched = true; });
   $('authorName').addEventListener('input', followCommunity);
+
+  // "Keep this entry as I wrote it": offered for a new entry, and shown
+  // (ticked) on an entry that's already kept, so an editor can untick it
+  function setKept(kept) {
+    $('keepEntry').checked = !!kept;
+    if (kept) {
+      $('keepLine').hidden = false;
+      if (!REVIEW) { $('creditByName').checked = true; showCredit(); }
+    }
+  }
   function setCredits(credits, fixed) {
     entryCredits = { community: !!(credits && credits.community), computerDraft: !!(credits && credits.computerDraft),
       computerAdditions: !!(credits && credits.computerAdditions) };
@@ -778,11 +847,12 @@
     $('creditAdditions').checked = entryCredits.computerAdditions;
     if (fixed) { communityTouched = true; $('creditCommunity').checked = entryCredits.community; } else followCommunity();
   }
-  followCommunity();
 
-  /* ---------- Licence: Send waits for the tick ---------- */
-  const sendReady = () => { if ($('sendBtn') && $('sendBtn').textContent !== 'Sent') $('sendBtn').disabled = !REVIEW && !$('licenceOk').checked; };
+  /* ---------- Licence: Send waits for the tick that goes with the choice ---------- */
+  const licenceAgreed = () => !!REVIEW || (byName() ? $('licenceNamed') : $('licenceOk')).checked;
+  function sendReady() { if ($('sendBtn') && $('sendBtn').textContent !== 'Sent') $('sendBtn').disabled = !licenceAgreed(); }
   $('licenceOk').addEventListener('change', sendReady);
+  $('licenceNamed').addEventListener('change', sendReady);
 
   /* ---------- Section markers ("Prefilled", "Added") ---------- */
   function updateCounts() {
@@ -984,8 +1054,12 @@
     }
     fillForm(entry);
     // The entry's authors stay on as co-authors; the first name box is for whoever is adding to it
-    $('authorName').value = '';
-    fillRows('authors', entry.authors.map((name) => ({ name })));
+    // (A kept entry is only opened by the editors, so its names stay as they are.)
+    entryAuthors = entry.authors;
+    if (!entry.kept) {
+      $('authorName').value = '';
+      fillRows('authors', entry.authors.map((name) => ({ name })));
+    }
     setCredits(entry.credits);
     reviewOriginal = xml;
     checkRoundTrip();
@@ -1206,7 +1280,8 @@
       kind: kindOf(),
       surname: $('surname').value,
       forenames: $('forenames').value,
-      authors: [$('authorName').value, ...readList('authors').map((a) => a.name)],
+      authors: byName() ? [$('authorName').value, ...readList('authors').map((a) => a.name)] : entryAuthors,
+      kept: byName() && !$('keepLine').hidden && $('keepEntry').checked,
       credits: { community: $('creditCommunity').checked, computerDraft: $('creditDraft').checked, computerAdditions: $('creditAdditions').checked },
       dates: { from: $('dateFrom').value, to: $('dateTo').value, approximate: $('dateApprox').checked },
       otherNames: readList('otherNames'),
@@ -1264,8 +1339,13 @@
     $('sendStatus').hidden = false;
   }
   if (ENDPOINT) $('sendBtn').addEventListener('click', async () => {
-    // No suggestion is sent without the licence agreement
-    if (!REVIEW && !$('licenceOk').checked) { sendReady(); return; }
+    // No suggestion is sent without the licence agreement, or by name without one
+    if (!licenceAgreed()) { sendReady(); return; }
+    if (!REVIEW && byName() && !$('authorName').value.trim()) {
+      sendStatus('Please add your name, or choose to be credited as “the broader Carlton community”.', 'error');
+      $('authorName').focus();
+      return;
+    }
     const xml = showPreview();
     if (TEIEntry.check(collect()).some((c) => c.level === 'error')) {
       sendStatus('Please fix the problems listed in the preview below, then send again.', 'error');
@@ -1289,6 +1369,8 @@
         headers: { 'Content-Type': 'text/plain;charset=utf-8' },
         body: JSON.stringify({
           formVersion: 3, xml, targetId: sendId, website: $('website').value,
+          // Goes to the private submissions spreadsheet only, never into the entry
+          contact: byName() ? $('contactDetails').value.trim() : '',
           // The numbered records to link to this entry when it's accepted
           records: [...linkedRecords.keys()].map(Number),
           newEntry: !sendId && !ENTRY
@@ -1354,6 +1436,7 @@
     referencesFromRows();
     $('summary').value = entry.summary || '';
     setCredits(entry.credits, !!REVIEW);
+    setKept(entry.kept);
     // Not dangerouslyPasteHTML: it also puts the cursor in the editor, which
     // focuses it and scrolls the entry page down to this form on load.
     quill.setContents(quill.clipboard.convert(entry.articleHtml || ''));
@@ -1427,8 +1510,9 @@
     $('reviewer').hidden = false;
     $('authorLabel').textContent = 'Authors';
     // Editors see everything; the licence was agreed when it was first sent
-    $('licenceLine').hidden = true;
-    $('licenceSummary').hidden = true;
+    ['licenceNamedLine', 'licenceNamedSummary'].forEach((id) => { $(id).hidden = true; });
+    $('keepLine').hidden = false;
+    $('keepLine').querySelector('span').firstChild.textContent = 'Keep this entry as its author wrote it';
     $('sendNote').hidden = true;
     setShowAll(true);
     sendReady();
@@ -1447,6 +1531,9 @@
       });
   }
 
+  // Keeping is for a new entry; an existing one shows it only if it's already kept
+  if (!ENTRY && !REVIEW) $('keepLine').hidden = false;
+  showCredit();
   applyKindLabels();
   updateCounts();
 
