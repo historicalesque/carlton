@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="https://historicalesque.github.io/carlton/schema/carlton.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0" type="person" xml:lang="en">
+  <teiHeader>
+    <fileDesc>
+      <titleStmt>
+        <title>Martha Kemp and her family</title>
+        <author>Barbara Minchinton</author>
+      </titleStmt>
+      <publicationStmt>
+        <publisher>Carlton Common Ground</publisher>
+        <idno type="entry">Martha-Kemp-and-her-family</idno>
+        <availability>
+          <licence target="https://creativecommons.org/licenses/by-nc/4.0/">CC BY-NC 4.0</licence>
+        </availability>
+      </publicationStmt>
+      <sourceDesc>
+        <p>Contributed through the website.</p>
+      </sourceDesc>
+    </fileDesc>
+    <revisionDesc status="draft">
+      <change when="2026-10-31" type="created">Contributed through the contribution form by Barbara Minchinton.</change>
+    </revisionDesc>
+  </teiHeader>
+  <standOff>
+    <listPerson>
+      <person xml:id="subject">
+        <persName type="main">Martha Kemp and her family</persName>
+      </person>
+    </listPerson>
+  </standOff>
+  <text>
+    <body>
+      <div type="summary">
+        <p>Martha Kemp was a widow who lived in Barry Street. Her son Frank had a butcher shop a few doors away.</p>
+      </div>
+      <div type="detail">
+        <p>Martha Harrison was born in Middlesex, UK, in 1814, and married Francis Alfred Kemp at St Pancras in 1842. He was a butcher (<hi rend="italic">The Argus</hi> 13 September 1859, p. 1). They arrived in Melbourne on the <hi rend="italic">Ida</hi> from London in February 1855 with their four living children, including Francis Alfred (known as ‘Frank’) at age seven. Five years after they arrived Martha’s husband died in Moonee Ponds (<hi rend="italic">The Argus</hi>, 9 April 1860, p. 8), and in 1866 she moved into a house on the western side of Barry Street, Carlton (<hi rend="italic">Sands &amp; McDougall</hi> 1866 p. 320). From the time when she arrived there was a grocer a few doors up from her on the corner of Barry and Pelham Streets, and a butcher between her house and the grocer (eg <hi rend="italic">Sands &amp; McDougall</hi> 1866 p. 65). In 1870 her eldest son, Frank, took over the butcher’s shop (<hi rend="italic">Sands &amp; McDougall </hi>1871 p. 498). He was a witness of The Carlton Outrage in 1879 (see Mary Mather (Pelham Hotel), <hi rend="italic">The Argus</hi> 13 September p. 9).</p>
+        <p>By 1880 Mrs Kemp’s sons were well-established in different trades, Frank as a butcher in Barry Street, Benjamin as a grocer in Spencer Street and Edwin as a printer and stationer in Queensberry Street (Sands &amp; McDougall 1880 p. 483). Frank married Caroline Ricketts in 1874 and she joined him in Barry Street. Ten years later they were living in Barry Street with seven children including twin boys when Frank was convicted and fined £3 for ‘creating a nuisance by boiling tripe’ (<hi rend="italic">The Age</hi>, 12 December 1884, p. 7). By 1890 the Kemps had had nine children, but by then they were occupying two houses, 85-87 Barry Street including the butchery (<hi rend="italic">Sands &amp; McDougall</hi> 1890 p. 120). In 1895 Caroline’s aging parents were living at 83 Barry Street, where her mother died in 1898 (<hi rend="italic">Sands &amp; McDougall</hi> 1895 p. 138; <hi rend="italic">The Age</hi>, 7 November 1898, p. 1).</p>
+        <p>Mrs Martha Kemp died in 1886 at her son Benjamin’s house in Moonee Ponds, the place where her husband had worked as a butcher and died in 1860. Frank was still working as a butcher in Carlton 1912 (<hi rend="italic">The Age</hi>, 12 November 1912, p. 10), but he and his wife Caroline moved to Malvern, where she died in 1942 age 95 and he died two years later age 97.</p>
+        <p><hi rend="bold">Birth:</hi></p>
+        <p><hi rend="bold"> </hi>The National Archives (United Kingdom); Kew, Surrey, England; <hi rend="italic">Birth Certificates from the Presbyterian, Independent and Baptist Registry and from the Wesleyan Methodist Metropolitan Registry</hi>; Class Number: <hi rend="italic">Rg 5</hi>; Piece Number: <hi rend="italic">97</hi></p>
+        <p><hi rend="bold">Marriage:</hi></p>
+        <p><hi rend="bold"> </hi>Martha Harrison to Francis Alfred Kemp 1842: FreeBMD. <hi rend="italic">England &amp; Wales, Civil Registration Marriage Index, 1837-1915 Vol 1 p.296</hi></p>
+        <p>Francis Alfred Kemp to Caroline Helen Ricketts in 1874: Victoria Marriage 1545/1874</p>
+        <p><hi rend="bold">Arrival in Melbourne:</hi></p>
+        <p><hi rend="bold"> </hi><ref target="https://prov.vic.gov.au/archive/3AF80E70-F96C-11E9-AE98-C724C30A4245?image=324">https://prov.vic.gov.au/archive/3AF80E70-F96C-11E9-AE98-C724C30A4245?image=324</ref></p>
+        <p><hi rend="bold">Deaths:</hi></p>
+        <p>Francis Alfred Kemp the elder died Moonee Ponds          Victoria Death 4500/1860</p>
+        <p>Martha [Harrison] Kemp died Moonee Ponds                     Victoria Death 1292/1886</p>
+        <p>Francis Alfred Kemp the younger died Malvern                  Victoria Death 11466/1944</p>
+        <p>Caroline Helen [Ricketts] Kemp died Malvern                     Victoria Death 5442/1942</p>
+      </div>
+    </body>
+  </text>
+</TEI>
