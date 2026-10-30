@@ -24,9 +24,22 @@
             </label>
 
             <div class="year-filters">
-                <div class="filter-title">Visible Years</div>
-                <div id="year-checkbox-group" class="checkbox-group">
+                <button type="button" id="year-panel-toggle" class="filter-title year-panel-toggle" aria-expanded="true" aria-controls="year-panel-body">
+                    Visible Years <span id="year-count"></span>
+                </button>
+                <div id="year-panel-body" class="year-panel-body">
+                    <div class="year-range">
+                        <label>From <select id="range-from"></select></label>
+                        <label>to <select id="range-to"></select></label>
+                        <button type="button" class="year-btn" id="range-show">Show</button>
                     </div>
+                    <div class="year-quick">
+                        <button type="button" class="year-btn" id="years-latest">Latest only</button>
+                        <button type="button" class="year-btn" id="years-clear">Clear</button>
+                    </div>
+                    <div id="year-checkbox-group" class="checkbox-group">
+                        </div>
+                </div>
             </div>
         </div>
     </div>
@@ -174,7 +187,7 @@
         scene.background = new THREE.Color(0x0b0c10);
         scene.fog = new THREE.FogExp2(0x0b0c10, 0.005);
 
-        const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 1000);
+        const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 5000);
         const renderer = new THREE.WebGLRenderer({ antialias: true });
         renderer.setSize(window.innerWidth, window.innerHeight);
         renderer.setPixelRatio(window.devicePixelRatio);
@@ -202,6 +215,21 @@
             controls.target.y += lift;
             controls.update();
         }
+
+        // Moves the camera back far enough to see the whole stack, keeping
+        // its angle, when a range of years is shown at once
+        function frameStack() {
+            followStack();
+            const offset = new THREE.Vector3().subVectors(camera.position, controls.target);
+            const height = Math.max(0, visibleLayers.size - 1) * PLANE_SPACING;
+            offset.setLength(Math.max(PLANE_SIZE * 1.9, height * 1.3 + PLANE_SIZE));
+            camera.position.copy(controls.target).add(offset);
+            controls.update();
+        }
+
+        // The fog thins as the camera moves back, so a zoomed-out stack
+        // isn't lost in it; at the starting distance it's as before
+        const FOG_AT_START = 0.005 * camera.position.distanceTo(controls.target);
 
         scene.add(new THREE.AmbientLight(0xffffff, 0.65));
         const dirLight = new THREE.DirectionalLight(0xffffff, 0.45);
@@ -445,22 +473,10 @@
             checkbox.checked = visibleLayers.has(layer);
             
             checkbox.addEventListener('change', (e) => {
-                const targetLayer = e.target.value;
-                if (e.target.checked) {
-                    visibleLayers.add(targetLayer);
-                } else {
-                    visibleLayers.delete(targetLayer);
-                }
-                
-                // Trigger dynamic restructuring updates
-                fitToLayers(visibleLayers);
-                relayout();
-                recalculateLayerTargets();
-                followStack();
-                
-                if (currentSelected && !currentSelected.userData.isCrossYearLine && currentSelected.userData.layer === targetLayer) {
-                    clearActiveSelection();
-                }
+                const shown = new Set(visibleLayers);
+                if (e.target.checked) shown.add(e.target.value);
+                else shown.delete(e.target.value);
+                showLayers(shown);
             });
             
             const swatch = document.createElement('span');
@@ -477,6 +493,63 @@
             label.appendChild(span);
             checkGroupContainer.appendChild(label);
         });
+
+        // Shows just these layers, and ticks their checkboxes to match
+        function showLayers(layers, frame) {
+            visibleLayers.clear();
+            layers.forEach(l => visibleLayers.add(l));
+            checkGroupContainer.querySelectorAll('input').forEach(cb => { cb.checked = visibleLayers.has(cb.value); });
+            updateYearCount();
+
+            fitToLayers(visibleLayers);
+            relayout();
+            recalculateLayerTargets();
+            if (frame) frameStack(); else followStack();
+
+            if (currentSelected && !currentSelected.userData.isCrossYearLine && !visibleLayers.has(currentSelected.userData.layer)) {
+                clearActiveSelection();
+            }
+        }
+
+        const yearCount = document.getElementById('year-count');
+        function updateYearCount() {
+            yearCount.textContent = `(${visibleLayers.size} of ${sortedLayers.length})`;
+        }
+        updateYearCount();
+
+        // From/to pickers: every layer in the range, rolls included
+        const years = [...new Set(sortedLayers.map(MapCommon.layerYear))];
+        const rangeFrom = document.getElementById('range-from');
+        const rangeTo = document.getElementById('range-to');
+        years.forEach(y => {
+            rangeFrom.add(new Option(y, y));
+            rangeTo.add(new Option(y, y));
+        });
+        rangeFrom.value = years[0];
+        rangeTo.value = years[years.length - 1];
+        document.getElementById('range-show').addEventListener('click', () => {
+            let from = +rangeFrom.value, to = +rangeTo.value;
+            if (from > to) [from, to] = [to, from];
+            showLayers(sortedLayers.filter(l => MapCommon.layerYear(l) >= from && MapCommon.layerYear(l) <= to), true);
+            // On a phone the open panel covers the map, so fold it to show the result
+            if (isMobile) setYearPanelOpen(false);
+        });
+        document.getElementById('years-latest').addEventListener('click', () => {
+            showLayers(sortedLayers.slice(-1), true);
+            if (isMobile) setYearPanelOpen(false);
+        });
+        document.getElementById('years-clear').addEventListener('click', () => showLayers([]));
+
+        // The year panel folds away to leave room for the map; folded to
+        // start with on phones, where it would cover most of the screen
+        const yearToggle = document.getElementById('year-panel-toggle');
+        const yearBody = document.getElementById('year-panel-body');
+        function setYearPanelOpen(open) {
+            yearToggle.setAttribute('aria-expanded', String(open));
+            yearBody.hidden = !open;
+        }
+        setYearPanelOpen(!isMobile);
+        yearToggle.addEventListener('click', () => setYearPanelOpen(yearBody.hidden));
 
         const toggleCheckbox = document.getElementById('toggle-links');
         toggleCheckbox.addEventListener('change', (e) => {
@@ -787,6 +860,7 @@
         function animate() {
             requestAnimationFrame(animate);
             controls.update();
+            scene.fog.density = FOG_AT_START / Math.max(1, camera.position.distanceTo(controls.target));
 
             // Run interpolation movements across floor layers
             let displacementOccurred = false;
