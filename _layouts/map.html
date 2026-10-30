@@ -453,30 +453,30 @@ const CustomControl = L.Control.extend({
         setOpen(!window.matchMedia('(max-width: 600px)').matches);
         L.DomEvent.on(toggle, 'click', () => setOpen(container.classList.contains('panel-collapsed')));
 
-        // What the map shows: two short paragraphs, with the rest folded away. The years
-        // come from the data files, so they stay right as years are added.
-        const yearsOf = source => LAYERS.filter(l => l.endsWith(source)).map(MapCommon.layerYear);
-        const dirYears  = yearsOf('Directory');
-        const rollYears = yearsOf('Electoral roll');
-        const sources = [
-            dirYears.length  ? `a Sands &amp; McDougall street directory (${dirYears[0]}–${dirYears[dirYears.length - 1]})` : '',
-            rollYears.length ? `an electoral roll (${rollYears.join(', ')})` : '',
-        ].filter(Boolean).join(' or ');
+        // What the map shows: two short paragraphs, with the rest folded away. The
+        // directory years come from the data files, so they stay right as years are added.
+        const dirYears = LAYERS.filter(l => l.endsWith('Directory')).map(MapCommon.layerYear);
+        const dirRange = dirYears.length ? ` (${dirYears[0]}–${dirYears[dirYears.length - 1]})` : '';
         const intro = L.DomUtil.create('div', 'map-intro', container);
         intro.innerHTML = `
-            <p>Listings from Carlton's street directories and electoral rolls, drawn street by street.
-            Pick years to compare, lay historic or modern maps underneath, and click a dot for details.</p>
-            <p>Each dot is a listing from ${sources}, placed along the side of the street where it appeared.
-            Crosses mark street intersections and lanes. A glowing dot is an estimated position,
-            placed between its mapped neighbours on the same street, or (in 1857 and 1858) a listing
-            we can only place on its street.</p>
+            <p>This experimental interface isn't a map. There are many maps and map-like parts to it,
+            particularly if you scroll down and show/hide historic maps.</p>
+            <p>Each dot is a listing from a Sands &amp; McDougall street directory${dirRange} or an electoral roll,
+            placed along the side of the street one after another, linked in a chain. Some locations are
+            precisely known, while others hang loosely linked between two known points. Some points are
+            less well-known than others. As the project progresses this will become more and more map-like.</p>
             <details>
-                <summary>More about this map</summary>
-                <p>Tick <strong>Years</strong> to compare listings. Each year has its own colour, and when several
-                are on, their lines bow out from the street so they don't overlap. Dashed lines join records
-                linked as the same place across years. Click a dot to see the full listing.</p>
-                <p>Turn on the 1896–97 MMBW detail plans or today's OpenStreetMap underneath, and use the
-                sliders to fade between them. Blue shapes are University of Melbourne properties today.</p>
+                <summary>More about this &ldquo;map&rdquo;</summary>
+                <p>Crosses mark street intersections and lanes.</p>
+                <p>Dashed lines join records linked as the same place across years.</p>
+                <p>Click a dot to see the full listing.</p>
+                <p>Each dot is searchable on the main site and represents something equivalent to a phone book
+                listing &ndash; a household, a business, a park, a church. We strive to make each location as
+                accurate as possible and are always improving. Most places will be on the correct block or within
+                a few houses. 1857 and 1858 were not as detailed as later years, so we can only place many
+                listings on the correct street.</p>
+                <p>You can help us improve the map by clicking on a point and starting an entry. Every little
+                bit helps pin down the chains even more.</p>
             </details>`;
 
         const yearTitle = L.DomUtil.create('div', 'panel-section-title', container);
@@ -552,7 +552,7 @@ const CustomControl = L.Control.extend({
         const geoJsonRow = L.DomUtil.create('label', 'layer-control-row', container);
         const geoJsonCb = L.DomUtil.create('input', '', geoJsonRow);
         geoJsonCb.type = 'checkbox';
-        geoJsonCb.checked = true;
+        geoJsonCb.checked = false;
 
         const geoJsonSpan = L.DomUtil.create('span', '', geoJsonRow);
         geoJsonSpan.innerHTML = 'University of Melbourne properties (<a href="https://spatialdata-uom.opendata.arcgis.com/datasets/UOM::uom-land-parcels-parkville/about">2026</a>)';
@@ -578,7 +578,6 @@ map.getContainer().prepend(map.getContainer().querySelector('.leaflet-control-co
 //  BOOT
 // ═══════════════════════════════════════════════════════════
 layerGroups[LAYERS[LAYERS.length - 1]].addTo(map); // Latest layer visible by default
-uomLayerGroup.addTo(map); // Add UoM GeoJSON layer to map by default
 
 return {
     // Draw one year's records (its directory, electoral roll or both).
