@@ -189,9 +189,9 @@ The evidence behind the points, kept apart from the records. One row per thing r
 
 How the confidence is set for records placed from the 1895 MMBW plans:
 
-- `high`: a numbered house in 1895 read clearly on the plan; the same occupant at the same number in 1890 or 1900; a landmark named in 1890–1900; a corner drawn on the plan.
-- `medium`: a numbered house in 1890 or 1900 with a different occupant (the numbering is assumed unchanged from 1895; where the same name is on the same street in both years, 83% have the same number); a landmark in other years; the first house of a named terrace or cottage row; a plan reading marked uncertain.
-- `low`: a name carried back before 1890, when the street numbers changed, because the same name is listed on the same street in every directory back to that year; a terrace placed in another year.
+- `high`: a numbered house in 1895 read clearly on the plan; the same occupant at the same number in any year from 1890 to 1945; a landmark named in 1890–1900; a corner drawn on the plan.
+- `medium`: a numbered house from 1890 to 1945 with a different occupant (the numbering is assumed unchanged from 1895: between each pair of editions from 1890 to 1945, 76–95% of the names listed on a street keep the same number); a Swanston Street house from 1930, placed at its old Madeline Street number (516 lower on the west side, from occupants listed under both); a number not printed on the plan, placed between its printed neighbours or on the lot that holds it; a landmark in other years; the first house of a named terrace or cottage row; a plan reading marked uncertain.
+- `low`: a number on a large site with no house numbers printed (e.g. the flour mill on Leicester Street), placed along its frontage by the number; a name carried back before 1890, when the street numbers changed, because the same name is listed on the same street in every directory back to that year; a terrace placed in another year.
 
 ### How the 1857 and 1858 records are placed
 
