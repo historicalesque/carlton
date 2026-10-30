@@ -98,7 +98,7 @@ Sections are marked by their type, not their heading, so headings can be reworde
 
 ### Article markup
 
-In the detail, paragraphs (`p`); each heading starts a new `div` with a `head`. Inline styles are `hi[@rend="italic|bold|underline"]`, links are `ref[@target]`, lists are `list[@rend="bulleted|numbered"]/item`, block quotes are `quote/p` (lines quoted one after another share one `quote`), and tables are `table/row/cell`.
+In the detail, paragraphs (`p`); each heading starts a new `div` with a `head`. Inline styles are `hi[@rend="italic|bold|underline"]`, links are `ref[@target]`, lists are `list[@rend="bulleted|numbered"]/item`, block quotes are `quote/p` (lines quoted one after another share one `quote`), tables are `table/row/cell`, and images from collections are `figure` with a `graphic[@url]` (the image), a `head` holding a `ref[@target]` back to the item (the caption), and a `figDesc` (the alt text). The form adds each image's item to the references too.
 
 ### Dates
 

@@ -1584,6 +1584,9 @@ span.modal-neighbour .modal-neighbour-label { color: var(--ink-faint); }
 .pv-table { overflow-x: auto; margin-bottom: 12px; }
 .pv-table table { border-collapse: collapse; font-size: 14px; }
 .pv-table td { border: 1px solid var(--paper-line); padding: 5px 8px; vertical-align: top; }
+.pv-figure { margin: 16px 0; text-align: center; }
+.pv-figure img { max-width: 100%; max-height: 70vh; height: auto; display: inline-block; }
+.pv-figure figcaption { font-size: 14px; color: var(--ink-faint); margin-top: 6px; }
 .pv-chron { border-collapse: collapse; width: 100%; margin-bottom: 12px; font-size: 14px; }
 .pv-chron th, .pv-chron td { border-bottom: 1px solid var(--paper-line); padding: 5px 8px 5px 0; text-align: left; vertical-align: top; }
 .pv-chron th { white-space: nowrap; color: var(--ink); font-weight: normal; font-family: var(--font-mono); }

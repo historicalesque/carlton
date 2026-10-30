@@ -163,7 +163,9 @@ window.TEIEntry = (function () {
      starts a <div> with that heading as its <head>. Bold / italic / underline
      become <hi rend>, links become <ref target>, lists become <list rend>,
      block quotes become <quote> (one <p> per line, so lines quoted one after
-     another share a <quote>), and pasted tables stay tables. */
+     another share a <quote>), pasted tables stay tables, and collection
+     images (scripts/glam-embed.js) become
+       <figure><graphic url="image"/><head><ref target="item">caption</ref></head><figDesc>alt text</figDesc></figure> */
   const REND = { STRONG: 'bold', B: 'bold', EM: 'italic', I: 'italic', U: 'underline' };
 
   function article(html, el) {
@@ -226,6 +228,17 @@ window.TEIEntry = (function () {
           .map((tr) => [...tr.children].map((td) => tidy(inline(td))))
           .filter((cells) => cells.some((c) => !blank(c)));
         if (rows.length) current.push(el('table', null, rows.map((cells) => el('row', null, cells.map((c) => el('cell', null, c))))));
+      } else if (tag === 'FIGURE') {
+        const img = node.querySelector('img');
+        const a = node.querySelector('figcaption a[href]');
+        const url = node.dataset.src || (img && img.getAttribute('src'));
+        if (!/^https?:\/\//i.test(url || '')) return;
+        const href = node.dataset.href || (a && a.getAttribute('href')) || '';
+        const caption = trim(node.dataset.caption || (node.querySelector('figcaption') || {}).textContent) || href;
+        current.push(el('figure', null,
+          el('graphic', { url }),
+          caption ? el('head', null, href ? el('ref', { target: local(href) }, caption) : caption) : null,
+          has(node.dataset.alt) ? el('figDesc', null, trim(node.dataset.alt)) : null));
       } else if (node.querySelector && node.querySelector('table')) {
         // Quill wraps pasted tables in <div class="ql-table-embed">
         [...node.childNodes].forEach(block);
@@ -380,7 +393,7 @@ window.TEIEntry = (function () {
   }
 
   /* Indent elements that hold only elements; keep mixed content on one line. */
-  const MIXED = new Set(['p', 'item', 'head', 'cell', 'ref', 'hi', 'label', 'desc', 'change', 'bibl',
+  const MIXED = new Set(['p', 'item', 'head', 'figDesc', 'cell', 'ref', 'hi', 'label', 'desc', 'change', 'bibl',
     'title', 'author', 'persName', 'orgName', 'placeName', 'name', 'occupation', 'birth', 'death', 'addrLine']);
   function pretty(node, depth) {
     const pad = '  '.repeat(depth);
@@ -508,6 +521,13 @@ window.TEIEntry = (function () {
           case 'table':
             return `<div class="pv-table"><table><tbody>${kids(c, 'row').map((r) =>
               `<tr>${kids(r, 'cell').map((cell) => `<td>${mixed(cell)}</td>`).join('')}</tr>`).join('')}</tbody></table></div>`;
+          case 'figure': {
+            const graphic = kids(c, 'graphic')[0];
+            const url = graphic ? graphic.getAttribute('url') || '' : '';
+            if (!/^https?:\/\//i.test(url)) return '';
+            const head = kids(c, 'head')[0];
+            return `<figure class="pv-figure"><img src="${esc(url)}" alt="${esc(text(kids(c, 'figDesc')[0]))}" loading="lazy">${head ? `<figcaption>${mixed(head)}</figcaption>` : ''}</figure>`;
+          }
           case 'div': {
             // <div xml:id="contribute"> becomes a section that about#contribute can link to
             const id = c.getAttribute('xml:id');
@@ -741,6 +761,14 @@ window.TEIEntry = (function () {
         case 'quote': return kids(ch, 'p').filter((p) => p.textContent.trim()).map((p) => `<blockquote>${mixed(p)}</blockquote>`).join('');
         case 'table':
           return `<table><tbody>${kids(ch, 'row').map((r) => `<tr>${kids(r, 'cell').map((cell) => `<td>${mixed(cell)}</td>`).join('')}</tr>`).join('')}</tbody></table>`;
+        // The editor's collection image, read from its data-* attributes
+        case 'figure': {
+          const graphic = kids(ch, 'graphic')[0];
+          const head = kids(ch, 'head')[0];
+          const ref = head && kids(head, 'ref')[0];
+          const url = graphic ? graphic.getAttribute('url') || '' : '';
+          return url ? `<figure class="ql-glam-image" data-src="${esc(url)}" data-href="${esc(ref ? ref.getAttribute('target') || '' : '')}" data-caption="${esc(text(head))}" data-alt="${esc(text(kids(ch, 'figDesc')[0]))}"></figure>` : '';
+        }
         case 'div': return blocks(ch);
         default: return '';
       }
