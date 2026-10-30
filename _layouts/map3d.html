@@ -184,8 +184,24 @@
         controls.enableDamping = true;
         controls.dampingFactor = 0.05;
 
-        camera.position.set(PLANE_SIZE * 1.1, sortedLayers.length * PLANE_SPACING * 0.8, PLANE_SIZE * 1.3);
-        controls.target.set(0, (sortedLayers.length * PLANE_SPACING) / 2, 0);
+        // The camera looks at the middle of the shown planes, which are
+        // stacked from 0 up, not at every year: with 40 or so layers that
+        // put the camera beyond the far plane and the fog, and the page
+        // looked empty.
+        function stackMiddle() {
+            return Math.max(0, visibleLayers.size - 1) * PLANE_SPACING / 2;
+        }
+        camera.position.set(PLANE_SIZE * 1.1, stackMiddle() * 1.6 + PLANE_SIZE * 0.6, PLANE_SIZE * 1.3);
+        controls.target.set(0, stackMiddle(), 0);
+
+        // Keeps the camera on the shown planes when years are turned on or
+        // off, without changing the angle or distance the viewer chose
+        function followStack() {
+            const lift = stackMiddle() - controls.target.y;
+            camera.position.y += lift;
+            controls.target.y += lift;
+            controls.update();
+        }
 
         scene.add(new THREE.AmbientLight(0xffffff, 0.65));
         const dirLight = new THREE.DirectionalLight(0xffffff, 0.45);
@@ -440,6 +456,7 @@
                 fitToLayers(visibleLayers);
                 relayout();
                 recalculateLayerTargets();
+                followStack();
                 
                 if (currentSelected && !currentSelected.userData.isCrossYearLine && currentSelected.userData.layer === targetLayer) {
                     clearActiveSelection();
@@ -593,7 +610,8 @@
         // RAYCASTING AND INTERACTION SELECTION
         const raycaster = new THREE.Raycaster();
         raycaster.params.Mesh.threshold = isMobile ? 1.5 : 0.5;
-        const pointer = new THREE.Vector2();
+        // Off screen until the mouse moves, so nothing is hovered on load
+        const pointer = new THREE.Vector2(-2, -2);
         const tooltip = document.getElementById('tooltip');
         const infoPanel = document.getElementById('info-panel');
         let currentSelected = null;

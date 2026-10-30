@@ -893,10 +893,16 @@ html.map3d-page, body.map3d-page {
     position: absolute; top: 0; left: 0; z-index: 1;
 }
 
+/* Stops above the map controls, so a long list of years scrolls
+   instead of running underneath them. The layer itself lets drags
+   through to the map; its contents don't. */
 #ui-layer {
-    position: absolute; top: 20px; left: 20px;
-    z-index: 10; pointer-events: auto;
+    position: absolute; top: 20px; left: 20px; bottom: 250px;
+    z-index: 10; pointer-events: none;
+    display: flex; flex-direction: column; align-items: flex-start;
 }
+#ui-layer > * { pointer-events: auto; flex-shrink: 0; }
+#ui-layer > .controls-panel { flex-shrink: 1; min-height: 0; }
 
 .map3d-home-link {
     display: inline-block;
@@ -953,6 +959,8 @@ html.map3d-page, body.map3d-page {
     border-top: 1px solid var(--ink-soft);
     padding-top: 8px;
     margin-top: 4px;
+    display: flex; flex-direction: column;
+    min-height: 0;
 }
 .filter-title {
     font-size: 11px;
@@ -965,6 +973,9 @@ html.map3d-page, body.map3d-page {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 6px 12px;
+    min-height: 0;
+    overflow-y: auto;
+    padding-right: 6px;
 }
 
 #nav-controls {
@@ -1054,10 +1065,11 @@ html.map3d-page, body.map3d-page {
 }
 
 @media (max-width: 600px) {
-    #ui-layer { top: 12px; left: 12px; right: 80px; }
+    #ui-layer { top: 12px; left: 12px; right: 80px; bottom: 60px; }
     #ui-layer h1 { font-size: 15px; letter-spacing: 1px; }
     #ui-layer p { font-size: 11px; }
-    .checkbox-group { grid-template-columns: repeat(3, 1fr); }
+    /* Short, so the years leave most of the screen to the map */
+    .checkbox-group { grid-template-columns: repeat(3, 1fr); max-height: 25dvh; }
     #nav-controls { display: none; }
 
     #info-panel {
