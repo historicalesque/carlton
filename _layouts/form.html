@@ -194,6 +194,10 @@
     #editor-container { height: 300px; }
     .ql-table-embed table { border-collapse: collapse; width: 100%; }
     .ql-table-embed td, .ql-table-embed th { border: 1px solid var(--paper-line); padding: 6px 8px; }
+    /* Collection images (scripts/glam-embed.js) */
+    .ql-editor .ql-glam-image { margin: 1em 0; text-align: center; }
+    .ql-editor .ql-glam-image img { max-width: 100%; max-height: 260px; height: auto; display: inline-block; }
+    .ql-editor .ql-glam-image figcaption { font-size: 13px; color: var(--ink-faint); margin-top: .3em; }
 
     /* --- The optional box --- */
     .more {
@@ -627,6 +631,7 @@
 <datalist id="entry-titles"></datalist>
 
 <script src="https://cdn.quilljs.com/1.3.6/quill.min.js"></script>
+<script src="scripts/glam-embed.js?v={{ site.time | date: '%s' }}"></script>
 <script>
   // Every entry file on the site, for the "Related entries" picker
   window.ENTRY_FILES = [{% for f in site.static_files %}{% if f.path contains '/civic/' and f.extname == '.xml' %}"{{ f.basename }}",{% endif %}{% endfor %}];
@@ -1262,13 +1267,35 @@
         ['clean']
       ]
     },
-    formats: ['header', 'bold', 'italic', 'underline', 'list', 'blockquote', 'link', 'tableHTML'],
+    formats: ['header', 'bold', 'italic', 'underline', 'list', 'blockquote', 'link', 'tableHTML', 'glam-image'],
     placeholder: 'Write as much or as little as you know, in your own words.',
     theme: 'snow'
   });
   quill.clipboard.addMatcher('table', (node) => {
     const Delta = Quill.import('delta');
     return new Delta().insert({ tableHTML: node.outerHTML });
+  });
+
+  /* ---------- Collection images: a pasted link becomes its image ----------
+     Each image added to the article also goes in the Sources, unless a
+     source with that link is already there. Removing it from the Sources
+     later is up to the contributor. */
+  const glam = GlamEmbed.attach(quill);
+  function addImageSource(href) {
+    if (!href || readList('sources').some((r) => r.href.trim() === href)) return;
+    const { text } = GlamEmbed.sourceFor(href);
+    const blank = [...form.querySelectorAll('[data-list="sources"] .row')]
+      .find((row) => [...row.querySelectorAll('input')].every((i) => !i.value.trim()));
+    if (blank) {
+      blank.querySelector('input[data-k="text"]').value = text;
+      blank.querySelector('input[data-k="href"]').value = href;
+    } else addRow('sources', { text, href });
+    referencesFromRows();
+    changed();
+  }
+  quill.on('text-change', (delta, old, source) => {
+    if (source !== 'user') return;
+    delta.ops.forEach((op) => { if (op.insert && op.insert['glam-image']) addImageSource(op.insert['glam-image'].href); });
   });
 
   /* ---------- Collect, build, preview ---------- */
@@ -1440,6 +1467,7 @@
     // Not dangerouslyPasteHTML: it also puts the cursor in the editor, which
     // focuses it and scrolls the entry page down to this form on load.
     quill.setContents(quill.clipboard.convert(entry.articleHtml || ''));
+    glam.skipExisting();
     applyKindLabels();
     updateCounts();
   }

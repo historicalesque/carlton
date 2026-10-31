@@ -65,7 +65,13 @@ window.TEICompare = (function () {
     const blocks = [];
     const body = all(root, 'body')[0];
     if (body) for (const el of body.getElementsByTagNameNS(NS, '*')) {
-      if (el.localName === 'head') blocks.push(`Heading: ${el.textContent}`);
+      if (el.localName === 'figure') {
+        const ref = el.getElementsByTagNameNS(NS, 'ref')[0];
+        const graphic = el.getElementsByTagNameNS(NS, 'graphic')[0];
+        const head = el.getElementsByTagNameNS(NS, 'head')[0];
+        blocks.push(`Image: ${norm(head ? head.textContent : '')} (${ref ? ref.getAttribute('target') : graphic ? graphic.getAttribute('url') : ''})`);
+      } else if (el.parentNode.localName === 'figure') continue;
+      else if (el.localName === 'head') blocks.push(`Heading: ${el.textContent}`);
       else if (el.localName === 'p' && el.parentNode.localName === 'quote') blocks.push(`Quote: ${el.textContent}`);
       else if (el.localName === 'p' || el.localName === 'item') blocks.push(el.textContent);
       else if (el.localName === 'row') blocks.push(`Table row: ${[...el.children].map((c) => norm(c.textContent)).join(' | ')}`);
@@ -104,8 +110,8 @@ window.TEICompare = (function () {
   }
 
   // Article blocks carry a prefix so a heading never matches a paragraph with the same words
-  const isPara = (s) => !/^(Table row|Heading): /.test(s);
-  const strip = (s) => s.replace(/^(Table row|Heading): /, '');
+  const isPara = (s) => !/^(Table row|Heading|Image): /.test(s);
+  const strip = (s) => s.replace(/^(Table row|Heading|Image): /, '');
 
   const LABELS = { old: 'Now on the site', new: 'In this submission', lost: 'Disappears from the site if accepted', title: 'What changes' };
   const cell = (label, html) => `<span class="cell-label">${label}</span>${html}`;
@@ -127,7 +133,8 @@ window.TEICompare = (function () {
         let n = 0;
         for (let i = 0; i < ops.length; i++) {
           const o = ops[i];
-          const label = (s) => (s.startsWith('Table row: ') ? 'Article, table row' : s.startsWith('Heading: ') ? 'Article, heading' : `Article, paragraph ${n}`);
+          const label = (s) => (s.startsWith('Table row: ') ? 'Article, table row' : s.startsWith('Heading: ') ? 'Article, heading'
+            : s.startsWith('Image: ') ? 'Article, image' : `Article, paragraph ${n}`);
           if (o.op === 'same') { if (isPara(o.a)) n++; same++; continue; }
           if (o.op === 'del' && ops[i + 1] && ops[i + 1].op === 'add') {
             const next = ops[++i];

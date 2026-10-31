@@ -111,6 +111,7 @@ With `preview=true`, `id` can be a full URL, such as a raw file on a pull-reques
 | `data/` | What the browser downloads, generated from `_data/` by Jekyll: one small page per data file, `data/index.json` (the list of files), and `uom-land-parcels.geojson` (University of Melbourne land parcels). |
 | `scripts/data.js` | Shared data loader used by every page that shows records. |
 | `scripts/tei.js` | Builds an entry as TEI from the contribution form, checks it, renders TEI entries (entry pages and the form's preview), and reads an entry back into the form's fields (`parse`, for *Suggest changes*). |
+| `scripts/glam-embed.js` | Collection images in the form's editor: a pasted link to an item at the National Library of Australia (Trove), State Library Victoria, University of Melbourne Digitised Collections, a IIIF image or a plain image link becomes the item's image, captioned with a link back to it. The form also adds the item to the entry's sources. |
 | `scripts/tei-compare.js` | Before/after table of two TEI entries (field by field, then the article paragraph by paragraph), used by the review page for new versions of existing entries. |
 | `schema/carlton.odd`, `schema/carlton.rng` | The TEI entry format: the customisation (with its documentation) and the schema generated from it. |
 | `tools/convert-map-data.js` | One-off script that split the old `map-data.js` into the files in `_data/`. |
@@ -262,6 +263,7 @@ See [Editing the data](#editing-the-data) above. This is separate from entry sub
 | Google Apps Script web app | Receives contribution form entries | `apps-script/Code.gs`: checks the TEI, sets the file name, id and date, adds a row to the Sheet's *TEI submissions* tab and opens a pull request. The GitHub token is a Script property, never in the repo. Setup: `apps-script/README.md`. |
 | GitHub REST API (no sign-in) | `admin/review.html` | Limited to 60 requests/hour per visitor IP address. See [Known issues](#known-issues-and-gotchas). |
 | Quill 1.3.6 | Contribution form | cdn.quilljs.com |
+| Library, archive and museum image servers | Images in entries | `nla.gov.au`, `rosetta.slv.vic.gov.au`, `digitised-collections.unimelb.edu.au` and others. Images are shown from the institution's server, not copied into the repository, so one moved or withdrawn there disappears from the entry (the caption link and the source stay). |
 | Leaflet 1.9.4 | 2D map | cdnjs |
 | three.js r128 + OrbitControls | 3D map | cdnjs / jsDelivr |
 | Google Fonts | Site typography | Libre Caslon Text, Courier Prime |
