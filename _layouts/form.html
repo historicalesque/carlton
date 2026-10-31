@@ -778,15 +778,10 @@
   });
 
   /* ---------- "Add more detail": shows or hides all of Part B ---------- */
-  // Remembered in this browser, so the project team only switches it on once
-  const MORE_KEY = 'cg-form-more-detail';
-  function setShowAll(on, remember) {
-    form.classList.toggle('show-all', on);
-    $('showAll').checked = on;
-    if (remember) try { localStorage.setItem(MORE_KEY, on ? '1' : ''); } catch (e) { /* not kept */ }
-  }
-  $('showAll').addEventListener('change', (e) => setShowAll(e.target.checked, true));
-  try { if (localStorage.getItem(MORE_KEY)) setShowAll(true); } catch (e) { /* off */ }
+  // Always starts closed, even when Part B is already filled in: only the
+  // person using the form opens it
+  $('showAll').checked = false;
+  $('showAll').addEventListener('change', (e) => form.classList.toggle('show-all', e.target.checked));
 
   /* ---------- "Where did you find this?" and the Sources rows ----------
      One list shown two ways: a line per source in Part A, a row with its
@@ -891,7 +886,6 @@
     ? { pr: Number(urlParams.get('review')), version: urlParams.get('v'), file: urlParams.get('file') } : null;
   if (urlParams.get('title')) $('articleTitle').value = urlParams.get('title');
   else if (targetId && !/^\d+$/.test(targetId)) $('articleTitle').value = targetId.replace(/-/g, ' ');
-  if (urlParams.has('advanced')) setShowAll(true);
 
   // An entry that's already on the site: ?entry=<file name>, from entry.html
   const ENTRY = /^[\w-]+$/.test(urlParams.get('entry') || '') ? urlParams.get('entry') : '';
@@ -1537,12 +1531,11 @@
     $('formIntro').textContent = 'Change anything below, then send it. Your version becomes the one the editors decide on.';
     $('reviewer').hidden = false;
     $('authorLabel').textContent = 'Authors';
-    // Editors see everything; the licence was agreed when it was first sent
+    // The licence was agreed when it was first sent
     ['licenceNamedLine', 'licenceNamedSummary'].forEach((id) => { $(id).hidden = true; });
     $('keepLine').hidden = false;
     $('keepLine').querySelector('span').firstChild.textContent = 'Keep this entry as its author wrote it';
     $('sendNote').hidden = true;
-    setShowAll(true);
     sendReady();
     form.classList.add('review-mode');
     fetch(`https://raw.githubusercontent.com/historicalesque/carlton/${REVIEW.version}/${REVIEW.file}`)
