@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="https://historicalesque.github.io/carlton/schema/carlton.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0" type="org" xml:lang="en">
+  <teiHeader>
+    <fileDesc>
+      <titleStmt>
+        <title>Manchester Arms hotel</title>
+        <respStmt key="community">
+          <resp>Suggestions from</resp>
+          <name>the broader Carlton community</name>
+        </respStmt>
+      </titleStmt>
+      <publicationStmt>
+        <publisher>Carlton Common Ground</publisher>
+        <idno type="entry">Manchester-Arms-hotel</idno>
+        <availability>
+          <licence target="https://creativecommons.org/licenses/by-nc/4.0/">CC BY-NC 4.0</licence>
+        </availability>
+      </publicationStmt>
+      <sourceDesc>
+        <listBibl>
+          <bibl><ref target="civic?id=Sands-McDougall-Directory-1895">Sands &amp; McDougall Directory, 1895, p. 147: 650 Manchester Arms htl—Gallivan, Daniel</ref></bibl>
+        </listBibl>
+      </sourceDesc>
+    </fileDesc>
+    <revisionDesc status="draft">
+      <change when="2026-11-01" type="created">Contributed through the contribution form.</change>
+    </revisionDesc>
+  </teiHeader>
+  <standOff>
+    <listOrg>
+      <org xml:id="subject">
+        <orgName type="main">Manchester Arms hotel</orgName>
+        <place type="address" when="1895">
+          <placeName>650 Elizabeth Street North, Carlton</placeName>
+          <location>
+            <geo>-37.803109 144.958320</geo>
+          </location>
+        </place>
+      </org>
+    </listOrg>
+  </standOff>
+  <text>
+    <body>
+      <div type="detail">
+        <p><ref target="civic?id=Daniel Gallivan">Daniel Gallivan</ref> is listed as the proprietor in 1895.</p>
+      </div>
+    </body>
+  </text>
+</TEI>
