@@ -147,7 +147,7 @@ Jekyll publishes compact copies in `data/` and a list of the files in `data/inde
 | `year` | number | all | Year of the directory edition or roll. |
 | `type` | string | all | `Place`, `Intersection` or `right-of-way` in the directories. Electoral-roll records are all `"Voter"`. |
 | `kind` | string | directory | What the listing is about, using the entry types: `person`, `org`, `place` or `unknown`. See the README's *Data* section. Electoral-roll records have none: they are all people. |
-| `listing` | string | all | The listing as transcribed. For electoral rolls, a summary line built from the other fields. |
+| `listing` | string | all | The listing as transcribed. For electoral rolls, a summary line built from the other fields. Intersections (`type` `Intersection`) follow one convention instead of the directory wording: `Intersection A street and B street`, the two streets in alphabetical order, generic words in lower case and spelled out (`street`, `place`, `terrace`, `cottages`, `Little`), and the sides of Lincoln Square as `Lincoln square north` / `Lincoln square south` (`Lincoln place north` / `south` before 1910). So the same corner has the same name whichever street it is listed under. |
 | `street` | string | all | Street name. Spellings are kept as transcribed, because variants can matter historically. |
 | `cardinality` | string | nearly all | Side of the street: `North`, `South`, `East` or `West`. Missing or empty on about 1,100 directory records. |
 | `pages` | string (a few numbers) | directory | Page reference(s) in the directory, such as `"172"` or `"241-242"`. |
