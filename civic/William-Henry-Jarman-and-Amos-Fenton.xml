@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="https://historicalesque.github.io/carlton/schema/carlton.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0" type="unknown" xml:lang="en">
+  <teiHeader>
+    <fileDesc>
+      <titleStmt>
+        <title>William Henry Jarman and Amos Fenton</title>
+        <author>Barbara Minchinton</author>
+      </titleStmt>
+      <publicationStmt>
+        <publisher>Carlton Common Ground</publisher>
+        <idno type="entry">William-Henry-Jarman-and-Amos-Fenton</idno>
+        <availability>
+          <licence target="https://creativecommons.org/licenses/by-nc/4.0/">CC BY-NC 4.0</licence>
+        </availability>
+      </publicationStmt>
+      <sourceDesc>
+        <p>Contributed through the website.</p>
+      </sourceDesc>
+    </fileDesc>
+    <revisionDesc status="draft">
+      <change when="2026-10-31" type="created">Contributed through the contribution form by Barbara Minchinton.</change>
+    </revisionDesc>
+  </teiHeader>
+  <text>
+    <body>
+      <div type="summary">
+        <p>Jarman and Fenton built the adjoining terraces at 99-101 Barry St</p>
+      </div>
+      <div type="detail">
+        <p>The adjoining heritage-fronted terraces now numbered 99 [&amp;101] Barry St were built by the builder Peter Matthews for two single men, William Henry Jarman and Amos Fenton (<hi rend="italic">The Argus</hi> 11 Nov 1867 p.3). Jarman was born in London and came to Melbourne with his family in 1849 at the age of nine. His father Henry was a carpenter. Amos Fenton came to Melbourne from Launceston in 1839 with his family at the age of two <hi rend="italic">(Launceston Advertiser</hi> 7 Nov 1839 p.2). His father was a hay dealer (<hi rend="italic">The Age</hi> 30 Aug 1875 p.1).</p>
+        <p>Having built their adjoining houses in 1867, both men were married in 1868. Jarman married Fenton’s sister and Fenton married Susan, the daughter of a shopkeeper in Launceston (‘John Jones’, <hi rend="italic">Launceston Examiner</hi>, 2 September 1880, p. 2). The in-laws grew up alongside each other for the next two decades, with the Fenton parents in Barry Street too and the Jarman parents in Bouverie Street for their later years. The Jarmans had eight children and they all lived to a good age. The Fentons had four, and lost two very young.</p>
+        <p>Before his marriage Amos Fenton invested in gold mines and worked in his father’s business at the Haymarket, which he shared with his sister Eliza’s husband for a time after their father’s death in 1875 (<hi rend="italic">The Ballarat Star</hi>, 4 May 1865, p. 4; <hi rend="italic">The Age,</hi> 30 Aug 1875 p.1; <hi rend="italic">The Argus</hi>, 6 June 1882 p.8). In his later years Fenton became a commission agent, while William Jarman was a salesman before becoming an accountant (<hi rend="italic">The Argus</hi>, 7 August 1886, p.15). Susan Fenton died at the house in Barry St in 1895, which was known then as ‘Pleasant House’, but after her death Amos moved to Kew and became a wood, coal and coke merchant (<hi rend="italic">Launceston Examiner</hi> 27 Nov 1895 p. 1; <hi rend="italic">Advocate</hi>, 24 May 1902, p. 3). He died there in 1908 leaving nothing for probate (<hi rend="italic">The Argus</hi>, 28 October 1908, p. 1). The Jarmans left Carlton for retirement in leafy Balwyn, and spent the last years of their lives in Mont Albert Road. When Jarman died in 1927 his unmarried daughters were bequeathed the ‘double-fronted brick villa’ valued at £2500.</p>
+        <p>Fentons:</p>
+        <p>Eliza Rhoda Fenton [sister of Amos Fenton] married Isaiah Marshall Melbourne 3993/1856</p>
+        <p>Amos Fenton married Susannah Jones Carlton 1511/1868</p>
+        <p>Ellen Rhoda b.Melbourne 17224/1870 died age 1 month 7256/1870</p>
+        <p>Frederick James b.Melb North 11001/1873 died Sale 7563/1927</p>
+        <p>Ernest Matthew b.Carlton 14596/1876 died age 2 1878 10635/1878</p>
+        <p>Alfred Amos b. Carlton 1070/1879 died Kew 3934/1941</p>
+        <p>Jarmans:</p>
+        <p>Arrival at Port Phillip on <hi rend="italic">Mahomed Shah</hi>: ‘Jermain’</p>
+        <figure>
+          <graphic url="https://images.prov.vic.gov.au/loris/0001%2F3550%2F98%2Fimages%2F141%2Ffiles%2F00014-P0000-000005_141.jp2/full/800,/0/default.jpg"/>
+          <head><ref target="https://prov.vic.gov.au/archive/E2A106BC-F1B1-11E9-AE98-7353571BB1F2?image=141">PROV, VPRS 14/P0000, Book No. 4A — Book No. 4A</ref></head>
+          <figDesc>Image from Public Record Office Victoria</figDesc>
+        </figure>
+        <p>accessed 31 Oct 2026</p>
+        <p>William Henry Jarman married Ann Negus Fenton Melbourne 1509/1868</p>
+        <p>Alice Louisa Jarman b. Melb 10132/1869 d. Kew age 64 8475/1933 m. John Keily 6809/1901</p>
+        <p>Lillian Emma Jarman b. Melb 10566/1871 d. Surrey Hills age 91 20083/1961</p>
+        <p>Emily Harriet Jarman b. Melb Nth 17398/1874 d. Canterbury age 68 13102/1943</p>
+        <p>Edith Eliza Jarman b. Carlton 7284/1877 d. Canterbury age 66 346/1944</p>
+        <p>Henry Edward Jarman b. Carlton 14277/1878 d. Balwyn age 46 4005/1925 m. Helen Watson Irving 4414/1915</p>
+        <p>Florence Amelia Jarman b. Carlton 21002/1880 m. Herbert E I Burstall 476/1909 d. Box Hill age 81 6160/1961</p>
+        <p>Ethel May Jarman b. Carlton 22093/1883 d. Fitzroy age 48 19167/1970</p>
+        <p>William Arthur Jarman b. Melb 1451/1886 d. Canterbury age 66 2751/1952 m. Thriza Grace Galagher 9464/1927</p>
+        <p>PROV VPRS 7591/P2 213/007 Will of William Henry Jarman 146 Mont Albert Rd, Accountant</p>
+      </div>
+    </body>
+    <back>
+      <div type="bibliography">
+        <listBibl>
+          <bibl><ref target="https://prov.vic.gov.au/archive/E2A106BC-F1B1-11E9-AE98-7353571BB1F2?image=141">PROV, VPRS 14/P0000, Book No. 4A — Book No. 4A</ref></bibl>
+        </listBibl>
+      </div>
+    </back>
+  </text>
+</TEI>
