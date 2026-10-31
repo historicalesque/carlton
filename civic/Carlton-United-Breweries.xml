@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="https://historicalesque.github.io/carlton/schema/carlton.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0" type="org" xml:lang="en">
+  <teiHeader>
+    <fileDesc>
+      <titleStmt>
+        <title>Carlton &amp; United Breweries</title>
+        <respStmt key="community">
+          <resp>Suggestions from</resp>
+          <name>the broader Carlton community</name>
+        </respStmt>
+      </titleStmt>
+      <publicationStmt>
+        <publisher>Carlton Common Ground</publisher>
+        <idno type="entry">Carlton-United-Breweries</idno>
+        <availability>
+          <licence target="https://creativecommons.org/licenses/by-nc/4.0/">CC BY-NC 4.0</licence>
+        </availability>
+      </publicationStmt>
+      <sourceDesc>
+        <listBibl>
+          <bibl><ref target="civic?id=Sands-McDougall-Directory-1910">Sands &amp; McDougall Directory, 1910, p. 187: Carlton &amp; United Breweries Pty Ltd</ref></bibl>
+          <bibl><ref target="civic?id=Sands-McDougall-Directory-1910">Sands &amp; McDougall Directory, 1910, p. 187: 16 Carlton &amp; United Breweries Pty Ltd</ref></bibl>
+          <bibl><ref target="civic?id=Sands-McDougall-Directory-1915">Sands &amp; McDougall Directory, 1915, p. 189: 16 Carlton &amp; United Breweries Pty Ltd—Parker, T. L., mgr</ref></bibl>
+          <bibl><ref target="civic?id=Sands-McDougall-Directory-1930">Sands &amp; McDougall Directory, 1930, p. 193: Carlton &amp; United Breweries Limited (Carlton Brewery)</ref></bibl>
+          <bibl><ref target="civic?id=Sands-McDougall-Directory-1935">Sands &amp; McDougall Directory, 1935, p. 192: Carlton &amp; United Breweries Ltd</ref></bibl>
+          <bibl><ref target="civic?id=Sands-McDougall-Directory-1940">Sands &amp; McDougall Directory, 1940, p. 215: 16-50 Carlton &amp; United Breweries Ltd</ref></bibl>
+          <bibl><ref target="civic?id=Sands-McDougall-Directory-1945">Sands &amp; McDougall Directory, 1945, p. 213: 16-50 Carlton &amp; United Breweries Ltd</ref></bibl>
+        </listBibl>
+      </sourceDesc>
+    </fileDesc>
+    <revisionDesc status="draft">
+      <change when="2026-10-31" type="created">Contributed through the contribution form.</change>
+    </revisionDesc>
+  </teiHeader>
+  <standOff>
+    <listOrg>
+      <org xml:id="subject">
+        <orgName type="main">Carlton &amp; United Breweries</orgName>
+        <place type="address" when="1910">
+          <placeName>Ballarat Street, Carlton</placeName>
+          <location>
+            <geo>-37.805640 144.961768</geo>
+          </location>
+        </place>
+        <place type="address" from="1910" to="1915">
+          <placeName>16 Bouverie Street, Carlton</placeName>
+          <location>
+            <geo>-37.805640 144.961768</geo>
+          </location>
+        </place>
+        <place type="address" from="1930" to="1935">
+          <placeName>Bouverie Street, Carlton</placeName>
+          <location>
+            <geo>-37.805640 144.961768</geo>
+          </location>
+        </place>
+        <place type="address" from="1940" to="1945">
+          <placeName>16-50 Bouverie Street, Carlton</placeName>
+          <location>
+            <geo>-37.805640 144.961768</geo>
+          </location>
+        </place>
+      </org>
+    </listOrg>
+  </standOff>
+  <text>
+    <body>
+      <div type="detail">
+        <figure>
+          <graphic url="https://rosetta.slv.vic.gov.au/delivery/DeliveryManagerServlet?dps_pid=IE1847763&amp;dps_func=thumbnail"/>
+          <head><ref target="https://viewer.slv.vic.gov.au/?entity=IE1847763&amp;mode=browse">Source: State Library Victoria</ref></head>
+          <figDesc>Image from State Library Victoria</figDesc>
+        </figure>
+        <p>Carlton &amp; United Breweries was in Carlton.</p>
+      </div>
+    </body>
+    <back>
+      <div type="bibliography">
+        <listBibl>
+          <bibl><ref target="https://viewer.slv.vic.gov.au/?entity=IE1847763&amp;mode=browse">State Library Victoria, IE1847763</ref></bibl>
+        </listBibl>
+      </div>
+    </back>
+  </text>
+</TEI>
