@@ -7,6 +7,8 @@
      - State Library Victoria viewer (?entity=IE…&file=FL…): IIIF image,
        or the item's thumbnail when there's no file
      - University of Melbourne Digitised Collections bitstream downloads
+     - Public Record Office Victoria item pages (prov.vic.gov.au/archive/…,
+       with ?image=N for a later page), looked up in PROV's public API
      - any IIIF image (…/iiif/2/…/full/…/default.jpg or …/info.json)
      - any plain image link (.jpg, .png, .gif, .webp)
 
@@ -15,7 +17,8 @@
 
      GlamEmbed.attach(quill) → { scan, skipExisting }
      GlamEmbed.sourceFor(url) → { text, href }: the Sources line for an
-       image's link, e.g. "State Library Victoria, IE1164978" */
+       image's link, e.g. "State Library Victoria, IE1164978", or PROV's
+       citation and title */
 window.GlamEmbed = (function () {
   const BlockEmbed = Quill.import('blots/block/embed');
   const Delta = Quill.import('delta');
@@ -54,7 +57,10 @@ window.GlamEmbed = (function () {
 
   const host = (url) => { try { return new URL(url).hostname.replace(/^www\./, ''); } catch (e) { return url; } };
 
-  // Each adapter gives the image addresses to try, best first, and the item's id for its citation
+  /* Each adapter gives the image addresses to try, best first, and the
+     item's id for its citation, or a caption and citation of its own. An
+     adapter that has to look the item up returns a promise; a result with no
+     addresses means the link is the adapter's but has no image. */
   const ADAPTERS = [
     {
       name: 'National Library of Australia',
@@ -90,6 +96,35 @@ window.GlamEmbed = (function () {
       }
     },
     {
+      // Item records only: series, agency and function pages (VPRS, VA, VF)
+      // have no image. Digitised items have an 'iiif-thumbnail', asked for
+      // here at a bigger size; a later page (?image=N) needs the manifest.
+      // The API is CC BY-NC, as are the entries.
+      name: 'Public Record Office Victoria',
+      lookup: true,
+      match(url, width) {
+        const m = /^https?:\/\/(?:www\.)?prov\.vic\.gov\.au\/archive\/([A-Z0-9-]+)/i.exec(url);
+        if (!m || /^(VPRS|VA|VF)/i.test(m[1])) return null;
+        return (async () => {
+          const id = m[1].toUpperCase();
+          let page = 1;
+          try { page = parseInt(new URL(url).searchParams.get('image'), 10) || 1; } catch (e) { /* page 1 */ }
+          const data = await getJSON(`https://api.prov.vic.gov.au/search/query?wt=json&q=(_id%3A${id})`, true);
+          const rec = data && data.response && data.response.docs && data.response.docs[0];
+          if (!rec || !rec['iiif-thumbnail']) return { candidates: [] };
+          const cite = `PROV, ${rec.citation || id}${rec.title ? ` — ${rec.title}` : ''}`;
+          const candidates = [];
+          if (page > 1 && rec['iiif-manifest']) {
+            const svc = canvasImageService(await getJSON(rec['iiif-manifest'], false), page - 1);
+            if (svc) candidates.push(`${svc.replace(/\/$/, '')}/full/${width},/0/default.jpg`);
+          }
+          const thumb = rec['iiif-thumbnail'];
+          candidates.push(thumb.replace(/\/full\/[^/]+\/0\/default\.jpg$/i, `/full/${width},/0/default.jpg`), thumb.replace('!200,200', 'full'), thumb);
+          return { candidates: [...new Set(candidates)], caption: cite, cite };
+        })();
+      }
+    },
+    {
       name: '', // named after the site it's on
       match(url, width) {
         const m = /^(https?:\/\/[^?#]*?\/iiif\/(?:2|3)\/[^?#]+?)(?:\/info\.json|\/(?:full|square|[\d.,pct:]+)\/[^/]+\/[\d.!]+\/[a-z]+\.(?:jpg|jpeg|png|tif|tiff|webp|gif))(?:[?#].*)?$/i.exec(url);
@@ -105,18 +140,63 @@ window.GlamEmbed = (function () {
   ];
   const WIDTH = 800;
 
-  function resolve(url) {
+  // JSON from another site: a plain fetch where the site allows it (CORS),
+  // otherwise, for PROV's search API, its JSONP wrapper (json.wrf)
+  function getJSON(url, allowJsonp) {
+    return fetch(url, { mode: 'cors' })
+      .then((r) => (r.ok ? r.json() : null))
+      .catch(() => (allowJsonp ? jsonp(url) : null));
+  }
+  function jsonp(url) {
+    return new Promise((done) => {
+      const cb = `__glam${Date.now()}${Math.floor(Math.random() * 1e6)}`;
+      const s = document.createElement('script');
+      const finish = (v) => { clearTimeout(timer); delete window[cb]; s.remove(); done(v); };
+      const timer = setTimeout(() => finish(null), 8000);
+      window[cb] = finish;
+      s.onerror = () => finish(null);
+      s.src = `${url}${url.includes('?') ? '&' : '?'}json.wrf=${cb}`;
+      document.head.append(s);
+    });
+  }
+  // The image service for canvas i of a IIIF Presentation v2 or v3 manifest
+  function canvasImageService(mf, i) {
+    try {
+      const c = (mf.items || (mf.sequences && mf.sequences[0].canvases) || [])[i];
+      if (!c) return null;
+      let svc;
+      if (c.items) {
+        let body = c.items[0].items[0].body;
+        if (Array.isArray(body)) body = body[0];
+        svc = Array.isArray(body.service) ? body.service[0] : body.service;
+      } else {
+        svc = c.images[0].resource.service;
+        if (Array.isArray(svc)) svc = svc[0];
+      }
+      return svc ? svc.id || svc['@id'] : null;
+    } catch (e) { return null; }
+  }
+
+  const found = new Map(); // what each embedded link resolved to, for its Sources line
+  async function resolve(url) {
     for (const adapter of ADAPTERS) {
-      const r = adapter.match(url, WIDTH);
-      if (r && r.candidates.length) return { ...r, institution: adapter.name || host(url) };
+      const r = await adapter.match(url, WIDTH);
+      if (r) return { ...r, institution: adapter.name || host(url) };
     }
     return null;
   }
 
-  // The Sources line for an image: "State Library Victoria, IE1164978", or the site's name
+  // The Sources line for an image: "State Library Victoria, IE1164978", PROV's
+  // citation and title, or the site's name. Adapters that look items up are
+  // only used for links already resolved in the editor.
   function sourceFor(url) {
-    const r = resolve(url);
-    return { text: r ? (r.id ? `${r.institution}, ${r.id}` : r.institution) : host(url), href: url };
+    let r = found.get(url);
+    for (const adapter of r ? [] : ADAPTERS) {
+      const hit = !adapter.lookup && adapter.match(url, WIDTH);
+      if (hit) { r = { ...hit, institution: adapter.name || host(url) }; break; }
+    }
+    const text = !r ? host(url) : r.cite || (r.id ? `${r.institution}, ${r.id}` : r.institution);
+    return { text, href: url };
   }
 
   // Loads an image address; a server that answers with an error page or a 1px placeholder doesn't count
@@ -160,12 +240,15 @@ window.GlamEmbed = (function () {
       const hit = findUrls(quill).find((f) => f.url === url);
       if (!hit) return;
       quill.deleteText(hit.index, hit.length, 'user');
+      found.set(url, r);
       quill.insertEmbed(hit.index, 'glam-image', {
-        src, href: url, caption: `Source: ${r.institution}`, alt: `Image from ${r.institution}`
+        src, href: url, caption: r.caption || `Source: ${r.institution}`, alt: `Image from ${r.institution}`
       }, 'user');
       // A link on a line of its own leaves an empty line behind; remove it
       const after = quill.getText(hit.index + 1, 1);
-      const before = hit.index === 0 ? '\n' : quill.getText(hit.index - 1, 1);
+      // (an image just before it also ends a line)
+      const prev = hit.index === 0 ? '\n' : quill.getContents(hit.index - 1, 1).ops[0].insert;
+      const before = typeof prev === 'string' ? prev : '\n';
       if (after === '\n' && before === '\n' && hit.index + 1 < quill.getLength() - 1) quill.deleteText(hit.index + 1, 1, 'user');
       quill.setSelection(hit.index + 1, 0, 'silent');
     }
@@ -173,14 +256,13 @@ window.GlamEmbed = (function () {
     function scan() {
       findUrls(quill).forEach(({ url }) => {
         if (busy.has(url) || skip.has(url)) return;
-        const r = resolve(url);
-        if (!r) return;
         busy.add(url);
-        firstLoadable(r.candidates).then((src) => {
+        resolve(url).then(async (r) => {
+          const src = r && await firstLoadable(r.candidates);
           busy.delete(url);
           if (src) replace(url, src, r);
-          else skip.add(url);
-        });
+          else if (r) skip.add(url);
+        }).catch(() => { busy.delete(url); skip.add(url); });
       });
     }
 
