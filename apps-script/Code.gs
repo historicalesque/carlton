@@ -56,7 +56,7 @@ const CELL_LIMIT = 49000;
 // Which version of this script is running. Opening the web app's address
 // (contribution_endpoint in _config.yml) shows it, so it's easy to check
 // that the form talks to the latest deployment.
-const SCRIPT_VERSION = '2026-10-30: credit by name, contact details, kept entries';
+const SCRIPT_VERSION = '2026-11-01: sent text is never run as a formula';
 
 function doGet() {
   return ContentService.createTextOutput(`Carlton Common Ground submissions: send entries with POST.\nVersion ${SCRIPT_VERSION}`);
@@ -131,13 +131,12 @@ function receive_(e) {
       'Authors': authors.join(', '),
       'Contact (private)': typeof data.contact === 'string' ? data.contact.trim().slice(0, 300) : '',
       'Records': records.join(', '),
-      'Review': reviewLink_(pr.number),
       'Status': 'Waiting',
       'File': `${SETTINGS.folder}/${slug}.xml`,
       'Pull request': pr.url,
       'Version': pr.version,
       'TEI': xml.length > CELL_LIMIT ? xml.slice(0, CELL_LIMIT) + ' …' : xml
-    });
+    }, { 'Review': reviewLink_(pr.number) });
     return { status: 'success', pr: pr.url };
   } finally {
     lock.releaseLock();
@@ -292,13 +291,29 @@ function columns_(sheet, list) {
   return map;
 }
 
-function saveRow_(key, values) {
+// Adds a row. `values` are written as plain values, so text that someone
+// sent can never become a formula (see plain_); `formulas` are the script's
+// own formulas (e.g. the Review link), set separately with setFormula.
+function saveRow_(key, values, formulas) {
   const sheet = tab_(key);
   const cols = columns_(sheet, TABS[key].columns);
   const row = new Array(sheet.getLastColumn()).fill('');
-  Object.keys(values).forEach((name) => { if (cols[name]) row[cols[name] - 1] = values[name]; });
+  Object.keys(values).forEach((name) => { if (cols[name]) row[cols[name] - 1] = plain_(values[name]); });
   sheet.appendRow(row);
-  sheet.getRange(sheet.getLastRow(), cols['Decision']).setDataValidation(decisionRule_());
+  const at = sheet.getLastRow();
+  Object.keys(formulas || {}).forEach((name) => { if (cols[name]) sheet.getRange(at, cols[name]).setFormula(formulas[name]); });
+  sheet.getRange(at, cols['Decision']).setDataValidation(decisionRule_());
+}
+
+// Text from the form, the review page or the data editor (titles, names,
+// contact details, notes, TEI) goes into the Sheet as text. Sheets treats a
+// value starting with = + - or @ as a formula, which could fetch data or
+// show a misleading link to editors who open the Sheet. A leading ' makes
+// Sheets keep it as text; the ' isn't shown and getValue() doesn't return it.
+// Leading spaces and tabs or line breaks are covered too.
+const FORMULA_START_ = /^[\s\u00a0\ufeff]*[=+\-@]|^[\t\r\n]/;
+function plain_(value) {
+  return typeof value === 'string' && FORMULA_START_.test(value) ? `'${value}` : value;
 }
 
 // Row numbers on a tab that belong to one pull request
@@ -328,9 +343,9 @@ function addChange_(sheet, cols, row, { who, note, when, version, xml }) {
   const list = sheet.getRange(row, cols['Suggested changes']);
   const line = `${who} (${Utilities.formatDate(when, SETTINGS.timeZone, 'dd/MM')})${note ? `: ${note}` : ''}`;
   const lines = String(list.getValue() || '').split('\n').filter(String).concat(line);
-  list.setValue(lines.join('\n'));
-  sheet.getRange(row, cols['Version']).setValue(version);
-  if (xml) sheet.getRange(row, cols['TEI']).setValue(xml.length > CELL_LIMIT ? xml.slice(0, CELL_LIMIT) + ' …' : xml);
+  list.setValue(plain_(lines.join('\n')));
+  sheet.getRange(row, cols['Version']).setValue(plain_(version));
+  if (xml) sheet.getRange(row, cols['TEI']).setValue(plain_(xml.length > CELL_LIMIT ? xml.slice(0, CELL_LIMIT) + ' …' : xml));
   const status = sheet.getRange(row, cols['Status']);
   if (/^Waiting/.test(String(status.getValue()))) status.setValue(`Waiting. Changed since it was sent (${lines.length} suggested change${lines.length === 1 ? '' : 's'})`);
 }
@@ -659,7 +674,7 @@ function decideRow_(sheet, key, cols, row) {
     outcome = `Couldn't ${decision === 'Accept' ? 'publish' : 'reject'}: ${err.userMessage || 'something went wrong. Pick again to retry, or ask Mitchell.'}`;
     sheet.getRange(row, cols['Decision']).clearContent();
   }
-  if (outcome.formula) cell.setFormula(outcome.formula); else cell.setValue(outcome);
+  if (outcome.formula) cell.setFormula(outcome.formula); else cell.setValue(plain_(outcome));
 }
 
 // Earlier versions waited a minute before acting and left a timer to call
