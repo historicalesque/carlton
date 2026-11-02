@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="https://historicalesque.github.io/carlton/schema/carlton.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0" type="person" xml:lang="en">
+  <teiHeader>
+    <fileDesc>
+      <titleStmt>
+        <title>Frederick Clelland Casey</title>
+        <author>Andy May</author>
+      </titleStmt>
+      <publicationStmt>
+        <publisher>Carlton Common Ground</publisher>
+        <idno type="entry">Frederick-Clelland-Casey</idno>
+        <availability>
+          <licence target="https://creativecommons.org/licenses/by-nc/4.0/">CC BY-NC 4.0</licence>
+        </availability>
+      </publicationStmt>
+      <sourceDesc>
+        <p>Contributed through the website.</p>
+      </sourceDesc>
+    </fileDesc>
+    <revisionDesc status="draft">
+      <change when="2026-11-02" type="created">Contributed through the contribution form by Andy May.</change>
+    </revisionDesc>
+  </teiHeader>
+  <standOff>
+    <listPerson>
+      <person xml:id="subject">
+        <persName type="main">Frederick Clelland Casey</persName>
+      </person>
+    </listPerson>
+  </standOff>
+  <text>
+    <body>
+      <div type="summary">
+        <p>Frederick Clelland Casey lived at 188 Leicester Street in the 1940s, and was convicted of a series of arson attacks on local businesses.</p>
+      </div>
+      <div type="detail">
+        <p>In 1949, Frederick Clelland Casey, a 25-year-old labourer of Leicester Street, was acquitted of setting fire to the <ref target="civic?id=Tasmanian%20Timber%20Bending%20Works">Tasmanian Timber Bending Works</ref> at 100 Leicester Street, about 20 yards from his home, which caused around £12,000 damage. Despite originally confessing to the crime, he entered a not guilty plea in court. In 1949, however, he was convicted of setting fire to the visitors’ room of the Victoria Bowling Club in Grattan Street because he didn’t like the caretaker, James Michael Purcell, and was sentenced to four years in jail. At this trial it was revealed that Casey had been jailed in 1946 for setting fire to the garage of Leicester Motors in Leicester Street.</p>
+        <p>Frederick was born in Carlton on 7 August 1913 to Christopher Clelland Casey and Violet Emily Oakley. His parents had married in 1907, and had seven children.</p>
+        <table>
+          <row>
+            <cell>1908</cell>
+            <cell>Violet Dorothy</cell>
+            <cell>North Carlton</cell>
+            <cell>17955/1908</cell>
+            <cell/>
+          </row>
+          <row>
+            <cell>1909</cell>
+            <cell>Christopher George</cell>
+            <cell>Fitzroy North</cell>
+            <cell>19001/1909</cell>
+            <cell>Died Carlton 1911: 8096/1911</cell>
+          </row>
+          <row>
+            <cell>1910</cell>
+            <cell>Gladys Elsie</cell>
+            <cell>Carlton</cell>
+            <cell>25608/1910</cell>
+            <cell/>
+          </row>
+          <row>
+            <cell>1912</cell>
+            <cell>Herbert William Lawrence</cell>
+            <cell>Carlton</cell>
+            <cell>1573/1912</cell>
+            <cell>Died Carlton 1913: 12583/1913</cell>
+          </row>
+          <row>
+            <cell>1913</cell>
+            <cell>Frederick Clelland</cell>
+            <cell>Carlton</cell>
+            <cell>19853/1913</cell>
+            <cell/>
+          </row>
+          <row>
+            <cell>1915</cell>
+            <cell>John Thomas</cell>
+            <cell>Carlton</cell>
+            <cell>1574/1915</cell>
+            <cell/>
+          </row>
+          <row>
+            <cell>1918</cell>
+            <cell>Lilian Agnes</cell>
+            <cell>Carlton</cell>
+            <cell>1391/1918</cell>
+            <cell/>
+          </row>
+        </table>
+        <p>Electoral rolls show that Christopher Casey was a hatter living with his wife Violet at 191 Queensberry Street in 1912/1913; and in 1914 they were living at 119 [or 191] Berkely Street, his occupation given as a labourer.</p>
+        <p>Frederick enlisted on 31 October 1941 at Royal Park in the Citizen Military Force, and was discharged as medically unfit in February 1942. His enlistment record records that he had blue eyes, brown hair, was 5ft 8 ½ tall, had a burn on his right elbow, and tattoos including “Thelma”, a girl’s head, and two hearts on his right forearm.</p>
+        <p>In 1949, Frederick was living with Mary Margaret Casey (occupation: feeder), and his mother Violet (home duties) at 188 Leicester Street. Violet died in Carlton in 1954 aged 71. Frederick died in Carlton in 1970.</p>
+      </div>
+    </body>
+    <back>
+      <div type="bibliography">
+        <listBibl>
+          <bibl>The Argus, 2 April 1949: 8</bibl>
+          <bibl><ref target="http://nla.gov.au/nla.news-article22720176">http://nla.gov.au/nla.news-article22720176</ref></bibl>
+          <bibl>The Herald, 11 April 1949: 3</bibl>
+          <bibl><ref target="http://nla.gov.au/nla.news-article248929239">http://nla.gov.au/nla.news-article248929239</ref></bibl>
+          <bibl>The Herald, 23 September 1949: 2</bibl>
+          <bibl><ref target="http://nla.gov.au/nla.news-article246025057">http://nla.gov.au/nla.news-article246025057</ref></bibl>
+          <bibl>NAA: B884, V143505, ID 6265473</bibl>
+        </listBibl>
+      </div>
+    </back>
+  </text>
+</TEI>
