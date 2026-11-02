@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="https://historicalesque.github.io/carlton/schema/carlton.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0" type="unknown" xml:lang="en">
+  <teiHeader>
+    <fileDesc>
+      <titleStmt>
+        <title>Tasmanian Timber Bending Works</title>
+        <author>Andy May</author>
+      </titleStmt>
+      <publicationStmt>
+        <publisher>Carlton Common Ground</publisher>
+        <idno type="entry">Tasmanian-Timber-Bending-Works</idno>
+        <availability>
+          <licence target="https://creativecommons.org/licenses/by-nc/4.0/">CC BY-NC 4.0</licence>
+        </availability>
+      </publicationStmt>
+      <sourceDesc>
+        <listBibl>
+          <bibl><ref target="civic?id=Sands-McDougall-Directory-1910">Sands &amp; McDougall Directory, 1910, p. 199: 100 Tas Timber Bending Co-Petersen, J.</ref></bibl>
+          <bibl><ref target="civic?id=Sands-McDougall-Directory-1915">Sands &amp; McDougall Directory, 1915, p. 196: 100 Tas Timber Bending Co-Petersen, J.</ref></bibl>
+          <bibl><ref target="civic?id=Sands-McDougall-Directory-1920">Sands &amp; McDougall Directory, 1920, p. 208: 100 Tas Timber Bending &amp; Motor Body Wks (J. Petterson)</ref></bibl>
+          <bibl><ref target="civic?id=Sands-McDougall-Directory-1925">Sands &amp; McDougall Directory, 1925, p. 237: 100 Tas Timber Bending Wks (J. Petterson)</ref></bibl>
+          <bibl><ref target="civic?id=Sands-McDougall-Directory-1930">Sands &amp; McDougall Directory, 1930, p. 197: 100 Tas tmbr Bending Wks</ref></bibl>
+          <bibl><ref target="civic?id=Sands-McDougall-Directory-1940">Sands &amp; McDougall Directory, 1940, p. 218: Tasmanian Timber Bending Works</ref></bibl>
+          <bibl><ref target="civic?id=Sands-McDougall-Directory-1940">Sands &amp; McDougall Directory, 1940, p. 218: 100-112 Timber Benders</ref></bibl>
+          <bibl><ref target="civic?id=Sands-McDougall-Directory-1945">Sands &amp; McDougall Directory, 1945, p. 217: Tasmanian Timber Bending Works</ref></bibl>
+        </listBibl>
+      </sourceDesc>
+    </fileDesc>
+    <revisionDesc status="draft">
+      <change when="2026-11-02" type="created">Contributed through the contribution form by Andy May.</change>
+    </revisionDesc>
+  </teiHeader>
+  <text>
+    <body>
+      <div type="summary">
+        <p>Located in Leicester Street from the 1910s to the late 1940s.</p>
+      </div>
+      <div type="detail">
+        <p>In the 1930s, the business at 100 Leicester Street supplied bent timber for a wide range of uses including caravans, surf boards, and trotting sulky shafts. In 1941 the site was offered for sale as part of the estate of the late John Petersen. In 1949, a large fire destroyed part of the building including the boiler room, office, and coach building section, and it seems the business did not recover. Frederick Clelland Casey was acquitted of arson, though he had earlier and later convictions for similar offences. A 1954 photograph shows the demolition of a 100-year-old chimney on the site.</p>
+        <p><ref target="https://handle.slv.vic.gov.au/10381/221773">https://handle.slv.vic.gov.au/10381/221773</ref></p>
+      </div>
+    </body>
+    <back>
+      <div type="bibliography">
+        <listBibl>
+          <bibl>The Argus, 20 November 1937: 28</bibl>
+          <bibl><ref target="http://nla.gov.au/nla.news-article11126026">http://nla.gov.au/nla.news-article11126026</ref></bibl>
+          <bibl>The Herald, 11 December 1937: 46</bibl>
+          <bibl><ref target="http://nla.gov.au/nla.news-article244530930">http://nla.gov.au/nla.news-article244530930</ref></bibl>
+          <bibl>The Age, 11 June 1941: 2</bibl>
+          <bibl><ref target="http://nla.gov.au/nla.news-article205146786">http://nla.gov.au/nla.news-article205146786</ref></bibl>
+          <bibl>The Argus, 3 March 1949: 5</bibl>
+          <bibl><ref target="http://nla.gov.au/nla.news-article22714144">http://nla.gov.au/nla.news-article22714144</ref></bibl>
+          <bibl>The Sun News-Pictorial, 3 March 1949: 18</bibl>
+          <bibl><ref target="http://nla.gov.au/nla.news-article279552191">http://nla.gov.au/nla.news-article279552191</ref></bibl>
+        </listBibl>
+      </div>
+    </back>
+  </text>
+</TEI>
