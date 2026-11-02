@@ -1,11 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?xml-model href="https://historicalesque.github.io/carlton/schema/carlton.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
-<TEI xmlns="http://www.tei-c.org/ns/1.0" type="unknown" xml:lang="en">
+<TEI xmlns="http://www.tei-c.org/ns/1.0" type="org" xml:lang="en">
   <teiHeader>
     <fileDesc>
       <titleStmt>
         <title>Tasmanian Timber Bending Works</title>
         <author>Andy May</author>
+        <respStmt key="community">
+          <resp>Suggestions from</resp>
+          <name>the broader Carlton community</name>
+        </respStmt>
       </titleStmt>
       <publicationStmt>
         <publisher>Carlton Common Ground</publisher>
@@ -31,6 +35,25 @@
       <change when="2026-11-02" type="created">Contributed through the contribution form by Andy May.</change>
     </revisionDesc>
   </teiHeader>
+  <standOff>
+    <listOrg>
+      <org xml:id="subject">
+        <orgName type="main">Tasmanian Timber Bending Works</orgName>
+        <place type="address" from="1910" to="1930">
+          <placeName>100 Leicester Street, Carlton</placeName>
+          <location>
+            <geo>-37.803462 144.960673</geo>
+          </location>
+        </place>
+        <place type="address" from="1940" to="1945">
+          <placeName>Leicester Street, Carlton</placeName>
+        </place>
+        <place type="address" when="1940">
+          <placeName>100-112 Leicester Street, Carlton</placeName>
+        </place>
+      </org>
+    </listOrg>
+  </standOff>
   <text>
     <body>
       <div type="summary">
@@ -38,7 +61,11 @@
       </div>
       <div type="detail">
         <p>In the 1930s, the business at 100 Leicester Street supplied bent timber for a wide range of uses including caravans, surf boards, and trotting sulky shafts. In 1941 the site was offered for sale as part of the estate of the late John Petersen. In 1949, a large fire destroyed part of the building including the boiler room, office, and coach building section, and it seems the business did not recover. Frederick Clelland Casey was acquitted of arson, though he had earlier and later convictions for similar offences. A 1954 photograph shows the demolition of a 100-year-old chimney on the site.</p>
-        <p><ref target="https://handle.slv.vic.gov.au/10381/221773">https://handle.slv.vic.gov.au/10381/221773</ref></p>
+        <figure>
+          <graphic url="https://rosetta.slv.vic.gov.au/delivery/DeliveryManagerServlet?dps_pid=IE147057&amp;dps_func=thumbnail"/>
+          <head><ref target="https://viewer.slv.vic.gov.au/?entity=IE147057&amp;mode=browse">Source: State Library Victoria</ref></head>
+          <figDesc>Image from State Library Victoria</figDesc>
+        </figure>
       </div>
     </body>
     <back>
@@ -54,6 +81,7 @@
           <bibl><ref target="http://nla.gov.au/nla.news-article22714144">http://nla.gov.au/nla.news-article22714144</ref></bibl>
           <bibl>The Sun News-Pictorial, 3 March 1949: 18</bibl>
           <bibl><ref target="http://nla.gov.au/nla.news-article279552191">http://nla.gov.au/nla.news-article279552191</ref></bibl>
+          <bibl><ref target="https://viewer.slv.vic.gov.au/?entity=IE147057&amp;mode=browse">State Library Victoria, IE147057</ref></bibl>
         </listBibl>
       </div>
     </back>
