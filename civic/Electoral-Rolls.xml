@@ -15,13 +15,16 @@
       <publicationStmt>
         <publisher>Carlton Common Ground</publisher>
         <idno type="entry">Electoral-Rolls</idno>
+        <availability>
+          <licence target="https://creativecommons.org/licenses/by-nc/4.0/">CC BY-NC 4.0</licence>
+        </availability>
       </publicationStmt>
       <sourceDesc>
         <p>Contributed through the website.</p>
       </sourceDesc>
     </fileDesc>
     <revisionDesc status="draft">
-      <change when="2026-10-30" type="created">Contributed through the contribution form by Andy May, Mitchell Harrop.</change>
+      <change when="2026-11-04" type="created">Contributed through the contribution form by Andy May, Mitchell Harrop.</change>
     </revisionDesc>
   </teiHeader>
   <text>
@@ -222,13 +225,434 @@
           </table>
         </div>
         <div>
-          <head>For a full list of people in the electoral rolls, see:</head>
-          <p><ref target="people">https://historicalesque.github.io/carlton/people</ref></p>
-        </div>
-        <div>
           <head>For further information see:</head>
           <p>State Library of Victoria, “Researching your Victorian ancestors: Electoral rolls”. <ref target="https://guides.slv.vic.gov.au/victorianancestors/electoral">https://guides.slv.vic.gov.au/victorianancestors/electoral</ref>.</p>
           <p>National Library of Australia, "Electoral rolls research guide” <ref target="https://www.library.gov.au/research/family-history/electoral-rolls-research-guide">https://www.library.gov.au/research/family-history/electoral-rolls-research-guide</ref>.</p>
+        </div>
+        <div>
+          <head>Data extracted so far …</head>
+          <table>
+            <row>
+              <cell><hi rend="bold">Name</hi></cell>
+              <cell><hi rend="bold">Birth Date</hi></cell>
+              <cell><hi rend="bold">Residence Date</hi></cell>
+              <cell><hi rend="bold">Residence Place</hi></cell>
+              <cell><hi rend="bold">VPG Issue</hi></cell>
+              <cell><hi rend="bold">Text</hi></cell>
+              <cell><hi rend="bold">Address mentioned</hi></cell>
+              <cell><hi rend="bold">Notes</hi></cell>
+            </row>
+            <row>
+              <cell>Meredith Green</cell>
+              <cell/>
+              <cell>15 Aug. 1926</cell>
+              <cell>Upwey, Victoria</cell>
+              <cell>Victorian Police Gazette, 2 September 1926, p. 629</cell>
+              <cell>UPWEY.-15.8.26.---Green, Meredith, manufacturing chemist, Bouverie-street, Carlton, reports stolen from his dwelling, at Upwey, a crystal wireless sett (recovered) ; 4 razors (re­covered); a pair of gent's boots, with rubber instep, size 7; a pair of tan leggings; 2 watches, with luminous dials; a black felt hat; 2 pocket knives; 2 boot brushes; and a tin of Nugget boot polish. Value £5. Entrance was effected by breaking a back window. —0.14581. 26th August, 1926.</cell>
+              <cell>81-83 Bouverie Street</cell>
+              <cell>No street number in original. In the 1925 directory, Meredith R. Green is listed at 81-83 Bouverie Street. Add number to entry.</cell>
+            </row>
+            <row>
+              <cell>Fred Seward</cell>
+              <cell/>
+              <cell>19 Mar. 1930</cell>
+              <cell>Melbourne, Victoria</cell>
+              <cell>Victorian Police Gazette, 27 March 1930, p. 388.</cell>
+              <cell>MELBOURNE.—19.3.30.-Seward, Fred., 209 Bouverie Street, Carlton, reports stolen from Victoria-street, Melbourne, a gent's black-enamelled bicycle, "Mildura Flyer " in silver on down bar, red tire on front wheel, white tire with red tread on rear wheel, Major Taylor handles, Brooks racing saddle, B.S.A. parts. Value £5.—0.6830. 20th March, 1930.</cell>
+              <cell>209 Bouverie Street</cell>
+              <cell/>
+            </row>
+            <row>
+              <cell>Michael Stack</cell>
+              <cell/>
+              <cell>24 Dec. 1931</cell>
+              <cell>Victoria</cell>
+              <cell>Victorian Police Gazette, 7 April 1932, p. 436.</cell>
+              <cell>RUSSELL STREET (M.C.P.)—24.12.3.—Stack, Michael, 156 Bouverie-street, Carlton, reports finding at the corner of Rathdown and Queensberry streets, Carlton, an oblong-shaped wicker basket, size 24 x 12 inches.—0.8415. 6th April,1932.</cell>
+              <cell>56 Bouverie Street</cell>
+              <cell/>
+            </row>
+            <row>
+              <cell>Charlotte Cleeland</cell>
+              <cell/>
+              <cell>29 Apr. 1930</cell>
+              <cell>Carlton, Victoria</cell>
+              <cell>Victorian Police Gazette, 8 May 1930, p. 512.</cell>
+              <cell>CARLTON.—29.4.30.—Cleeland, Charlotte, grazier, Cowes, Phillip Island, reports stolen from her motor car, at 217 Bouverie-street, Carlton, a spare wheel rim, with a Dunlop tire attached, size 29 x 4.40. Value £8—0.10428. 1st May, 1930.</cell>
+              <cell>217 Bouverie Street</cell>
+              <cell/>
+            </row>
+            <row>
+              <cell>Andrew Vlass</cell>
+              <cell/>
+              <cell>7 Apr. 1932</cell>
+              <cell>Carlton, Victoria</cell>
+              <cell>Victorian Police Gazette, 14 April 1932, p. 447.</cell>
+              <cell>CARLTON.—7.4.32—Vlass, Andrew, 172 Bouverie-street, Carlton, reports stolen from his dwelling, a gent's blue twill suit with a white stripe; 3 shirts; 2 dozen pairs of woollen socks; a brown woollen lumber jacket; and 12 handkerchiefs. Thomas Paizis reports stolen at the same time and place, a brown Borsalino hat; a blue coat; and a torch. Gerald Drakopulos reports stolen at the same time and place, 2 poplin shirts; a silk shirt; a pair of gold-mpunted braces, "G.D." thereon; a gold-mounted amber cigarette holder and case; a green fountain pen; and a Gillette safety razor in a nickel case. Entrance was effected by forcing a rear widow.—O.8644. 8th April, 1932.</cell>
+              <cell>172 Bouverie Street</cell>
+              <cell/>
+            </row>
+            <row>
+              <cell>Dela Marshall</cell>
+              <cell/>
+              <cell>9 Mar. 1932</cell>
+              <cell>Carlton, Victoria</cell>
+              <cell>Victorian Police Gazette, 21 April 1932, p. 463.</cell>
+              <cell>CARLTON.—9.3.32.—Smith, Lauder, is charged, on warrant, issued at the instance of Dela Marshall, 176 Bouverie-street, Carlton, with deserting his illegitimate child, at Carlton. Description:—About 18 years, about 5 ft. 11 in., well built, fair complexion and hair; wore a navy-blue suit, grey hat, and tan boots.—0.9716. 20th April, 1932.</cell>
+              <cell>176 Bouverie Sreet</cell>
+              <cell/>
+            </row>
+            <row>
+              <cell>Garrett O'Brien</cell>
+              <cell/>
+              <cell>1930</cell>
+              <cell>Carlton, Victoria</cell>
+              <cell>Victorian Police Gazette, 28 August 1930, p. 1072.</cell>
+              <cell>MISSING FRIENDS: O'Brien, Garrett. is inquired for by his brother, Daniel O'Brien, care of Mr. Stark, 156 Bouverie-street. Carlton. Description:—68 years, 5 ft. 8 in., medium build, dark complexion, hair and moustache turning grey, partly bald, sharp features; wore dark clothes and black felt hat.—0.21525. 24th August, 1930.</cell>
+              <cell>156 Bouverie Street.</cell>
+              <cell/>
+            </row>
+            <row>
+              <cell>John McArthur</cell>
+              <cell/>
+              <cell>17 Sep. 1930</cell>
+              <cell>North Melbourne, Victoria</cell>
+              <cell>Victorian Police Gazette, 25 November 1930, p. 1168.</cell>
+              <cell>PROPERTY FOUND: MELBOURNE NORTH. —17.9.30. - McArthur, John, 249 Bouverie-street, Carlton, reports finding in Curzon-street, North Melbourne, a ring containing 9 keys and a brass tag with "Baptists" thereon.—0.24077. 20th September, 1930.</cell>
+              <cell>249 Bouverie Street</cell>
+              <cell/>
+            </row>
+            <row>
+              <cell>A. H. Brown</cell>
+              <cell/>
+              <cell>5 Dec. 1931</cell>
+              <cell>Carlton, Victoria</cell>
+              <cell>Victorian Police Gazette, 7 January 1932, p. 6.</cell>
+              <cell>CARLTON.—5.12.31.—Brown, A. H., and Sons, 120 Bouverie-street, Carlton, report stolen from their factory, 4 pairs of shears for cutting cloth, black colour, with brass rivets; 2 cutting knives, about 26 inches long, wooden handles; a number of motor tools, including box spanners and screw-drivers; a wooden box, containing chemical weights, made of brass and metal; a number of weights, stamped 1 to 5 grams, metal weights stamped 5 to 500 milligrams; a quantity of black head-silk dressing for hats; a number of 2-in, spanners; 4 or 5 pairs of concave scissors; and 4s. or 5s. in stamps. Entrance effected by forcing a wire frame from a window and breaking the window.—0.33428. 31st December,1931.</cell>
+              <cell>120 Bouverie Street</cell>
+              <cell/>
+            </row>
+            <row>
+              <cell>Frederick Yott</cell>
+              <cell/>
+              <cell>26 Jul. 1929</cell>
+              <cell>Carlton, Victoria</cell>
+              <cell>Victorian Police Gazette, 1 August 1929, p. 684.</cell>
+              <cell>OFFENCES OF VIOLENCE TO PERSONS. CARLTON.—26.7.29.—Yott. Frederick, motor salesman, 16 Collins-street, Essendon, reports that he was held up at the point of a revolver and robbed of an Elgin watch, with a dark leather strap, glass cracked; and about 4s. in silver; in a lane at the rear of 81 Bouverie-street, Carlton, by a man, name unknown. Description:—About 24 years, 5 ft. 4 or 5 in., slim build, abut 8 st., dark complexions, large nose, thin face; wore a dark overcoat and felt hat turned down all round.—O.16293. 28th July, 1929.</cell>
+              <cell>81 Bouverie Street</cell>
+              <cell/>
+            </row>
+            <row>
+              <cell>Edward Phillips</cell>
+              <cell/>
+              <cell>30 Jul. 1929</cell>
+              <cell>Melbourne, Victoria</cell>
+              <cell>Victorian Police Gazette, 8 August 1929, p. 707.</cell>
+              <cell>MELBOURNE.—30.7.29.—Phillips, Edward, 100 Bouverie-street, Carlton, reports stolen from outside 12A shed, Australian Wharf north, a light-brown horse, light delivery sort; a light delivery cart, black wheels; and a set of second-hand harness. Value £10,—O.16698. 1st August, 1929.</cell>
+              <cell>100 Bouverie Street</cell>
+              <cell/>
+            </row>
+            <row>
+              <cell>Ernest Arthur Johnston</cell>
+              <cell/>
+              <cell>21 Feb. 1925</cell>
+              <cell>Carlton, Victoria</cell>
+              <cell>Victorian Police Gazette, 26 February 1925, p. 162.</cell>
+              <cell>OFFENCES OF VIOLENCE WITH PROPERTY. CARLTON.—21.2.25.—Johnston, Ernest Arthur, motor smith, Barkly-place, off Bouverie-street, Carlton, reports stolen from his factory, a set of stocks and dies, consisting of ¼-in., 5-16-in, 3/8-in., 7-16-in., ½-in., 5/8-in., and ¾-in. sizes; and a 3/8-in. bolt cutter. Value £7 10s. Entrance was effected by forcing the lock off the front door.—O.2828. 24th February, 1925.</cell>
+              <cell>Barkly Place</cell>
+              <cell/>
+            </row>
+            <row>
+              <cell>Smith</cell>
+              <cell/>
+              <cell>26 May 1925</cell>
+              <cell>St Kilda, Victoria</cell>
+              <cell>Victorian Police Gazette, 28 May 1925, p. 374.</cell>
+              <cell>ST. KILDA.—26.5.25.—Smith, —, 211 Bouverie-street, Carlton, reports stolen from Patterson-street, St. Kilda, a Cleveland motor car, double-seater, black colour, registered No. 25258.—O.7917. 27th May, 1925.</cell>
+              <cell>211 Bouverie Street</cell>
+              <cell/>
+            </row>
+            <row>
+              <cell>A. H. Bown</cell>
+              <cell/>
+              <cell>29 Jun. 1925</cell>
+              <cell>Melbourne, Victoria</cell>
+              <cell>Victorian Police Gazette, 2 July 1925, p. 449.</cell>
+              <cell>MELBOURNE.—29.6.25.—Bown, A. H., and Co., corner of Bouverie-street and Lincoln-square, Carlton, report stolen from their traveller’s car in Elizabeth-street, Melbourne, a large cardboard box, size 18 inches by 18 inches by 15 inches, containing 10 ladies’ Doveton velvet and velour hats, small shapes; and a cardboard box, size 14 inches by 14 inches by 12 inches, containing 9 children’s black velvet hats. Value £10.—O.9667. 39th June, 1925.</cell>
+              <cell>Corner of Bouverie Street ad Lincoln Square</cell>
+              <cell/>
+            </row>
+            <row>
+              <cell>William Wooley</cell>
+              <cell/>
+              <cell>4 Aug. 1925</cell>
+              <cell>Russell-Street, Victoria</cell>
+              <cell>Victorian Police Gazette, 6 August 1925, p. 536.</cell>
+              <cell>RUSSELL-STREET.—4.8.25.—Wooley, William, newsboy, 214 Bouverie-street, Carlton, reports finding in Exhibition-street, Melbourne, a key-ring, 2 Yale lock keys; a Miller lock key; and 4 small keys.—O.11823. 5th August, 1925.</cell>
+              <cell>214 Bouverie Street</cell>
+              <cell/>
+            </row>
+            <row>
+              <cell>Francis Wilson</cell>
+              <cell/>
+              <cell>17 Jan. 1933</cell>
+              <cell>Carlton, Victoria</cell>
+              <cell>Victorian Police Gazette, 19 January 1933, p. 60.</cell>
+              <cell>CARLTON.—17.1.33.—Wilson, Francis, grocer, 144 Bouverie­street, Carlton, reports stolen from his shop, a box of P.K. chewing gum; a box containing 12 cakes of MacRobertson's chocolates; 2 boxes of chocolates; 9 bottles of cordials; 250 small packets of cigarettes, assorted brands; 12 tins of Town Talk tobacco; 5 lb. of biscuits; and l0s. Entrance effected by forcing a window over the front door.—O.1556. 18th January, 1933.</cell>
+              <cell>144 Bouverie Street</cell>
+              <cell/>
+            </row>
+            <row>
+              <cell>William James Jones</cell>
+              <cell/>
+              <cell>1933</cell>
+              <cell>Carlton, Victoria</cell>
+              <cell>Victorian Police Gazette, 26 January 1933, p. 94.</cell>
+              <cell>RETURN OF DEALERS' LICENCES GRANTED, REBEWED, TRANSFERRED, REVOKED, OR SUSPENDED BY COURTS OF PETTY SESSIONS DURING THE MONTH OF DECEMBER, 1933. — CARLTON.—13.12.32. — William James Jones, 161 Bouverie-street, Carlton—Fee Paid.— 10s.</cell>
+              <cell>161 Bouverie Street</cell>
+              <cell/>
+            </row>
+            <row>
+              <cell>George Albert Rogers</cell>
+              <cell>abt 1905</cell>
+              <cell>1933</cell>
+              <cell>Carlton, Victoria</cell>
+              <cell>Victorian Police Gazette, 26 January 1933, p. 98.</cell>
+              <cell>RETURN OF COLLECTORS' LICENCES GRANTED, REBEWED, TRANSFERRED, REVOKED, OR SUSPENDED BY COURTS OF PETTY SESSIONS DURING THE MONTH OF DECEMBER, 1932. — CARLTON — 13.12.32.— George Albert Rogers — 208 Bouverie-street, Carlton — 28 years, 5 ft. 4 in., reddish complexion</cell>
+              <cell>208 Bouverie Street</cell>
+              <cell/>
+            </row>
+            <row>
+              <cell>Robert Thompson</cell>
+              <cell>abt 1868</cell>
+              <cell>1933</cell>
+              <cell>Carlton, Victoria</cell>
+              <cell>Victorian Police Gazette, 26 January 1933, p. 98.</cell>
+              <cell>RETURN OF COLLECTORS' LICENCES GRANTED, REBEWED, TRANSFERRED, REVOKED, OR SUSPENDED BY COURTS OF PETTY SESSIONS DURING THE MONTH OF DECEMBER, 1932. — CARLTON — 13.12.32.— Robert Thompson— 131 Bouverie-street, Carlton — 65 years, 5 ft. 6 in., medium build — Number of licence and badge: 2689 — Fee paid: 1s.</cell>
+              <cell>131 Bouverie Street</cell>
+              <cell/>
+            </row>
+            <row>
+              <cell>Frederick L. Yott</cell>
+              <cell/>
+              <cell>25 Jan. 1933</cell>
+              <cell>Melbourne, Victoria</cell>
+              <cell>Victorian Police Gazette, 2 February 1933, p. 110.</cell>
+              <cell>MELBOURNE.—25.1.33.—Yott, Frederick L., 81 Bouverie-street, carlton, reports stolen from a motor car in Little Collins-street, Melbourne, an attache case; 10 hack-saw blades, branded "Made in Japan"; 12 files, branded with a dragon; motor tube valve parts; and a motor oil filter.—O.2101. 26th January, 1933.</cell>
+              <cell>81 Bouverie Street</cell>
+              <cell/>
+            </row>
+            <row>
+              <cell>Antonio Fazino</cell>
+              <cell/>
+              <cell>25 Jun. 1932</cell>
+              <cell>North Wharf, Victoria</cell>
+              <cell>Victorian Police Gazette, 39 June 1932, p. 712.</cell>
+              <cell>NORTH WHARF.—25.6.32.—Fazino, Antonio, 180 Bouverie-street, Carlton, reports stolen from No. 6 berth, North Wharf, a gent's red and black enamelled bicycle, black mudguards, turned-down racing gandles, red tires.—O.15839. 27th June, 1932.</cell>
+              <cell>180 Bouverie Street</cell>
+              <cell/>
+            </row>
+            <row>
+              <cell>A. H. Bown</cell>
+              <cell/>
+              <cell>22 Apr. 1933</cell>
+              <cell>Port Melbourne, Victoria</cell>
+              <cell>Victorian Police Gazette, 27 April 1933, p. 473.</cell>
+              <cell>MELBOURNE PORT.—22.4.33.—Bown, A. H., 120 Bouverie­street, Carlton, reports stolen from a motor car at the Sandridge Golf Links, Port Melbourne, a new fibre suit-case, 27 x 16 inches; a gent's grey hat; a pair of black shoes; 2 pairs of gents' golf socks; a pullover; a lumber jacket; a pair of gent’s grey trousers, faint brown stripe; a heavy double-breasted fawn and green overcoat; a pair of gent’s dark-tan gloves; and 2 sets of keys on rings.—O.9218. 23rd April, 1933.</cell>
+              <cell>120 Bouverie Street</cell>
+              <cell/>
+            </row>
+            <row>
+              <cell>Israel Sher</cell>
+              <cell/>
+              <cell>8 Jun. 1933</cell>
+              <cell>Carlton, Victoria</cell>
+              <cell>Victorian Police Gazette, 15 June 1933, p. 616.</cell>
+              <cell>CARLTON.—8.6.33.—Sher, Israel, 52 Bouverie-street, Carlton. reports stolen from his factory, an Underwood typewriter, No. 5/372480; 50 yards of grey suede leather cloth; 25 yards of mottled grey leather cloth; several leather and fibre suit-cases; a special Alex radiator; a Todd protectograph. Personal model; a 30-in. cabin suit-case; 3 solid leather suit-cases; 5 24-in. vulcanite fibre suit-cases; 4 pieces of moire lining; 65 dozen Japanese zip fasteners; 16 dozen British zip fasteners; 20 British suit-ease locks; 36 dozen Cheney’s suit-case locks; 39 lb. of orange-coloured thread, in balls; 3 coloured attache cases; 7 16-in. leather kit-bags, with side locks and end straps. Entrance effected by cutting a window bar and breaking the window. —O.13634. 13th June, 1933.</cell>
+              <cell>52 Bouverie Street</cell>
+              <cell/>
+            </row>
+            <row>
+              <cell>Spry</cell>
+              <cell/>
+              <cell>28 Jun. 1933</cell>
+              <cell>Carlton, Victoria</cell>
+              <cell>Victorian Police Gazette, 6 July 1933, p. 686.</cell>
+              <cell>PROPERTY FOUND. CARLTON.—28.6.38.—Spry, -, 106 Bouverie-street. Carlton, reports finding on his premises, a gent’s gabardine overcoat, lined with brown material, black patch under right arm on inside.—O.15442. 1st July, 1933.</cell>
+              <cell>106 Bouverie Street</cell>
+              <cell/>
+            </row>
+            <row>
+              <cell>Arthur Bafnes</cell>
+              <cell/>
+              <cell>1933</cell>
+              <cell>Victoria</cell>
+              <cell>Victorian Police Gazette, 10 August 1933, p. 783.</cell>
+              <cell>MELBOURNE.—7.8.33.—Mamowt, Nick, is charged, on warrant, with unlawful assault of Arthur Bafues, 172 Bouverie-street, Carlton, at Melbourne. Description:—Greek, 35 years, 5 ft. 9 in., thick-set, dark hair and complexion, clean-shaven; usually wears a grey suit.—O.19094. 9th August, 1933.</cell>
+              <cell>172 Bouverie Street</cell>
+              <cell/>
+            </row>
+            <row>
+              <cell>William Gilmore</cell>
+              <cell>abt 1902</cell>
+              <cell>1933</cell>
+              <cell>Carlton, Victoria</cell>
+              <cell>Victorian Police Gazette, 7 September 1933, p. 873.</cell>
+              <cell>RETURN OF COLLECTORS' LICENCES GRANTED, REBEWED, TRANSFERRED, REVOKED, OR SUSPENDED BY COURTS OF PETTY SESSIONS DURING THE MONTH OF AUGUST, 1933. — CARLTON — 18.8.33 — William Gilmore — 102 Bouverie Street, Carlton — 31 years, 5 ft. 8 in., medium build, fair hair, blue eyes — Number of licence and badge: 5738 — Fee paid: 1s.</cell>
+              <cell>102 Bouverie Street</cell>
+              <cell/>
+            </row>
+            <row>
+              <cell>Elaine Roberts</cell>
+              <cell/>
+              <cell>1 Aug. 1932</cell>
+              <cell>Carlton, Victoria</cell>
+              <cell>Victorian Police Gazette, 4 August 1932, p. 814.</cell>
+              <cell>CARLTON.— 1.8.32.—Roberts, Elaine, 100 Bouverie-street, Carlton, reports stolen from the verandah at 65 Pelham-street, Carlton, a baby's white perambulator; a rug; and a blanket.—O.19082. 2nd August, 1932.</cell>
+              <cell>100 Bouverie Street &amp; 65 Pelham Street</cell>
+              <cell/>
+            </row>
+            <row>
+              <cell>N. B. Hammerly</cell>
+              <cell/>
+              <cell>1928</cell>
+              <cell>Carlton, Victoria</cell>
+              <cell>Victorian Police Gazette, 5 April 1928, p. 331.</cell>
+              <cell>LIST OF PAWNBROKERS AND SECOND-HAND DEALERS. Carlton. N.B. Hammerley, 217 Bouverie-street, Carlton, N.3.</cell>
+              <cell>217 Bouverie Street</cell>
+              <cell/>
+            </row>
+            <row>
+              <cell>William Jordine</cell>
+              <cell>abt 1877</cell>
+              <cell>23 Aug. 1932</cell>
+              <cell>Carlton, Victoria</cell>
+              <cell>Victorian Police Gazette, 25 August 1932, p, 871.</cell>
+              <cell>Jordine, William, also known as William Jordan, is missing from his home at 166 Bouverie-street, Carlton, since the 18th inst. Decsription:— Invalid pensioner, about 55 years, about 5 ft. 3 or 4 in., thin build, fair complexion, grey hair, right arm withered; wore a brown coat, navy-blue trousers, light-grey felt hat, and tan shoes.—O.21138. 23rd August, 1932.</cell>
+              <cell>166 Bouverie Street</cell>
+              <cell/>
+            </row>
+            <row>
+              <cell>W. Spry</cell>
+              <cell/>
+              <cell>10 Aug. 1928</cell>
+              <cell>Carlton, Victoria</cell>
+              <cell>Victorian Police Gazette, 16 August 1928, p. 694.</cell>
+              <cell>PROPERTY FOUND. — RUSSELL-STREET.— 10.8.28.—Spry, W., c/o Cornie Boot Co., 106 Bouverie-street, carlton, reports finding in his car, in Spring-street, Melbourne, a pair of lady's second-hand black shoes.—O.16523. 11th August, 1928.</cell>
+              <cell>106 Bouverie Street</cell>
+              <cell/>
+            </row>
+            <row>
+              <cell>N. V. Hammerly</cell>
+              <cell/>
+              <cell>1928</cell>
+              <cell>Carlton, Victoria</cell>
+              <cell>Victorian Police Gazette, 13 September 1928, p. 749.</cell>
+              <cell>AMENDED LIST OF PAWNBROKERS AND SECOND-HAND DEALERS. — ALTERATION OF ADDRESS — From N.V. Hammerly, 217 Bouverie-street, carlton, to N.V. Hammerly, 424 Elizabeth-street, Melbourne.</cell>
+              <cell>217 Bouverie Street</cell>
+              <cell/>
+            </row>
+            <row>
+              <cell>Jim Ames</cell>
+              <cell>abt 1888</cell>
+              <cell>13 Dec. 1928</cell>
+              <cell>Carlton, Victoria</cell>
+              <cell>Victorian Police Gazette, 20 December 1928, p. 999.</cell>
+              <cell>CARLTON.—13.12.28.—Ames, Jim, foreman, Fire Station, Bouverie-street, Carlton, reports stolen from the corner of Elgin and Rathdown streets, Carlton, a gent's black-enamelled bicycle, Dunlop tires, almost new, new rim on front wheel, three new spokes in front wheel, very long spring saddle, Major Taylor handles, slightly rusted. The bicycle was subsequently recovered at Frank Straker's second-hand shop, Lygon-street, Brunswick, where it was sold by a man who gave the name of J. Scott. Description:—About 40 years, about 6 feet, athletic build.—O.24889. 14th December, 1928.</cell>
+              <cell>Fire Station, Bouverie Street</cell>
+              <cell/>
+            </row>
+            <row>
+              <cell>A. H. Bown</cell>
+              <cell/>
+              <cell>2 Feb. 1927</cell>
+              <cell>Melbourne, Victoria</cell>
+              <cell>Victorian Police Gazette, 10 February 1927, p. 130.</cell>
+              <cell>MELBOURNE.—2.2.27.—Bown, A. H., and Co., Bouverie­street, Carlton, reports stolen from his motor car, in Swanston­street, Melbourne, 2 boxes, containing about 30,children's hats; and a box containing, 7 ladies' felt bats, various shades. :Value £16.—0.1844. 3rd February, 1927.</cell>
+              <cell/>
+              <cell/>
+            </row>
+            <row>
+              <cell>Ah Goon</cell>
+              <cell/>
+              <cell>22 Mar. 1927</cell>
+              <cell>Carlton, Victoria</cell>
+              <cell>Victorian Police Gazette, 24 March 1927, p. 236.</cell>
+              <cell>LARCENY. CARLTON.—22.3.27.—Ah Goon, fruiterer, 63 Bouverie-street, Carlton, reports stolen from his dwelling, a light-grey sac suit, almost new, maker’s name, "Weir," on inside of collar. —0.4830. 23rd March, 1927.</cell>
+              <cell>63 Bouverie Street</cell>
+              <cell/>
+            </row>
+            <row>
+              <cell>Francis Wilson</cell>
+              <cell/>
+              <cell>21 Apr. 1927</cell>
+              <cell>Carlton, Victoria</cell>
+              <cell>Victorian Police Gazette, 28 April 1927, p. 320.</cell>
+              <cell>CARLTON.—21.4.27.—Wilson, Francis, grocer, 144 Bouverie-street, Carlton, reports stolen from his motor car, a side light; a battery; a clock; a spotlight; a pair of gloves; a cut-out; and 8 gallons of petrol. Value £16. The car was stolen from Victoria-street, Carlton, and subsequently recovered at Abbotsford.—O.6504. 25th April, 1927.</cell>
+              <cell>144 Bouverie Street</cell>
+              <cell/>
+            </row>
+            <row>
+              <cell>Richard Fitzpatrick</cell>
+              <cell/>
+              <cell>1927</cell>
+              <cell>Carlton, Victoria</cell>
+              <cell>Victorian Police Gazette, 28 July 1927, p. 546.</cell>
+              <cell>WARRANTS ISSUED. CARLTON.—7.6.27.—Hutchinson, Richard, is charged on warrant, with wilfully breaking a window in the building of Richard Fitzpatrick, dealer, 173 Bouverie-street, Carlton, at Carlton. Description: 25 years, 5 ft. 2or 3 in., medium build, fair complexion and hair.—O.13195. 27th July, 1927.</cell>
+              <cell>173 Bouverie Street</cell>
+              <cell/>
+            </row>
+            <row>
+              <cell>Quinto Civelli</cell>
+              <cell/>
+              <cell>28 Oct. 1927</cell>
+              <cell>Carlton, Victoria</cell>
+              <cell>Victorian Police Gazette, 3 November 1927, p. 798.</cell>
+              <cell>LARCENY. CARLTON.—28,1-0.27.—Civelli, Quinto, labourer; 131 Bouverie-street, Carlton, reports stolen from his room, a gramophone. Value £4 10s.—O.19278. 29th October, 1927.</cell>
+              <cell>131 Bouverie Street</cell>
+              <cell/>
+            </row>
+            <row>
+              <cell>William Jones</cell>
+              <cell/>
+              <cell>1932</cell>
+              <cell>Carlton, Victoria</cell>
+              <cell>Victorian Police Gazette, 28 January 1932, p. 105.</cell>
+              <cell>RETURN OF DEALERS' LICENCES GRANTED, REBEWED, TRANSFERRED, REVOKED, OR SUSPENDED BY COURTS OF PETTY SESSIONS DURING THE MONTH OF DECEMBER, 1931.— CARLTON — 15.12.31—William Jones — 165 Bouverie Street, Carlton —  Number of licence and badge: 2379</cell>
+              <cell>165 Bouverie Street</cell>
+              <cell/>
+            </row>
+            <row>
+              <cell>Carlton United Breweries</cell>
+              <cell/>
+              <cell>13 Feb. 1931</cell>
+              <cell>Flemington, Victoria</cell>
+              <cell>Victorian Police Gazette, 26 February 1931, p. 195.</cell>
+              <cell>FLEMINGTON.—13.2.31.—Carlton United Breweries, 36 Bouverie-street, Carlton, report stolen from their motor lorry, in Mt. Alexander-road, Flemington, an 18-gallon kilderkin of Victoria bitter ale. Value £6. A man and woman, names unknown, suspected. Descriptions:—1st. 35 to 40 years 6 feet, very fair hair, turning bald, sharp features; wore a very light-blue dust-coat, grey trousers, and patent leather shoes. 2nd About 28 years, 5 ft. 6 in., very dark hair and complexion, Italian appearance.—O.4603. 21st February, 1931.</cell>
+              <cell>36 Bouverie Street</cell>
+              <cell/>
+            </row>
+            <row>
+              <cell>Andrew Naylor</cell>
+              <cell/>
+              <cell>22 Jul. 1931</cell>
+              <cell>Melbourne, Victoria</cell>
+              <cell>Victorian Police Gazette, 30 July 1931, p. 852.</cell>
+              <cell>MELBOURNE.—22.7.31.— Naylor, Andrew, 213 Bouverie­street, Carlton, reports stolen from Elizabeth-street, Melbourne, a gent’s greenish-enamelled bicycle, Major Taylor handles, free wheel, left pedal broken, mudguard on rear tied with wire, very old.—O.20531. 23rd July, 1931.</cell>
+              <cell>213 Bouverie Street</cell>
+              <cell/>
+            </row>
+            <row>
+              <cell>Timothy Tierney</cell>
+              <cell>abt 1905</cell>
+              <cell>14 Jan. 1926</cell>
+              <cell>Carlton, Victoria</cell>
+              <cell>Victorian Police Gazette, 21 January 1926, p. 52.</cell>
+              <cell>Special inquirt is requested by the C.I. Police, Melbourne, with a view of tracing the present whereabouts of Timothy Tierney, who formerly resided at 211 Bouverie-street, Carlton. Tierney is a brother-in-law of Donald Hatfield, arrested on a number of charges of housebreaking, and is also the owner of motor car No. 50757, which is at present held by the C.I. Police. Description: Carpenter, 21 years, 5 ft. 7 or 8 in., medium build, medium complexion and hair.—O.681. 14th January, 1926.</cell>
+              <cell>211 Bouverie Street</cell>
+              <cell/>
+            </row>
+          </table>
         </div>
       </div>
     </body>
