@@ -1323,7 +1323,7 @@
     const entry = collect();
     const xml = TEIEntry.build(entry);
     const checks = TEIEntry.check(entry);
-    $('checks').replaceChildren(...(checks.length ? checks : [{ level: 'ok', text: 'Everything looks fine.' }]).map((c) => {
+    $('checks').replaceChildren(...(checks.length ? checks : [{ level: 'ok', text: 'The preview looks fine. Once you send it, the editors will review your suggestion before anything changes on the site.' }]).map((c) => {
       const li = document.createElement('li');
       li.className = c.level;
       li.textContent = c.text;
