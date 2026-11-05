@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="https://historicalesque.github.io/carlton/schema/carlton.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0" type="person" xml:lang="en">
+  <teiHeader>
+    <fileDesc>
+      <titleStmt>
+        <title>Captain William Radcliffe of Bouverie Street</title>
+        <respStmt key="community">
+          <resp>Suggestions from</resp>
+          <name>the broader Carlton community</name>
+        </respStmt>
+      </titleStmt>
+      <publicationStmt>
+        <publisher>Carlton Common Ground</publisher>
+        <idno type="entry">Captain-William-Radcliffe-of-Bouverie-Street</idno>
+        <availability>
+          <licence target="https://creativecommons.org/licenses/by-nc/4.0/">CC BY-NC 4.0</licence>
+        </availability>
+      </publicationStmt>
+      <sourceDesc>
+        <p>Contributed through the website.</p>
+      </sourceDesc>
+    </fileDesc>
+    <revisionDesc status="draft">
+      <change when="2026-11-05" type="created">Contributed through the contribution form.</change>
+    </revisionDesc>
+  </teiHeader>
+  <standOff>
+    <listPerson>
+      <person xml:id="subject">
+        <persName type="main">Captain William Radcliffe of Bouverie Street</persName>
+      </person>
+    </listPerson>
+  </standOff>
+  <text>
+    <body>
+      <div type="summary">
+        <p>Captain Radcliffe was a prominent local figure and leader of the Carlton Rifle Company who lived in Bouverie Street, Carlton.</p>
+      </div>
+      <div type="detail">
+        <p>In the nineteenth century, Carlton had its own troop of soldiers, the Carlton Rifle Company, who were based in a drill hall on Grattan Street. From its founding in 1860 until he left Melbourne in early 1876, this Company of unpaid part-time soldiers was led by William Radcliffe, a prominent local resident who lived in Bouverie Street just off Grattan Street and worked in the city as a partner in a firm of wholesale grocers. He was a keen cricketer and in 1860, the same year that the Carlton Rifle Company was founded, he became the founding President of the Carlton Cricket Club.</p>
+        <p>The Carlton Rifle Company was one of many such companies of unpaid part-time soldiers in the various suburbs around Melbourne and in regional centres who formed what was known as the Victorian Volunteer Force. These part-time soldiers were the basis of the colony’s defences in those days. The volunteers were not paid but were supplied with uniforms and armaments, and were expected to turn up to parades or training two or three times a week. Parades were held in the early morning before work, or in the evening after work, and involved training in military drill and at times classes in gymnastics, boxing and fencing.</p>
+        <p>The Carlton Rifle Company was formed in 1860 and operated for a quarter of a century, until it was disbanded in February 1884. During that time, it had a membership of between 100 and 175 men, plus up to six officers. The members of the Company were typically a mixture of ordinary working men, the sons of well-to-do families, former soldiers who had settled in the colony, and men who just enjoyed the companionship that the Company offered. Parades were held several times a week at their drill hall or ‘orderly room’, which was in Grattan Street, on the south side between Lygon and Drummond Streets. Once a year, usually at Easter, the Company would attend the annual encampment at Sunbury or elsewhere outside the city, at which all of the troops and companies of the Victorian Volunteer Force would assemble for reviews, parades and mock battles.</p>
+        <p>In October 1864 the members of the Carlton Rifle Company presented Captain Radcliffe with a handsome sword in appreciation of his services. A newspaper account at the time noted that:</p>
+        <p><hi rend="italic">“Everyone acquainted with the history of the volunteer movement here will be aware that for a long time Captain Radcliffe had an up-hill task, and that much merit and much courage was required to win for him and for his corps the present high position they occupy. The entire force will be pleased to hear of the honour done to an able officer, a splendid rifleman, and a right good volunteer”. (The Australasian, 22 October 1864)</hi></p>
+        <p>Radcliffe was a champion rifle target shooter. In 1860 he won the Governor Barkly prize at an inter-company rifle shooting competition, and the following year won a gold medal in a competition against thirty of the best riflemen in the Victorian Volunteers.</p>
+        <p>In 1876 he decided to leave Victoria and take his family to New Zealand, and three years later he died there in Christchurch. Although Captain Radcliffe and his family left for New Zealand, some of his prized possessions remained or returned to Australia, for in 2016, the presentation sword mentioned above and his Whitworth target rifle came up for auction in Sydney.</p>
+      </div>
+    </body>
+    <back>
+      <div type="bibliography">
+        <listBibl>
+          <bibl>Research in Trove and other places.</bibl>
+        </listBibl>
+      </div>
+    </back>
+  </text>
+</TEI>
