@@ -29,7 +29,9 @@ function slugifyId(text) {
     // Site pages (front page, Featured pages, About) are entries too, listed
     // in _config.yml. Their own .md page names the entry with entry_id.
     sitePages: {{ site.site_pages | jsonify }},
-    entryId: {{ page.entry_id | jsonify }}
+    entryId: {{ page.entry_id | jsonify }},
+    // Old file name -> new, for entries that were renamed (_config.yml)
+    renamedEntries: {{ site.renamed_entries | jsonify }}
   };
 
   // 1. Get the ID from the page (site pages) or the URL (e.g., ?id=EM02472)
@@ -39,6 +41,13 @@ function slugifyId(text) {
   // In preview mode the id is the file's URL, so go by its file name
   const fileSlug = isPreview && fileId ? decodeURIComponent(fileId.split(/[?#]/)[0].split('/').pop()).replace(/\.xml$/, '') : slugifyId(fileId || '');
   const isSitePage = (CONFIG.sitePages || []).includes(fileSlug);
+
+  // A renamed entry's old address forwards to its new one
+  const renamedTo = !isPreview && !CONFIG.entryId && (CONFIG.renamedEntries || {})[fileSlug];
+  if (renamedTo) {
+    urlParams.set('id', renamedTo);
+    window.location.replace(`${window.location.pathname}?${urlParams}${window.location.hash}`);
+  }
 
   // In preview mode (the submission review page's preview frame), hide the
   // site chrome so the frame shows the article itself.
@@ -243,7 +252,7 @@ function slugifyId(text) {
     frame.style.height = `${event.data.height}px`;
   });
 
-  if (fileId) {
+  if (fileId && !renamedTo) {
     //const fileUrl = `./${CONFIG.path}/${slugifyId(fileId)}.xml`;
     const fileUrl = isPreview ? fileId : `./${CONFIG.path}/${slugifyId(fileId)}.xml`;
 

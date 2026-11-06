@@ -12,6 +12,12 @@ contribution_endpoint: "https://script.google.com/macros/s/AKfycbxKYO3HIIwoNWI7Z
 # small "Suggest an edit" link instead of the contribution form.
 site_pages: [Home, Featured-pages, About, Resources]
 
+# Entries whose file was renamed: old file name -> new file name. An old
+# address (civic?id=<old>) forwards to the new one, so links from outside
+# the site keep working.
+renamed_entries:
+  Hogan-Ellen: Ellen-Hogan
+
 defaults:
   # Applies to every page unless a more specific rule below overrides it.
   - scope:

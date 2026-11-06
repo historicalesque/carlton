@@ -18,6 +18,8 @@ Every file in `civic/` is a [TEI P5](https://tei-c.org/guidelines/p5/) document 
 - The filename is the **slug** of the entry's name: spaces become `-`, and anything other than letters, digits, `_` and `-` is removed. `Mary Mather (Pelham Hotel)` → `civic/Mary-Mather-Pelham-Hotel.xml`. The slug logic is `slugifyId()` in `_layouts/entry.html`; a file whose name doesn't match the slug isn't found.
 - `teiHeader/fileDesc/publicationStmt/idno[@type="entry"]` holds the same slug, without `.xml`.
 - The site addresses entries by name: `civic?id=Corkman Hotel` opens `civic/Corkman-Hotel.xml`.
+- A person's entry is named first name first: `Ellen Hogan`, not `Hogan, Ellen`. The A–Z can still list them by surname with a cross-reference (`Hogan, Ellen, see: Ellen Hogan`).
+- To rename an entry, rename the file and its `<idno type="entry">`, update links to it, and add the old and new file names to `renamed_entries` in `_config.yml`, so the old address forwards to the new one.
 
 ### Outline
 
