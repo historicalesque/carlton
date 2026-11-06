@@ -76,7 +76,7 @@ window.TEIEntry = (function () {
   // Directory and electoral-roll citations link to these pages
   // (civic?id=Sands-McDougall-Directory-1875, civic?id=Electoral-Rolls)
   const RECORD_PAGE = /Sands-McDougall-Directory-|Electoral-Rolls/;
-  const COMMUNITY = 'the broader Carlton community';
+  const COMMUNITY = 'Community Contribution';
   const LICENCE = { name: 'CC BY-NC 4.0', url: 'https://creativecommons.org/licenses/by-nc/4.0/' };
   const KEPT = 'Kept as the author wrote it: not open for suggested changes.';
   const ROBOT = 'Computer-assisted first draft: no one has added to it yet';
@@ -278,7 +278,7 @@ window.TEIEntry = (function () {
           el('title', null, title),
           authors.map((a) => el('author', null, a)),
           credits.community ? el('respStmt', { key: 'community' },
-            el('resp', null, 'Suggestions from'), el('name', null, COMMUNITY)) : null,
+            el('resp', null, 'Credited as'), el('name', null, COMMUNITY)) : null,
           credits.computerDraft ? el('respStmt', { key: 'computer-assisted-draft' },
             el('resp', null, 'Computer-assisted first draft'), el('name', null, PUBLISHER)) : null,
           credits.computerAdditions ? el('respStmt', { key: 'computer-assisted-additions' },
@@ -606,11 +606,12 @@ window.TEIEntry = (function () {
     const sources = items([...all(one(xml, 'back'), 'bibl'), ...headerBibls.filter((b) => !isCitation(b))]);
     const citations = items(headerBibls.filter(isCitation));
 
-    // Byline: "By Andy May and the broader Carlton community. Built on a
+    // Byline: "By Andy May and Community Contributions. Built on a
     // computer-assisted first draft." Each part only where it applies.
+    // Plural in the byline even for one contribution: it reads better.
     const titleStmt = one(xml, 'titleStmt');
     const credited = (key) => kids(titleStmt, 'respStmt').some((r) => r.getAttribute('key') === key);
-    const by = [...kids(titleStmt, 'author').map(text).filter(Boolean), ...(credited('community') ? [COMMUNITY] : [])];
+    const by = [...kids(titleStmt, 'author').map(text).filter(Boolean), ...(credited('community') ? [`${COMMUNITY}s`] : [])];
     // Only a computer-assisted draft so far: no named author, no community credit
     const robot = !by.length && credited('computer-assisted-draft');
     const byline = [
