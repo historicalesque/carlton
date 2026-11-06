@@ -5,6 +5,7 @@
     <fileDesc>
       <titleStmt>
         <title>Abraham Bernard</title>
+        <author>Andy May</author>
         <respStmt key="computer-assisted-draft">
           <resp>Computer-assisted first draft</resp>
           <name>Carlton Common Ground</name>
@@ -13,50 +14,78 @@
       <publicationStmt>
         <publisher>Carlton Common Ground</publisher>
         <idno type="entry">Abraham-Bernard</idno>
+        <availability>
+          <licence target="https://creativecommons.org/licenses/by-nc/4.0/">CC BY-NC 4.0</licence>
+        </availability>
       </publicationStmt>
       <sourceDesc>
         <listBibl>
-          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1905">Sands &amp; McDougall Directory, 1905, p. 195</ref></bibl>
-          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1910">Sands &amp; McDougall Directory, 1910, p. 203</ref></bibl>
-          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1915">Sands &amp; McDougall Directory, 1915, p. 199</ref></bibl>
-          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1920">Sands &amp; McDougall Directory, 1920, p. 211</ref></bibl>
-          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1925">Sands &amp; McDougall Directory, 1925, p. 240</ref></bibl>
-          <bibl><ref target="https://historicalesque.github.io/carlton/civic?id=Electoral-Rolls">Electoral rolls, 1905, 1919</ref></bibl>
+          <bibl><ref target="civic?id=Sands-McDougall-Directory-1905">Sands &amp; McDougall Directory, 1905, p. 195</ref></bibl>
+          <bibl><ref target="civic?id=Sands-McDougall-Directory-1910">Sands &amp; McDougall Directory, 1910, p. 203</ref></bibl>
+          <bibl><ref target="civic?id=Sands-McDougall-Directory-1915">Sands &amp; McDougall Directory, 1915, p. 199</ref></bibl>
+          <bibl><ref target="civic?id=Sands-McDougall-Directory-1920">Sands &amp; McDougall Directory, 1920, p. 211</ref></bibl>
+          <bibl><ref target="civic?id=Sands-McDougall-Directory-1925">Sands &amp; McDougall Directory, 1925, p. 240</ref></bibl>
+          <bibl><ref target="civic?id=Electoral-Rolls">Electoral rolls, 1905, 1919</ref></bibl>
+          <bibl><ref target="civic?id=Electoral-Rolls">Electoral roll, 1919, Division of Melbourne, Subdivision of Cardigan, 2549: Abraham Bernard, 85 Madeline Street, storekeeper</ref></bibl>
         </listBibl>
       </sourceDesc>
     </fileDesc>
-    <revisionDesc status="published">
-      <change when="2026-10-28" type="created">Computer-assisted first draft by Carlton Common Ground, from the directory and electoral-roll records.</change>
+    <revisionDesc status="draft">
+      <change when="2026-11-06" type="created">Contributed through the contribution form by Andy May.</change>
     </revisionDesc>
   </teiHeader>
   <standOff>
     <listPerson>
       <person xml:id="subject">
-        <persName type="main">Abraham Bernard</persName>
+        <persName type="main"><forename>Abraham</forename><surname>Bernard</surname></persName>
+        <occupation from="1905" to="1919">Storekeeper</occupation>
+        <occupation from="1910" to="1920">Grocer</occupation>
+        <occupation when="1915">Wood yard</occupation>
+        <occupation when="1925">Confectioner and fruiterer</occupation>
+        <residence from="1905" to="1925">
+          <placeName>85 Madeline Street, Carlton</placeName>
+          <geo>-37.804335 144.963090</geo>
+        </residence>
+        <residence when="1915">
+          <placeName>87 Madeline Street, Carlton</placeName>
+          <geo>-37.804279 144.963099</geo>
+        </residence>
       </person>
     </listPerson>
   </standOff>
   <text>
     <body>
-      <div>
-        <head>In the directories</head>
-        <p>Abraham or A. Bernard is listed at No. 85 <ref target="civic?id=Madeline%20Street">Madeline Street</ref> from 1905 to 1925. He is a grocer from 1910 to 1920, and a confectioner and fruiterer in 1925. In 1915 he also has a wood yard next door at No. 87.</p>
-      </div>
-      <div>
-        <head>On the electoral rolls</head>
-        <p>Abraham Bernard, storekeeper, is on the 1905 and 1919 <ref target="civic?id=Electoral-Rolls">electoral rolls</ref> at 85 Madeline Street, with Zeprah Bernard, home duties.</p>
-      </div>
-      <div>
-        <head>Neighbours</head>
-        <p>M. M. Friedman, draper, is at No. 83 in 1905 and 1910, and Frank West's general store at No. 87 in 1905. Miss Hilda Mackay, costumier, is at No. 87 in 1920 and 1925, and L. T. Larsen, grocer, at No. 81 in 1925.</p>
-      </div>
-      <div>
-        <head>See also</head>
-        <list rend="bulleted">
-          <item><ref target="civic?id=Madeline%20Street">Madeline Street</ref></item>
-          <item><ref target="civic?id=Lazarus%20Cruchek">Lazarus Cruchek</ref></item>
-          <item><ref target="civic?id=Anna%20Helene%20Kopmann">Anna Helene Kopmann</ref></item>
-        </list>
+      <div type="detail">
+        <div>
+          <head>In the directories</head>
+          <p>Abraham or A. Bernard is listed at No. 85 <ref target="civic?id=Madeline%20Street">Madeline Street</ref> from 1905 to 1925. He is a grocer from 1910 to 1920, and a confectioner and fruiterer in 1925. In 1915 he also has a wood yard next door at No. 87.</p>
+        </div>
+        <div>
+          <head>On the electoral rolls</head>
+          <p>Abraham Bernard, storekeeper, is on the 1905 and 1919 <ref target="civic?id=Electoral-Rolls">electoral rolls</ref> at 85 Madeline Street, with Zeprah Bernard, home duties.</p>
+        </div>
+        <div>
+          <head>Neighbours</head>
+          <p>M. M. Friedman, draper, is at No. 83 in 1905 and 1910, and Frank West's general store at No. 87 in 1905. Miss Hilda Mackay, costumier, is at No. 87 in 1920 and 1925, and L. T. Larsen, grocer, at No. 81 in 1925.</p>
+        </div>
+        <div>
+          <head>Biography</head>
+          <p>Abraham’s wife Zephra had a flirt with fame when she attempted to cast her vote at the State election in 1907, even though women did not have the right to vote until 1911. The anomaly was that her name had been printed on the electoral role in the mistaken belief that she was male.</p>
+          <p>Abraham was born c. 1851, Zephra around 1868. When she died in 1942 at the age of 74, Zephra's place of birth was given as “Bessarabia, Russia”, the majority of which now lies within present-day Moldova (2949/1942).</p>
+          <p>On vital records, Zephra’s surname is given variously as Nachmanovitz, Nachamovitch, Macchmanowit, and Lochminovitz, and sometimes she is also called Cecilia. It is unclear when the couple came to Australia, and there doesn’t seem to be a marriage record in Victoria.</p>
+          <p>When eldest daughter Clara <ref target="http://nla.gov.au/nla.news-article146117849">married Samuel Rischin in 1910</ref>, she <ref target="https://collections.ajhs.com.au/Detail/objects/425971">noted that she was born in 1889</ref>, gave her place of birth as “At sea off Colombo”, and her father’s occupation as accountant. Clara died in 1967.</p>
+          <p>Eva Bernard was born Carlton in 1896 (9807/1896), and married John Simon Rothfield in 1917 (6705/1917).</p>
+          <p>David Bernard was born in Carlton in 1903 (23884/1903) and died at Kew in 1935 (7578/1935).</p>
+          <p>Rachael born around 1898 (in NZ?), married Harry Rischin in 1920 (3353/1920), and died aged 61 in 1959 (15619/1959).</p>
+        </div>
+        <div>
+          <head>See also</head>
+          <list rend="bulleted">
+            <item><ref target="civic?id=Madeline%20Street">Madeline Street</ref></item>
+            <item><ref target="civic?id=Lazarus%20Cruchek">Lazarus Cruchek</ref></item>
+            <item><ref target="civic?id=Anna%20Helene%20Kopmann">Anna Helene Kopmann</ref></item>
+          </list>
+        </div>
       </div>
     </body>
   </text>
