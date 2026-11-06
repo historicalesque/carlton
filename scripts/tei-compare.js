@@ -56,7 +56,7 @@ window.TEICompare = (function () {
     add('Sources', [...all(all(root, 'sourceDesc')[0], 'bibl'), ...all(all(root, 'back')[0], 'bibl')].map((b) => b.textContent));
     add('Authors', all(titleStmt, 'author').map((a) => a.textContent));
     const credited = (key) => all(titleStmt, 'respStmt').some((r) => r.getAttribute('key') === key);
-    add('Byline credits', [credited('community') ? 'The broader Carlton community' : '',
+    add('Byline credits', [credited('community') ? 'Community Contribution' : '',
       credited('computer-assisted-draft') ? 'Computer-assisted first draft' : '',
       credited('computer-assisted-additions') ? 'Computer-assisted additions' : '']);
     const kept = all(root, 'availability').some((a) => a.getAttribute('status') === 'restricted');

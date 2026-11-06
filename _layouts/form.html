@@ -449,7 +449,7 @@
       <details class="section" data-section="byline" data-nocount>
         <summary><span class="sum-title">Byline</span><span class="sum-hint">How the entry is credited under its title</span></summary>
         <div class="section-body">
-          <label class="check-line"><input type="checkbox" id="creditCommunity"> Includes suggestions from the broader Carlton community</label>
+          <label class="check-line"><input type="checkbox" id="creditCommunity"> Includes a Community Contribution</label>
           <label class="check-line"><input type="checkbox" id="creditDraft"> Based on a computer-assisted first draft</label>
           <label class="check-line"><input type="checkbox" id="creditAdditions"> Includes computer-assisted additions</label>
           <p class="hint byline-hint">Filled in from the current entry. You can untick either, for example after a full redraft; the editorial collective decides whether to accept the change.</p>
@@ -545,18 +545,18 @@
       </details>
     </section>
 
-    <!-- Part C: credit and consent, just before Send. Anonymous (credited to
-         the broader Carlton community) is the default; credit by name asks for
+    <!-- Part C: credit and consent, just before Send. Anonymous (credited as
+         “Community Contribution”) is the default; credit by name asks for
          a name and a way to contact them, and lets them keep the entry as written. -->
     <div class="part-c">
       <fieldset class="credit-choice" id="creditChoice">
         <legend class="label" id="creditLegend">How should we credit this?</legend>
 
         <div class="credit-opt" id="optCommunity">
-          <label class="radio-line"><input type="radio" name="credit" value="community" id="creditByCommunity" checked> <span>Anonymous: credit “the broader Carlton community” <span class="optional-tag">Default</span><small>The usual choice for a correction, a fact or a short addition.</small></span></label>
+          <label class="radio-line"><input type="radio" name="credit" value="community" id="creditByCommunity" checked> <span>Anonymous: credit as “Community Contribution” <span class="optional-tag">Default</span><small>The usual choice for a correction, a fact or a short addition.</small></span></label>
           <div class="credit-body">
-            <label class="check-line licence-line" id="licenceLine"><input type="checkbox" id="licenceOk"> <span>I agree that what I’ve written may be published under a CC BY-NC 4.0 licence and credited to “the broader Carlton community”. <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">Read more</a></span></label>
-            <p class="licence-summary" id="licenceSummary">In short: anyone, including us, may share, copy and build on what you’ve written, as long as they credit “the broader Carlton community” and don’t use it to make money. Once you’ve sent it, this permission can’t be withdrawn, though you can still <a href="about#takedown" target="_blank" rel="noopener">ask us to take something down</a>.</p>
+            <label class="check-line licence-line" id="licenceLine"><input type="checkbox" id="licenceOk"> <span>I agree that what I’ve written may be published under a CC BY-NC 4.0 licence and credited as “Community Contribution”. <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">Read more</a></span></label>
+            <p class="licence-summary" id="licenceSummary">In short: anyone, including us, may share, copy and build on what you’ve written, as long as they credit it as a “Community Contribution” and don’t use it to make money. Once you’ve sent it, this permission can’t be withdrawn, though you can still <a href="about#takedown" target="_blank" rel="noopener">ask us to take something down</a>.</p>
           </div>
         </div>
 
@@ -1364,7 +1364,7 @@
     // No suggestion is sent without the licence agreement, or by name without one
     if (!licenceAgreed()) { sendReady(); return; }
     if (!REVIEW && byName() && !$('authorName').value.trim()) {
-      sendStatus('Please add your name, or choose to be credited as “the broader Carlton community”.', 'error');
+      sendStatus('Please add your name, or choose to be credited as “Community Contribution”.', 'error');
       $('authorName').focus();
       return;
     }
