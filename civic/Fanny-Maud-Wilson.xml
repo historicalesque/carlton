@@ -4,7 +4,7 @@
   <teiHeader>
     <fileDesc>
       <titleStmt>
-        <title>Wilson, Fanny Maud</title>
+        <title>Fanny Maud Wilson</title>
         <author>Andy May</author>
       </titleStmt>
       <publicationStmt>
@@ -18,12 +18,13 @@
     <revisionDesc status="draft">
       <change when="2026-10-23" type="created">Contributed through the contribution form by Andy May.</change>
       <change when="2026-10-27" type="revised">Merged with a duplicate entry, Wilson-Fanny-Maud, which had the same text.</change>
+      <change when="2026-11-06" type="revised">Title changed from "Wilson, Fanny Maud" so the name reads first name first.</change>
     </revisionDesc>
   </teiHeader>
   <standOff>
     <listPerson>
       <person xml:id="subject">
-        <persName type="main">Wilson, Fanny Maud</persName>
+        <persName type="main">Fanny Maud Wilson</persName>
       </person>
     </listPerson>
   </standOff>

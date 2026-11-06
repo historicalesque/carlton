@@ -37,6 +37,7 @@ The README's [Repository layout](README.md#repository-layout) lists every folder
 
 Entries are TEI files. The format is described in [docs/SCHEMA.md](docs/SCHEMA.md) and defined by `schema/carlton.odd`.
 
+- Write a person's name first name first in the title (`Ellen Hogan`, not `Hogan, Ellen`).
 - Name the file after the entry: spaces become `-` and punctuation is dropped (`Mary Mather (Pelham Hotel)` → `civic/Mary-Mather-Pelham-Hotel.xml`), and put the same slug in `<idno type="entry">`.
 - Set the entry type in `<TEI type="…">`: `person`, `org`, `family`, `place` or `topic`.
 - Add a `<change>` to `revisionDesc` saying what you changed and when.
