@@ -50,15 +50,13 @@ const COLUMNS = ['Received', 'Kind', 'Title', 'Type', 'Authors', 'Contact (priva
 // Shown in Status while a decision is being carried out
 const PENDING = { Accept: 'Publishing…', Reject: 'Rejecting…' };
 const TEI_NS = 'http://www.tei-c.org/ns/1.0';
-// How an anonymous suggestion is credited (matches COMMUNITY in scripts/tei.js)
-const COMMUNITY_CREDIT = 'Community Contribution';
 // A Sheet cell holds 50,000 characters; the pull request keeps the full copy
 const CELL_LIMIT = 49000;
 
 // Which version of this script is running. Opening the web app's address
 // (contribution_endpoint in _config.yml) shows it, so it's easy to check
 // that the form talks to the latest deployment.
-const SCRIPT_VERSION = '2026-11-06: anonymous credit is "Community Contribution"';
+const SCRIPT_VERSION = '2026-11-01: sent text is never run as a formula';
 
 function doGet() {
   return ContentService.createTextOutput(`Carlton Common Ground submissions: send entries with POST.\nVersion ${SCRIPT_VERSION}`);
@@ -96,10 +94,10 @@ function receive_(e) {
   const titleEl = header && header.getChild('fileDesc', tei) && header.getChild('fileDesc', tei).getChild('titleStmt', tei);
   const title = titleEl && titleEl.getChild('title', tei) ? titleEl.getChild('title', tei).getText().trim() : '';
   if (!title) throw userError_('Add a title.');
-  // A name is optional: a suggestion sent without one is credited as a
-  // "Community Contribution" (and the licence box has to be ticked to send)
+  // A name is optional: a suggestion sent without one is credited to the
+  // broader Carlton community (and the licence box has to be ticked to send)
   const named = titleEl.getChildren('author', tei).map((a) => a.getText().trim()).filter(String);
-  const authors = named.length ? named : [COMMUNITY_CREDIT];
+  const authors = named.length ? named : ['the broader Carlton community'];
   if (data.action === 'review') return receiveReview_(data, title);
 
   // The file name follows the site's rule for ?id= (see slugifyId in
@@ -167,9 +165,7 @@ function openPullRequest_(slug, title, authors, xml, { mustBeNew, records }) {
   const commit = github_('put', `/contents/${encodePath_(path)}`, put).commit;
 
   const body = [
-    authors[0] === COMMUNITY_CREDIT
-      ? `Submitted anonymously through the contribution form (credited as ${COMMUNITY_CREDIT}).`
-      : `Submitted through the contribution form by ${authors.join(', ')}.`,
+    `Submitted through the contribution form by ${authors.join(', ')}.`,
     '',
     isNew
       ? `This adds a new entry, \`${path}\`.`

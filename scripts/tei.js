@@ -606,16 +606,16 @@ window.TEIEntry = (function () {
     const sources = items([...all(one(xml, 'back'), 'bibl'), ...headerBibls.filter((b) => !isCitation(b))]);
     const citations = items(headerBibls.filter(isCitation));
 
-    // Byline: "By Andy May. Community Contribution. Built on a
+    // Byline: "By Andy May and Community Contributions. Built on a
     // computer-assisted first draft." Each part only where it applies.
+    // Plural in the byline even for one contribution: it reads better.
     const titleStmt = one(xml, 'titleStmt');
     const credited = (key) => kids(titleStmt, 'respStmt').some((r) => r.getAttribute('key') === key);
-    const by = kids(titleStmt, 'author').map(text).filter(Boolean);
+    const by = [...kids(titleStmt, 'author').map(text).filter(Boolean), ...(credited('community') ? [`${COMMUNITY}s`] : [])];
     // Only a computer-assisted draft so far: no named author, no community credit
-    const robot = !by.length && !credited('community') && credited('computer-assisted-draft');
+    const robot = !by.length && credited('computer-assisted-draft');
     const byline = [
       by.length ? `By ${by.length > 1 ? `${by.slice(0, -1).join(', ')} and ${by[by.length - 1]}` : by[0]}.` : '',
-      credited('community') ? `${COMMUNITY}.` : '',
       credited('computer-assisted-draft') ? 'Built on a computer-assisted first draft.' : '',
       credited('computer-assisted-additions') ? 'With computer-assisted additions.' : ''
     ].filter(Boolean).join(' ');

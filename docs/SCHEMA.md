@@ -55,7 +55,7 @@ Required. One of:
 |---|---|
 | `fileDesc/titleStmt/title` | The entry's name, as shown on the page. |
 | `fileDesc/titleStmt/author` | One per named author, shown first in the byline under the entry's title and in the page's `<meta name="author">`. Filled by the form's name fields when the contributor chooses *Credit me by name*. Anonymous contributions have none, and get the community credit below. |
-| `fileDesc/titleStmt/respStmt[@key="community"]` | `<resp>Credited as</resp><name>Community Contribution</name>`: the entry includes anonymous suggestions sent through the form. Adds "Community Contribution." to the byline. |
+| `fileDesc/titleStmt/respStmt[@key="community"]` | `<resp>Credited as</resp><name>Community Contribution</name>`: the entry includes anonymous suggestions sent through the form. Adds "Community Contributions" (plural) to the byline, e.g. "By Andy May and Community Contributions." |
 | `fileDesc/titleStmt/respStmt[@key="computer-assisted-draft"]` | `<resp>Computer-assisted first draft</resp><name>Carlton Common Ground</name>`: the entry began as a computer-assisted draft from the directory and electoral-roll records. Adds "Built on a computer-assisted first draft." to the byline. |
 | `fileDesc/titleStmt/respStmt[@key="computer-assisted-additions"]` | `<resp>Computer-assisted additions</resp><name>Carlton Common Ground</name>`: the entry was started by people, and substantial sections were later added from the directory and electoral-roll records with computer assistance. Adds "With computer-assisted additions." to the byline. |
 | `fileDesc/publicationStmt/publisher` | Always `Carlton Common Ground`. |
