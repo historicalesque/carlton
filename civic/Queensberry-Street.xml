@@ -6,7 +6,10 @@
       <titleStmt>
         <title>Queensberry Street</title>
         <author>Mitchell Harrop</author>
-        <author>Chloe Tobin</author>
+        <respStmt key="community">
+          <resp>Suggestions from</resp>
+          <name>the broader Carlton community</name>
+        </respStmt>
       </titleStmt>
       <publicationStmt>
         <publisher>Carlton Common Ground</publisher>
@@ -17,7 +20,7 @@
       </sourceDesc>
     </fileDesc>
     <revisionDesc status="draft">
-      <change when="2026-10-23" type="created">Contributed through the contribution form by Mitchell Harrop, Chloe Tobin.</change>
+      <change when="2026-10-23" type="created">Contributed through the contribution form by Mitchell Harrop.</change>
     </revisionDesc>
   </teiHeader>
   <standOff>
