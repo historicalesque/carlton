@@ -1,4 +1,4 @@
-/* VISUAL REFRESH (mockup): the contribution form (form.html), shown inside
+/* VISUAL REFRESH: the contribution form (form.html), shown inside
    entry pages and on its own. Softer fields and buttons to match refresh.css. */
 input[type="text"], input[type="url"], select, textarea {
     font-family: var(--font-ui);
