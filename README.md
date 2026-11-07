@@ -126,6 +126,7 @@ With `preview=true`, `id` can be a full URL, such as a raw file on a pull-reques
 | `scripts/banner-parallax.js` | Header banner effect. |
 | `scripts/vendor/` | Third-party scripts saved into the repo (MiniSearch). |
 | `styles/site.css` | Site styles. |
+| `styles/refresh.css`, `styles/refresh-form.css` | Visual refresh layered over `site.css`: masthead, navigation, reading type, home cards, entry layout and footer (`refresh-form.css` is the contribution form's share). The maps don't load them. |
 | `images/` | Static images. |
 | `docs/SCHEMA.md` | Reference for the entry format (TEI) and the record fields (JSON). |
 | `docs/proposals/` | Design proposals for work that hasn't started. |

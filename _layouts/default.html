@@ -8,8 +8,11 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Libre+Caslon+Text:ital,wght@0,400;0,700;1,400&family=Courier+Prime:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="styles/site.css?v={{ site.time | date: '%s' }}">
+    <!-- Visual refresh: layered over site.css (hierarchy, masthead, reading type, footer) -->
+    <link rel="stylesheet" type="text/css" href="styles/refresh.css?v={{ site.time | date: '%s' }}">
 </head>
-    <body>
+    {% assign here = page.url | remove: '.html' %}
+    <body class="{% if here == '/' or here == '/index' %}is-home{% else %}is-inner{% endif %}">
 
     <a class="skip-link" href="#main">Skip to content</a>
 
@@ -21,18 +24,22 @@
         <header class="banner-container">
             <!-- Source: State Library Victoria, https://handle.slv.vic.gov.au/10381/92019 -->
             <div class="banner-image" role="img" aria-label="Historic survey plan of Carlton, showing the street grid, allotments and owners' names, the University Reserve and the Carlton Gardens"></div>
+            <div class="masthead">
+                <a class="site-title" href="index">Carlton Common Ground</a>
+                <p class="site-tagline">Community histories of the campus precinct, 1850s&ndash;1950s</p>
+            </div>
         </header>
 
         <!-- Top Navigation Bar -->
         <nav class="main-nav" aria-label="Main">
             <ul class="nav-links">
-                <li><a href="index">Home</a></li>
-                <li><a href="aToZ">Entries</a></li>
-                <li><a href="map">Map</a></li>
-                <li><a href="map3d">3D Map</a></li>
-                <li><a href="search">Search</a></li>
-                <li><a href="about">About</a></li>
-                <li><a href="resources">Resources</a></li>
+                <li><a href="index"{% if here == '/' or here == '/index' %} aria-current="page"{% endif %}>Home</a></li>
+                <li><a href="aToZ"{% if here == '/aToZ' or here == '/civic' %} aria-current="page"{% endif %}>Entries</a></li>
+                <li><a href="map"{% if here == '/map' %} aria-current="page"{% endif %}>Map</a></li>
+                <li><a href="map3d"{% if here == '/map3d' %} aria-current="page"{% endif %}>3D Map</a></li>
+                <li><a href="search"{% if here == '/search' %} aria-current="page"{% endif %}>Search</a></li>
+                <li><a href="about"{% if here == '/about' %} aria-current="page"{% endif %}>About</a></li>
+                <li><a href="resources"{% if here == '/resources' %} aria-current="page"{% endif %}>Resources</a></li>
             </ul>
         </nav>
 
@@ -57,6 +64,7 @@
         <!-- Footer Module -->
         <footer class="main-footer">
             <div class="footer-content">
+                <p class="footer-title"><a href="index">Carlton Common Ground</a></p>
                 <ul class="footer-links">
                     <li><a href="index">Home</a></li>
                     <li><a href="aToZ">Entries</a></li>
