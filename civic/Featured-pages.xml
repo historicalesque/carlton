@@ -26,7 +26,7 @@
       </sourceDesc>
     </fileDesc>
     <revisionDesc status="draft">
-      <change when="2026-11-02" type="created">Contributed through the contribution form by Andy May, Mitchell Harrop, Barbara Minchinton, Carlton Common Ground.</change>
+      <change when="2026-11-09" type="created">Contributed through the contribution form by Andy May, Mitchell Harrop, Barbara Minchinton, Carlton Common Ground.</change>
     </revisionDesc>
   </teiHeader>
   <text>
@@ -420,6 +420,7 @@
         </div>
         <div>
           <head>V</head>
+          <p>Vance, Roy Leslie</p>
           <p><ref target="civic?id=Victoria%20Brewery%20Pty%20Ltd">Victoria Brewery Pty Ltd</ref></p>
           <p><ref target="civic?id=Victoria%20Foundry">Victoria Foundry</ref></p>
           <p><ref target="civic?id=Victoria%20hotel">Victoria Hotel</ref></p>
