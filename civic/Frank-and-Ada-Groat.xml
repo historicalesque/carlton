@@ -1,0 +1,297 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="https://historicalesque.github.io/carlton/schema/carlton.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0" type="person" xml:lang="en">
+  <teiHeader>
+    <fileDesc>
+      <titleStmt>
+        <title>Frank and Ada Groat</title>
+        <author>Andy May</author>
+      </titleStmt>
+      <publicationStmt>
+        <publisher>Carlton Common Ground</publisher>
+        <idno type="entry">Frank-and-Ada-Groat</idno>
+        <availability>
+          <licence target="https://creativecommons.org/licenses/by-nc/4.0/">CC BY-NC 4.0</licence>
+        </availability>
+      </publicationStmt>
+      <sourceDesc>
+        <p>Contributed through the website.</p>
+      </sourceDesc>
+    </fileDesc>
+    <revisionDesc status="draft">
+      <change when="2026-11-09" type="created">Contributed through the contribution form by Andy May.</change>
+    </revisionDesc>
+  </teiHeader>
+  <standOff>
+    <listPerson>
+      <person xml:id="subject">
+        <persName type="main">Frank and Ada Groat</persName>
+      </person>
+    </listPerson>
+  </standOff>
+  <text>
+    <body>
+      <div type="summary">
+        <p>Frank Groat was a Mallee blacksmith turned soldier, pensioner, orchardist and fisherman. He married twice, lived his last years with a third partner, and was killed on his bicycle at Mordialloc in July 1948. In 1926 he was living at 12 Malvina Place with his then wife Ada Albina Groat née Annear.</p>
+      </div>
+      <div type="detail">
+        <div>
+          <head><hi rend="bold">Frank Groat (1888–1948)</hi></head>
+          <p>Frank Groat was a Mallee blacksmith turned soldier, pensioner, orchardist and fisherman. He married twice, lived his last years with a third partner, and was killed on his bicycle at Mordialloc in July 1948. In 1926 he was living at 12 Malvina Place with his then wife Ada Albina Groat née Annear.</p>
+        </div>
+        <div>
+          <head><hi rend="bold">Early life and family background</hi></head>
+          <p>According to his enlistment papers, Frank Groat was born at Horsham on 17 January 1888 (though no birth certificate has been located) and spent some of his early years at Sea Lake. His parents were Alexander Edward Groat (b. London 1841 – d. Carlton 1922: 4370/1922 see also <ref target="http://nla.gov.au/nla.news-article41692490"><hi rend="italic">Western Mail</hi></ref>) and Eleanor (Ellen) Groat, née Kilpatrick (1845- d. 1936 aged 94 at Cheltenham [Benevolent Asylum]: 3410/1936). His parents had married at Castlemaine in 1865 (63/1865).</p>
+          <p>Ellen Kilpatrick was born in Collingwood in 1845. Her father George Edward Kilpatrick (b. London 1811 – d. Horsham 1888) was a labourer who was convicted of larceny in 1829 and sentenced to 7 years transportation. He arrived at Sydney Cove on 30 March 1830. After securing his certificate of freedom in 1839, he found his way to Melbourne and was married Caroline Trotman at St James Cathedral in 1842. Caroline’s parents were Thomas Trotman and Mary Brooks — Thomas was also a convict, having been sentenced on a charge of grand larceny for stealing beer.</p>
+          <quote>
+            <p>Thomas and Mary were among the first group of settlers in Port Phillip in Victoria when this area was opened up. They are recorded in the 1841 census with 7 children. By 1847 Thomas and Mary were living in Batman’s Swamp where he had established himself as a brickmaker. Subsequently the family moved to Fitzroy in Melbourne.</p>
+            <p><ref target="https://www.gsq-blogs.org.au/convict-stories-life-after-transportation-2/">Pauline Williams, Convict stories — Life after transportation, 20 July 2020, Genealogy Queensland Blogs</ref></p>
+          </quote>
+          <p>Frank was from a large family whose life from the mid 1860s was marked by regular moves across central Victoria, around Castlemaine, Stawell, Murtoa and Horsham. At some point by 1884 the family had moved to Melbourne, with two children born in Carlton (1884) and Fitzroy (1886), and son Thomas dying in the East Melbourne Hospital in 1885.</p>
+          <table>
+            <row>
+              <cell><hi rend="bold">BORN</hi></cell>
+              <cell><hi rend="bold"> </hi></cell>
+              <cell><hi rend="bold"> </hi></cell>
+              <cell><hi rend="bold"> </hi></cell>
+              <cell><hi rend="bold">DIED</hi></cell>
+              <cell><hi rend="bold"> </hi></cell>
+              <cell><hi rend="bold"> </hi></cell>
+              <cell><hi rend="bold"> </hi></cell>
+              <cell><hi rend="bold"> </hi></cell>
+            </row>
+            <row>
+              <cell>1866</cell>
+              <cell>Walter Herbert</cell>
+              <cell>Yapeen</cell>
+              <cell>1169/1866</cell>
+              <cell>1932</cell>
+              <cell>East Melbourne</cell>
+              <cell>66</cell>
+              <cell>2570/1932</cell>
+              <cell>At the time of his father’s death in 1922 was living at North Beach</cell>
+            </row>
+            <row>
+              <cell>1868</cell>
+              <cell>Alexander George</cell>
+              <cell>Fryers Creek</cell>
+              <cell>2659/1868</cell>
+              <cell/>
+              <cell/>
+              <cell/>
+              <cell/>
+              <cell>At the time of his father’s death in 1922 was living at North Beach</cell>
+            </row>
+            <row>
+              <cell>[1869]</cell>
+              <cell>Thomas</cell>
+              <cell/>
+              <cell/>
+              <cell>1885</cell>
+              <cell>East Melbourne Hospital</cell>
+              <cell>16</cell>
+              <cell>5902/1885</cell>
+              <cell/>
+            </row>
+            <row>
+              <cell>[1872]</cell>
+              <cell>Francis Jesse</cell>
+              <cell>Stawell</cell>
+              <cell/>
+              <cell/>
+              <cell/>
+              <cell/>
+              <cell/>
+              <cell/>
+            </row>
+            <row>
+              <cell>1873</cell>
+              <cell>Emma</cell>
+              <cell>Pleasant Creek [Stawell]</cell>
+              <cell>11720/1873</cell>
+              <cell/>
+              <cell/>
+              <cell/>
+              <cell/>
+              <cell/>
+            </row>
+            <row>
+              <cell>1873</cell>
+              <cell>Charles</cell>
+              <cell>Pleasant Creek</cell>
+              <cell>11719/1873</cell>
+              <cell>1933</cell>
+              <cell>Carlton</cell>
+              <cell>59</cell>
+              <cell>6792/1933</cell>
+              <cell>Charlie</cell>
+            </row>
+            <row>
+              <cell>[1875]</cell>
+              <cell>William</cell>
+              <cell/>
+              <cell/>
+              <cell>1919</cell>
+              <cell>Swan Hill</cell>
+              <cell>44</cell>
+              <cell>15173/1919</cell>
+              <cell/>
+            </row>
+            <row>
+              <cell>1879</cell>
+              <cell>Emma</cell>
+              <cell>Murtoa</cell>
+              <cell>10888/1879</cell>
+              <cell>1879</cell>
+              <cell>Murtoa</cell>
+              <cell>1 day</cell>
+              <cell>5758/1879</cell>
+              <cell/>
+            </row>
+            <row>
+              <cell>1879</cell>
+              <cell>Frederick</cell>
+              <cell>Murtoa</cell>
+              <cell>10887/1979</cell>
+              <cell/>
+              <cell>Murtoa</cell>
+              <cell>1 day</cell>
+              <cell>5757/1879</cell>
+              <cell/>
+            </row>
+            <row>
+              <cell>1880</cell>
+              <cell>Andrew</cell>
+              <cell>Horsham</cell>
+              <cell/>
+              <cell>1966</cell>
+              <cell>Swan Hill</cell>
+              <cell/>
+              <cell/>
+              <cell>Mentioned in father’s death notice 1922. Married Ada Holding in Horsham in 1902 and had 7 children.</cell>
+            </row>
+            <row>
+              <cell>1881</cell>
+              <cell>Alice</cell>
+              <cell>Horsham</cell>
+              <cell>17189/1881</cell>
+              <cell/>
+              <cell/>
+              <cell/>
+              <cell/>
+              <cell/>
+            </row>
+            <row>
+              <cell>1884</cell>
+              <cell>Ellen</cell>
+              <cell>Carlton</cell>
+              <cell>7970/1884</cell>
+              <cell/>
+              <cell/>
+              <cell/>
+              <cell/>
+              <cell/>
+            </row>
+            <row>
+              <cell>1886</cell>
+              <cell>Albert</cell>
+              <cell>Fitzroy</cell>
+              <cell>18133/1886</cell>
+              <cell/>
+              <cell/>
+              <cell/>
+              <cell/>
+              <cell/>
+            </row>
+            <row>
+              <cell>[1888]</cell>
+              <cell>Frank</cell>
+              <cell>Horsham</cell>
+              <cell/>
+              <cell/>
+              <cell>Melbourne</cell>
+              <cell>60</cell>
+              <cell>8106/1948</cell>
+              <cell>No sign of Frank’s birth record.</cell>
+            </row>
+          </table>
+        </div>
+        <div>
+          <head><hi rend="bold">First World War</hi></head>
+          <p>Locals called Frank Groat “Garry”. The <hi rend="italic">Sea Lake Times and Berriwillock Advertiser</hi> later admitted it had not taken the boy very seriously, and wrote of his “insincerity of purpose as a youth”. Before the war he worked as a blacksmith and was an officer of the Sea Lake Fire Brigade.</p>
+          <p>Frank enlisted at Keswick, South Australia, on 10 June 1915 and was posted to reinforcements for the 12th Battalion as No. 2605. He named his mother, Mrs Ellen Groat of Sea Lake, as next of kin. He was 5 ft 10 in, with a fresh complexion, blue eyes and dark hair. Before sailing he made a quick trip home to farewell family and friends. The <hi rend="italic">Sea Lake Times</hi> called him a corporal in the South Australian Army Medical Corps, but his record shows him only as a private. The paper hoped the war had given him a purpose.</p>
+          <p>He embarked on 26 August 1915 and spent his first weeks in hospital in Egypt with tonsillitis and dysentery. He joined the 12th Battalion on Mudros on 27 November 1915, after the battalion had left Gallipoli. In January 1916 he was punished for being absent without leave. Much of 1916 he spent in hospital in Egypt with bronchial pneumonia, haemorrhoids, conjunctivitis and debility. He reached England in September 1916 and France on 12 January 1917. Six weeks later, on 23 February 1917, he was evacuated with severe trench foot and sent to a hospital in Cheltenham.</p>
+          <p>While recovering in England he married Florence Jasmine, a widowed London restaurant manageress, at St Michael's, Stockwell, on 11 June 1917. That year he sent home two letters that were printed in Australian papers:</p>
+          <list rend="bulleted">
+            <item><hi rend="bold"><hi rend="italic">The Age</hi>, 7 September 1917.</hi> Writing from London on 17 July, he asked why the 5000 original Anzacs had not been given their promised rest, and urged men at home to "don the khaki for, say, six months" so the veterans could have a break.</item>
+            <item><hi rend="bold"><hi rend="italic">Sea Lake Times</hi>, 27 October 1917.</hi> He claimed he was a despatch rider for AIF headquarters, riding a motorcycle between London and Salisbury Plain twice a week. He said he was “married and … happy”. He also mocked the “cold-foot brigade” of anti-conscriptionists who stayed at home.</item>
+          </list>
+          <p>While the <hi rend="italic">Age</hi> reported that he had fought in “Egypt, Gallipoli and France”, his service records that he never served at Gallipoli. A week before the <hi rend="italic">Age</hi> letter he had been absent without leave from Perham Downs (7–11 July 1917) and docked four days’ pay. The record shows no headquarters posting. Through the second half of 1917 he moved between training depots and military hospitals at Tidworth, Sutton Veny and Harefield, where he was treated for a suspected “tubercle of lung”.</p>
+          <p>He left England on the <hi rend="italic">Corinthic</hi> on 10 January 1918 and was discharged in Melbourne on 4 March 1918, medically unfit with chronic bronchitis. On 12 July 1918 the Sea Lake Fire Brigade welcomed him home with a presentation at its annual ball. He received the 1914–15 Star, the British War Medal and the Victory Medal, plus a war pension.</p>
+        </div>
+        <div>
+          <head><hi rend="bold">The 1920s and 1930s</hi></head>
+          <p>Florence followed Frank to Melbourne in October 1918, and their marriage fell apart within weeks. She divorced him in 1922, naming Ada Annear as the other woman (see the divorce section). Frank married Ada on 15 November 1922 at the Methodist Mission Office in Neill Street, Carlton. On the certificate he described himself as a 34-year-old war pensioner and tea packer, "divorced 13/9/22" from Florence Jasmine Groat. That date was false. His divorce was not made absolute until 23 February 1923, and only a fortnight before the wedding he had checked with the court and found it was not yet final. In law, the marriage was therefore bigamous. Through these years he lived in Carlton: at 34 Reeves Street in 1922, at 12 Malvina Place with Ada in 1926, and at 509 Rathdowne Street in 1932. In October 1932 he declared he had lost his returned-soldier's badge “being a fisherman”, dropping it in the sea.</p>
+        </div>
+        <div>
+          <head><hi rend="bold">Second World War</hi></head>
+          <p>By 1939 Frank was an orchardist on Emerald Road, Belgrave. On 6 September 1939 he applied to join the reserve, offering to do cook or guard duties, and named his wife as “Eva Groat”. On 5 October 1939, aged 51, he enlisted in the 3rd Garrison Battalion (V80950) and named “Mrs Ada Groat, Belgrave” as his wife. He served at Queenscliff and was taken to Caulfield Military Hospital in February 1940. He was discharged medically unfit on 3 May 1940, after 211 days. His last act was to claim a replacement suit of clothes and three blankets lost while in hospital.</p>
+        </div>
+        <div>
+          <head><hi rend="bold">Eva, the will, and his death</hi></head>
+          <p>Frank’s will explains the “Eva” on his 1939 reserve form. On 14 April 1945, as a Dromana fisherman, he left everything to “my dear friend Eva Elizabeth Williams known as my wife”, of Kangerong Avenue, Dromana, and made her sole executor. The will does not mention Ada. His estate included:</p>
+          <list rend="bulleted">
+            <item>a house, land and furniture in Burke Road, Boronia, “Green View Park”</item>
+            <item>land in Ferny Dell Road, Tecoma</item>
+            <item>a house and its contents on a leased block in Kangerong Avenue, Dromana</item>
+            <item>a block bought through Spencer Jackson's estate agency in Collins Street</item>
+            <item>a 12 ft fishing boat (licence No. 1522) and all his fishing gear</item>
+          </list>
+          <p>On the evening of Saturday 10 July 1948, a car knocked Frank off his bicycle on Beach Road, Mordialloc, and he was killed. <hi rend="italic">The Argus</hi> reported his age as 50; he was 60. The probate papers describe him as a retired man late of 513 Beach Road, Mordialloc. Eva swore the affidavit for probate in September 1948. There was an inquest (yet to be consulted).</p>
+        </div>
+        <div>
+          <head><hi rend="bold">Ada Albina Groat, née Annear (1898–?)</hi></head>
+          <p>Ada was ten years younger than Frank. She was the other woman in his first divorce, married him in 1922, and by 1945 had disappeared from his life and his will.</p>
+          <p>Ada Albina Annear was born at Gisborne, Victoria, in 1898, the daughter of Frederick Lees Annear, a gardener, and Caroline May, née Yates. When she married, her father's whereabouts were apparently unknown: the certificate has "unknown" written under his name. She first appears in Frank’s story in 1922, when Florence Groat named her as co-respondent in the divorce. Florence had suspected the affair since about May 1920, when Ada was about 22. In 1918 Frank had told Florence she was too old for him and that he could find “plenty of young girls” to keep house for him. Ada, 24 and working in domestic service, married Frank on 15 November 1922 at the Methodist Mission Office, Neill Street, Carlton. The service was by licence, and the minister was George Fielding Dyson. The witnesses were Florence Gertrude Edwards and Florence May Dixon. Both bride and groom gave their address as 8 Gertrude Street, Fitzroy, so they were already living together. The wedding took place three months before Frank's divorce was final.</p>
+          <p>In October 1926 Ada was living at 12 Malvina Place, off Grattan Street, Carlton. On 25 October she left home, and the <hi rend="italic">Victorian</hi> <hi rend="italic">Police Gazette</hi> listed her as missing two days later. The notice gives the only description of her: 28 years old, 5 ft 8 or 9 in (nearly Frank’s height), with fair hair and a fair complexion. She was wearing a blue skirt and blouse, a brown coat with a brown seal collar and cuffs, a brown hat covered in tinsel, and black patent-leather shoes. She also wore a string of pearls and a boomerang brooch with a kookaburra in the centre.</p>
+          <p>In 1928, Frank and Ada are recorded in the Electoral Roll at 207 Grattan Street. On the same roll at 12 Malvina Place appear to be Frank’s brother Walter Herbert Groat and mother Ellen Groat. In 1930, Ellen is living at 73 Palmerston Street, Carlton. By 1931, the only Groat on the Carlton roll is Walter, living at 170 Cardigan Street.</p>
+          <p>What happened next is unclear. On 5 October 1939 Frank named “Mrs Ada Groat, Belgrave” as his wife and next of kin. A month earlier, though, he had given his wife’s name as “Eva Groat”. By 1945 he was living at Dromana with Eva Elizabeth Williams, “known as my wife”, and his will left Ada nothing. The records don’t say whether Ada and Frank separated, divorced, or whether she died before 1945. Her life after 1928 is the biggest gap in the story.</p>
+        </div>
+        <div>
+          <head><hi rend="bold">The divorce: Groat v Groat, 1922</hi></head>
+          <p>Florence Jasmine Groat divorced Frank in 1922 for desertion and adultery with Ada Annear. Frank did not defend the case. (Supreme Court of Victoria, 1922 No. 74.)</p>
+          <p>Florence’s sworn affidavit tells the story of the marriage:</p>
+          <list rend="numbered">
+            <item><hi rend="bold">London, 1917–18.</hi> They married on 11 June 1917. Florence was a 40-year-old widow from Brighton, Sussex. When Frank was sent home in January 1918, he promised to send for her and said he had “a Government position”. He wrote once from the ship and then not again.</item>
+            <item><hi rend="bold">Melbourne, October 1918.</hi> Florence paid her own fare on the <hi rend="italic">City of Karachi</hi> and arrived on 24 October 1918. Frank and his sister met the ship. He lodged her at his sister’s house at 312 Station Street, North Carlton, then moved her to a room in Canning Street. He never came to it. Three weeks later she ran into him by chance at the Exhibition Grounds.</item>
+            <item><hi rend="bold">Reconciliation attempts.</hi> Frank’s parents told him off and said he had to support her. He then stayed with her at her lodgings at 523 Nicholson Street, Carlton, for two weeks. She said he would not work, was constantly drunk, and said he would gladly have his arm amputated without anaesthetic if she would leave him.</item>
+            <item><hi rend="bold">Princes Hill, December 1918 – January 1919.</hi> Frank set up a house at 108 McIlwraith Street, furnished with a Repatriation loan. Florence described “three weeks of misery”. He said she was too old for him and threatened to shoot her. On 10 January 1919 she left, leaving him a farewell letter.</item>
+            <item><hi rend="bold">Separation, 1919–1922.</hi> Florence supported herself as manageress of the Church Missionary Society Tea Rooms and then the Bodega Café in Collins Street. Her only money from Frank was part of his war pension, 11s 3d a week.</item>
+            <item><hi rend="bold">The final meeting, 21 January 1922.</hi> Frank came to the café. He wanted to cash in his pension for a £100 lump sum, which needed her consent, and offered her a third. She asked for half. He replied that she would get nothing, that a detective outside had been watching her, and that he “had a co-respondent”.</item>
+          </list>
+          <list rend="bulleted">
+            <item>The petition was filed on 6 March 1922 and served on Frank at 34 Reeves Street, Carlton, on 9 March. Justice Mann granted a decree nisi on 14 June 1922 and ordered Frank to pay Florence's costs. On 2<hi rend="italic">﻿</hi>8 October 1922 Frank himself checked whether the decree had been made absolute. It was made absolute on 23 February 1923.</item>
+          </list>
+          <p>Frank married Ada on 15 November 1922, more than three months before his divorce was made absolute on 23 February 1923. When the decree nisi was granted, the court had warned both parties that remarrying before then would be bigamy. Frank got around it by writing a false divorce date, 13 September 1922, on the certificate.</p>
+        </div>
+      </div>
+    </body>
+    <back>
+      <div type="bibliography">
+        <listBibl>
+          <bibl>•	Public Record Office Victoria: Supreme Court divorce case file, Groat v Groat, 1922 No. 74</bibl>
+          <bibl>•	Public Record Office Victoria: probate file for Frank Groat, 1948, including his will dated 14 April 1945</bibl>
+          <bibl>•	National Archives of Australia: B2455, GROAT F (WW1 service record, No. 2605)</bibl>
+          <bibl>•	National Archives of Australia: B884, V80950 (WW2 service record)</bibl>
+          <bibl>•	Victoria Police Gazette, 27 October 1926 (missing person notice for Ada Albina Groat)</bibl>
+          <bibl>•	Sea Lake Times and Berriwillock Advertiser, farewell notice, 1915</bibl>
+          <bibl>•	The Age, 7 September 1917, p. 6, "An Anzac's Message"</bibl>
+          <bibl>•	Sea Lake Times and Berriwillock Advertiser, 27 October 1917, p. 3, letter from Frank</bibl>
+          <bibl>•	Sea Lake Times and Berriwillock Advertiser, 27 June 1918, p. 2, fire brigade welcome home</bibl>
+          <bibl>•	The Argus, 12 July 1948, p. 5, report of the accident</bibl>
+          <bibl>•	Victorian marriage certificate, Frank Groat and Ada Albina Annear, 15 November 1922, Carlton (Methodist), No. 319 / 12387. Family research: Ada's birth at Gisborne in 1898</bibl>
+        </listBibl>
+      </div>
+    </back>
+  </text>
+</TEI>
