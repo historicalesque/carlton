@@ -31,7 +31,7 @@
       </sourceDesc>
     </fileDesc>
     <revisionDesc status="draft">
-      <change when="2026-11-06" type="created">Contributed through the contribution form by Andy May.</change>
+      <change when="2026-11-09" type="created">Contributed through the contribution form by Andy May.</change>
     </revisionDesc>
   </teiHeader>
   <standOff>
@@ -56,6 +56,10 @@
   <text>
     <body>
       <div type="detail">
+        <div>
+          <head><hi rend="bold"><hi rend="italic">Only part of the story …</hi></hi></head>
+          <p>This biography draws on digitised newspapers and official records. Search tools make it easy to find ordinary people again, but those records are lopsided. Newspapers usually mentioned people only when something went wrong: a court appearance, a fine, a fight, an accident. Work, family life, friendship and service to the community seldom made the news. Many of the offences recorded also reflected poverty or the laws and attitudes of the time more than any character flaw. As a result, this entry may give a narrower and harsher picture than the life deserved. Family members may find details here that they did not know, or that differ from the stories passed down to them. If you are a descendant and would like to add to this entry, correct it, or raise a concern, please contact us.</p>
+        </div>
         <div>
           <head>In the directories</head>
           <p>Abraham or A. Bernard is listed at No. 85 <ref target="civic?id=Madeline%20Street">Madeline Street</ref> from 1905 to 1925. He is a grocer from 1910 to 1920, and a confectioner and fruiterer in 1925. In 1915 he also has a wood yard next door at No. 87.</p>
