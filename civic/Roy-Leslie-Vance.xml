@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="https://historicalesque.github.io/carlton/schema/carlton.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0" type="person" xml:lang="en">
+  <teiHeader>
+    <fileDesc>
+      <titleStmt>
+        <title>Roy Leslie Vance</title>
+        <author>Andy May</author>
+      </titleStmt>
+      <publicationStmt>
+        <publisher>Carlton Common Ground</publisher>
+        <idno type="entry">Roy-Leslie-Vance</idno>
+        <availability>
+          <licence target="https://creativecommons.org/licenses/by-nc/4.0/">CC BY-NC 4.0</licence>
+        </availability>
+      </publicationStmt>
+      <sourceDesc>
+        <p>Contributed through the website.</p>
+      </sourceDesc>
+    </fileDesc>
+    <revisionDesc status="draft">
+      <change when="2026-11-09" type="created">Contributed through the contribution form by Andy May.</change>
+    </revisionDesc>
+  </teiHeader>
+  <standOff>
+    <listPerson>
+      <person xml:id="subject">
+        <persName type="main">Roy Leslie Vance</persName>
+      </person>
+    </listPerson>
+  </standOff>
+  <text>
+    <body>
+      <div type="summary">
+        <p>Roy Leslie Vance (1893-1955), a timber salesman who was born in Traralgon, was living at 207 Grattan Street with his wife Alice when he enlisted in October 1916. The couple had only married two years earlier (6653/1914), a daughter Jean Effie Florence born in Hotham East in 1915 (31374/1915). Roy was appointed Driver, 13th Reinforcements, 4th Field Artillery Brigade. He served in England and France from 1917 to 1919 with the field artillery, mostly with the 5th Divisional Ammunition Column.</p>
+      </div>
+    </body>
+    <back>
+      <div type="bibliography">
+        <listBibl>
+          <bibl><ref target="https://aif.adfa.edu.au/showPerson?pid=308089">https://aif.adfa.edu.au/showPerson?pid=308089</ref></bibl>
+        </listBibl>
+      </div>
+    </back>
+  </text>
+</TEI>
