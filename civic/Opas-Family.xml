@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="https://historicalesque.github.io/carlton/schema/carlton.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0" type="unknown" xml:lang="en">
+  <teiHeader>
+    <fileDesc>
+      <titleStmt>
+        <title>Opas Family</title>
+        <author>Sue Silberberg</author>
+      </titleStmt>
+      <publicationStmt>
+        <publisher>Carlton Common Ground</publisher>
+        <idno type="entry">Opas-Family</idno>
+        <availability status="restricted">
+          <licence target="https://creativecommons.org/licenses/by-nc/4.0/">CC BY-NC 4.0</licence>
+          <p>Kept as the author wrote it: not open for suggested changes.</p>
+        </availability>
+      </publicationStmt>
+      <sourceDesc>
+        <p>Contributed through the website.</p>
+      </sourceDesc>
+    </fileDesc>
+    <revisionDesc status="draft">
+      <change when="2026-11-09" type="created">Contributed through the contribution form by Sue Silberberg.</change>
+    </revisionDesc>
+  </teiHeader>
+  <text>
+    <body>
+      <div type="summary">
+        <p>The Opas family established a strong residential and familial presence on Barry Street in the late nineteenth century, with several members living in close proximity to one another and providing emotional and practical support.</p>
+      </div>
+      <div type="detail">
+        <p>The extended Opas family were residents of the South Carlton area during the latter part of the nineteenth century, establishing close familial and residential connections within the area.</p>
+        <p>Harris Opas (1834-1920) was born in the shifting borderlands between Prussia and Russian Poland, and here he married his wife, Sarah Pulvermacher (c.1834-1922), on 27 November 1856. Their eldest son, Phillip Harris Opas (1859-1931), was also born there; however, their other children were born during the several decades the family spent in London. There,  Harris and Sarah worked as tailors, and the 1881 census recorded Harris as employing eighteen people: eleven men and seven women.</p>
+        <p>Phillip arrived in Victoria in November 1880, and, by May of the following year, had married Catherine Haines (1852-1940) at the Melbourne Hebrew Congregation. The 1885 Sands and McDougall Directory records the couple as living at 26 Barry Street, Carlton.</p>
+        <p>Phillip's parents, Harris and Sarah, followed him to Melbourne, accompanied by three sons and three daughters. Following their arrival, Phillip established a clothing-manufacturing business in Abbotsford, apparently initially in partnership with his father. The business operated as Opas Brothers before Phillip subsequently established his own firm, P. H. Opas.</p>
+        <p>The family's connection with Barry Street and the Hains family was further consolidated when Phillip’s London-born brother David married his sister-in-law, Ellen (Nelly) Haines, by the Melbourne Hebrew Congregation at 105 Barry Street on 13 March 1889. Tragically, Nelly died at their home, 68 Barry Street, Carlton, on 23 January 1890, only a month after giving birth to their son, Joseph Phillip Opas.</p>
+        <p>Harris and Sarah Opas initially settled on Pelham Street, but moved to 105 Barry Street in 1890. They subsequently relocated to North Melbourne, where they celebrated their sixtieth wedding anniversary in 1916. The North Melbourne house became home to the tightly knit family of widowed David and the unmarried sons Frances and Alexander.</p>
+        <p>Meanwhile, Phillipa and Catherine continued to establish their own household in Carlton. The 1890 directory lists Phillip Harris Opas and his growing family at 90 Barry Street. By 1892, however, they had moved to Queensberry Street, North Melbourne, closer to Phillip's parents.</p>
+        <p>The Opas family’s involvement in the clothing industry also brought Phillip Harris Opas into the emerging industrial and legal disputes surrounding employment and apprenticeship. In 1910, Phillip Harris Opas brought the first case against an employee who wished to leave his employment and break her indenture as an apprentice.<ref target="about:blank">[1]</ref>  The case appears to have been the first of its kind and tested how labour legislation applied to the obligations imposed on apprentices.</p>
+        <table>
+          <row>
+            <cell> </cell>
+            <cell>S &amp; Mc D
+  1884</cell>
+            <cell>S &amp; Mc D
+  1890</cell>
+            <cell>1892</cell>
+          </row>
+          <row>
+            <cell>Harris Opas</cell>
+            <cell> </cell>
+            <cell>105 Barry
+  Street</cell>
+            <cell>295 Victoria
+  St, W. M.</cell>
+          </row>
+          <row>
+            <cell>Phillip
+  Harris Opas</cell>
+            <cell>24 Barry
+  Street</cell>
+            <cell>90 Barry
+  Street</cell>
+            <cell>16 Queensberry
+  St, N. M.</cell>
+          </row>
+          <row>
+            <cell>David Opas</cell>
+            <cell> </cell>
+            <cell>68 Barry
+  Street</cell>
+            <cell> </cell>
+          </row>
+        </table>
+      </div>
+    </body>
+    <back>
+      <div type="bibliography">
+        <listBibl>
+          <bibl>[1] Herald, 16 May 1910, 3</bibl>
+        </listBibl>
+      </div>
+    </back>
+  </text>
+</TEI>
