@@ -43,7 +43,8 @@
      legalStatuses:  [{ term, from, to }],
      chronology:     [{ date, event, place }],
      relations:      [{ name, targetType, relationType, href, from, to }],
-     sources:        [{ text, href }],      // references, in <back>
+     sources:        [{ text, href, html }], // references, in <back>; html (optional) keeps
+                                             // bold, italic and inner links
      recordSources:  [{ text, href }],      // directory and roll citations
      summary,                                // plain text, blank line between paragraphs
      articleHtml, note,                      // the detail
@@ -168,38 +169,41 @@ window.TEIEntry = (function () {
        <figure><graphic url="image"/><head><ref target="item">caption</ref></head><figDesc>alt text</figDesc></figure> */
   const REND = { STRONG: 'bold', B: 'bold', EM: 'italic', I: 'italic', U: 'underline' };
 
+  // A run of HTML text as TEI inline parts: <hi rend>, <ref target>, text
+  function inlineParts(node, el) {
+    const out = [];
+    for (const child of node.childNodes) {
+      if (child.nodeType === 3) {
+        const text = child.textContent.replace(/\u00a0/g, ' ');
+        if (text) out.push(text);
+      } else if (child.nodeType === 1) {
+        const tag = child.tagName;
+        if (tag === 'BR') out.push(' ');
+        else if (tag === 'A' && has(child.getAttribute('href'))) out.push(el('ref', { target: local(child.getAttribute('href')) }, inlineParts(child, el)));
+        else if (REND[tag]) out.push(el('hi', { rend: REND[tag] }, inlineParts(child, el)));
+        else out.push(...inlineParts(child, el));
+      }
+    }
+    return out;
+  }
+  const blank = (parts) => parts.every((p) => typeof p === 'string' ? !p.trim() : !p.textContent.trim());
+  // Trim the outer whitespace of a run of inline parts, e.g. a cell's "1860&nbsp;"
+  function tidy(parts) {
+    const out = parts.slice();
+    if (typeof out[0] === 'string') out[0] = out[0].replace(/^\s+/, '');
+    const last = out.length - 1;
+    if (typeof out[last] === 'string') out[last] = out[last].replace(/\s+$/, '');
+    return out;
+  }
+  const htmlBody = (html) => new DOMParser().parseFromString(`<body>${html || ''}</body>`, 'text/html').body;
+
   function article(html, el) {
-    const src = new DOMParser().parseFromString(`<body>${html || ''}</body>`, 'text/html').body;
+    const src = htmlBody(html);
     const intro = [];
     const divs = [];
     let current = intro;
     let quote = null; // the <quote> the previous block quote line went into
-
-    function inline(node) {
-      const out = [];
-      for (const child of node.childNodes) {
-        if (child.nodeType === 3) {
-          const text = child.textContent.replace(/ /g, ' ');
-          if (text) out.push(text);
-        } else if (child.nodeType === 1) {
-          const tag = child.tagName;
-          if (tag === 'BR') out.push(' ');
-          else if (tag === 'A' && has(child.getAttribute('href'))) out.push(el('ref', { target: local(child.getAttribute('href')) }, inline(child)));
-          else if (REND[tag]) out.push(el('hi', { rend: REND[tag] }, inline(child)));
-          else out.push(...inline(child));
-        }
-      }
-      return out;
-    }
-    const blank = (parts) => parts.every((p) => typeof p === 'string' ? !p.trim() : !p.textContent.trim());
-    // Trim the outer whitespace of a run of inline parts, e.g. a cell's "1860&nbsp;"
-    function tidy(parts) {
-      const out = parts.slice();
-      if (typeof out[0] === 'string') out[0] = out[0].replace(/^\s+/, '');
-      const last = out.length - 1;
-      if (typeof out[last] === 'string') out[last] = out[last].replace(/\s+$/, '');
-      return out;
-    }
+    const inline = (node) => inlineParts(node, el);
 
     function block(node) {
       if (node.nodeType === 3) {
@@ -267,8 +271,21 @@ window.TEIEntry = (function () {
     const title = trim(entry.title) || 'Untitled';
 
     // teiHeader
-    const bibl = (s) => el('bibl', null,
-      has(s.href) ? el('ref', { target: local(s.href) }, trim(s.text) || trim(s.href)) : trim(s.text));
+    const bibl = (s) => {
+      if (!has(s.html)) return el('bibl', null,
+        has(s.href) ? el('ref', { target: local(s.href) }, trim(s.text) || trim(s.href)) : trim(s.text));
+      // A source with bold, italic or links of its own ("Where did you find
+      // this?"). Its link wraps the whole source unless it has links already;
+      // a link that isn't one of them follows it.
+      const parts = tidy(inlineParts(htmlBody(s.html), el));
+      if (blank(parts)) return el('bibl', null, has(s.href) ? el('ref', { target: local(s.href) }, trim(s.href)) : null);
+      const refs = parts.filter((p) => typeof p !== 'string')
+        .flatMap((p) => (p.localName === 'ref' ? [p] : [...p.getElementsByTagNameNS(NS, 'ref')]));
+      if (!has(s.href)) return el('bibl', null, parts);
+      if (!refs.length) return el('bibl', null, el('ref', { target: local(s.href) }, parts));
+      if (refs.some((r) => r.getAttribute('target') === local(s.href))) return el('bibl', null, parts);
+      return el('bibl', null, parts, ' ', el('ref', { target: local(s.href) }, trim(s.href)));
+    };
     const sources = filled(entry.sources, 'text', 'href');
     const citations = filled(entry.recordSources, 'text', 'href');
     const credits = entry.credits || {};
@@ -731,9 +748,27 @@ window.TEIEntry = (function () {
     }));
     // Older entries keep every source in sourceDesc: the directory and roll
     // citations stay there, and the rest become references
+    // A source keeps its bold, italic and inner links as HTML, for the form's
+    // "Where did you find this?" editor; a link around the whole source is its href
+    const inlineHtml = (node) => [...node.childNodes].map((ch) => {
+      if (ch.nodeType === 3) return esc(ch.textContent);
+      if (ch.nodeType !== 1) return '';
+      if (ch.localName === 'hi') {
+        const tag = { italic: 'em', bold: 'strong', underline: 'u' }[ch.getAttribute('rend')];
+        return tag ? `<${tag}>${inlineHtml(ch)}</${tag}>` : inlineHtml(ch);
+      }
+      if (ch.localName === 'ref' && ch.getAttribute('target')) return `<a href="${esc(ch.getAttribute('target'))}">${inlineHtml(ch)}</a>`;
+      return inlineHtml(ch);
+    }).join('');
     const source = (b) => {
       const ref = one(b, 'ref');
-      return { text: text(b), href: ref ? ref.getAttribute('target') || '' : '' };
+      const out = { text: text(b), href: ref ? ref.getAttribute('target') || '' : '' };
+      const elements = [...b.children];
+      const whole = elements.length === 1 && elements[0] === ref
+        && [...b.childNodes].every((c) => c === ref || (c.nodeType === 3 && !c.textContent.trim()));
+      const inner = whole ? ref : b;
+      if (inner.getElementsByTagNameNS(NS, '*').length) out.html = inlineHtml(inner).trim();
+      return out;
     };
     const headerSources = all(one(xml, 'sourceDesc'), 'bibl').map(source);
     entry.recordSources = headerSources.filter((s) => RECORD_PAGE.test(s.href));
