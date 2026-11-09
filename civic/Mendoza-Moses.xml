@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="https://historicalesque.github.io/carlton/schema/carlton.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0" type="unknown" xml:lang="en">
+  <teiHeader>
+    <fileDesc>
+      <titleStmt>
+        <title>Mendoza, Moses</title>
+        <author>Sue Silberberg</author>
+      </titleStmt>
+      <publicationStmt>
+        <publisher>Carlton Common Ground</publisher>
+        <idno type="entry">Mendoza-Moses</idno>
+        <availability status="restricted">
+          <licence target="https://creativecommons.org/licenses/by-nc/4.0/">CC BY-NC 4.0</licence>
+          <p>Kept as the author wrote it: not open for suggested changes.</p>
+        </availability>
+      </publicationStmt>
+      <sourceDesc>
+        <p>Contributed through the website.</p>
+      </sourceDesc>
+    </fileDesc>
+    <revisionDesc status="draft">
+      <change when="2026-11-09" type="created">Contributed through the contribution form by Sue Silberberg.</change>
+    </revisionDesc>
+  </teiHeader>
+  <text>
+    <body>
+      <div type="summary">
+        <p>Moses Mendoza and his wife Rosetta née Lyons and their residence at 157 Barry St, Carlton.</p>
+      </div>
+      <div type="detail">
+        <div>
+          <head>Moses Mendoza, Moorlin, 157 Barry Street, Carlton</head>
+          <p>Moses Mendoza (1830-1913) was born in London’s Sephardic community, to parents Solomon de Jacob Mendoza (1799-1877) and Hannah née Quiros Mendes (1805-1865). Although most of the family appear in the register of Bevis Marks Synagogue, neither Moses nor his sister Julia (1846-) are recorded there, for reasons that remain unclear.<ref target="about:blank">[1]</ref></p>
+          <p>In Geelong in March 1857, Moses Mendoza married Chatham-born Rosetta Lyons (c.1836-1918). The couple had ten children who survived to adulthood, although relatively few married.</p>
+          <p>Moses Mendoza became involved in Jewish communal affairs soon after arriving in Victoria. In 1862, he served as Honorary Secretary of the Jewish Philanthropic Society, Melbourne’s earliest philanthropic institution, and later served on the committee of the United Friends Jewish Benefit Society.</p>
+          <p>The family's early years were marked by financial difficulties and frequent moves. They initially tried their fortunes in New Zealand, but Mendoza was declared insolvent in December 1864.<ref target="about:blank">[2]</ref> While in New Zealand, he was also inadvertently caught up in a complicated fraud involving the firm Buttner and Hallenstein, and two other members of the Victorian Jewish community. Moses and Rosetta subsequently moved to Brisbane, but in 1871 Moses was again declared insolvent.</p>
+          <p>Returning to Melbourne, Mendoza applied for the position of Shammas (official) of the Melbourne Hebrew Congregation. The family established a longstanding affiliation with the congregation that lasted for several generations.</p>
+          <p>The Mendoza children received a religious education at the Melbourne Hebrew School, where they won awards and honours. Several subsequently participated in communal life. Their son Alfred Alexander (1867-1939) was employed as the choirmaster for the  Congregation, while another son, Frederick Hebrert (1870-1949), served on the board responsible for selling the congregation’s Bourke Street property following its decision to relocate in 1930.<ref target="about:blank">[3]</ref></p>
+          <p>Mendoza continued to pursue various ventures. In 1882, he described himself as a dealer in clothing and slippers; two years later, as a Commission Agent.</p>
+          <p>After resettling in Melbourne, the family moved around central Melbourne for two decades, mainly in West Melbourne and Carlton, before finally settling, with at least some of the unmarried children, on Barry Street.<ref target="about:blank">[4]</ref></p>
+          <p>In 1900, the couple moved to Moorlin, 157 Barry Street, and lived there until Moses' death in 1913. Moses Mendoza’s obituary describes him as a “fine Hebrew scholar, and many now prominent among the Jewish community have reason to remember with grateful appreciation many kindly acts of assistance to them in their studies”.<ref target="about:blank">[5]</ref>  Rosetta died in 1918 at her residence in May Road, Toorak.</p>
+          <table>
+            <row>
+              <cell>Sands and
+  McDougall Directory Entries</cell>
+              <cell> </cell>
+            </row>
+            <row>
+              <cell>1873</cell>
+              <cell>Franklin
+  Street West Melbourne</cell>
+            </row>
+            <row>
+              <cell>1880</cell>
+              <cell>41 Little
+  Lonsdale Street, Melbourne</cell>
+            </row>
+            <row>
+              <cell>1885</cell>
+              <cell>1 Malvina
+  Terra, Grattan Street, Carlton</cell>
+            </row>
+            <row>
+              <cell>1890</cell>
+              <cell>205 Grattan
+  Street, Carlton</cell>
+            </row>
+            <row>
+              <cell>1895</cell>
+              <cell>238 Drummond
+  Street, Carlton</cell>
+            </row>
+            <row>
+              <cell>1900-1913</cell>
+              <cell>(Moorlin) 157
+  Barry Street, Carlton</cell>
+            </row>
+          </table>
+        </div>
+      </div>
+    </body>
+    <back>
+      <div type="bibliography">
+        <listBibl>
+          <bibl>[1] Possibly 10 Mendoza children are listed, but their father is not always fully identified as Solomon de Jacob, but sometimes just Solomon Mendoza. Rodrigues-Pereira, The Birth Register (1767-1881) of the Spanish &amp; Portuguese Jews’ Congregation, London, Bevis Marks Records. 120</bibl>
+          <bibl>[2] Southland Times, 20 December 1864, 1</bibl>
+          <bibl>[3] Aron, Joseph and Arndt, Judy, The Enduring Remnant: The First 150 Years of the Melbourne Hebrew Congregation 1841-1991 (Melbourne University Press, 1992), 268 &amp; 97.</bibl>
+          <bibl>[4] Strangely, there are no rate listings for Moses Mendoza on Ancestry.com</bibl>
+          <bibl>[5] Bendigo Independent, 29 September 1913, 3 “Obituary.”</bibl>
+        </listBibl>
+      </div>
+    </back>
+  </text>
+</TEI>
