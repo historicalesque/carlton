@@ -96,7 +96,7 @@ Sections are marked by their type, not their heading, so headings can be reworde
 
 ### `text/back`: references
 
-`div[@type="bibliography"]/listBibl/bibl`, one per reference from "Where did you find this?" and the form's Sources rows, with a `ref/@target` where there's a link. Shown under *References*.
+`div[@type="bibliography"]/listBibl/bibl`, one per reference from "Where did you find this?" and the form's Sources rows, with a `ref/@target` where there's a link. Bold, italic and underline from the form's editor become `hi/@rend` (`bold`, `italic`, `underline`), as in the article, and a link on part of a reference is a `ref` around just that part. Shown under *References*.
 
 ### Article markup
 

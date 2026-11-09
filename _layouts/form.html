@@ -192,6 +192,9 @@
     .ql-snow .ql-tooltip a, .ql-editor a { color: var(--moss); }
     .ql-snow .ql-editor blockquote { border-left-color: var(--moss); font-family: var(--font-serif); }
     #editor-container { height: 300px; }
+    /* "Where did you find this?": one source per line, grows with its lines */
+    #references .ql-editor { min-height: 110px; }
+    #references .ql-editor p + p { margin-top: .35em; }
     .ql-table-embed table { border-collapse: collapse; width: 100%; }
     .ql-table-embed td, .ql-table-embed th { border: 1px solid var(--paper-line); padding: 6px 8px; }
     /* Collection images (scripts/glam-embed.js) */
@@ -429,9 +432,9 @@
     </div>
 
     <div class="field-group">
-      <label for="references">Where did you find this?</label>
-      <p class="hint">One per line. A link at the end of a line is kept as a link.</p>
-      <textarea id="references" rows="4" placeholder="e.g. Argus, 7 December 1859, p. 3"></textarea>
+      <label id="referencesLabel">Where did you find this?</label>
+      <p class="hint" id="referencesHint">One per line. Use the buttons for italics, such as a newspaper’s title, or to add a link. A link at the end of a line is kept as a link.</p>
+      <div id="references" aria-labelledby="referencesLabel" aria-describedby="referencesHint"></div>
     </div>
 
     <!-- Part B: everything else, behind one switch -->
@@ -683,7 +686,9 @@
       { k: 'href', label: 'Link', ph: 'e.g. https://historicalesque.github.io/carlton/civic?id=Sands-McDougall-Directory-1875', type: 'url', wide: true }] },
     sources: { add: 'Add another source', fields: [
       { k: 'text', label: 'Source', ph: 'e.g. Argus, 7 December 1859, p. 3', wide: true },
-      { k: 'href', label: 'Link (if online)', ph: 'e.g. https://trove.nla.gov.au/…', type: 'url', wide: true }] },
+      { k: 'href', label: 'Link (if online)', ph: 'e.g. https://trove.nla.gov.au/…', type: 'url', wide: true },
+      // The source's bold, italic and inner links, from "Where did you find this?"
+      { k: 'html', hidden: true }] },
     authors: { add: 'Add another author', fields: [
       { k: 'name', label: 'Additional names', ph: 'e.g. Felice Rocca', wide: true }] },
     legalStatuses: { add: 'Add another', fields: [
@@ -707,6 +712,14 @@
     const row = document.createElement('div');
     row.className = 'row';
     cfg.fields.forEach((f) => {
+      if (f.hidden) {
+        const hidden = document.createElement('input');
+        hidden.type = 'hidden';
+        hidden.dataset.k = f.k;
+        if (values && values[f.k] !== undefined) hidden.value = values[f.k];
+        row.append(hidden);
+        return;
+      }
       const id = `f${++uid}`;
       const wrap = document.createElement('div');
       wrap.className = `field-group${f.wide ? ' wide' : ''}`;
@@ -752,7 +765,7 @@
     add.type = 'button';
     add.className = 'small add-row';
     add.textContent = `+ ${LISTS[name].add}`;
-    add.addEventListener('click', () => { addRow(name).querySelector('input, select').focus(); });
+    add.addEventListener('click', () => { addRow(name).querySelector('input:not([type="hidden"]), select').focus(); });
     box.append(add);
     addRow(name);
   });
@@ -761,6 +774,7 @@
     return [...form.querySelectorAll(`[data-list="${name}"] .row`)].map((row) => {
       const out = {};
       row.querySelectorAll('[data-k]').forEach((i) => { if (i.tagName !== 'LABEL') out[i.dataset.k] = i.value; });
+      if (out.html === '') delete out.html;
       return out;
     });
   }
@@ -792,25 +806,86 @@
   $('showAll').addEventListener('change', (e) => form.classList.toggle('show-all', e.target.checked));
 
   /* ---------- "Where did you find this?" and the Sources rows ----------
-     One list shown two ways: a line per source in Part A, a row with its
-     link in Part B. A link at the end of a line becomes the row's link. */
+     One list shown two ways: a line per source in Part A, in a small editor
+     with bold, italic and links, and a row with its link in Part B. A link
+     at the end of a line, or around the whole line, becomes the row's link.
+     The row keeps the line's formatting (its hidden "html") until its text
+     is changed in Part B. */
+  const SOURCE_URL = /^(.*?)[\s,;:–-]*(https?:\/\/\S+)$/;
+  const escHtml = (t) => String(t).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+  const htmlBody = (html) => new DOMParser().parseFromString(`<body>${html || ''}</body>`, 'text/html').body;
+  const plainText = (html) => {
+    const div = document.createElement('div');
+    div.innerHTML = html || '';
+    return div.textContent.replace(/\u00a0/g, ' ').trim();
+  };
+  // Removes n characters from the end of an element's text, and anything left empty
+  function chopEnd(node, n) {
+    while (n > 0 && node.lastChild) {
+      const last = node.lastChild;
+      const len = last.textContent.length;
+      if (len <= n) { last.remove(); n -= len; } else if (last.nodeType === 3) {
+        last.textContent = last.textContent.slice(0, len - n); n = 0;
+      } else { chopEnd(last, n); n = 0; }
+    }
+  }
+  function sourceFromLine(p) {
+    p.querySelectorAll('br').forEach((br) => br.remove());
+    const all = p.textContent.replace(/\u00a0/g, ' ');
+    // Trailing spaces first, then a link typed or pasted at the end of the line
+    chopEnd(p, all.length - all.trimEnd().length);
+    let href = '';
+    const m = p.textContent.trim().match(SOURCE_URL);
+    const links = [...p.querySelectorAll('a[href]')];
+    if (m && !links.some((a) => a.textContent.includes(m[2]))) {
+      href = m[2];
+      chopEnd(p, p.textContent.trimEnd().length - m[1].trimEnd().length);
+    } else if (links.length === 1 && links[0].textContent.trim() === p.textContent.trim()) {
+      // A link around the whole line
+      href = links[0].getAttribute('href');
+      links[0].replaceWith(...links[0].childNodes);
+    } else if (links.length) href = links[0].getAttribute('href');
+    const text = p.textContent.replace(/\u00a0/g, ' ').trim();
+    const html = p.querySelector('*') ? p.innerHTML.trim() : '';
+    return { text, href, html };
+  }
   function rowsFromReferences() {
-    const rows = $('references').value.split('\n').map((line) => line.trim()).filter(Boolean).map((line) => {
-      const m = line.match(/^(.*?)[\s,;:–-]*(https?:\/\/\S+)$/);
-      return m ? { text: m[1].trim(), href: m[2] } : { text: line, href: '' };
-    });
+    const rows = [...refEditor.root.children].map((line) => sourceFromLine(line.cloneNode(true)))
+      .filter((r) => r.text || r.href);
     form.querySelectorAll('[data-list="sources"] .row').forEach((r) => r.remove());
     rows.forEach((v) => addRow('sources', v));
     if (!rows.length) addRow('sources');
   }
   function referencesFromRows() {
-    $('references').value = readList('sources')
-      .map((r) => [r.text.trim(), r.href.trim()].filter(Boolean).filter((v, i, a) => a.indexOf(v) === i).join(' '))
-      .filter(Boolean).join('\n');
+    const lines = readList('sources').map((r) => {
+      const text = (r.text || '').trim();
+      const href = (r.href || '').trim();
+      const rich = r.html && plainText(r.html) === text ? r.html : '';
+      const body = rich || escHtml(text);
+      if (!href) return body;
+      if (rich && plainText(r.html) && [...htmlBody(rich).querySelectorAll('a[href]')].some((a) => a.getAttribute('href') === href)) return body;
+      if (!text) return escHtml(href);
+      if (!rich || !htmlBody(rich).querySelector('a[href]')) return `<a href="${escHtml(href)}">${body}</a>`;
+      return `${body} ${escHtml(href)}`;
+    }).filter(Boolean);
+    refEditor.setContents(refEditor.clipboard.convert(lines.map((l) => `<p>${l}</p>`).join('')), 'silent');
   }
+  // Editing a row's text in Part B drops the formatting it no longer matches;
+  // editing its link changes the line's own link
   form.addEventListener('input', (e) => {
-    if (e.target === $('references')) rowsFromReferences();
-    else if (e.target.closest('[data-list="sources"]')) referencesFromRows();
+    const row = e.target.closest('[data-list="sources"] .row');
+    if (!row) return;
+    const html = row.querySelector('input[data-k="html"]');
+    if (html && html.value && e.target.dataset.k === 'text' && plainText(html.value) !== e.target.value.trim()) html.value = '';
+    if (html && html.value && e.target.dataset.k === 'href') {
+      const body = htmlBody(html.value);
+      const a = body.querySelector('a[href]');
+      if (a) {
+        if (e.target.value.trim()) a.setAttribute('href', e.target.value.trim()); else a.replaceWith(...a.childNodes);
+        html.value = body.innerHTML;
+      }
+    }
+    referencesFromRows();
   });
 
   /* ---------- Credit: anonymous (the community) or by name ---------- */
@@ -1272,6 +1347,17 @@
     formats: ['header', 'bold', 'italic', 'underline', 'list', 'blockquote', 'link', 'tableHTML', 'glam-image'],
     placeholder: 'Write as much or as little as you know, in your own words.',
     theme: 'snow'
+  });
+  const refEditor = new Quill('#references', {
+    modules: { toolbar: [['bold', 'italic', 'underline'], ['link'], ['clean']] },
+    formats: ['bold', 'italic', 'underline', 'link'],
+    placeholder: 'e.g. Argus, 7 December 1859, p. 3',
+    theme: 'snow'
+  });
+  refEditor.on('text-change', (delta, old, source) => {
+    if (source === 'silent') return;
+    rowsFromReferences();
+    changed();
   });
   quill.clipboard.addMatcher('table', (node) => {
     const Delta = Quill.import('delta');
