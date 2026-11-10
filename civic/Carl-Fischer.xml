@@ -44,13 +44,13 @@
   </standOff>
   <text>
     <body>
+      <div type="summary">
+        <p>Carl Fischer, hairdresser and tobacconist, is listed at No. 49 Madeline Street in 1905.</p>
+      </div>
       <div type="detail">
         <div>
           <head>In the directories</head>
           <p>Carl Fischer, hairdresser and tobacconist, is listed at No. 49 <ref target="civic?id=Madeline%20Street">Madeline Street</ref> in 1905.</p>
-        </div>
-        <div>
-          <p>Carl Fischer <ref target="https://recordsearch.naa.gov.au/SearchNRetrieve/Interface/DetailsReports/ItemDetail.aspx?Barcode=1933440&amp;isAv=N">was naturalised </ref>in 1901.</p>
         </div>
         <div>
           <head>On the electoral roll</head>
@@ -59,6 +59,49 @@
         <div>
           <head>Neighbours</head>
           <p>His neighbours in 1905 are <ref target="civic?id=Richard%20G.%20McMullen">Richard G. McMullen</ref>, labour agent, at No. 47, and <ref target="civic?id=Francis%20Edmond%20Striezel">Francis Edmond Striezel</ref>, pattern carver, at No. 51. No. 49 is a hairdresser's again in 1910 (A. Kenrick), and in 1920 it is <ref target="civic?id=Richard%20Thomas%20Ward">Richard Thomas Ward</ref>, bootmaker.</p>
+        </div>
+        <div>
+          <head>Life story</head>
+          <p>Carl August Wilhelm Fischer was born in 1867 in Elberfeld, Germany, and arrived in Australia in 1887 from Bremen on the <hi rend="italic">Salier</hi>. He was <ref target="https://recordsearch.naa.gov.au/SearchNRetrieve/Interface/DetailsReports/ItemDetail.aspx?Barcode=1933440&amp;isAv=N">naturalised in 1901</ref> when his address was given as 192 Exhibition Street, and the following year married Adelaide Christina Hoelsken.</p>
+          <p>In 1904, two young men who stole 50 boxes of ‘Sovereign” cigarettes from a factory in A’Beckett Street and attempted to offload some of the “fags” to Carl Fischer in his Madeline Street shop. [<ref target="http://nla.gov.au/nla.news-article10328154"><hi rend="italic">Argus</hi>, 6 July 1904: 10</ref>].</p>
+          <p>The couple may not have stayed in Madeline Street for very long. Electoral rolls show their movement around Melbourne in the period 1909 until the time of Carl’s death in 1934.</p>
+          <table>
+            <row>
+              <cell>1909</cell>
+              <cell>Croydon</cell>
+              <cell>hairdresser</cell>
+            </row>
+            <row>
+              <cell>1912</cell>
+              <cell>Croydon</cell>
+              <cell>hairdresser</cell>
+            </row>
+            <row>
+              <cell>1913-1915</cell>
+              <cell>Richmond</cell>
+              <cell>hairdresser</cell>
+            </row>
+            <row>
+              <cell>1919</cell>
+              <cell>Hawthorn</cell>
+              <cell>kitchenman</cell>
+            </row>
+            <row>
+              <cell>1921-1927</cell>
+              <cell>Kew</cell>
+              <cell>cutler</cell>
+            </row>
+            <row>
+              <cell>1928</cell>
+              <cell>Kew</cell>
+              <cell>hairdresser</cell>
+            </row>
+            <row>
+              <cell>1931</cell>
+              <cell>Lygon Street, Brunswick</cell>
+              <cell>hairdresser</cell>
+            </row>
+          </table>
         </div>
         <div>
           <head>See also</head>
