@@ -23,6 +23,9 @@ function slugifyId(text) {
 }
 
   
+  // The Apps Script that receives suggestions (_config.yml)
+  const ENDPOINT = {{ site.contribution_endpoint | default: '' | jsonify }};
+
   const CONFIG = {
     path: '{{ page.EACCPFpath }}',
     overrideForm: '{{ page.overrideCommunityContributionForm }}' === 'true',
@@ -95,6 +98,23 @@ function slugifyId(text) {
     const formHtml = kept ? `
       <div class="contribution-container kept-note">
         <p><strong>This entry is kept as ${names ? esc(names) : 'its author'} wrote it.</strong> It isn’t open for suggested changes. If you know something more, or spot an error, please <a href="about#contact">contact us</a>, or <a href="new">suggest a new entry</a> of your own.</p>
+        ${ENDPOINT && entryText ? `<details class="open-request">
+          <summary>Ask for this entry to be opened to suggested changes</summary>
+          <form>
+            <p>If you think other people should be able to suggest changes to this entry, tell us why. We’ll ask ${names ? esc(names) : 'its author'}, and it stays as it is unless they agree.</p>
+            <p class="optional">Your reason is sent with the entry, so please don’t include anything private.</p>
+            <label for="openReason">Why should it be opened?</label>
+            <textarea id="openReason" name="reason" rows="3" maxlength="2000" required></textarea>
+            <label for="openName">Your name <span class="optional">(optional)</span></label>
+            <input id="openName" name="name" type="text" maxlength="100" autocomplete="name">
+            <label for="openContact">How we can contact you <span class="optional">(optional, email or phone)</span></label>
+            <input id="openContact" name="contact" type="text" maxlength="300" autocomplete="email">
+            <p class="optional">Only the editorial team sees your contact details. They aren’t published.</p>
+            <input class="hp" name="website" type="text" tabindex="-1" autocomplete="off" aria-hidden="true">
+            <button type="submit">Send request</button>
+            <p class="open-status" role="status"></p>
+          </form>
+        </details>` : ''}
       </div>
     ` : `
       <div class="contribution-container">
@@ -112,11 +132,63 @@ function slugifyId(text) {
     } else {
       entryContainer.innerHTML = formHtml;
     }
+    if (kept) wireOpenRequest(recordId);
 
     if (recordId) {
       nameRecord(recordId);
       addNeighbours(recordId, isExisting);
     }
+  }
+
+  // A kept entry: a reader can ask for it to be opened to suggested changes.
+  // The request is the entry itself, sent again as a new version without
+  // "kept as written" and with the reader's reason in its revision history,
+  // so it reaches the editors like any other submission (a row on the TEI
+  // submissions tab). Accepting it opens the entry; the editors ask the
+  // author first.
+  let entryText = '';
+  function openedVersion(reason, name) {
+    const esc = (s) => s.replace(/[&<>"]/g, (ch) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' })[ch]);
+    const today = new Date().toISOString().slice(0, 10);
+    const line = `<change when="${today}" type="revised">Asked to be opened to suggested changes${name ? ` by ${esc(name)}` : ''}: ${esc(reason.replace(/\s+/g, ' ').replace(/\.$/, ''))}.</change>`;
+    return entryText
+      .replace(/(<availability\b[^>]*?)\s+status="restricted"/, '$1')
+      .replace(/\s*<p>Kept as the author wrote it[^<]*<\/p>/, '')
+      .replace(/(\n?[ \t]*)<\/revisionDesc>/, (m, indent) => `${indent}  ${line}${indent}</revisionDesc>`);
+  }
+  function wireOpenRequest(recordId) {
+    const form = entryContainer.querySelector('.open-request form');
+    if (!form) return;
+    const status = form.querySelector('.open-status');
+    const button = form.querySelector('button');
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      button.disabled = true;
+      status.className = 'open-status';
+      status.textContent = 'Sending…';
+      try {
+        const res = await fetch(ENDPOINT, {
+          method: 'POST',
+          headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+          body: JSON.stringify({
+            formVersion: 3, targetId: slugifyId(recordId), newEntry: false, records: [],
+            xml: openedVersion(form.elements.reason.value.trim(), form.elements.name.value.trim()),
+            // Goes to the private submissions spreadsheet only, never into the entry
+            contact: form.elements.contact.value.trim() ? `Asked to open it: ${form.elements.contact.value.trim()}` : '',
+            website: form.elements.website.value
+          })
+        });
+        const result = await res.json();
+        if (result.status !== 'success') throw new Error(result.message || 'The request was not accepted.');
+        status.classList.add('ok');
+        status.textContent = 'Thank you. We’ll pass your request on, though it may take us a while.';
+        button.textContent = 'Sent';
+      } catch (err) {
+        button.disabled = false;
+        status.classList.add('error');
+        status.textContent = `Sorry, it didn’t send: ${err.message} Please try again in a moment.`;
+      }
+    });
   }
 
   // Site pages: a small "Suggest an edit" link at the foot of the page, for
@@ -279,6 +351,7 @@ function slugifyId(text) {
         // An entry kept as its author wrote it takes no suggested changes
         const kept = TEIEntry.isKept(xml)
           ? [...xml.getElementsByTagNameNS(TEIEntry.NS, 'author')].map((a) => a.textContent.trim()).filter(Boolean) : null;
+        entryText = text;
         showContributionForm(fileId, true, kept);
         if (!isSitePage) addMapLink(fileId);
         document.dispatchEvent(new CustomEvent('entry-rendered'));
