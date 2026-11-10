@@ -160,7 +160,7 @@ function slugifyId(text) {
         const result = await res.json();
         if (result.status !== 'success') throw new Error(result.message || 'The request was not accepted.');
         status.classList.add('ok');
-        status.textContent = 'Thank you. We’ll ask the author, though it may take us a while.';
+        status.innerHTML = 'Request received. You can also find our contact details on the <a href="about#contact">About page</a>.';
         button.textContent = 'Asked';
       } catch (err) {
         button.disabled = false;
