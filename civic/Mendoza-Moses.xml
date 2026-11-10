@@ -10,9 +10,8 @@
       <publicationStmt>
         <publisher>Carlton Common Ground</publisher>
         <idno type="entry">Mendoza-Moses</idno>
-        <availability status="restricted">
+        <availability>
           <licence target="https://creativecommons.org/licenses/by-nc/4.0/">CC BY-NC 4.0</licence>
-          <p>Kept as the author wrote it: not open for suggested changes.</p>
         </availability>
       </publicationStmt>
       <sourceDesc>
@@ -20,7 +19,8 @@
       </sourceDesc>
     </fileDesc>
     <revisionDesc status="draft">
-      <change when="2026-11-09" type="created">Contributed through the contribution form by Sue Silberberg.</change>
+      <change when="2026-11-10" type="created">Contributed through the contribution form by Sue Silberberg.</change>
+      <change when="2026-11-10" type="revised">A reader asked for this entry to be opened to suggested changes.</change>
     </revisionDesc>
   </teiHeader>
   <text>
