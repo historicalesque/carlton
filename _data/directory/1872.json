@@ -513,7 +513,7 @@
 {"entityID":172762,"source":"Directory","year":1872,"pages":"99","listing":"Lay, John, druggist","street":"Madeline Street","type":"Place","kind":"person","cardinality":"West"},
 {"entityID":172763,"source":"Directory","year":1872,"pages":"99","listing":"Barkly, Joseph, news agent and stationer","street":"Madeline Street","type":"Place","kind":"person","cardinality":"West"},
 {"entityID":"M. Dunn","source":"Directory","year":1872,"pages":"99","listing":"9 Dunn, M., china warehouse","street":"Madeline Street","type":"Place","kind":"org","cardinality":"West"},
-{"entityID":172765,"source":"Directory","year":1872,"pages":"99","listing":"11 Say, W. B., house agent","street":"Madeline Street","type":"Place","kind":"person","cardinality":"West"},
+{"entityID":"E. J. Prevot (11 Madeline Street)","source":"Directory","year":1872,"pages":"99","listing":"11 Say, W. B., house agent","street":"Madeline Street","type":"Place","kind":"person","cardinality":"West"},
 {"entityID":"Mrs E. B. Say","source":"Directory","year":1872,"pages":"99","listing":"Say, Mrs., straw hat mnftr.","street":"Madeline Street","type":"Place","kind":"person","cardinality":"West","lat":-37.80612,"lng":144.96276,"coordConfidence":"low","coordSource":"MMBW detail plans 1179 & 1180 (c. 1895)","coordNote":"same name on this street in every directory from 1872 to 1890, where it is No. 13"},
 {"entityID":"11½ Woolf","source":"Directory","year":1872,"pages":"99","listing":"11½ Woolf, Marks, pawnbroker","street":"Madeline Street","type":"Place","kind":"person","cardinality":"West","Occupation":"pawnbroker"},
 {"entityID":172768,"source":"Directory","year":1872,"pages":"99","listing":"13 Massey, E., provision store","street":"Madeline Street","type":"Place","kind":"person","cardinality":"West"},

@@ -1,0 +1,280 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="https://historicalesque.github.io/carlton/schema/carlton.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0" type="place" xml:lang="en">
+  <teiHeader>
+    <fileDesc>
+      <titleStmt>
+        <title>11 Madeline Street</title>
+        <author>Andy May</author>
+      </titleStmt>
+      <publicationStmt>
+        <publisher>Carlton Common Ground</publisher>
+        <idno type="entry">E-J-Prevot-11-Madeline-Street</idno>
+        <availability>
+          <licence target="https://creativecommons.org/licenses/by-nc/4.0/">CC BY-NC 4.0</licence>
+        </availability>
+      </publicationStmt>
+      <sourceDesc>
+        <listBibl>
+          <bibl><ref target="civic?id=Sands-McDougall-Directory-1857">Sands &amp; McDougall Directory, 1857, p. 165: 11 Prevot, E. J., cordial manufactory</ref></bibl>
+          <bibl><ref target="civic?id=Sands-McDougall-Directory-1858">Sands &amp; McDougall Directory, 1858, p. 189: 11 Prevot, E. J., cordial manufactory</ref></bibl>
+          <bibl><ref target="civic?id=Sands-McDougall-Directory-1872">Sands &amp; McDougall Directory, 1872, p. 99: 11 Say, W. B., house agent</ref></bibl>
+          <bibl><ref target="civic?id=Sands-McDougall-Directory-1874">Sands &amp; McDougall Directory, 1874, p. 102: 11½ Coleman, Wm., tobacconist</ref></bibl>
+          <bibl><ref target="civic?id=Sands-McDougall-Directory-1878">Sands &amp; McDougall Directory, 1878, p. 73: 11 Say, W. B., auctioneer, and land agent</ref></bibl>
+        </listBibl>
+      </sourceDesc>
+    </fileDesc>
+    <revisionDesc status="draft">
+      <change when="2026-11-10" type="created">Contributed through the contribution form by Andy May.</change>
+    </revisionDesc>
+  </teiHeader>
+  <standOff>
+    <listPlace>
+      <place xml:id="subject">
+        <placeName type="main">11 Madeline Street</placeName>
+        <location type="address" from="1857" to="1858">
+          <address>
+            <addrLine>11 Madeline Street, Carlton</addrLine>
+          </address>
+          <geo>-37.801764 144.963743</geo>
+        </location>
+        <location type="address" when="1858">
+          <address>
+            <addrLine>11 Madeline Street, Carlton</addrLine>
+          </address>
+          <geo>-37.801764 144.963743</geo>
+        </location>
+        <location type="address" when="1857">
+          <address>
+            <addrLine>11 Madeline Street, Carlton</addrLine>
+          </address>
+          <geo>-37.801325 144.963820</geo>
+        </location>
+        <location type="address" when="1858">
+          <address>
+            <addrLine>11 Madeline Street, Carlton</addrLine>
+          </address>
+          <geo>-37.801764 144.963743</geo>
+        </location>
+        <location type="address" when="1857">
+          <address>
+            <addrLine>11 Madeline Street, Carlton</addrLine>
+          </address>
+          <geo>-37.801325 144.963820</geo>
+        </location>
+      </place>
+    </listPlace>
+  </standOff>
+  <text>
+    <body>
+      <div type="summary">
+        <p>11 Madeline Street is on the west side between Victoria Street and Ballarat Street</p>
+      </div>
+      <div type="detail">
+        <p>The history of the occupation of 11 Madeline Street reveals a slight complication. Directories list the <ref target="civic?id=City%20hotel">City Hotel</ref> at 11 Madeline Street from 1857 to 1863. For much of the following period to the mid 1880s, Say &amp; Co.’s hat manufactory  and subsequently W.B. Say's auctioneers business were listed at the address.</p>
+        <p>Edward Joseph Prévôt’s factory variously making cordial, soda water, and ginger beer is also listed at 11 Madeline Street. Newspapers definitely show Prévôt at 11 Madeline Street from as early as 1854, and he is listed at that address in the 1857 and 1858 directories [<ref target="http://nla.gov.au/nla.news-article4798514"><hi rend="italic">Argus</hi>, 4 October 1854: 8</ref>]. Prévôt disappears from the directory listings after 1858, but his soda water factory is still being regularly mentioned in newspapers at 11 Madeline Street up to 1876, and after he dies in 1878, it is carried on at same address by Prévôt and Bilton through to around 1883, and from around 1884 by M. McDonald.</p>
+        <p>Here's the rub … checking, for example, the directory from 1861 through to 1875, we see Prévôt listed on the <hi rend="italic">eastern</hi> side of the street, with no number, but between the Seven Stars Hotel at No. 12 and occupants at No. 6. Strangely, in the 1880s directory, Prévôt &amp; Bilton are listed at this spot on the eastern side of the street, which is given the number 11, <hi rend="underline">even though it is on the </hi><hi rend="italic"><hi rend="underline">even</hi></hi><hi rend="underline"> numbered side of the street</hi>:</p>
+        <quote>
+          <p>Madeline Street—E Side</p>
+          <p>Victoria Street</p>
+          <p>4        Hayes, Henry, hairdresser</p>
+          <p>11       Prévôt &amp; Bilton, Cordial manufacturers</p>
+          <p>12       Seven Stars Hotel</p>
+        </quote>
+        <p>One explanation is that it could have been a hangup from a number selected in the early 1850s that was persisted with, but it is clearly anomalous, and confusing!</p>
+        <p>To add to this mix is the occurrence of an address at 11 ½ Madeline Street in the late 1860s and 1870s. Mary Ann Elizabeth Moore, widow of the late James Moore of Liverpool and second daughter of the late Charles Clements of the same place, died at her residence at 11½ Madeline Street, Carlton on 17 April 1869 [<ref target="http://nla.gov.au/nla.news-article5814318"><hi rend="italic">Argus</hi>, 19 April 1869: 4</ref>]. A few months later, pawnbroker Marks Woolf of 92 Swanston street opened a branch of his business at 11 ½ Madeline Street [<ref target="http://nla.gov.au/nla.news-article244917025"><hi rend="italic">Herald</hi>, 17 Jun 1869: 1]</ref>, where he operated until at least <ref target="http://nla.gov.au/nla.news-article199379265">1872</ref>. In 1873, tobacconist Mrs Coleman is at the address [<ref target="http://nla.gov.au/nla.news-article202517366"><hi rend="italic">Age</hi>, 3 November 1873: 1]</ref>.</p>
+        <p>11 Madeline Street</p>
+        <table>
+          <row>
+            <cell>1857</cell>
+            <cell><ref target="civic?id=E.%20J.%20Prevot%20(11%20Madeline%20Street)">Prevot, E. J., cordial manufactory</ref></cell>
+            <cell>directory listing</cell>
+          </row>
+          <row>
+            <cell>1858</cell>
+            <cell><ref target="civic?id=E.%20J.%20Prevot%20(11%20Madeline%20Street)">Prevot, E. J., cordial manufactory</ref></cell>
+            <cell>directory listing</cell>
+          </row>
+          <row>
+            <cell>1859</cell>
+            <cell><ref target="civic?id=City%20hotel">City Hotel</ref></cell>
+            <cell>directory listing</cell>
+          </row>
+          <row>
+            <cell>1860</cell>
+            <cell><ref target="civic?id=City%20hotel">City Hotel</ref></cell>
+            <cell>directory listing</cell>
+          </row>
+          <row>
+            <cell>1861</cell>
+            <cell><ref target="civic?id=City%20hotel">City Hotel</ref></cell>
+            <cell>directory listing</cell>
+          </row>
+          <row>
+            <cell>1862</cell>
+            <cell><ref target="civic?id=City%20hotel">City Hotel</ref></cell>
+            <cell>directory listing</cell>
+          </row>
+          <row>
+            <cell>1863</cell>
+            <cell><ref target="civic?id=City%20hotel">City Hotel</ref></cell>
+            <cell>directory listing</cell>
+          </row>
+          <row>
+            <cell>1864</cell>
+            <cell><ref target="civic?id=Say%2C%20W.%20B.%2C%20straw%20hat%20manufacturer%20(11%20Madeline%20Street%2C%20West%20side)">Say, W. B., straw hat manufacturer</ref></cell>
+            <cell>directory listing</cell>
+          </row>
+          <row>
+            <cell>1865</cell>
+            <cell><ref target="civic?id=Say%2C%20W.%20B.%2C%20straw%20hat%20manufacturer%20(11%20Madeline%20Street%2C%20West%20side)">Say, W. B., straw hat manufacturer</ref></cell>
+            <cell>directory listing</cell>
+          </row>
+          <row>
+            <cell>1866</cell>
+            <cell><ref target="civic?id=Say%2C%20W.%20B.%2C%20straw%20hat%20manufacturer%20(11%20Madeline%20Street%2C%20West%20side)">Say, W. B., straw hat manufacturer</ref></cell>
+            <cell>directory listing</cell>
+          </row>
+          <row>
+            <cell>1867</cell>
+            <cell><ref target="civic?id=Wm.%20Bourne%20Say">Say, Wm. Bourne, straw hat manufacturer</ref></cell>
+            <cell>directory listing</cell>
+          </row>
+          <row>
+            <cell>1868</cell>
+            <cell><ref target="civic?id=Wm.%20Bourne%20Say">Say, Wm. Bourne, straw hat manufacturer</ref></cell>
+            <cell>directory listing</cell>
+          </row>
+          <row>
+            <cell>1869</cell>
+            <cell><ref target="civic?id=Wm.%20Bourne%20Say">Say, Wm. Bourne, straw hat manufacturer</ref></cell>
+            <cell>directory listing</cell>
+          </row>
+          <row>
+            <cell>1870</cell>
+            <cell><ref target="civic?id=Wm.%20B.%20Say%20(Madeline%20Street)">Say, Wm. B., straw hat manufacturer</ref></cell>
+            <cell>directory listing</cell>
+          </row>
+          <row>
+            <cell>1871</cell>
+            <cell><ref target="civic?id=Wm.%20B.%20Say%20(Madeline%20Street)">Say, Wm. B., straw hat manufacturer</ref></cell>
+            <cell>directory listing</cell>
+          </row>
+          <row>
+            <cell>1872</cell>
+            <cell><ref target="civic?id=172765">Say, W. B., house agent</ref></cell>
+            <cell>directory listing</cell>
+          </row>
+          <row>
+            <cell>1873</cell>
+            <cell><ref target="civic?id=Say%2C%20W.%20B.%2C%20auctioneer%20and%20land%20agent%20(11%20Madeline%20Street%2C%20West%20side)">Say, W. B., auctioneer and land agent</ref></cell>
+            <cell>directory listing</cell>
+          </row>
+          <row>
+            <cell>1874</cell>
+            <cell><ref target="civic?id=Say%2C%20W.%20B.%2C%20auctioneer%20and%20land%20agent%20(11%20Madeline%20Street%2C%20West%20side)">Say, W. B., auctioneer and land agent</ref></cell>
+            <cell>directory listing</cell>
+          </row>
+          <row>
+            <cell>1875</cell>
+            <cell><ref target="civic?id=Say%2C%20W.%20B.%2C%20auctioneer%20and%20land%20agent%20(11%20Madeline%20Street%2C%20West%20side)">Say, W. B., auctioneer and land agent</ref></cell>
+            <cell>directory listing</cell>
+          </row>
+          <row>
+            <cell>1876</cell>
+            <cell><ref target="civic?id=Say%2C%20W.%20B.%2C%20auctioneer%20and%20land%20agent%20(11%20Madeline%20Street%2C%20West%20side)">Say, W. B., auctioneer and land agent</ref></cell>
+            <cell>directory listing</cell>
+          </row>
+          <row>
+            <cell>1877</cell>
+            <cell><ref target="civic?id=Say%2C%20W.%20B.%2C%20auctioneer%20and%20land%20agent%20(11%20Madeline%20Street%2C%20West%20side)">Say, W. B., auctioneer and land agent</ref></cell>
+            <cell>directory listing</cell>
+          </row>
+          <row>
+            <cell>1878</cell>
+            <cell><ref target="civic?id=223597">Say, W. B., auctioneer, and land agent</ref></cell>
+            <cell>directory listing</cell>
+          </row>
+          <row>
+            <cell>1879</cell>
+            <cell><ref target="civic?id=Say%2C%20W.%20B.%2C%20land%20agent%20(11%20Madeline%20Street%2C%20West%20side)">Say, W. B., land agent</ref></cell>
+            <cell>directory listing</cell>
+          </row>
+          <row>
+            <cell>1880</cell>
+            <cell><ref target="civic?id=Say%2C%20W.%20B.%2C%20land%20agent%20(11%20Madeline%20Street%2C%20West%20side)">Say, W. B., land agent</ref></cell>
+            <cell>directory listing</cell>
+          </row>
+          <row>
+            <cell>1885</cell>
+            <cell><ref target="civic?id=Say%2C%20W.%20B.%2C%20land%20agent%20(11%20Madeline%20Street%2C%20West%20side)">Say, W. B., land agent</ref></cell>
+            <cell>directory listing</cell>
+          </row>
+          <row>
+            <cell>1890</cell>
+            <cell><ref target="civic?id=33472">Summersgill, J., fruitr</ref></cell>
+            <cell>directory listing</cell>
+          </row>
+          <row>
+            <cell>1895</cell>
+            <cell><ref target="civic?id=25040">Webb, Joseph, laundry</ref></cell>
+            <cell>directory listing</cell>
+          </row>
+          <row>
+            <cell>1900</cell>
+            <cell><ref target="civic?id=931">Clark, William A.</ref></cell>
+            <cell>directory listing</cell>
+          </row>
+          <row>
+            <cell>1905</cell>
+            <cell><ref target="civic?id=2177">Clark, W. A., mathematical inst maker</ref></cell>
+            <cell>directory listing</cell>
+          </row>
+          <row>
+            <cell>1905</cell>
+            <cell><ref target="civic?id=1001850">John Portbury, 11 Madeline Street, bootmaker, M</ref></cell>
+            <cell>electoral rolls</cell>
+          </row>
+          <row>
+            <cell>1905</cell>
+            <cell><ref target="civic?id=1001851">Sarah Teresa Portbury, 11 Madeline Street, home duties, F</ref></cell>
+            <cell>electoral rolls</cell>
+          </row>
+          <row>
+            <cell>1910</cell>
+            <cell><ref target="civic?id=3457">Pitts, George</ref></cell>
+            <cell>directory listing</cell>
+          </row>
+        </table>
+        <p>11 ½ Madeline Street</p>
+        <table>
+          <row>
+            <cell>1870</cell>
+            <cell><ref target="civic?id=11%C2%BD%20Woolf">Woolf, Marks, pawnbroker</ref></cell>
+            <cell>directory listing</cell>
+          </row>
+          <row>
+            <cell>1871</cell>
+            <cell><ref target="civic?id=11%C2%BD%20Woolf">Woolf, Marks, pawnbroker</ref></cell>
+            <cell>directory listing</cell>
+          </row>
+          <row>
+            <cell>1872</cell>
+            <cell><ref target="civic?id=11%C2%BD%20Woolf">Woolf, Marks, pawnbroker</ref></cell>
+            <cell>directory listing</cell>
+          </row>
+          <row>
+            <cell>1873</cell>
+            <cell><ref target="civic?id=11%C2%BD%20Woolf">Woolf, Marks, pawnbroker</ref></cell>
+            <cell>directory listing</cell>
+          </row>
+          <row>
+            <cell>1874</cell>
+            <cell><ref target="civic?id=192974">Coleman, Wm., tobacconist</ref></cell>
+            <cell>directory listing</cell>
+          </row>
+        </table>
+      </div>
+    </body>
+  </text>
+</TEI>
