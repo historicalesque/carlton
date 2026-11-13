@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="https://historicalesque.github.io/carlton/schema/carlton.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0" type="place" xml:lang="en">
+  <teiHeader>
+    <fileDesc>
+      <titleStmt>
+        <title>172 Bouverie Street</title>
+        <author>Andy May</author>
+      </titleStmt>
+      <publicationStmt>
+        <publisher>Carlton Common Ground</publisher>
+        <idno type="entry">Italians</idno>
+        <availability>
+          <licence target="https://creativecommons.org/licenses/by-nc/4.0/">CC BY-NC 4.0</licence>
+        </availability>
+      </publicationStmt>
+      <sourceDesc>
+        <listBibl>
+          <bibl><ref target="civic?id=Sands-McDougall-Directory-1935">Sands &amp; McDougall Directory, 1935, p. 192: 172 Italians</ref></bibl>
+          <bibl><ref target="civic?id=Sands-McDougall-Directory-1940">Sands &amp; McDougall Directory, 1940, p. 215: 172 Italians</ref></bibl>
+          <bibl><ref target="civic?id=Sands-McDougall-Directory-1945">Sands &amp; McDougall Directory, 1945, p. 213: 172 Italians</ref></bibl>
+          <bibl><ref target="civic?id=Sands-McDougall-Directory-1925">Sands &amp; McDougall Directory, 1925, p. 231: 172 Vlass, John</ref></bibl>
+          <bibl><ref target="civic?id=Sands-McDougall-Directory-1890">Sands &amp; McDougall Directory, 1890, p. 121: 172 Lindsey, James</ref></bibl>
+          <bibl><ref target="civic?id=Sands-McDougall-Directory-1905">Sands &amp; McDougall Directory, 1905, p. 179: 172 Vacant</ref></bibl>
+          <bibl><ref target="civic?id=Sands-McDougall-Directory-1915">Sands &amp; McDougall Directory, 1915, p. 190: 172 Kurcick, Nathaniel</ref></bibl>
+          <bibl><ref target="civic?id=Sands-McDougall-Directory-1920">Sands &amp; McDougall Directory, 1920, p. 202: 172 Hewitt, Mrs Ada</ref></bibl>
+          <bibl><ref target="civic?id=Electoral-Rolls">Electoral roll, 1905, Division of North Melbourne, Carlton South Polling Station: Elizabeth Hylton, 172 Bouverie Street, home duties</ref></bibl>
+          <bibl><ref target="civic?id=Sands-McDougall-Directory-1910">Sands &amp; McDougall Directory, 1910, p. 187: 172 Levy, Bernard</ref></bibl>
+          <bibl><ref target="civic?id=Sands-McDougall-Directory-1920">Sands &amp; McDougall Directory, 1920, p. 202: 172 Choon, Louey</ref></bibl>
+          <bibl><ref target="civic?id=Sands-McDougall-Directory-1930">Sands &amp; McDougall Directory, 1930, p. 193: 172 Vlass, John</ref></bibl>
+          <bibl><ref target="civic?id=Sands-McDougall-Directory-1885">Sands &amp; McDougall Directory, 1885, p. 88: 104 Lindsey, James</ref></bibl>
+        </listBibl>
+      </sourceDesc>
+    </fileDesc>
+    <revisionDesc status="draft">
+      <change when="2026-11-13" type="created">Contributed through the contribution form by Andy May.</change>
+    </revisionDesc>
+  </teiHeader>
+  <standOff>
+    <listPlace>
+      <place xml:id="subject">
+        <placeName type="main">172 Bouverie Street</placeName>
+        <location type="address" from="1935" to="1945">
+          <address>
+            <addrLine>172 Bouverie Street, Carlton</addrLine>
+          </address>
+          <geo>-37.800769 144.962622</geo>
+        </location>
+      </place>
+    </listPlace>
+  </standOff>
+  <text>
+    <body>
+      <div type="summary">
+        <p>172 Bouverie Street is on the east side just down from the corner with Grattan Street and north of Church Street. It was originally 104 Bouverie Street before street renumbering in the 1880s.</p>
+      </div>
+      <div type="detail">
+        <p>In 1900, a substantial two-storey brick residence named Tay House was auctioned at 172 Bouverie Street and advertised as a particularly salubrious property:</p>
+        <quote>
+          <p>“close to the Melbourne University, containing garden in front, wide hall, six large rooms bathroom, conservatory, copper, sinks, and gas-stove, side entrance, gas and water on, iron railings in front.</p>
+          <p>The property is sewered, and is in good order, land 20ft. by 82 ½ ft., with pitched right-of-way, drainage perfect.</p>
+          <p>Note .—This is a splendid property, 10 minutes’ walk from centre of city, is between two trams, and is just at the University, with its beautiful health-giving grounds. And with its fine frontage and depth there is plenty of room to enlarge the house”.</p>
+          <p><ref target="http://nla.gov.au/nla.news-article9048068"><hi rend="italic">Argus</hi>, 8 Feb 1900: 2</ref></p>
+        </quote>
+        <p>James Lindsay lived at 104 Bouverie Street at least as early as 1872, prior to which he is listed in the same vicinity at 100 Bouverie Street (1868-1871). The house was known as Tay House at least from 1885, in which year Lindsay supported an appeal for itinerant Melbourne poet Zachariah Sutcliffe [<ref target="http://nla.gov.au/nla.news-article197026619"><hi rend="italic">Age</hi>, 7 Sep 1885: 6</ref>].</p>
+        <p>Lindsay was still in residence in 1900, but the property was listed as vacant in the 1905 directory, though the 1905 electoral roll records Elizabeth Hylton at that address. Subsequent residents include Bernard Levy (1910), Nathaniel Kurcick (1915), Louey Choon and Mrs Ada Hewitt (1920).</p>
+        <p>An 1909 in memoriam notice for Mrs Davidson, mother of Oliver Nott, noted that she died 172 Bouverie Street [<ref target="http://nla.gov.au/nla.news-article196131136"><hi rend="italic">Age</hi>, 29 June 1909: 1]</ref>.</p>
+        <p>Directories record the residents at 172 Bouverie Street in 1935, 1940 and 1945 as generic “Italians”. Other sources, however, show that certainly for some of this period, the residents of the house were Greek rather than Italian immigrants.</p>
+        <p>Nicholas Lekatsas (Nick Lucas), fruit vendor of 172 Bouverie Street, was naturalised in 1926 [<ref target="http://nla.gov.au/nla.news-article232535174">Commonwealth of Australia Gazette</ref>]. He was born in Ithaca in Greece to Fotis Lekatsas and had been resident in Australia for 12 years, arriving on the <hi rend="italic">Orvieto</hi> in 1914. He has left his wife Androniche and now 12-year-old child in Greece [<ref target="https://recordsearch.naa.gov.au/SearchNRetrieve/Interface/DetailsReports/ItemDetail.aspx?Barcode=798788&amp;isAv=N">NAA file</ref>].</p>
+        <p>The 1925 and 1930 directories record John Vlass living at 172 Bouverie Street. In 1940, a John Peter Vlass enlisted, giving his birthplace as Ithaca in 1915, and his father’s name as John Vlass of 922 Drummond Street, Carlton [<ref target="https://recordsearch.naa.gov.au/SearchNRetrieve/Interface/DetailsReports/ItemDetail.aspx?Barcode=6250960&amp;isAv=N">NAA file</ref>].</p>
+        <p>In 1928, Denis Vlass [Dionisios Anast. Vlassopoulos], fruiterer of 172 Bouverie Street, was naturalised [<ref target="http://nla.gov.au/nla.news-article232533602">Commonwealth of Australia Gazette</ref>].</p>
+        <p>Denis Vlass was born on 15 October 1896 at Lahos on the Island of Ithaca, son of Anastheios Vlass. He arrived at Melbourne on the SS <hi rend="italic">Re d’Italia</hi> in December 1922, living first at 249 Peel Street in North Melbourne for around 10 months, then in Pelham Street for 6 months. He had been working for his own account at Victoria market for five years, and had left behind in Greece his wife Corina, and two children John and Alec, who were 7 and 5 at the time he was naturalised (which means he had last seen the younger child as a baby, or perhaps not at all), and he planned to bring them out in around two years’ time. Though his naturalisation application was successful, debate in his naturalisation papers reflected some prejudice of the period “that certain aliens do not readily assimilate Australian conditions” [<ref target="https://recordsearch.naa.gov.au/SearchNRetrieve/Interface/DetailsReports/ItemDetail.aspx?Barcode=1611149&amp;isAv=N">NAA file</ref>].</p>
+        <p>Was Denis Vlass related to John Vlass? That is yet to be determined, but in 1932, Andrew Vlass living at the same address at 172 Bouverie Street reported a robbery during which he had a number of personal items stolen: “a gent's blue twill suit with a white stripe; 3 shirts; 2 dozen pairs of woollen socks; a brown woollen lumber jacket; and 12 handkerchiefs”. Interestingly, the same report reveals other Greek residents at the property. Thomas Paizis reported stolen “a brown Borsalino hat; a blue coat; and a torch”, while Gerald Drakopulos reported stolen “2 poplin shirts; a silk shirt; a pair of gold-mounted braces, "G.D." thereon; a gold-mounted amber cigarette holder and case; a green fountain pen; and a Gillette safety razor in a nickel case”. Entrance was effected by forcing a rear window [<hi rend="italic">Victorian Police Gazette</hi>, 14 April 1932: 447.].</p>
+        <p>A Gerald Drakopolus arrived in Melbourne on the <hi rend="italic">Ville de Verdina</hi> in 1923, and was naturalised in 1939 at which time he was a head waiter and living in Punt Road, Richmond. He was born in Ithaca [<ref target="https://recordsearch.naa.gov.au/SearchNRetrieve/Interface/ListingReports/ItemsListing.aspx?page=2">NAA file</ref>].</p>
+        <p>https://recordsearch.naa.gov.au/SearchNRetrieve/Interface/ViewImage.aspx?B=6555300</p>
+      </div>
+    </body>
+  </text>
+</TEI>
