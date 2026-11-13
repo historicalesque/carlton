@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="https://historicalesque.github.io/carlton/schema/carlton.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0" type="person" xml:lang="en">
+  <teiHeader>
+    <fileDesc>
+      <titleStmt>
+        <title>Kurcick / Carrick family</title>
+        <author>Andy May</author>
+      </titleStmt>
+      <publicationStmt>
+        <publisher>Carlton Common Ground</publisher>
+        <idno type="entry">Kurcick-Carrick-family</idno>
+        <availability>
+          <licence target="https://creativecommons.org/licenses/by-nc/4.0/">CC BY-NC 4.0</licence>
+        </availability>
+      </publicationStmt>
+      <sourceDesc>
+        <listBibl>
+          <bibl><ref target="civic?id=Sands-McDougall-Directory-1915">Sands &amp; McDougall Directory, 1915, p. 190: 172 Kurcick, Nathaniel</ref></bibl>
+        </listBibl>
+      </sourceDesc>
+    </fileDesc>
+    <revisionDesc status="draft">
+      <change when="2026-11-13" type="created">Contributed through the contribution form by Andy May.</change>
+    </revisionDesc>
+  </teiHeader>
+  <standOff>
+    <listPerson>
+      <person xml:id="subject">
+        <persName type="main">Kurcick / Carrick family</persName>
+        <residence when="1915">
+          <placeName>172 Bouverie Street, Carlton</placeName>
+          <geo>-37.800769 144.962622</geo>
+        </residence>
+      </person>
+    </listPerson>
+  </standOff>
+  <text>
+    <body>
+      <div type="detail">
+        <p>In January 1918, <ref target="http://nla.gov.au/nla.news-article232463401">Alexander</ref> and <ref target="http://nla.gov.au/nla.news-article232463395">Nathan</ref> Kurcick of 172 Bouverie Street changed their surname to Carrick [Commonwealth of Australia Gazette].</p>
+        <p>The same year, there is a file in the national Archives (yet to be consulted) which mentions the two:</p>
+        <quote>
+          <p>Kurcick, Alexander and Nathan (Otherwise Carrick), 1918</p>
+          <p>World War I Intelligence section case files, annual single number series, <ref target="https://recordsearch.naa.gov.au/SearchNRetrieve/Interface/DetailsReports/SeriesDetail.aspx?series_no=MP16/1&amp;singleRecord=T">NAA: MP16/1, 1918/55, ID 320186</ref></p>
+        </quote>
+      </div>
+    </body>
+  </text>
+</TEI>
