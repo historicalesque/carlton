@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="https://historicalesque.github.io/carlton/schema/carlton.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0" type="place" xml:lang="en">
+  <teiHeader>
+    <fileDesc>
+      <titleStmt>
+        <title>105 Barry Street</title>
+        <author>Ian</author>
+      </titleStmt>
+      <publicationStmt>
+        <publisher>Carlton Common Ground</publisher>
+        <idno type="entry">105-Barry-Street</idno>
+        <availability status="restricted">
+          <licence target="https://creativecommons.org/licenses/by-nc/4.0/">CC BY-NC 4.0</licence>
+          <p>Kept as the author wrote it: not open for suggested changes.</p>
+        </availability>
+      </publicationStmt>
+      <sourceDesc>
+        <p>Contributed through the website.</p>
+      </sourceDesc>
+    </fileDesc>
+    <revisionDesc status="draft">
+      <change when="2026-11-18" type="created">Contributed through the contribution form by Ian.</change>
+    </revisionDesc>
+  </teiHeader>
+  <standOff>
+    <listPlace>
+      <place xml:id="subject">
+        <placeName type="main">105 Barry Street</placeName>
+      </place>
+    </listPlace>
+  </standOff>
+  <text>
+    <body>
+      <div type="detail">
+        <p>My great grandfather's brother Arthur Young lived here.</p>
+      </div>
+    </body>
+  </text>
+</TEI>
