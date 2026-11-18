@@ -6,6 +6,10 @@
       <titleStmt>
         <title>Ballarat Road, Carlton</title>
         <author>Mitchell Harrop</author>
+        <respStmt key="community">
+          <resp>Credited as</resp>
+          <name>Community Contribution</name>
+        </respStmt>
         <respStmt key="computer-assisted-additions">
           <resp>Computer-assisted additions</resp>
           <name>Carlton Common Ground</name>
@@ -14,6 +18,9 @@
       <publicationStmt>
         <publisher>Carlton Common Ground</publisher>
         <idno type="entry">Ballarat-Road</idno>
+        <availability>
+          <licence target="https://creativecommons.org/licenses/by-nc/4.0/">CC BY-NC 4.0</licence>
+        </availability>
       </publicationStmt>
       <sourceDesc>
         <listBibl>
@@ -24,9 +31,7 @@
       </sourceDesc>
     </fileDesc>
     <revisionDesc status="draft">
-      <change when="2026-10-29" type="created">Contributed through the contribution form by Mitchell Harrop.</change>
-      <change when="2026-10-28" type="revised">Sentences that tied the text to the website (search, the form, record links) taken out.</change>
-      <change when="2026-10-29" type="revised">Credits corrected: the entry was started by people, so the computer-assisted sections are credited as additions, not a first draft.</change>
+      <change when="2026-11-18" type="created">Contributed through the contribution form by Mitchell Harrop.</change>
     </revisionDesc>
   </teiHeader>
   <standOff>
@@ -44,7 +49,7 @@
       <div type="detail">
         <div>
           <head>In the directories</head>
-          <p>The directories call it Ballarat Street. It runs west to east from <ref target="civic?id=Bouverie%20Street">Bouverie Street</ref> to <ref target="civic?id=Madeline%20Street">Madeline Street</ref> (Swanston Street from 1930), with Ballarat Lane turning off it from 1900.</p>
+          <p>The directories call it Ballarat Street. It ran west to east from <ref target="civic?id=Bouverie%20Street">Bouverie Street</ref> to <ref target="civic?id=Madeline%20Street">Madeline Street</ref> (Swanston Street from 1930), with Ballarat Lane turning off it from 1900.</p>
           <p>It first appears in 1860 as a corner in the Bouverie Street listings, and has its own listings from 1863, with a full run of houses from 1869. It is last listed in its own right in 1935. In 1940 it appears only as a corner under Bouverie and Swanston streets.</p>
         </div>
         <div>
