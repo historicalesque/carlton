@@ -97,7 +97,7 @@
         <div>
           <head>Privacy</head>
           <p>If you choose to be credited by name, your name appears on your entry. Everyone who sends a suggestion is asked how we might contact them. We won’t contact everyone, but it helps if we have a question about an entry. These contact details go only to the editorial team. They are never published or added to the entry, and we don’t use them for anything else.</p>
-          <p>We handle personal information in line with the <ref target="https://about.unimelb.edu.au/strategy/governance/compliance-obligations/privacy">University of Melbourne’s privacy policy</ref>. To ask what we hold about you, or to have it removed, please <ref target="ajbm@unimelb.edu.au">contact us</ref>.</p>
+          <p>We handle personal information in line with the <ref target="https://about.unimelb.edu.au/strategy/governance/compliance-obligations/privacy">University of Melbourne’s privacy policy</ref>. To ask what we hold about you, or to have it removed, please <ref target="mailto:ajbm@unimelb.edu.au">contact us</ref>.</p>
         </div>
         <div>
           <head>Acknowledgements</head>
@@ -123,7 +123,7 @@
         </div>
         <div>
           <head>Contact us</head>
-          <p>Email the <hi rend="italic">Carlton Common Ground</hi> editorial collective at <hi rend="bold">&lt;&lt;something&gt;&gt;@unimelb.edu.au</hi>.</p>
+          <p>Email the <hi rend="italic">Carlton Common Ground</hi> editorial collective at <ref target="mailto:ajbm@unimelb.edu.au">ajbm@unimelb.edu.au</ref>.</p>
           <p>Please write to us with questions about the project or these guidelines, with anything sensitive that shouldn’t go through the public form, or with a privacy concern or takedown request. To add to or correct a particular entry, please use the form at the bottom of that entry.</p>
           <p>The editors are largely volunteers, so it may be a while before we reply.</p>
         </div>
