@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="https://historicalesque.github.io/carlton/schema/carlton.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0" type="place" xml:lang="en">
+  <teiHeader>
+    <fileDesc>
+      <titleStmt>
+        <title>213 Grattan St, Carlton 'Greenhill House'</title>
+        <author>Stewart Haines</author>
+      </titleStmt>
+      <publicationStmt>
+        <publisher>Carlton Common Ground</publisher>
+        <idno type="entry">213-Grattan-St-Carlton-Greenhill-House</idno>
+        <availability>
+          <licence target="https://creativecommons.org/licenses/by-nc/4.0/">CC BY-NC 4.0</licence>
+        </availability>
+      </publicationStmt>
+      <sourceDesc>
+        <listBibl>
+          <bibl><ref target="civic?id=Sands-McDougall-Directory-1895">Sands &amp; McDougall Directory, 1895, p. 149: 213 Haddow, James</ref></bibl>
+        </listBibl>
+      </sourceDesc>
+    </fileDesc>
+    <revisionDesc status="draft">
+      <change when="2026-11-19" type="created">Contributed through the contribution form by Stewart Haines.</change>
+    </revisionDesc>
+  </teiHeader>
+  <standOff>
+    <listPlace>
+      <place xml:id="subject">
+        <placeName type="main">213 Grattan St, Carlton 'Greenhill House'</placeName>
+        <location type="address" when="1895">
+          <address>
+            <addrLine>213 Grattan Street, Carlton</addrLine>
+          </address>
+          <geo>-37.800377 144.961713</geo>
+        </location>
+      </place>
+    </listPlace>
+  </standOff>
+  <text>
+    <body>
+      <div type="summary">
+        <p>Known as Greenhill House in 1893 when my great-great-grandmother Emma Haines died there at home with daughter Janie Haddow and son-in-law Jim.</p>
+      </div>
+      <div type="detail">
+        <p>Jim and Janie had married in Hobart in 1884. Janie's parents had moved to Melbourne from Sandy Bay in 1888.</p>
+        <p>Jim was one of the sons of Andrew Haddow of 'Haddow and Sons' hardware store of North Melbourne. Haddow's Lane near the corner of Queensbury and Errol St commemorates the family's association with the district.</p>
+        <p>Emma, Janie and Jim were interred at the Carlton General Cemetery.</p>
+      </div>
+    </body>
+    <back>
+      <div type="bibliography">
+        <listBibl>
+          <bibl>findagrave Melbourne General Cemetery <ref target="https://www.findagrave.com/memorial/200879000/james-haddow">MGC-BAP-Comp-C-No-257</ref></bibl>
+          <bibl><ref target="https://trove.nla.gov.au/newspaper/article/193420005">Trove, The Age 28 August 1893 Emma Haines funeral notice</ref></bibl>
+          <bibl><ref target="https://libraries.tas.gov.au/Record/NamesIndex/897330">Tasmania marriage registry Haines/Haddow</ref></bibl>
+        </listBibl>
+      </div>
+    </back>
+  </text>
+</TEI>
