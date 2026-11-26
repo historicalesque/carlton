@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="https://historicalesque.github.io/carlton/schema/carlton.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0" type="org" xml:lang="en">
+  <teiHeader>
+    <fileDesc>
+      <titleStmt>
+        <title>Carlton Fire Station (Bouverie Street)</title>
+        <author>Patrick Gigacz</author>
+      </titleStmt>
+      <publicationStmt>
+        <publisher>Carlton Common Ground</publisher>
+        <idno type="entry">Carlton-Fire-Station-Bouverie-Street</idno>
+        <availability>
+          <licence target="https://creativecommons.org/licenses/by-nc/4.0/">CC BY-NC 4.0</licence>
+        </availability>
+      </publicationStmt>
+      <sourceDesc>
+        <listBibl>
+          <bibl><ref target="civic?id=Sands-McDougall-Directory-1895">Sands &amp; McDougall Directory, 1895, p. 139: Metrop. Fire Brigade, Station No. 5—Gee, Chris., supt</ref></bibl>
+          <bibl><ref target="civic?id=Sands-McDougall-Directory-1900">Sands &amp; McDougall Directory, 1900, p. 173: Metropolitn Fire Brigade Station No 5-Heydon, H., supt</ref></bibl>
+          <bibl><ref target="civic?id=Sands-McDougall-Directory-1905">Sands &amp; McDougall Directory, 1905, p. 179: Metropolitn Fire Brigade station - Heydon, H., supt</ref></bibl>
+          <bibl><ref target="civic?id=Sands-McDougall-Directory-1935">Sands &amp; McDougall Directory, 1935, p. 192: Fire stn serv depot</ref></bibl>
+          <bibl><ref target="civic?id=Sands-McDougall-Directory-1930">Sands &amp; McDougall Directory, 1930, p. 193: Fire stn serv depot</ref></bibl>
+        </listBibl>
+      </sourceDesc>
+    </fileDesc>
+    <revisionDesc status="draft">
+      <change when="2026-11-26" type="created">Contributed through the contribution form by Patrick Gigacz.</change>
+    </revisionDesc>
+  </teiHeader>
+  <standOff>
+    <listOrg>
+      <org xml:id="subject" from="1893-05-26" to="1929" cert="low">
+        <orgName type="main">Carlton Fire Station (Bouverie Street)</orgName>
+        <state type="activity" from="1893" to="1929">
+          <label>Fire station</label>
+        </state>
+        <place type="address" when="1895">
+          <placeName>Bouverie Street, Carlton</placeName>
+          <location>
+            <geo>-37.801784 144.962020</geo>
+          </location>
+        </place>
+      </org>
+    </listOrg>
+    <listEvent type="chronology">
+      <event when="1893-05-26">
+        <label>Opening ceremony</label>
+      </event>
+    </listEvent>
+  </standOff>
+  <text>
+    <body>
+      <div type="summary">
+        <p>Metropolitan Fire Brigade station, 1893-1929</p>
+      </div>
+      <div type="detail">
+        <p>The Metropolitan Fire Brigade was established in 1891, after a series of disastrous fires revealed the shortcomings of the existing system of professional insurance and volunteer fire brigades. The rival brigades would race to the scene of a fire, and more often begin fighting each other than the fire. The chief of the new brigade, David Stein, was determined to professionalise the new MFB along the lines of the brigades he had seen and read about in North America. One of his first tasks was to rationalise and modernise the fire stations the MFB had taken over, many of which were decrepit and rented from from local councils.</p>
+        <p>A new station on Bouverie Street was officially opened in an impressive ceremony on 26 May 1893, which demonstrated the efficiency of the new organisation. When the superintendent sounded the alarm bell, the trained horses opened their own stable doors and backed into the shafts of the two vehicles standing ready. The firemen rushed from the station to harness the horses, and the vehicles departed down Bouverie Street within just twenty seconds of the bell ringing. The alarm had also been transmitted telegraphically to neighbouring stations, and within five minutes four other fire crews had arrived with their own equipment.</p>
+        <p>The station was intended to house two married men with their wives, and six single firemen. Firemen lived either at the station, or in the surrounding streets. They were on duty twenty-four hours a day. Their lives were part of the South Carlton community. The firemen could be heroes who rescued children from fires and gas leaks, or who pulled young women from car accidents on Swanston Street. The married couples at the fire station had children who grew up 'under the bells'. But there were sometimes rumours of illicit relationships and children in the close quarters of the unmarried men, too.</p>
+        <p>By the mid-1920s, the fire station was out of date. The horses had been completely replaced by motor vehicles, and industrial developments at the northern end of the city meant it was too small. Worse, the housing for the firemen had been declared 'unfit for human habitation' by the City Council. A much larger station on Swanston Street was built to accommodate motorised fire engines, and in 1929 the firemen and families moved to their new premises. The Bouverie Street facility was converted to a depot for the MFB Special Service, which provided fire patrols and fire alarm maintenance, which it remained well into the middle of the century.</p>
+      </div>
+    </body>
+    <back>
+      <div type="bibliography">
+        <listBibl>
+          <bibl><ref target="https://trove.nla.gov.au/newspaper/article/193422290">Age, 29 May 1893, p. 3</ref></bibl>
+          <bibl><ref target="https://trove.nla.gov.au/newspaper/article/199330845">Age, 1 July 1892, p. 7</ref></bibl>
+          <bibl><ref target="https://www.emelbourne.net.au/biogs/EM00975b.htm">Sally Wilde, 'Metropolitan Fire Brigade', eMelbourne</ref></bibl>
+          <bibl><ref target="https://trove.nla.gov.au/newspaper/article/245457998">Age, 29 October 1926, p. 4</ref></bibl>
+          <bibl><ref target="https://trove.nla.gov.au/newspaper/article/3935898">Argus, 8 June 1928, p. 14</ref></bibl>
+          <bibl><ref target="https://trove.nla.gov.au/newspaper/article/205751946">Age, 14 January 1922, p. 5</ref></bibl>
+          <bibl><ref target="https://trove.nla.gov.au/newspaper/article/196025107">Age, 15 February 1900, p. 6</ref></bibl>
+          <bibl><ref target="https://vhd.heritagecouncil.vic.gov.au/places/3480">Former No. 3 Carlton Fire Station, Victorian Heritage Register</ref></bibl>
+        </listBibl>
+      </div>
+    </back>
+  </text>
+</TEI>
